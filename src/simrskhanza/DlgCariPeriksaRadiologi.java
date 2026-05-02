@@ -2535,34 +2535,134 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
                 }
 
                 // 3. Ambil daftar gambar
-                PreparedStatement psGambar = koneksi.prepareStatement(
-                        "select lokasi_gambar from gambar_radiologi where no_rawat=? and tgl_periksa=? and jam=?");
+//                PreparedStatement psGambar = koneksi.prepareStatement(
+//                        "select lokasi_gambar from gambar_radiologi where no_rawat=? and tgl_periksa=? and jam=?");
+//                try {
+//                    psGambar.setString(1, NoRawatDicari.getText());
+//                    psGambar.setString(2, TglDicari.getText());
+//                    psGambar.setString(3, JamDicari.getText());
+//                    ResultSet rsGambar = psGambar.executeQuery();
+//                    int sukses = 0;
+//                    int urut = 0;
+//                    ApiOrthanc orthanc = new ApiOrthanc();
+//                    while (rsGambar.next()) {
+//                        urut++;
+//                        String urlGambar = "http://" + koneksiDB.HOSTHYBRIDWEB() + ":" + koneksiDB.PORTWEB() + "/"
+//                                + koneksiDB.HYBRIDWEB() + "/radiologi/" + rsGambar.getString("lokasi_gambar");
+//                        String instanceId = orthanc.KirimKeOrthanc(NoRawatDicari.getText(), nmpasien, norm, tglLahir,
+//                                jk,
+//                                accession, urlGambar, TglDicari.getText(), nmPemeriksaan,
+//                                "Radiology Image converted from SIMRS", orthanc.getModality(nmPemeriksaan),
+//                                String.valueOf(urut));
+//                        if (!instanceId.equals("")) {
+//                            sukses++;
+//                        }
+//                    }
+//                    if (sukses > 0) {
+//                        JOptionPane.showMessageDialog(null, "Berhasil mengirim " + sukses + " gambar ke Orthanc");
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "Tidak ada gambar yang berhasil dikirim");
+//                    }
+//                } finally {
+//                    if (psGambar != null) {
+//                        psGambar.close();
+//                    }
+//                }
+                    PreparedStatement psGambar = koneksi.prepareStatement(
+                        "SELECT lokasi_gambar FROM gambar_radiologi WHERE no_rawat=? AND tgl_periksa=? AND jam=?"
+                );
+
                 try {
                     psGambar.setString(1, NoRawatDicari.getText());
                     psGambar.setString(2, TglDicari.getText());
                     psGambar.setString(3, JamDicari.getText());
+
                     ResultSet rsGambar = psGambar.executeQuery();
+
                     int sukses = 0;
                     int urut = 0;
+
                     ApiOrthanc orthanc = new ApiOrthanc();
+
                     while (rsGambar.next()) {
                         urut++;
-                        String urlGambar = "http://" + koneksiDB.HOSTHYBRIDWEB() + ":" + koneksiDB.PORTWEB() + "/"
-                                + koneksiDB.HYBRIDWEB() + "/radiologi/" + rsGambar.getString("lokasi_gambar");
-                        String instanceId = orthanc.KirimKeOrthanc(NoRawatDicari.getText(), nmpasien, norm, tglLahir,
+
+                        String lokasiGambar = rsGambar.getString("lokasi_gambar");
+
+                        if (lokasiGambar == null || lokasiGambar.trim().equals("")) {
+                            continue;
+                        }
+
+                        lokasiGambar = lokasiGambar.trim();
+
+                        /*
+         * Data dari PHP tersimpan contoh:
+         * pages/upload/PENJAB_NORAWAT_NAMA_PASIEN_xxxx.jpg
+         *
+         * URL akhirnya harus menjadi:
+         * http://HOST:PORT/HYBRIDWEB/radiologi/pages/upload/file.jpg
+                         */
+                        String baseUrl = "http://"
+                                + koneksiDB.HOSTHYBRIDWEB() + ":"
+                                + koneksiDB.PORTWEB() + "/"
+                                + koneksiDB.HYBRIDWEB() + "/radiologi/";
+
+                        String urlGambar;
+
+                        // Kalau ternyata lokasi_gambar sudah berupa URL lengkap
+                        if (lokasiGambar.toLowerCase().startsWith("http://")
+                                || lokasiGambar.toLowerCase().startsWith("https://")) {
+
+                            urlGambar = lokasiGambar;
+
+                        } else {
+                            // Hilangkan slash depan kalau ada
+                            while (lokasiGambar.startsWith("/")) {
+                                lokasiGambar = lokasiGambar.substring(1);
+                            }
+
+                            // Hindari dobel radiologi/radiologi
+                            if (lokasiGambar.startsWith("radiologi/")) {
+                                lokasiGambar = lokasiGambar.substring("radiologi/".length());
+                            }
+
+                            urlGambar = baseUrl + lokasiGambar;
+                        }
+
+                        System.out.println("Kirim gambar radiologi ke Orthanc: " + urlGambar);
+
+                        String instanceId = orthanc.KirimKeOrthanc(
+                                NoRawatDicari.getText(),
+                                nmpasien,
+                                norm,
+                                tglLahir,
                                 jk,
-                                accession, urlGambar, TglDicari.getText(), nmPemeriksaan,
-                                "Radiology Image converted from SIMRS", orthanc.getModality(nmPemeriksaan),
-                                String.valueOf(urut));
-                        if (!instanceId.equals("")) {
+                                accession,
+                                urlGambar,
+                                TglDicari.getText(),
+                                nmPemeriksaan,
+                                "Radiology Image converted from SIMRS",
+                                orthanc.getModality(nmPemeriksaan),
+                                String.valueOf(urut)
+                        );
+
+                        if (instanceId != null && !instanceId.equals("")) {
                             sukses++;
                         }
                     }
+
                     if (sukses > 0) {
-                        JOptionPane.showMessageDialog(null, "Berhasil mengirim " + sukses + " gambar ke Orthanc");
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Berhasil mengirim " + sukses + " gambar ke Orthanc"
+                        );
                     } else {
-                        JOptionPane.showMessageDialog(null, "Tidak ada gambar yang berhasil dikirim");
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Tidak ada gambar yang berhasil dikirim"
+                        );
                     }
+
                 } finally {
                     if (psGambar != null) {
                         psGambar.close();
@@ -3116,8 +3216,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 
                 if (nomorUrutPasien == 1) {
                     captionPasien
-                            = "*HASIL RADIOLOGI PASIEN:" + namaPerusahaan + "\n\n"
-                            + "Kode PJ : " + kdPj + "\n"
+                            = "*HASIL RADIOLOGI PASIEN: *\n\n"
+                            + "Nama Perusahaan/Asuransi : " + namaPerusahaan + "\n"
                             + "Tanggal : " + tanggalDipilih + "\n"
                             + "Jumlah Pasien : " + jumlahPasienPJ + "\n\n"
                             + nomorUrutPasien + ". " + namaPasien + "\n"
@@ -3900,16 +4000,110 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         PanelMenuDicom.setPreferredSize(new java.awt.Dimension(44, 44));
         PanelMenuDicom.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 5));
 
+//        BtnJpgDicom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2276087_document_extension_format_jpg_paper_icon.png")));
+//        BtnJpgDicom.setText("Download JPG");
+//        BtnJpgDicom.setPreferredSize(new java.awt.Dimension(130, 30));
+//        BtnJpgDicom.addActionListener(evt -> {
+//            if (tbListDicom.getSelectedRow() != -1) {
+//                String norawatslash = NoRawatDicari.getText();
+//                String seriesId = tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 2).toString();
+//                orthanc.AmbilJpg(norawatslash.replaceAll("/", ""), seriesId, norawatslash, TglDicari.getText(), JamDicari.getText());
+//            }
+//        });
+//        PanelMenuDicom.add(BtnJpgDicom);
         BtnJpgDicom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2276087_document_extension_format_jpg_paper_icon.png")));
         BtnJpgDicom.setText("Download JPG");
         BtnJpgDicom.setPreferredSize(new java.awt.Dimension(130, 30));
+
         BtnJpgDicom.addActionListener(evt -> {
-            if (tbListDicom.getSelectedRow() != -1) {
+            try {
+                if (tbListDicom.getRowCount() <= 0) {
+                    JOptionPane.showMessageDialog(null, "Data DICOM belum tersedia.");
+                    return;
+                }
+
                 String norawatslash = NoRawatDicari.getText();
-                String seriesId = tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 2).toString();
-                orthanc.AmbilJpg(norawatslash.replaceAll("/", ""), seriesId, norawatslash, TglDicari.getText(), JamDicari.getText());
+                String noRawatTanpaSlash = norawatslash.replaceAll("/", "");
+                String tanggalPeriksa = TglDicari.getText();
+                String jamPeriksa = JamDicari.getText();
+
+                int pilihan = JOptionPane.showConfirmDialog(
+                        null,
+                        "Download semua gambar JPG dari semua Series?\n"
+                        + "Jumlah data Series di tabel: " + tbListDicom.getRowCount(),
+                        "Konfirmasi Download JPG",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (pilihan != JOptionPane.YES_OPTION) {
+                    return;
+                }
+
+                int suksesSeries = 0;
+                int gagalSeries = 0;
+
+                /*
+         * Ambil semua seriesId dari tabel.
+         * Kolom 2 sesuai kode kamu sebelumnya.
+                 */
+                java.util.LinkedHashSet<String> daftarSeries = new java.util.LinkedHashSet<>();
+
+                for (int row = 0; row < tbListDicom.getRowCount(); row++) {
+                    Object valueSeries = tbListDicom.getValueAt(row, 2);
+
+                    if (valueSeries != null) {
+                        String seriesId = valueSeries.toString().trim();
+
+                        if (!seriesId.equals("")) {
+                            daftarSeries.add(seriesId);
+                        }
+                    }
+                }
+
+                if (daftarSeries.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Series ID tidak ditemukan di tabel.");
+                    return;
+                }
+
+                System.out.println("Jumlah Series yang akan didownload: " + daftarSeries.size());
+
+                for (String seriesId : daftarSeries) {
+                    System.out.println("Mulai download Series: " + seriesId);
+
+                    JsonNode hasil = orthanc.AmbilJpg(
+                            noRawatTanpaSlash,
+                            seriesId,
+                            norawatslash,
+                            tanggalPeriksa,
+                            jamPeriksa
+                    );
+
+                    if (hasil != null) {
+                        suksesSeries++;
+                    } else {
+                        gagalSeries++;
+                    }
+                }
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Download JPG selesai.\n"
+                        + "Total Series : " + daftarSeries.size() + "\n"
+                        + "Sukses       : " + suksesSeries + "\n"
+                        + "Gagal        : " + gagalSeries
+                );
+
+            } catch (Exception e) {
+                System.out.println("Error Download JPG Multi Series: " + e);
+                e.printStackTrace();
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Gagal download JPG multi series.\n" + e.getMessage()
+                );
             }
         });
+
         PanelMenuDicom.add(BtnJpgDicom);
 
         BtnACSNDicom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png")));

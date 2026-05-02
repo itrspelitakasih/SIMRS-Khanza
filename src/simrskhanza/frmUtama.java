@@ -2098,7 +2098,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22/04/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/04/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7153,7 +7153,7 @@ public class frmUtama extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("::[ Khanza SIMKES 2022 ]::");
+        setTitle("::[ SIMRS RS. PELITA KASIH ]::");
         setBackground(new java.awt.Color(255, 254, 254));
         setIconImages(null);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -24542,7 +24542,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIM "+rs.getString("nama_instansi"));
+                    this.setTitle("SIM"+rs.getString("nama_instansi"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));

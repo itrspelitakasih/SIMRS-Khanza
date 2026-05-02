@@ -5991,7 +5991,7 @@ public final class DlgMCU extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Registrasi Periksa Hari Ini ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Registrasi Periksa MCU Hari Ini ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -16699,7 +16699,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                                 "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,reg_periksa.status_poli, "+
                                 "reg_periksa.kd_poli,reg_periksa.kd_pj,reg_periksa.status_bayar from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                                 "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where "+
-                                "(poliklinik.kd_poli='MCU' or poliklinik.kd_poli='FU') and reg_periksa.tgl_registrasi between ? and ? "+terbitsep+" order by "+order);
+                                "(poliklinik.kd_poli='MCU' or poliklinik.kd_poli='FU' or poliklinik.kd_poli='LB-M) and reg_periksa.tgl_registrasi between ? and ? "+terbitsep+" order by "+order);
                                 
                         }else{
                             ps=koneksi.prepareStatement("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
@@ -16707,7 +16707,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                                 "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,reg_periksa.status_poli, "+
                                 "reg_periksa.kd_poli,reg_periksa.kd_pj,reg_periksa.status_bayar from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                                 "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where "+
-                                "(poliklinik.kd_poli='MCU' or poliklinik.kd_poli='FU') and poliklinik.nm_poli like ? and  dokter.nm_dokter like ? and reg_periksa.tgl_registrasi between ? and ? and  "+
+                                "(poliklinik.kd_poli='MCU' or poliklinik.kd_poli='FU' or poliklinik.kd_poli='LB-M') and poliklinik.nm_poli like ? and  dokter.nm_dokter like ? and reg_periksa.tgl_registrasi between ? and ? and  "+
                                 "(reg_periksa.no_reg like ? or reg_periksa.no_rawat like ? or reg_periksa.tgl_registrasi like ? or reg_periksa.kd_dokter like ? or "+
                                 "dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or reg_periksa.stts_daftar like ? or pasien.nm_pasien like ? or "+
                                 "poliklinik.nm_poli like ? or reg_periksa.p_jawab like ? or reg_periksa.almt_pj like ? or reg_periksa.hubunganpj like ? or penjab.png_jawab like ?) "+
