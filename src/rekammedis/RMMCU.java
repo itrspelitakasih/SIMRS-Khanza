@@ -1187,8 +1187,7 @@ public final class RMMCU extends javax.swing.JDialog {
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
         surname.setDocument(new batasInput((int)100).getKata(surname));
         kesimpulan.setDocument(new batasInput((int)2000).getKata(kesimpulan));
-        Kesimpulan1.setDocument(new batasInput((int)1000).getKata(Kesimpulan1));
-        Note1.setDocument(new batasInput((int)1000).getKata(Note1));
+        
 //        RiwayatAlergiMakanan.setDocument(new batasInput((int)150).getKata(RiwayatAlergiMakanan));
         TD.setDocument(new batasInput((byte)8).getKata(TD));
         Nadi.setDocument(new batasInput((byte)5).getKata(Nadi));
@@ -1329,9 +1328,6 @@ public final class RMMCU extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        BtnPetugasLab = new widget.Button();
-        KdPetugasLab = new widget.TextBox();
-        NmPetugasLab = new widget.TextBox();
 
         LoadHTML = new widget.editorpane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
@@ -1373,9 +1369,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel102 = new widget.Label();
         scrollPane15 = new widget.ScrollPane();
         specify = new widget.TextArea();
-        jLabel103 = new widget.Label();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
@@ -1459,7 +1453,6 @@ public final class RMMCU extends javax.swing.JDialog {
         FamilyHistoryOther = new widget.TextBox();
         jLabel51 = new widget.Label();
         jLabel56 = new widget.Label();
-        jSeparator27 = new javax.swing.JSeparator();
         CigarettesPerday = new widget.TextBox();
         jLabel52 = new widget.Label();
         AlcoholGrWeek = new widget.TextBox();
@@ -1480,33 +1473,6 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel67 = new widget.Label();
         spirometri_vc_4 = new widget.TextBox();
         hb = new widget.TextBox();
-        trombosit = new widget.TextBox();
-        rhesuss = new widget.TextBox();
-        triglyceride = new widget.TextBox();
-        hdl_cholesterol = new widget.TextBox();
-        ldl_cholesterol = new widget.TextBox();
-        uric_acid = new widget.TextBox();
-        urine_colour = new widget.TextBox();
-        urine_turbidity = new widget.TextBox();
-        urine_chemical_reaction = new widget.TextBox();
-        urine_ketones = new widget.TextBox();
-        urine_glucose = new widget.TextBox();
-        urine_nitrites = new widget.TextBox();
-        urine_wbc = new widget.TextBox();
-        urine_rbc = new widget.TextBox();
-        urine_bacteria = new widget.TextBox();
-        urine_crystal = new widget.TextBox();
-        urine_epithel = new widget.TextBox();
-        hbsag = new widget.TextBox();
-        anti_hbs = new widget.TextBox();
-        cea = new widget.TextBox();
-        afp = new widget.TextBox();
-        drug_amphetamine = new widget.TextBox();
-        drug_methamphetamine = new widget.TextBox();
-        drug_morphine = new widget.TextBox();
-        drug_benzodiazepine = new widget.TextBox();
-        drug_cocain = new widget.TextBox();
-        drug_marijuana = new widget.TextBox();
         jLabel68 = new widget.Label();
         spirometri_fvc_2 = new widget.TextBox();
         jLabel69 = new widget.Label();
@@ -1704,8 +1670,6 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel181 = new widget.Label();
         fit_with_restrictions = new widget.ComboBox();
         exam_dental_comments = new widget.TextBox();
-        scrollPane18 = new widget.ScrollPane();
-        saran = new widget.TextArea();
         audiometri_left_ear_1001 = new widget.TextBox();
         audiometri_left_ear_2001 = new widget.TextBox();
         jLabel182 = new widget.Label();
@@ -1755,7 +1719,7 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane5 = new widget.ScrollPane();
         kesimpulan = new widget.TextArea();
         scrollPane6 = new widget.ScrollPane();
-        rekomendasi2 = new widget.TextArea();
+        saran = new widget.TextArea();
         scrollPane7 = new widget.ScrollPane();
         Dass21 = new widget.TextArea();
         jLabel158 = new widget.Label();
@@ -1765,13 +1729,6 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel159 = new widget.Label();
         ConcAudiometry = new widget.TextBox();
         jLabel169 = new widget.Label();
-        jLabel170 = new widget.Label();
-        scrollPane16 = new widget.ScrollPane();
-        Kesimpulan1 = new widget.TextArea();
-        scrollPane17 = new widget.ScrollPane();
-        Note1 = new widget.TextArea();
-        jLabel171 = new widget.Label();
-        jSeparator31 = new javax.swing.JSeparator();
         jLabel39 = new widget.Label();
         TPasien = new widget.TextBox();
         spirometri_fvc_1 = new widget.TextBox();
@@ -1851,12 +1808,74 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel234 = new widget.Label();
         jLabel235 = new widget.Label();
         jLabel236 = new widget.Label();
-        ecg_abnormal = new widget.TextBox();
         jLabel190 = new widget.Label();
         type_of_hearing = new widget.TextBox();
         eye_unaided_distant_l = new widget.TextBox();
         eye_unaided_distant_r = new widget.TextBox();
         BtnPT = new widget.Button();
+        trombosit = new widget.TextBox();
+        rhesuss = new widget.TextBox();
+        triglyceride = new widget.TextBox();
+        hdl_cholesterol = new widget.TextBox();
+        ldl_cholesterol = new widget.TextBox();
+        uric_acid = new widget.TextBox();
+        urine_colour = new widget.TextBox();
+        urine_turbidity = new widget.TextBox();
+        urine_chemical_reaction = new widget.TextBox();
+        urine_ketones = new widget.TextBox();
+        urine_glucose = new widget.TextBox();
+        urine_nitrites = new widget.TextBox();
+        urine_wbc = new widget.TextBox();
+        urine_rbc = new widget.TextBox();
+        urine_bacteria = new widget.TextBox();
+        urine_crystal = new widget.TextBox();
+        urine_epithel = new widget.TextBox();
+        hbsag = new widget.TextBox();
+        anti_hbs = new widget.TextBox();
+        cea = new widget.TextBox();
+        afp = new widget.TextBox();
+        drug_amphetamine = new widget.TextBox();
+        drug_methamphetamine = new widget.TextBox();
+        drug_morphine = new widget.TextBox();
+        drug_benzodiazepine = new widget.TextBox();
+        drug_cocain = new widget.TextBox();
+        drug_marijuana = new widget.TextBox();
+        lbTrombosit = new widget.Label();
+        lbRhesus = new widget.Label();
+        lbTriglyceride = new widget.Label();
+        lbHdlChol = new widget.Label();
+        lbLdlChol = new widget.Label();
+        lbUricAcid = new widget.Label();
+        lbUrinalisis = new widget.Label();
+        lbUrineColour = new widget.Label();
+        lbUrineTurb = new widget.Label();
+        lbUrineChem = new widget.Label();
+        lbUrineKeton = new widget.Label();
+        lbUrineGluc = new widget.Label();
+        lbUrineNitrit = new widget.Label();
+        lbUrineWbc = new widget.Label();
+        lbUrineRbc = new widget.Label();
+        lbUrineBakt = new widget.Label();
+        lbUrineKrista = new widget.Label();
+        lbUrineEpitel = new widget.Label();
+        lbImunologi = new widget.Label();
+        lbHbsAg = new widget.Label();
+        lbAntiHbs = new widget.Label();
+        lbCea = new widget.Label();
+        lbAfp = new widget.Label();
+        lbNapza = new widget.Label();
+        lbDrugAmfet = new widget.Label();
+        lbDrugMeta = new widget.Label();
+        lbDrugMorf = new widget.Label();
+        lbDrugBenzo = new widget.Label();
+        lbDrugKokai = new widget.Label();
+        lbDrugGanja = new widget.Label();
+        label16 = new widget.Label();
+        KdPetugasLab = new widget.TextBox();
+        NmPetugasLab = new widget.TextBox();
+        BtnPetugasLab = new widget.Button();
+        scrollPane14 = new widget.ScrollPane();
+        ecg_abnormal = new widget.TextArea();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -2054,7 +2073,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 3024));
+        FormInput.setPreferredSize(new java.awt.Dimension(910, 3261));
         FormInput.setLayout(null);
 
         TNoRw.setHighlighter(null);
@@ -2128,12 +2147,13 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel53.setText("D. CONSUMPTION");
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel53.setName("jLabel53"); // NOI18N
         FormInput.add(jLabel53);
-        jLabel53.setBounds(10, 750, 180, 23);
+        jLabel53.setBounds(440, 600, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026 10:02:34" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026 15:12:57" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2149,9 +2169,10 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel59.setText("E. PEMERIKSAAN LABORATORIUM (TERLAMPIR)");
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel59.setName("jLabel59"); // NOI18N
         FormInput.add(jLabel59);
-        jLabel59.setBounds(10, 940, 280, 23);
+        jLabel59.setBounds(10, 790, 280, 23);
 
         scrollPane10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane10.setName("scrollPane10"); // NOI18N
@@ -2165,19 +2186,21 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane10.setViewportView(PemeriksaanLaboratorium);
 
         FormInput.add(scrollPane10);
-        scrollPane10.setBounds(40, 960, 220, 53);
+        scrollPane10.setBounds(50, 820, 420, 53);
 
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel61.setText("G. EKG");
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel61.setName("jLabel61"); // NOI18N
         FormInput.add(jLabel61);
-        jLabel61.setBounds(10, 1110, 40, 23);
+        jLabel61.setBounds(470, 1370, 40, 23);
 
         jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel62.setText("F. RONTGEN THORAX");
+        jLabel62.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel62.setName("jLabel62"); // NOI18N
         FormInput.add(jLabel62);
-        jLabel62.setBounds(10, 1020, 182, 23);
+        jLabel62.setBounds(10, 1380, 182, 23);
 
         scrollPane11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane11.setName("scrollPane11"); // NOI18N
@@ -2190,13 +2213,14 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane11.setViewportView(RongsenThorax);
 
         FormInput.add(scrollPane11);
-        scrollPane11.setBounds(40, 1040, 220, 53);
+        scrollPane11.setBounds(50, 1400, 370, 70);
 
         jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel102.setText("N. KESIMPULAN");
+        jLabel102.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel102.setName("jLabel102"); // NOI18N
         FormInput.add(jLabel102);
-        jLabel102.setBounds(10, 2360, 190, 23);
+        jLabel102.setBounds(10, 2755, 190, 23);
 
         scrollPane15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane15.setName("scrollPane15"); // NOI18N
@@ -2214,60 +2238,47 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane15.setViewportView(specify);
 
         FormInput.add(scrollPane15);
-        scrollPane15.setBounds(430, 2480, 420, 53);
-
-        jLabel103.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel103.setText("O. SARAN (WAJIB)");
-        jLabel103.setName("jLabel103"); // NOI18N
-        FormInput.add(jLabel103);
-        jLabel103.setBounds(10, 2930, 330, 23);
+        scrollPane15.setBounds(430, 2880, 420, 53);
 
         jSeparator3.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator3.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator3.setName("jSeparator3"); // NOI18N
         FormInput.add(jSeparator3);
-        jSeparator3.setBounds(0, 940, 880, 1);
-
-        jSeparator4.setBackground(new java.awt.Color(239, 244, 234));
-        jSeparator4.setForeground(new java.awt.Color(239, 244, 234));
-        jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator4.setName("jSeparator4"); // NOI18N
-        FormInput.add(jSeparator4);
-        jSeparator4.setBounds(0, 1020, 880, 1);
+        jSeparator3.setBounds(0, 781, 880, 1);
 
         jSeparator5.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator5.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator5.setName("jSeparator5"); // NOI18N
         FormInput.add(jSeparator5);
-        jSeparator5.setBounds(0, 1100, 880, 1);
+        jSeparator5.setBounds(0, 1326, 880, 1);
 
         jSeparator7.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator7.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator7.setName("jSeparator7"); // NOI18N
         FormInput.add(jSeparator7);
-        jSeparator7.setBounds(0, 2360, 880, 1);
+        jSeparator7.setBounds(0, 2755, 880, 1);
 
         jSeparator8.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator8.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator8.setName("jSeparator8"); // NOI18N
         FormInput.add(jSeparator8);
-        jSeparator8.setBounds(0, 2550, 880, 1);
+        jSeparator8.setBounds(0, 2945, 880, 1);
 
         jSeparator15.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator15.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator15.setName("jSeparator15"); // NOI18N
         FormInput.add(jSeparator15);
-        jSeparator15.setBounds(0, 1140, 880, 1);
+        jSeparator15.setBounds(0, 1525, 880, 1);
 
         jLabel107.setText("Tinitus :");
         jLabel107.setName("jLabel107"); // NOI18N
         FormInput.add(jLabel107);
-        jLabel107.setBounds(10, 1320, 120, 23);
+        jLabel107.setBounds(10, 1715, 120, 23);
 
         BtnDokter3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter3.setMnemonic('2');
@@ -2280,7 +2291,7 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDokter3);
-        BtnDokter3.setBounds(10, 960, 28, 23);
+        BtnDokter3.setBounds(20, 820, 28, 23);
 
         BtnDokter2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter2.setMnemonic('2');
@@ -2293,19 +2304,19 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDokter2);
-        BtnDokter2.setBounds(10, 1040, 28, 23);
+        BtnDokter2.setBounds(10, 1400, 28, 23);
 
         FamilyHistoryFather.setFocusTraversalPolicyProvider(true);
         FamilyHistoryFather.setName("FamilyHistoryFather"); // NOI18N
         FormInput.add(FamilyHistoryFather);
-        FamilyHistoryFather.setBounds(110, 620, 730, 23);
+        FamilyHistoryFather.setBounds(110, 620, 280, 23);
 
         jSeparator24.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator24.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator24.setName("jSeparator24"); // NOI18N
         FormInput.add(jSeparator24);
-        jSeparator24.setBounds(0, 2040, 880, 1);
+        jSeparator24.setBounds(0, 2435, 880, 1);
 
         SttsNikah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDHA", "JOMBLO" }));
         SttsNikah.setName("SttsNikah"); // NOI18N
@@ -2689,6 +2700,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel55.setText("B. RIWAYAT PENYAKIT");
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel55.setName("jLabel55"); // NOI18N
         FormInput.add(jLabel55);
         jLabel55.setBounds(10, 350, 180, 23);
@@ -2701,7 +2713,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FamilyHistoryMother.setFocusTraversalPolicyProvider(true);
         FamilyHistoryMother.setName("FamilyHistoryMother"); // NOI18N
         FormInput.add(FamilyHistoryMother);
-        FamilyHistoryMother.setBounds(110, 650, 730, 23);
+        FamilyHistoryMother.setBounds(110, 650, 280, 23);
 
         jLabel49.setText("Mother :");
         jLabel49.setName("jLabel49"); // NOI18N
@@ -2711,7 +2723,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FamilyHistorySiblings.setFocusTraversalPolicyProvider(true);
         FamilyHistorySiblings.setName("FamilyHistorySiblings"); // NOI18N
         FormInput.add(FamilyHistorySiblings);
-        FamilyHistorySiblings.setBounds(110, 680, 730, 23);
+        FamilyHistorySiblings.setBounds(110, 680, 280, 23);
 
         jLabel50.setText("Siblings :");
         jLabel50.setName("jLabel50"); // NOI18N
@@ -2721,7 +2733,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FamilyHistoryOther.setFocusTraversalPolicyProvider(true);
         FamilyHistoryOther.setName("FamilyHistoryOther"); // NOI18N
         FormInput.add(FamilyHistoryOther);
-        FamilyHistoryOther.setBounds(110, 710, 730, 23);
+        FamilyHistoryOther.setBounds(110, 710, 280, 23);
 
         jLabel51.setText("Others :");
         jLabel51.setName("jLabel51"); // NOI18N
@@ -2730,66 +2742,60 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel56.setText("C. RIWAYAT PENYAKIT KELUARGA");
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel56.setName("jLabel56"); // NOI18N
         FormInput.add(jLabel56);
-        jLabel56.setBounds(10, 600, 180, 23);
-
-        jSeparator27.setBackground(new java.awt.Color(239, 244, 234));
-        jSeparator27.setForeground(new java.awt.Color(239, 244, 234));
-        jSeparator27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator27.setName("jSeparator27"); // NOI18N
-        FormInput.add(jSeparator27);
-        jSeparator27.setBounds(0, 740, 836, 1);
+        jLabel56.setBounds(10, 600, 220, 23);
 
         CigarettesPerday.setFocusTraversalPolicyProvider(true);
         CigarettesPerday.setName("CigarettesPerday"); // NOI18N
         FormInput.add(CigarettesPerday);
-        CigarettesPerday.setBounds(140, 780, 700, 23);
+        CigarettesPerday.setBounds(570, 620, 280, 23);
 
         jLabel52.setText("Cigarettes (perday) :");
         jLabel52.setName("jLabel52"); // NOI18N
         FormInput.add(jLabel52);
-        jLabel52.setBounds(0, 780, 130, 23);
+        jLabel52.setBounds(430, 620, 130, 23);
 
         AlcoholGrWeek.setFocusTraversalPolicyProvider(true);
         AlcoholGrWeek.setName("AlcoholGrWeek"); // NOI18N
         FormInput.add(AlcoholGrWeek);
-        AlcoholGrWeek.setBounds(140, 810, 700, 23);
+        AlcoholGrWeek.setBounds(570, 650, 280, 23);
 
         jLabel57.setText("Alcohol (gr/week) :");
         jLabel57.setName("jLabel57"); // NOI18N
         FormInput.add(jLabel57);
-        jLabel57.setBounds(0, 810, 130, 23);
+        jLabel57.setBounds(430, 650, 130, 23);
 
         PrescribedMedication.setFocusTraversalPolicyProvider(true);
         PrescribedMedication.setName("PrescribedMedication"); // NOI18N
         FormInput.add(PrescribedMedication);
-        PrescribedMedication.setBounds(140, 840, 700, 23);
+        PrescribedMedication.setBounds(570, 680, 280, 23);
 
         jLabel58.setText("Prescribced Medication :");
         jLabel58.setName("jLabel58"); // NOI18N
         FormInput.add(jLabel58);
-        jLabel58.setBounds(0, 840, 130, 23);
+        jLabel58.setBounds(430, 680, 130, 23);
 
         PrescribedMedication2.setFocusTraversalPolicyProvider(true);
         PrescribedMedication2.setName("PrescribedMedication2"); // NOI18N
         FormInput.add(PrescribedMedication2);
-        PrescribedMedication2.setBounds(140, 870, 700, 23);
+        PrescribedMedication2.setBounds(570, 710, 280, 23);
 
         jLabel60.setText("Prescribced Medication :");
         jLabel60.setName("jLabel60"); // NOI18N
         FormInput.add(jLabel60);
-        jLabel60.setBounds(0, 870, 130, 23);
+        jLabel60.setBounds(430, 710, 130, 23);
 
         spirometri_vc_1.setFocusTraversalPolicyProvider(true);
         spirometri_vc_1.setName("spirometri_vc_1"); // NOI18N
         FormInput.add(spirometri_vc_1);
-        spirometri_vc_1.setBounds(80, 1170, 50, 23);
+        spirometri_vc_1.setBounds(80, 1565, 50, 23);
 
         jLabel63.setText("VC (1) :");
         jLabel63.setName("jLabel63"); // NOI18N
         FormInput.add(jLabel63);
-        jLabel63.setBounds(20, 1170, 50, 23);
+        jLabel63.setBounds(20, 1565, 50, 23);
 
         PosisiKerja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pre employment", "Preplacement", "Periodic" }));
         PosisiKerja.setName("PosisiKerja"); // NOI18N
@@ -2799,360 +2805,254 @@ public final class RMMCU extends javax.swing.JDialog {
         AnyAllergies.setFocusTraversalPolicyProvider(true);
         AnyAllergies.setName("AnyAllergies"); // NOI18N
         FormInput.add(AnyAllergies);
-        AnyAllergies.setBounds(140, 900, 700, 23);
+        AnyAllergies.setBounds(570, 740, 280, 23);
 
         jLabel64.setText("Any allergiecs :");
         jLabel64.setName("jLabel64"); // NOI18N
         FormInput.add(jLabel64);
-        jLabel64.setBounds(0, 900, 130, 23);
+        jLabel64.setBounds(430, 740, 130, 23);
 
         spirometri_vc_2.setFocusTraversalPolicyProvider(true);
         spirometri_vc_2.setName("spirometri_vc_2"); // NOI18N
         FormInput.add(spirometri_vc_2);
-        spirometri_vc_2.setBounds(80, 1200, 50, 23);
+        spirometri_vc_2.setBounds(80, 1595, 50, 23);
 
         jLabel65.setText("VC (2) :");
         jLabel65.setName("jLabel65"); // NOI18N
         FormInput.add(jLabel65);
-        jLabel65.setBounds(20, 1200, 50, 23);
+        jLabel65.setBounds(20, 1595, 50, 23);
 
         spirometri_vc_3.setFocusTraversalPolicyProvider(true);
         spirometri_vc_3.setName("spirometri_vc_3"); // NOI18N
         FormInput.add(spirometri_vc_3);
-        spirometri_vc_3.setBounds(80, 1230, 50, 23);
+        spirometri_vc_3.setBounds(80, 1625, 50, 23);
 
         jLabel66.setText("VC (3) :");
         jLabel66.setName("jLabel66"); // NOI18N
         FormInput.add(jLabel66);
-        jLabel66.setBounds(20, 1230, 50, 23);
+        jLabel66.setBounds(20, 1625, 50, 23);
 
         jLabel67.setText("VC (4) :");
         jLabel67.setName("jLabel67"); // NOI18N
         FormInput.add(jLabel67);
-        jLabel67.setBounds(20, 1260, 50, 23);
+        jLabel67.setBounds(20, 1655, 50, 23);
 
         spirometri_vc_4.setFocusTraversalPolicyProvider(true);
         spirometri_vc_4.setName("spirometri_vc_4"); // NOI18N
         FormInput.add(spirometri_vc_4);
-        spirometri_vc_4.setBounds(80, 1260, 50, 23);
+        spirometri_vc_4.setBounds(80, 1655, 50, 23);
 
         hb.setFocusTraversalPolicyProvider(true);
         hb.setName("hb"); // NOI18N
         FormInput.add(hb);
-        hb.setBounds(440, 960, 50, 23);
-
-        trombosit.setName("trombosit"); // NOI18N
-        FormInput.add(trombosit);
-        trombosit.setBounds(0, 0, 0, 0);
-
-        rhesuss.setName("rhesuss"); // NOI18N
-        FormInput.add(rhesuss);
-        rhesuss.setBounds(0, 0, 0, 0);
-
-        triglyceride.setName("triglyceride"); // NOI18N
-        FormInput.add(triglyceride);
-        triglyceride.setBounds(0, 0, 0, 0);
-
-        hdl_cholesterol.setName("hdl_cholesterol"); // NOI18N
-        FormInput.add(hdl_cholesterol);
-        hdl_cholesterol.setBounds(0, 0, 0, 0);
-
-        ldl_cholesterol.setName("ldl_cholesterol"); // NOI18N
-        FormInput.add(ldl_cholesterol);
-        ldl_cholesterol.setBounds(0, 0, 0, 0);
-
-        uric_acid.setName("uric_acid"); // NOI18N
-        FormInput.add(uric_acid);
-        uric_acid.setBounds(0, 0, 0, 0);
-
-        urine_colour.setName("urine_colour"); // NOI18N
-        FormInput.add(urine_colour);
-        urine_colour.setBounds(0, 0, 0, 0);
-
-        urine_turbidity.setName("urine_turbidity"); // NOI18N
-        FormInput.add(urine_turbidity);
-        urine_turbidity.setBounds(0, 0, 0, 0);
-
-        urine_chemical_reaction.setName("urine_chemical_reaction"); // NOI18N
-        FormInput.add(urine_chemical_reaction);
-        urine_chemical_reaction.setBounds(0, 0, 0, 0);
-
-        urine_ketones.setName("urine_ketones"); // NOI18N
-        FormInput.add(urine_ketones);
-        urine_ketones.setBounds(0, 0, 0, 0);
-
-        urine_glucose.setName("urine_glucose"); // NOI18N
-        FormInput.add(urine_glucose);
-        urine_glucose.setBounds(0, 0, 0, 0);
-
-        urine_nitrites.setName("urine_nitrites"); // NOI18N
-        FormInput.add(urine_nitrites);
-        urine_nitrites.setBounds(0, 0, 0, 0);
-
-        urine_wbc.setName("urine_wbc"); // NOI18N
-        FormInput.add(urine_wbc);
-        urine_wbc.setBounds(0, 0, 0, 0);
-
-        urine_rbc.setName("urine_rbc"); // NOI18N
-        FormInput.add(urine_rbc);
-        urine_rbc.setBounds(0, 0, 0, 0);
-
-        urine_bacteria.setName("urine_bacteria"); // NOI18N
-        FormInput.add(urine_bacteria);
-        urine_bacteria.setBounds(0, 0, 0, 0);
-
-        urine_crystal.setName("urine_crystal"); // NOI18N
-        FormInput.add(urine_crystal);
-        urine_crystal.setBounds(0, 0, 0, 0);
-
-        urine_epithel.setName("urine_epithel"); // NOI18N
-        FormInput.add(urine_epithel);
-        urine_epithel.setBounds(0, 0, 0, 0);
-
-        hbsag.setName("hbsag"); // NOI18N
-        FormInput.add(hbsag);
-        hbsag.setBounds(0, 0, 0, 0);
-
-        anti_hbs.setName("anti_hbs"); // NOI18N
-        FormInput.add(anti_hbs);
-        anti_hbs.setBounds(0, 0, 0, 0);
-
-        cea.setName("cea"); // NOI18N
-        FormInput.add(cea);
-        cea.setBounds(0, 0, 0, 0);
-
-        afp.setName("afp"); // NOI18N
-        FormInput.add(afp);
-        afp.setBounds(0, 0, 0, 0);
-
-        drug_amphetamine.setName("drug_amphetamine"); // NOI18N
-        FormInput.add(drug_amphetamine);
-        drug_amphetamine.setBounds(0, 0, 0, 0);
-
-        drug_methamphetamine.setName("drug_methamphetamine"); // NOI18N
-        FormInput.add(drug_methamphetamine);
-        drug_methamphetamine.setBounds(0, 0, 0, 0);
-
-        drug_morphine.setName("drug_morphine"); // NOI18N
-        FormInput.add(drug_morphine);
-        drug_morphine.setBounds(0, 0, 0, 0);
-
-        drug_benzodiazepine.setName("drug_benzodiazepine"); // NOI18N
-        FormInput.add(drug_benzodiazepine);
-        drug_benzodiazepine.setBounds(0, 0, 0, 0);
-
-        drug_cocain.setName("drug_cocain"); // NOI18N
-        FormInput.add(drug_cocain);
-        drug_cocain.setBounds(0, 0, 0, 0);
-
-        drug_marijuana.setName("drug_marijuana"); // NOI18N
-        FormInput.add(drug_marijuana);
-        drug_marijuana.setBounds(0, 0, 0, 0);
+        hb.setBounds(120, 890, 50, 23);
 
         jLabel68.setText("Hb :");
         jLabel68.setName("jLabel68"); // NOI18N
         FormInput.add(jLabel68);
-        jLabel68.setBounds(400, 960, 40, 23);
+        jLabel68.setBounds(50, 890, 70, 23);
 
         spirometri_fvc_2.setFocusTraversalPolicyProvider(true);
         spirometri_fvc_2.setName("spirometri_fvc_2"); // NOI18N
         FormInput.add(spirometri_fvc_2);
-        spirometri_fvc_2.setBounds(220, 1200, 50, 23);
+        spirometri_fvc_2.setBounds(220, 1595, 50, 23);
 
         jLabel69.setText("FVC (2) :");
         jLabel69.setName("jLabel69"); // NOI18N
         FormInput.add(jLabel69);
-        jLabel69.setBounds(150, 1200, 60, 23);
+        jLabel69.setBounds(150, 1595, 60, 23);
 
         spirometri_fvc_3.setFocusTraversalPolicyProvider(true);
         spirometri_fvc_3.setName("spirometri_fvc_3"); // NOI18N
         FormInput.add(spirometri_fvc_3);
-        spirometri_fvc_3.setBounds(220, 1230, 50, 23);
+        spirometri_fvc_3.setBounds(220, 1625, 50, 23);
 
         jLabel70.setText("FVC (3) :");
         jLabel70.setName("jLabel70"); // NOI18N
         FormInput.add(jLabel70);
-        jLabel70.setBounds(150, 1230, 60, 23);
+        jLabel70.setBounds(150, 1625, 60, 23);
 
         jLabel71.setText("FVC (4) :");
         jLabel71.setName("jLabel71"); // NOI18N
         FormInput.add(jLabel71);
-        jLabel71.setBounds(150, 1260, 60, 23);
+        jLabel71.setBounds(150, 1655, 60, 23);
 
         spirometri_fvc_4.setFocusTraversalPolicyProvider(true);
         spirometri_fvc_4.setName("spirometri_fvc_4"); // NOI18N
         FormInput.add(spirometri_fvc_4);
-        spirometri_fvc_4.setBounds(220, 1260, 50, 23);
+        spirometri_fvc_4.setBounds(220, 1655, 50, 23);
 
         spirometri_fev_1_3.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_3.setName("spirometri_fev_1_3"); // NOI18N
         FormInput.add(spirometri_fev_1_3);
-        spirometri_fev_1_3.setBounds(360, 1230, 50, 23);
+        spirometri_fev_1_3.setBounds(360, 1625, 50, 23);
 
         spirometri_fev_1_2.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_2.setName("spirometri_fev_1_2"); // NOI18N
         FormInput.add(spirometri_fev_1_2);
-        spirometri_fev_1_2.setBounds(360, 1200, 50, 23);
+        spirometri_fev_1_2.setBounds(360, 1595, 50, 23);
 
         jLabel72.setText("FEV 1 (4) :");
         jLabel72.setName("jLabel72"); // NOI18N
         FormInput.add(jLabel72);
-        jLabel72.setBounds(290, 1260, 60, 23);
+        jLabel72.setBounds(290, 1655, 60, 23);
 
         jLabel73.setText("FEV 1 (3) :");
         jLabel73.setName("jLabel73"); // NOI18N
         FormInput.add(jLabel73);
-        jLabel73.setBounds(290, 1230, 60, 23);
+        jLabel73.setBounds(290, 1625, 60, 23);
 
         spirometri_fev_1_4.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_4.setName("spirometri_fev_1_4"); // NOI18N
         FormInput.add(spirometri_fev_1_4);
-        spirometri_fev_1_4.setBounds(360, 1260, 50, 23);
+        spirometri_fev_1_4.setBounds(360, 1655, 50, 23);
 
         jLabel74.setText("FEV 1 (2) :");
         jLabel74.setName("jLabel74"); // NOI18N
         FormInput.add(jLabel74);
-        jLabel74.setBounds(290, 1200, 60, 23);
+        jLabel74.setBounds(290, 1595, 60, 23);
 
         jLabel75.setText("FEV 1 (1) :");
         jLabel75.setName("jLabel75"); // NOI18N
         FormInput.add(jLabel75);
-        jLabel75.setBounds(290, 1170, 60, 23);
+        jLabel75.setBounds(290, 1565, 60, 23);
 
         spirometri_fev_1_1.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_1.setName("spirometri_fev_1_1"); // NOI18N
         FormInput.add(spirometri_fev_1_1);
-        spirometri_fev_1_1.setBounds(360, 1170, 50, 23);
+        spirometri_fev_1_1.setBounds(360, 1565, 50, 23);
 
         spirometri_fev_1_fvc_2.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_fvc_2.setName("spirometri_fev_1_fvc_2"); // NOI18N
         FormInput.add(spirometri_fev_1_fvc_2);
-        spirometri_fev_1_fvc_2.setBounds(500, 1200, 50, 23);
+        spirometri_fev_1_fvc_2.setBounds(500, 1595, 50, 23);
 
         spirometri_fev_1_fvc_4.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_fvc_4.setName("spirometri_fev_1_fvc_4"); // NOI18N
         FormInput.add(spirometri_fev_1_fvc_4);
-        spirometri_fev_1_fvc_4.setBounds(500, 1260, 50, 23);
+        spirometri_fev_1_fvc_4.setBounds(500, 1655, 50, 23);
 
         jLabel76.setText("FEV 1/FVC (3)");
         jLabel76.setName("jLabel76"); // NOI18N
         FormInput.add(jLabel76);
-        jLabel76.setBounds(420, 1230, 70, 23);
+        jLabel76.setBounds(420, 1625, 70, 23);
 
         jLabel77.setText("FEV 1/FVC (2)");
         jLabel77.setName("jLabel77"); // NOI18N
         FormInput.add(jLabel77);
-        jLabel77.setBounds(410, 1200, 80, 23);
+        jLabel77.setBounds(410, 1595, 80, 23);
 
         spirometri_fev_1_fvc_3.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_fvc_3.setName("spirometri_fev_1_fvc_3"); // NOI18N
         FormInput.add(spirometri_fev_1_fvc_3);
-        spirometri_fev_1_fvc_3.setBounds(500, 1230, 50, 23);
+        spirometri_fev_1_fvc_3.setBounds(500, 1625, 50, 23);
 
         jLabel78.setText("FEV 1/FVC (4)");
         jLabel78.setName("jLabel78"); // NOI18N
         FormInput.add(jLabel78);
-        jLabel78.setBounds(420, 1260, 70, 23);
+        jLabel78.setBounds(420, 1655, 70, 23);
 
         jLabel79.setText("FEV 1/FVC (1)");
         jLabel79.setName("jLabel79"); // NOI18N
         FormInput.add(jLabel79);
-        jLabel79.setBounds(400, 1170, 90, 23);
+        jLabel79.setBounds(400, 1565, 90, 23);
 
         spirometri_fev_1_fvc_1.setFocusTraversalPolicyProvider(true);
         spirometri_fev_1_fvc_1.setName("spirometri_fev_1_fvc_1"); // NOI18N
         FormInput.add(spirometri_fev_1_fvc_1);
-        spirometri_fev_1_fvc_1.setBounds(500, 1170, 50, 23);
+        spirometri_fev_1_fvc_1.setBounds(500, 1565, 50, 23);
 
         jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel111.setText("H. SPIROMETRI");
+        jLabel111.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel111.setName("jLabel111"); // NOI18N
         FormInput.add(jLabel111);
-        jLabel111.setBounds(10, 1140, 182, 23);
+        jLabel111.setBounds(10, 1535, 182, 23);
 
         jSeparator19.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator19.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator19.setName("jSeparator19"); // NOI18N
         FormInput.add(jSeparator19);
-        jSeparator19.setBounds(0, 1290, 550, 1);
+        jSeparator19.setBounds(0, 1685, 550, 1);
 
         jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel112.setText("I. AUDIOMETRI");
+        jLabel112.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel112.setName("jLabel112"); // NOI18N
         FormInput.add(jLabel112);
-        jLabel112.setBounds(10, 1300, 182, 23);
+        jLabel112.setBounds(10, 1695, 182, 23);
 
         audiometri_tinitus_always.setText("Always");
         audiometri_tinitus_always.setName("audiometri_tinitus_always"); // NOI18N
         FormInput.add(audiometri_tinitus_always);
-        audiometri_tinitus_always.setBounds(480, 1320, 80, 23);
+        audiometri_tinitus_always.setBounds(480, 1715, 80, 23);
 
         audiometri_tinitus_never.setText("Never");
         audiometri_tinitus_never.setName("audiometri_tinitus_never"); // NOI18N
         FormInput.add(audiometri_tinitus_never);
-        audiometri_tinitus_never.setBounds(150, 1320, 80, 23);
+        audiometri_tinitus_never.setBounds(150, 1715, 80, 23);
 
         audiometri_tinitus_previously.setText("Previously");
         audiometri_tinitus_previously.setName("audiometri_tinitus_previously"); // NOI18N
         FormInput.add(audiometri_tinitus_previously);
-        audiometri_tinitus_previously.setBounds(230, 1320, 80, 23);
+        audiometri_tinitus_previously.setBounds(230, 1715, 80, 23);
 
         audiometri_tinitus_rarely.setText("Rarely");
         audiometri_tinitus_rarely.setName("audiometri_tinitus_rarely"); // NOI18N
         FormInput.add(audiometri_tinitus_rarely);
-        audiometri_tinitus_rarely.setBounds(320, 1320, 80, 23);
+        audiometri_tinitus_rarely.setBounds(320, 1715, 80, 23);
 
         audiometri_tinitus_often.setText("Often");
         audiometri_tinitus_often.setName("audiometri_tinitus_often"); // NOI18N
         FormInput.add(audiometri_tinitus_often);
-        audiometri_tinitus_often.setBounds(400, 1320, 80, 23);
+        audiometri_tinitus_often.setBounds(400, 1715, 80, 23);
 
         jLabel113.setText("Left Ear :");
         jLabel113.setName("jLabel113"); // NOI18N
         FormInput.add(jLabel113);
-        jLabel113.setBounds(20, 1400, 70, 23);
+        jLabel113.setBounds(20, 1795, 70, 23);
 
         audiometri_ear_protection_worn_always.setText("Always");
         audiometri_ear_protection_worn_always.setName("audiometri_ear_protection_worn_always"); // NOI18N
         FormInput.add(audiometri_ear_protection_worn_always);
-        audiometri_ear_protection_worn_always.setBounds(480, 1350, 80, 23);
+        audiometri_ear_protection_worn_always.setBounds(480, 1745, 80, 23);
 
         audiometri_ear_protection_worn_never.setText("Never");
         audiometri_ear_protection_worn_never.setName("audiometri_ear_protection_worn_never"); // NOI18N
         FormInput.add(audiometri_ear_protection_worn_never);
-        audiometri_ear_protection_worn_never.setBounds(150, 1350, 80, 23);
+        audiometri_ear_protection_worn_never.setBounds(150, 1745, 80, 23);
 
         audiometri_ear_protection_worn_previously.setText("Previously");
         audiometri_ear_protection_worn_previously.setName("audiometri_ear_protection_worn_previously"); // NOI18N
         FormInput.add(audiometri_ear_protection_worn_previously);
-        audiometri_ear_protection_worn_previously.setBounds(230, 1350, 80, 23);
+        audiometri_ear_protection_worn_previously.setBounds(230, 1745, 80, 23);
 
         audiometri_ear_protection_worn_rarely.setText("Rarely");
         audiometri_ear_protection_worn_rarely.setName("audiometri_ear_protection_worn_rarely"); // NOI18N
         FormInput.add(audiometri_ear_protection_worn_rarely);
-        audiometri_ear_protection_worn_rarely.setBounds(320, 1350, 80, 23);
+        audiometri_ear_protection_worn_rarely.setBounds(320, 1745, 80, 23);
 
         audiometri_ear_protection_worn_often.setText("Often");
         audiometri_ear_protection_worn_often.setName("audiometri_ear_protection_worn_often"); // NOI18N
         FormInput.add(audiometri_ear_protection_worn_often);
-        audiometri_ear_protection_worn_often.setBounds(400, 1350, 80, 23);
+        audiometri_ear_protection_worn_often.setBounds(400, 1745, 80, 23);
 
         jLabel12.setText("Berat Badan :");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(720, 1660, 80, 23);
+        jLabel12.setBounds(720, 2055, 80, 23);
 
         BB.setFocusTraversalPolicyProvider(true);
         BB.setName("BB"); // NOI18N
         FormInput.add(BB);
-        BB.setBounds(800, 1660, 50, 23);
+        BB.setBounds(800, 2055, 50, 23);
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("x/menit");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(330, 1660, 40, 23);
+        jLabel16.setBounds(330, 2055, 40, 23);
 
         Nadi.setFocusTraversalPolicyProvider(true);
         Nadi.setName("Nadi"); // NOI18N
@@ -3162,34 +3062,34 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(Nadi);
-        Nadi.setBounds(270, 1660, 50, 23);
+        Nadi.setBounds(270, 2055, 50, 23);
 
         jLabel17.setText("HR/Nadi :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(200, 1660, 60, 23);
+        jLabel17.setBounds(200, 2055, 60, 23);
 
         jLabel22.setText("TD :");
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput.add(jLabel22);
-        jLabel22.setBounds(40, 1660, 30, 23);
+        jLabel22.setBounds(40, 2055, 30, 23);
 
         TD.setFocusTraversalPolicyProvider(true);
         TD.setName("TD"); // NOI18N
         FormInput.add(TD);
-        TD.setBounds(80, 1660, 65, 23);
+        TD.setBounds(80, 2055, 65, 23);
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel23.setText("mmHg");
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(150, 1660, 50, 23);
+        jLabel23.setBounds(150, 2055, 50, 23);
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel25.setText("x/menit");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput.add(jLabel25);
-        jLabel25.setBounds(510, 1660, 50, 23);
+        jLabel25.setBounds(510, 2055, 50, 23);
 
         RR.setFocusTraversalPolicyProvider(true);
         RR.setName("RR"); // NOI18N
@@ -3199,18 +3099,18 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(RR);
-        RR.setBounds(450, 1660, 50, 23);
+        RR.setBounds(450, 2055, 50, 23);
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel26.setText("RR/Nafas :");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput.add(jLabel26);
-        jLabel26.setBounds(390, 1660, 70, 23);
+        jLabel26.setBounds(390, 2055, 70, 23);
 
         jLabel28.setText("Tinggi Badan :");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput.add(jLabel28);
-        jLabel28.setBounds(560, 1660, 80, 23);
+        jLabel28.setBounds(560, 2055, 80, 23);
 
         TB.setFocusTraversalPolicyProvider(true);
         TB.setName("TB"); // NOI18N
@@ -3220,627 +3120,633 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(TB);
-        TB.setBounds(640, 1660, 50, 23);
+        TB.setBounds(640, 2055, 50, 23);
 
         jSeparator2.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator2.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator2.setName("jSeparator2"); // NOI18N
         FormInput.add(jSeparator2);
-        jSeparator2.setBounds(0, 1640, 880, 1);
+        jSeparator2.setBounds(0, 2035, 880, 1);
 
         jLabel80.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel80.setText("K. IMUNISASI");
+        jLabel80.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel80.setName("jLabel80"); // NOI18N
         FormInput.add(jLabel80);
-        jLabel80.setBounds(10, 1880, 180, 23);
+        jLabel80.setBounds(10, 2275, 180, 23);
 
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel24.setText("cm");
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(690, 1660, 30, 23);
+        jLabel24.setBounds(690, 2055, 30, 23);
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Kg");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(860, 1660, 20, 23);
+        jLabel13.setBounds(860, 2055, 20, 23);
 
         jSeparator9.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator9.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator9.setName("jSeparator9"); // NOI18N
         FormInput.add(jSeparator9);
-        jSeparator9.setBounds(0, 1720, 836, 1);
+        jSeparator9.setBounds(0, 2115, 836, 1);
 
         jLabel27.setText("BMI(BB/TB²) :");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(10, 1690, 80, 23);
+        jLabel27.setBounds(10, 2085, 80, 23);
 
         IMT.setEditable(false);
         IMT.setFocusTraversalPolicyProvider(true);
         IMT.setName("IMT"); // NOI18N
         FormInput.add(IMT);
-        IMT.setBounds(100, 1690, 50, 23);
+        IMT.setBounds(100, 2085, 50, 23);
 
         jLabel42.setText("Klasifikasi BMI :");
         jLabel42.setName("jLabel42"); // NOI18N
         FormInput.add(jLabel42);
-        jLabel42.setBounds(170, 1690, 90, 23);
+        jLabel42.setBounds(170, 2085, 90, 23);
 
         visual_fields_right.setFocusTraversalPolicyProvider(true);
         visual_fields_right.setName("visual_fields_right"); // NOI18N
         FormInput.add(visual_fields_right);
-        visual_fields_right.setBounds(480, 1840, 100, 23);
+        visual_fields_right.setBounds(480, 2235, 100, 23);
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setText("BMI Ideal : 18.5 – 24.99");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(450, 1690, 140, 23);
+        jLabel14.setBounds(450, 2085, 140, 23);
 
         jLabel114.setText(" Type of hearing Protection Worm (Muffs/Plugs) :");
         jLabel114.setName("jLabel114"); // NOI18N
         FormInput.add(jLabel114);
-        jLabel114.setBounds(550, 1320, 250, 23);
+        jLabel114.setBounds(550, 1715, 250, 23);
 
         jLabel119.setText("R :");
         jLabel119.setName("jLabel119"); // NOI18N
         FormInput.add(jLabel119);
-        jLabel119.setBounds(460, 1840, 20, 23);
+        jLabel119.setBounds(460, 2235, 20, 23);
 
         audiometri_left_ear_1000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1000.setName("audiometri_left_ear_1000"); // NOI18N
         FormInput.add(audiometri_left_ear_1000);
-        audiometri_left_ear_1000.setBounds(150, 1430, 50, 23);
+        audiometri_left_ear_1000.setBounds(150, 1825, 50, 23);
 
         audiometri_left_ear_2000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_2000.setName("audiometri_left_ear_2000"); // NOI18N
         FormInput.add(audiometri_left_ear_2000);
-        audiometri_left_ear_2000.setBounds(150, 1490, 50, 23);
+        audiometri_left_ear_2000.setBounds(150, 1885, 50, 23);
 
         jLabel82.setText("AC 1500 :");
         jLabel82.setName("jLabel82"); // NOI18N
         FormInput.add(jLabel82);
-        jLabel82.setBounds(70, 1460, 70, 23);
+        jLabel82.setBounds(70, 1855, 70, 23);
 
         jLabel83.setText("AC 1000 :");
         jLabel83.setName("jLabel83"); // NOI18N
         FormInput.add(jLabel83);
-        jLabel83.setBounds(70, 1430, 70, 23);
+        jLabel83.setBounds(70, 1825, 70, 23);
 
         audiometri_left_ear_1500.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1500.setName("audiometri_left_ear_1500"); // NOI18N
         FormInput.add(audiometri_left_ear_1500);
-        audiometri_left_ear_1500.setBounds(150, 1460, 50, 23);
+        audiometri_left_ear_1500.setBounds(150, 1855, 50, 23);
 
         jLabel84.setText("AC 2000 :");
         jLabel84.setName("jLabel84"); // NOI18N
         FormInput.add(jLabel84);
-        jLabel84.setBounds(70, 1490, 70, 23);
+        jLabel84.setBounds(70, 1885, 70, 23);
 
         jLabel85.setText("AC 500 :");
         jLabel85.setName("jLabel85"); // NOI18N
         FormInput.add(jLabel85);
-        jLabel85.setBounds(70, 1400, 70, 23);
+        jLabel85.setBounds(70, 1795, 70, 23);
 
         audiometri_left_ear_500.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_500.setName("audiometri_left_ear_500"); // NOI18N
         FormInput.add(audiometri_left_ear_500);
-        audiometri_left_ear_500.setBounds(150, 1400, 50, 23);
+        audiometri_left_ear_500.setBounds(150, 1795, 50, 23);
 
         audiometri_left_ear_3000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_3000.setName("audiometri_left_ear_3000"); // NOI18N
         FormInput.add(audiometri_left_ear_3000);
-        audiometri_left_ear_3000.setBounds(150, 1520, 50, 23);
+        audiometri_left_ear_3000.setBounds(150, 1915, 50, 23);
 
         jLabel86.setText("AC 3000 :");
         jLabel86.setName("jLabel86"); // NOI18N
         FormInput.add(jLabel86);
-        jLabel86.setBounds(70, 1520, 70, 23);
+        jLabel86.setBounds(70, 1915, 70, 23);
 
         audiometri_left_ear_4000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_4000.setName("audiometri_left_ear_4000"); // NOI18N
         FormInput.add(audiometri_left_ear_4000);
-        audiometri_left_ear_4000.setBounds(150, 1550, 50, 23);
+        audiometri_left_ear_4000.setBounds(150, 1945, 50, 23);
 
         jLabel87.setText("AC 4000 :");
         jLabel87.setName("jLabel87"); // NOI18N
         FormInput.add(jLabel87);
-        jLabel87.setBounds(70, 1550, 70, 23);
+        jLabel87.setBounds(70, 1945, 70, 23);
 
         audiometri_left_ear_6000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_6000.setName("audiometri_left_ear_6000"); // NOI18N
         FormInput.add(audiometri_left_ear_6000);
-        audiometri_left_ear_6000.setBounds(150, 1610, 50, 23);
+        audiometri_left_ear_6000.setBounds(150, 2005, 50, 23);
 
         jLabel89.setText("AC 6000 :");
         jLabel89.setName("jLabel89"); // NOI18N
         FormInput.add(jLabel89);
-        jLabel89.setBounds(70, 1610, 70, 23);
+        jLabel89.setBounds(70, 2005, 70, 23);
 
         jLabel91.setText("AC 5000 :");
         jLabel91.setName("jLabel91"); // NOI18N
         FormInput.add(jLabel91);
-        jLabel91.setBounds(70, 1580, 70, 23);
+        jLabel91.setBounds(70, 1975, 70, 23);
 
         audiometri_left_ear_5000.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_5000.setName("audiometri_left_ear_5000"); // NOI18N
         FormInput.add(audiometri_left_ear_5000);
-        audiometri_left_ear_5000.setBounds(150, 1580, 50, 23);
+        audiometri_left_ear_5000.setBounds(150, 1975, 50, 23);
 
         jLabel120.setText("Right Ear :");
         jLabel120.setName("jLabel120"); // NOI18N
         FormInput.add(jLabel120);
-        jLabel120.setBounds(430, 1400, 70, 23);
+        jLabel120.setBounds(430, 1795, 70, 23);
 
         jLabel81.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel81.setText("J. PEMERIKSAAN FISIK");
+        jLabel81.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel81.setName("jLabel81"); // NOI18N
         FormInput.add(jLabel81);
-        jLabel81.setBounds(10, 1640, 180, 23);
+        jLabel81.setBounds(10, 2035, 180, 23);
 
         jLabel122.setText("LEVEL DECIBEL");
         jLabel122.setName("jLabel122"); // NOI18N
         FormInput.add(jLabel122);
-        jLabel122.setBounds(10, 1380, 90, 23);
+        jLabel122.setBounds(10, 1775, 90, 23);
 
         jLabel108.setText("Unaided near R :");
         jLabel108.setName("jLabel108"); // NOI18N
         FormInput.add(jLabel108);
-        jLabel108.setBounds(300, 1810, 100, 23);
+        jLabel108.setBounds(300, 2205, 100, 23);
 
         jLabel109.setText("Unaided near L :");
         jLabel109.setName("jLabel109"); // NOI18N
         FormInput.add(jLabel109);
-        jLabel109.setBounds(100, 1810, 100, 23);
+        jLabel109.setBounds(100, 2205, 100, 23);
 
         jLabel115.setText("Glasses distant R :");
         jLabel115.setName("jLabel115"); // NOI18N
         FormInput.add(jLabel115);
-        jLabel115.setBounds(300, 1780, 100, 23);
+        jLabel115.setBounds(300, 2175, 100, 23);
 
         jLabel116.setText("Glasses distant L :");
         jLabel116.setName("jLabel116"); // NOI18N
         FormInput.add(jLabel116);
-        jLabel116.setBounds(100, 1780, 100, 23);
+        jLabel116.setBounds(100, 2175, 100, 23);
 
         jLabel117.setText("Unaided distant R :");
         jLabel117.setName("jLabel117"); // NOI18N
         FormInput.add(jLabel117);
-        jLabel117.setBounds(300, 1750, 100, 23);
+        jLabel117.setBounds(300, 2145, 100, 23);
 
         jLabel123.setText("Unaided distant L :");
         jLabel123.setName("jLabel123"); // NOI18N
         FormInput.add(jLabel123);
-        jLabel123.setBounds(100, 1750, 100, 23);
+        jLabel123.setBounds(100, 2145, 100, 23);
 
         cbConcEcg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Abnormal" }));
         cbConcEcg.setName("cbConcEcg"); // NOI18N
         FormInput.add(cbConcEcg);
-        cbConcEcg.setBounds(60, 1110, 80, 23);
+        cbConcEcg.setBounds(520, 1370, 80, 23);
 
         eye_glasses_distant_l.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_glasses_distant_l.setName("eye_glasses_distant_l"); // NOI18N
         FormInput.add(eye_glasses_distant_l);
-        eye_glasses_distant_l.setBounds(210, 1780, 60, 23);
+        eye_glasses_distant_l.setBounds(210, 2175, 60, 23);
 
         eye_glasses_distant_r.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_glasses_distant_r.setName("eye_glasses_distant_r"); // NOI18N
         FormInput.add(eye_glasses_distant_r);
-        eye_glasses_distant_r.setBounds(410, 1780, 60, 23);
+        eye_glasses_distant_r.setBounds(410, 2175, 60, 23);
 
         eye_unaided_near_l.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_unaided_near_l.setName("eye_unaided_near_l"); // NOI18N
         FormInput.add(eye_unaided_near_l);
-        eye_unaided_near_l.setBounds(210, 1810, 60, 23);
+        eye_unaided_near_l.setBounds(210, 2205, 60, 23);
 
         eye_color_blindless.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Color Blind", "Normal", "Partial Color Blind" }));
         eye_color_blindless.setName("eye_color_blindless"); // NOI18N
         FormInput.add(eye_color_blindless);
-        eye_color_blindless.setBounds(100, 1840, 140, 23);
+        eye_color_blindless.setBounds(100, 2235, 140, 23);
 
         eye_glasses_near_l.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_glasses_near_l.setName("eye_glasses_near_l"); // NOI18N
         FormInput.add(eye_glasses_near_l);
-        eye_glasses_near_l.setBounds(610, 1750, 60, 23);
+        eye_glasses_near_l.setBounds(610, 2145, 60, 23);
 
         jLabel125.setText("Brake test 2 :");
         jLabel125.setName("jLabel125"); // NOI18N
         FormInput.add(jLabel125);
-        jLabel125.setBounds(700, 1810, 100, 23);
+        jLabel125.setBounds(700, 2205, 100, 23);
 
         jLabel126.setText("Brake test 1 :");
         jLabel126.setName("jLabel126"); // NOI18N
         FormInput.add(jLabel126);
-        jLabel126.setBounds(500, 1810, 100, 23);
+        jLabel126.setBounds(500, 2205, 100, 23);
 
         jLabel127.setText("Night Vision 2 :");
         jLabel127.setName("jLabel127"); // NOI18N
         FormInput.add(jLabel127);
-        jLabel127.setBounds(700, 1780, 100, 23);
+        jLabel127.setBounds(700, 2175, 100, 23);
 
         jLabel128.setText("Night Vision 1 :");
         jLabel128.setName("jLabel128"); // NOI18N
         FormInput.add(jLabel128);
-        jLabel128.setBounds(500, 1780, 100, 23);
+        jLabel128.setBounds(500, 2175, 100, 23);
 
         jLabel129.setText("Glasses near R :");
         jLabel129.setName("jLabel129"); // NOI18N
         FormInput.add(jLabel129);
-        jLabel129.setBounds(700, 1750, 100, 23);
+        jLabel129.setBounds(700, 2145, 100, 23);
 
         jLabel130.setText("Glasses near L :");
         jLabel130.setName("jLabel130"); // NOI18N
         FormInput.add(jLabel130);
-        jLabel130.setBounds(500, 1750, 100, 23);
+        jLabel130.setBounds(500, 2145, 100, 23);
 
         eye_glasses_near_r.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_glasses_near_r.setName("eye_glasses_near_r"); // NOI18N
         FormInput.add(eye_glasses_near_r);
-        eye_glasses_near_r.setBounds(810, 1750, 60, 23);
+        eye_glasses_near_r.setBounds(810, 2145, 60, 23);
 
         eye_night_vision_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_night_vision_2.setName("eye_night_vision_2"); // NOI18N
         FormInput.add(eye_night_vision_2);
-        eye_night_vision_2.setBounds(810, 1780, 60, 23);
+        eye_night_vision_2.setBounds(810, 2175, 60, 23);
 
         eye_night_vision_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_night_vision_1.setName("eye_night_vision_1"); // NOI18N
         FormInput.add(eye_night_vision_1);
-        eye_night_vision_1.setBounds(610, 1780, 60, 23);
+        eye_night_vision_1.setBounds(610, 2175, 60, 23);
 
         eye_brake_test_2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_brake_test_2.setName("eye_brake_test_2"); // NOI18N
         FormInput.add(eye_brake_test_2);
-        eye_brake_test_2.setBounds(810, 1810, 60, 23);
+        eye_brake_test_2.setBounds(810, 2205, 60, 23);
 
         eye_brake_test_1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_brake_test_1.setName("eye_brake_test_1"); // NOI18N
         FormInput.add(eye_brake_test_1);
-        eye_brake_test_1.setBounds(610, 1810, 60, 23);
+        eye_brake_test_1.setBounds(610, 2205, 60, 23);
 
         jLabel131.setText("EYE :");
         jLabel131.setName("jLabel131"); // NOI18N
         FormInput.add(jLabel131);
-        jLabel131.setBounds(20, 1750, 60, 23);
+        jLabel131.setBounds(20, 2145, 60, 23);
 
         eye_unaided_near_r.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         eye_unaided_near_r.setName("eye_unaided_near_r"); // NOI18N
         FormInput.add(eye_unaided_near_r);
-        eye_unaided_near_r.setBounds(410, 1810, 60, 23);
+        eye_unaided_near_r.setBounds(410, 2205, 60, 23);
 
         jLabel132.setText("Color Blinds :");
         jLabel132.setName("jLabel132"); // NOI18N
         FormInput.add(jLabel132);
-        jLabel132.setBounds(10, 1840, 80, 23);
+        jLabel132.setBounds(10, 2235, 80, 23);
 
         KlasifikasiIMT1.setEditable(false);
         KlasifikasiIMT1.setFocusTraversalPolicyProvider(true);
         KlasifikasiIMT1.setName("KlasifikasiIMT1"); // NOI18N
         FormInput.add(KlasifikasiIMT1);
-        KlasifikasiIMT1.setBounds(270, 1690, 170, 23);
+        KlasifikasiIMT1.setBounds(270, 2085, 170, 23);
 
         fundi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Abnormal" }));
         fundi.setName("fundi"); // NOI18N
         FormInput.add(fundi);
-        fundi.setBounds(640, 1840, 140, 23);
+        fundi.setBounds(640, 2235, 140, 23);
 
         jLabel133.setText("Fundi :");
         jLabel133.setName("jLabel133"); // NOI18N
         FormInput.add(jLabel133);
-        jLabel133.setBounds(550, 1840, 80, 23);
+        jLabel133.setBounds(550, 2235, 80, 23);
 
         jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel134.setText("J. PEMERIKSAAN MATA");
+        jLabel134.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel134.setName("jLabel134"); // NOI18N
         FormInput.add(jLabel134);
-        jLabel134.setBounds(10, 1730, 180, 23);
+        jLabel134.setBounds(10, 2125, 180, 23);
 
         jSeparator28.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator28.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator28.setName("jSeparator28"); // NOI18N
         FormInput.add(jSeparator28);
-        jSeparator28.setBounds(0, 1870, 880, 1);
+        jSeparator28.setBounds(0, 2265, 880, 1);
 
         imunisasi_bcg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_bcg.setName("imunisasi_bcg"); // NOI18N
         FormInput.add(imunisasi_bcg);
-        imunisasi_bcg.setBounds(110, 1900, 60, 23);
+        imunisasi_bcg.setBounds(110, 2295, 60, 23);
 
         jLabel135.setText("POLIO :");
         jLabel135.setName("jLabel135"); // NOI18N
         FormInput.add(jLabel135);
-        jLabel135.setBounds(330, 1900, 70, 23);
+        jLabel135.setBounds(330, 2295, 70, 23);
 
         jLabel136.setText("DPT :");
         jLabel136.setName("jLabel136"); // NOI18N
         FormInput.add(jLabel136);
-        jLabel136.setBounds(180, 1900, 70, 23);
+        jLabel136.setBounds(180, 2295, 70, 23);
 
         jLabel137.setText("BCG :");
         jLabel137.setName("jLabel137"); // NOI18N
         FormInput.add(jLabel137);
-        jLabel137.setBounds(30, 1900, 70, 23);
+        jLabel137.setBounds(30, 2295, 70, 23);
 
         imunisasi_dpt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_dpt.setName("imunisasi_dpt"); // NOI18N
         FormInput.add(imunisasi_dpt);
-        imunisasi_dpt.setBounds(260, 1900, 60, 23);
+        imunisasi_dpt.setBounds(260, 2295, 60, 23);
 
         imunisasi_polio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_polio.setName("imunisasi_polio"); // NOI18N
         FormInput.add(imunisasi_polio);
-        imunisasi_polio.setBounds(410, 1900, 60, 23);
+        imunisasi_polio.setBounds(410, 2295, 60, 23);
 
         imunisasi_hep_b.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_hep_b.setName("imunisasi_hep_b"); // NOI18N
         FormInput.add(imunisasi_hep_b);
-        imunisasi_hep_b.setBounds(260, 1930, 60, 23);
+        imunisasi_hep_b.setBounds(260, 2325, 60, 23);
 
         jLabel138.setText("Other :");
         jLabel138.setName("jLabel138"); // NOI18N
         FormInput.add(jLabel138);
-        jLabel138.setBounds(480, 1930, 70, 23);
+        jLabel138.setBounds(480, 2325, 70, 23);
 
         jLabel139.setText("HEP A :");
         jLabel139.setName("jLabel139"); // NOI18N
         FormInput.add(jLabel139);
-        jLabel139.setBounds(30, 1930, 70, 23);
+        jLabel139.setBounds(30, 2325, 70, 23);
 
         jLabel140.setText("TETANUS :");
         jLabel140.setName("jLabel140"); // NOI18N
         FormInput.add(jLabel140);
-        jLabel140.setBounds(330, 1930, 70, 23);
+        jLabel140.setBounds(330, 2325, 70, 23);
 
         jLabel141.setText("THYPOID :");
         jLabel141.setName("jLabel141"); // NOI18N
         FormInput.add(jLabel141);
-        jLabel141.setBounds(630, 1900, 70, 23);
+        jLabel141.setBounds(630, 2295, 70, 23);
 
         jLabel142.setText("HEP B :");
         jLabel142.setName("jLabel142"); // NOI18N
         FormInput.add(jLabel142);
-        jLabel142.setBounds(180, 1930, 70, 23);
+        jLabel142.setBounds(180, 2325, 70, 23);
 
         jLabel143.setText("MORBILI :");
         jLabel143.setName("jLabel143"); // NOI18N
         FormInput.add(jLabel143);
-        jLabel143.setBounds(480, 1900, 70, 23);
+        jLabel143.setBounds(480, 2295, 70, 23);
 
         imunisasi_morbili.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_morbili.setName("imunisasi_morbili"); // NOI18N
         FormInput.add(imunisasi_morbili);
-        imunisasi_morbili.setBounds(560, 1900, 60, 23);
+        imunisasi_morbili.setBounds(560, 2295, 60, 23);
 
         imunisasi_tetanus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_tetanus.setName("imunisasi_tetanus"); // NOI18N
         FormInput.add(imunisasi_tetanus);
-        imunisasi_tetanus.setBounds(410, 1930, 60, 23);
+        imunisasi_tetanus.setBounds(410, 2325, 60, 23);
 
         imunisasi_thyphoid.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_thyphoid.setName("imunisasi_thyphoid"); // NOI18N
         FormInput.add(imunisasi_thyphoid);
-        imunisasi_thyphoid.setBounds(710, 1900, 60, 23);
+        imunisasi_thyphoid.setBounds(710, 2295, 60, 23);
 
         imunisasi_others.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_others.setName("imunisasi_others"); // NOI18N
         FormInput.add(imunisasi_others);
-        imunisasi_others.setBounds(560, 1930, 60, 23);
+        imunisasi_others.setBounds(560, 2325, 60, 23);
 
         imunisasi_hep_a.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "No", "Yes" }));
         imunisasi_hep_a.setName("imunisasi_hep_a"); // NOI18N
         FormInput.add(imunisasi_hep_a);
-        imunisasi_hep_a.setBounds(110, 1930, 60, 23);
+        imunisasi_hep_a.setBounds(110, 2325, 60, 23);
 
         jLabel144.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel144.setText("L. VERTEBRA");
+        jLabel144.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel144.setName("jLabel144"); // NOI18N
         FormInput.add(jLabel144);
-        jLabel144.setBounds(10, 1960, 180, 23);
+        jLabel144.setBounds(10, 2355, 180, 23);
 
         vertebra_scoliosis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_scoliosis.setName("vertebra_scoliosis"); // NOI18N
         FormInput.add(vertebra_scoliosis);
-        vertebra_scoliosis.setBounds(110, 1980, 70, 23);
+        vertebra_scoliosis.setBounds(110, 2375, 70, 23);
 
         jLabel145.setText("Hyperextensi 0-25 :");
         jLabel145.setName("jLabel145"); // NOI18N
         FormInput.add(jLabel145);
-        jLabel145.setBounds(370, 1980, 120, 23);
+        jLabel145.setBounds(370, 2375, 120, 23);
 
         jLabel146.setText("Lordosis :");
         jLabel146.setName("jLabel146"); // NOI18N
         FormInput.add(jLabel146);
-        jLabel146.setBounds(180, 1980, 120, 23);
+        jLabel146.setBounds(180, 2375, 120, 23);
 
         jLabel147.setText("Scoliosis :");
         jLabel147.setName("jLabel147"); // NOI18N
         FormInput.add(jLabel147);
-        jLabel147.setBounds(10, 1980, 90, 23);
+        jLabel147.setBounds(10, 2375, 90, 23);
 
         vertebra_lordosis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_lordosis.setName("vertebra_lordosis"); // NOI18N
         FormInput.add(vertebra_lordosis);
-        vertebra_lordosis.setBounds(310, 1980, 70, 23);
+        vertebra_lordosis.setBounds(310, 2375, 70, 23);
 
         vertebra_hyperextensi_0_25.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_hyperextensi_0_25.setName("vertebra_hyperextensi_0_25"); // NOI18N
         FormInput.add(vertebra_hyperextensi_0_25);
-        vertebra_hyperextensi_0_25.setBounds(500, 1980, 70, 23);
+        vertebra_hyperextensi_0_25.setBounds(500, 2375, 70, 23);
 
         vertebra_forward_flexion_0_80.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_forward_flexion_0_80.setName("vertebra_forward_flexion_0_80"); // NOI18N
         FormInput.add(vertebra_forward_flexion_0_80);
-        vertebra_forward_flexion_0_80.setBounds(310, 2010, 70, 23);
+        vertebra_forward_flexion_0_80.setBounds(310, 2405, 70, 23);
 
         jLabel148.setText("Toe Walking :");
         jLabel148.setName("jLabel148"); // NOI18N
         FormInput.add(jLabel148);
-        jLabel148.setBounds(590, 2010, 80, 23);
+        jLabel148.setBounds(590, 2405, 80, 23);
 
         jLabel149.setText("Kyphosis :");
         jLabel149.setName("jLabel149"); // NOI18N
         FormInput.add(jLabel149);
-        jLabel149.setBounds(10, 2010, 90, 23);
+        jLabel149.setBounds(10, 2405, 90, 23);
 
         jLabel150.setText("Lateral Flexion 0-20 :");
         jLabel150.setName("jLabel150"); // NOI18N
         FormInput.add(jLabel150);
-        jLabel150.setBounds(370, 2010, 120, 23);
+        jLabel150.setBounds(370, 2405, 120, 23);
 
         jLabel151.setText("Squats x3 :");
         jLabel151.setName("jLabel151"); // NOI18N
         FormInput.add(jLabel151);
-        jLabel151.setBounds(760, 1980, 60, 23);
+        jLabel151.setBounds(760, 2375, 60, 23);
 
         jLabel152.setText("Rorward Flexion 0-80 :");
         jLabel152.setName("jLabel152"); // NOI18N
         FormInput.add(jLabel152);
-        jLabel152.setBounds(180, 2010, 120, 23);
+        jLabel152.setBounds(180, 2405, 120, 23);
 
         jLabel153.setText("Heel Walking :");
         jLabel153.setName("jLabel153"); // NOI18N
         FormInput.add(jLabel153);
-        jLabel153.setBounds(590, 1980, 80, 23);
+        jLabel153.setBounds(590, 2375, 80, 23);
 
         vertebra_heel_walking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_heel_walking.setName("vertebra_heel_walking"); // NOI18N
         FormInput.add(vertebra_heel_walking);
-        vertebra_heel_walking.setBounds(680, 1980, 70, 23);
+        vertebra_heel_walking.setBounds(680, 2375, 70, 23);
 
         vertebra_lateral_flexion_0_20.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_lateral_flexion_0_20.setName("vertebra_lateral_flexion_0_20"); // NOI18N
         FormInput.add(vertebra_lateral_flexion_0_20);
-        vertebra_lateral_flexion_0_20.setBounds(500, 2010, 70, 23);
+        vertebra_lateral_flexion_0_20.setBounds(500, 2405, 70, 23);
 
         vertebra_squats_x3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_squats_x3.setName("vertebra_squats_x3"); // NOI18N
         FormInput.add(vertebra_squats_x3);
-        vertebra_squats_x3.setBounds(830, 1980, 70, 23);
+        vertebra_squats_x3.setBounds(830, 2375, 70, 23);
 
         vertebra_toe_walking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_toe_walking.setName("vertebra_toe_walking"); // NOI18N
         FormInput.add(vertebra_toe_walking);
-        vertebra_toe_walking.setBounds(680, 2010, 70, 23);
+        vertebra_toe_walking.setBounds(680, 2405, 70, 23);
 
         vertebra_kyphosis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_kyphosis.setName("vertebra_kyphosis"); // NOI18N
         FormInput.add(vertebra_kyphosis);
-        vertebra_kyphosis.setBounds(110, 2010, 70, 23);
+        vertebra_kyphosis.setBounds(110, 2405, 70, 23);
 
         jSeparator29.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator29.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         jSeparator29.setName("jSeparator29"); // NOI18N
         FormInput.add(jSeparator29);
-        jSeparator29.setBounds(0, 1960, 880, 1);
+        jSeparator29.setBounds(0, 2355, 880, 1);
 
         jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel154.setText("M. HASIL PEMERIKSAAN");
+        jLabel154.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel154.setName("jLabel154"); // NOI18N
         FormInput.add(jLabel154);
-        jLabel154.setBounds(10, 2050, 180, 23);
+        jLabel154.setBounds(10, 2445, 180, 23);
 
         exam_ent_comments.setFocusTraversalPolicyProvider(true);
         exam_ent_comments.setName("exam_ent_comments"); // NOI18N
         FormInput.add(exam_ent_comments);
-        exam_ent_comments.setBounds(210, 2080, 670, 23);
+        exam_ent_comments.setBounds(210, 2475, 670, 23);
 
         jLabel160.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel160.setText("1. ENT :");
         jLabel160.setName("jLabel160"); // NOI18N
         FormInput.add(jLabel160);
-        jLabel160.setBounds(20, 2080, 190, 23);
+        jLabel160.setBounds(20, 2475, 190, 23);
 
         exam_cardio_vascular_system_comments.setFocusTraversalPolicyProvider(true);
         exam_cardio_vascular_system_comments.setName("exam_cardio_vascular_system_comments"); // NOI18N
         FormInput.add(exam_cardio_vascular_system_comments);
-        exam_cardio_vascular_system_comments.setBounds(210, 2110, 670, 23);
+        exam_cardio_vascular_system_comments.setBounds(210, 2505, 670, 23);
 
         jLabel161.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel161.setText("2. Cardio Vascular System :");
         jLabel161.setName("jLabel161"); // NOI18N
         FormInput.add(jLabel161);
-        jLabel161.setBounds(20, 2110, 190, 23);
+        jLabel161.setBounds(20, 2505, 190, 23);
 
         exam_respiratory_system_comments.setFocusTraversalPolicyProvider(true);
         exam_respiratory_system_comments.setName("exam_respiratory_system_comments"); // NOI18N
         FormInput.add(exam_respiratory_system_comments);
-        exam_respiratory_system_comments.setBounds(210, 2140, 670, 23);
+        exam_respiratory_system_comments.setBounds(210, 2535, 670, 23);
 
         jLabel162.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel162.setText("3. Respiratory System :");
         jLabel162.setName("jLabel162"); // NOI18N
         FormInput.add(jLabel162);
-        jLabel162.setBounds(20, 2140, 190, 23);
+        jLabel162.setBounds(20, 2535, 190, 23);
 
         exam_abdomen_comments.setFocusTraversalPolicyProvider(true);
         exam_abdomen_comments.setName("exam_abdomen_comments"); // NOI18N
         FormInput.add(exam_abdomen_comments);
-        exam_abdomen_comments.setBounds(210, 2170, 670, 23);
+        exam_abdomen_comments.setBounds(210, 2565, 670, 23);
 
         jLabel163.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel163.setText("4. Abdomen :");
         jLabel163.setName("jLabel163"); // NOI18N
         FormInput.add(jLabel163);
-        jLabel163.setBounds(20, 2170, 190, 23);
+        jLabel163.setBounds(20, 2565, 190, 23);
 
         exam_genito_urinary_system_comments.setFocusTraversalPolicyProvider(true);
         exam_genito_urinary_system_comments.setName("exam_genito_urinary_system_comments"); // NOI18N
         FormInput.add(exam_genito_urinary_system_comments);
-        exam_genito_urinary_system_comments.setBounds(210, 2200, 670, 23);
+        exam_genito_urinary_system_comments.setBounds(210, 2595, 670, 23);
 
         jLabel164.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel164.setText("5. Genito Urinary System :");
         jLabel164.setName("jLabel164"); // NOI18N
         FormInput.add(jLabel164);
-        jLabel164.setBounds(20, 2200, 190, 23);
+        jLabel164.setBounds(20, 2595, 190, 23);
 
         exam_central_peripheral_nervous_system_comments.setFocusTraversalPolicyProvider(true);
         exam_central_peripheral_nervous_system_comments.setName("exam_central_peripheral_nervous_system_comments"); // NOI18N
         FormInput.add(exam_central_peripheral_nervous_system_comments);
-        exam_central_peripheral_nervous_system_comments.setBounds(210, 2230, 670, 23);
+        exam_central_peripheral_nervous_system_comments.setBounds(210, 2625, 670, 23);
 
         jLabel165.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel165.setText("6. Central & peripheral Nervous sys :");
         jLabel165.setName("jLabel165"); // NOI18N
         FormInput.add(jLabel165);
-        jLabel165.setBounds(20, 2230, 190, 23);
+        jLabel165.setBounds(20, 2625, 190, 23);
 
         exam_skin_comments.setFocusTraversalPolicyProvider(true);
         exam_skin_comments.setName("exam_skin_comments"); // NOI18N
         FormInput.add(exam_skin_comments);
-        exam_skin_comments.setBounds(210, 2260, 670, 23);
+        exam_skin_comments.setBounds(210, 2655, 670, 23);
 
         jLabel166.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel166.setText("7. Skin :");
         jLabel166.setName("jLabel166"); // NOI18N
         FormInput.add(jLabel166);
-        jLabel166.setBounds(20, 2260, 190, 23);
+        jLabel166.setBounds(20, 2655, 190, 23);
 
         exam_lymph_nodes_comments.setFocusTraversalPolicyProvider(true);
         exam_lymph_nodes_comments.setName("exam_lymph_nodes_comments"); // NOI18N
         FormInput.add(exam_lymph_nodes_comments);
-        exam_lymph_nodes_comments.setBounds(210, 2290, 670, 23);
+        exam_lymph_nodes_comments.setBounds(210, 2685, 670, 23);
 
         jLabel167.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel167.setText("8. Lymph Nodes :");
         jLabel167.setName("jLabel167"); // NOI18N
         FormInput.add(jLabel167);
-        jLabel167.setBounds(20, 2290, 190, 23);
+        jLabel167.setBounds(20, 2685, 190, 23);
 
         jLabel168.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel168.setText("9. Dental :");
         jLabel168.setName("jLabel168"); // NOI18N
         FormInput.add(jLabel168);
-        jLabel168.setBounds(20, 2320, 190, 23);
+        jLabel168.setBounds(20, 2715, 190, 23);
 
         jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel110.setText("A. INFORMASI UMUM");
+        jLabel110.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel110.setName("jLabel110"); // NOI18N
         FormInput.add(jLabel110);
         jLabel110.setBounds(10, 90, 180, 23);
@@ -3892,275 +3798,262 @@ public final class RMMCU extends javax.swing.JDialog {
         visual_fields_left.setFocusTraversalPolicyProvider(true);
         visual_fields_left.setName("visual_fields_left"); // NOI18N
         FormInput.add(visual_fields_left);
-        visual_fields_left.setBounds(360, 1840, 100, 23);
+        visual_fields_left.setBounds(360, 2235, 100, 23);
 
         jLabel172.setText("Visual Fields :");
         jLabel172.setName("jLabel172"); // NOI18N
         FormInput.add(jLabel172);
-        jLabel172.setBounds(250, 1840, 80, 23);
+        jLabel172.setBounds(250, 2235, 80, 23);
 
         jLabel173.setText("L :");
         jLabel173.setName("jLabel173"); // NOI18N
         FormInput.add(jLabel173);
-        jLabel173.setBounds(340, 1840, 20, 23);
+        jLabel173.setBounds(340, 2235, 20, 23);
 
         jLabel174.setText("Requires Spectacles :");
         jLabel174.setName("jLabel174"); // NOI18N
         FormInput.add(jLabel174);
-        jLabel174.setBounds(30, 2390, 120, 23);
+        jLabel174.setBounds(30, 2785, 120, 23);
 
         conclusion_requires_spectacles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         conclusion_requires_spectacles.setName("conclusion_requires_spectacles"); // NOI18N
         FormInput.add(conclusion_requires_spectacles);
-        conclusion_requires_spectacles.setBounds(160, 2390, 60, 23);
+        conclusion_requires_spectacles.setBounds(160, 2785, 60, 23);
 
         jLabel175.setText("Impaired Hearing :");
         jLabel175.setName("jLabel175"); // NOI18N
         FormInput.add(jLabel175);
-        jLabel175.setBounds(280, 2420, 150, 23);
+        jLabel175.setBounds(280, 2815, 150, 23);
 
         jLabel176.setText("Fit :");
         jLabel176.setName("jLabel176"); // NOI18N
         FormInput.add(jLabel176);
-        jLabel176.setBounds(30, 2450, 120, 23);
+        jLabel176.setBounds(30, 2845, 120, 23);
 
         jLabel177.setText("Vertigo :");
         jLabel177.setName("jLabel177"); // NOI18N
         FormInput.add(jLabel177);
-        jLabel177.setBounds(620, 2390, 90, 23);
+        jLabel177.setBounds(620, 2785, 90, 23);
 
         jLabel178.setText("Respiratory Problem :");
         jLabel178.setName("jLabel178"); // NOI18N
         FormInput.add(jLabel178);
-        jLabel178.setBounds(280, 2390, 150, 23);
+        jLabel178.setBounds(280, 2785, 150, 23);
 
         conclusion_respiratory_problem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         conclusion_respiratory_problem.setName("conclusion_respiratory_problem"); // NOI18N
         FormInput.add(conclusion_respiratory_problem);
-        conclusion_respiratory_problem.setBounds(430, 2390, 60, 23);
+        conclusion_respiratory_problem.setBounds(430, 2785, 60, 23);
 
         fit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medically Fit", "Presently has minor medical problem", "Unfit" }));
         fit.setName("fit"); // NOI18N
         FormInput.add(fit);
-        fit.setBounds(160, 2450, 200, 23);
+        fit.setBounds(160, 2845, 200, 23);
 
         conclusion_vertigo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         conclusion_vertigo.setName("conclusion_vertigo"); // NOI18N
         FormInput.add(conclusion_vertigo);
-        conclusion_vertigo.setBounds(720, 2390, 60, 23);
+        conclusion_vertigo.setBounds(720, 2785, 60, 23);
 
         conclusion_impaired_hearing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         conclusion_impaired_hearing.setName("conclusion_impaired_hearing"); // NOI18N
         FormInput.add(conclusion_impaired_hearing);
-        conclusion_impaired_hearing.setBounds(430, 2420, 60, 23);
+        conclusion_impaired_hearing.setBounds(430, 2815, 60, 23);
 
         jLabel179.setText("Blood Group :");
         jLabel179.setName("jLabel179"); // NOI18N
         FormInput.add(jLabel179);
-        jLabel179.setBounds(620, 2420, 90, 23);
+        jLabel179.setBounds(620, 2815, 90, 23);
 
         blood_group.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
         blood_group.setName("blood_group"); // NOI18N
         FormInput.add(blood_group);
-        blood_group.setBounds(720, 2420, 60, 23);
+        blood_group.setBounds(720, 2815, 60, 23);
 
         jLabel180.setText("Colour Blindness :");
         jLabel180.setName("jLabel180"); // NOI18N
         FormInput.add(jLabel180);
-        jLabel180.setBounds(30, 2420, 120, 23);
+        jLabel180.setBounds(30, 2815, 120, 23);
 
         conclusion_colour_blindness.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
         conclusion_colour_blindness.setName("conclusion_colour_blindness"); // NOI18N
         FormInput.add(conclusion_colour_blindness);
-        conclusion_colour_blindness.setBounds(160, 2420, 60, 23);
+        conclusion_colour_blindness.setBounds(160, 2815, 60, 23);
 
         jLabel181.setText("Fit with Restrictions :");
         jLabel181.setName("jLabel181"); // NOI18N
         FormInput.add(jLabel181);
-        jLabel181.setBounds(20, 2480, 130, 23);
+        jLabel181.setBounds(20, 2875, 130, 23);
 
         fit_with_restrictions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medically fit but has following restrictions", "Work duties will be restricted", "Specify" }));
         fit_with_restrictions.setName("fit_with_restrictions"); // NOI18N
         FormInput.add(fit_with_restrictions);
-        fit_with_restrictions.setBounds(160, 2480, 260, 23);
+        fit_with_restrictions.setBounds(160, 2875, 260, 23);
 
         exam_dental_comments.setFocusTraversalPolicyProvider(true);
         exam_dental_comments.setName("exam_dental_comments"); // NOI18N
         FormInput.add(exam_dental_comments);
-        exam_dental_comments.setBounds(210, 2320, 670, 23);
-
-        scrollPane18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane18.setName("scrollPane18"); // NOI18N
-
-        saran.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        saran.setColumns(20);
-        saran.setRows(5);
-        saran.setName("saran"); // NOI18N
-        saran.setPreferredSize(new java.awt.Dimension(102, 52));
-        scrollPane18.setViewportView(saran);
-
-        FormInput.add(scrollPane18);
-        scrollPane18.setBounds(50, 2950, 810, 53);
+        exam_dental_comments.setBounds(210, 2715, 670, 23);
 
         audiometri_left_ear_1001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1001.setName("audiometri_left_ear_1001"); // NOI18N
         FormInput.add(audiometri_left_ear_1001);
-        audiometri_left_ear_1001.setBounds(300, 1430, 50, 23);
+        audiometri_left_ear_1001.setBounds(300, 1825, 50, 23);
 
         audiometri_left_ear_2001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_2001.setName("audiometri_left_ear_2001"); // NOI18N
         FormInput.add(audiometri_left_ear_2001);
-        audiometri_left_ear_2001.setBounds(300, 1490, 50, 23);
+        audiometri_left_ear_2001.setBounds(300, 1885, 50, 23);
 
         jLabel182.setText("BC 1500 :");
         jLabel182.setName("jLabel182"); // NOI18N
         FormInput.add(jLabel182);
-        jLabel182.setBounds(220, 1460, 70, 23);
+        jLabel182.setBounds(220, 1855, 70, 23);
 
         jLabel183.setText("BC 1000 :");
         jLabel183.setName("jLabel183"); // NOI18N
         FormInput.add(jLabel183);
-        jLabel183.setBounds(220, 1430, 70, 23);
+        jLabel183.setBounds(220, 1825, 70, 23);
 
         audiometri_left_ear_1501.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1501.setName("audiometri_left_ear_1501"); // NOI18N
         FormInput.add(audiometri_left_ear_1501);
-        audiometri_left_ear_1501.setBounds(300, 1460, 50, 23);
+        audiometri_left_ear_1501.setBounds(300, 1855, 50, 23);
 
         jLabel184.setText("BC 2000 :");
         jLabel184.setName("jLabel184"); // NOI18N
         FormInput.add(jLabel184);
-        jLabel184.setBounds(220, 1490, 70, 23);
+        jLabel184.setBounds(220, 1885, 70, 23);
 
         jLabel185.setText(" BC 500 :");
         jLabel185.setName("jLabel185"); // NOI18N
         FormInput.add(jLabel185);
-        jLabel185.setBounds(220, 1400, 70, 23);
+        jLabel185.setBounds(220, 1795, 70, 23);
 
         audiometri_left_ear_501.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_501.setName("audiometri_left_ear_501"); // NOI18N
         FormInput.add(audiometri_left_ear_501);
-        audiometri_left_ear_501.setBounds(300, 1400, 50, 23);
+        audiometri_left_ear_501.setBounds(300, 1795, 50, 23);
 
         audiometri_left_ear_3001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_3001.setName("audiometri_left_ear_3001"); // NOI18N
         FormInput.add(audiometri_left_ear_3001);
-        audiometri_left_ear_3001.setBounds(300, 1520, 50, 23);
+        audiometri_left_ear_3001.setBounds(300, 1915, 50, 23);
 
         jLabel186.setText("BC 3000 :");
         jLabel186.setName("jLabel186"); // NOI18N
         FormInput.add(jLabel186);
-        jLabel186.setBounds(220, 1520, 70, 23);
+        jLabel186.setBounds(220, 1915, 70, 23);
 
         audiometri_left_ear_4001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_4001.setName("audiometri_left_ear_4001"); // NOI18N
         FormInput.add(audiometri_left_ear_4001);
-        audiometri_left_ear_4001.setBounds(300, 1550, 50, 23);
+        audiometri_left_ear_4001.setBounds(300, 1945, 50, 23);
 
         jLabel187.setText("BC 4000 :");
         jLabel187.setName("jLabel187"); // NOI18N
         FormInput.add(jLabel187);
-        jLabel187.setBounds(220, 1550, 70, 23);
+        jLabel187.setBounds(220, 1945, 70, 23);
 
         audiometri_left_ear_6001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_6001.setName("audiometri_left_ear_6001"); // NOI18N
         FormInput.add(audiometri_left_ear_6001);
-        audiometri_left_ear_6001.setBounds(300, 1610, 50, 23);
+        audiometri_left_ear_6001.setBounds(300, 2005, 50, 23);
 
         jLabel188.setText("BC 6000 :");
         jLabel188.setName("jLabel188"); // NOI18N
         FormInput.add(jLabel188);
-        jLabel188.setBounds(220, 1610, 70, 23);
+        jLabel188.setBounds(220, 2005, 70, 23);
 
         jLabel189.setText("BC 5000 :");
         jLabel189.setName("jLabel189"); // NOI18N
         FormInput.add(jLabel189);
-        jLabel189.setBounds(220, 1580, 70, 23);
+        jLabel189.setBounds(220, 1975, 70, 23);
 
         audiometri_left_ear_5001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_5001.setName("audiometri_left_ear_5001"); // NOI18N
         FormInput.add(audiometri_left_ear_5001);
-        audiometri_left_ear_5001.setBounds(300, 1580, 50, 23);
+        audiometri_left_ear_5001.setBounds(300, 1975, 50, 23);
 
         audiometri_left_ear_1002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1002.setName("audiometri_left_ear_1002"); // NOI18N
         FormInput.add(audiometri_left_ear_1002);
-        audiometri_left_ear_1002.setBounds(580, 1430, 50, 23);
+        audiometri_left_ear_1002.setBounds(580, 1825, 50, 23);
 
         audiometri_left_ear_2002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_2002.setName("audiometri_left_ear_2002"); // NOI18N
         FormInput.add(audiometri_left_ear_2002);
-        audiometri_left_ear_2002.setBounds(580, 1490, 50, 23);
+        audiometri_left_ear_2002.setBounds(580, 1885, 50, 23);
 
         audiometri_left_ear_1502.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1502.setName("audiometri_left_ear_1502"); // NOI18N
         FormInput.add(audiometri_left_ear_1502);
-        audiometri_left_ear_1502.setBounds(580, 1460, 50, 23);
+        audiometri_left_ear_1502.setBounds(580, 1855, 50, 23);
 
         audiometri_left_ear_502.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_502.setName("audiometri_left_ear_502"); // NOI18N
         FormInput.add(audiometri_left_ear_502);
-        audiometri_left_ear_502.setBounds(580, 1400, 50, 23);
+        audiometri_left_ear_502.setBounds(580, 1795, 50, 23);
 
         audiometri_left_ear_3002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_3002.setName("audiometri_left_ear_3002"); // NOI18N
         FormInput.add(audiometri_left_ear_3002);
-        audiometri_left_ear_3002.setBounds(580, 1520, 50, 23);
+        audiometri_left_ear_3002.setBounds(580, 1915, 50, 23);
 
         audiometri_left_ear_4002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_4002.setName("audiometri_left_ear_4002"); // NOI18N
         FormInput.add(audiometri_left_ear_4002);
-        audiometri_left_ear_4002.setBounds(580, 1550, 50, 23);
+        audiometri_left_ear_4002.setBounds(580, 1945, 50, 23);
 
         audiometri_left_ear_6002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_6002.setName("audiometri_left_ear_6002"); // NOI18N
         FormInput.add(audiometri_left_ear_6002);
-        audiometri_left_ear_6002.setBounds(580, 1610, 50, 23);
+        audiometri_left_ear_6002.setBounds(580, 2005, 50, 23);
 
         audiometri_left_ear_5002.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_5002.setName("audiometri_left_ear_5002"); // NOI18N
         FormInput.add(audiometri_left_ear_5002);
-        audiometri_left_ear_5002.setBounds(580, 1580, 50, 23);
+        audiometri_left_ear_5002.setBounds(580, 1975, 50, 23);
 
         audiometri_left_ear_1003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1003.setName("audiometri_left_ear_1003"); // NOI18N
         FormInput.add(audiometri_left_ear_1003);
-        audiometri_left_ear_1003.setBounds(730, 1430, 50, 23);
+        audiometri_left_ear_1003.setBounds(730, 1825, 50, 23);
 
         audiometri_left_ear_2003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_2003.setName("audiometri_left_ear_2003"); // NOI18N
         FormInput.add(audiometri_left_ear_2003);
-        audiometri_left_ear_2003.setBounds(730, 1490, 50, 23);
+        audiometri_left_ear_2003.setBounds(730, 1885, 50, 23);
 
         audiometri_left_ear_1503.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1503.setName("audiometri_left_ear_1503"); // NOI18N
         FormInput.add(audiometri_left_ear_1503);
-        audiometri_left_ear_1503.setBounds(730, 1460, 50, 23);
+        audiometri_left_ear_1503.setBounds(730, 1855, 50, 23);
 
         audiometri_left_ear_503.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_503.setName("audiometri_left_ear_503"); // NOI18N
         FormInput.add(audiometri_left_ear_503);
-        audiometri_left_ear_503.setBounds(730, 1400, 50, 23);
+        audiometri_left_ear_503.setBounds(730, 1795, 50, 23);
 
         audiometri_left_ear_3003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_3003.setName("audiometri_left_ear_3003"); // NOI18N
         FormInput.add(audiometri_left_ear_3003);
-        audiometri_left_ear_3003.setBounds(730, 1520, 50, 23);
+        audiometri_left_ear_3003.setBounds(730, 1915, 50, 23);
 
         audiometri_left_ear_4003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_4003.setName("audiometri_left_ear_4003"); // NOI18N
         FormInput.add(audiometri_left_ear_4003);
-        audiometri_left_ear_4003.setBounds(730, 1550, 50, 23);
+        audiometri_left_ear_4003.setBounds(730, 1945, 50, 23);
 
         audiometri_left_ear_6003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_6003.setName("audiometri_left_ear_6003"); // NOI18N
         FormInput.add(audiometri_left_ear_6003);
-        audiometri_left_ear_6003.setBounds(730, 1610, 50, 23);
+        audiometri_left_ear_6003.setBounds(730, 2005, 50, 23);
 
         audiometri_left_ear_5003.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_5003.setName("audiometri_left_ear_5003"); // NOI18N
         FormInput.add(audiometri_left_ear_5003);
-        audiometri_left_ear_5003.setBounds(730, 1580, 50, 23);
+        audiometri_left_ear_5003.setBounds(730, 1975, 50, 23);
 
         label15.setText("Dokter P.J. :");
         label15.setName("label15"); // NOI18N
@@ -4201,25 +4094,25 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(ConcRadiologi);
-        ConcRadiologi.setBounds(130, 2760, 300, 23);
+        ConcRadiologi.setBounds(130, 3155, 300, 23);
 
         jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel101.setText("Phsycal Examination");
         jLabel101.setName("jLabel101"); // NOI18N
         FormInput.add(jLabel101);
-        jLabel101.setBounds(50, 2670, 240, 20);
+        jLabel101.setBounds(50, 3065, 240, 20);
 
         jLabel104.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel104.setText("Conclusion 1 (WAJIB)");
         jLabel104.setName("jLabel104"); // NOI18N
         FormInput.add(jLabel104);
-        jLabel104.setBounds(50, 2560, 160, 23);
+        jLabel104.setBounds(50, 2960, 160, 23);
 
         jLabel105.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel105.setText("Recommendation");
+        jLabel105.setText("Recommendation / Saran");
         jLabel105.setName("jLabel105"); // NOI18N
         FormInput.add(jLabel105);
-        jLabel105.setBounds(330, 2560, 150, 23);
+        jLabel105.setBounds(330, 2960, 150, 23);
 
         scrollPane12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane12.setName("scrollPane12"); // NOI18N
@@ -4232,7 +4125,7 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane12.setViewportView(PhyExam);
 
         FormInput.add(scrollPane12);
-        scrollPane12.setBounds(50, 2690, 390, 53);
+        scrollPane12.setBounds(50, 3090, 390, 53);
 
         scrollPane13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane13.setName("scrollPane13"); // NOI18N
@@ -4246,18 +4139,18 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane13.setViewportView(ConcLab);
 
         FormInput.add(scrollPane13);
-        scrollPane13.setBounds(480, 2690, 390, 53);
+        scrollPane13.setBounds(480, 3090, 390, 53);
 
         jLabel155.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel155.setText("Medical History and General Information");
         jLabel155.setName("jLabel155"); // NOI18N
         FormInput.add(jLabel155);
-        jLabel155.setBounds(610, 2560, 240, 20);
+        jLabel155.setBounds(610, 2960, 240, 20);
 
         jLabel156.setText("Chest x Ray :");
         jLabel156.setName("jLabel156"); // NOI18N
         FormInput.add(jLabel156);
-        jLabel156.setBounds(40, 2760, 80, 23);
+        jLabel156.setBounds(40, 3155, 80, 23);
 
         scrollPane5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane5.setName("scrollPane5"); // NOI18N
@@ -4269,19 +4162,19 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane5.setViewportView(kesimpulan);
 
         FormInput.add(scrollPane5);
-        scrollPane5.setBounds(50, 2580, 260, 70);
+        scrollPane5.setBounds(50, 2990, 260, 70);
 
         scrollPane6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane6.setName("scrollPane6"); // NOI18N
 
-        rekomendasi2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        rekomendasi2.setColumns(20);
-        rekomendasi2.setRows(5);
-        rekomendasi2.setName("rekomendasi2"); // NOI18N
-        scrollPane6.setViewportView(rekomendasi2);
+        saran.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        saran.setColumns(20);
+        saran.setRows(5);
+        saran.setName("saran"); // NOI18N
+        scrollPane6.setViewportView(saran);
 
         FormInput.add(scrollPane6);
-        scrollPane6.setBounds(330, 2580, 260, 70);
+        scrollPane6.setBounds(330, 2990, 260, 70);
 
         scrollPane7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane7.setName("scrollPane7"); // NOI18N
@@ -4293,90 +4186,43 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane7.setViewportView(Dass21);
 
         FormInput.add(scrollPane7);
-        scrollPane7.setBounds(610, 2580, 260, 70);
+        scrollPane7.setBounds(610, 2990, 260, 70);
 
         jLabel158.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel158.setText("Laboratorium");
         jLabel158.setName("jLabel158"); // NOI18N
         FormInput.add(jLabel158);
-        jLabel158.setBounds(480, 2670, 182, 23);
+        jLabel158.setBounds(480, 3065, 182, 23);
 
         ConcEcg.setName("ConcEcg"); // NOI18N
         ConcEcg.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(ConcEcg);
-        ConcEcg.setBounds(510, 2760, 350, 23);
+        ConcEcg.setBounds(510, 3155, 350, 23);
 
         jLabel157.setText("EKG :");
         jLabel157.setName("jLabel157"); // NOI18N
         FormInput.add(jLabel157);
-        jLabel157.setBounds(420, 2760, 80, 23);
+        jLabel157.setBounds(420, 3155, 80, 23);
 
         ConcSpirometry.setName("ConcSpirometry"); // NOI18N
         ConcSpirometry.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(ConcSpirometry);
-        ConcSpirometry.setBounds(130, 2800, 300, 23);
+        ConcSpirometry.setBounds(130, 3195, 300, 23);
 
         jLabel159.setText("Spirometry :");
         jLabel159.setName("jLabel159"); // NOI18N
         FormInput.add(jLabel159);
-        jLabel159.setBounds(40, 2800, 80, 23);
+        jLabel159.setBounds(40, 3195, 80, 23);
 
         ConcAudiometry.setName("ConcAudiometry"); // NOI18N
         ConcAudiometry.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(ConcAudiometry);
-        ConcAudiometry.setBounds(510, 2800, 350, 23);
+        ConcAudiometry.setBounds(510, 3195, 350, 23);
 
         jLabel169.setText("Audiometry :");
         jLabel169.setName("jLabel169"); // NOI18N
         FormInput.add(jLabel169);
-        jLabel169.setBounds(420, 2800, 80, 23);
-
-        jLabel170.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel170.setText("Conclution = Conclution 1");
-        jLabel170.setName("jLabel170"); // NOI18N
-        FormInput.add(jLabel170);
-        jLabel170.setBounds(50, 2830, 240, 20);
-
-        scrollPane16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane16.setName("scrollPane16"); // NOI18N
-
-        Kesimpulan1.setEditable(false);
-        Kesimpulan1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Kesimpulan1.setColumns(20);
-        Kesimpulan1.setRows(5);
-        Kesimpulan1.setName("Kesimpulan1"); // NOI18N
-        Kesimpulan1.setPreferredSize(new java.awt.Dimension(182, 52));
-        scrollPane16.setViewportView(Kesimpulan1);
-
-        FormInput.add(scrollPane16);
-        scrollPane16.setBounds(50, 2850, 390, 53);
-
-        scrollPane17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        scrollPane17.setName("scrollPane17"); // NOI18N
-
-        Note1.setEditable(false);
-        Note1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Note1.setColumns(20);
-        Note1.setRows(5);
-        Note1.setName("Note1"); // NOI18N
-        Note1.setPreferredSize(new java.awt.Dimension(182, 52));
-        scrollPane17.setViewportView(Note1);
-
-        FormInput.add(scrollPane17);
-        scrollPane17.setBounds(480, 2850, 390, 53);
-
-        jLabel171.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel171.setText("Recommendation = SARAN");
-        jLabel171.setName("jLabel171"); // NOI18N
-        FormInput.add(jLabel171);
-        jLabel171.setBounds(480, 2830, 182, 23);
-
-        jSeparator31.setBackground(new java.awt.Color(239, 244, 234));
-        jSeparator31.setForeground(new java.awt.Color(239, 244, 234));
-        jSeparator31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator31.setName("jSeparator31"); // NOI18N
-        FormInput.add(jSeparator31);
-        jSeparator31.setBounds(0, 2920, 836, 1);
+        jLabel169.setBounds(420, 3195, 80, 23);
 
         jLabel39.setText("Temp/Tgl Lahir :");
         jLabel39.setName("jLabel39"); // NOI18N
@@ -4392,402 +4238,397 @@ public final class RMMCU extends javax.swing.JDialog {
         spirometri_fvc_1.setFocusTraversalPolicyProvider(true);
         spirometri_fvc_1.setName("spirometri_fvc_1"); // NOI18N
         FormInput.add(spirometri_fvc_1);
-        spirometri_fvc_1.setBounds(220, 1170, 50, 23);
+        spirometri_fvc_1.setBounds(220, 1565, 50, 23);
 
         jLabel88.setText("FVC (1) :");
         jLabel88.setName("jLabel88"); // NOI18N
         FormInput.add(jLabel88);
-        jLabel88.setBounds(150, 1170, 60, 23);
+        jLabel88.setBounds(150, 1565, 60, 23);
 
         wbc.setFocusTraversalPolicyProvider(true);
         wbc.setName("wbc"); // NOI18N
         FormInput.add(wbc);
-        wbc.setBounds(530, 960, 50, 23);
+        wbc.setBounds(120, 920, 50, 23);
 
         jLabel90.setText("WBC :");
         jLabel90.setName("jLabel90"); // NOI18N
         FormInput.add(jLabel90);
-        jLabel90.setBounds(490, 960, 40, 23);
+        jLabel90.setBounds(50, 920, 70, 23);
 
         jLabel92.setText("ESR :");
         jLabel92.setName("jLabel92"); // NOI18N
         FormInput.add(jLabel92);
-        jLabel92.setBounds(580, 960, 40, 23);
+        jLabel92.setBounds(50, 950, 70, 23);
 
         esr.setFocusTraversalPolicyProvider(true);
         esr.setName("esr"); // NOI18N
         FormInput.add(esr);
-        esr.setBounds(620, 960, 50, 23);
+        esr.setBounds(120, 950, 50, 23);
 
-        jLabel93.setText("Bl.Gr :");
+        jLabel93.setText("Blood Group :");
         jLabel93.setName("jLabel93"); // NOI18N
         FormInput.add(jLabel93);
-        jLabel93.setBounds(670, 960, 40, 23);
+        jLabel93.setBounds(50, 980, 70, 23);
 
         bl_group.setFocusTraversalPolicyProvider(true);
         bl_group.setName("bl_group"); // NOI18N
         FormInput.add(bl_group);
-        bl_group.setBounds(710, 960, 50, 23);
+        bl_group.setBounds(120, 980, 50, 23);
 
         sgot.setFocusTraversalPolicyProvider(true);
         sgot.setName("sgot"); // NOI18N
         FormInput.add(sgot);
-        sgot.setBounds(440, 990, 50, 23);
+        sgot.setBounds(310, 890, 50, 23);
 
         jLabel94.setText("SGOT :");
         jLabel94.setName("jLabel94"); // NOI18N
         FormInput.add(jLabel94);
-        jLabel94.setBounds(400, 990, 40, 23);
+        jLabel94.setBounds(220, 890, 80, 23);
 
         sgpt.setFocusTraversalPolicyProvider(true);
         sgpt.setName("sgpt"); // NOI18N
         FormInput.add(sgpt);
-        sgpt.setBounds(530, 990, 50, 23);
+        sgpt.setBounds(310, 920, 50, 23);
 
         jLabel95.setText("SGPT :");
         jLabel95.setName("jLabel95"); // NOI18N
         FormInput.add(jLabel95);
-        jLabel95.setBounds(490, 990, 40, 23);
+        jLabel95.setBounds(220, 920, 80, 23);
 
         jLabel96.setText("Urea :");
         jLabel96.setName("jLabel96"); // NOI18N
         FormInput.add(jLabel96);
-        jLabel96.setBounds(580, 990, 40, 23);
+        jLabel96.setBounds(220, 950, 80, 23);
 
         urea.setFocusTraversalPolicyProvider(true);
         urea.setName("urea"); // NOI18N
         FormInput.add(urea);
-        urea.setBounds(620, 990, 50, 23);
+        urea.setBounds(310, 950, 50, 23);
 
-        jLabel97.setText("Crea :");
+        jLabel97.setText("Creatinine :");
         jLabel97.setName("jLabel97"); // NOI18N
         FormInput.add(jLabel97);
-        jLabel97.setBounds(670, 990, 40, 23);
+        jLabel97.setBounds(220, 980, 80, 23);
 
         creatinin.setFocusTraversalPolicyProvider(true);
         creatinin.setName("creatinin"); // NOI18N
         FormInput.add(creatinin);
-        creatinin.setBounds(710, 990, 50, 23);
+        creatinin.setBounds(310, 980, 50, 23);
 
-        jLabel98.setText("GT :");
+        jLabel98.setText("Gamma GT :");
         jLabel98.setName("jLabel98"); // NOI18N
         FormInput.add(jLabel98);
-        jLabel98.setBounds(760, 960, 40, 23);
+        jLabel98.setBounds(50, 1010, 70, 23);
 
         gamaa_gt.setFocusTraversalPolicyProvider(true);
         gamaa_gt.setName("gamaa_gt"); // NOI18N
         FormInput.add(gamaa_gt);
-        gamaa_gt.setBounds(800, 960, 50, 23);
+        gamaa_gt.setBounds(120, 1010, 50, 23);
 
-        jLabel99.setText("Gluco :");
+        jLabel99.setText("Glucose :");
         jLabel99.setName("jLabel99"); // NOI18N
         FormInput.add(jLabel99);
-        jLabel99.setBounds(760, 990, 40, 23);
+        jLabel99.setBounds(220, 1010, 80, 23);
 
         glucose.setFocusTraversalPolicyProvider(true);
         glucose.setName("glucose"); // NOI18N
         FormInput.add(glucose);
-        glucose.setBounds(800, 990, 50, 23);
+        glucose.setBounds(310, 1010, 50, 23);
 
         random_glucose.setFocusTraversalPolicyProvider(true);
         random_glucose.setName("random_glucose"); // NOI18N
         FormInput.add(random_glucose);
-        random_glucose.setBounds(340, 1040, 70, 23);
+        random_glucose.setBounds(500, 890, 50, 23);
 
-        jLabel100.setText("Rand Glucose :");
+        jLabel100.setText("Rnd.Glucose :");
         jLabel100.setName("jLabel100"); // NOI18N
         FormInput.add(jLabel100);
-        jLabel100.setBounds(250, 1040, 90, 23);
+        jLabel100.setBounds(420, 890, 70, 23);
 
         total_cholestrol.setFocusTraversalPolicyProvider(true);
         total_cholestrol.setName("total_cholestrol"); // NOI18N
         FormInput.add(total_cholestrol);
-        total_cholestrol.setBounds(480, 1040, 70, 23);
+        total_cholestrol.setBounds(500, 920, 50, 23);
 
         jLabel106.setText("Ttl Cholest :");
         jLabel106.setName("jLabel106"); // NOI18N
         FormInput.add(jLabel106);
-        jLabel106.setBounds(400, 1040, 80, 23);
+        jLabel106.setBounds(420, 920, 70, 23);
 
         jLabel121.setText("Protein :");
         jLabel121.setName("jLabel121"); // NOI18N
         FormInput.add(jLabel121);
-        jLabel121.setBounds(540, 1040, 50, 23);
+        jLabel121.setBounds(420, 950, 70, 23);
 
         protein.setFocusTraversalPolicyProvider(true);
         protein.setName("protein"); // NOI18N
         FormInput.add(protein);
-        protein.setBounds(590, 1040, 70, 23);
+        protein.setBounds(500, 950, 50, 23);
 
         jLabel124.setText("Blood :");
         jLabel124.setName("jLabel124"); // NOI18N
         FormInput.add(jLabel124);
-        jLabel124.setBounds(660, 1040, 40, 23);
+        jLabel124.setBounds(420, 980, 70, 23);
 
         blood.setFocusTraversalPolicyProvider(true);
         blood.setName("blood"); // NOI18N
         FormInput.add(blood);
-        blood.setBounds(700, 1040, 70, 23);
+        blood.setBounds(500, 980, 50, 23);
 
         bilirubin.setFocusTraversalPolicyProvider(true);
         bilirubin.setName("bilirubin"); // NOI18N
         FormInput.add(bilirubin);
-        bilirubin.setBounds(340, 1070, 70, 23);
+        bilirubin.setBounds(700, 980, 50, 23);
 
         jLabel206.setText("Bilirubin :");
         jLabel206.setName("jLabel206"); // NOI18N
         FormInput.add(jLabel206);
-        jLabel206.setBounds(280, 1070, 60, 23);
+        jLabel206.setBounds(620, 980, 70, 23);
 
         malaria.setFocusTraversalPolicyProvider(true);
         malaria.setName("malaria"); // NOI18N
         FormInput.add(malaria);
-        malaria.setBounds(480, 1070, 70, 23);
+        malaria.setBounds(700, 1010, 50, 23);
 
         jLabel207.setText("Malaria :");
         jLabel207.setName("jLabel207"); // NOI18N
         FormInput.add(jLabel207);
-        jLabel207.setBounds(410, 1070, 60, 23);
+        jLabel207.setBounds(620, 1010, 70, 23);
 
         jLabel208.setText("TPHA :");
         jLabel208.setName("jLabel208"); // NOI18N
         FormInput.add(jLabel208);
-        jLabel208.setBounds(550, 1070, 40, 23);
+        jLabel208.setBounds(620, 890, 70, 23);
 
         tpha.setFocusTraversalPolicyProvider(true);
         tpha.setName("tpha"); // NOI18N
         FormInput.add(tpha);
-        tpha.setBounds(590, 1070, 70, 23);
+        tpha.setBounds(700, 890, 50, 23);
 
         jLabel209.setText("Mrd Test :");
         jLabel209.setName("jLabel209"); // NOI18N
         FormInput.add(jLabel209);
-        jLabel209.setBounds(660, 1070, 40, 23);
+        jLabel209.setBounds(620, 920, 70, 23);
 
         mantoux_test.setFocusTraversalPolicyProvider(true);
         mantoux_test.setName("mantoux_test"); // NOI18N
         FormInput.add(mantoux_test);
-        mantoux_test.setBounds(700, 1070, 70, 23);
+        mantoux_test.setBounds(700, 920, 50, 23);
 
         jLabel210.setText("Leuco :");
         jLabel210.setName("jLabel210"); // NOI18N
         FormInput.add(jLabel210);
-        jLabel210.setBounds(770, 1040, 40, 23);
+        jLabel210.setBounds(420, 1010, 70, 23);
 
         leukosit.setFocusTraversalPolicyProvider(true);
         leukosit.setName("leukosit"); // NOI18N
         FormInput.add(leukosit);
-        leukosit.setBounds(810, 1040, 70, 23);
+        leukosit.setBounds(500, 1010, 50, 23);
 
         jLabel211.setText("Others :");
         jLabel211.setName("jLabel211"); // NOI18N
         FormInput.add(jLabel211);
-        jLabel211.setBounds(770, 1070, 40, 23);
+        jLabel211.setBounds(620, 950, 70, 23);
 
         lab_others.setFocusTraversalPolicyProvider(true);
         lab_others.setName("lab_others"); // NOI18N
         FormInput.add(lab_others);
-        lab_others.setBounds(810, 1070, 70, 23);
+        lab_others.setBounds(700, 950, 50, 23);
 
         ova.setFocusTraversalPolicyProvider(true);
         ova.setName("ova"); // NOI18N
         FormInput.add(ova);
-        ova.setBounds(300, 1110, 100, 23);
+        ova.setBounds(110, 1050, 100, 23);
 
         jLabel212.setText("OVA :");
         jLabel212.setName("jLabel212"); // NOI18N
         FormInput.add(jLabel212);
-        jLabel212.setBounds(240, 1110, 60, 23);
+        jLabel212.setBounds(50, 1050, 60, 23);
 
         culture.setFocusTraversalPolicyProvider(true);
         culture.setName("culture"); // NOI18N
         FormInput.add(culture);
-        culture.setBounds(450, 1110, 100, 23);
+        culture.setBounds(290, 1050, 100, 23);
 
         jLabel213.setText("Culture :");
         jLabel213.setName("jLabel213"); // NOI18N
         FormInput.add(jLabel213);
-        jLabel213.setBounds(390, 1110, 60, 23);
+        jLabel213.setBounds(230, 1050, 60, 23);
 
         jLabel214.setText("Cysta :");
         jLabel214.setName("jLabel214"); // NOI18N
         FormInput.add(jLabel214);
-        jLabel214.setBounds(550, 1110, 40, 23);
+        jLabel214.setBounds(410, 1050, 40, 23);
 
         cysta.setFocusTraversalPolicyProvider(true);
         cysta.setName("cysta"); // NOI18N
         FormInput.add(cysta);
-        cysta.setBounds(590, 1110, 100, 23);
+        cysta.setBounds(450, 1050, 100, 23);
 
         jLabel215.setText("Parasites :");
         jLabel215.setName("jLabel215"); // NOI18N
         FormInput.add(jLabel215);
-        jLabel215.setBounds(690, 1110, 60, 23);
+        jLabel215.setBounds(590, 1050, 60, 23);
 
         pnemunosicosis2.setFocusTraversalPolicyProvider(true);
         pnemunosicosis2.setName("pnemunosicosis2"); // NOI18N
         FormInput.add(pnemunosicosis2);
-        pnemunosicosis2.setBounds(790, 1170, 100, 23);
+        pnemunosicosis2.setBounds(790, 1565, 100, 23);
 
         jLabel216.setText("Pneumocosiosis :");
         jLabel216.setName("jLabel216"); // NOI18N
         FormInput.add(jLabel216);
-        jLabel216.setBounds(540, 1170, 140, 23);
+        jLabel216.setBounds(540, 1565, 140, 23);
 
         jLabel217.setText("If yes-ILO Classification :");
         jLabel217.setName("jLabel217"); // NOI18N
         FormInput.add(jLabel217);
-        jLabel217.setBounds(550, 1200, 130, 23);
+        jLabel217.setBounds(550, 1595, 130, 23);
 
         jLabel218.setText("Epidence of TB :");
         jLabel218.setName("jLabel218"); // NOI18N
         FormInput.add(jLabel218);
-        jLabel218.setBounds(560, 1230, 120, 23);
+        jLabel218.setBounds(560, 1625, 120, 23);
 
         jLabel219.setText("Other Abnormalities :");
         jLabel219.setName("jLabel219"); // NOI18N
         FormInput.add(jLabel219);
-        jLabel219.setBounds(560, 1260, 120, 23);
+        jLabel219.setBounds(560, 1655, 120, 23);
 
         parasites1.setFocusTraversalPolicyProvider(true);
         parasites1.setName("parasites1"); // NOI18N
         FormInput.add(parasites1);
-        parasites1.setBounds(750, 1110, 100, 23);
+        parasites1.setBounds(650, 1050, 100, 23);
 
         pnemunosicosis.setFocusTraversalPolicyProvider(true);
         pnemunosicosis.setName("pnemunosicosis"); // NOI18N
         FormInput.add(pnemunosicosis);
-        pnemunosicosis.setBounds(680, 1170, 100, 23);
+        pnemunosicosis.setBounds(680, 1565, 100, 23);
 
         ILO_clasification.setFocusTraversalPolicyProvider(true);
         ILO_clasification.setName("ILO_clasification"); // NOI18N
         FormInput.add(ILO_clasification);
-        ILO_clasification.setBounds(680, 1200, 100, 23);
+        ILO_clasification.setBounds(680, 1595, 100, 23);
 
         ILO_clasification2.setFocusTraversalPolicyProvider(true);
         ILO_clasification2.setName("ILO_clasification2"); // NOI18N
         FormInput.add(ILO_clasification2);
-        ILO_clasification2.setBounds(790, 1200, 100, 23);
+        ILO_clasification2.setBounds(790, 1595, 100, 23);
 
         oth_abnormal.setFocusTraversalPolicyProvider(true);
         oth_abnormal.setName("oth_abnormal"); // NOI18N
         FormInput.add(oth_abnormal);
-        oth_abnormal.setBounds(680, 1260, 210, 23);
+        oth_abnormal.setBounds(680, 1655, 210, 23);
 
         tb2.setFocusTraversalPolicyProvider(true);
         tb2.setName("tb2"); // NOI18N
         FormInput.add(tb2);
-        tb2.setBounds(790, 1230, 100, 23);
+        tb2.setBounds(790, 1625, 100, 23);
 
         tb1.setFocusTraversalPolicyProvider(true);
         tb1.setName("tb1"); // NOI18N
         FormInput.add(tb1);
-        tb1.setBounds(680, 1230, 100, 23);
+        tb1.setBounds(680, 1625, 100, 23);
 
         page3_comment.setFocusTraversalPolicyProvider(true);
         page3_comment.setName("page3_comment"); // NOI18N
         FormInput.add(page3_comment);
-        page3_comment.setBounds(680, 1290, 210, 23);
+        page3_comment.setBounds(680, 1685, 210, 23);
 
         jLabel220.setText("Comment :");
         jLabel220.setName("jLabel220"); // NOI18N
         FormInput.add(jLabel220);
-        jLabel220.setBounds(560, 1290, 120, 23);
+        jLabel220.setBounds(560, 1685, 120, 23);
 
         jLabel221.setText("AC 6000 :");
         jLabel221.setName("jLabel221"); // NOI18N
         FormInput.add(jLabel221);
-        jLabel221.setBounds(500, 1610, 70, 23);
+        jLabel221.setBounds(500, 2005, 70, 23);
 
         jLabel222.setText("AC 5000 :");
         jLabel222.setName("jLabel222"); // NOI18N
         FormInput.add(jLabel222);
-        jLabel222.setBounds(500, 1580, 70, 23);
+        jLabel222.setBounds(500, 1975, 70, 23);
 
         jLabel223.setText("AC 4000 :");
         jLabel223.setName("jLabel223"); // NOI18N
         FormInput.add(jLabel223);
-        jLabel223.setBounds(500, 1550, 70, 23);
+        jLabel223.setBounds(500, 1945, 70, 23);
 
         jLabel224.setText("AC 3000 :");
         jLabel224.setName("jLabel224"); // NOI18N
         FormInput.add(jLabel224);
-        jLabel224.setBounds(500, 1520, 70, 23);
+        jLabel224.setBounds(500, 1915, 70, 23);
 
         jLabel225.setText("AC 2000 :");
         jLabel225.setName("jLabel225"); // NOI18N
         FormInput.add(jLabel225);
-        jLabel225.setBounds(500, 1490, 70, 23);
+        jLabel225.setBounds(500, 1885, 70, 23);
 
         jLabel226.setText("AC 1500 :");
         jLabel226.setName("jLabel226"); // NOI18N
         FormInput.add(jLabel226);
-        jLabel226.setBounds(500, 1460, 70, 23);
+        jLabel226.setBounds(500, 1855, 70, 23);
 
         jLabel227.setText("AC 1000 :");
         jLabel227.setName("jLabel227"); // NOI18N
         FormInput.add(jLabel227);
-        jLabel227.setBounds(500, 1430, 70, 23);
+        jLabel227.setBounds(500, 1825, 70, 23);
 
         jLabel228.setText("AC 500 :");
         jLabel228.setName("jLabel228"); // NOI18N
         FormInput.add(jLabel228);
-        jLabel228.setBounds(500, 1400, 70, 23);
+        jLabel228.setBounds(500, 1795, 70, 23);
 
         jLabel229.setText(" BC 500 :");
         jLabel229.setName("jLabel229"); // NOI18N
         FormInput.add(jLabel229);
-        jLabel229.setBounds(650, 1400, 70, 23);
+        jLabel229.setBounds(650, 1795, 70, 23);
 
         jLabel230.setText("BC 1000 :");
         jLabel230.setName("jLabel230"); // NOI18N
         FormInput.add(jLabel230);
-        jLabel230.setBounds(650, 1430, 70, 23);
+        jLabel230.setBounds(650, 1825, 70, 23);
 
         jLabel231.setText("BC 1500 :");
         jLabel231.setName("jLabel231"); // NOI18N
         FormInput.add(jLabel231);
-        jLabel231.setBounds(650, 1460, 70, 23);
+        jLabel231.setBounds(650, 1855, 70, 23);
 
         jLabel232.setText("BC 2000 :");
         jLabel232.setName("jLabel232"); // NOI18N
         FormInput.add(jLabel232);
-        jLabel232.setBounds(650, 1490, 70, 23);
+        jLabel232.setBounds(650, 1885, 70, 23);
 
         jLabel233.setText("BC 3000 :");
         jLabel233.setName("jLabel233"); // NOI18N
         FormInput.add(jLabel233);
-        jLabel233.setBounds(650, 1520, 70, 23);
+        jLabel233.setBounds(650, 1915, 70, 23);
 
         jLabel234.setText("BC 4000 :");
         jLabel234.setName("jLabel234"); // NOI18N
         FormInput.add(jLabel234);
-        jLabel234.setBounds(650, 1550, 70, 23);
+        jLabel234.setBounds(650, 1945, 70, 23);
 
         jLabel235.setText("BC 5000 :");
         jLabel235.setName("jLabel235"); // NOI18N
         FormInput.add(jLabel235);
-        jLabel235.setBounds(650, 1580, 70, 23);
+        jLabel235.setBounds(650, 1975, 70, 23);
 
         jLabel236.setText("BC 6000 :");
         jLabel236.setName("jLabel236"); // NOI18N
         FormInput.add(jLabel236);
-        jLabel236.setBounds(650, 1610, 70, 23);
-
-        ecg_abnormal.setFocusTraversalPolicyProvider(true);
-        ecg_abnormal.setName("ecg_abnormal"); // NOI18N
-        FormInput.add(ecg_abnormal);
-        ecg_abnormal.setBounds(150, 1110, 100, 23);
+        jLabel236.setBounds(650, 2005, 70, 23);
 
         jLabel190.setText("Ear protection Wom :");
         jLabel190.setName("jLabel190"); // NOI18N
         FormInput.add(jLabel190);
-        jLabel190.setBounds(10, 1350, 120, 23);
+        jLabel190.setBounds(10, 1745, 120, 23);
 
         type_of_hearing.setFocusTraversalPolicyProvider(true);
         type_of_hearing.setName("type_of_hearing"); // NOI18N
         FormInput.add(type_of_hearing);
-        type_of_hearing.setBounds(570, 1350, 240, 23);
+        type_of_hearing.setBounds(570, 1745, 240, 23);
 
         eye_unaided_distant_l.setFocusTraversalPolicyProvider(true);
         eye_unaided_distant_l.setName("eye_unaided_distant_l"); // NOI18N
@@ -4797,7 +4638,7 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(eye_unaided_distant_l);
-        eye_unaided_distant_l.setBounds(210, 1750, 70, 23);
+        eye_unaided_distant_l.setBounds(210, 2145, 70, 23);
 
         eye_unaided_distant_r.setFocusTraversalPolicyProvider(true);
         eye_unaided_distant_r.setName("eye_unaided_distant_r"); // NOI18N
@@ -4807,7 +4648,7 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
         FormInput.add(eye_unaided_distant_r);
-        eye_unaided_distant_r.setBounds(410, 1750, 70, 23);
+        eye_unaided_distant_r.setBounds(410, 2145, 70, 23);
 
         BtnPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPT.setMnemonic('2');
@@ -4821,6 +4662,338 @@ public final class RMMCU extends javax.swing.JDialog {
         });
         FormInput.add(BtnPT);
         BtnPT.setBounds(350, 140, 28, 23);
+
+        trombosit.setHighlighter(null);
+        trombosit.setName("trombosit"); // NOI18N
+        FormInput.add(trombosit);
+        trombosit.setBounds(100, 1090, 55, 23);
+
+        rhesuss.setHighlighter(null);
+        rhesuss.setName("rhesuss"); // NOI18N
+        FormInput.add(rhesuss);
+        rhesuss.setBounds(220, 1090, 55, 23);
+
+        triglyceride.setHighlighter(null);
+        triglyceride.setName("triglyceride"); // NOI18N
+        FormInput.add(triglyceride);
+        triglyceride.setBounds(340, 1090, 60, 23);
+
+        hdl_cholesterol.setHighlighter(null);
+        hdl_cholesterol.setName("hdl_cholesterol"); // NOI18N
+        FormInput.add(hdl_cholesterol);
+        hdl_cholesterol.setBounds(470, 1090, 60, 23);
+
+        ldl_cholesterol.setHighlighter(null);
+        ldl_cholesterol.setName("ldl_cholesterol"); // NOI18N
+        FormInput.add(ldl_cholesterol);
+        ldl_cholesterol.setBounds(600, 1090, 60, 23);
+
+        uric_acid.setHighlighter(null);
+        uric_acid.setName("uric_acid"); // NOI18N
+        FormInput.add(uric_acid);
+        uric_acid.setBounds(740, 1090, 60, 23);
+
+        urine_colour.setHighlighter(null);
+        urine_colour.setName("urine_colour"); // NOI18N
+        FormInput.add(urine_colour);
+        urine_colour.setBounds(160, 1130, 65, 23);
+
+        urine_turbidity.setHighlighter(null);
+        urine_turbidity.setName("urine_turbidity"); // NOI18N
+        FormInput.add(urine_turbidity);
+        urine_turbidity.setBounds(160, 1160, 65, 23);
+
+        urine_chemical_reaction.setHighlighter(null);
+        urine_chemical_reaction.setName("urine_chemical_reaction"); // NOI18N
+        FormInput.add(urine_chemical_reaction);
+        urine_chemical_reaction.setBounds(160, 1190, 65, 23);
+
+        urine_ketones.setHighlighter(null);
+        urine_ketones.setName("urine_ketones"); // NOI18N
+        FormInput.add(urine_ketones);
+        urine_ketones.setBounds(160, 1220, 65, 23);
+
+        urine_glucose.setHighlighter(null);
+        urine_glucose.setName("urine_glucose"); // NOI18N
+        FormInput.add(urine_glucose);
+        urine_glucose.setBounds(160, 1250, 65, 23);
+
+        urine_nitrites.setHighlighter(null);
+        urine_nitrites.setName("urine_nitrites"); // NOI18N
+        FormInput.add(urine_nitrites);
+        urine_nitrites.setBounds(310, 1130, 60, 23);
+
+        urine_wbc.setHighlighter(null);
+        urine_wbc.setName("urine_wbc"); // NOI18N
+        FormInput.add(urine_wbc);
+        urine_wbc.setBounds(310, 1160, 60, 23);
+
+        urine_rbc.setHighlighter(null);
+        urine_rbc.setName("urine_rbc"); // NOI18N
+        FormInput.add(urine_rbc);
+        urine_rbc.setBounds(310, 1190, 60, 23);
+
+        urine_bacteria.setHighlighter(null);
+        urine_bacteria.setName("urine_bacteria"); // NOI18N
+        FormInput.add(urine_bacteria);
+        urine_bacteria.setBounds(310, 1220, 60, 23);
+
+        urine_crystal.setHighlighter(null);
+        urine_crystal.setName("urine_crystal"); // NOI18N
+        FormInput.add(urine_crystal);
+        urine_crystal.setBounds(310, 1250, 60, 23);
+
+        urine_epithel.setHighlighter(null);
+        urine_epithel.setName("urine_epithel"); // NOI18N
+        FormInput.add(urine_epithel);
+        urine_epithel.setBounds(310, 1280, 60, 23);
+
+        hbsag.setHighlighter(null);
+        hbsag.setName("hbsag"); // NOI18N
+        FormInput.add(hbsag);
+        hbsag.setBounds(620, 1130, 70, 23);
+
+        anti_hbs.setHighlighter(null);
+        anti_hbs.setName("anti_hbs"); // NOI18N
+        FormInput.add(anti_hbs);
+        anti_hbs.setBounds(620, 1160, 70, 23);
+
+        cea.setHighlighter(null);
+        cea.setName("cea"); // NOI18N
+        FormInput.add(cea);
+        cea.setBounds(770, 1130, 70, 23);
+
+        afp.setHighlighter(null);
+        afp.setName("afp"); // NOI18N
+        FormInput.add(afp);
+        afp.setBounds(770, 1160, 70, 23);
+
+        drug_amphetamine.setHighlighter(null);
+        drug_amphetamine.setName("drug_amphetamine"); // NOI18N
+        FormInput.add(drug_amphetamine);
+        drug_amphetamine.setBounds(560, 1190, 70, 23);
+
+        drug_methamphetamine.setHighlighter(null);
+        drug_methamphetamine.setName("drug_methamphetamine"); // NOI18N
+        FormInput.add(drug_methamphetamine);
+        drug_methamphetamine.setBounds(560, 1220, 70, 23);
+
+        drug_morphine.setHighlighter(null);
+        drug_morphine.setName("drug_morphine"); // NOI18N
+        FormInput.add(drug_morphine);
+        drug_morphine.setBounds(560, 1250, 70, 23);
+
+        drug_benzodiazepine.setHighlighter(null);
+        drug_benzodiazepine.setName("drug_benzodiazepine"); // NOI18N
+        FormInput.add(drug_benzodiazepine);
+        drug_benzodiazepine.setBounds(740, 1190, 70, 23);
+
+        drug_cocain.setHighlighter(null);
+        drug_cocain.setName("drug_cocain"); // NOI18N
+        FormInput.add(drug_cocain);
+        drug_cocain.setBounds(740, 1220, 70, 23);
+
+        drug_marijuana.setHighlighter(null);
+        drug_marijuana.setName("drug_marijuana"); // NOI18N
+        FormInput.add(drug_marijuana);
+        drug_marijuana.setBounds(740, 1250, 70, 23);
+
+        lbTrombosit.setText("Trombo :");
+        lbTrombosit.setName("lbTrombosit"); // NOI18N
+        FormInput.add(lbTrombosit);
+        lbTrombosit.setBounds(30, 1090, 65, 23);
+
+        lbRhesus.setText("Rhesus :");
+        lbRhesus.setName("lbRhesus"); // NOI18N
+        FormInput.add(lbRhesus);
+        lbRhesus.setBounds(160, 1090, 60, 23);
+
+        lbTriglyceride.setText("Triglise :");
+        lbTriglyceride.setName("lbTriglyceride"); // NOI18N
+        FormInput.add(lbTriglyceride);
+        lbTriglyceride.setBounds(280, 1090, 60, 23);
+
+        lbHdlChol.setText("HDL Col :");
+        lbHdlChol.setName("lbHdlChol"); // NOI18N
+        FormInput.add(lbHdlChol);
+        lbHdlChol.setBounds(410, 1090, 60, 23);
+
+        lbLdlChol.setText("LDL Col :");
+        lbLdlChol.setName("lbLdlChol"); // NOI18N
+        FormInput.add(lbLdlChol);
+        lbLdlChol.setBounds(540, 1090, 60, 23);
+
+        lbUricAcid.setText("Asam Urat :");
+        lbUricAcid.setName("lbUricAcid"); // NOI18N
+        FormInput.add(lbUricAcid);
+        lbUricAcid.setBounds(670, 1090, 70, 23);
+
+        lbUrinalisis.setText("URINALISIS :");
+        lbUrinalisis.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbUrinalisis.setName("lbUrinalisis"); // NOI18N
+        FormInput.add(lbUrinalisis);
+        lbUrinalisis.setBounds(20, 1130, 80, 23);
+
+        lbUrineColour.setText("Warna :");
+        lbUrineColour.setName("lbUrineColour"); // NOI18N
+        FormInput.add(lbUrineColour);
+        lbUrineColour.setBounds(100, 1130, 60, 23);
+
+        lbUrineTurb.setText("Jernih :");
+        lbUrineTurb.setName("lbUrineTurb"); // NOI18N
+        FormInput.add(lbUrineTurb);
+        lbUrineTurb.setBounds(100, 1160, 55, 23);
+
+        lbUrineChem.setText("pH/Kimia:");
+        lbUrineChem.setName("lbUrineChem"); // NOI18N
+        FormInput.add(lbUrineChem);
+        lbUrineChem.setBounds(90, 1190, 65, 23);
+
+        lbUrineKeton.setText("Keton :");
+        lbUrineKeton.setName("lbUrineKeton"); // NOI18N
+        FormInput.add(lbUrineKeton);
+        lbUrineKeton.setBounds(100, 1220, 55, 23);
+
+        lbUrineGluc.setText("Gluk(U):");
+        lbUrineGluc.setName("lbUrineGluc"); // NOI18N
+        FormInput.add(lbUrineGluc);
+        lbUrineGluc.setBounds(100, 1250, 60, 23);
+
+        lbUrineNitrit.setText("Nitrit :");
+        lbUrineNitrit.setName("lbUrineNitrit"); // NOI18N
+        FormInput.add(lbUrineNitrit);
+        lbUrineNitrit.setBounds(250, 1130, 50, 23);
+
+        lbUrineWbc.setText("Leu(U) :");
+        lbUrineWbc.setName("lbUrineWbc"); // NOI18N
+        FormInput.add(lbUrineWbc);
+        lbUrineWbc.setBounds(240, 1160, 60, 23);
+
+        lbUrineRbc.setText("Eri(U) :");
+        lbUrineRbc.setName("lbUrineRbc"); // NOI18N
+        FormInput.add(lbUrineRbc);
+        lbUrineRbc.setBounds(240, 1190, 60, 23);
+
+        lbUrineBakt.setText("Bakteri :");
+        lbUrineBakt.setName("lbUrineBakt"); // NOI18N
+        FormInput.add(lbUrineBakt);
+        lbUrineBakt.setBounds(240, 1220, 60, 23);
+
+        lbUrineKrista.setText("Kristal :");
+        lbUrineKrista.setName("lbUrineKrista"); // NOI18N
+        FormInput.add(lbUrineKrista);
+        lbUrineKrista.setBounds(240, 1250, 60, 23);
+
+        lbUrineEpitel.setText("Epitel :");
+        lbUrineEpitel.setName("lbUrineEpitel"); // NOI18N
+        FormInput.add(lbUrineEpitel);
+        lbUrineEpitel.setBounds(240, 1280, 60, 23);
+
+        lbImunologi.setText("IMUNOLOGI / SEROLOGI :");
+        lbImunologi.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbImunologi.setName("lbImunologi"); // NOI18N
+        FormInput.add(lbImunologi);
+        lbImunologi.setBounds(390, 1130, 160, 23);
+
+        lbHbsAg.setText("HBsAg :");
+        lbHbsAg.setName("lbHbsAg"); // NOI18N
+        FormInput.add(lbHbsAg);
+        lbHbsAg.setBounds(550, 1130, 60, 23);
+
+        lbAntiHbs.setText("Anti HBs :");
+        lbAntiHbs.setName("lbAntiHbs"); // NOI18N
+        FormInput.add(lbAntiHbs);
+        lbAntiHbs.setBounds(550, 1160, 65, 23);
+
+        lbCea.setText("CEA :");
+        lbCea.setName("lbCea"); // NOI18N
+        FormInput.add(lbCea);
+        lbCea.setBounds(710, 1130, 50, 23);
+
+        lbAfp.setText("AFP :");
+        lbAfp.setName("lbAfp"); // NOI18N
+        FormInput.add(lbAfp);
+        lbAfp.setBounds(710, 1160, 50, 23);
+
+        lbNapza.setText("UJI NAPZA :");
+        lbNapza.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbNapza.setName("lbNapza"); // NOI18N
+        FormInput.add(lbNapza);
+        lbNapza.setBounds(390, 1190, 80, 23);
+
+        lbDrugAmfet.setText("Amfetamin :");
+        lbDrugAmfet.setName("lbDrugAmfet"); // NOI18N
+        FormInput.add(lbDrugAmfet);
+        lbDrugAmfet.setBounds(480, 1190, 75, 23);
+
+        lbDrugMeta.setText("Metamifin :");
+        lbDrugMeta.setName("lbDrugMeta"); // NOI18N
+        FormInput.add(lbDrugMeta);
+        lbDrugMeta.setBounds(480, 1220, 75, 23);
+
+        lbDrugMorf.setText("Morfin :");
+        lbDrugMorf.setName("lbDrugMorf"); // NOI18N
+        FormInput.add(lbDrugMorf);
+        lbDrugMorf.setBounds(480, 1250, 75, 23);
+
+        lbDrugBenzo.setText("Benzodifin :");
+        lbDrugBenzo.setName("lbDrugBenzo"); // NOI18N
+        FormInput.add(lbDrugBenzo);
+        lbDrugBenzo.setBounds(660, 1190, 75, 23);
+
+        lbDrugKokai.setText("Kokain :");
+        lbDrugKokai.setName("lbDrugKokai"); // NOI18N
+        FormInput.add(lbDrugKokai);
+        lbDrugKokai.setBounds(660, 1220, 75, 23);
+
+        lbDrugGanja.setText("Marijuana :");
+        lbDrugGanja.setName("lbDrugGanja"); // NOI18N
+        FormInput.add(lbDrugGanja);
+        lbDrugGanja.setBounds(660, 1250, 75, 23);
+
+        label16.setText("Petugas Laboratorium :");
+        label16.setName("label16"); // NOI18N
+        label16.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label16);
+        label16.setBounds(410, 1280, 150, 23);
+
+        KdPetugasLab.setEditable(false);
+        KdPetugasLab.setName("KdPetugasLab"); // NOI18N
+        KdPetugasLab.setPreferredSize(new java.awt.Dimension(80, 23));
+        FormInput.add(KdPetugasLab);
+        KdPetugasLab.setBounds(560, 1280, 100, 23);
+
+        NmPetugasLab.setEditable(false);
+        NmPetugasLab.setName("NmPetugasLab"); // NOI18N
+        NmPetugasLab.setPreferredSize(new java.awt.Dimension(207, 23));
+        FormInput.add(NmPetugasLab);
+        NmPetugasLab.setBounds(660, 1280, 180, 23);
+
+        BtnPetugasLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPetugasLab.setMnemonic('2');
+        BtnPetugasLab.setToolTipText("Alt+2");
+        BtnPetugasLab.setName("BtnPetugasLab"); // NOI18N
+        BtnPetugasLab.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPetugasLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasLabActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPetugasLab);
+        BtnPetugasLab.setBounds(840, 1280, 28, 23);
+
+        scrollPane14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        scrollPane14.setName("scrollPane14"); // NOI18N
+
+        ecg_abnormal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ecg_abnormal.setColumns(20);
+        ecg_abnormal.setRows(5);
+        ecg_abnormal.setName("ecg_abnormal"); // NOI18N
+        ecg_abnormal.setPreferredSize(new java.awt.Dimension(182, 52));
+        scrollPane14.setViewportView(ecg_abnormal);
+
+        FormInput.add(scrollPane14);
+        scrollPane14.setBounds(490, 1400, 370, 70);
 
         scrollInput.setViewportView(FormInput);
 
@@ -4864,7 +5037,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4878,7 +5051,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4935,38 +5108,6 @@ public final class RMMCU extends javax.swing.JDialog {
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
-        KdPetugasLab.setEditable(false);
-        KdPetugasLab.setName("KdPetugasLab"); // NOI18N
-        KdPetugasLab.setPreferredSize(new java.awt.Dimension(80, 23));
-        FormInput.add(KdPetugasLab);
-        KdPetugasLab.setBounds(560, 1280, 100, 23);
-
-        NmPetugasLab.setEditable(false);
-        NmPetugasLab.setName("NmPetugasLab"); // NOI18N
-        NmPetugasLab.setPreferredSize(new java.awt.Dimension(207, 23));
-        FormInput.add(NmPetugasLab);
-        NmPetugasLab.setBounds(660, 1280, 180, 23);
-
-        BtnPetugasLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugasLab.setMnemonic('2');
-        BtnPetugasLab.setToolTipText("Alt+2");
-        BtnPetugasLab.setName("BtnPetugasLab"); // NOI18N
-        BtnPetugasLab.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnPetugasLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPetugasLabActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnPetugasLab);
-        BtnPetugasLab.setBounds(840, 1280, 28, 23);
-
-        widget.Label label16 = new widget.Label();
-        label16.setText("Petugas Laboratorium :");
-        label16.setName("label16"); // NOI18N
-        label16.setPreferredSize(new java.awt.Dimension(70, 23));
-        FormInput.add(label16);
-        label16.setBounds(390, 1280, 170, 23);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -4976,8 +5117,7 @@ public final class RMMCU extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Nama Pasien");
         }else if(comboTerpilih(cbConcEcg,"Abnormal")&&ecg_abnormal.getText().trim().equals("")){
             Valid.textKosong(ecg_abnormal,"Keterangan ECG Abnormal");
-        }else if(Kesimpulan1.getText().trim().equals("")){
-            Valid.textKosong(Kesimpulan1,"Kesimpulan");
+        
         }else if(saran.getText().trim().equals("")){
             Valid.textKosong(saran,"Saran");
         }else if(NmDokter.getText().trim().equals("")){
@@ -5006,7 +5146,7 @@ public final class RMMCU extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,Note1,BtnBatal);
+            Valid.pindah(evt,saran,BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -5057,8 +5197,8 @@ public final class RMMCU extends javax.swing.JDialog {
             Valid.textKosong(TNoRw,"Nama Pasien");
         }else if(comboTerpilih(cbConcEcg,"Abnormal")&&ecg_abnormal.getText().trim().equals("")){
             Valid.textKosong(ecg_abnormal,"Keterangan ECG Abnormal");
-        }else if(Kesimpulan1.getText().trim().equals("")){
-            Valid.textKosong(Kesimpulan1,"Kesimpulan");
+        }else if(kesimpulan.getText().trim().equals("")){
+            Valid.textKosong(kesimpulan,"Kesimpulan");
         }else if(saran.getText().trim().equals("")){
             Valid.textKosong(saran,"Saran");
         }else if(NmDokter.getText().trim().equals("")){
@@ -6182,9 +6322,6 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.Button BtnPetugasLab;
-    private widget.TextBox KdPetugasLab;
-    private widget.TextBox NmPetugasLab;
     private widget.TextBox Activities;
     private widget.TextBox AlcoholGrWeek;
     private widget.TextBox AnyAllergies;
@@ -6200,6 +6337,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPT;
     private widget.Button BtnPetugas;
+    private widget.Button BtnPetugasLab;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.TextBox CigarettesPerday;
@@ -6232,7 +6370,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox JobTitle;
     private widget.TextBox KdDokter1;
     private widget.TextBox KdPetugas;
-    private widget.TextArea Kesimpulan1;
+    private widget.TextBox KdPetugasLab;
     private widget.TextBox KlasifikasiIMT1;
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
@@ -6242,8 +6380,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox Nadi;
     private widget.TextBox NmDokter;
     private widget.TextBox NmPetugas;
+    private widget.TextBox NmPetugasLab;
     private widget.TextBox NoTlp;
-    private widget.TextArea Note1;
     private widget.TextBox OtherJob;
     private widget.TextArea PemeriksaanLaboratorium;
     private widget.TextBox Perusahaan;
@@ -6299,6 +6437,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox TmpLahir;
     private widget.TextBox Year;
     private widget.TextBox Yoe;
+    private widget.TextBox afp;
+    private widget.TextBox anti_hbs;
     private widget.CekBox audiometri_ear_protection_worn_always;
     private widget.CekBox audiometri_ear_protection_worn_never;
     private widget.CekBox audiometri_ear_protection_worn_often;
@@ -6346,6 +6486,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox blood;
     private widget.ComboBox blood_group;
     private widget.ComboBox cbConcEcg;
+    private widget.TextBox cea;
     private widget.ComboBox conclusion_colour_blindness;
     private widget.ComboBox conclusion_impaired_hearing;
     private widget.ComboBox conclusion_requires_spectacles;
@@ -6354,7 +6495,13 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox creatinin;
     private widget.TextBox culture;
     private widget.TextBox cysta;
-    private widget.TextBox ecg_abnormal;
+    private widget.TextBox drug_amphetamine;
+    private widget.TextBox drug_benzodiazepine;
+    private widget.TextBox drug_cocain;
+    private widget.TextBox drug_marijuana;
+    private widget.TextBox drug_methamphetamine;
+    private widget.TextBox drug_morphine;
+    private widget.TextArea ecg_abnormal;
     private widget.TextBox esr;
     private widget.TextBox exam_abdomen_comments;
     private widget.TextBox exam_cardio_vascular_system_comments;
@@ -6384,6 +6531,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox gamaa_gt;
     private widget.TextBox glucose;
     private widget.TextBox hb;
+    private widget.TextBox hbsag;
+    private widget.TextBox hdl_cholesterol;
     private widget.ComboBox imunisasi_bcg;
     private widget.ComboBox imunisasi_dpt;
     private widget.ComboBox imunisasi_hep_a;
@@ -6400,7 +6549,6 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label jLabel100;
     private widget.Label jLabel101;
     private widget.Label jLabel102;
-    private widget.Label jLabel103;
     private widget.Label jLabel104;
     private widget.Label jLabel105;
     private widget.Label jLabel106;
@@ -6472,8 +6620,6 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label jLabel168;
     private widget.Label jLabel169;
     private widget.Label jLabel17;
-    private widget.Label jLabel170;
-    private widget.Label jLabel171;
     private widget.Label jLabel172;
     private widget.Label jLabel173;
     private widget.Label jLabel174;
@@ -6613,13 +6759,10 @@ public final class RMMCU extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator24;
     private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
-    private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator28;
     private javax.swing.JSeparator jSeparator29;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator30;
-    private javax.swing.JSeparator jSeparator31;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
@@ -6629,6 +6772,38 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label label11;
     private widget.Label label14;
     private widget.Label label15;
+    private widget.Label label16;
+    private widget.Label lbAfp;
+    private widget.Label lbAntiHbs;
+    private widget.Label lbCea;
+    private widget.Label lbDrugAmfet;
+    private widget.Label lbDrugBenzo;
+    private widget.Label lbDrugGanja;
+    private widget.Label lbDrugKokai;
+    private widget.Label lbDrugMeta;
+    private widget.Label lbDrugMorf;
+    private widget.Label lbHbsAg;
+    private widget.Label lbHdlChol;
+    private widget.Label lbImunologi;
+    private widget.Label lbLdlChol;
+    private widget.Label lbNapza;
+    private widget.Label lbRhesus;
+    private widget.Label lbTriglyceride;
+    private widget.Label lbTrombosit;
+    private widget.Label lbUricAcid;
+    private widget.Label lbUrinalisis;
+    private widget.Label lbUrineBakt;
+    private widget.Label lbUrineChem;
+    private widget.Label lbUrineColour;
+    private widget.Label lbUrineEpitel;
+    private widget.Label lbUrineGluc;
+    private widget.Label lbUrineKeton;
+    private widget.Label lbUrineKrista;
+    private widget.Label lbUrineNitrit;
+    private widget.Label lbUrineRbc;
+    private widget.Label lbUrineTurb;
+    private widget.Label lbUrineWbc;
+    private widget.TextBox ldl_cholesterol;
     private widget.TextBox leukosit;
     private widget.TextBox malaria;
     private widget.TextBox mantoux_test;
@@ -6642,17 +6817,15 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox pnemunosicosis2;
     private widget.TextBox protein;
     private widget.TextBox random_glucose;
-    private widget.TextArea rekomendasi2;
+    private widget.TextBox rhesuss;
     private widget.TextArea saran;
     private widget.ScrollPane scrollInput;
     private widget.ScrollPane scrollPane10;
     private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane12;
     private widget.ScrollPane scrollPane13;
+    private widget.ScrollPane scrollPane14;
     private widget.ScrollPane scrollPane15;
-    private widget.ScrollPane scrollPane16;
-    private widget.ScrollPane scrollPane17;
-    private widget.ScrollPane scrollPane18;
     private widget.ScrollPane scrollPane5;
     private widget.ScrollPane scrollPane6;
     private widget.ScrollPane scrollPane7;
@@ -6681,8 +6854,22 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Table tbObat;
     private widget.TextBox total_cholestrol;
     private widget.TextBox tpha;
+    private widget.TextBox triglyceride;
+    private widget.TextBox trombosit;
     private widget.TextBox type_of_hearing;
     private widget.TextBox urea;
+    private widget.TextBox uric_acid;
+    private widget.TextBox urine_bacteria;
+    private widget.TextBox urine_chemical_reaction;
+    private widget.TextBox urine_colour;
+    private widget.TextBox urine_crystal;
+    private widget.TextBox urine_epithel;
+    private widget.TextBox urine_glucose;
+    private widget.TextBox urine_ketones;
+    private widget.TextBox urine_nitrites;
+    private widget.TextBox urine_rbc;
+    private widget.TextBox urine_turbidity;
+    private widget.TextBox urine_wbc;
     private widget.ComboBox vertebra_forward_flexion_0_80;
     private widget.ComboBox vertebra_heel_walking;
     private widget.ComboBox vertebra_hyperextensi_0_25;
@@ -6695,33 +6882,6 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox visual_fields_left;
     private widget.TextBox visual_fields_right;
     private widget.TextBox wbc;
-    private widget.TextBox trombosit;
-    private widget.TextBox rhesuss;
-    private widget.TextBox triglyceride;
-    private widget.TextBox hdl_cholesterol;
-    private widget.TextBox ldl_cholesterol;
-    private widget.TextBox uric_acid;
-    private widget.TextBox urine_colour;
-    private widget.TextBox urine_turbidity;
-    private widget.TextBox urine_chemical_reaction;
-    private widget.TextBox urine_ketones;
-    private widget.TextBox urine_glucose;
-    private widget.TextBox urine_nitrites;
-    private widget.TextBox urine_wbc;
-    private widget.TextBox urine_rbc;
-    private widget.TextBox urine_bacteria;
-    private widget.TextBox urine_crystal;
-    private widget.TextBox urine_epithel;
-    private widget.TextBox hbsag;
-    private widget.TextBox anti_hbs;
-    private widget.TextBox cea;
-    private widget.TextBox afp;
-    private widget.TextBox drug_amphetamine;
-    private widget.TextBox drug_methamphetamine;
-    private widget.TextBox drug_morphine;
-    private widget.TextBox drug_benzodiazepine;
-    private widget.TextBox drug_cocain;
-    private widget.TextBox drug_marijuana;
     // End of variables declaration//GEN-END:variables
 
     private void aturInputKesimpulanMcu() {
@@ -8282,7 +8442,7 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String nilaiKesimpulanMcu() {
-        return nilaiPertamaTerisi(kesimpulan,Kesimpulan1);
+        return nilai(kesimpulan);
     }
 
     private String nilaiSaranMcu() {
@@ -8296,11 +8456,9 @@ public final class RMMCU extends javax.swing.JDialog {
 
         String nilaiKesimpulan = nilaiKesimpulanMcu();
         setText(kesimpulan,nilaiKesimpulan);
-        setText(Kesimpulan1,nilaiKesimpulan);
 
         String nilaiSaran = nilaiSaranMcu();
-        setText(rekomendasi2,nilaiSaran);
-        setText(Note1,nilaiSaran);
+        setText(saran,nilaiSaran);
     }
 
     private void sinkronBloodGroup() {
@@ -8705,8 +8863,8 @@ public final class RMMCU extends javax.swing.JDialog {
     public void emptTeks() {
         TglAsuhan.setDate(new Date());
         setText(Year,getTahunAsuhan());
-        kosongkanText(kesimpulan,rekomendasi2,Dass21,PhyExam,ConcLab,ConcRadiologi,ConcEcg,ConcSpirometry,ConcAudiometry,
-                Kesimpulan1,Note1,Doe,Yoe,JobTitle,Activities,Hobby,OtherJob,FamilyHistoryFather,FamilyHistoryMother,FamilyHistorySiblings,
+        kosongkanText(kesimpulan,Dass21,PhyExam,ConcLab,ConcRadiologi,ConcEcg,ConcSpirometry,ConcAudiometry,
+                Doe,Yoe,JobTitle,Activities,Hobby,OtherJob,FamilyHistoryFather,FamilyHistoryMother,FamilyHistorySiblings,
                 FamilyHistoryOther,CigarettesPerday,AlcoholGrWeek,PrescribedMedication,PrescribedMedication2,AnyAllergies,TD,Nadi,RR,TB,BB,
                 IMT,KlasifikasiIMT1,visual_fields_left,visual_fields_right,PemeriksaanLaboratorium,RongsenThorax,ecg_abnormal,type_of_hearing,eye_unaided_distant_l,eye_unaided_distant_r,spirometri_vc_1,spirometri_vc_2,spirometri_vc_3,
                 spirometri_vc_4,spirometri_fvc_1,hb,wbc,esr,bl_group,gamaa_gt,sgot,sgpt,urea,creatinin,glucose,random_glucose,total_cholestrol,protein,blood,bilirubin,
@@ -8765,8 +8923,6 @@ public final class RMMCU extends javax.swing.JDialog {
             setText(NmPetugas,getTabelValue("nm_petugas"));
             setCombo(McuGroup,getTabelValue("mcu_group"));
             String nilaiSaran = nilaiPertamaTerisiValue(getTabelValue("note1"),getTabelValue("unfit_comment_1"));
-            setText(Note1,nilaiSaran);
-            setText(rekomendasi2,nilaiSaran);
             setText(saran,nilaiSaran);
             setText(Dass21,getTabelValue("dass_21"));
             setText(PhyExam,getTabelValue("phy_exam"));
@@ -8775,7 +8931,6 @@ public final class RMMCU extends javax.swing.JDialog {
             setText(ConcEcg,nilaiConcEcgTabel());
             setText(ConcSpirometry,getTabelValue("conc_spirometry"));
             setText(ConcAudiometry,getTabelValue("conc_audiometry"));
-            setText(Kesimpulan1,getTabelValue("kesimpulan1"));
             setText(kesimpulan,getTabelValue("kesimpulan1"));
             setText(Doe,getTabelValue("doe"));
             setText(Yoe,getTabelValue("yoe"));
