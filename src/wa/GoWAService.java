@@ -72,7 +72,7 @@ public class GoWAService {
                     15,
                     TimeUnit.SECONDS
             );
-            System.out.println("GoWA queue worker aktif.");
+            System.out.println("GoWA terhubung.");
         }
     }
 

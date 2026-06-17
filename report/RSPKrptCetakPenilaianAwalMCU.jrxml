@@ -275,7 +275,36 @@
     penilaian_mcu.medically_fit,
     penilaian_mcu.fit_with_restrictions,
     penilaian_mcu.specify,
-    penilaian_mcu.unfit_comment_1
+    penilaian_mcu.unfit_comment_1,
+    penilaian_mcu.trombosit,
+    penilaian_mcu.rhesuss,
+    penilaian_mcu.triglyceride,
+    penilaian_mcu.hdl_cholesterol,
+    penilaian_mcu.ldl_cholesterol,
+    penilaian_mcu.uric_acid,
+    penilaian_mcu.urine_colour,
+    penilaian_mcu.urine_turbidity,
+    penilaian_mcu.urine_chemical_reaction,
+    penilaian_mcu.urine_ketones,
+    penilaian_mcu.urine_glucose,
+    penilaian_mcu.urine_nitrites,
+    penilaian_mcu.urine_wbc,
+    penilaian_mcu.urine_rbc,
+    penilaian_mcu.urine_bacteria,
+    penilaian_mcu.urine_crystal,
+    penilaian_mcu.urine_epithel,
+    penilaian_mcu.hbsag,
+    penilaian_mcu.anti_hbs,
+    penilaian_mcu.cea,
+    penilaian_mcu.afp,
+    penilaian_mcu.drug_amphetamine,
+    penilaian_mcu.drug_methamphetamine,
+    penilaian_mcu.drug_morphine,
+    penilaian_mcu.drug_benzodiazepine,
+    penilaian_mcu.drug_cocain,
+    penilaian_mcu.drug_marijuana,
+    penilaian_mcu.kd_petugas_lab,
+    petugas_lab.nama as nm_petugas_lab
 
 from reg_periksa
 inner join pasien on reg_periksa.no_rkm_medis = pasien.no_rkm_medis
@@ -286,8 +315,38 @@ left join kecamatan on pasien.kd_kec = kecamatan.kd_kec
 left join kabupaten on pasien.kd_kab = kabupaten.kd_kab
 left join propinsi on pasien.kd_prop = propinsi.kd_prop
 left join dokter on penilaian_mcu.kd_dokter = dokter.kd_dokter
-left join petugas on penilaian_mcu.kd_petugas = petugas.nip]]>
+left join petugas on penilaian_mcu.kd_petugas = petugas.nip
+left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]]>
 	</queryString>
+	<field name="kd_petugas_lab" class="java.lang.String"/>
+	<field name="nm_petugas_lab" class="java.lang.String"/>
+	<field name="trombosit" class="java.lang.String"/>
+	<field name="rhesuss" class="java.lang.String"/>
+	<field name="triglyceride" class="java.lang.String"/>
+	<field name="hdl_cholesterol" class="java.lang.String"/>
+	<field name="ldl_cholesterol" class="java.lang.String"/>
+	<field name="uric_acid" class="java.lang.String"/>
+	<field name="urine_colour" class="java.lang.String"/>
+	<field name="urine_turbidity" class="java.lang.String"/>
+	<field name="urine_chemical_reaction" class="java.lang.String"/>
+	<field name="urine_ketones" class="java.lang.String"/>
+	<field name="urine_glucose" class="java.lang.String"/>
+	<field name="urine_nitrites" class="java.lang.String"/>
+	<field name="urine_wbc" class="java.lang.String"/>
+	<field name="urine_rbc" class="java.lang.String"/>
+	<field name="urine_bacteria" class="java.lang.String"/>
+	<field name="urine_crystal" class="java.lang.String"/>
+	<field name="urine_epithel" class="java.lang.String"/>
+	<field name="hbsag" class="java.lang.String"/>
+	<field name="anti_hbs" class="java.lang.String"/>
+	<field name="cea" class="java.lang.String"/>
+	<field name="afp" class="java.lang.String"/>
+	<field name="drug_amphetamine" class="java.lang.String"/>
+	<field name="drug_methamphetamine" class="java.lang.String"/>
+	<field name="drug_morphine" class="java.lang.String"/>
+	<field name="drug_benzodiazepine" class="java.lang.String"/>
+	<field name="drug_cocain" class="java.lang.String"/>
+	<field name="drug_marijuana" class="java.lang.String"/>
 	<field name="no_rawat" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="no_rawat"/>
 		<property name="com.jaspersoft.studio.field.label" value="no_rawat"/>

@@ -108,7 +108,11 @@ public final class RMMCU extends javax.swing.JDialog {
         "exam_respiratory_system_comments","exam_abdomen_comments","exam_genito_urinary_system_comments",
         "exam_central_peripheral_nervous_system_comments","exam_skin_comments","exam_lymph_nodes_comments","exam_dental_comments",
         "conclusion_requires_spectacles","conclusion_colour_blindness","conclusion_respiratory_problem",
-        "conclusion_impaired_hearing","conclusion_vertigo","blood_group","medically_fit","fit_with_restrictions","specify","unfit_comment_1"
+        "conclusion_impaired_hearing","conclusion_vertigo","blood_group","medically_fit","fit_with_restrictions","specify","unfit_comment_1",
+        "trombosit","rhesuss","triglyceride","hdl_cholesterol","ldl_cholesterol","uric_acid","urine_colour","urine_turbidity",
+        "urine_chemical_reaction","urine_ketones","urine_glucose","urine_nitrites","urine_wbc","urine_rbc","urine_bacteria",
+        "urine_crystal","urine_epithel","hbsag","anti_hbs","cea","afp","drug_amphetamine","drug_methamphetamine",
+        "drug_morphine","drug_benzodiazepine","drug_cocain","drug_marijuana"
     };
 
     private static final String[] TABEL_PENILAIAN_MCU_COLUMNS = kolomTabelPenilaianMcu();
@@ -363,7 +367,272 @@ public final class RMMCU extends javax.swing.JDialog {
         aturKeypressLaboratoriumRontgen();
         aturKeypressPemeriksaanKhusus();
         
-        tabMode=new DefaultTableModel(null,TABEL_PENILAIAN_MCU_HEADERS){
+        tabMode=new DefaultTableModel(null,new Object[]{
+            "Tahun",
+            "No.Rawat",
+            "No.RM",
+            "Nama Pasien",
+            "Surname",
+            "Perusahaan",
+            "Badge",
+            "Tanggal",
+            "Kode Dokter",
+            "Dokter PJ",
+            "Kode Petugas",
+            "Nama Petugas",
+            "Kode Petugas Lab",
+            "Nama Petugas Lab",
+            "Saran",
+            "MCU Grup",
+            "Medical History",
+            "Physical Examination",
+            "Kesimpulan Laboratorium",
+            "Conclusion Chest X Ray",
+            "Conclusion EKG",
+            "Conclusion Spirometry",
+            "Conclusion Audiometry",
+            "Kesimpulan",
+            "Tmp.Lahir",
+            "Tgl.Lahir",
+            "J.K.",
+            "No.Telp",
+            "Suku/Bangsa",
+            "Status Nikah",
+            "Date/Year of Employment",
+            "Year of Employment",
+            "Job Title",
+            "Activities",
+            "Hobby",
+            "Moonlight Working",
+            "Position Applied For",
+            "Driving/Mobile Equipment",
+            "Working at Heights",
+            "Clerical/Administrative",
+            "Requires Colour Vision",
+            "Potential Dust Exposure",
+            "Catering/Food Handler",
+            "Other Potential Dangerous",
+            "Head Injury/Contussion",
+            "Fainting/Blackouts/Epilepsy",
+            "Visual Changes",
+            "Hearing Loss",
+            "Nose/Sinus/Throat >4 Weeks",
+            "Gynaecological Problems",
+            "Chronic Skin Problem",
+            "Chronic Diarrhea",
+            "Anorexia >4 Weeks",
+            "Gastritis",
+            "Jaundice/Hepatitis",
+            "Chronic Cough >4 Weeks",
+            "Haemorhoid",
+            "Chronic Abdominal Pain",
+            "Diabetes",
+            "Asthma",
+            "Allergies",
+            "Tuberculosis/Bronchitis",
+            "Psychiatric Disorder",
+            "Sexual Transmitted Diseases",
+            "Weight Change >5kg/Month",
+            "Hypertension",
+            "Chest Pain/Heart Disease",
+            "Malaria/Tropical Disease",
+            "Surgery/Operation",
+            "Back Pain >4 Weeks",
+            "Thypoid Fever",
+            "Swollen/Painful Joints",
+            "Kidney Problem/Urinary Stones",
+            "Other Chronical Diseases",
+            "Family History Father",
+            "Family History Mother",
+            "Family History Siblings",
+            "Family History Others",
+            "Cigarettes Perday",
+            "Alcohol Gr/Week",
+            "Prescribed Medication 1",
+            "Prescribed Medication 2",
+            "Any Allergies",
+            "Hb",
+            "WBC",
+            "ESR",
+            "Bl.Gr",
+            "GT",
+            "SGOT",
+            "SGPT",
+            "Urea",
+            "Crea",
+            "Gluco",
+            "Random Glucose",
+            "Total Cholestrol",
+            "Protein",
+            "Blood",
+            "Bilirubin",
+            "Malaria",
+            "TPHA",
+            "Mantoux Test",
+            "Leukosit",
+            "Lab Others",
+            "OVA",
+            "Culture",
+            "Cysta",
+            "Parasites",
+            "Pneumoconiosis",
+            "Pneumoconiosis Detail",
+            "ILO Classification",
+            "ILO Classification Detail",
+            "Other Abnormalities",
+            "Evidence of TB",
+            "Evidence of TB Detail",
+            "Comment",
+            "T.D.",
+            "Nadi",
+            "R.R.",
+            "T.B.",
+            "B.B.",
+            "B.M.I.",
+            "Klasifikasi BMI",
+            "Pemeriksaan Laboratorium",
+            "Rontgen Thorax",
+            "ECG Abnormal",
+            "VC (1)",
+            "VC (2)",
+            "VC (3)",
+            "VC (4)",
+            "FVC (1)",
+            "FVC (2)",
+            "FVC (3)",
+            "FVC (4)",
+            "FEV (1)",
+            "FEV (2)",
+            "FEV (3)",
+            "FEV (4)",
+            "FEV 1/FVC (1)",
+            "FEV 1/FVC (2)",
+            "FEV 1/FVC (3)",
+            "FEV 1/FVC (4)",
+            "Tinitus Never",
+            "Tinitus Previously",
+            "Tinitus Rarely",
+            "Tinitus Often",
+            "Tinitus Always",
+            "Ear Protection Never",
+            "Ear Protection Previously",
+            "Ear Protection Rarely",
+            "Ear Protection Often",
+            "Ear Protection Always",
+            "Type of Hearing Protection",
+            "Left Ear AB 500",
+            "Left Ear AB 1000",
+            "Left Ear AB 1500",
+            "Left Ear AB 2000",
+            "Left Ear AB 3000",
+            "Left Ear AB 4000",
+            "Left Ear AB 5000",
+            "Left Ear AB 6000",
+            "Left Ear AC 500",
+            "Left Ear AC 1000",
+            "Left Ear AC 1500",
+            "Left Ear AC 2000",
+            "Left Ear AC 3000",
+            "Left Ear AC 4000",
+            "Left Ear AC 5000",
+            "Left Ear AC 6000",
+            "Right Ear AB 500",
+            "Right Ear AB 1000",
+            "Right Ear AB 1500",
+            "Right Ear AB 2000",
+            "Right Ear AB 3000",
+            "Right Ear AB 4000",
+            "Right Ear AB 5000",
+            "Right Ear AB 6000",
+            "Right Ear AC 500",
+            "Right Ear AC 1000",
+            "Right Ear AC 1500",
+            "Right Ear AC 2000",
+            "Right Ear AC 3000",
+            "Right Ear AC 4000",
+            "Right Ear AC 5000",
+            "Right Ear AC 6000",
+            "Unaided distant R",
+            "Unaided distant L",
+            "Glasses distant R",
+            "Glasses distant L",
+            "Unaided near R",
+            "Unaided near L",
+            "Glasses near R",
+            "Glasses near L",
+            "Night Vision 1",
+            "Night Vision 2",
+            "Brake Test 1",
+            "Brake Test 2",
+            "Buta Warna",
+            "Lapang Pandang L",
+            "Lapang Pandang R",
+            "Fundi",
+            "BCG",
+            "DPT",
+            "Polio",
+            "Morbili",
+            "Thyphoid",
+            "HEP A",
+            "HEP B",
+            "Tetanus",
+            "Imunisasi Other",
+            "Scoliosis",
+            "Kyphosis",
+            "Lordosis",
+            "Forward Flexion 0-80",
+            "Hyperextensi 0-25",
+            "Lateral Flexion 0-20",
+            "Heel Walking",
+            "Toe Walking",
+            "Squats x3",
+            "ENT",
+            "Cardio Vascular System",
+            "Respiratory System",
+            "Abdomen",
+            "Genito Urinary System",
+            "Central & Peripheral Nervous Sys",
+            "Skin",
+            "Lymph Nodes",
+            "Dental",
+            "Requires Spectacles",
+            "Colour Blindness",
+            "Respiratory Problem",
+            "Impaired Hearing",
+            "Vertigo",
+            "Gol. Darah",
+            "Medically Fit",
+            "Fit With Restrictions",
+            "Specify",
+            "Saran",
+            "Trombosit",
+            "Rhesus",
+            "Trigliserida",
+            "HDL Kolesterol",
+            "LDL Kolesterol",
+            "Asam Urat",
+            "Urine Warna",
+            "Urine Kejernihan",
+            "Urine Reaksi Kimia",
+            "Urine Keton",
+            "Urine Glukosa",
+            "Urine Nitrit",
+            "Urine Sel Darah Putih",
+            "Urine Sel Darah Merah",
+            "Urine Bakteri",
+            "Urine Kristal",
+            "Urine Epitel",
+            "HBsAg",
+            "Anti HBs",
+            "CEA",
+            "AFP",
+            "Narkoba Amphetamine",
+            "Narkoba Methamphetamine",
+            "Narkoba Morphine",
+            "Narkoba Benzodiazepine",
+            "Narkoba Cocain",
+            "Narkoba Marijuana"
+        }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbObat.setModel(tabMode);
@@ -371,66 +640,66 @@ public final class RMMCU extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < tbObat.getColumnModel().getColumnCount(); i++) {
+        for (i = 0; i < 264; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
-            if(aturLebarKolomTabel(column, TABEL_PENILAIAN_MCU_COLUMNS[i])){
-                continue;
-            }
-            if("kd_dokter".equals(TABEL_PENILAIAN_MCU_COLUMNS[i])||"kd_petugas".equals(TABEL_PENILAIAN_MCU_COLUMNS[i])){
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-                column.setPreferredWidth(0);
-                column.setWidth(0);
-                continue;
-            }
             if(i==0){
                 column.setPreferredWidth(40);
             }else if(i==1){
-                column.setPreferredWidth(140);
+                column.setPreferredWidth(105);
             }else if(i==2){
-                column.setPreferredWidth(35);
+                column.setPreferredWidth(65);
             }else if(i==3){
-                column.setPreferredWidth(160);
+                column.setPreferredWidth(200);
             }else if(i==4){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(100);
             }else if(i==5){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(200);
             }else if(i==6){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(55);
             }else if(i==7){
                 column.setPreferredWidth(120);
             }else if(i==8){
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==9){
                 column.setPreferredWidth(200);
             }else if(i==10){
-                column.setPreferredWidth(150);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==11){
-                column.setPreferredWidth(85);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==12){
-                column.setPreferredWidth(77);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==13){
-                column.setPreferredWidth(45);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==14){
-                column.setPreferredWidth(30);
+                column.setPreferredWidth(200);
             }else if(i==15){
-                column.setPreferredWidth(30);
+                column.setPreferredWidth(80);
             }else if(i==16){
-                column.setPreferredWidth(30);
+                column.setPreferredWidth(85);
             }else if(i==17){
-                column.setPreferredWidth(30);
+                column.setPreferredWidth(170);
             }else if(i==18){
-                column.setPreferredWidth(35);
+                column.setPreferredWidth(180);
             }else if(i==19){
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(180);
             }else if(i==20){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(130);
             }else if(i==21){
-                column.setPreferredWidth(30);
+                column.setPreferredWidth(180);
             }else if(i==22){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(180);
             }else if(i==23){
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(200);
             }else if(i==24){
                 column.setPreferredWidth(90);
             }else if(i==25){
@@ -440,163 +709,477 @@ public final class RMMCU extends javax.swing.JDialog {
             }else if(i==27){
                 column.setPreferredWidth(90);
             }else if(i==28){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==29){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==30){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==31){
-                column.setPreferredWidth(160);
+                column.setPreferredWidth(90);
             }else if(i==32){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==33){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==34){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==35){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(90);
             }else if(i==36){
-                column.setPreferredWidth(68);
+                column.setPreferredWidth(90);
             }else if(i==37){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==38){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(90);
             }else if(i==39){
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }else if(i==40){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(90);
             }else if(i==41){
                 column.setPreferredWidth(90);
             }else if(i==42){
-                column.setPreferredWidth(172);
+                column.setPreferredWidth(90);
             }else if(i==43){
-                column.setPreferredWidth(82);
+                column.setPreferredWidth(90);
             }else if(i==44){
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(90);
             }else if(i==45){
-                column.setPreferredWidth(112);
+                column.setPreferredWidth(90);
             }else if(i==46){
-                column.setPreferredWidth(86);
+                column.setPreferredWidth(90);
             }else if(i==47){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==48){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             }else if(i==49){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==50){
-                column.setPreferredWidth(48);
+                column.setPreferredWidth(90);
             }else if(i==51){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==52){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==53){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(90);
             }else if(i==54){
-                column.setPreferredWidth(46);
+                column.setPreferredWidth(90);
             }else if(i==55){
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(90);
             }else if(i==56){
-                column.setPreferredWidth(42);
+                column.setPreferredWidth(90);
             }else if(i==57){
                 column.setPreferredWidth(90);
             }else if(i==58){
                 column.setPreferredWidth(90);
             }else if(i==59){
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(90);
             }else if(i==60){
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(90);
             }else if(i==61){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==62){
-                column.setPreferredWidth(68);
+                column.setPreferredWidth(90);
             }else if(i==63){
                 column.setPreferredWidth(90);
             }else if(i==64){
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(90);
             }else if(i==65){
-                column.setPreferredWidth(78);
+                column.setPreferredWidth(90);
             }else if(i==66){
-                column.setPreferredWidth(48);
+                column.setPreferredWidth(90);
             }else if(i==67){
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(90);
             }else if(i==68){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(90);
             }else if(i==69){
-                column.setPreferredWidth(53);
+                column.setPreferredWidth(90);
             }else if(i==70){
-                column.setPreferredWidth(172);
+                column.setPreferredWidth(90);
             }else if(i==71){
-                column.setPreferredWidth(87);
+                column.setPreferredWidth(90);
             }else if(i==72){
-                column.setPreferredWidth(93);
+                column.setPreferredWidth(90);
             }else if(i==73){
-                column.setPreferredWidth(112);
+                column.setPreferredWidth(90);
             }else if(i==74){
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(90);
             }else if(i==75){
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             }else if(i==76){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(90);
             }else if(i==77){
-                column.setPreferredWidth(73);
+                column.setPreferredWidth(90);
             }else if(i==78){
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(90);
             }else if(i==79){
-                column.setPreferredWidth(83);
+                column.setPreferredWidth(90);
             }else if(i==80){
-                column.setPreferredWidth(142);
+                column.setPreferredWidth(90);
             }else if(i==81){
-                column.setPreferredWidth(92);
+                column.setPreferredWidth(90);
             }else if(i==82){
-                column.setPreferredWidth(151);
+                column.setPreferredWidth(90);
             }else if(i==83){
-                column.setPreferredWidth(98);
+                column.setPreferredWidth(90);
             }else if(i==84){
-                column.setPreferredWidth(151);
+                column.setPreferredWidth(90);
             }else if(i==85){
-                column.setPreferredWidth(87);
+                column.setPreferredWidth(90);
             }else if(i==86){
-                column.setPreferredWidth(151);
+                column.setPreferredWidth(90);
             }else if(i==87){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==88){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==89){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==90){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==91){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==92){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==93){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==94){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==95){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(90);
             }else if(i==96){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(90);
             }else if(i==97){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(90);
             }else if(i==98){
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(90);
             }else if(i==99){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==100){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(90);
             }else if(i==101){
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(90);
             }else if(i==102){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==103){
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(90);
             }else if(i==104){
                 column.setPreferredWidth(90);
             }else if(i==105){
-                column.setPreferredWidth(170);
-            }else{
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(90);
+            }else if(i==106){
+                column.setPreferredWidth(90);
+            }else if(i==107){
+                column.setPreferredWidth(90);
+            }else if(i==108){
+                column.setPreferredWidth(90);
+            }else if(i==109){
+                column.setPreferredWidth(90);
+            }else if(i==110){
+                column.setPreferredWidth(90);
+            }else if(i==111){
+                column.setPreferredWidth(90);
+            }else if(i==112){
+                column.setPreferredWidth(90);
+            }else if(i==113){
+                column.setPreferredWidth(90);
+            }else if(i==114){
+                column.setPreferredWidth(90);
+            }else if(i==115){
+                column.setPreferredWidth(90);
+            }else if(i==116){
+                column.setPreferredWidth(90);
+            }else if(i==117){
+                column.setPreferredWidth(90);
+            }else if(i==118){
+                column.setPreferredWidth(90);
+            }else if(i==119){
+                column.setPreferredWidth(90);
+            }else if(i==120){
+                column.setPreferredWidth(90);
+            }else if(i==121){
+                column.setPreferredWidth(90);
+            }else if(i==122){
+                column.setPreferredWidth(90);
+            }else if(i==123){
+                column.setPreferredWidth(90);
+            }else if(i==124){
+                column.setPreferredWidth(180);
+            }else if(i==125){
+                column.setPreferredWidth(90);
+            }else if(i==126){
+                column.setPreferredWidth(90);
+            }else if(i==127){
+                column.setPreferredWidth(90);
+            }else if(i==128){
+                column.setPreferredWidth(90);
+            }else if(i==129){
+                column.setPreferredWidth(90);
+            }else if(i==130){
+                column.setPreferredWidth(90);
+            }else if(i==131){
+                column.setPreferredWidth(90);
+            }else if(i==132){
+                column.setPreferredWidth(90);
+            }else if(i==133){
+                column.setPreferredWidth(90);
+            }else if(i==134){
+                column.setPreferredWidth(90);
+            }else if(i==135){
+                column.setPreferredWidth(90);
+            }else if(i==136){
+                column.setPreferredWidth(90);
+            }else if(i==137){
+                column.setPreferredWidth(90);
+            }else if(i==138){
+                column.setPreferredWidth(90);
+            }else if(i==139){
+                column.setPreferredWidth(90);
+            }else if(i==140){
+                column.setPreferredWidth(90);
+            }else if(i==141){
+                column.setPreferredWidth(90);
+            }else if(i==142){
+                column.setPreferredWidth(90);
+            }else if(i==143){
+                column.setPreferredWidth(90);
+            }else if(i==144){
+                column.setPreferredWidth(90);
+            }else if(i==145){
+                column.setPreferredWidth(90);
+            }else if(i==146){
+                column.setPreferredWidth(90);
+            }else if(i==147){
+                column.setPreferredWidth(90);
+            }else if(i==148){
+                column.setPreferredWidth(90);
+            }else if(i==149){
+                column.setPreferredWidth(90);
+            }else if(i==150){
+                column.setPreferredWidth(90);
+            }else if(i==151){
+                column.setPreferredWidth(180);
+            }else if(i==152){
+                column.setPreferredWidth(90);
+            }else if(i==153){
+                column.setPreferredWidth(90);
+            }else if(i==154){
+                column.setPreferredWidth(90);
+            }else if(i==155){
+                column.setPreferredWidth(90);
+            }else if(i==156){
+                column.setPreferredWidth(90);
+            }else if(i==157){
+                column.setPreferredWidth(90);
+            }else if(i==158){
+                column.setPreferredWidth(90);
+            }else if(i==159){
+                column.setPreferredWidth(90);
+            }else if(i==160){
+                column.setPreferredWidth(90);
+            }else if(i==161){
+                column.setPreferredWidth(90);
+            }else if(i==162){
+                column.setPreferredWidth(90);
+            }else if(i==163){
+                column.setPreferredWidth(90);
+            }else if(i==164){
+                column.setPreferredWidth(90);
+            }else if(i==165){
+                column.setPreferredWidth(90);
+            }else if(i==166){
+                column.setPreferredWidth(90);
+            }else if(i==167){
+                column.setPreferredWidth(90);
+            }else if(i==168){
+                column.setPreferredWidth(90);
+            }else if(i==169){
+                column.setPreferredWidth(90);
+            }else if(i==170){
+                column.setPreferredWidth(90);
+            }else if(i==171){
+                column.setPreferredWidth(90);
+            }else if(i==172){
+                column.setPreferredWidth(90);
+            }else if(i==173){
+                column.setPreferredWidth(90);
+            }else if(i==174){
+                column.setPreferredWidth(90);
+            }else if(i==175){
+                column.setPreferredWidth(90);
+            }else if(i==176){
+                column.setPreferredWidth(90);
+            }else if(i==177){
+                column.setPreferredWidth(90);
+            }else if(i==178){
+                column.setPreferredWidth(90);
+            }else if(i==179){
+                column.setPreferredWidth(90);
+            }else if(i==180){
+                column.setPreferredWidth(90);
+            }else if(i==181){
+                column.setPreferredWidth(90);
+            }else if(i==182){
+                column.setPreferredWidth(90);
+            }else if(i==183){
+                column.setPreferredWidth(90);
+            }else if(i==184){
+                column.setPreferredWidth(90);
+            }else if(i==185){
+                column.setPreferredWidth(90);
+            }else if(i==186){
+                column.setPreferredWidth(90);
+            }else if(i==187){
+                column.setPreferredWidth(90);
+            }else if(i==188){
+                column.setPreferredWidth(90);
+            }else if(i==189){
+                column.setPreferredWidth(90);
+            }else if(i==190){
+                column.setPreferredWidth(90);
+            }else if(i==191){
+                column.setPreferredWidth(90);
+            }else if(i==192){
+                column.setPreferredWidth(90);
+            }else if(i==193){
+                column.setPreferredWidth(90);
+            }else if(i==194){
+                column.setPreferredWidth(90);
+            }else if(i==195){
+                column.setPreferredWidth(90);
+            }else if(i==196){
+                column.setPreferredWidth(90);
+            }else if(i==197){
+                column.setPreferredWidth(90);
+            }else if(i==198){
+                column.setPreferredWidth(90);
+            }else if(i==199){
+                column.setPreferredWidth(90);
+            }else if(i==200){
+                column.setPreferredWidth(90);
+            }else if(i==201){
+                column.setPreferredWidth(90);
+            }else if(i==202){
+                column.setPreferredWidth(90);
+            }else if(i==203){
+                column.setPreferredWidth(90);
+            }else if(i==204){
+                column.setPreferredWidth(90);
+            }else if(i==205){
+                column.setPreferredWidth(90);
+            }else if(i==206){
+                column.setPreferredWidth(90);
+            }else if(i==207){
+                column.setPreferredWidth(90);
+            }else if(i==208){
+                column.setPreferredWidth(90);
+            }else if(i==209){
+                column.setPreferredWidth(90);
+            }else if(i==210){
+                column.setPreferredWidth(90);
+            }else if(i==211){
+                column.setPreferredWidth(90);
+            }else if(i==212){
+                column.setPreferredWidth(90);
+            }else if(i==213){
+                column.setPreferredWidth(90);
+            }else if(i==214){
+                column.setPreferredWidth(90);
+            }else if(i==215){
+                column.setPreferredWidth(90);
+            }else if(i==216){
+                column.setPreferredWidth(90);
+            }else if(i==217){
+                column.setPreferredWidth(90);
+            }else if(i==218){
+                column.setPreferredWidth(90);
+            }else if(i==219){
+                column.setPreferredWidth(90);
+            }else if(i==220){
+                column.setPreferredWidth(90);
+            }else if(i==221){
+                column.setPreferredWidth(90);
+            }else if(i==222){
+                column.setPreferredWidth(90);
+            }else if(i==223){
+                column.setPreferredWidth(90);
+            }else if(i==224){
+                column.setPreferredWidth(90);
+            }else if(i==225){
+                column.setPreferredWidth(90);
+            }else if(i==226){
+                column.setPreferredWidth(90);
+            }else if(i==227){
+                column.setPreferredWidth(90);
+            }else if(i==228){
+                column.setPreferredWidth(90);
+            }else if(i==229){
+                column.setPreferredWidth(90);
+            }else if(i==230){
+                column.setPreferredWidth(90);
+            }else if(i==231){
+                column.setPreferredWidth(90);
+            }else if(i==232){
+                column.setPreferredWidth(90);
+            }else if(i==233){
+                column.setPreferredWidth(90);
+            }else if(i==234){
+                column.setPreferredWidth(90);
+            }else if(i==235){
+                column.setPreferredWidth(200);
+            }else if(i==236){
+                column.setPreferredWidth(200);
+            }else if(i==237){
+                column.setPreferredWidth(90);
+            }else if(i==238){
+                column.setPreferredWidth(90);
+            }else if(i==239){
+                column.setPreferredWidth(90);
+            }else if(i==240){
+                column.setPreferredWidth(90);
+            }else if(i==241){
+                column.setPreferredWidth(90);
+            }else if(i==242){
+                column.setPreferredWidth(90);
+            }else if(i==243){
+                column.setPreferredWidth(90);
+            }else if(i==244){
+                column.setPreferredWidth(90);
+            }else if(i==245){
+                column.setPreferredWidth(90);
+            }else if(i==246){
+                column.setPreferredWidth(90);
+            }else if(i==247){
+                column.setPreferredWidth(90);
+            }else if(i==248){
+                column.setPreferredWidth(90);
+            }else if(i==249){
+                column.setPreferredWidth(90);
+            }else if(i==250){
+                column.setPreferredWidth(90);
+            }else if(i==251){
+                column.setPreferredWidth(90);
+            }else if(i==252){
+                column.setPreferredWidth(90);
+            }else if(i==253){
+                column.setPreferredWidth(90);
+            }else if(i==254){
+                column.setPreferredWidth(90);
+            }else if(i==255){
+                column.setPreferredWidth(90);
+            }else if(i==256){
+                column.setPreferredWidth(90);
+            }else if(i==257){
+                column.setPreferredWidth(90);
+            }else if(i==258){
+                column.setPreferredWidth(90);
+            }else if(i==259){
+                column.setPreferredWidth(90);
+            }else if(i==260){
+                column.setPreferredWidth(90);
+            }else if(i==261){
+                column.setPreferredWidth(90);
+            }else if(i==262){
+                column.setPreferredWidth(90);
+            }else if(i==263){
+                column.setPreferredWidth(90);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -746,6 +1329,9 @@ public final class RMMCU extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        BtnPetugasLab = new widget.Button();
+        KdPetugasLab = new widget.TextBox();
+        NmPetugasLab = new widget.TextBox();
 
         LoadHTML = new widget.editorpane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
@@ -894,6 +1480,33 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel67 = new widget.Label();
         spirometri_vc_4 = new widget.TextBox();
         hb = new widget.TextBox();
+        trombosit = new widget.TextBox();
+        rhesuss = new widget.TextBox();
+        triglyceride = new widget.TextBox();
+        hdl_cholesterol = new widget.TextBox();
+        ldl_cholesterol = new widget.TextBox();
+        uric_acid = new widget.TextBox();
+        urine_colour = new widget.TextBox();
+        urine_turbidity = new widget.TextBox();
+        urine_chemical_reaction = new widget.TextBox();
+        urine_ketones = new widget.TextBox();
+        urine_glucose = new widget.TextBox();
+        urine_nitrites = new widget.TextBox();
+        urine_wbc = new widget.TextBox();
+        urine_rbc = new widget.TextBox();
+        urine_bacteria = new widget.TextBox();
+        urine_crystal = new widget.TextBox();
+        urine_epithel = new widget.TextBox();
+        hbsag = new widget.TextBox();
+        anti_hbs = new widget.TextBox();
+        cea = new widget.TextBox();
+        afp = new widget.TextBox();
+        drug_amphetamine = new widget.TextBox();
+        drug_methamphetamine = new widget.TextBox();
+        drug_morphine = new widget.TextBox();
+        drug_benzodiazepine = new widget.TextBox();
+        drug_cocain = new widget.TextBox();
+        drug_marijuana = new widget.TextBox();
         jLabel68 = new widget.Label();
         spirometri_fvc_2 = new widget.TextBox();
         jLabel69 = new widget.Label();
@@ -2227,6 +2840,114 @@ public final class RMMCU extends javax.swing.JDialog {
         hb.setName("hb"); // NOI18N
         FormInput.add(hb);
         hb.setBounds(440, 960, 50, 23);
+
+        trombosit.setName("trombosit"); // NOI18N
+        FormInput.add(trombosit);
+        trombosit.setBounds(0, 0, 0, 0);
+
+        rhesuss.setName("rhesuss"); // NOI18N
+        FormInput.add(rhesuss);
+        rhesuss.setBounds(0, 0, 0, 0);
+
+        triglyceride.setName("triglyceride"); // NOI18N
+        FormInput.add(triglyceride);
+        triglyceride.setBounds(0, 0, 0, 0);
+
+        hdl_cholesterol.setName("hdl_cholesterol"); // NOI18N
+        FormInput.add(hdl_cholesterol);
+        hdl_cholesterol.setBounds(0, 0, 0, 0);
+
+        ldl_cholesterol.setName("ldl_cholesterol"); // NOI18N
+        FormInput.add(ldl_cholesterol);
+        ldl_cholesterol.setBounds(0, 0, 0, 0);
+
+        uric_acid.setName("uric_acid"); // NOI18N
+        FormInput.add(uric_acid);
+        uric_acid.setBounds(0, 0, 0, 0);
+
+        urine_colour.setName("urine_colour"); // NOI18N
+        FormInput.add(urine_colour);
+        urine_colour.setBounds(0, 0, 0, 0);
+
+        urine_turbidity.setName("urine_turbidity"); // NOI18N
+        FormInput.add(urine_turbidity);
+        urine_turbidity.setBounds(0, 0, 0, 0);
+
+        urine_chemical_reaction.setName("urine_chemical_reaction"); // NOI18N
+        FormInput.add(urine_chemical_reaction);
+        urine_chemical_reaction.setBounds(0, 0, 0, 0);
+
+        urine_ketones.setName("urine_ketones"); // NOI18N
+        FormInput.add(urine_ketones);
+        urine_ketones.setBounds(0, 0, 0, 0);
+
+        urine_glucose.setName("urine_glucose"); // NOI18N
+        FormInput.add(urine_glucose);
+        urine_glucose.setBounds(0, 0, 0, 0);
+
+        urine_nitrites.setName("urine_nitrites"); // NOI18N
+        FormInput.add(urine_nitrites);
+        urine_nitrites.setBounds(0, 0, 0, 0);
+
+        urine_wbc.setName("urine_wbc"); // NOI18N
+        FormInput.add(urine_wbc);
+        urine_wbc.setBounds(0, 0, 0, 0);
+
+        urine_rbc.setName("urine_rbc"); // NOI18N
+        FormInput.add(urine_rbc);
+        urine_rbc.setBounds(0, 0, 0, 0);
+
+        urine_bacteria.setName("urine_bacteria"); // NOI18N
+        FormInput.add(urine_bacteria);
+        urine_bacteria.setBounds(0, 0, 0, 0);
+
+        urine_crystal.setName("urine_crystal"); // NOI18N
+        FormInput.add(urine_crystal);
+        urine_crystal.setBounds(0, 0, 0, 0);
+
+        urine_epithel.setName("urine_epithel"); // NOI18N
+        FormInput.add(urine_epithel);
+        urine_epithel.setBounds(0, 0, 0, 0);
+
+        hbsag.setName("hbsag"); // NOI18N
+        FormInput.add(hbsag);
+        hbsag.setBounds(0, 0, 0, 0);
+
+        anti_hbs.setName("anti_hbs"); // NOI18N
+        FormInput.add(anti_hbs);
+        anti_hbs.setBounds(0, 0, 0, 0);
+
+        cea.setName("cea"); // NOI18N
+        FormInput.add(cea);
+        cea.setBounds(0, 0, 0, 0);
+
+        afp.setName("afp"); // NOI18N
+        FormInput.add(afp);
+        afp.setBounds(0, 0, 0, 0);
+
+        drug_amphetamine.setName("drug_amphetamine"); // NOI18N
+        FormInput.add(drug_amphetamine);
+        drug_amphetamine.setBounds(0, 0, 0, 0);
+
+        drug_methamphetamine.setName("drug_methamphetamine"); // NOI18N
+        FormInput.add(drug_methamphetamine);
+        drug_methamphetamine.setBounds(0, 0, 0, 0);
+
+        drug_morphine.setName("drug_morphine"); // NOI18N
+        FormInput.add(drug_morphine);
+        drug_morphine.setBounds(0, 0, 0, 0);
+
+        drug_benzodiazepine.setName("drug_benzodiazepine"); // NOI18N
+        FormInput.add(drug_benzodiazepine);
+        drug_benzodiazepine.setBounds(0, 0, 0, 0);
+
+        drug_cocain.setName("drug_cocain"); // NOI18N
+        FormInput.add(drug_cocain);
+        drug_cocain.setBounds(0, 0, 0, 0);
+
+        drug_marijuana.setName("drug_marijuana"); // NOI18N
+        FormInput.add(drug_marijuana);
+        drug_marijuana.setBounds(0, 0, 0, 0);
 
         jLabel68.setText("Hb :");
         jLabel68.setName("jLabel68"); // NOI18N
@@ -4214,6 +4935,38 @@ public final class RMMCU extends javax.swing.JDialog {
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
+        KdPetugasLab.setEditable(false);
+        KdPetugasLab.setName("KdPetugasLab"); // NOI18N
+        KdPetugasLab.setPreferredSize(new java.awt.Dimension(80, 23));
+        FormInput.add(KdPetugasLab);
+        KdPetugasLab.setBounds(560, 1280, 100, 23);
+
+        NmPetugasLab.setEditable(false);
+        NmPetugasLab.setName("NmPetugasLab"); // NOI18N
+        NmPetugasLab.setPreferredSize(new java.awt.Dimension(207, 23));
+        FormInput.add(NmPetugasLab);
+        NmPetugasLab.setBounds(660, 1280, 180, 23);
+
+        BtnPetugasLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPetugasLab.setMnemonic('2');
+        BtnPetugasLab.setToolTipText("Alt+2");
+        BtnPetugasLab.setName("BtnPetugasLab"); // NOI18N
+        BtnPetugasLab.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPetugasLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasLabActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPetugasLab);
+        BtnPetugasLab.setBounds(840, 1280, 28, 23);
+
+        widget.Label label16 = new widget.Label();
+        label16.setText("Petugas Laboratorium :");
+        label16.setName("label16"); // NOI18N
+        label16.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label16);
+        label16.setBounds(390, 1280, 170, 23);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -5053,6 +5806,35 @@ public final class RMMCU extends javax.swing.JDialog {
         Valid.pindah(evt,ConcRadiologi,ConcEcg);
     }//GEN-LAST:event_ConcRadiologiKeyPressed
 
+    private void BtnPetugasLabActionPerformed(java.awt.event.ActionEvent evt) {
+        if (petugas == null || !petugas.isDisplayable()) {
+            petugas = new DlgCariPetugas(null, false);
+            petugas.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            petugas.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (petugas.getTable().getSelectedRow() != -1) {
+                        KdPetugasLab.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
+                        NmPetugasLab.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                    }
+                    BtnPetugasLab.requestFocus();
+                    petugas = null;
+                }
+            });
+            petugas.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            petugas.setLocationRelativeTo(internalFrame1);
+        }
+        if (petugas == null) return;
+        if (!petugas.isVisible()) {
+            petugas.isCek();
+            petugas.emptTeks();
+        }
+        if (petugas.isVisible()) {
+            petugas.toFront();
+        }
+        petugas.setVisible(true);
+    }
+
     private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugasActionPerformed
         if (petugas == null || !petugas.isDisplayable()) {
             petugas=new DlgCariPetugas(null,false);
@@ -5085,15 +5867,15 @@ public final class RMMCU extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPetugasActionPerformed
 
     private void TBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBKeyPressed
-        //        Valid.pindah(evt,RR,BB);
+        pindahKomponen(evt, RR, BB);
     }//GEN-LAST:event_TBKeyPressed
 
     private void RRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RRKeyPressed
-        //        Valid.pindah(evt,Nadi,TB);
+        pindahKomponen(evt, Nadi, TB);
     }//GEN-LAST:event_RRKeyPressed
 
     private void NadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NadiKeyPressed
-        //Valid.pindah(evt,TD,RR);
+        pindahKomponen(evt, TD, RR);
     }//GEN-LAST:event_NadiKeyPressed
 
     private void RWP29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RWP29ActionPerformed
@@ -5238,11 +6020,11 @@ public final class RMMCU extends javax.swing.JDialog {
     }//GEN-LAST:event_TNoRwKeyPressed
 
     private void eye_unaided_distant_lKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_distant_lKeyPressed
-        // TODO add your handling code here:
+        pindahKomponen(evt, KlasifikasiIMT1, eye_unaided_distant_r);
     }//GEN-LAST:event_eye_unaided_distant_lKeyPressed
 
     private void eye_unaided_distant_rKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_distant_rKeyPressed
-        // TODO add your handling code here:
+        pindahKomponen(evt, eye_unaided_distant_l, eye_glasses_near_r);
     }//GEN-LAST:event_eye_unaided_distant_rKeyPressed
 
     private void BtnPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPTActionPerformed
@@ -5400,6 +6182,9 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.Button BtnPetugasLab;
+    private widget.TextBox KdPetugasLab;
+    private widget.TextBox NmPetugasLab;
     private widget.TextBox Activities;
     private widget.TextBox AlcoholGrWeek;
     private widget.TextBox AnyAllergies;
@@ -5910,6 +6695,33 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox visual_fields_left;
     private widget.TextBox visual_fields_right;
     private widget.TextBox wbc;
+    private widget.TextBox trombosit;
+    private widget.TextBox rhesuss;
+    private widget.TextBox triglyceride;
+    private widget.TextBox hdl_cholesterol;
+    private widget.TextBox ldl_cholesterol;
+    private widget.TextBox uric_acid;
+    private widget.TextBox urine_colour;
+    private widget.TextBox urine_turbidity;
+    private widget.TextBox urine_chemical_reaction;
+    private widget.TextBox urine_ketones;
+    private widget.TextBox urine_glucose;
+    private widget.TextBox urine_nitrites;
+    private widget.TextBox urine_wbc;
+    private widget.TextBox urine_rbc;
+    private widget.TextBox urine_bacteria;
+    private widget.TextBox urine_crystal;
+    private widget.TextBox urine_epithel;
+    private widget.TextBox hbsag;
+    private widget.TextBox anti_hbs;
+    private widget.TextBox cea;
+    private widget.TextBox afp;
+    private widget.TextBox drug_amphetamine;
+    private widget.TextBox drug_methamphetamine;
+    private widget.TextBox drug_morphine;
+    private widget.TextBox drug_benzodiazepine;
+    private widget.TextBox drug_cocain;
+    private widget.TextBox drug_marijuana;
     // End of variables declaration//GEN-END:variables
 
     private void aturInputKesimpulanMcu() {
@@ -5953,88 +6765,1170 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void aturKeypressRiwayatPenyakit() {
-        pasangKeypress(PosisiKerja,FamilyHistoryFather,
-            RWP1,RWP2,RWP3,RWP4,RWP5,RWP6,RWP7,RWP8,RWP9,RWP10,
-            RWP11,RWP12,RWP13,RWP14,RWP15,RWP16,RWP17,RWP18,RWP19,RWP20,
-            RWP21,RWP22,RWP23,RWP24,RWP25,RWP26,RWP27,RWP28,RWP29,RWP30
-        );
-
-        pasangKeypress(RWP30,CigarettesPerday,
-            FamilyHistoryFather,FamilyHistoryMother,FamilyHistorySiblings,FamilyHistoryOther
-        );
-
-        pasangKeypress(FamilyHistoryOther,spirometri_vc_1,
-            CigarettesPerday,AlcoholGrWeek,PrescribedMedication,PrescribedMedication2,AnyAllergies
-        );
-    }
-
-    private void aturKeypressPemeriksaanKhusus() {
-        pasangKeypress(cbConcEcg,audiometri_left_ear_500,
-            ecg_abnormal,spirometri_vc_1,spirometri_vc_2,spirometri_vc_3,spirometri_vc_4,
-            spirometri_fvc_1,spirometri_fvc_2,spirometri_fvc_3,spirometri_fvc_4,
-            spirometri_fev_1_1,spirometri_fev_1_2,spirometri_fev_1_3,spirometri_fev_1_4,
-            spirometri_fev_1_fvc_1,spirometri_fev_1_fvc_2,spirometri_fev_1_fvc_3,spirometri_fev_1_fvc_4
-        );
-
-        pasangKeypress(spirometri_fev_1_fvc_4,TD,
-            type_of_hearing,audiometri_left_ear_500,audiometri_left_ear_1000,audiometri_left_ear_1500,audiometri_left_ear_2000,
-            audiometri_left_ear_3000,audiometri_left_ear_4000,audiometri_left_ear_5000,audiometri_left_ear_6000,
-            audiometri_left_ear_501,audiometri_left_ear_1001,audiometri_left_ear_1501,audiometri_left_ear_2001,
-            audiometri_left_ear_3001,audiometri_left_ear_4001,audiometri_left_ear_5001,audiometri_left_ear_6001,
-            audiometri_left_ear_502,audiometri_left_ear_1002,audiometri_left_ear_1502,audiometri_left_ear_2002,
-            audiometri_left_ear_3002,audiometri_left_ear_4002,audiometri_left_ear_5002,audiometri_left_ear_6002,
-            audiometri_left_ear_503,audiometri_left_ear_1003,audiometri_left_ear_1503,audiometri_left_ear_2003,
-            audiometri_left_ear_3003,audiometri_left_ear_4003,audiometri_left_ear_5003,audiometri_left_ear_6003
-        );
-
-        pasangKeypress(audiometri_left_ear_6003,eye_unaided_distant_r,
-            TD,Nadi,RR,TB,BB,IMT,KlasifikasiIMT1
-        );
-
-        pasangKeypress(KlasifikasiIMT1,imunisasi_bcg,
-            eye_unaided_distant_l,eye_unaided_distant_r,eye_glasses_near_r,eye_glasses_near_l,
-            eye_glasses_distant_r,eye_glasses_distant_l,eye_night_vision_1,eye_night_vision_2,
-            eye_unaided_near_r,eye_unaided_near_l,eye_brake_test_1,eye_brake_test_2,
-            eye_color_blindless,visual_fields_left,visual_fields_right,fundi
-        );
-
-        pasangKeypress(fundi,vertebra_scoliosis,
-            imunisasi_bcg,imunisasi_dpt,imunisasi_polio,imunisasi_morbili,imunisasi_thyphoid,
-            imunisasi_hep_a,imunisasi_hep_b,imunisasi_tetanus,imunisasi_others
-        );
-
-        pasangKeypress(imunisasi_others,exam_ent_comments,
-            vertebra_scoliosis,vertebra_lordosis,vertebra_hyperextensi_0_25,vertebra_heel_walking,vertebra_squats_x3,
-            vertebra_kyphosis,vertebra_forward_flexion_0_80,vertebra_lateral_flexion_0_20,vertebra_toe_walking
-        );
-
-        pasangKeypress(vertebra_toe_walking,conclusion_requires_spectacles,
-            exam_ent_comments,exam_cardio_vascular_system_comments,exam_respiratory_system_comments,
-            exam_abdomen_comments,exam_genito_urinary_system_comments,exam_central_peripheral_nervous_system_comments,
-            exam_skin_comments,exam_lymph_nodes_comments,exam_dental_comments
-        );
+        RWP1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP1KeyPressed(evt);
+            }
+        });
+        RWP2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP2KeyPressed(evt);
+            }
+        });
+        RWP3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP3KeyPressed(evt);
+            }
+        });
+        RWP4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP4KeyPressed(evt);
+            }
+        });
+        RWP5.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP5KeyPressed(evt);
+            }
+        });
+        RWP6.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP6KeyPressed(evt);
+            }
+        });
+        RWP7.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP7KeyPressed(evt);
+            }
+        });
+        RWP8.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP8KeyPressed(evt);
+            }
+        });
+        RWP9.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP9KeyPressed(evt);
+            }
+        });
+        RWP10.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP10KeyPressed(evt);
+            }
+        });
+        RWP11.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP11KeyPressed(evt);
+            }
+        });
+        RWP12.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP12KeyPressed(evt);
+            }
+        });
+        RWP13.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP13KeyPressed(evt);
+            }
+        });
+        RWP14.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP14KeyPressed(evt);
+            }
+        });
+        RWP15.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP15KeyPressed(evt);
+            }
+        });
+        RWP16.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP16KeyPressed(evt);
+            }
+        });
+        RWP17.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP17KeyPressed(evt);
+            }
+        });
+        RWP18.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP18KeyPressed(evt);
+            }
+        });
+        RWP19.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP19KeyPressed(evt);
+            }
+        });
+        RWP20.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP20KeyPressed(evt);
+            }
+        });
+        RWP21.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP21KeyPressed(evt);
+            }
+        });
+        RWP22.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP22KeyPressed(evt);
+            }
+        });
+        RWP23.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP23KeyPressed(evt);
+            }
+        });
+        RWP24.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP24KeyPressed(evt);
+            }
+        });
+        RWP25.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP25KeyPressed(evt);
+            }
+        });
+        RWP26.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP26KeyPressed(evt);
+            }
+        });
+        RWP27.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP27KeyPressed(evt);
+            }
+        });
+        RWP28.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP28KeyPressed(evt);
+            }
+        });
+        RWP29.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP29KeyPressed(evt);
+            }
+        });
+        RWP30.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                RWP30KeyPressed(evt);
+            }
+        });
+        FamilyHistoryFather.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FamilyHistoryFatherKeyPressed(evt);
+            }
+        });
+        FamilyHistoryMother.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FamilyHistoryMotherKeyPressed(evt);
+            }
+        });
+        FamilyHistorySiblings.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FamilyHistorySiblingsKeyPressed(evt);
+            }
+        });
+        FamilyHistoryOther.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FamilyHistoryOtherKeyPressed(evt);
+            }
+        });
+        CigarettesPerday.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                CigarettesPerdayKeyPressed(evt);
+            }
+        });
+        AlcoholGrWeek.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AlcoholGrWeekKeyPressed(evt);
+            }
+        });
+        PrescribedMedication.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PrescribedMedicationKeyPressed(evt);
+            }
+        });
+        PrescribedMedication2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PrescribedMedication2KeyPressed(evt);
+            }
+        });
+        AnyAllergies.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                AnyAllergiesKeyPressed(evt);
+            }
+        });
     }
 
     private void aturKeypressLaboratoriumRontgen() {
-        pasangKeypress(AnyAllergies,spirometri_vc_1,
-            hb,wbc,esr,bl_group,gamaa_gt,sgot,sgpt,urea,creatinin,glucose,
-            random_glucose,total_cholestrol,protein,blood,bilirubin,malaria,tpha,mantoux_test,lab_others,
-            ova,culture,cysta,parasites1,pnemunosicosis,pnemunosicosis2,
-            ILO_clasification,ILO_clasification2,tb1,tb2,oth_abnormal,page3_comment
-        );
+        hb.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                hbKeyPressed(evt);
+            }
+        });
+        wbc.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                wbcKeyPressed(evt);
+            }
+        });
+        esr.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                esrKeyPressed(evt);
+            }
+        });
+        bl_group.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bl_groupKeyPressed(evt);
+            }
+        });
+        gamaa_gt.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                gamaa_gtKeyPressed(evt);
+            }
+        });
+        sgot.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sgotKeyPressed(evt);
+            }
+        });
+        sgpt.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sgptKeyPressed(evt);
+            }
+        });
+        urea.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ureaKeyPressed(evt);
+            }
+        });
+        creatinin.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                creatininKeyPressed(evt);
+            }
+        });
+        glucose.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                glucoseKeyPressed(evt);
+            }
+        });
+        random_glucose.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                random_glucoseKeyPressed(evt);
+            }
+        });
+        total_cholestrol.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                total_cholestrolKeyPressed(evt);
+            }
+        });
+        protein.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                proteinKeyPressed(evt);
+            }
+        });
+        blood.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bloodKeyPressed(evt);
+            }
+        });
+        bilirubin.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bilirubinKeyPressed(evt);
+            }
+        });
+        malaria.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                malariaKeyPressed(evt);
+            }
+        });
+        tpha.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tphaKeyPressed(evt);
+            }
+        });
+        mantoux_test.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mantoux_testKeyPressed(evt);
+            }
+        });
+        lab_others.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lab_othersKeyPressed(evt);
+            }
+        });
+        ova.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ovaKeyPressed(evt);
+            }
+        });
+        culture.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cultureKeyPressed(evt);
+            }
+        });
+        cysta.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cystaKeyPressed(evt);
+            }
+        });
+        parasites1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                parasites1KeyPressed(evt);
+            }
+        });
+        trombosit.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                trombositKeyPressed(evt);
+            }
+        });
+        rhesuss.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rhesussKeyPressed(evt);
+            }
+        });
+        triglyceride.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                triglycerideKeyPressed(evt);
+            }
+        });
+        hdl_cholesterol.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                hdl_cholesterolKeyPressed(evt);
+            }
+        });
+        ldl_cholesterol.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ldl_cholesterolKeyPressed(evt);
+            }
+        });
+        uric_acid.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                uric_acidKeyPressed(evt);
+            }
+        });
+        urine_colour.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_colourKeyPressed(evt);
+            }
+        });
+        urine_turbidity.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_turbidityKeyPressed(evt);
+            }
+        });
+        urine_chemical_reaction.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_chemical_reactionKeyPressed(evt);
+            }
+        });
+        urine_ketones.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_ketonesKeyPressed(evt);
+            }
+        });
+        urine_glucose.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_glucoseKeyPressed(evt);
+            }
+        });
+        urine_nitrites.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_nitritesKeyPressed(evt);
+            }
+        });
+        urine_wbc.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_wbcKeyPressed(evt);
+            }
+        });
+        urine_rbc.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_rbcKeyPressed(evt);
+            }
+        });
+        urine_bacteria.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_bacteriaKeyPressed(evt);
+            }
+        });
+        urine_crystal.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_crystalKeyPressed(evt);
+            }
+        });
+        urine_epithel.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                urine_epithelKeyPressed(evt);
+            }
+        });
+        hbsag.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                hbsagKeyPressed(evt);
+            }
+        });
+        anti_hbs.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                anti_hbsKeyPressed(evt);
+            }
+        });
+        cea.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ceaKeyPressed(evt);
+            }
+        });
+        afp.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                afpKeyPressed(evt);
+            }
+        });
+        drug_amphetamine.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_amphetamineKeyPressed(evt);
+            }
+        });
+        drug_methamphetamine.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_methamphetamineKeyPressed(evt);
+            }
+        });
+        drug_morphine.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_morphineKeyPressed(evt);
+            }
+        });
+        drug_benzodiazepine.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_benzodiazepineKeyPressed(evt);
+            }
+        });
+        drug_cocain.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_cocainKeyPressed(evt);
+            }
+        });
+        drug_marijuana.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                drug_marijuanaKeyPressed(evt);
+            }
+        });
+        BtnPetugasLab.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPetugasLabKeyPressed(evt);
+            }
+        });
+        pnemunosicosis.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pnemunosicosisKeyPressed(evt);
+            }
+        });
+        pnemunosicosis2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pnemunosicosis2KeyPressed(evt);
+            }
+        });
+        ILO_clasification.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ILO_clasificationKeyPressed(evt);
+            }
+        });
+        ILO_clasification2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ILO_clasification2KeyPressed(evt);
+            }
+        });
+        tb1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tb1KeyPressed(evt);
+            }
+        });
+        tb2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tb2KeyPressed(evt);
+            }
+        });
+        oth_abnormal.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                oth_abnormalKeyPressed(evt);
+            }
+        });
+        page3_comment.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                page3_commentKeyPressed(evt);
+            }
+        });
     }
 
-    private void pasangKeypress(Component kiriAwal, Component kananAkhir, Component... daftarKomponen) {
-        for (int index = 0; index < daftarKomponen.length; index++) {
-            final Component kiri = index == 0 ? kiriAwal : daftarKomponen[index - 1];
-            final Component kanan = index == daftarKomponen.length - 1 ? kananAkhir : daftarKomponen[index + 1];
-            daftarKomponen[index].addKeyListener(new java.awt.event.KeyAdapter() {
-                @Override
-                public void keyPressed(java.awt.event.KeyEvent evt) {
-                    pindahKomponen(evt,kiri,kanan);
-                }
-            });
-        }
+    private void aturKeypressPemeriksaanKhusus() {
+        ecg_abnormal.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ecg_abnormalKeyPressed(evt);
+            }
+        });
+        spirometri_vc_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_vc_1KeyPressed(evt);
+            }
+        });
+        spirometri_vc_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_vc_2KeyPressed(evt);
+            }
+        });
+        spirometri_vc_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_vc_3KeyPressed(evt);
+            }
+        });
+        spirometri_vc_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_vc_4KeyPressed(evt);
+            }
+        });
+        spirometri_fvc_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fvc_1KeyPressed(evt);
+            }
+        });
+        spirometri_fvc_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fvc_2KeyPressed(evt);
+            }
+        });
+        spirometri_fvc_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fvc_3KeyPressed(evt);
+            }
+        });
+        spirometri_fvc_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fvc_4KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_1KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_2KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_3KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_4KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_fvc_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_fvc_1KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_fvc_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_fvc_2KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_fvc_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_fvc_3KeyPressed(evt);
+            }
+        });
+        spirometri_fev_1_fvc_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spirometri_fev_1_fvc_4KeyPressed(evt);
+            }
+        });
+        type_of_hearing.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                type_of_hearingKeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_500.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_500KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1500.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1500KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_2000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_2000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_3000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_3000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_4000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_4000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_5000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_5000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_6000.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_6000KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_501.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_501KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1501.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1501KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_2001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_2001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_3001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_3001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_4001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_4001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_5001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_5001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_6001.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_6001KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_502.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_502KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1502.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1502KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_2002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_2002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_3002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_3002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_4002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_4002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_5002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_5002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_6002.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_6002KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_503.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_503KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1003KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_1503.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_1503KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_2003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_2003KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_3003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_3003KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_4003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_4003KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_5003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_5003KeyPressed(evt);
+            }
+        });
+        audiometri_left_ear_6003.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                audiometri_left_ear_6003KeyPressed(evt);
+            }
+        });
+        TD.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TDKeyPressed(evt);
+            }
+        });
+        BB.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BBKeyPressed(evt);
+            }
+        });
+        IMT.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IMTKeyPressed(evt);
+            }
+        });
+        KlasifikasiIMT1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KlasifikasiIMT1KeyPressed(evt);
+            }
+        });
+        eye_glasses_near_r.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_glasses_near_rKeyPressed(evt);
+            }
+        });
+        eye_glasses_near_l.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_glasses_near_lKeyPressed(evt);
+            }
+        });
+        eye_glasses_distant_r.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_glasses_distant_rKeyPressed(evt);
+            }
+        });
+        eye_glasses_distant_l.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_glasses_distant_lKeyPressed(evt);
+            }
+        });
+        eye_night_vision_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_night_vision_1KeyPressed(evt);
+            }
+        });
+        eye_night_vision_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_night_vision_2KeyPressed(evt);
+            }
+        });
+        eye_unaided_near_r.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_unaided_near_rKeyPressed(evt);
+            }
+        });
+        eye_unaided_near_l.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_unaided_near_lKeyPressed(evt);
+            }
+        });
+        eye_brake_test_1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_brake_test_1KeyPressed(evt);
+            }
+        });
+        eye_brake_test_2.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_brake_test_2KeyPressed(evt);
+            }
+        });
+        eye_color_blindless.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                eye_color_blindlessKeyPressed(evt);
+            }
+        });
+        visual_fields_left.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                visual_fields_leftKeyPressed(evt);
+            }
+        });
+        visual_fields_right.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                visual_fields_rightKeyPressed(evt);
+            }
+        });
+        fundi.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fundiKeyPressed(evt);
+            }
+        });
+        imunisasi_bcg.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_bcgKeyPressed(evt);
+            }
+        });
+        imunisasi_dpt.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_dptKeyPressed(evt);
+            }
+        });
+        imunisasi_polio.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_polioKeyPressed(evt);
+            }
+        });
+        imunisasi_morbili.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_morbiliKeyPressed(evt);
+            }
+        });
+        imunisasi_thyphoid.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_thyphoidKeyPressed(evt);
+            }
+        });
+        imunisasi_hep_a.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_hep_aKeyPressed(evt);
+            }
+        });
+        imunisasi_hep_b.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_hep_bKeyPressed(evt);
+            }
+        });
+        imunisasi_tetanus.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_tetanusKeyPressed(evt);
+            }
+        });
+        imunisasi_others.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                imunisasi_othersKeyPressed(evt);
+            }
+        });
+        vertebra_scoliosis.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_scoliosisKeyPressed(evt);
+            }
+        });
+        vertebra_lordosis.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_lordosisKeyPressed(evt);
+            }
+        });
+        vertebra_hyperextensi_0_25.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_hyperextensi_0_25KeyPressed(evt);
+            }
+        });
+        vertebra_heel_walking.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_heel_walkingKeyPressed(evt);
+            }
+        });
+        vertebra_squats_x3.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_squats_x3KeyPressed(evt);
+            }
+        });
+        vertebra_kyphosis.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_kyphosisKeyPressed(evt);
+            }
+        });
+        vertebra_forward_flexion_0_80.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_forward_flexion_0_80KeyPressed(evt);
+            }
+        });
+        vertebra_lateral_flexion_0_20.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_lateral_flexion_0_20KeyPressed(evt);
+            }
+        });
+        vertebra_toe_walking.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                vertebra_toe_walkingKeyPressed(evt);
+            }
+        });
+        exam_ent_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_ent_commentsKeyPressed(evt);
+            }
+        });
+        exam_cardio_vascular_system_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_cardio_vascular_system_commentsKeyPressed(evt);
+            }
+        });
+        exam_respiratory_system_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_respiratory_system_commentsKeyPressed(evt);
+            }
+        });
+        exam_abdomen_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_abdomen_commentsKeyPressed(evt);
+            }
+        });
+        exam_genito_urinary_system_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_genito_urinary_system_commentsKeyPressed(evt);
+            }
+        });
+        exam_central_peripheral_nervous_system_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_central_peripheral_nervous_system_commentsKeyPressed(evt);
+            }
+        });
+        exam_skin_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_skin_commentsKeyPressed(evt);
+            }
+        });
+        exam_lymph_nodes_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_lymph_nodes_commentsKeyPressed(evt);
+            }
+        });
+        exam_dental_comments.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                exam_dental_commentsKeyPressed(evt);
+            }
+        });
     }
 
     private void pindahKomponen(java.awt.event.KeyEvent evt, Component kiri, Component kanan) {
@@ -6750,7 +8644,12 @@ public final class RMMCU extends javax.swing.JDialog {
             exam_abdomen_comments.getText(),exam_genito_urinary_system_comments.getText(),exam_central_peripheral_nervous_system_comments.getText(),exam_skin_comments.getText(),exam_lymph_nodes_comments.getText(),exam_dental_comments.getText(),
             nilaiComboYesNo(conclusion_requires_spectacles),nilaiComboYesNo(conclusion_colour_blindness),nilaiComboYesNo(conclusion_respiratory_problem),
             nilaiComboYesNo(conclusion_impaired_hearing),nilaiComboYesNo(conclusion_vertigo),nilaiBloodGroupMcu(),
-            nilaiCombo(fit),nilaiFitWithRestrictions(),nilaiSpecify(),nilaiSaranMcu()
+            nilaiCombo(fit),nilaiFitWithRestrictions(),nilaiSpecify(),nilaiSaranMcu(),
+            nilai(trombosit),nilai(rhesuss),nilai(triglyceride),nilai(hdl_cholesterol),nilai(ldl_cholesterol),nilai(uric_acid),
+            nilai(urine_colour),nilai(urine_turbidity),nilai(urine_chemical_reaction),nilai(urine_ketones),nilai(urine_glucose),
+            nilai(urine_nitrites),nilai(urine_wbc),nilai(urine_rbc),nilai(urine_bacteria),nilai(urine_crystal),nilai(urine_epithel),
+            nilai(hbsag),nilai(anti_hbs),nilai(cea),nilai(afp),nilai(drug_amphetamine),nilai(drug_methamphetamine),
+            nilai(drug_morphine),nilai(drug_benzodiazepine),nilai(drug_cocain),nilai(drug_marijuana)
         };
     }
 
@@ -6820,7 +8719,12 @@ public final class RMMCU extends javax.swing.JDialog {
                 audiometri_left_ear_502,audiometri_left_ear_3002,audiometri_left_ear_4002,audiometri_left_ear_6002,audiometri_left_ear_5002,audiometri_left_ear_1003,
                 audiometri_left_ear_2003,audiometri_left_ear_1503,audiometri_left_ear_503,audiometri_left_ear_3003,audiometri_left_ear_4003,audiometri_left_ear_6003,audiometri_left_ear_5003,
                 exam_ent_comments,exam_cardio_vascular_system_comments,exam_respiratory_system_comments,exam_abdomen_comments,exam_genito_urinary_system_comments,exam_central_peripheral_nervous_system_comments,exam_skin_comments,
-                exam_lymph_nodes_comments,exam_dental_comments,specify,saran,surname,KdPetugas,NmPetugas);
+                exam_lymph_nodes_comments,exam_dental_comments,specify,saran,surname,KdPetugas,NmPetugas,
+                trombosit,rhesuss,triglyceride,hdl_cholesterol,ldl_cholesterol,uric_acid,
+                urine_colour,urine_turbidity,urine_chemical_reaction,urine_ketones,urine_glucose,
+                urine_nitrites,urine_wbc,urine_rbc,urine_bacteria,urine_crystal,urine_epithel,
+                hbsag,anti_hbs,cea,afp,drug_amphetamine,drug_methamphetamine,
+                drug_morphine,drug_benzodiazepine,drug_cocain,drug_marijuana);
         resetCombo(McuGroup,PosisiKerja,cbConcEcg,eye_glasses_distant_l,eye_glasses_distant_r,eye_unaided_near_l,eye_color_blindless,
                 eye_glasses_near_l,eye_glasses_near_r,eye_night_vision_2,eye_night_vision_1,eye_brake_test_2,eye_brake_test_1,eye_unaided_near_r,fundi,
                 imunisasi_bcg,imunisasi_dpt,imunisasi_polio,imunisasi_hep_b,imunisasi_morbili,imunisasi_tetanus,imunisasi_thyphoid,imunisasi_others,
@@ -7079,6 +8983,33 @@ public final class RMMCU extends javax.swing.JDialog {
             setCombo(blood_group,getTabelValue("blood_group"));
             setCombo(fit,getTabelValue("medically_fit"));
             setFitWithRestrictions(getTabelValue("fit_with_restrictions"),getTabelValue("specify"));
+            setText(trombosit,getTabelValue("trombosit"));
+            setText(rhesuss,getTabelValue("rhesuss"));
+            setText(triglyceride,getTabelValue("triglyceride"));
+            setText(hdl_cholesterol,getTabelValue("hdl_cholesterol"));
+            setText(ldl_cholesterol,getTabelValue("ldl_cholesterol"));
+            setText(uric_acid,getTabelValue("uric_acid"));
+            setText(urine_colour,getTabelValue("urine_colour"));
+            setText(urine_turbidity,getTabelValue("urine_turbidity"));
+            setText(urine_chemical_reaction,getTabelValue("urine_chemical_reaction"));
+            setText(urine_ketones,getTabelValue("urine_ketones"));
+            setText(urine_glucose,getTabelValue("urine_glucose"));
+            setText(urine_nitrites,getTabelValue("urine_nitrites"));
+            setText(urine_wbc,getTabelValue("urine_wbc"));
+            setText(urine_rbc,getTabelValue("urine_rbc"));
+            setText(urine_bacteria,getTabelValue("urine_bacteria"));
+            setText(urine_crystal,getTabelValue("urine_crystal"));
+            setText(urine_epithel,getTabelValue("urine_epithel"));
+            setText(hbsag,getTabelValue("hbsag"));
+            setText(anti_hbs,getTabelValue("anti_hbs"));
+            setText(cea,getTabelValue("cea"));
+            setText(afp,getTabelValue("afp"));
+            setText(drug_amphetamine,getTabelValue("drug_amphetamine"));
+            setText(drug_methamphetamine,getTabelValue("drug_methamphetamine"));
+            setText(drug_morphine,getTabelValue("drug_morphine"));
+            setText(drug_benzodiazepine,getTabelValue("drug_benzodiazepine"));
+            setText(drug_cocain,getTabelValue("drug_cocain"));
+            setText(drug_marijuana,getTabelValue("drug_marijuana"));
             if(!getTabelValue("tanggal").equals("")){
                 Valid.SetTgl2(TglAsuhan,getTabelValue("tanggal"));
             }
@@ -7340,5 +9271,778 @@ public final class RMMCU extends javax.swing.JDialog {
     public void dispose() {
         executor.shutdownNow();
         super.dispose();
+    }
+
+
+    private void RWP1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, PosisiKerja, RWP2);
+    }
+
+    private void RWP2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP1, RWP3);
+    }
+
+    private void RWP3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP2, RWP4);
+    }
+
+    private void RWP4KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP3, RWP5);
+    }
+
+    private void RWP5KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP4, RWP6);
+    }
+
+    private void RWP6KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP5, RWP7);
+    }
+
+    private void RWP7KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP6, RWP8);
+    }
+
+    private void RWP8KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP7, RWP9);
+    }
+
+    private void RWP9KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP8, RWP10);
+    }
+
+    private void RWP10KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP9, RWP11);
+    }
+
+    private void RWP11KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP10, RWP12);
+    }
+
+    private void RWP12KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP11, RWP13);
+    }
+
+    private void RWP13KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP12, RWP14);
+    }
+
+    private void RWP14KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP13, RWP15);
+    }
+
+    private void RWP15KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP14, RWP16);
+    }
+
+    private void RWP16KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP15, RWP17);
+    }
+
+    private void RWP17KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP16, RWP18);
+    }
+
+    private void RWP18KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP17, RWP19);
+    }
+
+    private void RWP19KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP18, RWP20);
+    }
+
+    private void RWP20KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP19, RWP21);
+    }
+
+    private void RWP21KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP20, RWP22);
+    }
+
+    private void RWP22KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP21, RWP23);
+    }
+
+    private void RWP23KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP22, RWP24);
+    }
+
+    private void RWP24KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP23, RWP25);
+    }
+
+    private void RWP25KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP24, RWP26);
+    }
+
+    private void RWP26KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP25, RWP27);
+    }
+
+    private void RWP27KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP26, RWP28);
+    }
+
+    private void RWP28KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP27, RWP29);
+    }
+
+    private void RWP29KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP28, RWP30);
+    }
+
+    private void RWP30KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP29, FamilyHistoryFather);
+    }
+
+    private void FamilyHistoryFatherKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, RWP30, FamilyHistoryMother);
+    }
+
+    private void FamilyHistoryMotherKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, FamilyHistoryFather, FamilyHistorySiblings);
+    }
+
+    private void FamilyHistorySiblingsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, FamilyHistoryMother, FamilyHistoryOther);
+    }
+
+    private void FamilyHistoryOtherKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, FamilyHistorySiblings, CigarettesPerday);
+    }
+
+    private void CigarettesPerdayKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, FamilyHistoryOther, AlcoholGrWeek);
+    }
+
+    private void AlcoholGrWeekKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, CigarettesPerday, PrescribedMedication);
+    }
+
+    private void PrescribedMedicationKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, AlcoholGrWeek, PrescribedMedication2);
+    }
+
+    private void PrescribedMedication2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, PrescribedMedication, AnyAllergies);
+    }
+
+    private void AnyAllergiesKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, PrescribedMedication2, spirometri_vc_1);
+    }
+
+    private void hbKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, AnyAllergies, wbc);
+    }
+
+    private void wbcKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, hb, esr);
+    }
+
+    private void esrKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, wbc, bl_group);
+    }
+
+    private void bl_groupKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, esr, gamaa_gt);
+    }
+
+    private void gamaa_gtKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, bl_group, sgot);
+    }
+
+    private void sgotKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, gamaa_gt, sgpt);
+    }
+
+    private void sgptKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, sgot, urea);
+    }
+
+    private void ureaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, sgpt, creatinin);
+    }
+
+    private void creatininKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urea, glucose);
+    }
+
+    private void glucoseKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, creatinin, random_glucose);
+    }
+
+    private void random_glucoseKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, glucose, total_cholestrol);
+    }
+
+    private void total_cholestrolKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, random_glucose, protein);
+    }
+
+    private void proteinKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, total_cholestrol, blood);
+    }
+
+    private void bloodKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, protein, bilirubin);
+    }
+
+    private void bilirubinKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, blood, malaria);
+    }
+
+    private void malariaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, bilirubin, tpha);
+    }
+
+    private void tphaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, malaria, mantoux_test);
+    }
+
+    private void mantoux_testKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, tpha, lab_others);
+    }
+
+    private void lab_othersKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, mantoux_test, ova);
+    }
+
+    private void ovaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, lab_others, culture);
+    }
+
+    private void cultureKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, ova, cysta);
+    }
+
+    private void cystaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, culture, parasites1);
+    }
+
+    private void parasites1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, cysta, trombosit);
+    }
+
+    private void trombositKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, parasites1, rhesuss);
+    }
+
+    private void rhesussKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, trombosit, triglyceride);
+    }
+
+    private void triglycerideKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, rhesuss, hdl_cholesterol);
+    }
+
+    private void hdl_cholesterolKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, triglyceride, ldl_cholesterol);
+    }
+
+    private void ldl_cholesterolKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, hdl_cholesterol, uric_acid);
+    }
+
+    private void uric_acidKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, ldl_cholesterol, urine_colour);
+    }
+
+    private void urine_colourKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, uric_acid, urine_turbidity);
+    }
+
+    private void urine_turbidityKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_colour, urine_chemical_reaction);
+    }
+
+    private void urine_chemical_reactionKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_turbidity, urine_ketones);
+    }
+
+    private void urine_ketonesKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_chemical_reaction, urine_glucose);
+    }
+
+    private void urine_glucoseKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_ketones, urine_nitrites);
+    }
+
+    private void urine_nitritesKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_glucose, urine_wbc);
+    }
+
+    private void urine_wbcKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_nitrites, urine_rbc);
+    }
+
+    private void urine_rbcKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_wbc, urine_bacteria);
+    }
+
+    private void urine_bacteriaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_rbc, urine_crystal);
+    }
+
+    private void urine_crystalKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_bacteria, urine_epithel);
+    }
+
+    private void urine_epithelKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_crystal, hbsag);
+    }
+
+    private void hbsagKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, urine_epithel, anti_hbs);
+    }
+
+    private void anti_hbsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, hbsag, cea);
+    }
+
+    private void ceaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, anti_hbs, afp);
+    }
+
+    private void afpKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, cea, drug_amphetamine);
+    }
+
+    private void drug_amphetamineKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, afp, drug_methamphetamine);
+    }
+
+    private void drug_methamphetamineKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_amphetamine, drug_morphine);
+    }
+
+    private void drug_morphineKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_methamphetamine, drug_benzodiazepine);
+    }
+
+    private void drug_benzodiazepineKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_morphine, drug_cocain);
+    }
+
+    private void drug_cocainKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_benzodiazepine, drug_marijuana);
+    }
+
+    private void drug_marijuanaKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_cocain, BtnPetugasLab);
+    }
+
+    private void BtnPetugasLabKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, drug_marijuana, pnemunosicosis);
+    }
+
+    private void pnemunosicosisKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, BtnPetugasLab, pnemunosicosis2);
+    }
+
+    private void pnemunosicosis2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, pnemunosicosis, ILO_clasification);
+    }
+
+    private void ILO_clasificationKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, pnemunosicosis2, ILO_clasification2);
+    }
+
+    private void ILO_clasification2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, ILO_clasification, tb1);
+    }
+
+    private void tb1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, ILO_clasification2, tb2);
+    }
+
+    private void tb2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, tb1, oth_abnormal);
+    }
+
+    private void oth_abnormalKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, tb2, page3_comment);
+    }
+
+    private void page3_commentKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, oth_abnormal, spirometri_vc_1);
+    }
+
+    private void ecg_abnormalKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, cbConcEcg, spirometri_vc_1);
+    }
+
+    private void spirometri_vc_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, ecg_abnormal, spirometri_vc_2);
+    }
+
+    private void spirometri_vc_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_vc_1, spirometri_vc_3);
+    }
+
+    private void spirometri_vc_3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_vc_2, spirometri_vc_4);
+    }
+
+    private void spirometri_vc_4KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_vc_3, spirometri_fvc_1);
+    }
+
+    private void spirometri_fvc_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_vc_4, spirometri_fvc_2);
+    }
+
+    private void spirometri_fvc_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fvc_1, spirometri_fvc_3);
+    }
+
+    private void spirometri_fvc_3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fvc_2, spirometri_fvc_4);
+    }
+
+    private void spirometri_fvc_4KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fvc_3, spirometri_fev_1_1);
+    }
+
+    private void spirometri_fev_1_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fvc_4, spirometri_fev_1_2);
+    }
+
+    private void spirometri_fev_1_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_1, spirometri_fev_1_3);
+    }
+
+    private void spirometri_fev_1_3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_2, spirometri_fev_1_4);
+    }
+
+    private void spirometri_fev_1_4KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_3, spirometri_fev_1_fvc_1);
+    }
+
+    private void spirometri_fev_1_fvc_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_4, spirometri_fev_1_fvc_2);
+    }
+
+    private void spirometri_fev_1_fvc_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_fvc_1, spirometri_fev_1_fvc_3);
+    }
+
+    private void spirometri_fev_1_fvc_3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_fvc_2, spirometri_fev_1_fvc_4);
+    }
+
+    private void spirometri_fev_1_fvc_4KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_fvc_3, audiometri_left_ear_500);
+    }
+
+    private void type_of_hearingKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, spirometri_fev_1_fvc_4, audiometri_left_ear_500);
+    }
+
+    private void audiometri_left_ear_500KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, type_of_hearing, audiometri_left_ear_1000);
+    }
+
+    private void audiometri_left_ear_1000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_500, audiometri_left_ear_1500);
+    }
+
+    private void audiometri_left_ear_1500KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1000, audiometri_left_ear_2000);
+    }
+
+    private void audiometri_left_ear_2000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1500, audiometri_left_ear_3000);
+    }
+
+    private void audiometri_left_ear_3000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_2000, audiometri_left_ear_4000);
+    }
+
+    private void audiometri_left_ear_4000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_3000, audiometri_left_ear_5000);
+    }
+
+    private void audiometri_left_ear_5000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_4000, audiometri_left_ear_6000);
+    }
+
+    private void audiometri_left_ear_6000KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_5000, audiometri_left_ear_501);
+    }
+
+    private void audiometri_left_ear_501KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_6000, audiometri_left_ear_1001);
+    }
+
+    private void audiometri_left_ear_1001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_501, audiometri_left_ear_1501);
+    }
+
+    private void audiometri_left_ear_1501KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1001, audiometri_left_ear_2001);
+    }
+
+    private void audiometri_left_ear_2001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1501, audiometri_left_ear_3001);
+    }
+
+    private void audiometri_left_ear_3001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_2001, audiometri_left_ear_4001);
+    }
+
+    private void audiometri_left_ear_4001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_3001, audiometri_left_ear_5001);
+    }
+
+    private void audiometri_left_ear_5001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_4001, audiometri_left_ear_6001);
+    }
+
+    private void audiometri_left_ear_6001KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_5001, audiometri_left_ear_502);
+    }
+
+    private void audiometri_left_ear_502KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_6001, audiometri_left_ear_1002);
+    }
+
+    private void audiometri_left_ear_1002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_502, audiometri_left_ear_1502);
+    }
+
+    private void audiometri_left_ear_1502KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1002, audiometri_left_ear_2002);
+    }
+
+    private void audiometri_left_ear_2002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1502, audiometri_left_ear_3002);
+    }
+
+    private void audiometri_left_ear_3002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_2002, audiometri_left_ear_4002);
+    }
+
+    private void audiometri_left_ear_4002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_3002, audiometri_left_ear_5002);
+    }
+
+    private void audiometri_left_ear_5002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_4002, audiometri_left_ear_6002);
+    }
+
+    private void audiometri_left_ear_6002KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_5002, audiometri_left_ear_503);
+    }
+
+    private void audiometri_left_ear_503KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_6002, audiometri_left_ear_1003);
+    }
+
+    private void audiometri_left_ear_1003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_503, audiometri_left_ear_1503);
+    }
+
+    private void audiometri_left_ear_1503KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1003, audiometri_left_ear_2003);
+    }
+
+    private void audiometri_left_ear_2003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_1503, audiometri_left_ear_3003);
+    }
+
+    private void audiometri_left_ear_3003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_2003, audiometri_left_ear_4003);
+    }
+
+    private void audiometri_left_ear_4003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_3003, audiometri_left_ear_5003);
+    }
+
+    private void audiometri_left_ear_5003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_4003, audiometri_left_ear_6003);
+    }
+
+    private void audiometri_left_ear_6003KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_5003, TD);
+    }
+
+    private void TDKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, audiometri_left_ear_6003, Nadi);
+    }
+
+    private void BBKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, TB, IMT);
+    }
+
+    private void IMTKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, BB, KlasifikasiIMT1);
+    }
+
+    private void KlasifikasiIMT1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, IMT, eye_unaided_distant_r);
+    }
+
+    private void eye_glasses_near_rKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_unaided_distant_r, eye_glasses_near_l);
+    }
+
+    private void eye_glasses_near_lKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_glasses_near_r, eye_glasses_distant_r);
+    }
+
+    private void eye_glasses_distant_rKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_glasses_near_l, eye_glasses_distant_l);
+    }
+
+    private void eye_glasses_distant_lKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_glasses_distant_r, eye_night_vision_1);
+    }
+
+    private void eye_night_vision_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_glasses_distant_l, eye_night_vision_2);
+    }
+
+    private void eye_night_vision_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_night_vision_1, eye_unaided_near_r);
+    }
+
+    private void eye_unaided_near_rKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_night_vision_2, eye_unaided_near_l);
+    }
+
+    private void eye_unaided_near_lKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_unaided_near_r, eye_brake_test_1);
+    }
+
+    private void eye_brake_test_1KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_unaided_near_l, eye_brake_test_2);
+    }
+
+    private void eye_brake_test_2KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_brake_test_1, eye_color_blindless);
+    }
+
+    private void eye_color_blindlessKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_brake_test_2, visual_fields_left);
+    }
+
+    private void visual_fields_leftKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, eye_color_blindless, visual_fields_right);
+    }
+
+    private void visual_fields_rightKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, visual_fields_left, fundi);
+    }
+
+    private void fundiKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, visual_fields_right, imunisasi_bcg);
+    }
+
+    private void imunisasi_bcgKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, fundi, imunisasi_dpt);
+    }
+
+    private void imunisasi_dptKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_bcg, imunisasi_polio);
+    }
+
+    private void imunisasi_polioKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_dpt, imunisasi_morbili);
+    }
+
+    private void imunisasi_morbiliKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_polio, imunisasi_thyphoid);
+    }
+
+    private void imunisasi_thyphoidKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_morbili, imunisasi_hep_a);
+    }
+
+    private void imunisasi_hep_aKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_thyphoid, imunisasi_hep_b);
+    }
+
+    private void imunisasi_hep_bKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_hep_a, imunisasi_tetanus);
+    }
+
+    private void imunisasi_tetanusKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_hep_b, imunisasi_others);
+    }
+
+    private void imunisasi_othersKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_tetanus, vertebra_scoliosis);
+    }
+
+    private void vertebra_scoliosisKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, imunisasi_others, vertebra_lordosis);
+    }
+
+    private void vertebra_lordosisKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_scoliosis, vertebra_hyperextensi_0_25);
+    }
+
+    private void vertebra_hyperextensi_0_25KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_lordosis, vertebra_heel_walking);
+    }
+
+    private void vertebra_heel_walkingKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_hyperextensi_0_25, vertebra_squats_x3);
+    }
+
+    private void vertebra_squats_x3KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_heel_walking, vertebra_kyphosis);
+    }
+
+    private void vertebra_kyphosisKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_squats_x3, vertebra_forward_flexion_0_80);
+    }
+
+    private void vertebra_forward_flexion_0_80KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_kyphosis, vertebra_lateral_flexion_0_20);
+    }
+
+    private void vertebra_lateral_flexion_0_20KeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_forward_flexion_0_80, vertebra_toe_walking);
+    }
+
+    private void vertebra_toe_walkingKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_lateral_flexion_0_20, exam_ent_comments);
+    }
+
+    private void exam_ent_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, vertebra_toe_walking, exam_cardio_vascular_system_comments);
+    }
+
+    private void exam_cardio_vascular_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_ent_comments, exam_respiratory_system_comments);
+    }
+
+    private void exam_respiratory_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_cardio_vascular_system_comments, exam_abdomen_comments);
+    }
+
+    private void exam_abdomen_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_respiratory_system_comments, exam_genito_urinary_system_comments);
+    }
+
+    private void exam_genito_urinary_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_abdomen_comments, exam_central_peripheral_nervous_system_comments);
+    }
+
+    private void exam_central_peripheral_nervous_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_genito_urinary_system_comments, exam_skin_comments);
+    }
+
+    private void exam_skin_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_central_peripheral_nervous_system_comments, exam_lymph_nodes_comments);
+    }
+
+    private void exam_lymph_nodes_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_skin_comments, exam_dental_comments);
+    }
+
+    private void exam_dental_commentsKeyPressed(java.awt.event.KeyEvent evt) {
+        pindahKomponen(evt, exam_lymph_nodes_comments, conclusion_requires_spectacles);
     }
 }

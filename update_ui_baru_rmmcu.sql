@@ -116,7 +116,11 @@ INSERT INTO `tmp_penilaian_mcu_columns` (`column_name`) VALUES
 ('exam_cardio_vascular_system_comments'),('exam_respiratory_system_comments'),('exam_abdomen_comments'),('exam_genito_urinary_system_comments'),
 ('exam_central_peripheral_nervous_system_comments'),('exam_skin_comments'),('exam_lymph_nodes_comments'),('exam_dental_comments'),
 ('conclusion_requires_spectacles'),('conclusion_colour_blindness'),('conclusion_respiratory_problem'),('conclusion_impaired_hearing'),
-('conclusion_vertigo'),('blood_group'),('medically_fit'),('fit_with_restrictions'),('specify'),('unfit_comment_1');
+('conclusion_vertigo'),('blood_group'),('medically_fit'),('fit_with_restrictions'),('specify'),('unfit_comment_1'),
+('trombosit'),('rhesuss'),('triglyceride'),('hdl_cholesterol'),('ldl_cholesterol'),('uric_acid'),('urine_colour'),('urine_turbidity'),
+('urine_chemical_reaction'),('urine_ketones'),('urine_glucose'),('urine_nitrites'),('urine_wbc'),('urine_rbc'),('urine_bacteria'),
+('urine_crystal'),('urine_epithel'),('hbsag'),('anti_hbs'),('cea'),('afp'),('drug_amphetamine'),('drug_methamphetamine'),
+('drug_morphine'),('drug_benzodiazepine'),('drug_cocain'),('drug_marijuana'),('kd_petugas_lab');
 
 -- TextArea dan hasil/keterangan panjang.
 UPDATE `tmp_penilaian_mcu_columns`
@@ -130,6 +134,7 @@ WHERE `column_name` IN (
 UPDATE `tmp_penilaian_mcu_columns`
 SET `column_definition` = CASE
     WHEN `column_name` = 'no_rkm_medis' THEN 'VARCHAR(15) NULL'
+    WHEN `column_name` = 'kd_petugas_lab' THEN 'VARCHAR(20) NULL'
     WHEN `column_name` = 'tgl_lahir' THEN 'DATE NULL'
     WHEN `column_name` = 'jk' THEN 'VARCHAR(20) NULL'
     WHEN `column_name` IN ('nama_pasien','surname') THEN 'VARCHAR(100) NULL'
@@ -142,7 +147,12 @@ SET `column_definition` = CASE
         'hb','wbc','esr','bl_group','gamaa_gt','sgot','sgpt','urea','creatinin','glucose',
         'random_glucose','total_cholestrol','protein','blood','bilirubin','malaria','tpha',
         'mantoux_test','leukosit','ova','culture','cysta','parasites1','pnemunosicosis',
-        'pnemunosicosis2','ILO_clasification','ILO_clasification2','tb1','tb2'
+        'pnemunosicosis2','ILO_clasification','ILO_clasification2','tb1','tb2',
+        'trombosit','rhesuss','triglyceride','hdl_cholesterol','ldl_cholesterol','uric_acid',
+        'urine_colour','urine_turbidity','urine_chemical_reaction','urine_ketones','urine_glucose',
+        'urine_nitrites','urine_wbc','urine_rbc','urine_bacteria','urine_crystal','urine_epithel',
+        'hbsag','anti_hbs','cea','afp','drug_amphetamine','drug_methamphetamine',
+        'drug_morphine','drug_benzodiazepine','drug_cocain','drug_marijuana'
     ) THEN 'VARCHAR(50) NULL'
     WHEN `column_name` LIKE 'spirometri_%' THEN 'VARCHAR(20) NULL'
     WHEN `column_name` LIKE 'audiometri_left_ear_%'
@@ -241,6 +251,9 @@ ALTER TABLE `penilaian_mcu`
         ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `penilaian_mcu_ibfk_2`
         FOREIGN KEY (`kd_dokter`) REFERENCES `dokter` (`kd_dokter`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `penilaian_mcu_ibfk_3`
+        FOREIGN KEY (`kd_petugas_lab`) REFERENCES `petugas` (`nip`)
         ON DELETE CASCADE ON UPDATE CASCADE;
 
 SELECT
