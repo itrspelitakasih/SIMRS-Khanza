@@ -981,6 +981,13 @@ import rekammedis.RMHasilPemeriksaanUSG;
 import rekammedis.RMHasilPemeriksaanUSGGynecologi;
 import rekammedis.RMHasilPemeriksaanUSGNeonatus;
 import rekammedis.RMHasilPemeriksaanUSGUrologi;
+import rekammedis.MasterTemplateHasilUSG;
+import rekammedis.RMHasilPemeriksaanUSGAbdomen;
+import rekammedis.RMHasilPemeriksaanUSGAppendix;
+import rekammedis.RMHasilPemeriksaanUSGHepar;
+import rekammedis.RMHasilPemeriksaanUSGMamma;
+import rekammedis.RMHasilPemeriksaanUSGScrotum;
+import rekammedis.RMHasilPemeriksaanUSGThyroid;
 import rekammedis.RMHasilTindakanESWL;
 import rekammedis.RMKonselingFarmasi;
 import rekammedis.RMLaporanTindakan;
@@ -19957,6 +19964,103 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnHasilUSGAbdomenActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGAbdomen aplikasi=new RMHasilPemeriksaanUSGAbdomen(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnHasilUSGAppendixActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGAppendix aplikasi=new RMHasilPemeriksaanUSGAppendix(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnHasilUSGHeparActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGHepar aplikasi=new RMHasilPemeriksaanUSGHepar(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnHasilUSGMammaActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGMamma aplikasi=new RMHasilPemeriksaanUSGMamma(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnHasilUSGScrotumActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGScrotum aplikasi=new RMHasilPemeriksaanUSGScrotum(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnHasilUSGThyroidActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMHasilPemeriksaanUSGThyroid aplikasi=new RMHasilPemeriksaanUSGThyroid(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void btnMasterTemplateHasilUSGActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        MasterTemplateHasilUSG aplikasi=new MasterTemplateHasilUSG(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     private void btnSkriningNutrisiLansiaActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         DlgHome.dispose();
@@ -24467,6 +24571,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             btnPemantauanPEWSAnak,btnMasterTemplateHasilRadiologi,btnLaporanBulananIRJ,btnMasterTemplatePemeriksaanDokter,btnPermintaanLabMB,btnLamaPelayananLabMB,
             btnPenilaianPreOperasi,btnPenilaianPreAnastesi,btnPersetujuanPulangAtasPermintanSendiri,btnPerencanaanPemulangan,btnPenilaianRisikoJatuhDewasa,
             btnPenilaianRisikoJatuhAnak,btnPenilaianAwalMedisRalanGeriatri,btnPenilaianTambahanGeriatri,btnSkriningNutrisiDewasa,btnHasilPemeriksaanUSG,
+            btnHasilUSGAbdomen,btnHasilUSGAppendix,btnHasilUSGHepar,btnHasilUSGMamma,btnHasilUSGScrotum,btnHasilUSGThyroid,btnMasterTemplateHasilUSG,
             btnSkriningNutrisiLansia,btnSkriningNutrisiAnak,btnAkunRekeningHtHBankJabar,btnPembayaranBankJabar,btnPernyataanPasienUmum,btnKonselingFarmasi,
             btnPelayananInformasiObat,btnPersetujuanUmum,btnTransferPasienAntarRuang,btnReferensiDokterSatuSehat,btnReferensiPasienSatuSehat,
             btnMappingOrganisasiSatuSehat,btnMappingLokasiSatuSehat,btnKirimEncounterSatuSehat,btnCatatanCekGDS,btnKirimConditionSatuSehat,
@@ -28576,6 +28681,23 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             
             if(akses.gethasil_pemeriksaan_usg()==true){
                 Panelmenu.add(btnHasilPemeriksaanUSG);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGAbdomen);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGAppendix);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGHepar);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGMamma);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGScrotum);
+                jmlmenu++;
+                Panelmenu.add(btnHasilUSGThyroid);
+                jmlmenu++;
+            }
+            
+            if(akses.gettemplate_hasil_radiologi()==true){
+                Panelmenu.add(btnMasterTemplateHasilUSG);
                 jmlmenu++;
             }
             
@@ -34534,6 +34656,23 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         
         if(akses.gethasil_pemeriksaan_usg()==true){
             Panelmenu.add(btnHasilPemeriksaanUSG);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGAbdomen);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGAppendix);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGHepar);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGMamma);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGScrotum);
+            jmlmenu++;
+            Panelmenu.add(btnHasilUSGThyroid);
+            jmlmenu++;
+        }
+        
+        if(akses.gettemplate_hasil_radiologi()==true){
+            Panelmenu.add(btnMasterTemplateHasilUSG);
             jmlmenu++;
         }
         
@@ -42048,6 +42187,37 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnHasilPemeriksaanUSG);
                 jmlmenu++;
             }                
+            if(btnHasilUSGAbdomen.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGAbdomen);
+                jmlmenu++;
+            }                
+            if(btnHasilUSGAppendix.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGAppendix);
+                jmlmenu++;
+            }                
+            if(btnHasilUSGHepar.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGHepar);
+                jmlmenu++;
+            }                
+            if(btnHasilUSGMamma.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGMamma);
+                jmlmenu++;
+            }                
+            if(btnHasilUSGScrotum.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGScrotum);
+                jmlmenu++;
+            }                
+            if(btnHasilUSGThyroid.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnHasilUSGThyroid);
+                jmlmenu++;
+            }                
+        }
+        
+        if(akses.gettemplate_hasil_radiologi()==true){
+            if(btnMasterTemplateHasilUSG.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnMasterTemplateHasilUSG);
+                jmlmenu++;
+            }
         }
         
         if(akses.gethasil_usg_urologi()==true){
@@ -44904,6 +45074,64 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 jmlmenu++;
             }                
         }
+    }
+
+    private void initHasilUSGButtons() {
+        btnHasilUSGAbdomen = new widget.ButtonBig();
+        btnHasilUSGAbdomen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGAbdomen.setText("Hasil USG Abdomen");
+        btnHasilUSGAbdomen.setIconTextGap(0);
+        btnHasilUSGAbdomen.setName("btnHasilUSGAbdomen");
+        btnHasilUSGAbdomen.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGAbdomen.addActionListener(this::btnHasilUSGAbdomenActionPerformed);
+        
+        btnHasilUSGAppendix = new widget.ButtonBig();
+        btnHasilUSGAppendix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGAppendix.setText("Hasil USG Appendix");
+        btnHasilUSGAppendix.setIconTextGap(0);
+        btnHasilUSGAppendix.setName("btnHasilUSGAppendix");
+        btnHasilUSGAppendix.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGAppendix.addActionListener(this::btnHasilUSGAppendixActionPerformed);
+        
+        btnHasilUSGHepar = new widget.ButtonBig();
+        btnHasilUSGHepar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGHepar.setText("Hasil USG Hepar/Lien/Empedu");
+        btnHasilUSGHepar.setIconTextGap(0);
+        btnHasilUSGHepar.setName("btnHasilUSGHepar");
+        btnHasilUSGHepar.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGHepar.addActionListener(this::btnHasilUSGHeparActionPerformed);
+        
+        btnHasilUSGMamma = new widget.ButtonBig();
+        btnHasilUSGMamma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGMamma.setText("Hasil USG Mammae");
+        btnHasilUSGMamma.setIconTextGap(0);
+        btnHasilUSGMamma.setName("btnHasilUSGMamma");
+        btnHasilUSGMamma.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGMamma.addActionListener(this::btnHasilUSGMammaActionPerformed);
+        
+        btnHasilUSGScrotum = new widget.ButtonBig();
+        btnHasilUSGScrotum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGScrotum.setText("Hasil USG Testis/Scrotum");
+        btnHasilUSGScrotum.setIconTextGap(0);
+        btnHasilUSGScrotum.setName("btnHasilUSGScrotum");
+        btnHasilUSGScrotum.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGScrotum.addActionListener(this::btnHasilUSGScrotumActionPerformed);
+        
+        btnHasilUSGThyroid = new widget.ButtonBig();
+        btnHasilUSGThyroid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/375263_scan_scans_ultra sound_ultrasound_icon.png"))); 
+        btnHasilUSGThyroid.setText("Hasil USG Thyroid");
+        btnHasilUSGThyroid.setIconTextGap(0);
+        btnHasilUSGThyroid.setName("btnHasilUSGThyroid");
+        btnHasilUSGThyroid.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHasilUSGThyroid.addActionListener(this::btnHasilUSGThyroidActionPerformed);
+        
+        btnMasterTemplateHasilUSG = new widget.ButtonBig();
+        btnMasterTemplateHasilUSG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/6771602_book shelf_books_education_learning_school_icon.png"))); 
+        btnMasterTemplateHasilUSG.setText("Master Template Hasil USG");
+        btnMasterTemplateHasilUSG.setIconTextGap(0);
+        btnMasterTemplateHasilUSG.setName("btnMasterTemplateHasilUSG");
+        btnMasterTemplateHasilUSG.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterTemplateHasilUSG.addActionListener(this::btnMasterTemplateHasilUSGActionPerformed);
     }
 
     private void initKhanza() {
@@ -48347,6 +48575,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         btnHasilPemeriksaanUSG.setName("btnHasilPemeriksaanUSG");
         btnHasilPemeriksaanUSG.setPreferredSize(new java.awt.Dimension(200, 90));
         btnHasilPemeriksaanUSG.addActionListener(this::btnHasilPemeriksaanUSGActionPerformed);
+        
+        initHasilUSGButtons();
         
         btnSkriningNutrisiLansia = new widget.ButtonBig();
         btnSkriningNutrisiLansia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/5994849_food_health_hot_meal_restaurant_icon.png"))); 

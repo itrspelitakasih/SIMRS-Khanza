@@ -114,6 +114,12 @@ import rekammedis.RMHasilPemeriksaanUSG;
 import rekammedis.RMHasilPemeriksaanUSGGynecologi;
 import rekammedis.RMHasilPemeriksaanUSGNeonatus;
 import rekammedis.RMHasilPemeriksaanUSGUrologi;
+import rekammedis.RMHasilPemeriksaanUSGAbdomen;
+import rekammedis.RMHasilPemeriksaanUSGAppendix;
+import rekammedis.RMHasilPemeriksaanUSGHepar;
+import rekammedis.RMHasilPemeriksaanUSGMamma;
+import rekammedis.RMHasilPemeriksaanUSGScrotum;
+import rekammedis.RMHasilPemeriksaanUSGThyroid;
 import rekammedis.RMHasilTindakanESWL;
 import rekammedis.RMKonselingFarmasi;
 import rekammedis.RMLaporanTindakan;
@@ -1475,6 +1481,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianLanjutanRisikoJatuhPsikiatri = new widget.Button();
         BtnPenilaianLanjutanSkriningFungsional = new widget.Button();
         BtnHasilPemeriksaanUSG = new widget.Button();
+        BtnHasilUSGAbdomen = new widget.Button();
+        BtnHasilUSGAppendix = new widget.Button();
+        BtnHasilUSGHepar = new widget.Button();
+        BtnHasilUSGMamma = new widget.Button();
+        BtnHasilUSGScrotum = new widget.Button();
+        BtnHasilUSGThyroid = new widget.Button();
         BtnDokumentasiESWL = new widget.Button();
         BtnCatatanPersalinanan = new widget.Button();
         BtnSkriningNutrisiDewasa = new widget.Button();
@@ -4732,6 +4744,102 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHasilPemeriksaanUSG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnHasilPemeriksaanUSGActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGAbdomen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGAbdomen.setText("Hasil USG Abdomen");
+        BtnHasilUSGAbdomen.setFocusPainted(false);
+        BtnHasilUSGAbdomen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGAbdomen.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGAbdomen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGAbdomen.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGAbdomen.setName("BtnHasilUSGAbdomen"); // NOI18N
+        BtnHasilUSGAbdomen.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGAbdomen.setRoundRect(false);
+        BtnHasilUSGAbdomen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGAbdomenActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGAppendix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGAppendix.setText("Hasil USG Appendix");
+        BtnHasilUSGAppendix.setFocusPainted(false);
+        BtnHasilUSGAppendix.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGAppendix.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGAppendix.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGAppendix.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGAppendix.setName("BtnHasilUSGAppendix"); // NOI18N
+        BtnHasilUSGAppendix.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGAppendix.setRoundRect(false);
+        BtnHasilUSGAppendix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGAppendixActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGHepar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGHepar.setText("Hasil USG Hepar/Lien/Empedu");
+        BtnHasilUSGHepar.setFocusPainted(false);
+        BtnHasilUSGHepar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGHepar.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGHepar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGHepar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGHepar.setName("BtnHasilUSGHepar"); // NOI18N
+        BtnHasilUSGHepar.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGHepar.setRoundRect(false);
+        BtnHasilUSGHepar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGHeparActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGMamma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGMamma.setText("Hasil USG Mammae");
+        BtnHasilUSGMamma.setFocusPainted(false);
+        BtnHasilUSGMamma.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGMamma.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGMamma.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGMamma.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGMamma.setName("BtnHasilUSGMamma"); // NOI18N
+        BtnHasilUSGMamma.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGMamma.setRoundRect(false);
+        BtnHasilUSGMamma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGMammaActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGScrotum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGScrotum.setText("Hasil USG Testis/Scrotum");
+        BtnHasilUSGScrotum.setFocusPainted(false);
+        BtnHasilUSGScrotum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGScrotum.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGScrotum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGScrotum.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGScrotum.setName("BtnHasilUSGScrotum"); // NOI18N
+        BtnHasilUSGScrotum.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGScrotum.setRoundRect(false);
+        BtnHasilUSGScrotum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGScrotumActionPerformed(evt);
+            }
+        });
+
+        BtnHasilUSGThyroid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
+        BtnHasilUSGThyroid.setText("Hasil USG Thyroid");
+        BtnHasilUSGThyroid.setFocusPainted(false);
+        BtnHasilUSGThyroid.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnHasilUSGThyroid.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilUSGThyroid.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilUSGThyroid.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilUSGThyroid.setName("BtnHasilUSGThyroid"); // NOI18N
+        BtnHasilUSGThyroid.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilUSGThyroid.setRoundRect(false);
+        BtnHasilUSGThyroid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilUSGThyroidActionPerformed(evt);
             }
         });
 
@@ -8530,6 +8638,108 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_BtnHasilPemeriksaanUSGActionPerformed
 
+    private void BtnHasilUSGAbdomenActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGAbdomen form=new RMHasilPemeriksaanUSGAbdomen(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void BtnHasilUSGAppendixActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGAppendix form=new RMHasilPemeriksaanUSGAppendix(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void BtnHasilUSGHeparActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGHepar form=new RMHasilPemeriksaanUSGHepar(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void BtnHasilUSGMammaActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGMamma form=new RMHasilPemeriksaanUSGMamma(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void BtnHasilUSGScrotumActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGScrotum form=new RMHasilPemeriksaanUSGScrotum(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void BtnHasilUSGThyroidActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanUSGThyroid form=new RMHasilPemeriksaanUSGThyroid(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
     private void BtnSkriningNutrisiDewasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSkriningNutrisiDewasaActionPerformed
         if(TNoRw.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
@@ -11042,6 +11252,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Table tbTindakan3;
     private widget.TextBox TanggalRegistrasi;
     // End of variables declaration//GEN-END:variables
+    private widget.Button BtnHasilUSGAbdomen, BtnHasilUSGAppendix, BtnHasilUSGHepar, BtnHasilUSGMamma, BtnHasilUSGScrotum, BtnHasilUSGThyroid;
     private widget.Button BtnSkorBromagePascaAnestesi,BtnPenilaianPreInduksi,BtnHasilPemeriksaanUSGUrologi,BtnHasilPemeriksaanUSGGynecologi,BtnHasilPemeriksaanEKG,BtnPenatalaksanaanTerapiOkupasi,BtnPenilaianPsikolog,
                           BtnHasilPemeriksaanUSGNeonatus,BtnHasilEndoskopiFaringLaring,BtnHasilEndoskopiHidung,BtnHasilEndoskopiTelinga,BtnPenilaianPasienImunitasRendah,BtnCatatanKeseimbanganCairan,BtnCatatanObservasiCHBP,
                           BtnCatatanObservasiInduksiPersalinan,BtnPermintaanKonsultasiMedik,BtnSkriningMerokokUsiaRemaja,BtnSkriningKekerasanPadaWanita,BtnSkriningObesitas,BtnSkriningRisikoKankerPayudara,BtnSkriningRisikoKankerParu,
@@ -11607,6 +11818,30 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tinggi=tinggi+24;
         }
         BtnHasilPemeriksaanUSG.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGAbdomen.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGAppendix.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGHepar.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGMamma.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGScrotum.setVisible(akses.gethasil_pemeriksaan_usg()); 
+        if(akses.gethasil_pemeriksaan_usg()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilUSGThyroid.setVisible(akses.gethasil_pemeriksaan_usg()); 
         if(akses.gethasil_pemeriksaan_usg()==true){
             tinggi=tinggi+24;
         }
@@ -14383,6 +14618,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnPenilaianLanjutanRisikoJatuhPsikiatri);
         FormMenu.add(BtnPenilaianLanjutanSkriningFungsional);
         FormMenu.add(BtnHasilPemeriksaanUSG);
+        FormMenu.add(BtnHasilUSGAbdomen);
+        FormMenu.add(BtnHasilUSGAppendix);
+        FormMenu.add(BtnHasilUSGHepar);
+        FormMenu.add(BtnHasilUSGMamma);
+        FormMenu.add(BtnHasilUSGScrotum);
+        FormMenu.add(BtnHasilUSGThyroid);
         FormMenu.add(BtnHasilPemeriksaanUSGUrologi);
         FormMenu.add(BtnHasilPemeriksaanUSGNeonatus);
         FormMenu.add(BtnHasilPemeriksaanUSGGynecologi);
