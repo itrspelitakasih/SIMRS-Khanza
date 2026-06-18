@@ -1,6 +1,8 @@
 build/
 dist/
-settings/
+setting/
+.vscode/
+src/.vscode/
 reports/
 webapps/
 tmpPDF/
