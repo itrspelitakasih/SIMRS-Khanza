@@ -239,6 +239,7 @@ public class frmUtama extends javax.swing.JFrame {
                     diagnosticreportlabpk();
                     diagnosticreportlabmb();
                     careplan();
+                    rmerawatjalan();
                     qrtelaahresep();
                     alergi();
                     kirimdicomrouter();
@@ -7285,6 +7286,207 @@ public class frmUtama extends javax.swing.JFrame {
         }
     }
     
+    private String buildCompositionJson(ResultSet rs, String idpasien, String iddokter) throws Exception {
+        String noRawat=rs.getString("no_rawat");
+        String nmPasien=rs.getString("nm_pasien");
+        String idEncounter=rs.getString("id_encounter");
+        String tglReg=rs.getString("tgl_registrasi")+" "+rs.getString("jam_reg");
+        String keluhanUtama=rs.getString("keluhan_utama").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t"," ").replaceAll("\"","'");
+        String diagnosaUtama=rs.getString("diagnosa_utama");
+        String kdDiagnosaUtama=rs.getString("kd_diagnosa_utama");
+        String kondisiPulang=rs.getString("kondisi_pulang");
+        String jalannyaPenyakit=rs.getString("jalannya_penyakit").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t"," ").replaceAll("\"","'");
+        String obatPulang=rs.getString("obat_pulang").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t"," ").replaceAll("\"","'");
+        String nmDokter=rs.getString("nm_dokter");
+
+        // Build diagnosa narrative
+        StringBuilder diagNarrative=new StringBuilder();
+        diagNarrative.append("Diagnosa Utama: ").append(diagnosaUtama).append(" (").append(kdDiagnosaUtama).append(")");
+        for(int d=0;d<4;d++){
+            String colName = "diagnosa_sekunder" + (d == 0 ? "" : (d + 1));
+            String colKdName = "kd_diagnosa_sekunder" + (d == 0 ? "" : (d + 1));
+            String dxNama=rs.getString(colName);
+            String dxKode=rs.getString(colKdName);
+            if(dxNama != null && !dxNama.trim().isEmpty()){
+                diagNarrative.append("<br>Diagnosa Sekunder: ").append(dxNama).append(" (").append(dxKode).append(")");
+            }
+        }
+
+        // Build prosedur narrative
+        StringBuilder prosNarrative=new StringBuilder();
+        String prosUtama=rs.getString("prosedur_utama");
+        String kdProsUtama=rs.getString("kd_prosedur_utama");
+        if(prosUtama != null && !prosUtama.trim().isEmpty()){
+            prosNarrative.append("Prosedur Utama: ").append(prosUtama).append(" (").append(kdProsUtama).append(")");
+        }
+        for(int p=0;p<3;p++){
+            String colName = "prosedur_sekunder" + (p == 0 ? "" : (p + 1));
+            String colKdName = "kd_prosedur_sekunder" + (p == 0 ? "" : (p + 1));
+            String prNama=rs.getString(colName);
+            String prKode=rs.getString(colKdName);
+            if(prNama != null && !prNama.trim().isEmpty()){
+                if(prosNarrative.length()>0) prosNarrative.append("<br>");
+                prosNarrative.append("Prosedur Sekunder: ").append(prNama).append(" (").append(prKode).append(")");
+            }
+        }
+
+        // Query Condition references
+        StringBuilder conditionEntries=new StringBuilder();
+        try(PreparedStatement ps2=koneksi.prepareStatement("select id_condition from satu_sehat_condition where no_rawat=? and id_condition is not null and id_condition<>''")){
+            ps2.setString(1,noRawat);
+            try(ResultSet rs2=ps2.executeQuery()){
+                while(rs2.next()){
+                    if(conditionEntries.length()>0) conditionEntries.append(",");
+                    conditionEntries.append("{\"reference\":\"Condition/").append(rs2.getString("id_condition")).append("\"}");
+                }
+            }
+        }catch(Exception e){System.out.println("Notif Condition ref: "+e);}
+
+        // Query Procedure references
+        StringBuilder procedureEntries=new StringBuilder();
+        try(PreparedStatement ps2=koneksi.prepareStatement("select id_procedure from satu_sehat_procedure where no_rawat=? and id_procedure is not null and id_procedure<>''")){
+            ps2.setString(1,noRawat);
+            try(ResultSet rs2=ps2.executeQuery()){
+                while(rs2.next()){
+                    if(procedureEntries.length()>0) procedureEntries.append(",");
+                    procedureEntries.append("{\"reference\":\"Procedure/").append(rs2.getString("id_procedure")).append("\"}");
+                }
+            }
+        }catch(Exception e){System.out.println("Notif Procedure ref: "+e);}
+
+        // Build JSON
+        StringBuilder sb=new StringBuilder();
+        sb.append("{");
+        sb.append("\"resourceType\":\"Composition\",");
+        sb.append("\"identifier\":{");
+        sb.append("\"system\":\"http://sys-ids.kemkes.go.id/composition/").append(koneksiDB.IDSATUSEHAT()).append("\",");
+        sb.append("\"value\":\"").append(noRawat.replaceAll("/","")).append("\"");
+        sb.append("},");
+        sb.append("\"status\":\"final\",");
+        sb.append("\"type\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"34133-9\",\"display\":\"Summary of episode note\"}]},");
+        sb.append("\"category\":[{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"LP173421-1\",\"display\":\"Report\"}]}],");
+        sb.append("\"subject\":{\"reference\":\"Patient/").append(idpasien).append("\",\"display\":\"").append(nmPasien).append("\"},");
+        sb.append("\"encounter\":{\"reference\":\"Encounter/").append(idEncounter).append("\",");
+        sb.append("\"display\":\"Kunjungan ").append(nmPasien).append(" pada tanggal ").append(tglReg).append(" dengan nomor kunjungan ").append(noRawat).append("\"},");
+        sb.append("\"date\":\"").append(tglReg.replaceAll(" ","T")).append("+07:00\",");
+        sb.append("\"author\":[{\"reference\":\"Practitioner/").append(iddokter).append("\",\"display\":\"").append(nmDokter).append("\"}],");
+        sb.append("\"title\":\"Resume Medis Rawat Jalan\",");
+        sb.append("\"custodian\":{\"reference\":\"Organization/").append(koneksiDB.IDSATUSEHAT()).append("\"},");
+        sb.append("\"section\":[");
+
+        // Section 1: Keluhan Utama
+        sb.append("{\"code\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"10154-3\",\"display\":\"Chief complaint Narrative\"}]},");
+        sb.append("\"text\":{\"status\":\"additional\",\"div\":\"").append(keluhanUtama).append("\"}},");
+
+        // Section 2: Diagnosa
+        sb.append("{\"code\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"29548-5\",\"display\":\"Diagnosis\"}]},");
+        sb.append("\"text\":{\"status\":\"additional\",\"div\":\"").append(diagNarrative.toString().replaceAll("\"","'")).append("\"}");
+        if(conditionEntries.length()>0){
+            sb.append(",\"entry\":[").append(conditionEntries).append("]");
+        }
+        sb.append("},");
+
+        // Section 3: Prosedur/Tindakan
+        sb.append("{\"code\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"29554-3\",\"display\":\"Procedure Narrative\"}]},");
+        sb.append("\"text\":{\"status\":\"additional\",\"div\":\"").append(prosNarrative.length()>0?prosNarrative.toString().replaceAll("\"","'"):"-").append("\"}");
+        if(procedureEntries.length()>0){
+            sb.append(",\"entry\":[").append(procedureEntries).append("]");
+        }
+        sb.append("},");
+
+        // Section 4: Obat Pulang
+        sb.append("{\"code\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"10160-0\",\"display\":\"History of Medication use Narrative\"}]},");
+        sb.append("\"text\":{\"status\":\"additional\",\"div\":\"").append(obatPulang.equals("")?"-":obatPulang).append("\"}},");
+
+        // Section 5: Kondisi Pulang & Jalannya Penyakit
+        sb.append("{\"code\":{\"coding\":[{\"system\":\"http://loinc.org\",\"code\":\"8648-8\",\"display\":\"Hospital course Narrative\"}]},");
+        sb.append("\"text\":{\"status\":\"additional\",\"div\":\"Kondisi Pulang: ").append(kondisiPulang);
+        if(!jalannyaPenyakit.equals("")){
+            sb.append(". Perjalanan Penyakit: ").append(jalannyaPenyakit);
+        }
+        sb.append("\"}}");
+
+        sb.append("]}");
+        return sb.toString();
+    }
+
+    private void rmerawatjalan() {
+        try {
+            // Lazy table creation
+            try (PreparedStatement psTable = koneksi.prepareStatement(
+                    "CREATE TABLE IF NOT EXISTS satu_sehat_rme_rawat_jalan (" +
+                    "no_rawat varchar(17) NOT NULL, " +
+                    "id_composition varchar(50) DEFAULT NULL, " +
+                    "PRIMARY KEY (no_rawat)) ENGINE=InnoDB DEFAULT CHARSET=latin1")) {
+                psTable.execute();
+            } catch (Exception ignored) {}
+
+            try (PreparedStatement psRME = koneksi.prepareStatement(
+                    "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,reg_periksa.no_rkm_medis," +
+                    "pasien.nm_pasien,pasien.no_ktp,resume_pasien.kd_dokter,dokter.nm_dokter,pegawai.no_ktp as ktpdokter," +
+                    "satu_sehat_encounter.id_encounter," +
+                    "resume_pasien.keluhan_utama,resume_pasien.diagnosa_utama,resume_pasien.kd_diagnosa_utama," +
+                    "resume_pasien.diagnosa_sekunder,resume_pasien.kd_diagnosa_sekunder," +
+                    "resume_pasien.diagnosa_sekunder2,resume_pasien.kd_diagnosa_sekunder2," +
+                    "resume_pasien.diagnosa_sekunder3,resume_pasien.kd_diagnosa_sekunder3," +
+                    "resume_pasien.diagnosa_sekunder4,resume_pasien.kd_diagnosa_sekunder4," +
+                    "resume_pasien.prosedur_utama,resume_pasien.kd_prosedur_utama," +
+                    "resume_pasien.prosedur_sekunder,resume_pasien.kd_prosedur_sekunder," +
+                    "resume_pasien.prosedur_sekunder2,resume_pasien.kd_prosedur_sekunder2," +
+                    "resume_pasien.prosedur_sekunder3,resume_pasien.kd_prosedur_sekunder3," +
+                    "resume_pasien.jalannya_penyakit,resume_pasien.pemeriksaan_penunjang,resume_pasien.hasil_laborat," +
+                    "resume_pasien.kondisi_pulang,resume_pasien.obat_pulang," +
+                    "ifnull(satu_sehat_rme_rawat_jalan.id_composition,'') as id_composition " +
+                    "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
+                    "inner join resume_pasien on resume_pasien.no_rawat=reg_periksa.no_rawat " +
+                    "inner join dokter on dokter.kd_dokter=resume_pasien.kd_dokter " +
+                    "inner join pegawai on pegawai.nik=dokter.kd_dokter " +
+                    "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat " +
+                    "left join satu_sehat_rme_rawat_jalan on satu_sehat_rme_rawat_jalan.no_rawat=reg_periksa.no_rawat " +
+                    "where reg_periksa.tgl_registrasi between ? and ? " +
+                    "and (satu_sehat_rme_rawat_jalan.id_composition is null or satu_sehat_rme_rawat_jalan.id_composition='')")) {
+                psRME.setString(1, Tanggal1.getText());
+                psRME.setString(2, Tanggal2.getText());
+                try (ResultSet rsRME = psRME.executeQuery()) {
+                    while (rsRME.next()) {
+                        if (!rsRME.getString("no_ktp").equals("") && !rsRME.getString("ktpdokter").equals("") && rsRME.getString("id_composition").equals("")) {
+                            try {
+                                idpasien = cekViaSatuSehat.tampilIDPasien(rsRME.getString("no_ktp"));
+                                String iddokter_local = cekViaSatuSehat.tampilIDParktisi(rsRME.getString("ktpdokter"));
+                                if (!idpasien.isEmpty() && !iddokter_local.isEmpty()) {
+                                    try {
+                                        headers = new HttpHeaders();
+                                        headers.setContentType(MediaType.APPLICATION_JSON);
+                                        headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
+                                        json = buildCompositionJson(rsRME, idpasien, iddokter_local);
+                                        TeksArea.append("URL : " + link + "/Composition\n");
+                                        TeksArea.append("Request JSON : " + json + "\n");
+                                        requestEntity = new HttpEntity(json, headers);
+                                        json = api.getRest().exchange(link + "/Composition", HttpMethod.POST, requestEntity, String.class).getBody();
+                                        TeksArea.append("Result JSON : " + json + "\n");
+                                        root = mapper.readTree(json);
+                                        response = root.path("id");
+                                        if (!response.asText().equals("")) {
+                                            Sequel.menyimpan2("satu_sehat_rme_rawat_jalan", "?,?", "RME Rawat Jalan", 2, new String[]{
+                                                rsRME.getString("no_rawat"), response.asText()
+                                            });
+                                        }
+                                    } catch (Exception ea) {
+                                        TeksArea.append("Notifikasi Bridging : " + ea + "\n");
+                                    }
+                                }
+                            } catch (Exception ef) {
+                                System.out.println("Notifikasi : " + ef);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi rmerawatjalan: " + e);
+        }
+    }
+
     private void careplan(){
         try{
             ps=koneksi.prepareStatement(

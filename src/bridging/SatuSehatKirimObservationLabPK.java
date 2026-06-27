@@ -25,10 +25,6 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.RejectedExecutionException;
-import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -58,9 +54,7 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();  
-    private StringBuilder htmlContent;  
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private volatile boolean ceksukses = false;  
+    private StringBuilder htmlContent;    
     
     /** Creates new form DlgKamar
      * @param parent
@@ -151,6 +145,29 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
+        if(koneksiDB.CARICEPAT().equals("aktif")){
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
+            });
+        } 
+        
         try {
             link=koneksiDB.URLFHIRSATUSEHAT();
         } catch (Exception e) {
@@ -211,6 +228,7 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        CmbStatus = new widget.ComboBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -254,11 +272,6 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data Observation Lab PK Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -381,7 +394,7 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -394,7 +407,7 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -414,6 +427,22 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(TCari);
+
+        jLabel18 = new widget.Label();
+        jLabel18.setText("Status :");
+        jLabel18.setName("jLabel18");
+        jLabel18.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass9.add(jLabel18);
+
+        CmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum Terkirim", "Sudah Terkirim" }));
+        CmbStatus.setName("CmbStatus");
+        CmbStatus.setPreferredSize(new java.awt.Dimension(110, 23));
+        CmbStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbStatusActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(CmbStatus);
 
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('6');
@@ -559,7 +588,7 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        runBackground(() ->tampil());
+        tampil();
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -581,15 +610,23 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        String hasilDT = tbObat.getValueAt(i,6).toString().replaceAll(" ","T")+"+07:00";
+                        String srId = getServiceRequestId(tbObat.getValueAt(i,5).toString(), tbObat.getValueAt(i,12).toString(), tbObat.getValueAt(i,19).toString());
+                        String basedOnJson = srId.isEmpty() ? "" :
+                            "\"basedOn\": [{\"reference\": \"ServiceRequest/" + srId + "\"}],";
+                        String valueText = tbObat.getValueAt(i,11).toString()
+                                .replaceAll("(\r\n|\r|\n|\n\r)", "<br>")
+                                .replaceAll("\t", " ");
                         json = "{" +
                                     "\"resourceType\": \"Observation\"," +
                                     "\"identifier\": [" +
                                         "{" +
                                             "\"system\": \"http://sys-ids.kemkes.go.id/observation/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbObat.getValueAt(i,5).toString()+"."+tbObat.getValueAt(i,12).toString()+"\"" +
+                                            "\"value\": \""+jsonEscape(tbObat.getValueAt(i,5).toString())+"."+jsonEscape(tbObat.getValueAt(i,12).toString())+"\"" +
                                         "}" +
                                     "]," +
                                     "\"status\": \"final\"," +
+                                    basedOnJson +
                                     "\"category\": [" +
                                         "{" +
                                             "\"coding\": [" +
@@ -604,9 +641,9 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                                     "\"code\": {" +
                                         "\"coding\": [" +
                                             "{" +
-                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
-                                                "\"code\": \""+tbObat.getValueAt(i,8).toString()+"\"," +
-                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
+                                                "\"system\": \""+jsonEscape(tbObat.getValueAt(i,9).toString())+"\"," +
+                                                "\"code\": \""+jsonEscape(tbObat.getValueAt(i,8).toString())+"\"," +
+                                                "\"display\": \""+jsonEscape(tbObat.getValueAt(i,10).toString())+"\"" +
                                             "}" +
                                         "]" +
                                     "}," +
@@ -620,13 +657,14 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                                     "]," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbObat.getValueAt(i,17).toString()+"\"," +
-                                        "\"display\": \"Hasil Pemeriksaan Lab "+tbObat.getValueAt(i,7).toString()+" No.Rawat "+tbObat.getValueAt(i,1).toString()+", Atas Nama Pasien "+tbObat.getValueAt(i,3).toString()+", No.RM "+tbObat.getValueAt(i,2).toString()+", Pada Tanggal "+tbObat.getValueAt(i,6).toString()+"\"" +
+                                        "\"display\": \"Hasil Pemeriksaan Lab "+jsonEscape(tbObat.getValueAt(i,7).toString())+" No.Rawat "+jsonEscape(tbObat.getValueAt(i,1).toString())+", Atas Nama Pasien "+jsonEscape(tbObat.getValueAt(i,3).toString())+", No.RM "+jsonEscape(tbObat.getValueAt(i,2).toString())+", Pada Tanggal "+jsonEscape(tbObat.getValueAt(i,6).toString())+"\"" +
                                     "}," +
                                     "\"specimen\": {" +
                                         "\"reference\": \"Specimen/"+tbObat.getValueAt(i,13).toString()+"\"" +
                                     "}," +
-                                    "\"effectiveDateTime\": \""+tbObat.getValueAt(i,6).toString().replaceAll(" ","T")+"+07:00\"," +
-                                    "\"valueString\": \""+tbObat.getValueAt(i,11).toString().replaceAll("(\r|\r||\r)","<br>").replaceAll("\t", " ")+"\"" +
+                                    "\"effectiveDateTime\": \""+hasilDT+"\"," +
+                                    "\"issued\": \""+hasilDT+"\"," +
+                                    "\"valueString\": \""+jsonEscape(valueText)+"\"" +
                                "}";
                         System.out.println("URL : "+link+"/Observation");
                         System.out.println("Request JSON : "+json);
@@ -644,7 +682,11 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                             }
                         }
                     }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
+                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
+                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
+                        }else{
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -675,16 +717,24 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        String hasilDT = tbObat.getValueAt(i,6).toString().replaceAll(" ","T")+"+07:00";
+                        String srId = getServiceRequestId(tbObat.getValueAt(i,5).toString(), tbObat.getValueAt(i,12).toString(), tbObat.getValueAt(i,19).toString());
+                        String basedOnJson = srId.isEmpty() ? "" :
+                            "\"basedOn\": [{\"reference\": \"ServiceRequest/" + srId + "\"}],";
+                        String valueText = tbObat.getValueAt(i,11).toString()
+                                .replaceAll("(\r\n|\r|\n|\n\r)", "<br>")
+                                .replaceAll("\t", " ");
                         json = "{" +
                                     "\"resourceType\": \"Observation\"," +
                                     "\"id\": \""+tbObat.getValueAt(i,18).toString()+"\"," +
                                     "\"identifier\": [" +
                                         "{" +
                                             "\"system\": \"http://sys-ids.kemkes.go.id/observation/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbObat.getValueAt(i,5).toString()+"."+tbObat.getValueAt(i,12).toString()+"\"" +
+                                            "\"value\": \""+jsonEscape(tbObat.getValueAt(i,5).toString())+"."+jsonEscape(tbObat.getValueAt(i,12).toString())+"\"" +
                                         "}" +
                                     "]," +
                                     "\"status\": \"final\"," +
+                                    basedOnJson +
                                     "\"category\": [" +
                                         "{" +
                                             "\"coding\": [" +
@@ -699,9 +749,9 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                                     "\"code\": {" +
                                         "\"coding\": [" +
                                             "{" +
-                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
-                                                "\"code\": \""+tbObat.getValueAt(i,8).toString()+"\"," +
-                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
+                                                "\"system\": \""+jsonEscape(tbObat.getValueAt(i,9).toString())+"\"," +
+                                                "\"code\": \""+jsonEscape(tbObat.getValueAt(i,8).toString())+"\"," +
+                                                "\"display\": \""+jsonEscape(tbObat.getValueAt(i,10).toString())+"\"" +
                                             "}" +
                                         "]" +
                                     "}," +
@@ -715,13 +765,14 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                                     "]," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbObat.getValueAt(i,17).toString()+"\"," +
-                                        "\"display\": \"Hasil Pemeriksaan Lab "+tbObat.getValueAt(i,7).toString()+" No.Rawat "+tbObat.getValueAt(i,1).toString()+", Atas Nama Pasien "+tbObat.getValueAt(i,3).toString()+", No.RM "+tbObat.getValueAt(i,2).toString()+", Pada Tanggal "+tbObat.getValueAt(i,6).toString()+"\"" +
+                                        "\"display\": \"Hasil Pemeriksaan Lab "+jsonEscape(tbObat.getValueAt(i,7).toString())+" No.Rawat "+jsonEscape(tbObat.getValueAt(i,1).toString())+", Atas Nama Pasien "+jsonEscape(tbObat.getValueAt(i,3).toString())+", No.RM "+jsonEscape(tbObat.getValueAt(i,2).toString())+", Pada Tanggal "+jsonEscape(tbObat.getValueAt(i,6).toString())+"\"" +
                                     "}," +
                                     "\"specimen\": {" +
                                         "\"reference\": \"Specimen/"+tbObat.getValueAt(i,13).toString()+"\"" +
                                     "}," +
-                                    "\"effectiveDateTime\": \""+tbObat.getValueAt(i,6).toString().replaceAll(" ","T")+"+07:00\"," +
-                                    "\"valueString\": \""+tbObat.getValueAt(i,11).toString().replaceAll("(\r|\r||\r)","<br>").replaceAll("\t", " ")+"\"" +
+                                    "\"effectiveDateTime\": \""+hasilDT+"\"," +
+                                    "\"issued\": \""+hasilDT+"\"," +
+                                    "\"valueString\": \""+jsonEscape(valueText)+"\"" +
                                "}";
                         System.out.println("URL : "+link+"/Observation/"+tbObat.getValueAt(i,18).toString());
                         System.out.println("Request JSON : "+json);
@@ -730,7 +781,11 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                         System.out.println("Result JSON : "+json);
                         tbObat.setValueAt(false,i,0);
                     }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
+                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
+                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
+                        }else{
+                            System.out.println("Notifikasi Bridging : "+e);
+                        }
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -741,42 +796,17 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
-        runBackground(() ->tampil());
+        tampil();
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
-            runBackground(() ->tampil());
+            tampil();
         }else{
             Valid.pindah(evt, BtnPrint, BtnKeluar);
         }
     }//GEN-LAST:event_BtnAllKeyPressed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if(koneksiDB.CARICEPAT().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() ->tampil());
-                    }
-                }
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() ->tampil());
-                    }
-                }
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() ->tampil());
-                    }
-                }
-            });
-        }
-    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
@@ -819,7 +849,14 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbObat;
+    private widget.ComboBox CmbStatus;
+    private widget.Label jLabel18;
     // End of variables declaration//GEN-END:variables
+    
+    private void CmbStatusActionPerformed(java.awt.event.ActionEvent evt) {
+        tampil();
+    }
+    
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
@@ -844,12 +881,14 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                    "left join satu_sehat_observation_lab on satu_sehat_specimen_lab.noorder=satu_sehat_observation_lab.noorder "+
                    "and satu_sehat_specimen_lab.id_template=satu_sehat_observation_lab.id_template "+
                    "and satu_sehat_specimen_lab.kd_jenis_prw=satu_sehat_observation_lab.kd_jenis_prw "+
-                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
+                   "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
                    "inner join pegawai on periksa_lab.kd_dokter=pegawai.nik "+
-                   "where reg_periksa.tgl_registrasi between ? and ? "+
+                   "where nota_jalan.tanggal between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or template_laboratorium.Pemeriksaan like ? or "+
-                   "satu_sehat_mapping_lab.sampel_code like ? or permintaan_lab.noorder like ?)"));
+                   "satu_sehat_mapping_lab.sampel_code like ? or permintaan_lab.noorder like ?)")+
+                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_observation_lab.id_observation,'') = ''" : "") +
+                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_observation_lab.id_observation,'') != ''" : ""));
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -902,12 +941,14 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
                    "left join satu_sehat_observation_lab on satu_sehat_specimen_lab.noorder=satu_sehat_observation_lab.noorder "+
                    "and satu_sehat_specimen_lab.id_template=satu_sehat_observation_lab.id_template "+
                    "and satu_sehat_specimen_lab.kd_jenis_prw=satu_sehat_observation_lab.kd_jenis_prw "+
-                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
+                   "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
                    "inner join pegawai on periksa_lab.kd_dokter=pegawai.nik "+
-                   "where reg_periksa.tgl_registrasi between ? and ? "+
+                   "where nota_inap.tanggal between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or template_laboratorium.Pemeriksaan like ? or "+
-                   "satu_sehat_mapping_lab.sampel_code like ? or permintaan_lab.noorder like ?)"));
+                   "satu_sehat_mapping_lab.sampel_code like ? or permintaan_lab.noorder like ?)")+
+                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_observation_lab.id_observation,'') = ''" : "") +
+                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_observation_lab.id_observation,'') != ''" : ""));
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -953,36 +994,46 @@ public final class SatuSehatKirimObservationLabPK extends javax.swing.JDialog {
     public JTable getTable(){
         return tbObat;
     }
-    
-    private void runBackground(Runnable task) {
-        if (ceksukses) return;
-        if (executor.isShutdown() || executor.isTerminated()) return;
-        if (!isDisplayable()) return;
 
-        ceksukses = true;
-        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-
-        try {
-            executor.submit(() -> {
-                try {
-                    task.run();
-                } finally {
-                    ceksukses = false;
-                    SwingUtilities.invokeLater(() -> {
-                        if (isDisplayable()) {
-                            setCursor(Cursor.getDefaultCursor());
-                        }
-                    });
-                }
-            });
-        } catch (RejectedExecutionException ex) {
-            ceksukses = false;
+    /** Ambil id_servicerequest dari satu_sehat_servicerequest_lab.
+     *  Untuk dipasang di basedOn[] di JSON Observation. */
+    private String getServiceRequestId(String noorder, String idTemplate, String kdJns) {
+        if (noorder == null || noorder.isEmpty()) return "";
+        try (java.sql.PreparedStatement ps2 = koneksi.prepareStatement(
+                "SELECT id_servicerequest FROM satu_sehat_servicerequest_lab "+
+                "WHERE noorder=? AND id_template=? AND kd_jenis_prw=? AND ifnull(id_servicerequest,'')!=''")) {
+            ps2.setString(1, noorder);
+            ps2.setString(2, idTemplate);
+            ps2.setString(3, kdJns);
+            try (java.sql.ResultSet rs2 = ps2.executeQuery()) {
+                if (rs2.next()) return rs2.getString(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Notif getServiceRequestId: " + e);
         }
+        return "";
     }
-    
-    @Override
-    public void dispose() {
-        executor.shutdownNow();
-        super.dispose();
+
+    /** Escape JSON string value: " \ \b \f \n \r \t + non-printable.
+     *  Fix Rule 20006 Invalid JSON kalau data DB ada TAB/newline. */
+    private static String jsonEscape(String s) {
+        if (s == null) return "";
+        StringBuilder sb = new StringBuilder(s.length() + 8);
+        for (int idx = 0; idx < s.length(); idx++) {
+            char c = s.charAt(idx);
+            switch (c) {
+                case '"':  sb.append("\\\""); break;
+                case '\\': sb.append("\\\\"); break;
+                case '\b': sb.append("\\b"); break;
+                case '\f': sb.append("\\f"); break;
+                case '\n': sb.append("\\n"); break;
+                case '\r': sb.append("\\r"); break;
+                case '\t': sb.append("\\t"); break;
+                default:
+                    if (c < 0x20) sb.append(String.format("\\u%04x", (int) c));
+                    else sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 }
