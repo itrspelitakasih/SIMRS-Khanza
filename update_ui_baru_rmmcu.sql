@@ -76,7 +76,7 @@ CREATE TEMPORARY TABLE `tmp_penilaian_mcu_columns` (
 INSERT INTO `tmp_penilaian_mcu_columns` (`column_name`) VALUES
 ('note1'),('nama_pasien'),('surname'),('mcu_group'),('dass_21'),('phy_exam'),('conc_lab'),('conc_radiologi'),
 ('conc_ecg'),('conc_spirometry'),('conc_audiometry'),('kesimpulan1'),('no_rkm_medis'),('tmp_lahir'),('tgl_lahir'),('jk'),
-('no_tlp'),('suku_bangsa'),('stts_nikah'),('doe'),('yoe'),('job_title'),('activities'),('hobby'),('other_job'),('posisi_kerja'),
+('no_tlp'),('suku_bangsa'),('stts_nikah'),('doe'),('yoe'),('job_title'),('activities'),('hobby'),('other_job'),('posisi_kerja'),('departemen'),('supervisor'),('manager'),
 ('job_involves_driving_or_operating_mobile_equipment'),('job_involves_working_at_heights'),('job_involves_clerical_office_based_or_administrative'),
 ('job_involves_requires_colour_vision'),('job_involves_potential_dust_exposure'),('job_involves_catering_staff_including_food_handlers'),
 ('job_involves_exposing_to_other_potential_dangerous'),('med_hist_head_injury_or_contussion'),('med_hist_fainting_blackouts_epilepsy'),
@@ -114,7 +114,7 @@ INSERT INTO `tmp_penilaian_mcu_columns` (`column_name`) VALUES
 ('vertebra_kyphosis'),('vertebra_lordosis'),('vertebra_forward_flexion_0_80'),('vertebra_hyperextensi_0_25'),
 ('vertebra_lateral_flexion_0_20'),('vertebra_heel_walking'),('vertebra_toe_walking'),('vertebra_squats_x3'),('exam_ent_comments'),
 ('exam_cardio_vascular_system_comments'),('exam_respiratory_system_comments'),('exam_abdomen_comments'),('exam_genito_urinary_system_comments'),
-('exam_central_peripheral_nervous_system_comments'),('exam_skin_comments'),('exam_lymph_nodes_comments'),('exam_dental_comments'),
+('exam_central_peripheral_nervous_system_comments'),('exam_skin_comments'),('exam_lymph_nodes_comments'),('exam_dental_comments'),('exam_dental_muskulo'),
 ('conclusion_requires_spectacles'),('conclusion_colour_blindness'),('conclusion_respiratory_problem'),('conclusion_impaired_hearing'),
 ('conclusion_vertigo'),('blood_group'),('medically_fit'),('fit_with_restrictions'),('specify'),('unfit_comment_1'),
 ('trombosit'),('rhesuss'),('triglyceride'),('hdl_cholesterol'),('ldl_cholesterol'),('uric_acid'),('urine_colour'),('urine_turbidity'),
@@ -138,7 +138,7 @@ SET `column_definition` = CASE
     WHEN `column_name` = 'tgl_lahir' THEN 'DATE NULL'
     WHEN `column_name` = 'jk' THEN 'VARCHAR(20) NULL'
     WHEN `column_name` IN ('nama_pasien','surname') THEN 'VARCHAR(100) NULL'
-    WHEN `column_name` IN ('tmp_lahir','suku_bangsa','stts_nikah') THEN 'VARCHAR(50) NULL'
+    WHEN `column_name` IN ('tmp_lahir','suku_bangsa','stts_nikah','departemen','supervisor','manager') THEN 'VARCHAR(50) NULL'
     WHEN `column_name` = 'no_tlp' THEN 'VARCHAR(40) NULL'
     WHEN `column_name` IN ('doe','yoe') THEN 'VARCHAR(20) NULL'
     WHEN `column_name` IN ('td','nadi','rr','tb','bb','bmi') THEN 'VARCHAR(20) NULL'
@@ -152,7 +152,10 @@ SET `column_definition` = CASE
         'urine_colour','urine_turbidity','urine_chemical_reaction','urine_ketones','urine_glucose',
         'urine_nitrites','urine_wbc','urine_rbc','urine_bacteria','urine_crystal','urine_epithel',
         'hbsag','anti_hbs','cea','afp','drug_amphetamine','drug_methamphetamine',
-        'drug_morphine','drug_benzodiazepine','drug_cocain','drug_marijuana'
+        'drug_morphine','drug_benzodiazepine','drug_cocain','drug_marijuana',
+        'eye_glasses_distant_r','eye_glasses_distant_l','eye_unaided_near_r','eye_unaided_near_l',
+        'eye_glasses_near_r','eye_glasses_near_l','eye_night_vision_1','eye_night_vision_2',
+        'eye_brake_test_1','eye_brake_test_2'
     ) THEN 'VARCHAR(50) NULL'
     WHEN `column_name` LIKE 'spirometri_%' THEN 'VARCHAR(20) NULL'
     WHEN `column_name` LIKE 'audiometri_left_ear_%'
@@ -183,11 +186,7 @@ SET `column_definition` = CASE
         THEN 'ENUM(''Pre employment'',''Preplacement'',''Periodic'') NULL'
     WHEN `column_name` = 'conc_ecg'
         THEN 'ENUM(''Normal'',''Abnormal'') NULL'
-    WHEN `column_name` IN (
-        'eye_glasses_distant_r','eye_glasses_distant_l','eye_unaided_near_r','eye_unaided_near_l',
-        'eye_glasses_near_r','eye_glasses_near_l','eye_night_vision_1','eye_night_vision_2',
-        'eye_brake_test_1','eye_brake_test_2'
-    ) THEN 'ENUM(''No'',''Yes'') NULL'
+
     WHEN `column_name` = 'eye_color_blindless'
         THEN 'ENUM(''Color Blind'',''Normal'',''Partial Color Blind'') NULL'
     WHEN `column_name` = 'fundi'
