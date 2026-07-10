@@ -797,76 +797,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<textFieldExpression><![CDATA[$F{no_tlp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="230" y="270" width="80" height="25" uuid="a0b77abd-e489-4c19-8ed8-dee0ea195394"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Departemen]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="310" y="270" width="20" height="25" uuid="07a3d086-316b-41b0-be82-22e0511cdfd1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="330" y="270" width="200" height="25" uuid="2687c3da-e511-4041-aeb8-aaaae689372e"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{departemen} == null ? "" : $F{departemen}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="230" y="295" width="80" height="25" uuid="a0b77abd-e489-4c19-8ed8-dee0ea195395"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Supervisor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="310" y="295" width="20" height="25" uuid="07a3d086-316b-41b0-be82-22e0511cdfd2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="330" y="295" width="200" height="25" uuid="2687c3da-e511-4041-aeb8-aaaae689372f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{supervisor} == null ? "" : $F{supervisor}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="230" y="320" width="80" height="25" uuid="a0b77abd-e489-4c19-8ed8-dee0ea195396"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Manager]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="310" y="320" width="20" height="25" uuid="07a3d086-316b-41b0-be82-22e0511cdfd3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="330" y="320" width="200" height="25" uuid="2687c3da-e511-4041-aeb8-aaaae6893720"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Cambria" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{manager} == null ? "" : $F{manager}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="31" y="360" width="177" height="27" uuid="1ee5bb88-0166-4b1d-bd8e-7e949098b31a"/>
+				<reportElement x="31" y="340" width="177" height="27" uuid="1ee5bb88-0166-4b1d-bd8e-7e949098b31a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -874,7 +805,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[PARAMETER MCU :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="390" width="160" height="25" uuid="be1c6050-0a8f-48c3-9235-83843e5eddad"/>
+				<reportElement x="70" y="370" width="160" height="25" uuid="be1c6050-0a8f-48c3-9235-83843e5eddad"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -882,7 +813,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Pendaftaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="415" width="160" height="25" uuid="f45341b5-30d2-4519-8060-2c8cea874fa4"/>
+				<reportElement x="70" y="395" width="160" height="25" uuid="f45341b5-30d2-4519-8060-2c8cea874fa4"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -890,7 +821,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Laboratorium]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="440" width="160" height="25" uuid="eb343a67-fe18-40de-ac0a-8b38cb1a8af8"/>
+				<reportElement x="70" y="420" width="160" height="25" uuid="eb343a67-fe18-40de-ac0a-8b38cb1a8af8"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -898,7 +829,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Rontgen]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="465" width="160" height="25" uuid="b1397917-1995-4dad-8c67-0fb7ab45703f"/>
+				<reportElement x="70" y="445" width="160" height="25" uuid="b1397917-1995-4dad-8c67-0fb7ab45703f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -906,7 +837,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Audiometri]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="490" width="160" height="25" uuid="cd1f3e36-0305-465a-ba82-08e25722b76e"/>
+				<reportElement x="70" y="470" width="160" height="25" uuid="cd1f3e36-0305-465a-ba82-08e25722b76e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -914,7 +845,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Spirometri]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="515" width="160" height="25" uuid="c6c024da-3634-442a-aab4-fb498aedd527"/>
+				<reportElement x="70" y="495" width="160" height="25" uuid="c6c024da-3634-442a-aab4-fb498aedd527"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -922,7 +853,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Visus & Lapang Pandang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="540" width="160" height="25" uuid="7b492b88-0ce6-4c64-b897-2502d0bc9d57"/>
+				<reportElement x="70" y="520" width="160" height="25" uuid="7b492b88-0ce6-4c64-b897-2502d0bc9d57"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -930,7 +861,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[EKG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="70" y="565" width="160" height="25" uuid="e5e9c950-0e2b-402a-8d83-d6946a1cef30"/>
+				<reportElement x="70" y="545" width="160" height="25" uuid="e5e9c950-0e2b-402a-8d83-d6946a1cef30"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -938,31 +869,31 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<text><![CDATA[Pemeriksaan Fisik]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="40" y="394" width="16" height="16" uuid="a73cd9e3-9f2b-4605-8f1c-2c236e374da1"/>
+				<reportElement x="40" y="374" width="16" height="16" uuid="a73cd9e3-9f2b-4605-8f1c-2c236e374da1"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="419" width="16" height="16" uuid="9085c70a-b21c-4e97-a918-897767f189c9"/>
+				<reportElement x="40" y="399" width="16" height="16" uuid="9085c70a-b21c-4e97-a918-897767f189c9"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="444" width="16" height="16" uuid="eb23b94a-8a7a-4a9c-a20e-106b29349e67"/>
+				<reportElement x="40" y="424" width="16" height="16" uuid="eb23b94a-8a7a-4a9c-a20e-106b29349e67"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="469" width="16" height="16" uuid="6ebf383d-4e2f-4a3b-a821-4f852ba22f0e"/>
+				<reportElement x="40" y="449" width="16" height="16" uuid="6ebf383d-4e2f-4a3b-a821-4f852ba22f0e"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="494" width="16" height="16" uuid="92449c46-6e6a-465f-aafd-af81dcd8d288"/>
+				<reportElement x="40" y="474" width="16" height="16" uuid="92449c46-6e6a-465f-aafd-af81dcd8d288"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="519" width="16" height="16" uuid="7e4269f2-6ccb-41ac-8072-500655136868"/>
+				<reportElement x="40" y="499" width="16" height="16" uuid="7e4269f2-6ccb-41ac-8072-500655136868"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="544" width="16" height="16" uuid="09f8d703-c9a2-4aa2-90ff-cf76ea996d64"/>
+				<reportElement x="40" y="524" width="16" height="16" uuid="09f8d703-c9a2-4aa2-90ff-cf76ea996d64"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="40" y="569" width="16" height="16" uuid="1faca2c0-e5e9-4abd-b387-f60be8375db2"/>
+				<reportElement x="40" y="549" width="16" height="16" uuid="1faca2c0-e5e9-4abd-b387-f60be8375db2"/>
 			</rectangle>
 			<textField>
-				<reportElement x="31" y="630" width="504" height="24" uuid="66a418eb-ff70-47e7-ae8f-3814a454f958"/>
+				<reportElement x="30" y="650" width="504" height="24" uuid="66a418eb-ff70-47e7-ae8f-3814a454f958"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 				</textElement>
@@ -1013,6 +944,17 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				</textElement>
 				<textFieldExpression><![CDATA[$P{petugas_penginput} == null ? "" : $P{petugas_penginput}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="70" y="570" width="160" height="25" uuid="fe42f616-8f8a-491f-9074-2f760d981d15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Treadmill]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="40" y="574" width="16" height="16" uuid="89e9c20a-5669-417f-af43-2e70bb11f553"/>
+			</rectangle>
 		</band>
 	</title>
 	<detail>
@@ -1376,7 +1318,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{conc_ecg} == "Abnormal" ? ($F{ekg} == null || $F{ekg} == "" ? "Abnormal" : "Abnormal: " + $F{ekg}) : $F{conc_ecg}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Abnormal Condition".equals($F{conc_ecg}) ? ($F{ekg} == null || $F{ekg}.trim().equals("") ? "Abnormal Condition" : "Abnormal Condition: " + $F{ekg}) : $F{conc_ecg}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="5" y="534" width="270" height="63" uuid="1e84a714-ab74-45e0-8dd8-3716f6abdd00"/>
@@ -1422,7 +1364,38 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dass_21}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dass_21} + (
+    ("Yes".equals($F{med_hist_head_injury_or_contussion}) ? "\n- Head injury or contussion" : "") +
+    ("Yes".equals($F{med_hist_fainting_blackouts_epilepsy}) ? "\n- Fainting, blackouts, epilepsy" : "") +
+    ("Yes".equals($F{med_hist_visual_changes}) ? "\n- Visual changes" : "") +
+    ("Yes".equals($F{med_hist_hearing_loss}) ? "\n- Hearing loss" : "") +
+    ("Yes".equals($F{med_hist_nose_sinus_throat_trouble_more_4_weeks}) ? "\n- Nose, sinus, throat trouble >4 weeks" : "") +
+    ("Yes".equals($F{med_hist_gynaecological_problems}) ? "\n- Gynaecological problems" : "") +
+    ("Yes".equals($F{med_hist_chronic_skin_problem}) ? "\n- Chronic skin problem" : "") +
+    ("Yes".equals($F{med_hist_chronic_diarrhea}) ? "\n- Chronic diarrhea" : "") +
+    ("Yes".equals($F{med_hist_anorexia_more_4_weeks}) ? "\n- Anorexia >4 weeks" : "") +
+    ("Yes".equals($F{med_hist_gastritis}) ? "\n- Gastritis" : "") +
+    ("Yes".equals($F{med_hist_jaundice_hepatitis}) ? "\n- Jaundice / hepatitis" : "") +
+    ("Yes".equals($F{med_hist_chronic_cough_more_4_weeks}) ? "\n- Chronic cough >4 weeks" : "") +
+    ("Yes".equals($F{med_hist_haemorhoid}) ? "\n- Haemorrhoid" : "") +
+    ("Yes".equals($F{med_hist_chronic_abdominal_pain}) ? "\n- Chronic abdominal pain" : "") +
+    ("Yes".equals($F{med_hist_diabetes}) ? "\n- Diabetes" : "") +
+    ("Yes".equals($F{med_hist_asthma}) ? "\n- Asthma" : "") +
+    ("Yes".equals($F{med_hist_allergies}) ? "\n- Allergies" : "") +
+    ("Yes".equals($F{med_hist_tuberculosis_bronchitis}) ? "\n- Tuberculosis / Bronchitis" : "") +
+    ("Yes".equals($F{med_hist_psychiatric_disorder}) ? "\n- Psychiatric disorder" : "") +
+    ("Yes".equals($F{med_hist_sexual_transmitted_diseases}) ? "\n- Sexually transmitted diseases" : "") +
+    ("Yes".equals($F{med_hist_unusual_change_of_weight_more_5kg_per_month}) ? "\n- Unusual weight change >5 kg/month" : "") +
+    ("Yes".equals($F{med_hist_hypertension}) ? "\n- Hypertension" : "") +
+    ("Yes".equals($F{med_hist_chest_pain_heart_disease}) ? "\n- Chest pain / heart disease" : "") +
+    ("Yes".equals($F{med_hist_malaria_tropical_disease}) ? "\n- Malaria / tropical disease" : "") +
+    ("Yes".equals($F{med_hist_surgery_operation}) ? "\n- Surgery / operation" : "") +
+    ("Yes".equals($F{med_hist_back_pain_more_4_weeks}) ? "\n- Back pain >4 weeks" : "") +
+    ("Yes".equals($F{med_hist_thypoid_fever}) ? "\n- Typhoid fever" : "") +
+    ("Yes".equals($F{med_hist_swollen_or_painful_joints}) ? "\n- Swollen/painful joints" : "") +
+    ("Yes".equals($F{med_hist_kidney_problem_urinary_stones}) ? "\n- Kidney problem / Urinary stones" : "") +
+    ("Yes".equals($F{med_hist_other_chronical_diseases}) ? "\n- Other chronical diseases" : "")
+)]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="822">
@@ -1912,7 +1885,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{job_involves_clerical_office_based_or_administrative}) ? "\u2713" : ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Yes".equals($F{job_involves_working_at_heights}) ? "\u2713" : ""]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="287" width="555" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ef9a4fdd-39b5-45ce-b53f-594cc7e0315d"/>
@@ -1933,7 +1906,7 @@ left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab = petugas_lab.nip]
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{job_involves_working_at_heights}) ? "\u2713" : ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Yes".equals($F{job_involves_clerical_office_based_or_administrative}) ? "\u2713" : ""]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="304" width="555" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="0ef09d17-ab99-4e8e-b3a2-b75849ce9fa8"/>
@@ -4084,7 +4057,7 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" Abnormal (specify) "
-+ ($F{conc_ecg} == "Abnormal" && $F{ekg} != null ? $F{ekg} : "")]]></textFieldExpression>
++ ("Abnormal Condition".equals($F{conc_ecg}) && $F{ekg} != null ? $F{ekg} : "")]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="101" y="399" width="25" height="25" uuid="aab9c382-3678-4d20-a5ce-36f8b3de9151"/>
@@ -4097,7 +4070,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA[("Normal".equals($F{conc_ecg}) ? "\u2713" : "")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[("Normal Condition".equals($F{conc_ecg}) ? "\u2713" : "")]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="428" width="555" height="17" uuid="a4df2e49-335f-4986-845e-86b39017ef0e"/>
@@ -6091,32 +6064,32 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="62" y="160" width="31" height="25" uuid="7aa796e1-02a7-4888-a30b-4b3363d8161f"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="51" y="163" width="54" height="16" uuid="7aa796e1-02a7-4888-a30b-4b3363d8161f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Yes".equals($F{eye_unaided_near_l}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="192" y="142" width="31" height="25" uuid="f39071bc-3391-4669-a87b-8b029c524bc8"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="177" y="146" width="62" height="17" uuid="f39071bc-3391-4669-a87b-8b029c524bc8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_l}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_glasses_distant_l}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="160" width="31" height="25" uuid="dd6cb301-1631-4b73-92bf-52c60e7b687b"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="116" y="163" width="54" height="16" uuid="dd6cb301-1631-4b73-92bf-52c60e7b687b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_near_r}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="254" y="142" width="31" height="25" uuid="ae9e6d17-0ea2-41c3-bdb3-0b94bc1b9fa9"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="240" y="146" width="63" height="17" uuid="ae9e6d17-0ea2-41c3-bdb3-0b94bc1b9fa9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_l}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_glasses_distant_r}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="423" y="163" width="36" height="17" uuid="85d9f6af-ae58-4679-94a5-27de96148cf9"/>
@@ -6171,32 +6144,32 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[" Normal"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="319" y="159" width="31" height="25" uuid="756e484d-d5f1-43d9-9875-f6570a6c5a4f"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="307" y="163" width="54" height="16" uuid="756e484d-d5f1-43d9-9875-f6570a6c5a4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Yes".equals($F{eye_night_vision_1}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="378" y="160" width="31" height="25" uuid="2e4366b2-41c6-4c30-bb79-60c8b39eb300"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="DejaVu Sans" size="16"/>
+				<reportElement x="366" y="163" width="54" height="16" uuid="2e4366b2-41c6-4c30-bb79-60c8b39eb300"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Yes".equals($F{eye_night_vision_2}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="426" y="142" width="31" height="25" uuid="9101c5f3-aadd-4386-bccf-8183cf6785cf"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{eye_color_blindless} == "Normal" ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Normal".equals($F{eye_color_blindless}) ? "  \u2713" : "-"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="426" y="159" width="31" height="25" uuid="f99139a3-aa56-4f9b-a2de-b19af350382f"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="16"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{eye_color_blindless} == "Partial Color Blind" ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Partial Color Blind".equals($F{eye_color_blindless}) ? "  \u2713" : "-"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="129" width="45" height="17" backcolor="#FFFFFF" uuid="f24e08cd-0ec1-4df5-848c-db4424dfd731"/>
@@ -7535,7 +7508,7 @@ I am willing that if required, work related medical information may be released 
 		</band>
 		<band height="802">
 			<staticText>
-				<reportElement x="143" y="565" width="415" height="53" uuid="312b7061-0778-446d-b5c2-bd6ce60062c1"/>
+				<reportElement x="143" y="507" width="415" height="53" uuid="312b7061-0778-446d-b5c2-bd6ce60062c1"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7549,7 +7522,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="177" y="513" width="381" height="25" uuid="2af91314-b0a5-4b75-a1b0-620ebc44c86a"/>
+				<reportElement x="177" y="455" width="381" height="25" uuid="2af91314-b0a5-4b75-a1b0-620ebc44c86a"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="171" y="31" width="215" height="46" uuid="322ea26c-6cda-4237-aedf-32da122be4be"/>
@@ -7616,7 +7589,7 @@ I am willing that if required, work related medical information may be released 
 				<reportElement mode="Transparent" x="355" y="136" width="200" height="38" forecolor="#000000" backcolor="#DEDEDE" uuid="212dbf67-912c-4a43-8ad1-42916536b18e"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="3" y="698" width="133" height="30" uuid="f9a59b9a-9637-4cac-9481-7496d8e4eb61"/>
+				<reportElement x="3" y="695" width="133" height="30" uuid="f9a59b9a-9637-4cac-9481-7496d8e4eb61"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7630,7 +7603,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[Examining Doctor]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="136" y="698" width="183" height="30" uuid="ab870d64-a472-4e51-94ab-e8a5a5b36d46"/>
+				<reportElement x="136" y="695" width="183" height="30" uuid="ab870d64-a472-4e51-94ab-e8a5a5b36d46"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7643,7 +7616,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="394" y="729" width="164" height="30" uuid="e6994f7c-7b5f-47f2-8fc2-42f81009d61a"/>
+				<reportElement x="394" y="726" width="164" height="30" uuid="e6994f7c-7b5f-47f2-8fc2-42f81009d61a"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7677,26 +7650,14 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{job_title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="379" y="90" width="176" height="17" backcolor="#DDDDDD" uuid="7d068512-0ef8-44d5-bbf5-f6f08f818227"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1" y="90" width="176" height="17" backcolor="#DDDDDD" uuid="1258c586-9953-4f30-a658-cf4ae136ee8f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-			</textField>
-			<textField>
-				<reportElement x="3" y="328" width="555" height="17" uuid="32096ef9-f4b3-4acb-8586-5885b8cd3d40"/>
+				<reportElement x="3" y="270" width="555" height="17" uuid="32096ef9-f4b3-4acb-8586-5885b8cd3d40"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Summary"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="4" y="358" width="95" height="30" backcolor="#DDDDDD" uuid="9526d008-8f62-4058-85b8-9282131508b4"/>
+				<reportElement mode="Opaque" x="4" y="300" width="95" height="30" backcolor="#DDDDDD" uuid="9526d008-8f62-4058-85b8-9282131508b4"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7709,7 +7670,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Requires Spectacles"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="99" y="358" width="95" height="30" backcolor="#DDDDDD" uuid="ef44573d-06c5-4b81-b5be-f427a0dfc38b"/>
+				<reportElement mode="Opaque" x="99" y="300" width="95" height="30" backcolor="#DDDDDD" uuid="ef44573d-06c5-4b81-b5be-f427a0dfc38b"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7722,7 +7683,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Colour Blindness"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="194" y="358" width="88" height="30" backcolor="#DDDDDD" uuid="13957131-2572-4eb7-af6e-84a4500abf5b"/>
+				<reportElement mode="Opaque" x="194" y="300" width="88" height="30" backcolor="#DDDDDD" uuid="13957131-2572-4eb7-af6e-84a4500abf5b"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7735,7 +7696,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Respiratory Problem"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="282" y="358" width="86" height="30" backcolor="#DDDDDD" uuid="88de9283-43f9-45e1-8102-f8ddf97680ff"/>
+				<reportElement mode="Opaque" x="282" y="300" width="86" height="30" backcolor="#DDDDDD" uuid="88de9283-43f9-45e1-8102-f8ddf97680ff"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7748,7 +7709,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Impaired"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="368" y="358" width="95" height="30" backcolor="#DDDDDD" uuid="6b0933e1-8166-4231-8884-b396ea5c0375"/>
+				<reportElement mode="Opaque" x="368" y="300" width="95" height="30" backcolor="#DDDDDD" uuid="6b0933e1-8166-4231-8884-b396ea5c0375"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7761,7 +7722,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Vertigo"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="463" y="358" width="95" height="30" backcolor="#DDDDDD" uuid="df7512f6-8452-4991-b1e1-708c51c2c1cd"/>
+				<reportElement mode="Opaque" x="463" y="300" width="95" height="30" backcolor="#DDDDDD" uuid="df7512f6-8452-4991-b1e1-708c51c2c1cd"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7774,7 +7735,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Blood Group"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4" y="388" width="95" height="30" uuid="80809afd-804d-4f7d-b05b-c1c598a1c58d"/>
+				<reportElement x="4" y="330" width="95" height="30" uuid="80809afd-804d-4f7d-b05b-c1c598a1c58d"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7787,7 +7748,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{conclusion_requires_spectacles}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="99" y="388" width="95" height="30" uuid="ce2d9b87-0372-47ed-8e0b-731d5ec93b9e"/>
+				<reportElement x="99" y="330" width="95" height="30" uuid="ce2d9b87-0372-47ed-8e0b-731d5ec93b9e"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7800,7 +7761,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{conclusion_colour_blindness}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="194" y="388" width="88" height="30" uuid="4e166b30-77f4-4024-a70d-59eace23b7d9"/>
+				<reportElement x="194" y="330" width="88" height="30" uuid="4e166b30-77f4-4024-a70d-59eace23b7d9"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7813,7 +7774,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{conclusion_respiratory_problem}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="388" width="86" height="30" uuid="fc76ea72-8a25-4deb-b0ab-46442ed10d8f"/>
+				<reportElement x="282" y="330" width="86" height="30" uuid="fc76ea72-8a25-4deb-b0ab-46442ed10d8f"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7826,7 +7787,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{conclusion_impaired_hearing}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="368" y="388" width="95" height="30" uuid="9d8c2694-9fa9-45b4-a4a6-c68f58492185"/>
+				<reportElement x="368" y="330" width="95" height="30" uuid="9d8c2694-9fa9-45b4-a4a6-c68f58492185"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7839,7 +7800,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{conclusion_vertigo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="463" y="388" width="95" height="30" uuid="7b109a7e-ca45-4825-9ea6-3431bdfca33e"/>
+				<reportElement x="463" y="330" width="95" height="30" uuid="7b109a7e-ca45-4825-9ea6-3431bdfca33e"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7852,7 +7813,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[$F{blood_group}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3" y="428" width="140" height="50" backcolor="#DDDDDD" uuid="209b90f9-e660-4b9a-b12a-72fd467a8465"/>
+				<reportElement mode="Opaque" x="3" y="370" width="140" height="50" backcolor="#DDDDDD" uuid="209b90f9-e660-4b9a-b12a-72fd467a8465"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7865,7 +7826,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["FIT"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3" y="488" width="140" height="50" backcolor="#DDDDDD" uuid="97bc620d-ac71-409e-962b-ad14396dc457"/>
+				<reportElement mode="Opaque" x="3" y="430" width="140" height="50" backcolor="#DDDDDD" uuid="97bc620d-ac71-409e-962b-ad14396dc457"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7878,7 +7839,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["FIT with Restrictions"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3" y="548" width="140" height="70" backcolor="#DDDDDD" uuid="fa4854a8-467f-4b93-a49d-fccc727e9c91"/>
+				<reportElement mode="Opaque" x="3" y="490" width="140" height="70" backcolor="#DDDDDD" uuid="fa4854a8-467f-4b93-a49d-fccc727e9c91"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7891,7 +7852,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Unfit"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="428" width="381" height="25" uuid="3aa5c4c2-8753-4cff-8cd0-706779350cd0"/>
+				<reportElement x="177" y="370" width="381" height="25" uuid="3aa5c4c2-8753-4cff-8cd0-706779350cd0"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7904,7 +7865,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[" Medically Fit for Specified Occupation"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="453" width="381" height="25" uuid="c4417aaa-2256-4863-9733-f5f6ed8a6f4c"/>
+				<reportElement x="177" y="395" width="381" height="25" uuid="c4417aaa-2256-4863-9733-f5f6ed8a6f4c"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7917,7 +7878,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[" Presently has minor medical problem - fit for specified Occupation after treatment"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="488" width="381" height="25" uuid="5b73eba5-b2ae-4193-9a1d-e3e774cbc29f"/>
+				<reportElement x="177" y="430" width="381" height="25" uuid="5b73eba5-b2ae-4193-9a1d-e3e774cbc29f"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7930,7 +7891,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[" Medically fit but has following restrictions"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="548" width="34" height="17" uuid="1218da77-b652-4bc8-ae10-2b61c30dcf1a"/>
+				<reportElement x="143" y="490" width="34" height="17" uuid="1218da77-b652-4bc8-ae10-2b61c30dcf1a"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7943,7 +7904,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="548" width="381" height="17" uuid="0221784d-f0ec-4c12-a935-7821c75968e8"/>
+				<reportElement x="177" y="490" width="381" height="17" uuid="0221784d-f0ec-4c12-a935-7821c75968e8"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7956,7 +7917,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[" Comment / Recommendation"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="428" width="34" height="25" uuid="81d5f94f-7700-41ec-aac6-fc44b614b807"/>
+				<reportElement x="143" y="370" width="34" height="25" uuid="81d5f94f-7700-41ec-aac6-fc44b614b807"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7969,7 +7930,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="453" width="34" height="25" uuid="25b9a646-402b-41a3-b159-739340cddf15"/>
+				<reportElement x="143" y="395" width="34" height="25" uuid="25b9a646-402b-41a3-b159-739340cddf15"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7982,7 +7943,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="513" width="34" height="25" uuid="cf1e0e8f-16f7-45e8-adcf-e7e988a13510"/>
+				<reportElement x="143" y="455" width="34" height="25" uuid="cf1e0e8f-16f7-45e8-adcf-e7e988a13510"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7995,7 +7956,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="143" y="488" width="34" height="25" uuid="7164cdf5-c5b7-4983-af0a-9f84b5a40065"/>
+				<reportElement x="143" y="430" width="34" height="25" uuid="7164cdf5-c5b7-4983-af0a-9f84b5a40065"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8008,7 +7969,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="145" y="428" width="30" height="24" uuid="3f9dbd84-f265-4d92-acce-b8609d723058"/>
+				<reportElement mode="Transparent" x="145" y="370" width="30" height="24" uuid="3f9dbd84-f265-4d92-acce-b8609d723058"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8021,7 +7982,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Medically Fit".equals($F{medically_fit}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="145" y="453" width="30" height="24" uuid="fcbedaa9-3d0e-44fb-98d0-fbb665985cab"/>
+				<reportElement mode="Transparent" x="145" y="395" width="30" height="24" uuid="fcbedaa9-3d0e-44fb-98d0-fbb665985cab"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8034,7 +7995,7 @@ I am willing that if required, work related medical information may be released 
 				<textFieldExpression><![CDATA["Presently has minor medical problem".equals($F{medically_fit}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="145" y="488" width="30" height="24" uuid="650ef037-07dd-4a2f-8f2e-7c36001e6bd2"/>
+				<reportElement mode="Transparent" x="145" y="430" width="30" height="24" uuid="650ef037-07dd-4a2f-8f2e-7c36001e6bd2"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8048,7 +8009,7 @@ I am willing that if required, work related medical information may be released 
 ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="178" y="513" width="126" height="24" uuid="4eb044e9-31c3-4716-83a5-9c2b424f6f82"/>
+				<reportElement x="178" y="455" width="126" height="24" uuid="4eb044e9-31c3-4716-83a5-9c2b424f6f82"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8062,7 +8023,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[Work duties will be restricted]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="271" y="513" width="287" height="25" uuid="6b86a423-df3a-4cff-a4b9-4fd75bdb1f16"/>
+				<reportElement x="271" y="455" width="287" height="25" uuid="6b86a423-df3a-4cff-a4b9-4fd75bdb1f16"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8076,7 +8037,7 @@ I am willing that if required, work related medical information may be released 
 ? (($F{specify} == null || $F{specify}.trim().equals("")) ? " - " : " "+$F{specify}) : " - "]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="145" y="514" width="30" height="24" uuid="93abef2a-92c3-4198-bb34-e38fb2316870"/>
+				<reportElement mode="Transparent" x="145" y="456" width="30" height="24" uuid="93abef2a-92c3-4198-bb34-e38fb2316870"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8090,7 +8051,7 @@ I am willing that if required, work related medical information may be released 
 ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="729" width="133" height="30" uuid="8ffb2faf-8c56-4609-a526-f5aec04c37e3"/>
+				<reportElement x="3" y="726" width="133" height="30" uuid="8ffb2faf-8c56-4609-a526-f5aec04c37e3"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8104,7 +8065,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[Signature]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="729" width="26" height="30" uuid="5888d4b7-9253-490e-abe9-c4abf53906f6"/>
+				<reportElement x="110" y="726" width="26" height="30" uuid="5888d4b7-9253-490e-abe9-c4abf53906f6"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8118,7 +8079,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="698" width="26" height="30" uuid="144ff956-448a-4495-a13a-639c60001b46"/>
+				<reportElement x="110" y="695" width="26" height="30" uuid="144ff956-448a-4495-a13a-639c60001b46"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8132,7 +8093,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="319" y="698" width="75" height="30" uuid="43f92b0c-be9a-48d9-832e-2e1bc65a5469"/>
+				<reportElement x="319" y="695" width="75" height="30" uuid="43f92b0c-be9a-48d9-832e-2e1bc65a5469"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8146,7 +8107,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[ Location]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="319" y="729" width="75" height="30" uuid="56d17e7a-d6f0-4cb4-96fe-3781ccaabf42"/>
+				<reportElement x="319" y="726" width="75" height="30" uuid="56d17e7a-d6f0-4cb4-96fe-3781ccaabf42"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8160,7 +8121,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[ Date]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="369" y="729" width="26" height="30" uuid="47656de8-a1a6-4317-b430-e8f0dc167d51"/>
+				<reportElement x="369" y="726" width="26" height="30" uuid="47656de8-a1a6-4317-b430-e8f0dc167d51"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8174,7 +8135,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="369" y="698" width="26" height="30" uuid="f2e8765d-e893-45ad-a915-568b33c22c64"/>
+				<reportElement x="369" y="695" width="26" height="30" uuid="f2e8765d-e893-45ad-a915-568b33c22c64"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8188,7 +8149,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="136" y="729" width="182" height="30" uuid="a6d3f287-87f0-4b4f-91ca-9b6a860aed29"/>
+				<reportElement x="136" y="726" width="182" height="30" uuid="a6d3f287-87f0-4b4f-91ca-9b6a860aed29"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8202,7 +8163,7 @@ I am willing that if required, work related medical information may be released 
 				<text><![CDATA[]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="394" y="698" width="164" height="30" uuid="b0e1747d-e75e-4f90-85ee-7d7bf6ce050c"/>
+				<reportElement x="394" y="695" width="164" height="30" uuid="b0e1747d-e75e-4f90-85ee-7d7bf6ce050c"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -8277,6 +8238,12 @@ I am willing that if required, work related medical information may be released 
 				</textElement>
 				<textFieldExpression><![CDATA[$F{manager}]]></textFieldExpression>
 			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="379" y="90" width="175" height="17" forecolor="#DDDDDD" backcolor="#DDDDDD" uuid="97609ef9-bba4-43f7-9ac1-9037a52f1954"/>
+			</rectangle>
+			<rectangle>
+				<reportElement mode="Opaque" x="1" y="90" width="175" height="17" forecolor="#DDDDDD" backcolor="#DDDDDD" uuid="fe3d5233-0800-432d-b9a7-2f5345ef69fa"/>
+			</rectangle>
 		</band>
 	</detail>
 	<summary>

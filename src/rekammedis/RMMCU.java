@@ -1897,6 +1897,7 @@ public final class RMMCU extends javax.swing.JDialog {
         manager = new widget.TextBox();
         departemen = new widget.TextBox();
         supervisor = new widget.TextBox();
+        jSeparator8 = new javax.swing.JSeparator();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -2174,7 +2175,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel53.setBounds(440, 650, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026 09:46:27" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026 10:16:33" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2237,7 +2238,7 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane11.setBounds(50, 1400, 370, 70);
 
         jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel102.setText("O. KESIMPULAN");
+        jLabel102.setText("P. KESIMPULAN");
         jLabel102.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel102.setName("jLabel102"); // NOI18N
         FormInput.add(jLabel102);
@@ -3139,7 +3140,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jSeparator2.setBounds(0, 2010, 880, 1);
 
         jLabel80.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel80.setText("K. IMUNISASI");
+        jLabel80.setText("L. IMUNISASI");
         jLabel80.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel80.setName("jLabel80"); // NOI18N
         FormInput.add(jLabel80);
@@ -3395,7 +3396,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel133.setBounds(550, 2210, 80, 23);
 
         jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel134.setText("J. PEMERIKSAAN MATA");
+        jLabel134.setText("K. PEMERIKSAAN MATA");
         jLabel134.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel134.setName("jLabel134"); // NOI18N
         FormInput.add(jLabel134);
@@ -3499,7 +3500,7 @@ public final class RMMCU extends javax.swing.JDialog {
         imunisasi_hep_a.setBounds(110, 2300, 60, 23);
 
         jLabel144.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel144.setText("L. VERTEBRA");
+        jLabel144.setText("M. VERTEBRA");
         jLabel144.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel144.setName("jLabel144"); // NOI18N
         FormInput.add(jLabel144);
@@ -3603,31 +3604,31 @@ public final class RMMCU extends javax.swing.JDialog {
         jSeparator29.setBounds(0, 2340, 880, 1);
 
         jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel154.setText("N. SCORE DASS 21");
+        jLabel154.setText("O. SCORE DASS 21");
         jLabel154.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel154.setName("jLabel154"); // NOI18N
         FormInput.add(jLabel154);
-        jLabel154.setBounds(530, 2430, 180, 23);
+        jLabel154.setBounds(10, 2650, 180, 23);
 
         exam_ent_comments.setFocusTraversalPolicyProvider(true);
         exam_ent_comments.setName("exam_ent_comments"); // NOI18N
         FormInput.add(exam_ent_comments);
-        exam_ent_comments.setBounds(210, 2460, 300, 23);
+        exam_ent_comments.setBounds(210, 2460, 220, 23);
 
         exam_cardio_vascular_system_comments.setFocusTraversalPolicyProvider(true);
         exam_cardio_vascular_system_comments.setName("exam_cardio_vascular_system_comments"); // NOI18N
         FormInput.add(exam_cardio_vascular_system_comments);
-        exam_cardio_vascular_system_comments.setBounds(210, 2490, 300, 23);
+        exam_cardio_vascular_system_comments.setBounds(210, 2490, 220, 23);
 
         jLabel161.setText("Stress =");
         jLabel161.setName("jLabel161"); // NOI18N
         FormInput.add(jLabel161);
-        jLabel161.setBounds(750, 2490, 50, 23);
+        jLabel161.setBounds(310, 2710, 50, 23);
 
         exam_respiratory_system_comments.setFocusTraversalPolicyProvider(true);
         exam_respiratory_system_comments.setName("exam_respiratory_system_comments"); // NOI18N
         FormInput.add(exam_respiratory_system_comments);
-        exam_respiratory_system_comments.setBounds(210, 2520, 300, 23);
+        exam_respiratory_system_comments.setBounds(210, 2520, 220, 23);
 
         jLabel162.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel162.setText("3. Respiratory System :");
@@ -3638,7 +3639,7 @@ public final class RMMCU extends javax.swing.JDialog {
         exam_abdomen_comments.setFocusTraversalPolicyProvider(true);
         exam_abdomen_comments.setName("exam_abdomen_comments"); // NOI18N
         FormInput.add(exam_abdomen_comments);
-        exam_abdomen_comments.setBounds(210, 2550, 300, 23);
+        exam_abdomen_comments.setBounds(210, 2550, 220, 23);
 
         jLabel163.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel163.setText("4. Abdomen :");
@@ -3649,7 +3650,7 @@ public final class RMMCU extends javax.swing.JDialog {
         exam_genito_urinary_system_comments.setFocusTraversalPolicyProvider(true);
         exam_genito_urinary_system_comments.setName("exam_genito_urinary_system_comments"); // NOI18N
         FormInput.add(exam_genito_urinary_system_comments);
-        exam_genito_urinary_system_comments.setBounds(210, 2580, 300, 23);
+        exam_genito_urinary_system_comments.setBounds(210, 2580, 220, 23);
 
         jLabel164.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel164.setText("5. Genito Urinary System :");
@@ -3660,41 +3661,41 @@ public final class RMMCU extends javax.swing.JDialog {
         exam_central_peripheral_nervous_system_comments.setFocusTraversalPolicyProvider(true);
         exam_central_peripheral_nervous_system_comments.setName("exam_central_peripheral_nervous_system_comments"); // NOI18N
         FormInput.add(exam_central_peripheral_nervous_system_comments);
-        exam_central_peripheral_nervous_system_comments.setBounds(210, 2610, 300, 23);
+        exam_central_peripheral_nervous_system_comments.setBounds(650, 2460, 220, 23);
 
         jLabel165.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel165.setText("6. Central & peripheral Nervous sys :");
         jLabel165.setName("jLabel165"); // NOI18N
         FormInput.add(jLabel165);
-        jLabel165.setBounds(20, 2610, 190, 23);
+        jLabel165.setBounds(460, 2460, 190, 23);
 
         exam_skin_comments.setFocusTraversalPolicyProvider(true);
         exam_skin_comments.setName("exam_skin_comments"); // NOI18N
         FormInput.add(exam_skin_comments);
-        exam_skin_comments.setBounds(210, 2640, 300, 23);
+        exam_skin_comments.setBounds(650, 2490, 220, 23);
 
         jLabel166.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel166.setText("7. Skin :");
         jLabel166.setName("jLabel166"); // NOI18N
         FormInput.add(jLabel166);
-        jLabel166.setBounds(20, 2640, 190, 23);
+        jLabel166.setBounds(460, 2490, 190, 23);
 
         exam_lymph_nodes_comments.setFocusTraversalPolicyProvider(true);
         exam_lymph_nodes_comments.setName("exam_lymph_nodes_comments"); // NOI18N
         FormInput.add(exam_lymph_nodes_comments);
-        exam_lymph_nodes_comments.setBounds(210, 2670, 300, 23);
+        exam_lymph_nodes_comments.setBounds(650, 2520, 220, 23);
 
         jLabel167.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel167.setText("8. Lymph Nodes :");
         jLabel167.setName("jLabel167"); // NOI18N
         FormInput.add(jLabel167);
-        jLabel167.setBounds(20, 2670, 190, 23);
+        jLabel167.setBounds(460, 2520, 190, 23);
 
         jLabel168.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel168.setText("10. Muskuloskeletas sys :");
         jLabel168.setName("jLabel168"); // NOI18N
         FormInput.add(jLabel168);
-        jLabel168.setBounds(20, 2730, 190, 23);
+        jLabel168.setBounds(460, 2580, 190, 23);
 
         jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel110.setText("A. INFORMASI UMUM");
@@ -3845,7 +3846,7 @@ public final class RMMCU extends javax.swing.JDialog {
         exam_dental_muskulo.setFocusTraversalPolicyProvider(true);
         exam_dental_muskulo.setName("exam_dental_muskulo"); // NOI18N
         FormInput.add(exam_dental_muskulo);
-        exam_dental_muskulo.setBounds(210, 2730, 300, 23);
+        exam_dental_muskulo.setBounds(650, 2580, 220, 23);
 
         audiometri_left_ear_1001.setFocusTraversalPolicyProvider(true);
         audiometri_left_ear_1001.setName("audiometri_left_ear_1001"); // NOI18N
@@ -4951,15 +4952,15 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel170.setText("9. Dental :");
         jLabel170.setName("jLabel170"); // NOI18N
         FormInput.add(jLabel170);
-        jLabel170.setBounds(20, 2700, 190, 23);
+        jLabel170.setBounds(460, 2550, 190, 23);
 
         exam_dental_comments.setFocusTraversalPolicyProvider(true);
         exam_dental_comments.setName("exam_dental_comments"); // NOI18N
         FormInput.add(exam_dental_comments);
-        exam_dental_comments.setBounds(210, 2700, 300, 23);
+        exam_dental_comments.setBounds(650, 2550, 220, 23);
 
         jLabel171.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel171.setText("M. HASIL PEMERIKSAAN");
+        jLabel171.setText("N. HASIL PEMERIKSAAN");
         jLabel171.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel171.setName("jLabel171"); // NOI18N
         FormInput.add(jLabel171);
@@ -4968,17 +4969,17 @@ public final class RMMCU extends javax.swing.JDialog {
         dass1.setFocusTraversalPolicyProvider(true);
         dass1.setName("dass1"); // NOI18N
         FormInput.add(dass1);
-        dass1.setBounds(580, 2490, 40, 23);
+        dass1.setBounds(60, 2710, 50, 23);
 
         dass2.setFocusTraversalPolicyProvider(true);
         dass2.setName("dass2"); // NOI18N
         FormInput.add(dass2);
-        dass2.setBounds(710, 2490, 40, 23);
+        dass2.setBounds(230, 2710, 50, 23);
 
         dass3.setFocusTraversalPolicyProvider(true);
         dass3.setName("dass3"); // NOI18N
         FormInput.add(dass3);
-        dass3.setBounds(810, 2490, 40, 23);
+        dass3.setBounds(370, 2710, 50, 23);
 
         jLabel191.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel191.setText("1. ENT :");
@@ -4991,7 +4992,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel203.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel203.setName("jLabel203"); // NOI18N
         FormInput.add(jLabel203);
-        jLabel203.setBounds(530, 2460, 220, 23);
+        jLabel203.setBounds(10, 2680, 220, 23);
 
         jLabel238.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel238.setText("2. Cardio Vascular System :");
@@ -5002,12 +5003,12 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel239.setText("Depresi =");
         jLabel239.setName("jLabel239"); // NOI18N
         FormInput.add(jLabel239);
-        jLabel239.setBounds(520, 2490, 60, 23);
+        jLabel239.setBounds(0, 2710, 60, 23);
 
         jLabel240.setText("Kecemasan =");
         jLabel240.setName("jLabel240"); // NOI18N
         FormInput.add(jLabel240);
-        jLabel240.setBounds(630, 2490, 70, 23);
+        jLabel240.setBounds(150, 2710, 70, 23);
 
         eye_glasses_distant_l.setFocusTraversalPolicyProvider(true);
         eye_glasses_distant_l.setName("eye_glasses_distant_l"); // NOI18N
@@ -5159,6 +5160,13 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(supervisor);
         supervisor.setBounds(430, 330, 170, 23);
 
+        jSeparator8.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator8.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        FormInput.add(jSeparator8);
+        jSeparator8.setBounds(0, 2621, 880, 1);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -5201,7 +5209,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5215,7 +5223,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5279,7 +5287,7 @@ public final class RMMCU extends javax.swing.JDialog {
         sinkronFieldMcu();
         if(TNoRM.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Nama Pasien");
-        }else if(comboTerpilih(cbConcEcg,"Abnormal")&&ecg_abnormal.getText().trim().equals("")){
+        }else if(comboTerpilih(cbConcEcg,"Abnormal Condition")&&ecg_abnormal.getText().trim().equals("")){
             Valid.textKosong(ecg_abnormal,"Keterangan ECG Abnormal");
         
         }else if(saran.getText().trim().equals("")){
@@ -5359,7 +5367,7 @@ public final class RMMCU extends javax.swing.JDialog {
         sinkronFieldMcu();
         if(TNoRM.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"Nama Pasien");
-        }else if(comboTerpilih(cbConcEcg,"Abnormal")&&ecg_abnormal.getText().trim().equals("")){
+        }else if(comboTerpilih(cbConcEcg,"Abnormal Condition")&&ecg_abnormal.getText().trim().equals("")){
             Valid.textKosong(ecg_abnormal,"Keterangan ECG Abnormal");
         }else if(kesimpulan.getText().trim().equals("")){
             Valid.textKosong(kesimpulan,"Kesimpulan");
@@ -7006,6 +7014,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator30;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private widget.TextArea kesimpulan;
     private widget.TextBox lab_others;
@@ -8955,14 +8964,14 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void sinkronConcEcg() {
-        boolean abnormal = comboTerpilih(cbConcEcg,"Abnormal");
+        boolean abnormal = comboTerpilih(cbConcEcg,"Abnormal Condition");
         setText(ConcEcg,nilaiCombo(cbConcEcg));
         ecg_abnormal.setEditable(abnormal);
         ecg_abnormal.setEnabled(abnormal);
     }
 
     private String nilaiEkgMcu() {
-        return comboTerpilih(cbConcEcg,"Abnormal") ? nilai(ecg_abnormal) : nilaiCombo(cbConcEcg);
+        return comboTerpilih(cbConcEcg,"Abnormal Condition") ? nilai(ecg_abnormal) : nilaiCombo(cbConcEcg);
     }
 
     private String nilaiCek(javax.swing.AbstractButton cek) {
@@ -9368,7 +9377,7 @@ public final class RMMCU extends javax.swing.JDialog {
             setText(PemeriksaanLaboratorium,nilaiPertamaTerisiValue(getTabelValue("laborat"),getTabelValue("conc_lab")));
             setText(RongsenThorax,getTabelValue("radiologi"));
             setConcEcgDariTabel();
-            setText(ecg_abnormal,comboTerpilih(cbConcEcg,"Abnormal") ? getTabelValue("ekg") : "");
+            setText(ecg_abnormal,comboTerpilih(cbConcEcg,"Abnormal Condition") ? getTabelValue("ekg") : "");
             setText(spirometri_vc_1,getTabelValue("spirometri_vc_1"));
             setText(spirometri_vc_2,getTabelValue("spirometri_vc_2"));
             setText(spirometri_vc_3,getTabelValue("spirometri_vc_3"));
