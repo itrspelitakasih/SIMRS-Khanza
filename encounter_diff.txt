@@ -1,0 +1,665 @@
+﻿diff --git a/src/bridging/SatuSehatKirimEncounter.java b/src/bridging/SatuSehatKirimEncounter.java
+index 03a84a74b0..5faed5f7e2 100755
+--- a/src/bridging/SatuSehatKirimEncounter.java
++++ b/src/bridging/SatuSehatKirimEncounter.java
+@@ -6,6 +6,8 @@ package bridging;
+ 
+ import com.fasterxml.jackson.databind.JsonNode;
+ import com.fasterxml.jackson.databind.ObjectMapper;
++import javax.swing.JOptionPane;
++import javax.swing.SwingWorker;
+ import fungsi.WarnaTable;
+ import fungsi.batasInput;
+ import fungsi.koneksiDB;
+@@ -140,6 +142,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+         
+         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
++
++        cmbStatus.addActionListener(e -> runBackground(() -> tampil()));
+         
+         try {
+             link=koneksiDB.URLFHIRSATUSEHAT();
+@@ -190,6 +194,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         LCount = new widget.Label();
+         BtnAll = new widget.Button();
+         BtnKirim = new widget.Button();
++        BtnCreateIHS = new widget.Button();
++        BtnConsent = new widget.Button();
+         BtnUpdate = new widget.Button();
+         BtnPrint = new widget.Button();
+         BtnKeluar = new widget.Button();
+@@ -201,6 +207,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         jLabel16 = new widget.Label();
+         TCari = new widget.TextBox();
+         BtnCari = new widget.Button();
++        jLabel18 = new widget.Label();
++        cmbStatus = new widget.ComboBox();
+ 
+         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+ 
+@@ -316,6 +324,32 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         });
+         panelGlass8.add(BtnKirim);
+ 
++        BtnCreateIHS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
++        BtnCreateIHS.setMnemonic('I');
++        BtnCreateIHS.setText("IHS");
++        BtnCreateIHS.setToolTipText("Create IHS untuk pasien terpilih (Alt+I)");
++        BtnCreateIHS.setName("BtnCreateIHS"); // NOI18N
++        BtnCreateIHS.setPreferredSize(new java.awt.Dimension(100, 30));
++        BtnCreateIHS.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                BtnCreateIHSActionPerformed(evt);
++            }
++        });
++        panelGlass8.add(BtnCreateIHS);
++
++        BtnConsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
++        BtnConsent.setMnemonic('N');
++        BtnConsent.setText("Consent");
++        BtnConsent.setToolTipText("Submit Consent untuk pasien terpilih (Alt+N)");
++        BtnConsent.setName("BtnConsent"); // NOI18N
++        BtnConsent.setPreferredSize(new java.awt.Dimension(100, 30));
++        BtnConsent.addActionListener(new java.awt.event.ActionListener() {
++            public void actionPerformed(java.awt.event.ActionEvent evt) {
++                BtnConsentActionPerformed(evt);
++            }
++        });
++        panelGlass8.add(BtnConsent);
++
+         BtnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit_f2.png"))); // NOI18N
+         BtnUpdate.setMnemonic('U');
+         BtnUpdate.setText("Update");
+@@ -371,7 +405,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
+         panelGlass9.add(jLabel15);
+ 
+-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
++        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2026" }));
+         DTPCari1.setDisplayFormat("dd-MM-yyyy");
+         DTPCari1.setName("DTPCari1"); // NOI18N
+         DTPCari1.setOpaque(false);
+@@ -384,7 +418,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
+         panelGlass9.add(jLabel17);
+ 
+-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
++        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2026" }));
+         DTPCari2.setDisplayFormat("dd-MM-yyyy");
+         DTPCari2.setName("DTPCari2"); // NOI18N
+         DTPCari2.setOpaque(false);
+@@ -422,6 +456,15 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         });
+         panelGlass9.add(BtnCari);
+ 
++        jLabel18.setText("Status Kirim:");
++        jLabel18.setName("jLabel18"); // NOI18N
++        jLabel18.setPreferredSize(new java.awt.Dimension(70, 23));
++        panelGlass9.add(jLabel18);
++
++        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum dikirim", "Sudah dikirim" }));
++        cmbStatus.setName("cmbStatus"); // NOI18N
++        panelGlass9.add(cmbStatus);
++
+         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
+ 
+         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+@@ -563,7 +606,12 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                 try {
+                     iddokter=cekViaSatuSehat.tampilIDParktisi(tbObat.getValueAt(i,8).toString());
+                     idpasien=cekViaSatuSehat.tampilIDPasien(tbObat.getValueAt(i,5).toString());
+-                    if(tbObat.getValueAt(i,10).toString().toLowerCase().contains("anc")){
++                    String startUtc = toUtc(tbObat.getValueAt(i,1).toString());
++                    String endUtc   = toUtc(tbObat.getValueAt(i,14).toString());
++                    String episodeType = getEpisodeOfCareType(tbObat.getValueAt(i,10).toString());
++                    if(episodeType != null){
++                        String eocCode = episodeType.split("\\|")[0];
++                        String eocDisplay = episodeType.split("\\|")[1];
+                         idepisode="";
+                         try{
+                             headers = new HttpHeaders();
+@@ -576,13 +624,13 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                                 "\"system\": \"http://sys-ids.kemkes.go.id/episode-of-care/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                 "\"value\": \""+tbObat.getValueAt(i,2).toString()+"\"" +
+                                             "}" +
+-                                        "]" +
++                                        "]," +
+                                         "\"status\": \"active\"," +
+                                         "\"statusHistory\": [" +
+                                             "{" +
+                                                 "\"status\": \"active\"," +
+                                                 "\"period\": {" +
+-                                                    "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"" +
++                                                    "\"start\": \""+startUtc+"\"" +
+                                                 "}" +
+                                             "}" +
+                                         "]," +
+@@ -591,8 +639,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                                 "\"coding\": [" +
+                                                     "{" +
+                                                         "\"system\": \"http://terminology.kemkes.go.id/CodeSystem/episodeofcare-type\"," +
+-                                                        "\"code\": \"ANC\"," +
+-                                                        "\"display\": \"Antenatal Care\"" +
++                                                        "\"code\": \""+eocCode+"\"," +
++                                                        "\"display\": \""+eocDisplay+"\"" +
+                                                     "}" +
+                                                 "]" +
+                                             "}" +
+@@ -602,7 +650,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "\"display\": \""+tbObat.getValueAt(i,4).toString()+"\"" +
+                                         "}," +
+                                         "\"period\": {" +
+-                                            "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"" +
++                                            "\"start\": \""+startUtc+"\"" +
+                                         "}," +
+                                         "\"managingOrganization\": {" +
+                                             "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+@@ -624,7 +672,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                         }catch(Exception e){
+                             System.out.println("Notifikasi Bridging : "+e);
+                         }
+-                        
++
+                         try{
+                             headers = new HttpHeaders();
+                             headers.setContentType(MediaType.APPLICATION_JSON);
+@@ -661,7 +709,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "}" +
+                                         "]," +
+                                         "\"period\": {" +
+-                                            "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"" +
++                                            "\"start\": \""+startUtc+"\"" +
+                                         "}," +
+                                         "\"location\": [" +
+                                             "{" +
+@@ -675,28 +723,25 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "{" +
+                                                 "\"status\": \"arrived\"," +
+                                                 "\"period\": {" +
+-                                                    "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"," +
+-                                                    "\"end\": \""+tbObat.getValueAt(i,14).toString()+"\"" +
++                                                    "\"start\": \""+startUtc+"\"," +
++                                                    "\"end\": \""+endUtc+"\"" +
+                                                 "}" +
+                                             "}" +
+                                         "]," +
+                                         "\"serviceProvider\": {" +
+                                             "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                         "}," +
++                                        (idepisode.isEmpty()?"":
+                                         "\"episodeOfCare\": [" +
+                                             "{" +
+                                                 "\"reference\": \"EpisodeOfCare/"+idepisode+"\"" +
+                                             "}" +
+-                                        "],"+
++                                        "],") +
+                                         "\"identifier\": [" +
+                                             "{" +
+                                                 "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                 "\"value\": \""+tbObat.getValueAt(i,2).toString()+"\"" +
+-                                            "}," +
+-                                            "{" +
+-                                                "\"system\": \"http://terminology.kemkes.go.id/CodeSystem/episodeofcare/ANC\"," +
+-                                                "\"value\": \"K1A\"" +
+-                                            "}"+
++                                            "}" +
+                                         "]" +
+                                     "}";
+                             System.out.println("URL : "+link+"/Encounter");
+@@ -754,7 +799,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "}" +
+                                         "]," +
+                                         "\"period\": {" +
+-                                            "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"" +
++                                            "\"start\": \""+startUtc+"\"" +
+                                         "}," +
+                                         "\"location\": [" +
+                                             "{" +
+@@ -768,8 +813,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "{" +
+                                                 "\"status\": \"arrived\"," +
+                                                 "\"period\": {" +
+-                                                    "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"," +
+-                                                    "\"end\": \""+tbObat.getValueAt(i,14).toString()+"\"" +
++                                                    "\"start\": \""+startUtc+"\"," +
++                                                    "\"end\": \""+endUtc+"\"" +
+                                                 "}" +
+                                             "}" +
+                                         "]," +
+@@ -809,6 +854,230 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         }
+     }//GEN-LAST:event_BtnKirimActionPerformed
+ 
++    private void BtnCreateIHSActionPerformed(java.awt.event.ActionEvent evt) {
++        int row = tbObat.getSelectedRow();
++        if (row < 0) {
++            JOptionPane.showMessageDialog(null, "Pilih dulu row pasien di tabel.");
++            return;
++        }
++        final String nik  = tbObat.getValueAt(row, 5) == null ? "" : tbObat.getValueAt(row, 5).toString().trim();
++        final String nama = tbObat.getValueAt(row, 4) == null ? "" : tbObat.getValueAt(row, 4).toString().trim();
++        if (nik.isEmpty() || nik.length() != 16 || !nik.matches("\\d+")) {
++            JOptionPane.showMessageDialog(null, "NIK pasien di row ini tidak valid (harus 16 digit angka).");
++            return;
++        }
++
++        String cachedEarly = Sequel.cariIsi(
++                "SELECT ihs_number FROM satu_sehat_cache_ihs_pasien WHERE no_ktp=?", nik);
++        if (cachedEarly != null && !cachedEarly.isEmpty()) {
++            JOptionPane.showMessageDialog(null,
++                    "Pasien sudah memiliki IHS (cache lokal).\nIHS: " + cachedEarly);
++            return;
++        }
++
++        String[] cols = { "jk", "tmp_lahir", "tgl_lahir", "alamat", "no_tlp", "email",
++                          "kd_prop", "kd_kab", "kd_kec", "kd_kel" };
++        String[] vals = new String[cols.length];
++        for (int k = 0; k < cols.length; k++) {
++            vals[k] = Sequel.cariIsi("SELECT " + cols[k] + " FROM pasien WHERE no_ktp=?", nik);
++            if (vals[k] == null) vals[k] = "";
++        }
++        final String jk = vals[0], tglLahir = vals[2], alamatRaw = vals[3].trim(),
++                     phone = vals[4].trim(), email = vals[5].trim(),
++                     dbKdProp = vals[6], dbKdKab = vals[7], dbKdKec = vals[8], dbKdKel = vals[9];
++
++        if (nama.isEmpty()) { JOptionPane.showMessageDialog(null, "Nama pasien kosong."); return; }
++        if (jk == null || jk.isEmpty()) { JOptionPane.showMessageDialog(null, "Jenis kelamin pasien kosong di tabel pasien."); return; }
++        if (tglLahir == null || tglLahir.isEmpty() || tglLahir.equals("0000-00-00")) {
++            JOptionPane.showMessageDialog(null, "Tanggal lahir pasien kosong."); return;
++        }
++        if (alamatRaw.isEmpty()) { JOptionPane.showMessageDialog(null, "Alamat pasien kosong."); return; }
++
++        if (dbKdProp == null || !dbKdProp.matches("\\d{2}"))
++        { JOptionPane.showMessageDialog(null, "Kode propinsi pasien (" + dbKdProp + ") belum format KEMENDAGRI 2-digit."); return; }
++        if (dbKdKab == null || !dbKdKab.matches("\\d{4}"))
++        { JOptionPane.showMessageDialog(null, "Kode kabupaten pasien (" + dbKdKab + ") belum format KEMENDAGRI 4-digit."); return; }
++        if (dbKdKec == null || !dbKdKec.matches("\\d{6}"))
++        { JOptionPane.showMessageDialog(null, "Kode kecamatan pasien (" + dbKdKec + ") belum format KEMENDAGRI 6-digit."); return; }
++        if (dbKdKel == null || !dbKdKel.matches("\\d{10}"))
++        { JOptionPane.showMessageDialog(null, "Kode kelurahan pasien (" + dbKdKel + ") belum format KEMENDAGRI 10-digit."); return; }
++
++        java.util.regex.Matcher rtrwM = java.util.regex.Pattern
++                .compile("(?i)\\bRT\\s*0*(\\d{1,3})\\s*[/\\\\\\-, ]+\\s*RW\\s*0*(\\d{1,3})\\b")
++                .matcher(alamatRaw);
++        final String rt, rw, line;
++        if (rtrwM.find()) {
++            rt = String.format("%03d", Integer.parseInt(rtrwM.group(1)));
++            rw = String.format("%03d", Integer.parseInt(rtrwM.group(2)));
++            String cleaned = (alamatRaw.substring(0, rtrwM.start()) + alamatRaw.substring(rtrwM.end()))
++                    .replaceAll("\\s+", " ").replaceAll("^[,\\s]+|[,\\s]+$", "").trim();
++            line = cleaned.isEmpty() ? alamatRaw : cleaned;
++        } else { rt = ""; rw = ""; line = alamatRaw; }
++
++        final String pkdProp = dbKdProp, pkdKab = dbKdKab, pkdKec = dbKdKec, pkdKel = dbKdKel;
++        final String fjk = jk, ftgl = tglLahir;
++
++        final javax.swing.JDialog progress = new javax.swing.JDialog(
++                javax.swing.SwingUtilities.getWindowAncestor(this), "Mohon tunggu",
++                java.awt.Dialog.ModalityType.APPLICATION_MODAL);
++        javax.swing.JLabel lbl = new javax.swing.JLabel("Sedang mengirim ke SatuSehatΓÇª", javax.swing.SwingConstants.CENTER);
++        lbl.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 16, 8, 16));
++        javax.swing.JProgressBar bar = new javax.swing.JProgressBar();
++        bar.setIndeterminate(true);
++        bar.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 16, 12, 16));
++        progress.setLayout(new java.awt.BorderLayout());
++        progress.add(lbl, java.awt.BorderLayout.NORTH);
++        progress.add(bar, java.awt.BorderLayout.CENTER);
++        progress.setSize(340, 110);
++        progress.setLocationRelativeTo(this);
++        progress.setDefaultCloseOperation(javax.swing.JDialog.DO_NOTHING_ON_CLOSE);
++
++        BtnCreateIHS.setEnabled(false);
++
++        SwingWorker<String, Void> worker = new SwingWorker<String, Void>() {
++            @Override
++            protected String doInBackground() {
++                try {
++                    String existing = cekViaSatuSehat.tampilIDPasien(nik);
++                    if (existing != null && !existing.isEmpty()) return "DUP|" + existing;
++                    SatuSehatCreatePasien creator = new SatuSehatCreatePasien();
++                    boolean ok = creator.kirim(nik, nama, fjk, ftgl, line, rt, rw, "",
++                            pkdProp, pkdKab, pkdKec, pkdKel, phone, email);
++                    return ok ? "OK|" + creator.idpasien
++                              : "ERR|" + (creator.errorMessage == null ? "" : creator.errorMessage);
++                } catch (Exception e) {
++                    return "ERR|" + (e.getMessage() == null ? e.toString() : e.getMessage());
++                }
++            }
++            @Override
++            protected void done() {
++                progress.dispose();
++                BtnCreateIHS.setEnabled(true);
++                String result;
++                try { result = get(); }
++                catch (Exception e) { JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage()); return; }
++                if (result == null) { JOptionPane.showMessageDialog(null, "Tidak ada respon."); return; }
++                int sep = result.indexOf('|');
++                String tag = sep < 0 ? result : result.substring(0, sep);
++                String body = sep < 0 ? "" : result.substring(sep + 1);
++                if ("DUP".equals(tag) || "OK".equals(tag)) {
++                    Sequel.queryu2tf(
++                        "INSERT INTO satu_sehat_cache_ihs_pasien (no_ktp, ihs_number) VALUES (?,?) " +
++                        "ON DUPLICATE KEY UPDATE ihs_number=VALUES(ihs_number)",
++                        2, new String[]{ nik, body });
++                    JOptionPane.showMessageDialog(null,
++                            ("DUP".equals(tag) ? "Pasien sudah memiliki IHS di SatuSehat.\n" : "Berhasil membuat IHS Pasien.\n")
++                            + "IHS: " + body);
++                } else {
++                    JOptionPane.showMessageDialog(null, "Gagal membuat IHS:\n" + body);
++                }
++            }
++        };
++        worker.execute();
++        progress.setVisible(true);
++    }
++
++    private void BtnConsentActionPerformed(java.awt.event.ActionEvent evt) {
++        int row = tbObat.getSelectedRow();
++        if (row < 0) {
++            JOptionPane.showMessageDialog(null, "Pilih dulu row pasien di tabel.");
++            return;
++        }
++        final String nik  = tbObat.getValueAt(row, 5) == null ? "" : tbObat.getValueAt(row, 5).toString().trim();
++        final String nama = tbObat.getValueAt(row, 4) == null ? "" : tbObat.getValueAt(row, 4).toString().trim();
++        if (nik.isEmpty() || nik.length() != 16 || !nik.matches("\\d+")) {
++            JOptionPane.showMessageDialog(null, "NIK pasien di row ini tidak valid (harus 16 digit angka).");
++            return;
++        }
++
++        final String ihs = Sequel.cariIsi(
++                "SELECT ihs_number FROM satu_sehat_cache_ihs_pasien WHERE no_ktp=?", nik);
++        if (ihs == null || ihs.isEmpty()) {
++            JOptionPane.showMessageDialog(null,
++                    "Pasien belum punya IHS di cache lokal.\nKlik tombol IHS dulu untuk create / sync IHS pasien.");
++            return;
++        }
++
++        String existingConsent = Sequel.cariIsi(
++                "SELECT consent_id FROM satu_sehat_consent_pasien WHERE no_ktp=? AND status='active' " +
++                "AND (period_end IS NULL OR period_end >= CURDATE()) ORDER BY created_at DESC LIMIT 1",
++                nik);
++        if (existingConsent != null && !existingConsent.isEmpty()) {
++            JOptionPane.showMessageDialog(null,
++                    "Pasien sudah punya Consent aktif.\nConsent ID: " + existingConsent);
++            return;
++        }
++
++        int konfirm = JOptionPane.showConfirmDialog(this,
++                "Catat persetujuan pasien (audit lokal).\n\n" +
++                "Pasien : " + nama + "\nNIK    : " + nik + "\nIHS    : " + ihs + "\n\n" +
++                "Catatan: SatuSehat Consent endpoint sedang tidak tersedia.\n" +
++                "Persetujuan dicatat di DB lokal sebagai audit trail (berlaku 5 tahun).\n" +
++                "Klik YES kalau pasien sudah tanda tangan form persetujuan tertulis.",
++                "Konfirmasi Consent (lokal)", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
++        if (konfirm != JOptionPane.YES_OPTION) return;
++
++        final javax.swing.JDialog progress = new javax.swing.JDialog(
++                javax.swing.SwingUtilities.getWindowAncestor(this), "Mohon tunggu",
++                java.awt.Dialog.ModalityType.APPLICATION_MODAL);
++        javax.swing.JLabel lbl = new javax.swing.JLabel("Mencatat persetujuanΓÇª", javax.swing.SwingConstants.CENTER);
++        lbl.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 16, 8, 16));
++        javax.swing.JProgressBar bar = new javax.swing.JProgressBar();
++        bar.setIndeterminate(true);
++        bar.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 16, 12, 16));
++        progress.setLayout(new java.awt.BorderLayout());
++        progress.add(lbl, java.awt.BorderLayout.NORTH);
++        progress.add(bar, java.awt.BorderLayout.CENTER);
++        progress.setSize(360, 110);
++        progress.setLocationRelativeTo(this);
++        progress.setDefaultCloseOperation(javax.swing.JDialog.DO_NOTHING_ON_CLOSE);
++
++        BtnConsent.setEnabled(false);
++
++        SwingWorker<String, Void> worker = new SwingWorker<String, Void>() {
++            SatuSehatCreateConsent creator = new SatuSehatCreateConsent();
++            @Override
++            protected String doInBackground() {
++                try {
++                    boolean ok = creator.kirim(ihs, nama, 5);
++                    return ok ? "OK" : "ERR|" + (creator.errorMessage == null ? "" : creator.errorMessage);
++                } catch (Exception e) {
++                    return "ERR|" + (e.getMessage() == null ? e.toString() : e.getMessage());
++                }
++            }
++            @Override
++            protected void done() {
++                progress.dispose();
++                BtnConsent.setEnabled(true);
++                String result;
++                try { result = get(); }
++                catch (Exception e) { JOptionPane.showMessageDialog(null, "Gagal: " + e.getMessage()); return; }
++                if ("OK".equals(result)) {
++                    Sequel.queryu2tf(
++                        "INSERT INTO satu_sehat_consent_pasien " +
++                        "(no_ktp, ihs_number, consent_id, status, period_start, period_end, raw_response) " +
++                        "VALUES (?,?,?,?,?,?,?) " +
++                        "ON DUPLICATE KEY UPDATE status=VALUES(status), period_start=VALUES(period_start), " +
++                        "period_end=VALUES(period_end), raw_response=VALUES(raw_response)",
++                        7, new String[]{
++                            nik, ihs, creator.consentId, "active",
++                            creator.periodStart, creator.periodEnd, creator.rawResponse
++                        });
++                    JOptionPane.showMessageDialog(null,
++                            "Persetujuan tercatat (audit lokal).\n\n" +
++                            "Consent ID : " + creator.consentId + "\n" +
++                            "Berlaku    : " + creator.periodStart + " s/d " + creator.periodEnd + "\n\n" +
++                            "Catatan: SatuSehat Consent endpoint belum tersedia.");
++                } else {
++                    String body = result == null ? "" : (result.indexOf('|') > 0 ? result.substring(result.indexOf('|') + 1) : result);
++                    JOptionPane.showMessageDialog(null, "Gagal submit Consent:\n" + body);
++                }
++            }
++        };
++        worker.execute();
++        progress.setVisible(true);
++    }
++
+     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
+         for(i=0;i<tbObat.getRowCount();i++){
+             tbObat.setValueAt(true,i,0);
+@@ -831,6 +1100,10 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                         headers = new HttpHeaders();
+                         headers.setContentType(MediaType.APPLICATION_JSON);
+                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
++                        String diagnosis = getDiagnosisEncounter(tbObat.getValueAt(i,2).toString());
++                        String startUtc = toUtc(tbObat.getValueAt(i,1).toString());
++                        String endUtc   = toUtc(tbObat.getValueAt(i,14).toString());
++                        boolean isRanap = "Ranap".equals(tbObat.getValueAt(i,13).toString());
+                         json = "{" +
+                                     "\"resourceType\": \"Encounter\"," +
+                                     "\"id\": \""+tbObat.getValueAt(i,15).toString()+"\"," +
+@@ -840,11 +1113,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                             "\"value\": \""+tbObat.getValueAt(i,2).toString()+"\"" +
+                                         "}" +
+                                     "]," +
+-                                    "\"status\": \"arrived\"," +
++                                    "\"status\": \"finished\"," +
+                                     "\"class\": {" +
+                                         "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+-                                        "\"code\": \""+(tbObat.getValueAt(i,11).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
+-                                        "\"display\": \""+(tbObat.getValueAt(i,11).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
++                                        "\"code\": \""+(isRanap?"IMP":"AMB")+"\"," +
++                                        "\"display\": \""+(isRanap?"inpatient encounter":"ambulatory")+"\"" +
+                                     "}," +
+                                     "\"subject\": {" +
+                                         "\"reference\": \"Patient/"+idpasien+"\"," +
+@@ -870,7 +1143,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                         "}" +
+                                     "]," +
+                                     "\"period\": {" +
+-                                        "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"" +
++                                        "\"start\": \""+startUtc+"\"," +
++                                        "\"end\": \""+endUtc+"\"" +
+                                     "}," +
+                                     "\"location\": [" +
+                                         "{" +
+@@ -884,11 +1158,38 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                                         "{" +
+                                             "\"status\": \"arrived\"," +
+                                             "\"period\": {" +
+-                                                "\"start\": \""+tbObat.getValueAt(i,1).toString()+"\"," +
+-                                                "\"end\": \""+tbObat.getValueAt(i,14).toString()+"\"" +
++                                                "\"start\": \""+startUtc+"\"," +
++                                                "\"end\": \""+startUtc+"\"" +
++                                            "}" +
++                                        "}," +
++                                        "{" +
++                                            "\"status\": \"in-progress\"," +
++                                            "\"period\": {" +
++                                                "\"start\": \""+startUtc+"\"," +
++                                                "\"end\": \""+endUtc+"\"" +
++                                            "}" +
++                                        "}," +
++                                        "{" +
++                                            "\"status\": \"finished\"," +
++                                            "\"period\": {" +
++                                                "\"start\": \""+endUtc+"\"," +
++                                                "\"end\": \""+endUtc+"\"" +
+                                             "}" +
+                                         "}" +
+                                     "]," +
++                                    (diagnosis.isEmpty()?"":"\"diagnosis\": ["+diagnosis+"],") +
++                                    (isRanap?
++                                        "\"hospitalization\": {" +
++                                            "\"dischargeDisposition\": {" +
++                                                "\"coding\": [" +
++                                                    "{" +
++                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/discharge-disposition\"," +
++                                                        "\"code\": \"home\"," +
++                                                        "\"display\": \"Home\"" +
++                                                    "}" +
++                                                "]" +
++                                            "}" +
++                                        "}," : "") +
+                                     "\"serviceProvider\": {" +
+                                         "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                     "}" +
+@@ -900,7 +1201,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                         System.out.println("Result JSON : "+json);
+                         tbObat.setValueAt(false,i,0);
+                     }catch(Exception e){
+-                        System.out.println("Notifikasi Bridging : "+e);
++                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
++                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
++                        }else{
++                            System.out.println("Notifikasi Bridging : "+e);
++                        }
+                     }
+                 } catch (Exception e) {
+                     System.out.println("Notifikasi : "+e);
+@@ -909,6 +1214,55 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         }
+     }//GEN-LAST:event_BtnUpdateActionPerformed
+ 
++    /** Konversi ISO-8601 dengan offset WIB (+07:00) ke UTC (+00:00).
++     *  SatuSehat docs minta UTC. Input format: "2026-05-24T14:30:00+07:00".
++     *  Output: "2026-05-24T07:30:00+00:00". Kalau gagal parse, return apa adanya. */
++    private static String toUtc(String wibIso) {
++        if (wibIso == null || wibIso.isEmpty()) return wibIso;
++        try {
++            java.time.OffsetDateTime odt = java.time.OffsetDateTime.parse(wibIso);
++            return odt.withOffsetSameInstant(java.time.ZoneOffset.UTC)
++                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssxxx"));
++        } catch (Exception e) {
++            return wibIso;
++        }
++    }
++
++    private String getDiagnosisEncounter(String noRawat) {
++        StringBuilder diag = new StringBuilder();
++        try (PreparedStatement ps2 = koneksi.prepareStatement(
++                "select satu_sehat_condition.id_condition,diagnosa_pasien.prioritas "+
++                "from satu_sehat_condition "+
++                "inner join diagnosa_pasien on diagnosa_pasien.no_rawat=satu_sehat_condition.no_rawat "+
++                "and diagnosa_pasien.kd_penyakit=satu_sehat_condition.kd_penyakit "+
++                "and diagnosa_pasien.status=satu_sehat_condition.status "+
++                "where satu_sehat_condition.no_rawat=? and ifnull(satu_sehat_condition.id_condition,'')!='' "+
++                "order by diagnosa_pasien.prioritas")) {
++            ps2.setString(1,noRawat);
++            try (ResultSet rs2 = ps2.executeQuery()) {
++                int rank = 0;
++                while (rs2.next()) {
++                    rank++;
++                    if(diag.length()>0){
++                        diag.append(",");
++                    }
++                    diag.append("{" +
++                        "\"condition\": {\"reference\": \"Condition/"+rs2.getString("id_condition")+"\"}," +
++                        "\"use\": {\"coding\": [{" +
++                            "\"system\": \"http://terminology.hl7.org/CodeSystem/diagnosis-role\"," +
++                            "\"code\": \"DD\"," +
++                            "\"display\": \"Discharge diagnosis\"" +
++                        "}]}," +
++                        "\"rank\": "+rank +
++                    "}");
++                }
++            }
++        } catch (Exception e) {
++            System.out.println("Notif Diagnosis : "+e);
++        }
++        return diag.toString();
++    }
++
+     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
+         TCari.setText("");
+         runBackground(() ->tampil());
+@@ -967,6 +1321,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+     // Variables declaration - do not modify//GEN-BEGIN:variables
+     private widget.Button BtnAll;
+     private widget.Button BtnCari;
++    private widget.Button BtnConsent;
++    private widget.Button BtnCreateIHS;
+     private widget.Button BtnKeluar;
+     private widget.Button BtnKirim;
+     private widget.Button BtnPrint;
+@@ -977,10 +1333,12 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+     private widget.editorpane LoadHTML;
+     private widget.ScrollPane Scroll;
+     private widget.TextBox TCari;
++    private widget.ComboBox cmbStatus;
+     private widget.InternalFrame internalFrame1;
+     private widget.Label jLabel15;
+     private widget.Label jLabel16;
+     private widget.Label jLabel17;
++    private widget.Label jLabel18;
+     private widget.Label jLabel7;
+     private javax.swing.JPanel jPanel3;
+     private javax.swing.JPopupMenu jPopupMenu1;
+@@ -1001,6 +1359,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+                    "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join satu_sehat_mapping_lokasi_ralan on satu_sehat_mapping_lokasi_ralan.kd_poli=poliklinik.kd_poli "+
+                    "left join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat "+
+                    "where reg_periksa.status_bayar='Sudah Bayar' and reg_periksa.tgl_registrasi between ? and ? "+
++                   (cmbStatus.getSelectedItem().toString().equals("Belum dikirim")?"and (satu_sehat_encounter.id_encounter is null or satu_sehat_encounter.id_encounter='') ":"")+
++                   (cmbStatus.getSelectedItem().toString().equals("Sudah dikirim")?"and satu_sehat_encounter.id_encounter is not null and satu_sehat_encounter.id_encounter!='' ":"")+
+                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
+                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.nama like ? or poliklinik.nm_poli like ? or "+
+                    "reg_periksa.stts like ? or reg_periksa.status_lanjut like ?)"));
+@@ -1041,6 +1401,27 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
+         LCount.setText(""+tabMode.getRowCount());
+     }
+ 
++    private String getEpisodeOfCareType(String nmPoli) {
++        String poli = nmPoli.toLowerCase();
++        if(poli.contains("anc"))         return "ANC|Antenatal Care";
++        if(poli.contains("pnc"))         return "PNC|Postnatal Care";
++        if(poli.contains("tb") || poli.contains("tuberkulosis") || poli.contains("tbc") || poli.contains("paru"))
++                                         return "TB-DOTS|TB-DOTS Program";
++        if(poli.contains("hiv") || poli.contains("aids") || poli.contains("vct") || poli.contains("cst"))
++                                         return "HIV-AIDS|HIV-AIDS Program";
++        if(poli.contains("hemodial") || poli.contains("dialisis"))
++                                         return "HD|Hemodialysis Program";
++        if(poli.contains("onkologi") || poli.contains("kemoterapi") || poli.contains("kanker"))
++                                         return "ONCO|Oncology Program";
++        if(poli.contains("rehab") || poli.contains("fisioterapi"))
++                                         return "REHAB|Rehabilitation Program";
++        if(poli.contains("jiwa") || poli.contains("psikiatri") || poli.contains("mental"))
++                                         return "MENTAL|Mental Health Program";
++        if(poli.contains("prolanis") || poli.contains("diabetes") || poli.contains("kronis"))
++                                         return "CHRONIC|Chronic Disease Management";
++        return null;
++    }
++
+     public void isCek(){
+         BtnKirim.setEnabled(akses.getsatu_sehat_kirim_encounter());
+         BtnUpdate.setEnabled(akses.getsatu_sehat_kirim_encounter());

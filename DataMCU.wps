@@ -1,0 +1,4055 @@
+<html>
+  <head>
+    <link href="file2.css" rel="stylesheet" type="text/css">
+    
+  </head>
+  <body>
+    <table width="10000px" border="0" align="center" cellpadding="3px" cellspacing="0" class="tbl_form">
+      <tr class="isi2">
+        <td valign="top" align="center">
+          <font size="4" face="Tahoma">RS. PELITA KASIH</font><br>Jl. Yos 
+          Sudarso IV No. 9, Sangatta, KALIMANTAN TIMUR<br>(0549) 21236 / 
+          081346416008, E-mail : pelitakasih.ma@yahoo.com<br><br><font size="2" face="Tahoma">DATA 
+          PEMERIKSAAN MCU<br><br></font>
+        </td>
+      </tr>
+    </table>
+    <table width="10000px" border="0" align="center" cellpadding="1px" cellspacing="0" class="tbl_form">
+      <tr class="isi">
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tahun</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>No.Rawat</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>No.RM</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Nama Pasien</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Surname</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Perusahaan</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Badge</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tanggal</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kode Dokter</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Dokter PJ</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kode Petugas</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Nama Petugas</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kode Petugas Lab</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Nama Petugas Lab</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Saran</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>MCU Grup</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Medical History</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Physical Examination</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kesimpulan Laboratorium</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Conclusion Chest X Ray</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Conclusion EKG</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Conclusion Spirometry</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Conclusion Audiometry</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kesimpulan</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tmp.Lahir</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tgl.Lahir</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>J.K.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>No.Telp</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Suku/Bangsa</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Status Nikah</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Date/Year of Employment</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Year of Employment</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Job Title</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Activities</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Hobby</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Moonlight Working</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Position Applied For</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Departemen</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Supervisor</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Manager</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Driving/Mobile Equipment</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Working at Heights</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Clerical/Administrative</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Requires Colour Vision</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Potential Dust Exposure</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Catering/Food Handler</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Other Potential Dangerous</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Head Injury/Contussion</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Fainting/Blackouts/Epilepsy</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Visual Changes</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Hearing Loss</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Nose/Sinus/Throat &gt;4 Weeks</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Gynaecological Problems</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Chronic Skin Problem</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Chronic Diarrhea</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Anorexia &gt;4 Weeks</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Gastritis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Jaundice/Hepatitis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Chronic Cough &gt;4 Weeks</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Haemorhoid</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Chronic Abdominal Pain</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Diabetes</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Asthma</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Allergies</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tuberculosis/Bronchitis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Psychiatric Disorder</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Sexual Transmitted Diseases</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Weight Change &gt;5kg/Month</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Hypertension</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Chest Pain/Heart Disease</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Malaria/Tropical Disease</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Surgery/Operation</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Back Pain &gt;4 Weeks</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Thypoid Fever</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Swollen/Painful Joints</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kidney Problem/Urinary Stones</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Other Chronical Diseases</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Family History Father</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Family History Mother</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Family History Siblings</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Family History Others</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Cigarettes Perday</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Alcohol Gr/Week</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Prescribed Medication 1</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Prescribed Medication 2</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Any Allergies</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Hb</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>WBC</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>ESR</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Bl.Gr</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>GT</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>SGOT</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>SGPT</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urea</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Crea</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Gluco</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Random Glucose</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Total Cholestrol</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Protein</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Blood</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Bilirubin</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Malaria</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>TPHA</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Mantoux Test</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Leukosit</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lab Others</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>OVA</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Culture</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Cysta</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Parasites</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Pneumoconiosis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Pneumoconiosis Detail</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>ILO Classification</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>ILO Classification Detail</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Other Abnormalities</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Evidence of TB</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Evidence of TB Detail</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Comment</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>T.D.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Nadi</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>R.R.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>T.B.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>B.B.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>B.M.I.</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Klasifikasi BMI</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Pemeriksaan Laboratorium</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Rontgen Thorax</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>ECG Abnormal</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>VC (1)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>VC (2)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>VC (3)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>VC (4)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FVC (1)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FVC (2)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FVC (3)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FVC (4)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV (1)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV (2)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV (3)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV (4)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV 1/FVC (1)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV 1/FVC (2)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV 1/FVC (3)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>FEV 1/FVC (4)</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tinitus Never</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tinitus Previously</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tinitus Rarely</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tinitus Often</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tinitus Always</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Ear Protection Never</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Ear Protection Previously</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Ear Protection Rarely</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Ear Protection Often</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Ear Protection Always</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Type of Hearing Protection</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 1000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 1500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 2000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 3000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 4000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 5000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AB 6000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 1000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 1500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 2000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 3000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 4000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 5000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Left Ear AC 6000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 1000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 1500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 2000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 3000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 4000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 5000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AB 6000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 1000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 1500</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 2000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 3000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 4000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 5000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Right Ear AC 6000</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Unaided distant R</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Unaided distant L</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Glasses distant R</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Glasses distant L</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Unaided near R</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Unaided near L</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Glasses near R</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Glasses near L</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Night Vision 1</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Night Vision 2</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Brake Test 1</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Brake Test 2</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Buta Warna</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lapang Pandang L</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lapang Pandang R</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Fundi</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>BCG</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>DPT</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Polio</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Morbili</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Thyphoid</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>HEP A</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>HEP B</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Tetanus</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Imunisasi Other</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Scoliosis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Kyphosis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lordosis</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Forward Flexion 0-80</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Hyperextensi 0-25</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lateral Flexion 0-20</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Heel Walking</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Toe Walking</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Squats x3</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>ENT</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Cardio Vascular System</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Respiratory System</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Abdomen</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Genito Urinary System</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Central &amp; Peripheral Nervous Sys</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Skin</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Lymph Nodes</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Dental</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Muskuloskeletal</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Requires Spectacles</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Colour Blindness</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Respiratory Problem</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Impaired Hearing</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Vertigo</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Gol. Darah</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Medically Fit</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Fit With Restrictions</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Specify</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Saran</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Trombosit</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Rhesus</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Trigliserida</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>HDL Kolesterol</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>LDL Kolesterol</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Asam Urat</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Warna</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Kejernihan</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Reaksi Kimia</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Keton</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Glukosa</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Nitrit</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Sel Darah Putih</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Sel Darah Merah</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Bakteri</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Kristal</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Urine Epitel</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>HBsAg</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Anti HBs</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>CEA</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>AFP</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Amphetamine</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Methamphetamine</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Morphine</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Benzodiazepine</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Cocain</b>
+        </td>
+        <td valign="middle" bgcolor="#FFFAFA" align="center">
+          <b>Narkoba Marijuana</b>
+        </td>
+      </tr>
+      <tr class="isi">
+        <td valign="top">
+          2026
+        </td>
+        <td valign="top">
+          2026/06/29/000072
+        </td>
+        <td valign="top">
+          000425-0221
+        </td>
+        <td valign="top">
+          MERY SAMBUARI
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          PT. EBS-KPCS
+        </td>
+        <td valign="top">
+          Z 111530
+        </td>
+        <td valign="top">
+          2026-07-03 00:00:00.0
+        </td>
+        <td valign="top">
+          3031112
+        </td>
+        <td valign="top">
+          dr. Michael Sugiyanto
+        </td>
+        <td valign="top">
+          1062150312
+        </td>
+        <td valign="top">
+          Ns. Merry Sambuari S.Kep.
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Grup A
+        </td>
+        <td valign="top">
+          Dass21: Score Depression 0 (Normal), Score Anxiety 0 (Normal), Score 
+          Stress 0 (Normal)
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          WAWONDULA
+        </td>
+        <td valign="top">
+          1988-07-20
+        </td>
+        <td valign="top">
+          Perempuan
+        </td>
+        <td valign="top">
+          85292100054
+        </td>
+        <td valign="top">
+          TORAJA
+        </td>
+        <td valign="top">
+          BELUM MENIKAH
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          PERAWAT
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Periodic
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          DIABETES
+        </td>
+        <td valign="top">
+          DIABETES, HIPERTENSI
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          12,5
+        </td>
+        <td valign="top">
+          7200
+        </td>
+        <td valign="top">
+          10
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          22
+        </td>
+        <td valign="top">
+          43
+        </td>
+        <td valign="top">
+          0,7
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          200
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          120/80
+        </td>
+        <td valign="top">
+          80
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          166
+        </td>
+        <td valign="top">
+          54
+        </td>
+        <td valign="top">
+          19.6
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          ADS MT INTAK
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          CARIES
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          Medically Fit
+        </td>
+        <td valign="top">
+          Medically fit but has following restrictions
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          201.000
+        </td>
+        <td valign="top">
+          POSITIVE
+        </td>
+        <td valign="top">
+          150
+        </td>
+        <td valign="top">
+          50
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          KUNING
+        </td>
+        <td valign="top">
+          JERNIH
+        </td>
+        <td valign="top">
+          5,0
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          1-2
+        </td>
+        <td valign="top">
+          0-2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          +
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+      </tr>
+      <tr class="isi">
+        <td valign="top">
+          2026
+        </td>
+        <td valign="top">
+          2026/07/03/000061
+        </td>
+        <td valign="top">
+          000425-0221
+        </td>
+        <td valign="top">
+          MERY SAMBUARI
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          PT. EBS-KPCS
+        </td>
+        <td valign="top">
+          Z 111530
+        </td>
+        <td valign="top">
+          2026-07-03 00:00:00.0
+        </td>
+        <td valign="top">
+          DKU001
+        </td>
+        <td valign="top">
+          dr. F.V Slamet Sugiyanto
+        </td>
+        <td valign="top">
+          1062150312
+        </td>
+        <td valign="top">
+          Ns. Merry Sambuari S.Kep.
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          ALWAYS USE GLASSES
+        </td>
+        <td valign="top">
+          Grup A
+        </td>
+        <td valign="top">
+          Dass21: Score Depression 0 (Normal), Score Anxiety 0 (Normal), Score 
+          Stress 0 (Normal)
+        </td>
+        <td valign="top">
+          VISUS : VOD 6/6 VOS 6/6 (WITH GLASSES)
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          WAWONDULA
+        </td>
+        <td valign="top">
+          1988-07-20
+        </td>
+        <td valign="top">
+          Perempuan
+        </td>
+        <td valign="top">
+          85292100054
+        </td>
+        <td valign="top">
+          TORAJA
+        </td>
+        <td valign="top">
+          BELUM MENIKAH
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          PERAWAT
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Periodic
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          13,0
+        </td>
+        <td valign="top">
+          7200
+        </td>
+        <td valign="top">
+          10
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          22
+        </td>
+        <td valign="top">
+          25
+        </td>
+        <td valign="top">
+          0,7
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          200
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          120/80
+        </td>
+        <td valign="top">
+          80
+        </td>
+        <td valign="top">
+          22
+        </td>
+        <td valign="top">
+          166
+        </td>
+        <td valign="top">
+          54
+        </td>
+        <td valign="top">
+          19.6
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          1
+        </td>
+        <td valign="top">
+          2
+        </td>
+        <td valign="top">
+          3
+        </td>
+        <td valign="top">
+          4
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          6
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          5
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          ADS MT INTAK
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          CARIES
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          Medically Fit
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          ALWAYS USE GLASSES
+        </td>
+        <td valign="top">
+          220.000
+        </td>
+        <td valign="top">
+          POSITIVE
+        </td>
+        <td valign="top">
+          150
+        </td>
+        <td valign="top">
+          50
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          KUNING
+        </td>
+        <td valign="top">
+          JERNIH
+        </td>
+        <td valign="top">
+          6,0
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          1-2
+        </td>
+        <td valign="top">
+          0-2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          +
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+      </tr>
+      <tr class="isi">
+        <td valign="top">
+          2026
+        </td>
+        <td valign="top">
+          2026/07/08/000078
+        </td>
+        <td valign="top">
+          000425-0221
+        </td>
+        <td valign="top">
+          MERY SAMBUARI
+        </td>
+        <td valign="top">
+          MERY
+        </td>
+        <td valign="top">
+          PT. EBS-KPCS
+        </td>
+        <td valign="top">
+          Z 111530
+        </td>
+        <td valign="top">
+          2026-07-08 00:00:00.0
+        </td>
+        <td valign="top">
+          DKU001
+        </td>
+        <td valign="top">
+          dr. F.V Slamet Sugiyanto
+        </td>
+        <td valign="top">
+          1062150312
+        </td>
+        <td valign="top">
+          Ns. Merry Sambuari S.Kep.
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          REDUCE CONSUMING FATTY FOOD AND FRIED FOLLOW UP TO INTERNIST FOR 
+          HAEMOGLOBIN RESULT FOLLOW UP TO OPTHALMOLOGIST FOR GLASSES 
+          CORRECTION ALWAYS USE GLASSES
+        </td>
+        <td valign="top">
+          Grup B
+        </td>
+        <td valign="top">
+          Dass21: Score Depression 8 (Normal), Score Anxiety 8 (Ringan), Score 
+          Stress 4 (Normal)
+        </td>
+        <td valign="top">
+          VISUS : VOD 6/6 VOS 6/6 (WITH GLASSES)
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          WAWONDULA
+        </td>
+        <td valign="top">
+          1988-07-20
+        </td>
+        <td valign="top">
+          Perempuan
+        </td>
+        <td valign="top">
+          085292100054
+        </td>
+        <td valign="top">
+          TORAJA
+        </td>
+        <td valign="top">
+          BELUM MENIKAH
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          PERAWAT
+        </td>
+        <td valign="top">
+          1 KALI/MINGGU
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Periodic
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          DIABETES
+        </td>
+        <td valign="top">
+          DIABETES, HIPERTENSI
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          2 BTG
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          TELUR, TERASI
+        </td>
+        <td valign="top">
+          13,0
+        </td>
+        <td valign="top">
+          7500
+        </td>
+        <td valign="top">
+          10
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          22
+        </td>
+        <td valign="top">
+          24
+        </td>
+        <td valign="top">
+          0,7
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          200
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          120/80
+        </td>
+        <td valign="top">
+          85
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          166
+        </td>
+        <td valign="top">
+          54.2
+        </td>
+        <td valign="top">
+          19.7
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          6/60
+        </td>
+        <td valign="top">
+          6/60
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          ADS MT INTAK
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          TATTOO (+)
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          CARIES
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          Medically Fit
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          REDUCE CONSUMING FATTY FOOD AND FRIED FOLLOW UP TO INTERNIST FOR 
+          HAEMOGLOBIN RESULT FOLLOW UP TO OPTHALMOLOGIST FOR GLASSES 
+          CORRECTION ALWAYS USE GLASSES
+        </td>
+        <td valign="top">
+          251.000
+        </td>
+        <td valign="top">
+          POSITIVE
+        </td>
+        <td valign="top">
+          150
+        </td>
+        <td valign="top">
+          50
+        </td>
+        <td valign="top">
+          112
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          KUNING
+        </td>
+        <td valign="top">
+          JERNIH
+        </td>
+        <td valign="top">
+          5,0
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          1-2
+        </td>
+        <td valign="top">
+          0-2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+      </tr>
+      <tr class="isi">
+        <td valign="top">
+          2026
+        </td>
+        <td valign="top">
+          2026/07/17/000059
+        </td>
+        <td valign="top">
+          000425-0221
+        </td>
+        <td valign="top">
+          MERY SAMBUARI
+        </td>
+        <td valign="top">
+          MERY
+        </td>
+        <td valign="top">
+          PT. EBS-KPCS
+        </td>
+        <td valign="top">
+          Z 111530
+        </td>
+        <td valign="top">
+          2026-07-17 00:00:00.0
+        </td>
+        <td valign="top">
+          DKU001
+        </td>
+        <td valign="top">
+          dr. F.V Slamet Sugiyanto
+        </td>
+        <td valign="top">
+          1062150312
+        </td>
+        <td valign="top">
+          Ns. Merry Sambuari S.Kep.
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          ALWAYS USE GLASSES REDUCE CONSUMING FATTY FOOD AND FRIED
+        </td>
+        <td valign="top">
+          Grup A
+        </td>
+        <td valign="top">
+          Dass21: Score Depression 4 (Normal), Score Anxiety 12 (Sedang), 
+          Score Stress 16 (Ringan)
+        </td>
+        <td valign="top">
+          VISUS : VOD 6/6 VOS 6/6 (WITH GLASSES)
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          WAWONDULA
+        </td>
+        <td valign="top">
+          1988-07-20
+        </td>
+        <td valign="top">
+          Perempuan
+        </td>
+        <td valign="top">
+          85292100054
+        </td>
+        <td valign="top">
+          TORAJA
+        </td>
+        <td valign="top">
+          BELUM MENIKAH
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          PERAWAT
+        </td>
+        <td valign="top">
+          1 KALI / MINGGU
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Periodic
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          DIABETES
+        </td>
+        <td valign="top">
+          DIABETES, HIPERTENSI
+        </td>
+        <td valign="top">
+          FIT
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          TELUR
+        </td>
+        <td valign="top">
+          12,5
+        </td>
+        <td valign="top">
+          5400
+        </td>
+        <td valign="top">
+          10
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          22
+        </td>
+        <td valign="top">
+          35
+        </td>
+        <td valign="top">
+          0,9
+        </td>
+        <td valign="top">
+          101
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          201
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NEGATIVE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -.
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          NONE
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          120/71
+        </td>
+        <td valign="top">
+          85
+        </td>
+        <td valign="top">
+          20
+        </td>
+        <td valign="top">
+          166
+        </td>
+        <td valign="top">
+          54.2
+        </td>
+        <td valign="top">
+          19.7
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          NORMAL CONDITION
+        </td>
+        <td valign="top">
+          Normal Condition
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          6/60
+        </td>
+        <td valign="top">
+          6/60
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          6/6
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          NORMAL
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          Normal
+        </td>
+        <td valign="top">
+          ADS MT INTAK
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          TATTOO (+)
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          CARIES
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          Yes
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          No
+        </td>
+        <td valign="top">
+          A+
+        </td>
+        <td valign="top">
+          Medically Fit
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          
+        </td>
+        <td valign="top">
+          ALWAYS USE GLASSES REDUCE CONSUMING FATTY FOOD AND FRIED
+        </td>
+        <td valign="top">
+          234.000
+        </td>
+        <td valign="top">
+          POSITIVE
+        </td>
+        <td valign="top">
+          155
+        </td>
+        <td valign="top">
+          50
+        </td>
+        <td valign="top">
+          100
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          KUNING
+        </td>
+        <td valign="top">
+          JERNIH
+        </td>
+        <td valign="top">
+          5,0
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          1-2
+        </td>
+        <td valign="top">
+          0-2
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          +
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+        <td valign="top">
+          -
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -2459,121 +2459,196 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     }// GEN-LAST:event_BtnRefreshPhotoActionPerformed
 
     private void BtnKirimOrthancActionPerformed(java.awt.event.ActionEvent evt) {
-        if (NoRawatDicari.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih data pemeriksaan terlebih dahulu");
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            try {
-                // 1. Ambil data pasien (No.RM, Nama, Tgl.Lahir, JK)
-                String norm = PasienDicari.getText().substring(0, 6); // Asumsi No.RM 6 digit
-                if (PasienDicari.getText().contains(" - ")) {
-                    norm = PasienDicari.getText().split(" - ")[0];
-                }
-                String nmpasien = "";
-                String tglLahir = "";
-                String jk = "";
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tidak ada data pemeriksaan di daftar.");
+            return;
+        }
 
-                PreparedStatement psPasien = koneksi.prepareStatement(
-                        "select nm_pasien, tgl_lahir, jk from pasien where no_rkm_medis=?");
+        // Kumpulkan semua kombinasi unik (no_rawat, tgl_periksa, jam) dari baris header di tabMode
+        // Baris header = kolom 0 tidak kosong dan bukan ">>"
+        List<String[]> daftarPemeriksaan = new ArrayList<>();
+        for (int r = 0; r < tabMode.getRowCount(); r++) {
+            Object col0 = tabMode.getValueAt(r, 0);
+            if (col0 != null && !col0.toString().trim().isEmpty() && !col0.toString().equals(">>")) {
+                Object col3 = tabMode.getValueAt(r, 3);
+                Object col4 = tabMode.getValueAt(r, 4);
+                if (col3 != null && col4 != null
+                        && !col3.toString().trim().isEmpty()
+                        && !col4.toString().trim().isEmpty()) {
+                    daftarPemeriksaan.add(new String[]{
+                        col0.toString(), col3.toString(), col4.toString()
+                    });
+                }
+            }
+        }
+
+        if (daftarPemeriksaan.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tidak ada data pemeriksaan yang bisa dikirim.");
+            return;
+        }
+
+        int konfirmasi = JOptionPane.showConfirmDialog(null,
+                "Ditemukan " + daftarPemeriksaan.size() + " pemeriksaan di daftar.\n"
+                + "Lanjut kirim semua gambar ke Orthanc?",
+                "Konfirmasi Kirim Semua ke Orthanc",
+                JOptionPane.YES_NO_OPTION);
+        if (konfirmasi != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        int totalGambarBerhasil = 0;
+        int totalGambarGagal = 0;
+        int totalPemeriksaanDiproses = 0;
+        int totalPemeriksaanSkip = 0;
+
+        try {
+            for (String[] periksa : daftarPemeriksaan) {
+                String noRawat = periksa[0];
+                String tglPeriksa = periksa[1];
+                String jamPeriksa = periksa[2];
+
                 try {
-                    psPasien.setString(1, norm);
-                    ResultSet rsPasien = psPasien.executeQuery();
-                    if (rsPasien.next()) {
-                        nmpasien = rsPasien.getString("nm_pasien");
-                        tglLahir = rsPasien.getString("tgl_lahir");
-                        jk = rsPasien.getString("jk");
-                    }
-                } finally {
-                    if (psPasien != null) {
-                        psPasien.close();
-                    }
-                }
-
-                // 1.5 Ambil nama pemeriksaan
-                String nmPemeriksaan = "";
-                PreparedStatement psPeriksa = koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.nm_perawatan from periksa_radiologi "
-                        + "inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
-                        + "where periksa_radiologi.no_rawat=? and periksa_radiologi.tgl_periksa=? and periksa_radiologi.jam=?");
-                try {
-                    psPeriksa.setString(1, NoRawatDicari.getText());
-                    psPeriksa.setString(2, TglDicari.getText());
-                    psPeriksa.setString(3, JamDicari.getText());
-                    ResultSet rsPeriksa = psPeriksa.executeQuery();
-                    if (rsPeriksa.next()) {
-                        nmPemeriksaan = rsPeriksa.getString("nm_perawatan");
-                    }
-                } finally {
-                    if (psPeriksa != null) {
-                        psPeriksa.close();
-                    }
-                }
-
-                // 2. Tentukan Accession Number
-                String accession = "";
-                PreparedStatement psOrder = koneksi.prepareStatement(
-                        "select noorder from permintaan_radiologi where no_rawat=? and tgl_hasil=? and jam_hasil=?");
-                try {
-                    psOrder.setString(1, NoRawatDicari.getText());
-                    psOrder.setString(2, TglDicari.getText());
-                    psOrder.setString(3, JamDicari.getText());
-                    ResultSet rsOrder = psOrder.executeQuery();
-                    if (rsOrder.next()) {
-                        accession = rsOrder.getString("noorder");
-                    }
-                } finally {
-                    if (psOrder != null) {
-                        psOrder.close();
-                    }
-                }
-
-                if (accession.equals("")) {
-                    JOptionPane.showMessageDialog(null,
-                            "Maaf, No. Order tidak ditemukan di permintaan radiologi.\nProses pengiriman ke Orthanc dibatalkan.");
-                    this.setCursor(Cursor.getDefaultCursor());
-                    return;
-                }
-
-                // 3. Ambil daftar gambar
-                PreparedStatement psGambar = koneksi.prepareStatement(
-                        "select lokasi_gambar from gambar_radiologi where no_rawat=? and tgl_periksa=? and jam=?");
-                try {
-                    psGambar.setString(1, NoRawatDicari.getText());
-                    psGambar.setString(2, TglDicari.getText());
-                    psGambar.setString(3, JamDicari.getText());
-                    ResultSet rsGambar = psGambar.executeQuery();
-                    int sukses = 0;
-                    int urut = 0;
-                    ApiOrthanc orthanc = new ApiOrthanc();
-                    while (rsGambar.next()) {
-                        urut++;
-                        String urlGambar = "http://" + koneksiDB.HOSTHYBRIDWEB() + ":" + koneksiDB.PORTWEB() + "/"
-                                + koneksiDB.HYBRIDWEB() + "/radiologi/" + rsGambar.getString("lokasi_gambar");
-                        String instanceId = orthanc.KirimKeOrthanc(NoRawatDicari.getText(), nmpasien, norm, tglLahir,
-                                jk,
-                                accession, urlGambar, TglDicari.getText(), nmPemeriksaan,
-                                "Radiology Image converted from SIMRS", orthanc.getModality(nmPemeriksaan),
-                                String.valueOf(urut));
-                        if (!instanceId.equals("")) {
-                            sukses++;
+                    // 1. Ambil No.RM dari no_rawat
+                    String norm = "";
+                    PreparedStatement psRM = koneksi.prepareStatement(
+                            "select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?");
+                    try {
+                        psRM.setString(1, noRawat);
+                        ResultSet rsRM = psRM.executeQuery();
+                        if (rsRM.next()) {
+                            norm = rsRM.getString("no_rkm_medis");
+                        }
+                    } finally {
+                        if (psRM != null) {
+                            psRM.close();
                         }
                     }
-                    if (sukses > 0) {
-                        JOptionPane.showMessageDialog(null, "Berhasil mengirim " + sukses + " gambar ke Orthanc");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Tidak ada gambar yang berhasil dikirim");
+
+                    if (norm.isEmpty()) {
+                        totalPemeriksaanSkip++;
+                        continue;
                     }
-                } finally {
-                    if (psGambar != null) {
-                        psGambar.close();
+
+                    // 2. Ambil data pasien (Nama, Tgl.Lahir, JK)
+                    String nmpasien = "";
+                    String tglLahir = "";
+                    String jk = "";
+                    PreparedStatement psPasien = koneksi.prepareStatement(
+                            "select nm_pasien, tgl_lahir, jk from pasien where no_rkm_medis=?");
+                    try {
+                        psPasien.setString(1, norm);
+                        ResultSet rsPasien = psPasien.executeQuery();
+                        if (rsPasien.next()) {
+                            nmpasien = rsPasien.getString("nm_pasien");
+                            tglLahir = rsPasien.getString("tgl_lahir");
+                            jk = rsPasien.getString("jk");
+                        }
+                    } finally {
+                        if (psPasien != null) {
+                            psPasien.close();
+                        }
                     }
+
+                    // 3. Ambil nama pemeriksaan
+                    String nmPemeriksaan = "";
+                    PreparedStatement psPeriksa = koneksi.prepareStatement(
+                            "select jns_perawatan_radiologi.nm_perawatan from periksa_radiologi "
+                            + "inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
+                            + "where periksa_radiologi.no_rawat=? and periksa_radiologi.tgl_periksa=? and periksa_radiologi.jam=?");
+                    try {
+                        psPeriksa.setString(1, noRawat);
+                        psPeriksa.setString(2, tglPeriksa);
+                        psPeriksa.setString(3, jamPeriksa);
+                        ResultSet rsPeriksa = psPeriksa.executeQuery();
+                        if (rsPeriksa.next()) {
+                            nmPemeriksaan = rsPeriksa.getString("nm_perawatan");
+                        }
+                    } finally {
+                        if (psPeriksa != null) {
+                            psPeriksa.close();
+                        }
+                    }
+
+                    // 4. Tentukan Accession Number dari permintaan_radiologi
+                    String accession = "";
+                    PreparedStatement psOrder = koneksi.prepareStatement(
+                            "select noorder from permintaan_radiologi where no_rawat=? and tgl_hasil=? and jam_hasil=?");
+                    try {
+                        psOrder.setString(1, noRawat);
+                        psOrder.setString(2, tglPeriksa);
+                        psOrder.setString(3, jamPeriksa);
+                        ResultSet rsOrder = psOrder.executeQuery();
+                        if (rsOrder.next()) {
+                            accession = rsOrder.getString("noorder");
+                        }
+                    } finally {
+                        if (psOrder != null) {
+                            psOrder.close();
+                        }
+                    }
+
+                    if (accession.isEmpty()) {
+                        // Lewati jika tidak ada no. order
+                        totalPemeriksaanSkip++;
+                        continue;
+                    }
+
+                    // 5. Ambil daftar gambar dan kirim ke Orthanc
+                    PreparedStatement psGambar = koneksi.prepareStatement(
+                            "select lokasi_gambar from gambar_radiologi where no_rawat=? and tgl_periksa=? and jam=?");
+                    try {
+                        psGambar.setString(1, noRawat);
+                        psGambar.setString(2, tglPeriksa);
+                        psGambar.setString(3, jamPeriksa);
+                        ResultSet rsGambar = psGambar.executeQuery();
+                        int urut = 0;
+                        ApiOrthanc orthancSend = new ApiOrthanc();
+                        while (rsGambar.next()) {
+                            urut++;
+                            String urlGambar = "http://" + koneksiDB.HOSTHYBRIDWEB() + ":" + koneksiDB.PORTWEB() + "/"
+                                    + koneksiDB.HYBRIDWEB() + "/radiologi/" + rsGambar.getString("lokasi_gambar");
+                            String instanceId = orthancSend.KirimKeOrthanc(noRawat, nmpasien, norm, tglLahir,
+                                    jk, accession, urlGambar, tglPeriksa, nmPemeriksaan,
+                                    "Radiology Image converted from SIMRS", orthancSend.getModality(nmPemeriksaan),
+                                    String.valueOf(urut));
+                            if (!instanceId.equals("")) {
+                                totalGambarBerhasil++;
+                            } else {
+                                totalGambarGagal++;
+                            }
+                        }
+                        if (urut > 0) {
+                            totalPemeriksaanDiproses++;
+                        } else {
+                            // Ada order tapi tidak ada gambar
+                            totalPemeriksaanSkip++;
+                        }
+                    } finally {
+                        if (psGambar != null) {
+                            psGambar.close();
+                        }
+                    }
+
+                } catch (Exception ePemeriksaan) {
+                    System.out.println("Notifikasi Kirim Orthanc [" + noRawat + "]: " + ePemeriksaan);
+                    totalGambarGagal++;
                 }
-            } catch (Exception e) {
-                System.out.println("Notifikasi Kirim Orthanc: " + e);
-                JOptionPane.showMessageDialog(null, "Gagal mengirim ke Orthanc: " + e.getMessage());
             }
-            this.setCursor(Cursor.getDefaultCursor());
+
+            JOptionPane.showMessageDialog(null,
+                    "Selesai mengirim ke Orthanc.\n"
+                    + "Pemeriksaan diproses : " + totalPemeriksaanDiproses + "\n"
+                    + "Pemeriksaan dilewati : " + totalPemeriksaanSkip + " (no order / no gambar)\n"
+                    + "Gambar berhasil      : " + totalGambarBerhasil + "\n"
+                    + "Gambar gagal         : " + totalGambarGagal);
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi Kirim Semua Orthanc: " + e);
+            JOptionPane.showMessageDialog(null, "Gagal mengirim ke Orthanc: " + e.getMessage());
         }
+        this.setCursor(Cursor.getDefaultCursor());
     }
 
     private void btnAmbilPhoto1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAmbilPhoto1ActionPerformed
