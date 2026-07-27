@@ -31,6 +31,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
@@ -511,7 +512,7 @@ public final class RMMCU extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         LoadHTML = new widget.editorpane();
@@ -1122,11 +1123,7 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(
-                javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)),
-                "::[ Pengkajian Medical Check Up (MCU) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11),
-                new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengkajian Medical Check Up (MCU) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -1358,7 +1355,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel53.setBounds(440, 650, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026 10:16:33" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026 14:45:37" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1377,7 +1374,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel59.setName("jLabel59"); // NOI18N
         FormInput.add(jLabel59);
-        jLabel59.setBounds(0, 830, 280, 23);
+        jLabel59.setBounds(10, 830, 280, 23);
 
         scrollPane10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane10.setName("scrollPane10"); // NOI18N
@@ -1516,8 +1513,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jSeparator24);
         jSeparator24.setBounds(0, 2420, 880, 1);
 
-        SttsNikah.setModel(new javax.swing.DefaultComboBoxModel(
-                new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDHA", "JOMBLO" }));
+        SttsNikah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDHA", "JOMBLO" }));
         SttsNikah.setName("SttsNikah"); // NOI18N
         FormInput.add(SttsNikah);
         SttsNikah.setBounds(510, 170, 120, 23);
@@ -1991,8 +1987,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jLabel63);
         jLabel63.setBounds(20, 1530, 50, 23);
 
-        PosisiKerja.setModel(
-                new javax.swing.DefaultComboBoxModel(new String[] { "Pre employment", "Preplacement", "Periodic" }));
+        PosisiKerja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pre employment", "Preplacement", "Periodic" }));
         PosisiKerja.setName("PosisiKerja"); // NOI18N
         FormInput.add(PosisiKerja);
         PosisiKerja.setBounds(700, 230, 170, 23);
@@ -2514,14 +2509,12 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jLabel123);
         jLabel123.setBounds(100, 2120, 100, 23);
 
-        cbConcEcg.setModel(
-                new javax.swing.DefaultComboBoxModel(new String[] { "Normal Condition", "Abnormal Condition" }));
+        cbConcEcg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal Condition", "Abnormal Condition" }));
         cbConcEcg.setName("cbConcEcg"); // NOI18N
         FormInput.add(cbConcEcg);
         cbConcEcg.setBounds(520, 1370, 150, 23);
 
-        eye_color_blindless.setModel(
-                new javax.swing.DefaultComboBoxModel(new String[] { "Color Blind", "Normal", "Partial Color Blind" }));
+        eye_color_blindless.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Color Blind", "Normal", "Partial Color Blind" }));
         eye_color_blindless.setName("eye_color_blindless"); // NOI18N
         FormInput.add(eye_color_blindless);
         eye_color_blindless.setBounds(100, 2210, 140, 23);
@@ -2718,14 +2711,12 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(vertebra_lordosis);
         vertebra_lordosis.setBounds(310, 2360, 70, 23);
 
-        vertebra_hyperextensi_0_25
-                .setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
+        vertebra_hyperextensi_0_25.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_hyperextensi_0_25.setName("vertebra_hyperextensi_0_25"); // NOI18N
         FormInput.add(vertebra_hyperextensi_0_25);
         vertebra_hyperextensi_0_25.setBounds(500, 2360, 70, 23);
 
-        vertebra_forward_flexion_0_80
-                .setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
+        vertebra_forward_flexion_0_80.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_forward_flexion_0_80.setName("vertebra_forward_flexion_0_80"); // NOI18N
         FormInput.add(vertebra_forward_flexion_0_80);
         vertebra_forward_flexion_0_80.setBounds(310, 2390, 70, 23);
@@ -2765,8 +2756,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(vertebra_heel_walking);
         vertebra_heel_walking.setBounds(680, 2360, 70, 23);
 
-        vertebra_lateral_flexion_0_20
-                .setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
+        vertebra_lateral_flexion_0_20.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Yes", "No" }));
         vertebra_lateral_flexion_0_20.setName("vertebra_lateral_flexion_0_20"); // NOI18N
         FormInput.add(vertebra_lateral_flexion_0_20);
         vertebra_lateral_flexion_0_20.setBounds(500, 2390, 70, 23);
@@ -2988,8 +2978,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(conclusion_respiratory_problem);
         conclusion_respiratory_problem.setBounds(430, 2800, 60, 23);
 
-        fit.setModel(new javax.swing.DefaultComboBoxModel(
-                new String[] { "Medically Fit", "Presently has minor medical problem", "Unfit" }));
+        fit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medically Fit", "Presently has minor medical problem", "Unfit" }));
         fit.setName("fit"); // NOI18N
         FormInput.add(fit);
         fit.setBounds(160, 2860, 200, 23);
@@ -3009,8 +2998,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jLabel179);
         jLabel179.setBounds(620, 2830, 90, 23);
 
-        blood_group.setModel(new javax.swing.DefaultComboBoxModel(
-                new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
+        blood_group.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" }));
         blood_group.setName("blood_group"); // NOI18N
         FormInput.add(blood_group);
         blood_group.setBounds(720, 2830, 60, 23);
@@ -3030,8 +3018,7 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jLabel181);
         jLabel181.setBounds(20, 2890, 130, 23);
 
-        fit_with_restrictions.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-                "Medically fit but has following restrictions", "Work duties will be restricted", "Specify", "-" }));
+        fit_with_restrictions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Medically fit but has following restrictions", "Work duties will be restricted", "Specify", "-" }));
         fit_with_restrictions.setName("fit_with_restrictions"); // NOI18N
         FormInput.add(fit_with_restrictions);
         fit_with_restrictions.setBounds(160, 2890, 260, 23);
@@ -4402,7 +4389,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4416,7 +4403,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6233,7 +6220,7 @@ public final class RMMCU extends javax.swing.JDialog {
             if (nmPetugas.equals("")) {
                 nmPetugas = Sequel.cariIsi("select ifnull(petugas.nama,'') from penilaian_mcu " +
                         "left join petugas on penilaian_mcu.kd_petugas=petugas.nip " +
-                        "where penilaian_mcu.no_rawat='" + escapeSql(getTabelValue("no_rawat")) + "'");
+                        "where penilaian_mcu.no_rawat=?", getTabelValue("no_rawat"));
             }
             String finger = Sequel.cariIsi(
                     "select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",
@@ -6346,14 +6333,14 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String escapeSql(String nilai) {
-        return nilai == null ? "" : nilai.replace("'", "''");
+        return nilai == null ? "" : nilai.replace("\\", "\\\\").replace("'", "\\'");
     }
 
     private java.awt.Image getFotoPasien(String noRawat) {
         String namaFoto = Sequel.cariIsi(
                 "select ifnull(personal_pasien.gambar,'') from reg_periksa " +
                         "inner join personal_pasien on personal_pasien.no_rkm_medis=reg_periksa.no_rkm_medis " +
-                        "where reg_periksa.no_rawat='" + escapeSql(noRawat) + "'");
+                        "where reg_periksa.no_rawat=?", noRawat);
         if (namaFoto.equals("") || namaFoto.equals("-")) {
             return null;
         }
@@ -8767,62 +8754,60 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void exportExcel() {
-        try {
-            javax.swing.JFileChooser fc = new javax.swing.JFileChooser();
-            fc.setDialogTitle("Simpan File Excel");
-            fc.setSelectedFile(new java.io.File("DataMCU.xls"));
-            if (fc.showSaveDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
-                java.io.File file = fc.getSelectedFile();
-                java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(file));
-                
-                bw.write("<html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:x=\"urn:schemas-microsoft-com:office:excel\" xmlns=\"http://www.w3.org/TR/REC-html40\">\n");
-                bw.write("<head>\n");
-                bw.write("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n");
-                bw.write("<style>\n");
-                bw.write("  .text { mso-number-format:\"\\@\"; }\n");
-                bw.write("  th { font-weight: bold; background-color: #f2f2f2; }\n");
-                bw.write("</style>\n");
-                bw.write("</head>\n");
-                bw.write("<body>\n");
-                bw.write("<table border=\"1\">\n");
-                
-                // Write Header
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Simpan File Excel");
+        fc.setSelectedFile(new File("DataMCU.xls"));
+        if (fc.showSaveDialog(null) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+        File file = fc.getSelectedFile();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write("<html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:x=\"urn:schemas-microsoft-com:office:excel\" xmlns=\"http://www.w3.org/TR/REC-html40\">\n");
+            bw.write("<head>\n");
+            bw.write("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n");
+            bw.write("<style>\n");
+            bw.write("  .text { mso-number-format:\"\\@\"; }\n");
+            bw.write("  th { font-weight: bold; background-color: #f2f2f2; }\n");
+            bw.write("</style>\n");
+            bw.write("</head>\n");
+            bw.write("<body>\n");
+            bw.write("<table border=\"1\">\n");
+
+            // Write Header
+            bw.write("  <tr>\n");
+            for (int kolom = 0; kolom < tabMode.getColumnCount(); kolom++) {
+                String header = tabMode.getColumnName(kolom);
+                if (isKolomExportCsv(header)) {
+                    bw.write("    <th>" + escapeHtml(header) + "</th>\n");
+                }
+            }
+            bw.write("  </tr>\n");
+
+            // Write Data
+            for (int baris = 0; baris < tabMode.getRowCount(); baris++) {
                 bw.write("  <tr>\n");
                 for (int kolom = 0; kolom < tabMode.getColumnCount(); kolom++) {
                     String header = tabMode.getColumnName(kolom);
                     if (isKolomExportCsv(header)) {
-                        bw.write("    <th>" + escapeHtml(header) + "</th>\n");
+                        String val = nilaiTabel(baris, kolom);
+                        if ("No.RM".equals(header) || "No.Rawat".equals(header) || "Badge".equals(header)) {
+                            bw.write("    <td class=\"text\">" + escapeHtml(val) + "</td>\n");
+                        } else {
+                            bw.write("    <td>" + escapeHtml(val) + "</td>\n");
+                        }
                     }
                 }
                 bw.write("  </tr>\n");
-                
-                // Write Data
-                for (int baris = 0; baris < tabMode.getRowCount(); baris++) {
-                    bw.write("  <tr>\n");
-                    for (int kolom = 0; kolom < tabMode.getColumnCount(); kolom++) {
-                        String header = tabMode.getColumnName(kolom);
-                        if (isKolomExportCsv(header)) {
-                            String val = nilaiTabel(baris, kolom);
-                            if ("No.RM".equals(header) || "No.Rawat".equals(header) || "Badge".equals(header)) {
-                                bw.write("    <td class=\"text\">" + escapeHtml(val) + "</td>\n");
-                            } else {
-                                bw.write("    <td>" + escapeHtml(val) + "</td>\n");
-                            }
-                        }
-                    }
-                    bw.write("  </tr>\n");
-                }
-                
-                bw.write("</table>\n");
-                bw.write("</body>\n");
-                bw.write("</html>\n");
-                
-                bw.close();
-                javax.swing.JOptionPane.showMessageDialog(null, "Export Excel berhasil ✅");
-                java.awt.Desktop.getDesktop().browse(file.toURI());
             }
+
+            bw.write("</table>\n");
+            bw.write("</body>\n");
+            bw.write("</html>\n");
+            bw.close();
+            JOptionPane.showMessageDialog(null, "Export Excel berhasil..!!");
+            Desktop.getDesktop().browse(file.toURI());
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Error Export Excel: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Gagal export Excel : " + e.getMessage());
         }
     }
 
