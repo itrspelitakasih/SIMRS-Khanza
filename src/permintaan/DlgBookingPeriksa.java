@@ -50,6 +50,7 @@ import simrskhanza.DlgKecamatan;
 import simrskhanza.DlgKelurahan;
 import simrskhanza.DlgCariCaraBayar;
 import simrskhanza.DlgPropinsi;
+import wa.GoWAService;
 
 /**
  *
@@ -65,6 +66,7 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
     private ResultSet rs;
     private String pilihtampil="";
     private String alarm="",nol_detik,detik,pengurutan="",tahun="",bulan="",posisitahun="",awalantahun="",awalanbulan="";
+    private String noWaAdminBooking="";
     private boolean aktif=false;
     private int nilai_detik,i=0,bookingbaru=0,p_kelurahan=0,p_kecamatan=0,p_kabupaten=0,p_propinsi=0,kuota=0;
     private BackgroundMusic music;
@@ -147,7 +149,13 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
         } catch (Exception e) {
             alarm="no";
         }
-        
+
+        try {
+            noWaAdminBooking=koneksiDB.NOWABOOKINGPERIKSA();
+        } catch (Exception e) {
+            noWaAdminBooking="";
+        }
+
         if(alarm.equals("yes")){
             jam();
         }
@@ -2211,7 +2219,9 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
                         } catch (Exception ex) {
                             System.out.println(ex);
                         }
-                        
+
+                        cekDanKirimNotifWaBookingBaru();
+
                         if(WindowBalas.isVisible()==false){
                             i=JOptionPane.showConfirmDialog(null, "Ada booking periksa baru yang belum dibalas, apa mau ditampilkan????","Konfirmasi",JOptionPane.YES_NO_OPTION);
                             if(i==JOptionPane.YES_OPTION){
@@ -2222,11 +2232,57 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
                         }
                     }
                 }
-            }                
+            }
         };
         new Timer(1000, taskPerformer).start();
     }
-    
+
+    /**
+     * Cek booking yang belum pernah dinotifikasi WA (belum ada di
+     * booking_periksa_notifwa), lalu klaim tiap booking lewat insert
+     * ber-PRIMARY KEY no_booking. Kalau menu ini dibuka bersamaan di
+     * beberapa komputer pendaftaran, hanya satu yang berhasil klaim
+     * (insert sukses) sehingga WA hanya terkirim sekali per booking.
+     */
+    private void cekDanKirimNotifWaBookingBaru(){
+        if(noWaAdminBooking==null || noWaAdminBooking.trim().equals("")){
+            return;
+        }
+
+        try {
+            PreparedStatement psCek = koneksi.prepareStatement(
+                    "select booking_periksa.no_booking,booking_periksa.nama,poliklinik.nm_poli,booking_periksa.tanggal,booking_periksa.no_telp "+
+                    "from booking_periksa inner join poliklinik on booking_periksa.kd_poli=poliklinik.kd_poli "+
+                    "where booking_periksa.status='Belum Dibalas' "+
+                    "and booking_periksa.no_booking not in (select no_booking from booking_periksa_notifwa) "+
+                    "order by booking_periksa.tanggal_booking");
+            try {
+                ResultSet rsCek = psCek.executeQuery();
+                try {
+                    while(rsCek.next()){
+                        String noBooking = rsCek.getString("no_booking");
+                        boolean klaim = Sequel.menyimpantf2("booking_periksa_notifwa", "?,now()", 1, new String[]{noBooking});
+                        if(klaim){
+                            String pesan = "Ada booking periksa baru dari website.\n\n"
+                                    + "Nama : "+rsCek.getString("nama")+"\n"
+                                    + "Poli : "+rsCek.getString("nm_poli")+"\n"
+                                    + "Tgl. Periksa : "+rsCek.getString("tanggal")+"\n"
+                                    + "No.Telp : "+rsCek.getString("no_telp");
+                            String noWaTujuan = noWaAdminBooking;
+                            new Thread(() -> GoWAService.kirimText(noWaTujuan, pesan)).start();
+                        }
+                    }
+                } finally {
+                    rsCek.close();
+                }
+            } finally {
+                psCek.close();
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
     private void getData(){
         if(tbObat.getSelectedRow()!= -1){
             NoBooking.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());

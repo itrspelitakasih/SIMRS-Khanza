@@ -344,11 +344,21 @@ public class koneksiDB {
             prop.loadFromXML(fis);
             var=prop.getProperty("ALARMBOOKINGPERIKSA");
         }catch(Exception e){
-            var=""; 
+            var="";
         }
         return var;
     }
-    
+
+    public static String NOWABOOKINGPERIKSA(){
+        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+            prop.loadFromXML(fis);
+            var=prop.getProperty("NOWABOOKINGPERIKSA");
+        }catch(Exception e){
+            var="";
+        }
+        return var;
+    }
+
     public static String ALARMPERMINTAANRANAP(){
         try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
             prop.loadFromXML(fis);
