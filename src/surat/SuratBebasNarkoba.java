@@ -1152,7 +1152,7 @@ public final class SuratBebasNarkoba extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             finger = Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?", KdDok.getText());
-            param.put("finger", "https://apps.rspelitakasih.id/verifyPDF/?id=" + EnkripsiAES.encrypt("{'x':'skbn','t':'" + NoSurat.getText() + "'}"));
+            param.put("finger", "https://apps.rspelitakasih.id/verifyPDF/?id=" + EnkripsiAES.encrypt("{'x':'skbn','t':'" + TNoRw.getText() + "'}"));
             //param.put("finger", "Dikeluarkan di " + akses.getnamars() + ", Kabupaten/Kota " + akses.getkabupatenrs() + "\nDitandatangani secara elektronik oleh " + TDokter.getText() + "\nID " + (finger.equals("") ? KdDok.getText() : finger) + "\n" + TanggalSurat.getSelectedItem());
             param.put("logo", Sequel.cariGambar("select setting.logo from setting"));
             Valid.MyReportqrypdf(
@@ -1215,8 +1215,8 @@ public final class SuratBebasNarkoba extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             finger = Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?", KdDok.getText());
-            param.put("finger", "https://apps.rspelitakasih.id/verifyPDF/?id=" + EnkripsiAES.encrypt("{'x':'skbn','t':'" + NoSurat.getText() + "'}"));
-            //param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+TDokter.getText()+"\nID "+(finger.equals("")?KdDok.getText():finger)+"\n"+TanggalSurat.getSelectedItem());  
+            param.put("finger", "https://apps.rspelitakasih.id/verifyPDF/?id=" + EnkripsiAES.encrypt("{'x':'skbn','t':'" + TNoRw.getText() + "'}"));
+            //param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+TDokter.getText()+"\nID "+(finger.equals("")?KdDok.getText():finger)+"\n"+TanggalSurat.getSelectedItem());
             param.put("logo", Sequel.cariGambar("select setting.logo from setting"));
             Valid.MyReportqry(
                     "rptBebasNarkoba5p.jasper",
@@ -1435,7 +1435,7 @@ public final class SuratBebasNarkoba extends javax.swing.JDialog {
             param.put("finger",
                     "https://apps.rspelitakasih.id/verifyPDF/?id="
                     + EnkripsiAES.encrypt(
-                            "{'x':'skbn','t':'" + NoSurat.getText() + "'}"
+                            "{'x':'skbn','t':'" + TNoRw.getText() + "'}"
                     )
             );
 
