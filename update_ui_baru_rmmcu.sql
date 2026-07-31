@@ -74,7 +74,7 @@ CREATE TEMPORARY TABLE `tmp_penilaian_mcu_columns` (
 );
 
 INSERT INTO `tmp_penilaian_mcu_columns` (`column_name`) VALUES
-('note1'),('nama_pasien'),('surname'),('mcu_group'),('dass_21'),('phy_exam'),('conc_lab'),('conc_radiologi'),
+('catatan'),('nama_pasien'),('surname'),('mcu_group'),('dass_21'),('phy_exam'),('conc_lab'),('conc_radiologi'),
 ('conc_ecg'),('conc_spirometry'),('conc_audiometry'),('kesimpulan1'),('no_rkm_medis'),('tmp_lahir'),('tgl_lahir'),('jk'),
 ('no_tlp'),('suku_bangsa'),('stts_nikah'),('doe'),('yoe'),('job_title'),('activities'),('hobby'),('other_job'),('posisi_kerja'),('departemen'),('supervisor'),('manager'),
 ('job_involves_driving_or_operating_mobile_equipment'),('job_involves_working_at_heights'),('job_involves_clerical_office_based_or_administrative'),
@@ -126,7 +126,7 @@ INSERT INTO `tmp_penilaian_mcu_columns` (`column_name`) VALUES
 UPDATE `tmp_penilaian_mcu_columns`
 SET `column_definition` = 'TEXT NULL'
 WHERE `column_name` IN (
-    'note1','dass_21','phy_exam','conc_lab','kesimpulan1','laborat','radiologi',
+    'catatan','dass_21','phy_exam','conc_lab','kesimpulan1','laborat','radiologi',
     'specify','unfit_comment_1'
 );
 

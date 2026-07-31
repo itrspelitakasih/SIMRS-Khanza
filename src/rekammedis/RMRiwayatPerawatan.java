@@ -29330,7 +29330,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         "penilaian_mcu.mcu_group,penilaian_mcu.posisi_kerja,penilaian_mcu.job_title,penilaian_mcu.activities,"+
                         "penilaian_mcu.td,penilaian_mcu.nadi,penilaian_mcu.rr,penilaian_mcu.tb,penilaian_mcu.bb,penilaian_mcu.bmi,penilaian_mcu.kasifikasi_bmi,"+
                         "penilaian_mcu.dass_21,penilaian_mcu.phy_exam,penilaian_mcu.laborat,penilaian_mcu.radiologi,penilaian_mcu.ekg,"+
-                        "penilaian_mcu.conc_spirometry,penilaian_mcu.conc_audiometry,penilaian_mcu.kesimpulan1,penilaian_mcu.note1 "+
+                        "penilaian_mcu.conc_spirometry,penilaian_mcu.conc_audiometry,penilaian_mcu.kesimpulan1,penilaian_mcu.unfit_comment_1 "+
                         "from penilaian_mcu left join dokter on penilaian_mcu.kd_dokter=dokter.kd_dokter "+
                         "left join petugas on penilaian_mcu.kd_petugas=petugas.nip where penilaian_mcu.no_rawat='"+norawat+"'").executeQuery();
                 if(rs2.next()){
@@ -29360,7 +29360,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             .append("<tr><td valign='top'>Spirometry : ").append(rs2.getString("conc_spirometry"))
                             .append(", Audiometry : ").append(rs2.getString("conc_audiometry")).append("</td></tr>")
                             .append("<tr><td valign='top'>Kesimpulan : ").append(rs2.getString("kesimpulan1")).append("</td></tr>")
-                            .append("<tr><td valign='top'>Saran : ").append(rs2.getString("note1")).append("</td></tr>");
+                            .append("<tr><td valign='top'>Saran : ").append(rs2.getString("unfit_comment_1")).append("</td></tr>");
                     }while(rs2.next());
                     htmlContent.append("</table></td></tr>");
                 }

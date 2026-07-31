@@ -65,6 +65,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private volatile boolean ceksukses = false;
     private String TANGGALMUNDUR = "yes";
     private DlgCariPerusahaan perusahaan;
+    private boolean modeCopyPengkajian = false;
+    private int barisSumberCopyPengkajian = -1;
 
     /**
      * Creates new form DlgRujuk
@@ -415,7 +417,7 @@ public final class RMMCU extends javax.swing.JDialog {
 //        Merokok.setDocument(new batasInput((int)100).getKata(Merokok));
 //        Alkohol.setDocument(new batasInput((int)100).getKata(Alkohol));
         PhyExam.setDocument(new batasInput((int)1000).getKata(PhyExam));
-        ConcLab.setDocument(new batasInput((int)1000).getKata(ConcLab));
+        catatan.setDocument(new batasInput((int)1000).getKata(catatan));
         Dass21.setDocument(new batasInput((int)1000).getKata(Dass21));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
@@ -518,7 +520,17 @@ public final class RMMCU extends javax.swing.JDialog {
         LoadHTML = new widget.editorpane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnPenilaianMCU = new javax.swing.JMenuItem();
+        MnCopyPengkajian = new javax.swing.JMenuItem();
         TanggalRegistrasi = new widget.TextBox();
+        WindowGabungMCU = new javax.swing.JDialog();
+        internalFrame8 = new widget.InternalFrame();
+        BtnCloseIn6 = new widget.Button();
+        BtnSimpan6 = new widget.Button();
+        label40 = new widget.Label();
+        NoRmTujuan = new widget.TextBox();
+        NmPasienTujuan = new widget.TextBox();
+        label41 = new widget.Label();
+        BtnCari1 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -528,6 +540,7 @@ public final class RMMCU extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnRiwayatMCU = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
         scrollInput = new widget.ScrollPane();
@@ -538,8 +551,6 @@ public final class RMMCU extends javax.swing.JDialog {
         label14 = new widget.Label();
         NmDokter = new widget.TextBox();
         BtnDokter = new widget.Button();
-        TglLahir = new widget.TextBox();
-        Jk = new widget.TextBox();
         jLabel10 = new widget.Label();
         label11 = new widget.Label();
         jLabel53 = new widget.Label();
@@ -886,7 +897,7 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane12 = new widget.ScrollPane();
         PhyExam = new widget.TextArea();
         scrollPane13 = new widget.ScrollPane();
-        ConcLab = new widget.TextArea();
+        catatan = new widget.TextArea();
         jLabel155 = new widget.Label();
         jLabel156 = new widget.Label();
         scrollPane5 = new widget.ScrollPane();
@@ -1074,10 +1085,12 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel103 = new widget.Label();
         jLabel160 = new widget.Label();
         jLabel192 = new widget.Label();
-        manager = new widget.TextBox();
-        departemen = new widget.TextBox();
-        supervisor = new widget.TextBox();
+        manager = new widget.CekBox();
+        departemen = new widget.CekBox();
+        supervisor = new widget.CekBox();
         jSeparator8 = new javax.swing.JSeparator();
+        TglLahir = new widget.Tanggal();
+        Jk = new widget.ComboBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -1111,8 +1124,102 @@ public final class RMMCU extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnPenilaianMCU);
 
+        MnCopyPengkajian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopyPengkajian.setForeground(new java.awt.Color(50, 50, 50));
+        MnCopyPengkajian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCopyPengkajian.setText("Copy Data");
+        MnCopyPengkajian.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopyPengkajian.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopyPengkajian.setName("MnCopyPengkajian"); // NOI18N
+        MnCopyPengkajian.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnCopyPengkajian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopyPengkajianActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCopyPengkajian);
+
         TanggalRegistrasi.setHighlighter(null);
         TanggalRegistrasi.setName("TanggalRegistrasi"); // NOI18N
+
+        WindowGabungMCU.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowGabungMCU.setModal(true);
+        WindowGabungMCU.setName("WindowGabungMCU"); // NOI18N
+        WindowGabungMCU.setUndecorated(true);
+        WindowGabungMCU.setResizable(false);
+
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Copy Data Pengkajian MCU ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame8.setName("internalFrame8"); // NOI18N
+        internalFrame8.setLayout(null);
+
+        BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('P');
+        BtnCloseIn6.setText("Tutup");
+        BtnCloseIn6.setToolTipText("Alt+P");
+        BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
+        BtnCloseIn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn6ActionPerformed(evt);
+            }
+        });
+        internalFrame8.add(BtnCloseIn6);
+        BtnCloseIn6.setBounds(130, 87, 100, 30);
+
+        BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
+        BtnSimpan6.setText("Simpan");
+        BtnSimpan6.setToolTipText("Alt+S");
+        BtnSimpan6.setName("BtnSimpan6"); // NOI18N
+        BtnSimpan6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan6ActionPerformed(evt);
+            }
+        });
+        internalFrame8.add(BtnSimpan6);
+        BtnSimpan6.setBounds(20, 87, 100, 30);
+
+        label40.setText("No. Rawat Tujuan :");
+        label40.setName("label40"); // NOI18N
+        label40.setPreferredSize(new java.awt.Dimension(35, 23));
+        internalFrame8.add(label40);
+        label40.setBounds(0, 22, 105, 23);
+
+        NoRmTujuan.setHighlighter(null);
+        NoRmTujuan.setName("NoRmTujuan"); // NOI18N
+        NoRmTujuan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoRmTujuanKeyPressed(evt);
+            }
+        });
+        internalFrame8.add(NoRmTujuan);
+        NoRmTujuan.setBounds(108, 22, 100, 23);
+
+        NmPasienTujuan.setEditable(false);
+        NmPasienTujuan.setHighlighter(null);
+        NmPasienTujuan.setName("NmPasienTujuan"); // NOI18N
+        internalFrame8.add(NmPasienTujuan);
+        NmPasienTujuan.setBounds(108, 52, 300, 23);
+
+        label41.setText("Nama Pasien :");
+        label41.setName("label41"); // NOI18N
+        label41.setPreferredSize(new java.awt.Dimension(35, 23));
+        internalFrame8.add(label41);
+        label41.setBounds(0, 52, 105, 23);
+
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('2');
+        BtnCari1.setToolTipText("Alt+2");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        internalFrame8.add(BtnCari1);
+        BtnCari1.setBounds(210, 22, 28, 23);
+
+        WindowGabungMCU.getContentPane().add(internalFrame8, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1258,6 +1365,24 @@ public final class RMMCU extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        BtnRiwayatMCU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/preview-16x16.png"))); // NOI18N
+        BtnRiwayatMCU.setMnemonic('3');
+        BtnRiwayatMCU.setText("Riwayat");
+        BtnRiwayatMCU.setToolTipText("Alt+3");
+        BtnRiwayatMCU.setName("BtnRiwayatMCU"); // NOI18N
+        BtnRiwayatMCU.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnRiwayatMCU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRiwayatMCUActionPerformed(evt);
+            }
+        });
+        BtnRiwayatMCU.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnRiwayatMCUKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnRiwayatMCU);
+
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(254, 255, 254));
@@ -1324,18 +1449,6 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(BtnDokter);
         BtnDokter.setBounds(580, 10, 28, 23);
 
-        TglLahir.setEditable(false);
-        TglLahir.setHighlighter(null);
-        TglLahir.setName("TglLahir"); // NOI18N
-        FormInput.add(TglLahir);
-        TglLahir.setBounds(660, 140, 80, 23);
-
-        Jk.setEditable(false);
-        Jk.setHighlighter(null);
-        Jk.setName("Jk"); // NOI18N
-        FormInput.add(Jk);
-        Jk.setBounds(790, 140, 80, 23);
-
         jLabel10.setText("No.Rawat :");
         jLabel10.setName("jLabel10"); // NOI18N
         FormInput.add(jLabel10);
@@ -1355,12 +1468,12 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel53.setBounds(440, 650, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026 14:45:37" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026 15:21:21" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
         FormInput.add(TglAsuhan);
-        TglAsuhan.setBounds(690, 10, 130, 23);
+        TglAsuhan.setBounds(680, 10, 130, 23);
 
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
@@ -3230,13 +3343,13 @@ public final class RMMCU extends javax.swing.JDialog {
         ConcRadiologi.setBounds(130, 3155, 300, 23);
 
         jLabel101.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel101.setText("Phsycal Examination");
+        jLabel101.setText("Pemeriksaan Fisik");
         jLabel101.setName("jLabel101"); // NOI18N
         FormInput.add(jLabel101);
         jLabel101.setBounds(50, 3065, 240, 20);
 
         jLabel104.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel104.setText("Conclusion 1 (WAJIB)");
+        jLabel104.setText("Kesimpulan");
         jLabel104.setName("jLabel104"); // NOI18N
         FormInput.add(jLabel104);
         jLabel104.setBounds(50, 2960, 160, 23);
@@ -3263,19 +3376,18 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
-        ConcLab.setEditable(false);
-        ConcLab.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        ConcLab.setColumns(20);
-        ConcLab.setRows(5);
-        ConcLab.setName("ConcLab"); // NOI18N
-        ConcLab.setPreferredSize(new java.awt.Dimension(182, 52));
-        scrollPane13.setViewportView(ConcLab);
+        catatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        catatan.setColumns(20);
+        catatan.setRows(5);
+        catatan.setName("catatan"); // NOI18N
+        catatan.setPreferredSize(new java.awt.Dimension(182, 52));
+        scrollPane13.setViewportView(catatan);
 
         FormInput.add(scrollPane13);
         scrollPane13.setBounds(480, 3090, 390, 53);
 
         jLabel155.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel155.setText("Medical History and General Information");
+        jLabel155.setText("Riwayat dan Informasi Umum");
         jLabel155.setName("jLabel155"); // NOI18N
         FormInput.add(jLabel155);
         jLabel155.setBounds(610, 2960, 240, 20);
@@ -3322,7 +3434,7 @@ public final class RMMCU extends javax.swing.JDialog {
         scrollPane7.setBounds(610, 2990, 260, 70);
 
         jLabel158.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel158.setText("Laboratorium");
+        jLabel158.setText("Catatan");
         jLabel158.setName("jLabel158"); // NOI18N
         FormInput.add(jLabel158);
         jLabel158.setBounds(480, 3065, 182, 23);
@@ -4310,35 +4422,47 @@ public final class RMMCU extends javax.swing.JDialog {
         FormInput.add(jLabel192);
         jLabel192.setBounds(310, 330, 110, 23);
 
-        manager.setHighlighter(null);
         manager.setName("manager"); // NOI18N
         manager.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 managerKeyPressed(evt);
             }
         });
+        manager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managerActionPerformed(evt);
+            }
+        });
         FormInput.add(manager);
-        manager.setBounds(700, 330, 170, 23);
+        manager.setBounds(700, 330, 25, 23);
 
-        departemen.setHighlighter(null);
         departemen.setName("departemen"); // NOI18N
         departemen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 departemenKeyPressed(evt);
             }
         });
+        departemen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departemenActionPerformed(evt);
+            }
+        });
         FormInput.add(departemen);
-        departemen.setBounds(140, 330, 170, 23);
+        departemen.setBounds(140, 330, 25, 23);
 
-        supervisor.setHighlighter(null);
         supervisor.setName("supervisor"); // NOI18N
         supervisor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 supervisorKeyPressed(evt);
             }
         });
+        supervisor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supervisorActionPerformed(evt);
+            }
+        });
         FormInput.add(supervisor);
-        supervisor.setBounds(430, 330, 170, 23);
+        supervisor.setBounds(430, 330, 25, 23);
 
         jSeparator8.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator8.setForeground(new java.awt.Color(239, 244, 234));
@@ -4346,6 +4470,19 @@ public final class RMMCU extends javax.swing.JDialog {
         jSeparator8.setName("jSeparator8"); // NOI18N
         FormInput.add(jSeparator8);
         jSeparator8.setBounds(0, 2621, 880, 1);
+
+        TglLahir.setForeground(new java.awt.Color(50, 70, 50));
+        TglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglLahir.setDisplayFormat("dd-MM-yyyy");
+        TglLahir.setName("TglLahir"); // NOI18N
+        TglLahir.setOpaque(false);
+        FormInput.add(TglLahir);
+        TglLahir.setBounds(660, 140, 90, 23);
+
+        Jk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Laki Laki", "Perempuan" }));
+        Jk.setName("Jk"); // NOI18N
+        FormInput.add(Jk);
+        Jk.setBounds(790, 140, 80, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -4389,7 +4526,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4403,7 +4540,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4496,29 +4633,29 @@ public final class RMMCU extends javax.swing.JDialog {
 
     }// GEN-LAST:event_BtnSimpanActionPerformed
 
-    private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnSimpanKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
-        } else {
-            Valid.pindah(evt, saran, BtnBatal);
+        }else{
+            Valid.pindah(evt,saran,BtnBatal);
         }
-    }// GEN-LAST:event_BtnSimpanKeyPressed
+    }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void surnameKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, TPasien, TmpLahir);
+        Valid.pindah(evt,TPasien,TmpLahir);
     }
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
     }// GEN-LAST:event_BtnBatalActionPerformed
 
-    private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnBatalKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             emptTeks();
-        } else {
-            Valid.pindah(evt, BtnSimpan, BtnHapus);
+        }else{
+            Valid.pindah(evt,BtnSimpan,BtnHapus);
         }
-    }// GEN-LAST:event_BtnBatalKeyPressed
+    }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnHapusActionPerformed
         if (tbObat.getSelectedRow() > -1) {
@@ -4548,13 +4685,13 @@ public final class RMMCU extends javax.swing.JDialog {
 
     }// GEN-LAST:event_BtnHapusActionPerformed
 
-    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnHapusKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnHapusActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnBatal, BtnEdit);
+        }else{
+            Valid.pindah(evt,BtnBatal,BtnEdit);
         }
-    }// GEN-LAST:event_BtnHapusKeyPressed
+    }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnEditActionPerformed
         sinkronFieldMcu();
@@ -4614,25 +4751,41 @@ public final class RMMCU extends javax.swing.JDialog {
         }
     }// GEN-LAST:event_BtnEditActionPerformed
 
-    private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnEditKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnEditActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnHapus, BtnPrint);
+        }else{
+            Valid.pindah(evt,BtnHapus,BtnPrint);
         }
-    }// GEN-LAST:event_BtnEditKeyPressed
+    }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
     }// GEN-LAST:event_BtnKeluarActionPerformed
 
-    private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnKeluarKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnKeluarActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnEdit, TCari);
+        }else{
+            Valid.pindah(evt,BtnEdit,BtnRiwayatMCU);
         }
-    }// GEN-LAST:event_BtnKeluarKeyPressed
+    }//GEN-LAST:event_BtnKeluarKeyPressed
+
+    private void BtnRiwayatMCUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRiwayatMCUActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih/cari data pasien terlebih dahulu..!!");
+        } else {
+            tampilkanRiwayat(TNoRw.getText().trim());
+        }
+    }//GEN-LAST:event_BtnRiwayatMCUActionPerformed
+
+    private void BtnRiwayatMCUKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRiwayatMCUKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnRiwayatMCUActionPerformed(null);
+        }else{
+            Valid.pindah(evt,BtnKeluar,TCari);
+        }
+    }//GEN-LAST:event_BtnRiwayatMCUKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnPrintActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -5763,49 +5916,49 @@ public final class RMMCU extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }// GEN-LAST:event_BtnPrintActionPerformed
 
-    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnPrintKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnPrintActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnEdit, BtnKeluar);
+        }else{
+            Valid.pindah(evt,BtnEdit,BtnKeluar);
         }
-    }// GEN-LAST:event_BtnPrintKeyPressed
+    }//GEN-LAST:event_BtnPrintKeyPressed
 
-    private void TCariKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_TCariKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+    private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             BtnCariActionPerformed(null);
-        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             BtnCari.requestFocus();
-        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
             BtnKeluar.requestFocus();
         }
-    }// GEN-LAST:event_TCariKeyPressed
+    }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnCariActionPerformed
         runBackground(() -> tampil());
     }// GEN-LAST:event_BtnCariActionPerformed
 
-    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnCariKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnCariActionPerformed(null);
-        } else {
-            Valid.pindah(evt, TCari, BtnAll);
+        }else{
+            Valid.pindah(evt,TCari,BtnAll);
         }
-    }// GEN-LAST:event_BtnCariKeyPressed
+    }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         runBackground(() -> tampil());
     }// GEN-LAST:event_BtnAllActionPerformed
 
-    private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_BtnAllKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+    private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
             runBackground(() -> tampil());
-        } else {
-            Valid.pindah(evt, BtnCari, surname);
+        }else{
+            Valid.pindah(evt,BtnCari,surname);
         }
-    }// GEN-LAST:event_BtnAllKeyPressed
+    }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tbObatMouseClicked
         if (tabMode.getRowCount() != 0) {
@@ -5819,15 +5972,15 @@ public final class RMMCU extends javax.swing.JDialog {
         }
     }// GEN-LAST:event_tbObatMouseClicked
 
-    private void tbObatKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_tbObatKeyPressed
-        if (tabMode.getRowCount() != 0) {
-            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP)
-                    || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+    private void tbObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbObatKeyPressed
+        if(tabMode.getRowCount()!=0){
+            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)
+                    ||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
                 try {
                     getData();
                 } catch (java.lang.NullPointerException e) {
                 }
-            } else if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            }else if(evt.getKeyCode()==KeyEvent.VK_SPACE){
                 try {
                     getData();
                     TabRawat.setSelectedIndex(0);
@@ -5835,7 +5988,7 @@ public final class RMMCU extends javax.swing.JDialog {
                 }
             }
         }
-    }// GEN-LAST:event_tbObatKeyPressed
+    }//GEN-LAST:event_tbObatKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
         if (koneksiDB.CARICEPAT().equals("aktif")) {
@@ -5868,9 +6021,9 @@ public final class RMMCU extends javax.swing.JDialog {
         cetakJasperPenilaianMcuTerpilih();
     }// GEN-LAST:event_MnPenilaianMCUActionPerformed
 
-    private void ConcRadiologiKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_ConcRadiologiKeyPressed
-        Valid.pindah(evt, ConcRadiologi, ConcEcg);
-    }// GEN-LAST:event_ConcRadiologiKeyPressed
+    private void ConcRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConcRadiologiKeyPressed
+        Valid.pindah(evt,ConcRadiologi,ConcEcg);
+    }//GEN-LAST:event_ConcRadiologiKeyPressed
 
     private void BtnPetugasLabActionPerformed(java.awt.event.ActionEvent evt) {
         if (petugas == null || !petugas.isDisplayable()) {
@@ -5938,17 +6091,17 @@ public final class RMMCU extends javax.swing.JDialog {
         petugas.setVisible(true);
     }// GEN-LAST:event_BtnPetugasActionPerformed
 
-    private void TBKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_TBKeyPressed
-        Valid.pindah(evt, RR, BB);
-    }// GEN-LAST:event_TBKeyPressed
+    private void TBKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBKeyPressed
+        Valid.pindah(evt,RR,BB);
+    }//GEN-LAST:event_TBKeyPressed
 
-    private void RRKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_RRKeyPressed
-        Valid.pindah(evt, Nadi, TB);
-    }// GEN-LAST:event_RRKeyPressed
+    private void RRKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RRKeyPressed
+        Valid.pindah(evt,Nadi,TB);
+    }//GEN-LAST:event_RRKeyPressed
 
-    private void NadiKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_NadiKeyPressed
-        Valid.pindah(evt, TD, RR);
-    }// GEN-LAST:event_NadiKeyPressed
+    private void NadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NadiKeyPressed
+        Valid.pindah(evt,TD,RR);
+    }//GEN-LAST:event_NadiKeyPressed
 
     private void RWP29ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_RWP29ActionPerformed
         // TODO add your handling code here:
@@ -5962,33 +6115,33 @@ public final class RMMCU extends javax.swing.JDialog {
         // TODO add your handling code here:
     }// GEN-LAST:event_RWP28ActionPerformed
 
-    private void OtherJobKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_OtherJobKeyPressed
-        Valid.pindah(evt, Hobby, PosisiKerja);
-    }// GEN-LAST:event_OtherJobKeyPressed
+    private void OtherJobKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_OtherJobKeyPressed
+        Valid.pindah(evt,Hobby,PosisiKerja);
+    }//GEN-LAST:event_OtherJobKeyPressed
 
-    private void HobbyKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_HobbyKeyPressed
-        Valid.pindah(evt, Activities, OtherJob);
-    }// GEN-LAST:event_HobbyKeyPressed
+    private void HobbyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_HobbyKeyPressed
+        Valid.pindah(evt,Activities,OtherJob);
+    }//GEN-LAST:event_HobbyKeyPressed
 
-    private void ActivitiesKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_ActivitiesKeyPressed
-        Valid.pindah(evt, JobTitle, Hobby);
-    }// GEN-LAST:event_ActivitiesKeyPressed
+    private void ActivitiesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ActivitiesKeyPressed
+        Valid.pindah(evt,JobTitle,Hobby);
+    }//GEN-LAST:event_ActivitiesKeyPressed
 
-    private void JobTitleKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_JobTitleKeyPressed
-        Valid.pindah(evt, Yoe, Activities);
-    }// GEN-LAST:event_JobTitleKeyPressed
+    private void JobTitleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JobTitleKeyPressed
+        Valid.pindah(evt,Yoe,Activities);
+    }//GEN-LAST:event_JobTitleKeyPressed
 
-    private void YoeKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_YoeKeyPressed
-        Valid.pindah(evt, Doe, JobTitle);
-    }// GEN-LAST:event_YoeKeyPressed
+    private void YoeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_YoeKeyPressed
+        Valid.pindah(evt,Doe,JobTitle);
+    }//GEN-LAST:event_YoeKeyPressed
 
-    private void DoeKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_DoeKeyPressed
-        Valid.pindah(evt, NoTlp, Yoe);
-    }// GEN-LAST:event_DoeKeyPressed
+    private void DoeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DoeKeyPressed
+        Valid.pindah(evt,NoTlp,Yoe);
+    }//GEN-LAST:event_DoeKeyPressed
 
-    private void NoTlpKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_NoTlpKeyPressed
-        Valid.pindah(evt, SttsNikah, Doe);
-    }// GEN-LAST:event_NoTlpKeyPressed
+    private void NoTlpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoTlpKeyPressed
+        Valid.pindah(evt,SttsNikah,Doe);
+    }//GEN-LAST:event_NoTlpKeyPressed
 
     private void BtnDokter2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnDokter2ActionPerformed
         if (TNoRw.getText().equals("") && TNoRM.getText().equals("")) {
@@ -6058,9 +6211,9 @@ public final class RMMCU extends javax.swing.JDialog {
         }
     }// GEN-LAST:event_BtnDokter3ActionPerformed
 
-    private void specifyKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_specifyKeyPressed
-        Valid.pindah2(evt, saran, BtnSimpan);
-    }// GEN-LAST:event_specifyKeyPressed
+    private void specifyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_specifyKeyPressed
+        Valid.pindah2(evt,saran,BtnSimpan);
+    }//GEN-LAST:event_specifyKeyPressed
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnDokterActionPerformed
         if (dokter == null || !dokter.isDisplayable()) {
@@ -6092,21 +6245,21 @@ public final class RMMCU extends javax.swing.JDialog {
         dokter.setVisible(true);
     }// GEN-LAST:event_BtnDokterActionPerformed
 
-    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_TNoRwKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             isRawat();
-        } else {
-            Valid.pindah(evt, TCari, BtnDokter);
+        }else{
+            Valid.pindah(evt,TCari,BtnDokter);
         }
-    }// GEN-LAST:event_TNoRwKeyPressed
+    }//GEN-LAST:event_TNoRwKeyPressed
 
-    private void eye_unaided_distant_lKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_unaided_distant_lKeyPressed
-        Valid.pindah(evt, KlasifikasiIMT1, eye_unaided_distant_r);
-    }// GEN-LAST:event_eye_unaided_distant_lKeyPressed
+    private void eye_unaided_distant_lKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_distant_lKeyPressed
+        Valid.pindah(evt,KlasifikasiIMT1,eye_unaided_distant_r);
+    }//GEN-LAST:event_eye_unaided_distant_lKeyPressed
 
-    private void eye_unaided_distant_rKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_unaided_distant_rKeyPressed
-        Valid.pindah(evt, eye_unaided_distant_l, eye_glasses_near_r);
-    }// GEN-LAST:event_eye_unaided_distant_rKeyPressed
+    private void eye_unaided_distant_rKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_distant_rKeyPressed
+        Valid.pindah(evt,eye_unaided_distant_l,eye_glasses_near_r);
+    }//GEN-LAST:event_eye_unaided_distant_rKeyPressed
 
     private void BtnPTActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnPTActionPerformed
         if (perusahaan == null || !perusahaan.isDisplayable()) {
@@ -6140,57 +6293,192 @@ public final class RMMCU extends javax.swing.JDialog {
         perusahaan.setVisible(true);
     }// GEN-LAST:event_BtnPTActionPerformed
 
-    private void eye_glasses_distant_lKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_glasses_distant_lKeyPressed
-        Valid.pindah(evt, eye_glasses_distant_r, eye_night_vision_1);
-    }// GEN-LAST:event_eye_glasses_distant_lKeyPressed
+    private void eye_glasses_distant_lKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_glasses_distant_lKeyPressed
+        Valid.pindah(evt,eye_glasses_distant_r,eye_night_vision_1);
+    }//GEN-LAST:event_eye_glasses_distant_lKeyPressed
 
-    private void eye_unaided_near_lKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_unaided_near_lKeyPressed
-        Valid.pindah(evt, eye_unaided_near_r, eye_unaided_near_r1);
-    }// GEN-LAST:event_eye_unaided_near_lKeyPressed
+    private void eye_unaided_near_lKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_near_lKeyPressed
+        Valid.pindah(evt,eye_unaided_near_r,eye_unaided_near_r1);
+    }//GEN-LAST:event_eye_unaided_near_lKeyPressed
 
-    private void eye_glasses_distant_rKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_glasses_distant_rKeyPressed
-        Valid.pindah(evt, eye_glasses_near_l, eye_glasses_distant_l);
-    }// GEN-LAST:event_eye_glasses_distant_rKeyPressed
+    private void eye_glasses_distant_rKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_glasses_distant_rKeyPressed
+        Valid.pindah(evt,eye_glasses_near_l,eye_glasses_distant_l);
+    }//GEN-LAST:event_eye_glasses_distant_rKeyPressed
 
-    private void eye_unaided_near_rKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_unaided_near_rKeyPressed
-        Valid.pindah(evt, eye_night_vision_2, eye_unaided_near_l);
-    }// GEN-LAST:event_eye_unaided_near_rKeyPressed
+    private void eye_unaided_near_rKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_near_rKeyPressed
+        Valid.pindah(evt,eye_night_vision_2,eye_unaided_near_l);
+    }//GEN-LAST:event_eye_unaided_near_rKeyPressed
 
-    private void eye_glasses_near_lKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_glasses_near_lKeyPressed
-        Valid.pindah(evt, eye_glasses_near_r, eye_glasses_distant_r);
-    }// GEN-LAST:event_eye_glasses_near_lKeyPressed
+    private void eye_glasses_near_lKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_glasses_near_lKeyPressed
+        Valid.pindah(evt,eye_glasses_near_r,eye_glasses_distant_r);
+    }//GEN-LAST:event_eye_glasses_near_lKeyPressed
 
-    private void eye_night_vision_1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_night_vision_1KeyPressed
-        Valid.pindah(evt, eye_glasses_distant_l, eye_night_vision_2);
-    }// GEN-LAST:event_eye_night_vision_1KeyPressed
+    private void eye_night_vision_1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_night_vision_1KeyPressed
+        Valid.pindah(evt,eye_glasses_distant_l,eye_night_vision_2);
+    }//GEN-LAST:event_eye_night_vision_1KeyPressed
 
-    private void eye_unaided_near_r1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_unaided_near_r1KeyPressed
-        Valid.pindah(evt, eye_unaided_near_l, eye_brake_test_2);
-    }// GEN-LAST:event_eye_unaided_near_r1KeyPressed
+    private void eye_unaided_near_r1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_unaided_near_r1KeyPressed
+        Valid.pindah(evt,eye_unaided_near_l,eye_brake_test_2);
+    }//GEN-LAST:event_eye_unaided_near_r1KeyPressed
 
-    private void eye_glasses_near_rKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_glasses_near_rKeyPressed
-        Valid.pindah(evt, eye_unaided_distant_r, eye_glasses_near_l);
-    }// GEN-LAST:event_eye_glasses_near_rKeyPressed
+    private void eye_glasses_near_rKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_glasses_near_rKeyPressed
+        Valid.pindah(evt,eye_unaided_distant_r,eye_glasses_near_l);
+    }//GEN-LAST:event_eye_glasses_near_rKeyPressed
 
-    private void eye_night_vision_2KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_night_vision_2KeyPressed
-        Valid.pindah(evt, eye_night_vision_1, eye_unaided_near_r);
-    }// GEN-LAST:event_eye_night_vision_2KeyPressed
+    private void eye_night_vision_2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_night_vision_2KeyPressed
+        Valid.pindah(evt,eye_night_vision_1,eye_unaided_near_r);
+    }//GEN-LAST:event_eye_night_vision_2KeyPressed
 
-    private void eye_brake_test_2KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_eye_brake_test_2KeyPressed
-        Valid.pindah(evt, eye_unaided_near_r1, eye_color_blindless);
-    }// GEN-LAST:event_eye_brake_test_2KeyPressed
+    private void eye_brake_test_2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eye_brake_test_2KeyPressed
+        Valid.pindah(evt,eye_unaided_near_r1,eye_color_blindless);
+    }//GEN-LAST:event_eye_brake_test_2KeyPressed
 
-    private void managerKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_managerKeyPressed
-        Valid.pindah(evt, supervisor, RWP1);
-    }// GEN-LAST:event_managerKeyPressed
+    private void managerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_managerKeyPressed
+        Valid.pindah(evt,supervisor,RWP1);
+    }//GEN-LAST:event_managerKeyPressed
 
-    private void departemenKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_departemenKeyPressed
-        Valid.pindah(evt, PosisiKerja, supervisor);
-    }// GEN-LAST:event_departemenKeyPressed
+    private void departemenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_departemenKeyPressed
+        Valid.pindah(evt,PosisiKerja,supervisor);
+    }//GEN-LAST:event_departemenKeyPressed
 
-    private void supervisorKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_supervisorKeyPressed
-        Valid.pindah(evt, departemen, manager);
-    }// GEN-LAST:event_supervisorKeyPressed
+    private void supervisorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_supervisorKeyPressed
+        Valid.pindah(evt,departemen,manager);
+    }//GEN-LAST:event_supervisorKeyPressed
+
+    private void managerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerActionPerformed
+        if (manager.isSelected()) {
+            departemen.setSelected(false);
+            supervisor.setSelected(false);
+        }
+    }//GEN-LAST:event_managerActionPerformed
+
+    private void departemenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departemenActionPerformed
+        if (departemen.isSelected()) {
+            supervisor.setSelected(false);
+            manager.setSelected(false);
+        }
+    }//GEN-LAST:event_departemenActionPerformed
+
+    private void supervisorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supervisorActionPerformed
+        if (supervisor.isSelected()) {
+            departemen.setSelected(false);
+            manager.setSelected(false);
+        }
+    }//GEN-LAST:event_supervisorActionPerformed
+
+    private void MnCopyPengkajianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopyPengkajianActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pengkajian MCU kosong...!!!!");
+        } else if (tbObat.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null,
+                    "Maaf, silahkan anda pilih dulu data pengkajian yang mau dicopy...!!!");
+        } else {
+            modeCopyPengkajian = true;
+            barisSumberCopyPengkajian = tbObat.getSelectedRow();
+            tampilkanPopupCopyPengkajian();
+        }
+    }//GEN-LAST:event_MnCopyPengkajianActionPerformed
+
+    private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
+        modeCopyPengkajian = false;
+        barisSumberCopyPengkajian = -1;
+        WindowGabungMCU.dispose();
+    }//GEN-LAST:event_BtnCloseIn6ActionPerformed
+
+    private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
+        String noRawatSumber = getTabelValue("no_rawat", barisSumberCopyPengkajian);
+        if (NoRmTujuan.getText().trim().equals("")) {
+            Valid.textKosong(NoRmTujuan, "No. Rawat Tujuan");
+            return;
+        }
+        if (NmPasienTujuan.getText().trim().equals("")) {
+            cariNamaPasienTujuanCopy();
+        }
+        if (NmPasienTujuan.getText().trim().equals("")) {
+            return;
+        }
+        String noRawatTujuan = NoRmTujuan.getText().trim();
+        if (noRawatTujuan.equals(noRawatSumber)) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Maaf, No. Rawat tujuan tidak boleh sama dengan No. Rawat sumber..!!");
+            return;
+        }
+        WindowGabungMCU.dispose();
+        TNoRw.setText(noRawatTujuan);
+        isRawat();
+    }//GEN-LAST:event_BtnSimpan6ActionPerformed
+
+    private void NoRmTujuanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoRmTujuanKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cariNamaPasienTujuanCopy();
+            NoRmTujuan.requestFocus();
+        }
+    }//GEN-LAST:event_NoRmTujuanKeyPressed
+
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        cariNamaPasienTujuanCopy();
+        NoRmTujuan.requestFocus();
+    }//GEN-LAST:event_BtnCari1ActionPerformed
+
+    /**
+     * Mencari & menampilkan nama pasien pemilik No. Rawat tujuan yang diketik pada
+     * {@code NoRmTujuan} (dialog {@code WindowGabungMCU}), gaya sama seperti validasi
+     * No.R.M tujuan pada fitur Gabungkan Data RM di {@code DlgPasien}.
+     */
+    private void cariNamaPasienTujuanCopy() {
+        if (NoRmTujuan.getText().trim().equals("")) {
+            NmPasienTujuan.setText("");
+            return;
+        }
+        Sequel.cariIsi(
+                "select pasien.nm_pasien from reg_periksa inner join pasien on "
+                        + "reg_periksa.no_rkm_medis=pasien.no_rkm_medis where reg_periksa.no_rawat=?",
+                NmPasienTujuan, NoRmTujuan.getText().trim());
+        if (NmPasienTujuan.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, No. Rawat tujuan tidak ditemukan..!!");
+        }
+    }
+
+    /**
+     * Menampilkan popup {@code WindowGabungMCU} untuk mengetikkan No. Rawat tujuan tempat
+     * data pengkajian (baris yang dipilih lewat menu "Copy Data") akan ditempelkan.
+     */
+    private void tampilkanPopupCopyPengkajian() {
+        String noRawatSumber = getTabelValue("no_rawat", barisSumberCopyPengkajian);
+        String namaPasienSumber = getTabelValue("nama_pasien", barisSumberCopyPengkajian);
+
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(
+                javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)),
+                "::[ Copy Dari " + noRawatSumber + " - " + namaPasienSumber + " ]::",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11),
+                new java.awt.Color(50, 50, 50)));
+
+        NoRmTujuan.setText("");
+        NmPasienTujuan.setText("");
+        WindowGabungMCU.setSize(430, 130);
+        WindowGabungMCU.setLocationRelativeTo(internalFrame1);
+        NoRmTujuan.requestFocus();
+        WindowGabungMCU.setVisible(true);
+    }
+
+    /**
+     * Menampilkan riwayat pengkajian MCU pasien pemilik No. Rawat yang diberikan, dipanggil
+     * dari DlgMCU (tombol Riwayat MCU pada daftar pasien) sehingga tidak perlu lagi membuka
+     * tab Input Pengkajian terlebih dahulu.
+     */
+    public void tampilkanRiwayat(String noRawat) {
+        String noRM = Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=?", noRawat).trim();
+        if (noRM.equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, No.RM pasien tidak ditemukan...!!!");
+            return;
+        }
+        TCari.setText(noRM);
+        DTPCari1.setDate(new Date(0));
+        DTPCari2.setDate(new Date());
+        tampil();
+        TabRawat.setSelectedIndex(1);
+    }
 
     private void cetakJasperPenilaianMcuTerpilih() {
         if (tbObat.getSelectedRow() > -1) {
@@ -6238,98 +6526,7 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String queryCetakPenilaianMcu(String noRawat) {
-        if (gunakanQueryCetakPenilaianMcuDinamis()) {
-            return selectPenilaianMcu() + "where penilaian_mcu.no_rawat='" + escapeSql(noRawat) + "'";
-        }
-        return "select reg_periksa.no_rawat,ifnull(penilaian_mcu.no_rkm_medis,pasien.no_rkm_medis) as no_rkm_medis," +
-                "ifnull(penilaian_mcu.nama_pasien,pasien.nm_pasien) as nama_pasien,ifnull(penilaian_mcu.surname,'') as surname,"
-                +
-                "ifnull(penilaian_mcu.nama_pasien,pasien.nm_pasien) as nm_pasien," + selectNamaPenanggungJawab()
-                + " as perusahaan_pasien,pasien.nip," +
-                "ifnull(penilaian_mcu.tmp_lahir,pasien.tmp_lahir) as tmp_lahir,ifnull(penilaian_mcu.tgl_lahir,pasien.tgl_lahir) as tgl_lahir,"
-                +
-                "if(ifnull(penilaian_mcu.jk,pasien.jk) in ('L','Laki-laki','Laki laki'),'Laki laki','Perempuan') as jk,ifnull(penilaian_mcu.no_tlp,pasien.no_tlp) as no_tlp,"
-                +
-                "ifnull(nullif(penilaian_mcu.suku_bangsa,''),ifnull(suku_bangsa.nama_suku_bangsa,pasien.suku_bangsa)) as suku_bangsa,ifnull(penilaian_mcu.stts_nikah,pasien.stts_nikah) as stts_nikah,"
-                +
-                "concat(pasien.alamat,', ',ifnull(kelurahan.nm_kel,''),', ',ifnull(kecamatan.nm_kec,''),', ',ifnull(kabupaten.nm_kab,''),', ',ifnull(propinsi.nm_prop,'')) as alamat,"
-                +
-                "penilaian_mcu.tanggal,penilaian_mcu.`year`,penilaian_mcu.kd_dokter,dokter.nm_dokter,penilaian_mcu.kd_petugas,petugas.nama as nm_petugas,ifnull(nullif(penilaian_mcu.note1,''),penilaian_mcu.unfit_comment_1) as note1,penilaian_mcu.mcu_group,penilaian_mcu.dass_21,penilaian_mcu.phy_exam,"
-                +
-                "ifnull(nullif(penilaian_mcu.laborat,''),penilaian_mcu.conc_lab) as conc_lab,penilaian_mcu.conc_radiologi,penilaian_mcu.conc_ecg,penilaian_mcu.conc_spirometry,penilaian_mcu.conc_audiometry,penilaian_mcu.kesimpulan1,"
-                +
-                "penilaian_mcu.doe,penilaian_mcu.yoe,penilaian_mcu.job_title,penilaian_mcu.activities,penilaian_mcu.hobby,penilaian_mcu.other_job,penilaian_mcu.posisi_kerja,"
-                +
-                "penilaian_mcu.job_involves_driving_or_operating_mobile_equipment,penilaian_mcu.job_involves_working_at_heights,penilaian_mcu.job_involves_clerical_office_based_or_administrative,"
-                +
-                "penilaian_mcu.job_involves_requires_colour_vision,penilaian_mcu.job_involves_potential_dust_exposure,penilaian_mcu.job_involves_catering_staff_including_food_handlers,"
-                +
-                "penilaian_mcu.job_involves_exposing_to_other_potential_dangerous,penilaian_mcu.med_hist_head_injury_or_contussion,penilaian_mcu.med_hist_fainting_blackouts_epilepsy,"
-                +
-                "penilaian_mcu.med_hist_visual_changes,penilaian_mcu.med_hist_hearing_loss,penilaian_mcu.med_hist_nose_sinus_throat_trouble_more_4_weeks,"
-                +
-                "penilaian_mcu.med_hist_gynaecological_problems,penilaian_mcu.med_hist_chronic_skin_problem,penilaian_mcu.med_hist_chronic_diarrhea,"
-                +
-                "penilaian_mcu.med_hist_anorexia_more_4_weeks,penilaian_mcu.med_hist_gastritis,penilaian_mcu.med_hist_jaundice_hepatitis,"
-                +
-                "penilaian_mcu.med_hist_chronic_cough_more_4_weeks,penilaian_mcu.med_hist_haemorhoid,penilaian_mcu.med_hist_chronic_abdominal_pain,"
-                +
-                "penilaian_mcu.med_hist_diabetes,penilaian_mcu.med_hist_asthma,penilaian_mcu.med_hist_allergies,penilaian_mcu.med_hist_tuberculosis_bronchitis,"
-                +
-                "penilaian_mcu.med_hist_psychiatric_disorder,penilaian_mcu.med_hist_sexual_transmitted_diseases,penilaian_mcu.med_hist_unusual_change_of_weight_more_5kg_per_month,"
-                +
-                "penilaian_mcu.med_hist_hypertension,penilaian_mcu.med_hist_chest_pain_heart_disease,penilaian_mcu.med_hist_malaria_tropical_disease,"
-                +
-                "penilaian_mcu.med_hist_surgery_operation,penilaian_mcu.med_hist_back_pain_more_4_weeks,penilaian_mcu.med_hist_thypoid_fever,"
-                +
-                "penilaian_mcu.med_hist_swollen_or_painful_joints,penilaian_mcu.med_hist_kidney_problem_urinary_stones,penilaian_mcu.med_hist_other_chronical_diseases,"
-                +
-                "penilaian_mcu.hb,penilaian_mcu.wbc,penilaian_mcu.esr,penilaian_mcu.bl_group,penilaian_mcu.gamaa_gt,penilaian_mcu.sgot,penilaian_mcu.sgpt,penilaian_mcu.urea,penilaian_mcu.creatinin,penilaian_mcu.glucose,"
-                +
-                "penilaian_mcu.td,penilaian_mcu.nadi,penilaian_mcu.rr,penilaian_mcu.tb,penilaian_mcu.bb,penilaian_mcu.bmi,penilaian_mcu.laborat,penilaian_mcu.radiologi,penilaian_mcu.ekg,"
-                +
-                "penilaian_mcu.spirometri_vc_1,penilaian_mcu.spirometri_vc_2,penilaian_mcu.spirometri_vc_3,penilaian_mcu.spirometri_vc_4,penilaian_mcu.spirometri_fvc_1,penilaian_mcu.spirometri_fvc_2,"
-                +
-                "penilaian_mcu.spirometri_fvc_3,penilaian_mcu.spirometri_fvc_4,penilaian_mcu.spirometri_fev_1_1,penilaian_mcu.spirometri_fev_1_2,penilaian_mcu.spirometri_fev_1_3,penilaian_mcu.spirometri_fev_1_4,"
-                +
-                "penilaian_mcu.spirometri_fev_1_fvc_1,penilaian_mcu.spirometri_fev_1_fvc_2,penilaian_mcu.spirometri_fev_1_fvc_3,penilaian_mcu.spirometri_fev_1_fvc_4,penilaian_mcu.type_of_hearing,"
-                +
-                "penilaian_mcu.audiometri_left_ear_500_AB,penilaian_mcu.audiometri_left_ear_1000_AB,penilaian_mcu.audiometri_left_ear_1500_AB,penilaian_mcu.audiometri_left_ear_2000_AB,"
-                +
-                "penilaian_mcu.audiometri_left_ear_3000_AB,penilaian_mcu.audiometri_left_ear_4000_AB,penilaian_mcu.audiometri_left_ear_5000_AB,penilaian_mcu.audiometri_left_ear_6000_AB,"
-                +
-                "penilaian_mcu.audiometri_left_ear_500_AC,penilaian_mcu.audiometri_left_ear_1000_AC,penilaian_mcu.audiometri_left_ear_1500_AC,penilaian_mcu.audiometri_left_ear_2000_AC,"
-                +
-                "penilaian_mcu.audiometri_left_ear_3000_AC,penilaian_mcu.audiometri_left_ear_4000_AC,penilaian_mcu.audiometri_left_ear_5000_AC,penilaian_mcu.audiometri_left_ear_6000_AC,"
-                +
-                "penilaian_mcu.audiometri_right_ear_500_ab,penilaian_mcu.audiometri_right_ear_1000_ab,penilaian_mcu.audiometri_right_ear_1500_ab,penilaian_mcu.audiometri_right_ear_2000_ab,"
-                +
-                "penilaian_mcu.audiometri_right_ear_3000_ab,penilaian_mcu.audiometri_right_ear_4000_ab,penilaian_mcu.audiometri_right_ear_5000_ab,penilaian_mcu.audiometri_right_ear_6000_ab,"
-                +
-                "penilaian_mcu.audiometri_right_ear_500_ac,penilaian_mcu.audiometri_right_ear_1000_ac,penilaian_mcu.audiometri_right_ear_1500_ac,penilaian_mcu.audiometri_right_ear_2000_ac,"
-                +
-                "penilaian_mcu.audiometri_right_ear_3000_ac,penilaian_mcu.audiometri_right_ear_4000_ac,penilaian_mcu.audiometri_right_ear_5000_ac,penilaian_mcu.audiometri_right_ear_6000_ac,"
-                +
-                "penilaian_mcu.eye_color_blindless,penilaian_mcu.visual_fields_left,penilaian_mcu.visual_fields_right,penilaian_mcu.fundi,penilaian_mcu.blood_group,penilaian_mcu.medically_fit,"
-                +
-                "penilaian_mcu.fit_with_restrictions,penilaian_mcu.specify,penilaian_mcu.unfit_comment_1,penilaian_mcu.kd_petugas_lab,petugas_lab.nama as nm_petugas_lab "
-                +
-                "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
-                "inner join penilaian_mcu on reg_periksa.no_rawat=penilaian_mcu.no_rawat " +
-                "left join suku_bangsa on suku_bangsa.id=pasien.suku_bangsa " +
-                "left join kelurahan on pasien.kd_kel=kelurahan.kd_kel " +
-                "left join kecamatan on pasien.kd_kec=kecamatan.kd_kec " +
-                "left join kabupaten on pasien.kd_kab=kabupaten.kd_kab " +
-                "left join propinsi on pasien.kd_prop=propinsi.kd_prop " +
-                "left join perusahaan_pasien on perusahaan_pasien.kode_perusahaan=pasien.perusahaan_pasien " +
-                "left join dokter on penilaian_mcu.kd_dokter=dokter.kd_dokter " +
-                "left join petugas on penilaian_mcu.kd_petugas=petugas.nip " +
-                "left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab=petugas_lab.nip " +
-                "where reg_periksa.no_rawat='" + escapeSql(noRawat) + "'";
-    }
-
-    private boolean gunakanQueryCetakPenilaianMcuDinamis() {
-        return true;
+        return selectPenilaianMcu() + "where penilaian_mcu.no_rawat='" + escapeSql(noRawat) + "'";
     }
 
     private String escapeSql(String nilai) {
@@ -6377,6 +6574,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCari1;
+    private widget.Button BtnCloseIn6;
     private widget.Button BtnDokter;
     private widget.Button BtnDokter2;
     private widget.Button BtnDokter3;
@@ -6387,11 +6586,12 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Button BtnPetugas;
     private widget.Button BtnPetugasLab;
     private widget.Button BtnPrint;
+    private widget.Button BtnRiwayatMCU;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSimpan6;
     private widget.TextBox CigarettesPerday;
     private widget.TextBox ConcAudiometry;
     private widget.TextBox ConcEcg;
-    private widget.TextArea ConcLab;
     private widget.TextBox ConcRadiologi;
     private widget.TextBox ConcSpirometry;
     private widget.Tanggal DTPCari1;
@@ -6407,7 +6607,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox ILO_clasification;
     private widget.TextBox ILO_clasification2;
     private widget.TextBox IMT;
-    private widget.TextBox Jk;
+    private widget.ComboBox Jk;
     private widget.CekBox JobInvolvesCateringStaffIncludingFoodHandlers;
     private widget.CekBox JobInvolvesClericalOfficeBasedOrAdministrative;
     private widget.CekBox JobInvolvesDrivingOrOperatingMobileEquipment;
@@ -6423,12 +6623,15 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.editorpane LoadHTML;
     private widget.ComboBox McuGroup;
+    private javax.swing.JMenuItem MnCopyPengkajian;
     private javax.swing.JMenuItem MnPenilaianMCU;
     private widget.TextBox NIP;
     private widget.TextBox Nadi;
     private widget.TextBox NmDokter;
+    private widget.TextBox NmPasienTujuan;
     private widget.TextBox NmPetugas;
     private widget.TextBox NmPetugasLab;
+    private widget.TextBox NoRmTujuan;
     private widget.TextBox NoTlp;
     private widget.TextBox OtherJob;
     private widget.TextArea PemeriksaanLaboratorium;
@@ -6481,8 +6684,9 @@ public final class RMMCU extends javax.swing.JDialog {
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox TanggalRegistrasi;
     private widget.Tanggal TglAsuhan;
-    private widget.TextBox TglLahir;
+    private widget.Tanggal TglLahir;
     private widget.TextBox TmpLahir;
+    private javax.swing.JDialog WindowGabungMCU;
     private widget.TextBox Year;
     private widget.TextBox Yoe;
     private widget.TextBox afp;
@@ -6533,6 +6737,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox bl_group;
     private widget.TextBox blood;
     private widget.ComboBox blood_group;
+    private widget.TextArea catatan;
     private widget.ComboBox cbConcEcg;
     private widget.TextBox cea;
     private widget.ComboBox conclusion_colour_blindness;
@@ -6546,7 +6751,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox dass1;
     private widget.TextBox dass2;
     private widget.TextBox dass3;
-    private widget.TextBox departemen;
+    private widget.CekBox departemen;
     private widget.TextBox drug_amphetamine;
     private widget.TextBox drug_benzodiazepine;
     private widget.TextBox drug_cocain;
@@ -6598,6 +6803,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
+    private widget.InternalFrame internalFrame8;
     private widget.Label jLabel10;
     private widget.Label jLabel100;
     private widget.Label jLabel101;
@@ -6835,6 +7041,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label label14;
     private widget.Label label15;
     private widget.Label label16;
+    private widget.Label label40;
+    private widget.Label label41;
     private widget.Label lbAfp;
     private widget.Label lbAntiHbs;
     private widget.Label lbCea;
@@ -6868,7 +7076,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox ldl_cholesterol;
     private widget.TextBox leukosit;
     private widget.TextBox malaria;
-    private widget.TextBox manager;
+    private widget.CekBox manager;
     private widget.TextBox mantoux_test;
     private widget.TextBox oth_abnormal;
     private widget.TextBox ova;
@@ -6911,7 +7119,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox spirometri_vc_2;
     private widget.TextBox spirometri_vc_3;
     private widget.TextBox spirometri_vc_4;
-    private widget.TextBox supervisor;
+    private widget.CekBox supervisor;
     private widget.TextBox surname;
     private widget.TextBox tb1;
     private widget.TextBox tb2;
@@ -8254,7 +8462,7 @@ public final class RMMCU extends javax.swing.JDialog {
         return "select " +
                 "penilaian_mcu.no_rawat,penilaian_mcu.tanggal,penilaian_mcu.`year` as year,penilaian_mcu.kd_dokter,penilaian_mcu.kd_petugas,"
                 +
-                "ifnull(nullif(penilaian_mcu.note1,''),penilaian_mcu.unfit_comment_1) as note1," +
+                "penilaian_mcu.catatan," +
                 "ifnull(penilaian_mcu.nama_pasien,pasien.nm_pasien) as nama_pasien,ifnull(penilaian_mcu.surname,'') as surname,"
                 +
                 "penilaian_mcu.mcu_group,penilaian_mcu.dass_21,penilaian_mcu.phy_exam," +
@@ -8389,7 +8597,7 @@ public final class RMMCU extends javax.swing.JDialog {
                 +
                 "penilaian_mcu.blood_group,penilaian_mcu.medically_fit,penilaian_mcu.fit_with_restrictions,penilaian_mcu.specify,"
                 +
-                "ifnull(nullif(penilaian_mcu.note1,''),penilaian_mcu.unfit_comment_1) as unfit_comment_1,penilaian_mcu.trombosit,"
+                "penilaian_mcu.unfit_comment_1,penilaian_mcu.trombosit,"
                 +
                 "penilaian_mcu.rhesuss,penilaian_mcu.triglyceride,penilaian_mcu.hdl_cholesterol,penilaian_mcu.ldl_cholesterol,"
                 +
@@ -8491,15 +8699,6 @@ public final class RMMCU extends javax.swing.JDialog {
                 hasil.equals("O+") || hasil.equals("O-") ? hasil : "";
     }
 
-    private String nilaiPertamaTerisi(javax.swing.text.JTextComponent... daftarTeks) {
-        for (javax.swing.text.JTextComponent teks : daftarTeks) {
-            if (teks != null && !teks.getText().trim().equals("")) {
-                return teks.getText();
-            }
-        }
-        return "";
-    }
-
     private String nilaiPertamaTerisiValue(String... daftarNilai) {
         for (String nilai : daftarNilai) {
             if (nilai != null && !nilai.trim().equals("")) {
@@ -8510,7 +8709,7 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String nilaiLaboratMcu() {
-        return nilaiPertamaTerisi(PemeriksaanLaboratorium, ConcLab);
+        return nilai(PemeriksaanLaboratorium);
     }
 
     private String nilaiKesimpulanMcu() {
@@ -8521,10 +8720,13 @@ public final class RMMCU extends javax.swing.JDialog {
         return nilai(saran);
     }
 
+    private String nilaiCatatanMcu() {
+        return nilai(catatan);
+    }
+
     private void sinkronFieldMcu() {
         String nilaiLaborat = nilaiLaboratMcu();
         setText(PemeriksaanLaboratorium, nilaiLaborat);
-        setText(ConcLab, nilaiLaborat);
 
         String nilaiKesimpulan = nilaiKesimpulanMcu();
         setText(kesimpulan, nilaiKesimpulan);
@@ -8875,6 +9077,10 @@ public final class RMMCU extends javax.swing.JDialog {
         return cek.isSelected() ? "Yes" : "No";
     }
 
+    private String nilaiCekTunggal(javax.swing.AbstractButton cek) {
+        return cek.isSelected() ? "1" : "";
+    }
+
     private String tampilJenisKelamin(String nilai) {
         String nilaiBersih = nilai == null ? "" : nilai.trim();
         if (nilaiBersih.equalsIgnoreCase("L") || nilaiBersih.equalsIgnoreCase("Laki-laki")
@@ -8887,7 +9093,12 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String getKodeJenisKelamin() {
-        return tampilJenisKelamin(Jk.getText());
+        Object nilai = Jk.getSelectedItem();
+        return tampilJenisKelamin(nilai == null ? "" : nilai.toString());
+    }
+
+    private String getTglLahir() {
+        return Valid.SetTgl(TglLahir.getSelectedItem() + "");
     }
 
     private void setText(javax.swing.text.JTextComponent teks, String nilai) {
@@ -8934,7 +9145,7 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void setCek(javax.swing.AbstractButton cek, String nilai) {
-        cek.setSelected("yes".equalsIgnoreCase(nilai) || "true".equalsIgnoreCase(nilai));
+        cek.setSelected("yes".equalsIgnoreCase(nilai) || "true".equalsIgnoreCase(nilai) || "1".equals(nilai));
     }
 
     private void kosongkanText(javax.swing.text.JTextComponent... daftarTeks) {
@@ -8958,7 +9169,11 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private String getTabelValue(String kolom) {
-        if (tbObat.getSelectedRow() < 0) {
+        return getTabelValue(kolom, tbObat.getSelectedRow());
+    }
+
+    private String getTabelValue(String kolom, int baris) {
+        if (baris < 0) {
             return "";
         }
         int index = indexKolomTabel(kolom);
@@ -8969,7 +9184,7 @@ public final class RMMCU extends javax.swing.JDialog {
         if (viewColumn < 0) {
             return "";
         }
-        Object nilai = tbObat.getValueAt(tbObat.getSelectedRow(), viewColumn);
+        Object nilai = tbObat.getValueAt(baris, viewColumn);
         return nilai == null ? "" : nilai.toString();
     }
 
@@ -8989,7 +9204,6 @@ public final class RMMCU extends javax.swing.JDialog {
         if("nm_petugas".equals(kolom)) return 12;
         if("kd_petugas_lab".equals(kolom)) return 13;
         if("nm_petugas_lab".equals(kolom)) return 14;
-        if("note1".equals(kolom)) return 15;
         if("mcu_group".equals(kolom)) return 16;
         if("dass_21".equals(kolom)) return 17;
         if("phy_exam".equals(kolom)) return 18;
@@ -9288,13 +9502,13 @@ public final class RMMCU extends javax.swing.JDialog {
     private String[] getNilaiPenilaianMcu() {
         return new String[] {
                 TNoRw.getText(), getTanggalAsuhan(), getYearMcu(), KdDokter1.getText(), KdPetugas.getText(),
-                nilaiSaranMcu(), TPasien.getText(), surname.getText(), nilaiCombo(McuGroup), nilai(Dass21),
+                nilaiCatatanMcu(), TPasien.getText(), surname.getText(), nilaiCombo(McuGroup), nilai(Dass21),
                 nilai(PhyExam), nilaiLaboratMcu(), nilai(ConcRadiologi),
                 nilaiCombo(cbConcEcg), nilai(ConcSpirometry), nilai(ConcAudiometry), nilaiKesimpulanMcu(),
-                TNoRM.getText(), TmpLahir.getText(), TglLahir.getText(), getKodeJenisKelamin(),
+                TNoRM.getText(), TmpLahir.getText(), getTglLahir(), getKodeJenisKelamin(),
                 NoTlp.getText(), SukuBangsa.getText(), nilaiCombo(SttsNikah), Doe.getText(), Yoe.getText(),
                 JobTitle.getText(), Activities.getText(), Hobby.getText(), OtherJob.getText(), nilaiCombo(PosisiKerja),
-                departemen.getText(), supervisor.getText(), manager.getText(),
+                nilaiCekTunggal(departemen), nilaiCekTunggal(supervisor), nilaiCekTunggal(manager),
                 nilaiCek(JobInvolvesDrivingOrOperatingMobileEquipment), nilaiCek(JobInvolvesWorkingAtHeights),
                 nilaiCek(JobInvolvesClericalOfficeBasedOrAdministrative),
                 nilaiCek(JobInvolvesRequiresColourVision), nilaiCek(JobInvolvesPotentialDustExposure),
@@ -9419,7 +9633,7 @@ public final class RMMCU extends javax.swing.JDialog {
                             rs.getString("tanggal"), rs.getString("kd_dokter"), rs.getString("nm_dokter"),
                             rs.getString("kd_petugas"), rs.getString("nm_petugas"), rs.getString("kd_petugas_lab"),
                             rs.getString("nm_petugas_lab"),
-                            rs.getString("note1"), rs.getString("mcu_group"), rs.getString("dass_21"),
+                            rs.getString("unfit_comment_1"), rs.getString("mcu_group"), rs.getString("dass_21"),
                             rs.getString("phy_exam"),
                             rs.getString("conc_lab"), rs.getString("conc_radiologi"), rs.getString("conc_ecg"),
                             rs.getString("conc_spirometry"), rs.getString("conc_audiometry"),
@@ -9579,7 +9793,7 @@ public final class RMMCU extends javax.swing.JDialog {
     public void emptTeks() {
         TglAsuhan.setDate(new Date());
         setText(Year, getTahunAsuhan());
-        kosongkanText(kesimpulan, Dass21, PhyExam, ConcLab, ConcRadiologi, ConcEcg, ConcSpirometry, ConcAudiometry,
+        kosongkanText(kesimpulan, Dass21, PhyExam, catatan, ConcRadiologi, ConcEcg, ConcSpirometry, ConcAudiometry,
                 Doe, Yoe, JobTitle, Activities, Hobby, OtherJob, FamilyHistoryFather, FamilyHistoryMother,
                 FamilyHistorySiblings,
                 FamilyHistoryOther, CigarettesPerday, AlcoholGrWeek, PrescribedMedication, PrescribedMedication2,
@@ -9614,7 +9828,7 @@ public final class RMMCU extends javax.swing.JDialog {
                 urine_nitrites, urine_wbc, urine_rbc, urine_bacteria, urine_crystal, urine_epithel,
                 hbsag, anti_hbs, cea, afp, drug_amphetamine, drug_methamphetamine,
                 drug_morphine, drug_benzodiazepine, drug_cocain, drug_marijuana, dass1, dass2, dass3,
-                departemen, supervisor, manager, eye_glasses_distant_l, eye_glasses_distant_r,
+                eye_glasses_distant_l, eye_glasses_distant_r,
                 eye_unaided_near_l, eye_unaided_near_r, eye_glasses_near_l, eye_glasses_near_r,
                 eye_night_vision_1, eye_night_vision_2, eye_unaided_near_r1, eye_brake_test_2);
         resetCombo(McuGroup, PosisiKerja, cbConcEcg, eye_color_blindless, fundi,
@@ -9626,7 +9840,8 @@ public final class RMMCU extends javax.swing.JDialog {
                 conclusion_respiratory_problem,
                 conclusion_impaired_hearing, conclusion_vertigo, blood_group, fit, fit_with_restrictions);
         sinkronConcEcg();
-        resetCek(JobInvolvesDrivingOrOperatingMobileEquipment, JobInvolvesWorkingAtHeights,
+        resetCek(departemen, supervisor, manager,
+                JobInvolvesDrivingOrOperatingMobileEquipment, JobInvolvesWorkingAtHeights,
                 JobInvolvesClericalOfficeBasedOrAdministrative,
                 JobInvolvesRequiresColourVision, JobInvolvesPotentialDustExposure,
                 JobInvolvesCateringStaffIncludingFoodHandlers,
@@ -9643,30 +9858,55 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void getData() {
-        if (tbObat.getSelectedRow() != -1) {
-            setText(TNoRw, getTabelValue("no_rawat"));
-            setText(Year, getTabelValue("year"));
-            if (Year.getText().trim().equals("")) {
-                setText(Year, getTahunDariTanggal(getTabelValue("tanggal")));
-            }
-            setText(TNoRM, getTabelValue("no_rkm_medis"));
-            setText(TPasien, getTabelValue("nama_pasien"));
+        int baris = tbObat.getSelectedRow();
+        if (baris != -1) {
+            isiIdentitasKunjungan(baris);
+            isiDataPengkajian(baris);
+        }
+    }
+
+    private void isiIdentitasKunjungan(int baris) {
+        if (baris < 0) {
+            return;
+        }
+        setText(TNoRw, getTabelValue("no_rawat", baris));
+        setText(Year, getTabelValue("year", baris));
+        if (Year.getText().trim().equals("")) {
+            setText(Year, getTahunDariTanggal(getTabelValue("tanggal", baris)));
+        }
+        setText(TNoRM, getTabelValue("no_rkm_medis", baris));
+        setText(TPasien, getTabelValue("nama_pasien", baris));
+        setText(TmpLahir, getTabelValue("tmp_lahir", baris));
+        Valid.SetTgl(TglLahir, getTabelValue("tgl_lahir", baris));
+        setCombo(Jk, tampilJenisKelamin(getTabelValue("jk", baris)));
+        setText(NoTlp, getTabelValue("no_tlp", baris));
+        setText(SukuBangsa, getTabelValue("suku_bangsa", baris));
+        setCombo(SttsNikah, getTabelValue("stts_nikah", baris));
+        setText(Perusahaan, getTabelValue("perusahaan_pasien", baris));
+        setText(NIP, getTabelValue("nip", baris));
+        setText(KdDokter1, getTabelValue("kd_dokter", baris));
+        setText(NmDokter, getTabelValue("nm_dokter", baris));
+    }
+
+    /**
+     * Mengisi seluruh data inputan hasil pengkajian MCU (di luar identitas kunjungan/pasien
+     * pada {@link #isiIdentitasKunjungan(int)}) dari baris tabel sumber. Dipakai baik untuk
+     * menampilkan data existing (getData) maupun untuk fitur copy pengkajian ke no.rawat baru,
+     * sehingga daftar kolom cukup dirawat di satu tempat.
+     */
+    private void isiDataPengkajian(int baris) {
+        if (baris < 0) {
+            return;
+        }
+        if (tbObat.getSelectedRow() != baris) {
+            tbObat.setRowSelectionInterval(baris, baris);
+        }
+        {
             setText(surname, getTabelValue("surname"));
-            setText(TmpLahir, getTabelValue("tmp_lahir"));
-            setText(TglLahir, getTabelValue("tgl_lahir"));
-            setText(Jk, tampilJenisKelamin(getTabelValue("jk")));
-            setText(NoTlp, getTabelValue("no_tlp"));
-            setText(SukuBangsa, getTabelValue("suku_bangsa"));
-            setCombo(SttsNikah, getTabelValue("stts_nikah"));
-            setText(Perusahaan, getTabelValue("perusahaan_pasien"));
-            setText(NIP, getTabelValue("nip"));
-            setText(KdDokter1, getTabelValue("kd_dokter"));
-            setText(NmDokter, getTabelValue("nm_dokter"));
             setText(KdPetugas, getTabelValue("kd_petugas"));
             setText(NmPetugas, getTabelValue("nm_petugas"));
             setCombo(McuGroup, getTabelValue("mcu_group"));
-            String nilaiSaran = nilaiPertamaTerisiValue(getTabelValue("note1"), getTabelValue("unfit_comment_1"));
-            setText(saran, nilaiSaran);
+            setText(saran, getTabelValue("unfit_comment_1"));
             String dass21Val = getTabelValue("dass_21");
             setText(Dass21, dass21Val);
             try {
@@ -9689,7 +9929,8 @@ public final class RMMCU extends javax.swing.JDialog {
                 dass3.setText("");
             }
             setText(PhyExam, getTabelValue("phy_exam"));
-            setText(ConcLab, nilaiPertamaTerisiValue(getTabelValue("laborat"), getTabelValue("conc_lab")));
+            setText(catatan, Sequel.cariIsi("select ifnull(catatan,'') from penilaian_mcu where no_rawat=?",
+                    getTabelValue("no_rawat")));
             setText(ConcRadiologi, getTabelValue("conc_radiologi"));
             setText(ConcEcg, nilaiConcEcgTabel());
             setText(ConcSpirometry, getTabelValue("conc_spirometry"));
@@ -9702,9 +9943,9 @@ public final class RMMCU extends javax.swing.JDialog {
             setText(Hobby, getTabelValue("hobby"));
             setText(OtherJob, getTabelValue("other_job"));
             setCombo(PosisiKerja, getTabelValue("posisi_kerja"));
-            setText(departemen, getTabelValue("departemen"));
-            setText(supervisor, getTabelValue("supervisor"));
-            setText(manager, getTabelValue("manager"));
+            setCek(departemen, getTabelValue("departemen"));
+            setCek(supervisor, getTabelValue("supervisor"));
+            setCek(manager, getTabelValue("manager"));
             setCek(JobInvolvesDrivingOrOperatingMobileEquipment,
                     getTabelValue("job_involves_driving_or_operating_mobile_equipment"));
             setCek(JobInvolvesWorkingAtHeights, getTabelValue("job_involves_working_at_heights"));
@@ -9946,6 +10187,7 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void isRawat() {
+        boolean identitasDitemukan = false;
         try {
             ps = koneksi.prepareStatement(
                     "select reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,pasien.tmp_lahir,pasien.tgl_lahir,pasien.no_tlp,ifnull(suku_bangsa.nama_suku_bangsa,pasien.suku_bangsa) as suku_bangsa,pasien.stts_nikah,"
@@ -9962,12 +10204,13 @@ public final class RMMCU extends javax.swing.JDialog {
                 ps.setString(1, TNoRw.getText());
                 rs = ps.executeQuery();
                 if (rs.next()) {
+                    identitasDitemukan = true;
                     setText(TNoRM, rs.getString("no_rkm_medis"));
                     setText(TPasien, rs.getString("nm_pasien"));
                     setText(surname, "");
                     setText(TmpLahir, rs.getString("tmp_lahir"));
-                    setText(Jk, tampilJenisKelamin(rs.getString("jk")));
-                    setText(TglLahir, rs.getString("tgl_lahir"));
+                    setCombo(Jk, tampilJenisKelamin(rs.getString("jk")));
+                    Valid.SetTgl(TglLahir, rs.getString("tgl_lahir"));
                     setText(NoTlp, rs.getString("no_tlp"));
                     setText(SukuBangsa, rs.getString("suku_bangsa"));
                     setCombo(SttsNikah, rs.getString("stts_nikah"));
@@ -9993,6 +10236,46 @@ public final class RMMCU extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notif : " + e);
         }
+        if (identitasDitemukan && modeCopyPengkajian) {
+            salinDataPengkajianTujuanBaru();
+        }
+    }
+
+    /**
+     * Menyalin seluruh data inputan pengkajian MCU dari baris sumber (dipilih lewat menu
+     * "Copy Pengkajian") ke No. Rawat tujuan yang baru saja dimuat oleh {@link #isRawat()}.
+     * Identitas kunjungan/pasien tujuan (No.Rawat, No.RM, nama, tanggal lahir, dokter PJ, dll)
+     * tetap memakai data registrasi tujuan yang sudah dimuat, tidak ikut ditimpa.
+     */
+    private void salinDataPengkajianTujuanBaru() {
+        int baris = barisSumberCopyPengkajian;
+        modeCopyPengkajian = false;
+        barisSumberCopyPengkajian = -1;
+        if (baris < 0 || baris >= tbObat.getRowCount()) {
+            JOptionPane.showMessageDialog(null,
+                    "Maaf, data sumber copy pengkajian sudah tidak tersedia (daftar berubah)..!!");
+            return;
+        }
+        String noRawatSumber = getTabelValue("no_rawat", baris);
+        if (noRawatSumber.equals("")) {
+            return;
+        }
+        if (noRawatSumber.equals(TNoRw.getText())) {
+            JOptionPane.showMessageDialog(null,
+                    "Copy pengkajian dibatalkan karena No. Rawat tujuan sama dengan No. Rawat sumber..!!");
+            return;
+        }
+        int reply = JOptionPane.showConfirmDialog(rootPane,
+                "Salin semua data pengkajian dari No. Rawat " + noRawatSumber + " ke No. Rawat "
+                        + TNoRw.getText() + " ini..??",
+                "Konfirmasi Copy Pengkajian", JOptionPane.YES_NO_OPTION);
+        if (reply != JOptionPane.YES_OPTION) {
+            return;
+        }
+        isiDataPengkajian(baris);
+        tbObat.clearSelection();
+        JOptionPane.showMessageDialog(null,
+                "Data pengkajian berhasil disalin. Silahkan periksa kembali datanya lalu klik Simpan..!!");
     }
 
     public void setNoRm(String norwt, Date tgl2) {
@@ -10080,7 +10363,7 @@ public final class RMMCU extends javax.swing.JDialog {
         sinkronFieldMcu();
         String[] nilai = getNilaiUbahPenilaianMcu();
         if (Sequel.mengedittf("penilaian_mcu", "no_rawat=?",
-                "tanggal=?,`year`=?,kd_dokter=?,kd_petugas=?,note1=?,nama_pasien=?,surname=?,mcu_group=?,dass_21=?,phy_exam=?,conc_lab=?,conc_radiologi=?,"
+                "tanggal=?,`year`=?,kd_dokter=?,kd_petugas=?,catatan=?,nama_pasien=?,surname=?,mcu_group=?,dass_21=?,phy_exam=?,conc_lab=?,conc_radiologi=?,"
                         +
                         "conc_ecg=?,conc_spirometry=?,conc_audiometry=?,kesimpulan1=?,no_rkm_medis=?,tmp_lahir=?,tgl_lahir=?,jk=?,no_tlp=?,suku_bangsa=?,stts_nikah=?,"
                         +
@@ -10181,7 +10464,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private void simpan() {
         sinkronFieldMcu();
         if (Sequel.menyimpantf("penilaian_mcu(" +
-                "no_rawat,tanggal,`year`,kd_dokter,kd_petugas,note1,nama_pasien,surname,mcu_group,dass_21,phy_exam,conc_lab,conc_radiologi,conc_ecg,"
+                "no_rawat,tanggal,`year`,kd_dokter,kd_petugas,catatan,nama_pasien,surname,mcu_group,dass_21,phy_exam,conc_lab,conc_radiologi,conc_ecg,"
                 +
                 "conc_spirometry,conc_audiometry,kesimpulan1,no_rkm_medis,tmp_lahir,tgl_lahir,jk,no_tlp,suku_bangsa,stts_nikah,doe,yoe,job_title,activities,"
                 +
@@ -10393,738 +10676,738 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     private void RWP1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, manager, RWP2);
+        Valid.pindah(evt,manager,RWP2);
     }
 
     private void RWP2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP1, RWP3);
+        Valid.pindah(evt,RWP1,RWP3);
     }
 
     private void RWP3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP2, RWP4);
+        Valid.pindah(evt,RWP2,RWP4);
     }
 
     private void RWP4KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP3, RWP5);
+        Valid.pindah(evt,RWP3,RWP5);
     }
 
     private void RWP5KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP4, RWP6);
+        Valid.pindah(evt,RWP4,RWP6);
     }
 
     private void RWP6KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP5, RWP7);
+        Valid.pindah(evt,RWP5,RWP7);
     }
 
     private void RWP7KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP6, RWP8);
+        Valid.pindah(evt,RWP6,RWP8);
     }
 
     private void RWP8KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP7, RWP9);
+        Valid.pindah(evt,RWP7,RWP9);
     }
 
     private void RWP9KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP8, RWP10);
+        Valid.pindah(evt,RWP8,RWP10);
     }
 
     private void RWP10KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP9, RWP11);
+        Valid.pindah(evt,RWP9,RWP11);
     }
 
     private void RWP11KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP10, RWP12);
+        Valid.pindah(evt,RWP10,RWP12);
     }
 
     private void RWP12KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP11, RWP13);
+        Valid.pindah(evt,RWP11,RWP13);
     }
 
     private void RWP13KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP12, RWP14);
+        Valid.pindah(evt,RWP12,RWP14);
     }
 
     private void RWP14KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP13, RWP15);
+        Valid.pindah(evt,RWP13,RWP15);
     }
 
     private void RWP15KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP14, RWP16);
+        Valid.pindah(evt,RWP14,RWP16);
     }
 
     private void RWP16KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP15, RWP17);
+        Valid.pindah(evt,RWP15,RWP17);
     }
 
     private void RWP17KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP16, RWP18);
+        Valid.pindah(evt,RWP16,RWP18);
     }
 
     private void RWP18KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP17, RWP19);
+        Valid.pindah(evt,RWP17,RWP19);
     }
 
     private void RWP19KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP18, RWP20);
+        Valid.pindah(evt,RWP18,RWP20);
     }
 
     private void RWP20KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP19, RWP21);
+        Valid.pindah(evt,RWP19,RWP21);
     }
 
     private void RWP21KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP20, RWP22);
+        Valid.pindah(evt,RWP20,RWP22);
     }
 
     private void RWP22KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP21, RWP23);
+        Valid.pindah(evt,RWP21,RWP23);
     }
 
     private void RWP23KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP22, RWP24);
+        Valid.pindah(evt,RWP22,RWP24);
     }
 
     private void RWP24KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP23, RWP25);
+        Valid.pindah(evt,RWP23,RWP25);
     }
 
     private void RWP25KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP24, RWP26);
+        Valid.pindah(evt,RWP24,RWP26);
     }
 
     private void RWP26KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP25, RWP27);
+        Valid.pindah(evt,RWP25,RWP27);
     }
 
     private void RWP27KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP26, RWP28);
+        Valid.pindah(evt,RWP26,RWP28);
     }
 
     private void RWP28KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP27, RWP29);
+        Valid.pindah(evt,RWP27,RWP29);
     }
 
     private void RWP29KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP28, RWP30);
+        Valid.pindah(evt,RWP28,RWP30);
     }
 
     private void RWP30KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP29, FamilyHistoryFather);
+        Valid.pindah(evt,RWP29,FamilyHistoryFather);
     }
 
     private void FamilyHistoryFatherKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, RWP30, FamilyHistoryMother);
+        Valid.pindah(evt,RWP30,FamilyHistoryMother);
     }
 
     private void FamilyHistoryMotherKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, FamilyHistoryFather, FamilyHistorySiblings);
+        Valid.pindah(evt,FamilyHistoryFather,FamilyHistorySiblings);
     }
 
     private void FamilyHistorySiblingsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, FamilyHistoryMother, FamilyHistoryOther);
+        Valid.pindah(evt,FamilyHistoryMother,FamilyHistoryOther);
     }
 
     private void FamilyHistoryOtherKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, FamilyHistorySiblings, CigarettesPerday);
+        Valid.pindah(evt,FamilyHistorySiblings,CigarettesPerday);
     }
 
     private void CigarettesPerdayKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, FamilyHistoryOther, AlcoholGrWeek);
+        Valid.pindah(evt,FamilyHistoryOther,AlcoholGrWeek);
     }
 
     private void AlcoholGrWeekKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, CigarettesPerday, PrescribedMedication);
+        Valid.pindah(evt,CigarettesPerday,PrescribedMedication);
     }
 
     private void PrescribedMedicationKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, AlcoholGrWeek, PrescribedMedication2);
+        Valid.pindah(evt,AlcoholGrWeek,PrescribedMedication2);
     }
 
     private void PrescribedMedication2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, PrescribedMedication, AnyAllergies);
+        Valid.pindah(evt,PrescribedMedication,AnyAllergies);
     }
 
     private void AnyAllergiesKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, PrescribedMedication2, spirometri_vc_1);
+        Valid.pindah(evt,PrescribedMedication2,spirometri_vc_1);
     }
 
     private void hbKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, AnyAllergies, wbc);
+        Valid.pindah(evt,AnyAllergies,wbc);
     }
 
     private void wbcKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, hb, esr);
+        Valid.pindah(evt,hb,esr);
     }
 
     private void esrKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, wbc, bl_group);
+        Valid.pindah(evt,wbc,bl_group);
     }
 
     private void bl_groupKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, esr, gamaa_gt);
+        Valid.pindah(evt,esr,gamaa_gt);
     }
 
     private void gamaa_gtKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, bl_group, sgot);
+        Valid.pindah(evt,bl_group,sgot);
     }
 
     private void sgotKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, gamaa_gt, sgpt);
+        Valid.pindah(evt,gamaa_gt,sgpt);
     }
 
     private void sgptKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, sgot, urea);
+        Valid.pindah(evt,sgot,urea);
     }
 
     private void ureaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, sgpt, creatinin);
+        Valid.pindah(evt,sgpt,creatinin);
     }
 
     private void creatininKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urea, glucose);
+        Valid.pindah(evt,urea,glucose);
     }
 
     private void glucoseKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, creatinin, random_glucose);
+        Valid.pindah(evt,creatinin,random_glucose);
     }
 
     private void random_glucoseKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, glucose, total_cholestrol);
+        Valid.pindah(evt,glucose,total_cholestrol);
     }
 
     private void total_cholestrolKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, random_glucose, protein);
+        Valid.pindah(evt,random_glucose,protein);
     }
 
     private void proteinKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, total_cholestrol, blood);
+        Valid.pindah(evt,total_cholestrol,blood);
     }
 
     private void bloodKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, protein, bilirubin);
+        Valid.pindah(evt,protein,bilirubin);
     }
 
     private void bilirubinKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, blood, malaria);
+        Valid.pindah(evt,blood,malaria);
     }
 
     private void malariaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, bilirubin, tpha);
+        Valid.pindah(evt,bilirubin,tpha);
     }
 
     private void tphaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, malaria, mantoux_test);
+        Valid.pindah(evt,malaria,mantoux_test);
     }
 
     private void mantoux_testKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, tpha, lab_others);
+        Valid.pindah(evt,tpha,lab_others);
     }
 
     private void lab_othersKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, mantoux_test, ova);
+        Valid.pindah(evt,mantoux_test,ova);
     }
 
     private void ovaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, lab_others, culture);
+        Valid.pindah(evt,lab_others,culture);
     }
 
     private void cultureKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, ova, cysta);
+        Valid.pindah(evt,ova,cysta);
     }
 
     private void cystaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, culture, parasites1);
+        Valid.pindah(evt,culture,parasites1);
     }
 
     private void parasites1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, cysta, trombosit);
+        Valid.pindah(evt,cysta,trombosit);
     }
 
     private void trombositKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, parasites1, rhesuss);
+        Valid.pindah(evt,parasites1,rhesuss);
     }
 
     private void rhesussKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, trombosit, triglyceride);
+        Valid.pindah(evt,trombosit,triglyceride);
     }
 
     private void triglycerideKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, rhesuss, hdl_cholesterol);
+        Valid.pindah(evt,rhesuss,hdl_cholesterol);
     }
 
     private void hdl_cholesterolKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, triglyceride, ldl_cholesterol);
+        Valid.pindah(evt,triglyceride,ldl_cholesterol);
     }
 
     private void ldl_cholesterolKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, hdl_cholesterol, uric_acid);
+        Valid.pindah(evt,hdl_cholesterol,uric_acid);
     }
 
     private void uric_acidKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, ldl_cholesterol, urine_colour);
+        Valid.pindah(evt,ldl_cholesterol,urine_colour);
     }
 
     private void urine_colourKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, uric_acid, urine_turbidity);
+        Valid.pindah(evt,uric_acid,urine_turbidity);
     }
 
     private void urine_turbidityKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_colour, urine_chemical_reaction);
+        Valid.pindah(evt,urine_colour,urine_chemical_reaction);
     }
 
     private void urine_chemical_reactionKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_turbidity, urine_ketones);
+        Valid.pindah(evt,urine_turbidity,urine_ketones);
     }
 
     private void urine_ketonesKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_chemical_reaction, urine_glucose);
+        Valid.pindah(evt,urine_chemical_reaction,urine_glucose);
     }
 
     private void urine_glucoseKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_ketones, urine_nitrites);
+        Valid.pindah(evt,urine_ketones,urine_nitrites);
     }
 
     private void urine_nitritesKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_glucose, urine_wbc);
+        Valid.pindah(evt,urine_glucose,urine_wbc);
     }
 
     private void urine_wbcKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_nitrites, urine_rbc);
+        Valid.pindah(evt,urine_nitrites,urine_rbc);
     }
 
     private void urine_rbcKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_wbc, urine_bacteria);
+        Valid.pindah(evt,urine_wbc,urine_bacteria);
     }
 
     private void urine_bacteriaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_rbc, urine_crystal);
+        Valid.pindah(evt,urine_rbc,urine_crystal);
     }
 
     private void urine_crystalKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_bacteria, urine_epithel);
+        Valid.pindah(evt,urine_bacteria,urine_epithel);
     }
 
     private void urine_epithelKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_crystal, hbsag);
+        Valid.pindah(evt,urine_crystal,hbsag);
     }
 
     private void hbsagKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, urine_epithel, anti_hbs);
+        Valid.pindah(evt,urine_epithel,anti_hbs);
     }
 
     private void anti_hbsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, hbsag, cea);
+        Valid.pindah(evt,hbsag,cea);
     }
 
     private void ceaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, anti_hbs, afp);
+        Valid.pindah(evt,anti_hbs,afp);
     }
 
     private void afpKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, cea, drug_amphetamine);
+        Valid.pindah(evt,cea,drug_amphetamine);
     }
 
     private void drug_amphetamineKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, afp, drug_methamphetamine);
+        Valid.pindah(evt,afp,drug_methamphetamine);
     }
 
     private void drug_methamphetamineKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_amphetamine, drug_morphine);
+        Valid.pindah(evt,drug_amphetamine,drug_morphine);
     }
 
     private void drug_morphineKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_methamphetamine, drug_benzodiazepine);
+        Valid.pindah(evt,drug_methamphetamine,drug_benzodiazepine);
     }
 
     private void drug_benzodiazepineKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_morphine, drug_cocain);
+        Valid.pindah(evt,drug_morphine,drug_cocain);
     }
 
     private void drug_cocainKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_benzodiazepine, drug_marijuana);
+        Valid.pindah(evt,drug_benzodiazepine,drug_marijuana);
     }
 
     private void drug_marijuanaKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_cocain, BtnPetugasLab);
+        Valid.pindah(evt,drug_cocain,BtnPetugasLab);
     }
 
     private void BtnPetugasLabKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, drug_marijuana, pnemunosicosis);
+        Valid.pindah(evt,drug_marijuana,pnemunosicosis);
     }
 
     private void pnemunosicosisKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, BtnPetugasLab, pnemunosicosis2);
+        Valid.pindah(evt,BtnPetugasLab,pnemunosicosis2);
     }
 
     private void pnemunosicosis2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, pnemunosicosis, ILO_clasification);
+        Valid.pindah(evt,pnemunosicosis,ILO_clasification);
     }
 
     private void ILO_clasificationKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, pnemunosicosis2, ILO_clasification2);
+        Valid.pindah(evt,pnemunosicosis2,ILO_clasification2);
     }
 
     private void ILO_clasification2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, ILO_clasification, tb1);
+        Valid.pindah(evt,ILO_clasification,tb1);
     }
 
     private void tb1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, ILO_clasification2, tb2);
+        Valid.pindah(evt,ILO_clasification2,tb2);
     }
 
     private void tb2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, tb1, oth_abnormal);
+        Valid.pindah(evt,tb1,oth_abnormal);
     }
 
     private void oth_abnormalKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, tb2, page3_comment);
+        Valid.pindah(evt,tb2,page3_comment);
     }
 
     private void page3_commentKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, oth_abnormal, spirometri_vc_1);
+        Valid.pindah(evt,oth_abnormal,spirometri_vc_1);
     }
 
     private void ecg_abnormalKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, cbConcEcg, spirometri_vc_1);
+        Valid.pindah(evt,cbConcEcg,spirometri_vc_1);
     }
 
     private void spirometri_vc_1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, ecg_abnormal, spirometri_vc_2);
+        Valid.pindah(evt,ecg_abnormal,spirometri_vc_2);
     }
 
     private void spirometri_vc_2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_vc_1, spirometri_vc_3);
+        Valid.pindah(evt,spirometri_vc_1,spirometri_vc_3);
     }
 
     private void spirometri_vc_3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_vc_2, spirometri_vc_4);
+        Valid.pindah(evt,spirometri_vc_2,spirometri_vc_4);
     }
 
     private void spirometri_vc_4KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_vc_3, spirometri_fvc_1);
+        Valid.pindah(evt,spirometri_vc_3,spirometri_fvc_1);
     }
 
     private void spirometri_fvc_1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_vc_4, spirometri_fvc_2);
+        Valid.pindah(evt,spirometri_vc_4,spirometri_fvc_2);
     }
 
     private void spirometri_fvc_2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fvc_1, spirometri_fvc_3);
+        Valid.pindah(evt,spirometri_fvc_1,spirometri_fvc_3);
     }
 
     private void spirometri_fvc_3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fvc_2, spirometri_fvc_4);
+        Valid.pindah(evt,spirometri_fvc_2,spirometri_fvc_4);
     }
 
     private void spirometri_fvc_4KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fvc_3, spirometri_fev_1_1);
+        Valid.pindah(evt,spirometri_fvc_3,spirometri_fev_1_1);
     }
 
     private void spirometri_fev_1_1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fvc_4, spirometri_fev_1_2);
+        Valid.pindah(evt,spirometri_fvc_4,spirometri_fev_1_2);
     }
 
     private void spirometri_fev_1_2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_1, spirometri_fev_1_3);
+        Valid.pindah(evt,spirometri_fev_1_1,spirometri_fev_1_3);
     }
 
     private void spirometri_fev_1_3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_2, spirometri_fev_1_4);
+        Valid.pindah(evt,spirometri_fev_1_2,spirometri_fev_1_4);
     }
 
     private void spirometri_fev_1_4KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_3, spirometri_fev_1_fvc_1);
+        Valid.pindah(evt,spirometri_fev_1_3,spirometri_fev_1_fvc_1);
     }
 
     private void spirometri_fev_1_fvc_1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_4, spirometri_fev_1_fvc_2);
+        Valid.pindah(evt,spirometri_fev_1_4,spirometri_fev_1_fvc_2);
     }
 
     private void spirometri_fev_1_fvc_2KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_fvc_1, spirometri_fev_1_fvc_3);
+        Valid.pindah(evt,spirometri_fev_1_fvc_1,spirometri_fev_1_fvc_3);
     }
 
     private void spirometri_fev_1_fvc_3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_fvc_2, spirometri_fev_1_fvc_4);
+        Valid.pindah(evt,spirometri_fev_1_fvc_2,spirometri_fev_1_fvc_4);
     }
 
     private void spirometri_fev_1_fvc_4KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_fvc_3, audiometri_left_ear_500);
+        Valid.pindah(evt,spirometri_fev_1_fvc_3,audiometri_left_ear_500);
     }
 
     private void type_of_hearingKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, spirometri_fev_1_fvc_4, audiometri_left_ear_500);
+        Valid.pindah(evt,spirometri_fev_1_fvc_4,audiometri_left_ear_500);
     }
 
     private void audiometri_left_ear_500KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, type_of_hearing, audiometri_left_ear_1000);
+        Valid.pindah(evt,type_of_hearing,audiometri_left_ear_1000);
     }
 
     private void audiometri_left_ear_1000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_500, audiometri_left_ear_1500);
+        Valid.pindah(evt,audiometri_left_ear_500,audiometri_left_ear_1500);
     }
 
     private void audiometri_left_ear_1500KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1000, audiometri_left_ear_2000);
+        Valid.pindah(evt,audiometri_left_ear_1000,audiometri_left_ear_2000);
     }
 
     private void audiometri_left_ear_2000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1500, audiometri_left_ear_3000);
+        Valid.pindah(evt,audiometri_left_ear_1500,audiometri_left_ear_3000);
     }
 
     private void audiometri_left_ear_3000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_2000, audiometri_left_ear_4000);
+        Valid.pindah(evt,audiometri_left_ear_2000,audiometri_left_ear_4000);
     }
 
     private void audiometri_left_ear_4000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_3000, audiometri_left_ear_5000);
+        Valid.pindah(evt,audiometri_left_ear_3000,audiometri_left_ear_5000);
     }
 
     private void audiometri_left_ear_5000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_4000, audiometri_left_ear_6000);
+        Valid.pindah(evt,audiometri_left_ear_4000,audiometri_left_ear_6000);
     }
 
     private void audiometri_left_ear_6000KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_5000, audiometri_left_ear_501);
+        Valid.pindah(evt,audiometri_left_ear_5000,audiometri_left_ear_501);
     }
 
     private void audiometri_left_ear_501KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_6000, audiometri_left_ear_1001);
+        Valid.pindah(evt,audiometri_left_ear_6000,audiometri_left_ear_1001);
     }
 
     private void audiometri_left_ear_1001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_501, audiometri_left_ear_1501);
+        Valid.pindah(evt,audiometri_left_ear_501,audiometri_left_ear_1501);
     }
 
     private void audiometri_left_ear_1501KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1001, audiometri_left_ear_2001);
+        Valid.pindah(evt,audiometri_left_ear_1001,audiometri_left_ear_2001);
     }
 
     private void audiometri_left_ear_2001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1501, audiometri_left_ear_3001);
+        Valid.pindah(evt,audiometri_left_ear_1501,audiometri_left_ear_3001);
     }
 
     private void audiometri_left_ear_3001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_2001, audiometri_left_ear_4001);
+        Valid.pindah(evt,audiometri_left_ear_2001,audiometri_left_ear_4001);
     }
 
     private void audiometri_left_ear_4001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_3001, audiometri_left_ear_5001);
+        Valid.pindah(evt,audiometri_left_ear_3001,audiometri_left_ear_5001);
     }
 
     private void audiometri_left_ear_5001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_4001, audiometri_left_ear_6001);
+        Valid.pindah(evt,audiometri_left_ear_4001,audiometri_left_ear_6001);
     }
 
     private void audiometri_left_ear_6001KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_5001, audiometri_left_ear_502);
+        Valid.pindah(evt,audiometri_left_ear_5001,audiometri_left_ear_502);
     }
 
     private void audiometri_left_ear_502KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_6001, audiometri_left_ear_1002);
+        Valid.pindah(evt,audiometri_left_ear_6001,audiometri_left_ear_1002);
     }
 
     private void audiometri_left_ear_1002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_502, audiometri_left_ear_1502);
+        Valid.pindah(evt,audiometri_left_ear_502,audiometri_left_ear_1502);
     }
 
     private void audiometri_left_ear_1502KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1002, audiometri_left_ear_2002);
+        Valid.pindah(evt,audiometri_left_ear_1002,audiometri_left_ear_2002);
     }
 
     private void audiometri_left_ear_2002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1502, audiometri_left_ear_3002);
+        Valid.pindah(evt,audiometri_left_ear_1502,audiometri_left_ear_3002);
     }
 
     private void audiometri_left_ear_3002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_2002, audiometri_left_ear_4002);
+        Valid.pindah(evt,audiometri_left_ear_2002,audiometri_left_ear_4002);
     }
 
     private void audiometri_left_ear_4002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_3002, audiometri_left_ear_5002);
+        Valid.pindah(evt,audiometri_left_ear_3002,audiometri_left_ear_5002);
     }
 
     private void audiometri_left_ear_5002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_4002, audiometri_left_ear_6002);
+        Valid.pindah(evt,audiometri_left_ear_4002,audiometri_left_ear_6002);
     }
 
     private void audiometri_left_ear_6002KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_5002, audiometri_left_ear_503);
+        Valid.pindah(evt,audiometri_left_ear_5002,audiometri_left_ear_503);
     }
 
     private void audiometri_left_ear_503KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_6002, audiometri_left_ear_1003);
+        Valid.pindah(evt,audiometri_left_ear_6002,audiometri_left_ear_1003);
     }
 
     private void audiometri_left_ear_1003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_503, audiometri_left_ear_1503);
+        Valid.pindah(evt,audiometri_left_ear_503,audiometri_left_ear_1503);
     }
 
     private void audiometri_left_ear_1503KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1003, audiometri_left_ear_2003);
+        Valid.pindah(evt,audiometri_left_ear_1003,audiometri_left_ear_2003);
     }
 
     private void audiometri_left_ear_2003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_1503, audiometri_left_ear_3003);
+        Valid.pindah(evt,audiometri_left_ear_1503,audiometri_left_ear_3003);
     }
 
     private void audiometri_left_ear_3003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_2003, audiometri_left_ear_4003);
+        Valid.pindah(evt,audiometri_left_ear_2003,audiometri_left_ear_4003);
     }
 
     private void audiometri_left_ear_4003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_3003, audiometri_left_ear_5003);
+        Valid.pindah(evt,audiometri_left_ear_3003,audiometri_left_ear_5003);
     }
 
     private void audiometri_left_ear_5003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_4003, audiometri_left_ear_6003);
+        Valid.pindah(evt,audiometri_left_ear_4003,audiometri_left_ear_6003);
     }
 
     private void audiometri_left_ear_6003KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_5003, TD);
+        Valid.pindah(evt,audiometri_left_ear_5003,TD);
     }
 
     private void TDKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, audiometri_left_ear_6003, Nadi);
+        Valid.pindah(evt,audiometri_left_ear_6003,Nadi);
     }
 
     private void BBKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, TB, IMT);
+        Valid.pindah(evt,TB,IMT);
     }
 
     private void IMTKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, BB, KlasifikasiIMT1);
+        Valid.pindah(evt,BB,KlasifikasiIMT1);
     }
 
     private void KlasifikasiIMT1KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, IMT, eye_unaided_distant_r);
+        Valid.pindah(evt,IMT,eye_unaided_distant_r);
     }
 
     private void eye_color_blindlessKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, eye_brake_test_2, visual_fields_left);
+        Valid.pindah(evt,eye_brake_test_2,visual_fields_left);
     }
 
     private void visual_fields_leftKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, eye_color_blindless, visual_fields_right);
+        Valid.pindah(evt,eye_color_blindless,visual_fields_right);
     }
 
     private void visual_fields_rightKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, visual_fields_left, fundi);
+        Valid.pindah(evt,visual_fields_left,fundi);
     }
 
     private void fundiKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, visual_fields_right, imunisasi_bcg);
+        Valid.pindah(evt,visual_fields_right,imunisasi_bcg);
     }
 
     private void imunisasi_bcgKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, fundi, imunisasi_dpt);
+        Valid.pindah(evt,fundi,imunisasi_dpt);
     }
 
     private void imunisasi_dptKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_bcg, imunisasi_polio);
+        Valid.pindah(evt,imunisasi_bcg,imunisasi_polio);
     }
 
     private void imunisasi_polioKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_dpt, imunisasi_morbili);
+        Valid.pindah(evt,imunisasi_dpt,imunisasi_morbili);
     }
 
     private void imunisasi_morbiliKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_polio, imunisasi_thyphoid);
+        Valid.pindah(evt,imunisasi_polio,imunisasi_thyphoid);
     }
 
     private void imunisasi_thyphoidKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_morbili, imunisasi_hep_a);
+        Valid.pindah(evt,imunisasi_morbili,imunisasi_hep_a);
     }
 
     private void imunisasi_hep_aKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_thyphoid, imunisasi_hep_b);
+        Valid.pindah(evt,imunisasi_thyphoid,imunisasi_hep_b);
     }
 
     private void imunisasi_hep_bKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_hep_a, imunisasi_tetanus);
+        Valid.pindah(evt,imunisasi_hep_a,imunisasi_tetanus);
     }
 
     private void imunisasi_tetanusKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_hep_b, imunisasi_others);
+        Valid.pindah(evt,imunisasi_hep_b,imunisasi_others);
     }
 
     private void imunisasi_othersKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_tetanus, vertebra_scoliosis);
+        Valid.pindah(evt,imunisasi_tetanus,vertebra_scoliosis);
     }
 
     private void vertebra_scoliosisKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, imunisasi_others, vertebra_lordosis);
+        Valid.pindah(evt,imunisasi_others,vertebra_lordosis);
     }
 
     private void vertebra_lordosisKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_scoliosis, vertebra_hyperextensi_0_25);
+        Valid.pindah(evt,vertebra_scoliosis,vertebra_hyperextensi_0_25);
     }
 
     private void vertebra_hyperextensi_0_25KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_lordosis, vertebra_heel_walking);
+        Valid.pindah(evt,vertebra_lordosis,vertebra_heel_walking);
     }
 
     private void vertebra_heel_walkingKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_hyperextensi_0_25, vertebra_squats_x3);
+        Valid.pindah(evt,vertebra_hyperextensi_0_25,vertebra_squats_x3);
     }
 
     private void vertebra_squats_x3KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_heel_walking, vertebra_kyphosis);
+        Valid.pindah(evt,vertebra_heel_walking,vertebra_kyphosis);
     }
 
     private void vertebra_kyphosisKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_squats_x3, vertebra_forward_flexion_0_80);
+        Valid.pindah(evt,vertebra_squats_x3,vertebra_forward_flexion_0_80);
     }
 
     private void vertebra_forward_flexion_0_80KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_kyphosis, vertebra_lateral_flexion_0_20);
+        Valid.pindah(evt,vertebra_kyphosis,vertebra_lateral_flexion_0_20);
     }
 
     private void vertebra_lateral_flexion_0_20KeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_forward_flexion_0_80, vertebra_toe_walking);
+        Valid.pindah(evt,vertebra_forward_flexion_0_80,vertebra_toe_walking);
     }
 
     private void vertebra_toe_walkingKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_lateral_flexion_0_20, exam_ent_comments);
+        Valid.pindah(evt,vertebra_lateral_flexion_0_20,exam_ent_comments);
     }
 
     private void exam_ent_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, vertebra_toe_walking, exam_cardio_vascular_system_comments);
+        Valid.pindah(evt,vertebra_toe_walking,exam_cardio_vascular_system_comments);
     }
 
     private void exam_cardio_vascular_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_ent_comments, exam_respiratory_system_comments);
+        Valid.pindah(evt,exam_ent_comments,exam_respiratory_system_comments);
     }
 
     private void exam_respiratory_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_cardio_vascular_system_comments, exam_abdomen_comments);
+        Valid.pindah(evt,exam_cardio_vascular_system_comments,exam_abdomen_comments);
     }
 
     private void exam_abdomen_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_respiratory_system_comments, exam_genito_urinary_system_comments);
+        Valid.pindah(evt,exam_respiratory_system_comments,exam_genito_urinary_system_comments);
     }
 
     private void exam_genito_urinary_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_abdomen_comments, exam_central_peripheral_nervous_system_comments);
+        Valid.pindah(evt,exam_abdomen_comments,exam_central_peripheral_nervous_system_comments);
     }
 
     private void exam_central_peripheral_nervous_system_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_genito_urinary_system_comments, exam_skin_comments);
+        Valid.pindah(evt,exam_genito_urinary_system_comments,exam_skin_comments);
     }
 
     private void exam_skin_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_central_peripheral_nervous_system_comments, exam_lymph_nodes_comments);
+        Valid.pindah(evt,exam_central_peripheral_nervous_system_comments,exam_lymph_nodes_comments);
     }
 
     private void exam_lymph_nodes_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_skin_comments, exam_dental_comments);
+        Valid.pindah(evt,exam_skin_comments,exam_dental_comments);
     }
 
     private void exam_dental_commentsKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_lymph_nodes_comments, exam_dental_muskulo);
+        Valid.pindah(evt,exam_lymph_nodes_comments,exam_dental_muskulo);
     }
 
     private void exam_dental_muskuloKeyPressed(java.awt.event.KeyEvent evt) {
-        Valid.pindah(evt, exam_dental_comments, conclusion_requires_spectacles);
+        Valid.pindah(evt,exam_dental_comments,conclusion_requires_spectacles);
     }
 }
