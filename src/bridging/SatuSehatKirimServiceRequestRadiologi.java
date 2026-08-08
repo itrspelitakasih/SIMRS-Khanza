@@ -10,7 +10,6 @@ import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -58,10 +57,10 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
-    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();
-    private StringBuilder htmlContent;
+    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();  
+    private StringBuilder htmlContent;  
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    private volatile boolean ceksukses = false;    
+    private volatile boolean ceksukses = false;  
     
     /** Creates new form DlgKamar
      * @param parent
@@ -149,29 +148,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
-        if(koneksiDB.CARICEPAT().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() -> tampil());
-                    }
-                }
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() -> tampil());
-                    }
-                }
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        runBackground(() -> tampil());
-                    }
-                }
-            });
-        } 
-        
         try {
             link=koneksiDB.URLFHIRSATUSEHAT();
         } catch (Exception e) {
@@ -222,10 +198,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         BtnAll = new widget.Button();
         BtnKirim = new widget.Button();
         BtnUpdate = new widget.Button();
-        BtnFixPIDOrthanc = new widget.Button();
-        BtnFixPIDOrthancBatch = new widget.Button();
-        BtnUpdateACSN = new widget.Button();
-        BtnUpdateACSNBatch = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
@@ -236,7 +208,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
-        CmbStatus = new widget.ComboBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -280,6 +251,11 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data Service Request Radiologi Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -360,58 +336,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         });
         panelGlass8.add(BtnUpdate);
 
-        BtnFixPIDOrthanc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit_f2.png"))); // NOI18N
-        BtnFixPIDOrthanc.setMnemonic('F');
-        BtnFixPIDOrthanc.setText("Fix PID Orthanc");
-        BtnFixPIDOrthanc.setToolTipText("Normalisasi Patient ID di Orthanc agar match No.RM SIMRS (Alt+F)");
-        BtnFixPIDOrthanc.setName("BtnFixPIDOrthanc"); // NOI18N
-        BtnFixPIDOrthanc.setPreferredSize(new java.awt.Dimension(135, 30));
-        BtnFixPIDOrthanc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnFixPIDOrthancActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnFixPIDOrthanc);
-
-        BtnFixPIDOrthancBatch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit_f2.png"))); // NOI18N
-        BtnFixPIDOrthancBatch.setMnemonic('B');
-        BtnFixPIDOrthancBatch.setText("Fix PID Batch");
-        BtnFixPIDOrthancBatch.setToolTipText("Normalisasi Patient ID SEMUA pasien di Orthanc (auto-detect prefix) (Alt+B)");
-        BtnFixPIDOrthancBatch.setName("BtnFixPIDOrthancBatch"); // NOI18N
-        BtnFixPIDOrthancBatch.setPreferredSize(new java.awt.Dimension(120, 30));
-        BtnFixPIDOrthancBatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnFixPIDOrthancBatchActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnFixPIDOrthancBatch);
-
-        BtnUpdateACSN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit_f2.png"))); // NOI18N
-        BtnUpdateACSN.setMnemonic('A');
-        BtnUpdateACSN.setText("Update ACSN");
-        BtnUpdateACSN.setToolTipText("Update AccessionNumber DICOM Orthanc = ACSN yang dikirim ke SatuSehat untuk row terpilih (Alt+A)");
-        BtnUpdateACSN.setName("BtnUpdateACSN"); // NOI18N
-        BtnUpdateACSN.setPreferredSize(new java.awt.Dimension(115, 30));
-        BtnUpdateACSN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUpdateACSNActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnUpdateACSN);
-
-        BtnUpdateACSNBatch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit_f2.png"))); // NOI18N
-        BtnUpdateACSNBatch.setMnemonic('S');
-        BtnUpdateACSNBatch.setText("Update ACSN Batch");
-        BtnUpdateACSNBatch.setToolTipText("Update AccessionNumber DICOM Orthanc untuk SEMUA row di tabel (Alt+S)");
-        BtnUpdateACSNBatch.setName("BtnUpdateACSNBatch"); // NOI18N
-        BtnUpdateACSNBatch.setPreferredSize(new java.awt.Dimension(150, 30));
-        BtnUpdateACSNBatch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUpdateACSNBatchActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnUpdateACSNBatch);
-
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -454,7 +378,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -467,7 +391,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -504,22 +428,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
             }
         });
         panelGlass9.add(BtnCari);
-
-        jLabel18 = new widget.Label();
-        jLabel18.setText("Status :");
-        jLabel18.setName("jLabel18");
-        jLabel18.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass9.add(jLabel18);
-
-        CmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum Terkirim", "Sudah Terkirim" }));
-        CmbStatus.setName("CmbStatus");
-        CmbStatus.setPreferredSize(new java.awt.Dimension(110, 23));
-        CmbStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbStatusActionPerformed(evt);
-            }
-        });
-        panelGlass9.add(CmbStatus);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -592,6 +500,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                   "</table>"+
                 "</html>"
             );
+            htmlContent=null;
 
             File g = new File("file2.css");            
             BufferedWriter bg = new BufferedWriter(new FileWriter(g));
@@ -645,7 +554,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        runBackground(() -> tampil());
+        runBackground(() ->tampil());
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -667,11 +576,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        // bodySite SNOMED tidak include — whitelist SatuSehat untuk
-                        // bodySite belum jelas, kalau SNOMED tidak terdaftar (mis.
-                        // 122496005 Lumbosacral spine structure) langsung reject.
-                        // Mapping table sampel_* tetap ada untuk kebutuhan masa depan.
-                        String bodySiteJson = "";
                         json = "{" +
                                     "\"resourceType\": \"ServiceRequest\"," +
                                     "\"identifier\": [" +
@@ -698,23 +602,22 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                                             "{" +
                                                 "\"system\": \""+tbObat.getValueAt(i,14).toString()+"\"," +
                                                 "\"code\": \""+tbObat.getValueAt(i,13).toString()+"\"," +
-                                                "\"display\": \""+jsonEscape(tbObat.getValueAt(i,15).toString())+"\"" +
+                                                "\"display\": \""+tbObat.getValueAt(i,15).toString()+"\"" +
                                             "}" +
                                         "]," +
-                                        "\"text\": \""+jsonEscape(tbObat.getValueAt(i,12).toString())+"\"" +
+                                        "\"text\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
                                     "}," +
-                                    bodySiteJson +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"," +
-                                        "\"display\": \"Permintaan "+jsonEscape(tbObat.getValueAt(i,12).toString())+" atas nama pasien "+jsonEscape(tbObat.getValueAt(i,3).toString())+" No.RM "+jsonEscape(tbObat.getValueAt(i,2).toString())+" No.Rawat "+jsonEscape(tbObat.getValueAt(i,1).toString())+", pada tanggal "+jsonEscape(tbObat.getValueAt(i,10).toString())+"\"" +
+                                        "\"display\": \"Permintaan "+tbObat.getValueAt(i,12).toString()+" atas nama pasien "+tbObat.getValueAt(i,3).toString()+" No.RM "+tbObat.getValueAt(i,2).toString()+" No.Rawat "+tbObat.getValueAt(i,1).toString()+", pada tanggal "+tbObat.getValueAt(i,10).toString()+"\"" +
                                     "}," +
                                     "\"authoredOn\" : \""+tbObat.getValueAt(i,10).toString().replaceAll(" ","T")+"+07:00\"," +
                                     "\"requester\": {" +
                                         "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                        "\"display\": \""+jsonEscape(tbObat.getValueAt(i,6).toString())+"\"" +
+                                        "\"display\": \""+tbObat.getValueAt(i,6).toString()+"\"" +
                                     "}," +
                                     "\"performer\": [{" +
                                         "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"," +
@@ -722,7 +625,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                                     "}]," +
                                     "\"reasonCode\": [" +
                                         "{" +
-                                            "\"text\": \""+jsonEscape(tbObat.getValueAt(i,11).toString())+"\"" +
+                                            "\"text\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
                                         "}" +
                                     "]" +
                                 "}";
@@ -742,11 +645,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                             }
                         }
                     }catch(Exception e){
-                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
-                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
-                        }else{
-                            System.out.println("Notifikasi Bridging : "+e);
-                        }
+                        System.out.println("Notifikasi Bridging : "+e);
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -777,11 +676,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        // bodySite SNOMED tidak include — whitelist SatuSehat untuk
-                        // bodySite belum jelas, kalau SNOMED tidak terdaftar (mis.
-                        // 122496005 Lumbosacral spine structure) langsung reject.
-                        // Mapping table sampel_* tetap ada untuk kebutuhan masa depan.
-                        String bodySiteJson = "";
                         json = "{" +
                                     "\"resourceType\": \"ServiceRequest\"," +
                                     "\"id\": \""+tbObat.getValueAt(i,16).toString()+"\"," +
@@ -809,23 +703,22 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                                             "{" +
                                                 "\"system\": \""+tbObat.getValueAt(i,14).toString()+"\"," +
                                                 "\"code\": \""+tbObat.getValueAt(i,13).toString()+"\"," +
-                                                "\"display\": \""+jsonEscape(tbObat.getValueAt(i,15).toString())+"\"" +
+                                                "\"display\": \""+tbObat.getValueAt(i,15).toString()+"\"" +
                                             "}" +
                                         "]," +
-                                        "\"text\": \""+jsonEscape(tbObat.getValueAt(i,12).toString())+"\"" +
+                                        "\"text\": \""+tbObat.getValueAt(i,12).toString()+"\"" +
                                     "}," +
-                                    bodySiteJson +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
                                         "\"reference\": \"Encounter/"+tbObat.getValueAt(i,8).toString()+"\"," +
-                                        "\"display\": \"Permintaan "+jsonEscape(tbObat.getValueAt(i,12).toString())+" atas nama pasien "+jsonEscape(tbObat.getValueAt(i,3).toString())+" No.RM "+jsonEscape(tbObat.getValueAt(i,2).toString())+" No.Rawat "+jsonEscape(tbObat.getValueAt(i,1).toString())+", pada tanggal "+jsonEscape(tbObat.getValueAt(i,10).toString())+"\"" +
+                                        "\"display\": \"Permintaan "+tbObat.getValueAt(i,12).toString()+" atas nama pasien "+tbObat.getValueAt(i,3).toString()+" No.RM "+tbObat.getValueAt(i,2).toString()+" No.Rawat "+tbObat.getValueAt(i,1).toString()+", pada tanggal "+tbObat.getValueAt(i,10).toString()+"\"" +
                                     "}," +
                                     "\"authoredOn\" : \""+tbObat.getValueAt(i,10).toString().replaceAll(" ","T")+"+07:00\"," +
                                     "\"requester\": {" +
                                         "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                        "\"display\": \""+jsonEscape(tbObat.getValueAt(i,6).toString())+"\"" +
+                                        "\"display\": \""+tbObat.getValueAt(i,6).toString()+"\"" +
                                     "}," +
                                     "\"performer\": [{" +
                                         "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"," +
@@ -833,7 +726,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                                     "}]," +
                                     "\"reasonCode\": [" +
                                         "{" +
-                                            "\"text\": \""+jsonEscape(tbObat.getValueAt(i,11).toString())+"\"" +
+                                            "\"text\": \""+tbObat.getValueAt(i,11).toString()+"\"" +
                                         "}" +
                                     "]" +
                                 "}";
@@ -844,11 +737,7 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                         System.out.println("Result JSON : "+json);
                         tbObat.setValueAt(false,i,0);
                     }catch(Exception e){
-                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
-                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
-                        }else{
-                            System.out.println("Notifikasi Bridging : "+e);
-                        }
+                        System.out.println("Notifikasi Bridging : "+e);
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -859,21 +748,42 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
-        runBackground(() -> tampil());
+        runBackground(() ->tampil());
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
-            runBackground(() -> tampil());
+            runBackground(() ->tampil());
         }else{
             Valid.pindah(evt, BtnPrint, BtnKeluar);
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void CmbStatusActionPerformed(java.awt.event.ActionEvent evt) {
-        runBackground(() -> tampil());
-    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if(koneksiDB.CARICEPAT().equals("aktif")){
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+            });
+        } 
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
@@ -894,10 +804,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
-    private widget.Button BtnFixPIDOrthanc;
-    private widget.Button BtnFixPIDOrthancBatch;
-    private widget.Button BtnUpdateACSN;
-    private widget.Button BtnUpdateACSNBatch;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirim;
     private widget.Button BtnPrint;
@@ -920,8 +826,6 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbObat;
-    private widget.ComboBox CmbStatus;
-    private widget.Label jLabel18;
     // End of variables declaration//GEN-END:variables
     private void tampil() {
         Valid.tabelKosong(tabMode);
@@ -938,65 +842,10 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
                    "inner join satu_sehat_mapping_radiologi on satu_sehat_mapping_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "+
                    "left join satu_sehat_servicerequest_radiologi on satu_sehat_servicerequest_radiologi.noorder=permintaan_pemeriksaan_radiologi.noorder "+
                    "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
-                   "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat "+
-                   "where nota_jalan.tanggal between ? and ? "+
+                   "where reg_periksa.tgl_registrasi between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.nama like ? or jns_perawatan_radiologi.nm_perawatan like ? or "+
-                   "satu_sehat_mapping_radiologi.code like ? or permintaan_radiologi.noorder like ?)") +
-                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_servicerequest_radiologi.id_servicerequest,'') = ''" : "") +
-                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_servicerequest_radiologi.id_servicerequest,'') != ''" : ""));
-            try {
-                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
-                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
-                if(!TCari.getText().equals("")){
-                    ps.setString(3,"%"+TCari.getText()+"%");
-                    ps.setString(4,"%"+TCari.getText()+"%");
-                    ps.setString(5,"%"+TCari.getText()+"%");
-                    ps.setString(6,"%"+TCari.getText()+"%");
-                    ps.setString(7,"%"+TCari.getText()+"%");
-                    ps.setString(8,"%"+TCari.getText()+"%");
-                    ps.setString(9,"%"+TCari.getText()+"%");
-                    ps.setString(10,"%"+TCari.getText()+"%");
-                }
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    tabMode.addRow(new Object[]{
-                        false,rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),rs.getString("kd_dokter"),
-                        rs.getString("nama"),rs.getString("ktpdokter"),rs.getString("id_encounter"),rs.getString("noorder"),rs.getString("tgl_permintaan")+" "+rs.getString("jam_permintaan"),
-                        rs.getString("diagnosa_klinis"),rs.getString("nm_perawatan"),rs.getString("code"),rs.getString("system"),rs.getString("display"),rs.getString("id_servicerequest"),
-                        rs.getString("kd_jenis_prw")
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rs!=null){
-                    rs.close();
-                }
-                if(ps!=null){
-                    ps.close();
-                }
-            }
-            
-            ps=koneksi.prepareStatement(
-                   "select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.no_ktp,reg_periksa.kd_dokter,pegawai.nama,pegawai.no_ktp as ktpdokter,"+
-                   "satu_sehat_encounter.id_encounter,permintaan_radiologi.noorder,permintaan_radiologi.tgl_permintaan,permintaan_radiologi.jam_permintaan,permintaan_radiologi.diagnosa_klinis,"+
-                   "jns_perawatan_radiologi.nm_perawatan,satu_sehat_mapping_radiologi.code,satu_sehat_mapping_radiologi.system,satu_sehat_mapping_radiologi.display,"+
-                   "ifnull(satu_sehat_servicerequest_radiologi.id_servicerequest,'') as id_servicerequest,permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
-                   "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join pegawai on pegawai.nik=reg_periksa.kd_dokter "+
-                   "inner join satu_sehat_encounter on satu_sehat_encounter.no_rawat=reg_periksa.no_rawat inner join permintaan_radiologi on permintaan_radiologi.no_rawat=reg_periksa.no_rawat "+
-                   "inner join permintaan_pemeriksaan_radiologi on permintaan_pemeriksaan_radiologi.noorder=permintaan_radiologi.noorder "+
-                   "inner join jns_perawatan_radiologi on jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
-                   "inner join satu_sehat_mapping_radiologi on satu_sehat_mapping_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "+
-                   "left join satu_sehat_servicerequest_radiologi on satu_sehat_servicerequest_radiologi.noorder=permintaan_pemeriksaan_radiologi.noorder "+
-                   "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
-                   "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat "+
-                   "where nota_inap.tanggal between ? and ? "+
-                   (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
-                   "pasien.nm_pasien like ? or pasien.no_ktp like ? or pegawai.nama like ? or jns_perawatan_radiologi.nm_perawatan like ? or "+
-                   "satu_sehat_mapping_radiologi.code like ? or permintaan_radiologi.noorder like ?)") +
-                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_servicerequest_radiologi.id_servicerequest,'') = ''" : "") +
-                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_servicerequest_radiologi.id_servicerequest,'') != ''" : ""));
+                   "satu_sehat_mapping_radiologi.code like ? or permintaan_radiologi.noorder like ?)"));
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -1040,447 +889,11 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         BtnUpdate.setEnabled(akses.getsatu_sehat_kirim_servicerequest_radiologi());
         BtnPrint.setEnabled(akses.getsatu_sehat_kirim_servicerequest_radiologi());
     }
-
+    
     public JTable getTable(){
         return tbObat;
     }
-
-    /** Escape karakter yang harus di-escape di JSON string value:
-     *  \\ " \b \f \n \r \t + non-printable control chars.
-     *  Mencegah SatuSehat reject "Invalid JSON Payload Format" (Rule 20006)
-     *  saat data DB mengandung TAB/newline/quote, mis. di Diagnosa Klinis. */
-    private static String jsonEscape(String s) {
-        if (s == null) return "";
-        StringBuilder sb = new StringBuilder(s.length() + 8);
-        for (int idx = 0; idx < s.length(); idx++) {
-            char c = s.charAt(idx);
-            switch (c) {
-                case '"':  sb.append("\\\""); break;
-                case '\\': sb.append("\\\\"); break;
-                case '\b': sb.append("\\b"); break;
-                case '\f': sb.append("\\f"); break;
-                case '\n': sb.append("\\n"); break;
-                case '\r': sb.append("\\r"); break;
-                case '\t': sb.append("\\t"); break;
-                default:
-                    if (c < 0x20) {
-                        sb.append(String.format("\\u%04x", (int) c));
-                    } else {
-                        sb.append(c);
-                    }
-            }
-        }
-        return sb.toString();
-    }
-
-    /** Cari pasien di Orthanc yang PatientID-nya mengandung No.RM SIMRS tapi
-     *  tidak match exact (mis. prefix dari Tim Radiologi). Lalu modify ke No.RM
-     *  yang benar. Sumber RM: kolom 2 di tbObat (No.RM) per row aktif. */
-    private void BtnFixPIDOrthancActionPerformed(java.awt.event.ActionEvent evt) {
-        if (tbObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Tabel kosong, klik Semua dulu.");
-            return;
-        }
-        int ok = JOptionPane.showConfirmDialog(this,
-            "Akan menormalisasi Patient ID di Orthanc agar match No.RM SIMRS.\n\n" +
-            "Untuk setiap No.RM di tabel, Orthanc dicari pasien yang PatientID-nya\n" +
-            "mengandung No.RM tsb. Kalau PatientID Orthanc != No.RM (mis. ada prefix\n" +
-            "yang ditambahkan Tim Radiologi), akan di-modify ke No.RM yang benar.\n\n" +
-            "Lanjutkan?\n(Operasi ini permanen — Orthanc akan modify metadata DICOM)",
-            "Konfirmasi Fix Patient ID Orthanc",
-            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (ok != JOptionPane.YES_OPTION) return;
-        runBackground(() -> doFixOrthancPID());
-    }
-
-    private void doFixOrthancPID() {
-        bridging.ApiOrthanc apiOrthanc = new bridging.ApiOrthanc();
-        String base = koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC();
-        java.util.Set<String> seen = new java.util.HashSet<>();
-        StringBuilder log = new StringBuilder();
-        int scanned = 0, fixed = 0, alreadyOk = 0, notFound = 0, errors = 0;
-        System.out.println("==================================================");
-        System.out.println("[FixPIDOrthanc] START - base URL: "+base);
-        System.out.println("[FixPIDOrthanc] Total rows in tbObat: "+tbObat.getRowCount());
-        System.out.println("==================================================");
-
-        for (int row = 0; row < tbObat.getRowCount(); row++) {
-            Object rmObj = tbObat.getValueAt(row, 2);
-            if (rmObj == null) continue;
-            String rm = rmObj.toString().trim();
-            if (rm.isEmpty() || !seen.add(rm)) continue;
-            scanned++;
-            System.out.println("[FixPIDOrthanc] ["+scanned+"] Scanning RM: "+rm);
-
-            try {
-                HttpHeaders h = new HttpHeaders();
-                h.add("Authorization", "Basic " + apiOrthanc.Auth());
-                h.setContentType(MediaType.APPLICATION_JSON);
-                String body = "{\"Level\":\"Patient\",\"Expand\":true,\"Query\":{\"PatientID\":\"*" + rm + "*\"}}";
-                HttpEntity<String> req = new HttpEntity<>(body, h);
-                System.out.println("[FixPIDOrthanc]   POST "+base+"/tools/find  body="+body);
-                String respJson = apiOrthanc.getRest().exchange(
-                    base + "/tools/find", HttpMethod.POST, req, String.class).getBody();
-                JsonNode arr = mapper.readTree(respJson);
-                System.out.println("[FixPIDOrthanc]   Found "+(arr.isArray()?arr.size():0)+" patient(s)");
-
-                if (!arr.isArray() || arr.size() == 0) {
-                    notFound++;
-                    log.append("- ").append(rm).append(" : tidak ditemukan di Orthanc\n");
-                    System.out.println("[FixPIDOrthanc]   NOTFOUND "+rm);
-                    continue;
-                }
-
-                for (JsonNode patient : arr) {
-                    String orthancId = patient.path("ID").asText();
-                    String currentPID = patient.path("MainDicomTags").path("PatientID").asText();
-                    System.out.println("[FixPIDOrthanc]   Patient orthancId="+orthancId+"  PatientID='"+currentPID+"'");
-                    if (rm.equals(currentPID)) {
-                        alreadyOk++;
-                        log.append("OK ").append(rm).append("\n");
-                        System.out.println("[FixPIDOrthanc]     -> OK (already match)");
-                        continue;
-                    }
-                    HttpHeaders mh = new HttpHeaders();
-                    mh.add("Authorization", "Basic " + apiOrthanc.Auth());
-                    mh.setContentType(MediaType.APPLICATION_JSON);
-                    String modBody = "{\"Replace\":{\"PatientID\":\"" + rm + "\"},\"Force\":true,\"KeepSource\":false}";
-                    HttpEntity<String> mreq = new HttpEntity<>(modBody, mh);
-                    System.out.println("[FixPIDOrthanc]     POST "+base+"/patients/"+orthancId+"/modify  body="+modBody);
-                    try {
-                        String modResp = apiOrthanc.getRest().exchange(
-                            base + "/patients/" + orthancId + "/modify",
-                            HttpMethod.POST, mreq, String.class).getBody();
-                        fixed++;
-                        log.append("FIXED ").append(currentPID).append(" -> ").append(rm).append("\n");
-                        System.out.println("[FixPIDOrthanc]     -> FIXED  response: "+(modResp==null?"":modResp.length()>200?modResp.substring(0,200)+"...":modResp));
-                    } catch (Exception em) {
-                        errors++;
-                        log.append("ERR modify ").append(currentPID).append(" -> ").append(rm)
-                           .append(" : ").append(em.getMessage()).append("\n");
-                        System.out.println("[FixPIDOrthanc]     -> ERR modify: "+em);
-                    }
-                }
-            } catch (Exception e) {
-                errors++;
-                log.append("ERR find ").append(rm).append(" : ").append(e.getMessage()).append("\n");
-                System.out.println("[FixPIDOrthanc]   ERR find: "+e);
-            }
-        }
-
-        final String summary = "Unique RM scanned : " + scanned
-                + "\nAlready OK        : " + alreadyOk
-                + "\nFixed             : " + fixed
-                + "\nNot found Orthanc : " + notFound
-                + "\nErrors            : " + errors;
-        System.out.println("==================================================");
-        System.out.println("[FixPIDOrthanc] DONE");
-        System.out.println(summary);
-        System.out.println("==================================================");
-        final String fullLog = log.toString();
-        SwingUtilities.invokeLater(() -> {
-            javax.swing.JTextArea ta = new javax.swing.JTextArea(fullLog);
-            ta.setRows(20);
-            ta.setColumns(60);
-            ta.setEditable(false);
-            javax.swing.JScrollPane sp = new javax.swing.JScrollPane(ta);
-            sp.setPreferredSize(new java.awt.Dimension(640, 360));
-            JOptionPane.showMessageDialog(this,
-                new Object[]{ summary, sp },
-                "Hasil Fix Patient ID Orthanc",
-                JOptionPane.INFORMATION_MESSAGE);
-        });
-    }
-
-    /** Batch fix: ambil SEMUA pasien di Orthanc, auto-detect prefix pada PatientID,
-     *  ekstrak segmen No.RM (segmen terakhir setelah "-"), lalu modify ke RM saja. */
-    private void BtnFixPIDOrthancBatchActionPerformed(java.awt.event.ActionEvent evt) {
-        int ok = JOptionPane.showConfirmDialog(this,
-            "BATCH MODE: akan scan SEMUA pasien di Orthanc.\n\n" +
-            "Pattern yang dideteksi sebagai prefix:\n" +
-            "  \"{prefix} - {RM}\"   contoh: \"2753 - 304310\"\n" +
-            "  \"{prefix}-{RM}\"    contoh: \"2746-304300\"\n\n" +
-            "Segmen terakhir setelah dash dianggap No.RM dan PatientID di-modify\n" +
-            "jadi RM saja (prefix dibuang).\n\n" +
-            "Pasien yang PatientID-nya tidak ada dash di-skip.\n\n" +
-            "Lanjutkan?",
-            "Konfirmasi Fix Patient ID Orthanc (Batch)",
-            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (ok != JOptionPane.YES_OPTION) return;
-        runBackground(() -> doFixOrthancPIDBatch());
-    }
-
-    private void doFixOrthancPIDBatch() {
-        bridging.ApiOrthanc apiOrthanc = new bridging.ApiOrthanc();
-        String base = koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC();
-        StringBuilder log = new StringBuilder();
-        int total = 0, fixed = 0, skipped = 0, errors = 0;
-        System.out.println("==================================================");
-        System.out.println("[FixPIDOrthancBatch] START - base URL: "+base);
-        System.out.println("==================================================");
-
-        try {
-            // 1. Ambil semua patient ID Orthanc
-            HttpHeaders h = new HttpHeaders();
-            h.add("Authorization", "Basic " + apiOrthanc.Auth());
-            HttpEntity<String> req = new HttpEntity<>(h);
-            System.out.println("[FixPIDOrthancBatch] GET "+base+"/patients");
-            String idsJson = apiOrthanc.getRest().exchange(
-                base + "/patients", HttpMethod.GET, req, String.class).getBody();
-            JsonNode ids = mapper.readTree(idsJson);
-            int orthTotal = ids.isArray()?ids.size():0;
-            System.out.println("[FixPIDOrthancBatch] Total pasien di Orthanc: "+orthTotal);
-
-            for (JsonNode idNode : ids) {
-                total++;
-                String orthancId = idNode.asText();
-                System.out.println("[FixPIDOrthancBatch] ["+total+"/"+orthTotal+"] orthancId="+orthancId);
-                try {
-                    // 2. GET detail pasien
-                    String pJson = apiOrthanc.getRest().exchange(
-                        base + "/patients/" + orthancId,
-                        HttpMethod.GET, req, String.class).getBody();
-                    JsonNode p = mapper.readTree(pJson);
-                    String currentPID = p.path("MainDicomTags").path("PatientID").asText();
-                    System.out.println("[FixPIDOrthancBatch]   PatientID='"+currentPID+"'");
-                    if (currentPID == null || currentPID.isEmpty()) {
-                        skipped++;
-                        System.out.println("[FixPIDOrthancBatch]   SKIP (PID kosong)");
-                        continue;
-                    }
-                    if (!currentPID.contains("-")) {
-                        // sudah bersih, skip
-                        skipped++;
-                        System.out.println("[FixPIDOrthancBatch]   SKIP (no dash, sudah bersih)");
-                        continue;
-                    }
-                    // 3. Ekstrak segmen terakhir setelah "-"
-                    String[] parts = currentPID.split("\\s*-\\s*");
-                    String rm = parts[parts.length - 1].trim();
-                    if (rm.isEmpty() || rm.equals(currentPID)) {
-                        skipped++;
-                        System.out.println("[FixPIDOrthancBatch]   SKIP (RM kosong / sama dengan PID)");
-                        continue;
-                    }
-
-                    // 4. Modify
-                    HttpHeaders mh = new HttpHeaders();
-                    mh.add("Authorization", "Basic " + apiOrthanc.Auth());
-                    mh.setContentType(MediaType.APPLICATION_JSON);
-                    String modBody = "{\"Replace\":{\"PatientID\":\"" + rm + "\"},\"Force\":true,\"KeepSource\":false}";
-                    HttpEntity<String> mreq = new HttpEntity<>(modBody, mh);
-                    System.out.println("[FixPIDOrthancBatch]   POST "+base+"/patients/"+orthancId+"/modify  body="+modBody);
-                    String modResp = apiOrthanc.getRest().exchange(
-                        base + "/patients/" + orthancId + "/modify",
-                        HttpMethod.POST, mreq, String.class).getBody();
-                    fixed++;
-                    log.append("FIXED ").append(currentPID).append(" -> ").append(rm).append("\n");
-                    System.out.println("[FixPIDOrthancBatch]   -> FIXED "+currentPID+" -> "+rm
-                            +"  response: "+(modResp==null?"":modResp.length()>200?modResp.substring(0,200)+"...":modResp));
-                } catch (Exception ep) {
-                    errors++;
-                    log.append("ERR ").append(orthancId).append(" : ").append(ep.getMessage()).append("\n");
-                    System.out.println("[FixPIDOrthancBatch]   ERR: "+ep);
-                }
-            }
-        } catch (Exception e) {
-            errors++;
-            log.append("ERR list patients: ").append(e.getMessage()).append("\n");
-            System.out.println("[FixPIDOrthancBatch] ERR list patients: "+e);
-        }
-
-        final String summary = "Total pasien Orthanc : " + total
-                + "\nFixed                : " + fixed
-                + "\nSkipped (no dash)    : " + skipped
-                + "\nErrors               : " + errors;
-        System.out.println("==================================================");
-        System.out.println("[FixPIDOrthancBatch] DONE");
-        System.out.println(summary);
-        System.out.println("==================================================");
-        final String fullLog = log.toString();
-        SwingUtilities.invokeLater(() -> {
-            javax.swing.JTextArea ta = new javax.swing.JTextArea(fullLog);
-            ta.setRows(20);
-            ta.setColumns(60);
-            ta.setEditable(false);
-            javax.swing.JScrollPane sp = new javax.swing.JScrollPane(ta);
-            sp.setPreferredSize(new java.awt.Dimension(640, 360));
-            JOptionPane.showMessageDialog(this,
-                new Object[]{ summary, sp },
-                "Hasil Fix PID Orthanc (Batch)",
-                JOptionPane.INFORMATION_MESSAGE);
-        });
-    }
-
-    /** Update AccessionNumber DICOM Orthanc agar match dengan ACSN yang dikirim
-     *  ke SatuSehat di ServiceRequest. ACSN target = noorder.replaceAll("PR","")
-     *  + kd_jenis_prw. Untuk row terpilih saja. */
-    private void BtnUpdateACSNActionPerformed(java.awt.event.ActionEvent evt) {
-        int row = tbObat.getSelectedRow();
-        if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Pilih dulu row dari tabel.");
-            return;
-        }
-        runBackground(() -> doUpdateACSNRows(new int[]{ row }, false));
-    }
-
-    /** Batch: SEMUA row di tabel. */
-    private void BtnUpdateACSNBatchActionPerformed(java.awt.event.ActionEvent evt) {
-        int total = tbObat.getRowCount();
-        if (total == 0) {
-            JOptionPane.showMessageDialog(this, "Tabel kosong, klik Semua dulu.");
-            return;
-        }
-        int ok = JOptionPane.showConfirmDialog(this,
-            "BATCH: akan update AccessionNumber DICOM Orthanc untuk SEMUA "+total+" row di tabel.\n\n" +
-            "ACSN target = noorder.replaceAll(\"PR\",\"\") + kd_jenis_prw\n" +
-            "Study yang dimatch: studies pasien (PatientID=No.RM) di tanggal permintaan.\n\n" +
-            "Lanjutkan?",
-            "Konfirmasi Update ACSN Batch",
-            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (ok != JOptionPane.YES_OPTION) return;
-        int[] rows = new int[total];
-        for (int i = 0; i < total; i++) rows[i] = i;
-        runBackground(() -> doUpdateACSNRows(rows, true));
-    }
-
-    private void doUpdateACSNRows(int[] rows, boolean isBatch) {
-        bridging.ApiOrthanc apiOrthanc = new bridging.ApiOrthanc();
-        String base = koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC();
-        StringBuilder log = new StringBuilder();
-        int processed = 0, studiesFixed = 0, notFound = 0, alreadyOk = 0, errors = 0;
-        System.out.println("==================================================");
-        System.out.println("[UpdateACSN] START " + (isBatch?"BATCH ("+rows.length+" rows)":"SINGLE") +" - base URL: "+base);
-        System.out.println("==================================================");
-
-        for (int row : rows) {
-            processed++;
-            String rm = tbObat.getValueAt(row, 2) == null ? "" : tbObat.getValueAt(row, 2).toString().trim();
-            String noorder = tbObat.getValueAt(row, 9) == null ? "" : tbObat.getValueAt(row, 9).toString().trim();
-            String kdJns = tbObat.getValueAt(row, 17) == null ? "" : tbObat.getValueAt(row, 17).toString().trim();
-            String tgl = tbObat.getValueAt(row, 10) == null ? "" : tbObat.getValueAt(row, 10).toString().trim();
-            if (rm.isEmpty() || noorder.isEmpty() || kdJns.isEmpty()) {
-                log.append("- row").append(row).append(" : data kurang (rm/noorder/kdJns)\n");
-                System.out.println("[UpdateACSN] ["+processed+"] row="+row+" SKIP (data kurang)");
-                continue;
-            }
-            String acsnTarget = noorder.replaceAll("PR", "") + kdJns;
-            String studyDate = (tgl.length() >= 10) ? tgl.substring(0, 10).replaceAll("-", "") : "";
-            System.out.println("[UpdateACSN] ["+processed+"/"+rows.length+"] row="+row
-                    +" RM="+rm+" noorder="+noorder+" kdJns="+kdJns
-                    +" -> ACSN target='"+acsnTarget+"', StudyDate='"+studyDate+"'");
-
-            try {
-                HttpHeaders h = new HttpHeaders();
-                h.add("Authorization", "Basic " + apiOrthanc.Auth());
-                h.setContentType(MediaType.APPLICATION_JSON);
-                String body = studyDate.isEmpty()
-                    ? "{\"Level\":\"Study\",\"Expand\":true,\"Query\":{\"PatientID\":\"" + rm + "\"}}"
-                    : "{\"Level\":\"Study\",\"Expand\":true,\"Query\":{\"PatientID\":\"" + rm + "\",\"StudyDate\":\"" + studyDate + "\"}}";
-                HttpEntity<String> req = new HttpEntity<>(body, h);
-                System.out.println("[UpdateACSN]   POST "+base+"/tools/find  body="+body);
-                String respJson = apiOrthanc.getRest().exchange(
-                    base + "/tools/find", HttpMethod.POST, req, String.class).getBody();
-                JsonNode arr = mapper.readTree(respJson);
-                int sCount = arr.isArray() ? arr.size() : 0;
-                System.out.println("[UpdateACSN]   Found "+sCount+" study/studies");
-
-                if (sCount == 0) {
-                    notFound++;
-                    log.append("- ").append(rm).append(" tgl ").append(studyDate)
-                       .append(" : study tidak ditemukan di Orthanc\n");
-                    System.out.println("[UpdateACSN]   NOTFOUND");
-                    continue;
-                }
-
-                for (JsonNode study : arr) {
-                    String studyId = study.path("ID").asText();
-                    String currentACSN = study.path("MainDicomTags").path("AccessionNumber").asText();
-                    System.out.println("[UpdateACSN]   Study orthancId="+studyId
-                            +"  AccessionNumber current='"+currentACSN+"' target='"+acsnTarget+"'");
-                    if (acsnTarget.equals(currentACSN)) {
-                        alreadyOk++;
-                        log.append("OK ").append(rm).append(" ACSN=").append(acsnTarget).append(" (already match)\n");
-                        System.out.println("[UpdateACSN]     -> OK (already match)");
-                        continue;
-                    }
-                    HttpHeaders mh = new HttpHeaders();
-                    mh.add("Authorization", "Basic " + apiOrthanc.Auth());
-                    mh.setContentType(MediaType.APPLICATION_JSON);
-                    String modBody = "{\"Replace\":{\"AccessionNumber\":\"" + acsnTarget + "\"},\"Force\":true,\"KeepSource\":false}";
-                    HttpEntity<String> mreq = new HttpEntity<>(modBody, mh);
-                    System.out.println("[UpdateACSN]     POST "+base+"/studies/"+studyId+"/modify  body="+modBody);
-                    try {
-                        String modResp = apiOrthanc.getRest().exchange(
-                            base + "/studies/" + studyId + "/modify",
-                            HttpMethod.POST, mreq, String.class).getBody();
-                        studiesFixed++;
-                        log.append("FIXED ").append(rm).append(" : ").append(currentACSN)
-                           .append(" -> ").append(acsnTarget).append("\n");
-                        System.out.println("[UpdateACSN]     -> FIXED  response: "
-                                +(modResp==null?"":modResp.length()>200?modResp.substring(0,200)+"...":modResp));
-                    } catch (Exception em) {
-                        errors++;
-                        log.append("ERR modify study ").append(studyId)
-                           .append(" : ").append(em.getMessage()).append("\n");
-                        System.out.println("[UpdateACSN]     -> ERR modify: "+em);
-                    }
-                }
-            } catch (Exception e) {
-                errors++;
-                log.append("ERR find rm=").append(rm).append(" : ").append(e.getMessage()).append("\n");
-                System.out.println("[UpdateACSN]   ERR find: "+e);
-            }
-        }
-
-        final String summary = "Rows processed       : " + processed
-                + "\nStudies fixed        : " + studiesFixed
-                + "\nAlready OK           : " + alreadyOk
-                + "\nStudy tidak ditemukan: " + notFound
-                + "\nErrors               : " + errors;
-        final String fullLog = log.toString();
-        System.out.println("==================================================");
-        System.out.println("[UpdateACSN] DONE");
-        System.out.println(summary);
-        System.out.println("==================================================");
-        SwingUtilities.invokeLater(() -> {
-            javax.swing.JTextArea ta = new javax.swing.JTextArea(fullLog);
-            ta.setRows(20);
-            ta.setColumns(60);
-            ta.setEditable(false);
-            javax.swing.JScrollPane sp = new javax.swing.JScrollPane(ta);
-            sp.setPreferredSize(new java.awt.Dimension(640, 360));
-            JOptionPane.showMessageDialog(this,
-                new Object[]{ summary, sp },
-                "Hasil Update ACSN" + (isBatch ? " (Batch)" : ""),
-                JOptionPane.INFORMATION_MESSAGE);
-        });
-    }
-
-    /** Ambil bodySite (sampel_code/system/display) dari satu_sehat_mapping_radiologi.
-     *  Return: String[]{code, system, display} atau null kalau kosong. */
-    private String[] getBodySite(String kdJenisPrw) {
-        if (kdJenisPrw == null || kdJenisPrw.isEmpty()) return null;
-        try (PreparedStatement ps2 = koneksi.prepareStatement(
-                "select sampel_code, sampel_system, sampel_display "+
-                "from satu_sehat_mapping_radiologi where kd_jenis_prw=? "+
-                "and ifnull(sampel_code,'')!=''")) {
-            ps2.setString(1, kdJenisPrw);
-            try (ResultSet rs2 = ps2.executeQuery()) {
-                if (rs2.next()) {
-                    return new String[]{
-                        rs2.getString("sampel_code"),
-                        rs2.getString("sampel_system"),
-                        rs2.getString("sampel_display")
-                    };
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notif getBodySite: " + e);
-        }
-        return null;
-    }
-
+    
     private void runBackground(Runnable task) {
         if (ceksukses) return;
         if (executor.isShutdown() || executor.isTerminated()) return;
@@ -1505,5 +918,11 @@ public final class SatuSehatKirimServiceRequestRadiologi extends javax.swing.JDi
         } catch (RejectedExecutionException ex) {
             ceksukses = false;
         }
+    }
+    
+    @Override
+    public void dispose() {
+        executor.shutdownNow();
+        super.dispose();
     }
 }

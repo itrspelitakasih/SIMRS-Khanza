@@ -107,8 +107,8 @@ public class GoWAService {
     private static void enqueueText(String nomor, String pesan, String tanggalJam, String source)
             throws Exception {
         String sql = "INSERT INTO wa_outbox "
-                + "(NOWA,PESAN,TANGGAL_JAM,STATUS,SOURCE,SENDER,SUCCESS,RESPONSE,REQUEST,FILE,TYPE) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                + "(NOWA,PESAN,TANGGAL_JAM,STATUS,SOURCE,SENDER,SUCCESS,RESPONSE,REQUEST,FILE,TYPE,DEVICE_ID) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = koneksiDBWa.newConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -123,6 +123,7 @@ public class GoWAService {
             ps.setString(9, null);
             ps.setString(10, null);
             ps.setString(11, "TEXT");
+            ps.setString(12, deviceId());
             ps.executeUpdate();
         }
     }

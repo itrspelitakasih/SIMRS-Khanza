@@ -10,7 +10,6 @@ import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import java.awt.Dimension;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -26,6 +25,10 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -55,7 +58,9 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();  
-    private StringBuilder htmlContent;    
+    private StringBuilder htmlContent;   
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private volatile boolean ceksukses = false; 
     
     /** Creates new form DlgKamar
      * @param parent
@@ -131,29 +136,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
-        if(koneksiDB.CARICEPAT().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        tampil();
-                    }
-                }
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        tampil();
-                    }
-                }
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if(TCari.getText().length()>2){
-                        tampil();
-                    }
-                }
-            });
-        } 
-        
         try {
             link=koneksiDB.URLFHIRSATUSEHAT();
         } catch (Exception e) {
@@ -214,7 +196,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
-        CmbStatus = new widget.ComboBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -258,6 +239,11 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data Specimen Radiologi Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -380,7 +366,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -393,7 +379,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -430,22 +416,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(BtnCari);
-
-        jLabel18 = new widget.Label();
-        jLabel18.setText("Status :");
-        jLabel18.setName("jLabel18");
-        jLabel18.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass9.add(jLabel18);
-
-        CmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum Terkirim", "Sudah Terkirim" }));
-        CmbStatus.setName("CmbStatus");
-        CmbStatus.setPreferredSize(new java.awt.Dimension(110, 23));
-        CmbStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbStatusActionPerformed(evt);
-            }
-        });
-        panelGlass9.add(CmbStatus);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -510,6 +480,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                   "</table>"+
                 "</html>"
             );
+            htmlContent=null;
 
             File g = new File("file2.css");            
             BufferedWriter bg = new BufferedWriter(new FileWriter(g));
@@ -563,7 +534,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        tampil();
+        runBackground(() ->tampil());
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -576,8 +547,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
-        JOptionPane.showMessageDialog(this,"Specimen tidak diperlukan untuk radiologi pada SatuSehat versi sekarang.\nGunakan ImagingStudy + Observation + DiagnosticReport.","Info",JOptionPane.INFORMATION_MESSAGE);
-        if(true) return;
         for(i=0;i<tbObat.getRowCount();i++){
             if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,4).toString().equals(""))&&tbObat.getValueAt(i,13).toString().equals("")){
                 try {
@@ -586,29 +555,24 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        String sampelCode = tbObat.getValueAt(i,8).toString();
-                        String typeJson = "";
-                        if(!sampelCode.isEmpty()){
-                            typeJson = "\"type\": {" +
-                                        "\"coding\": [" +
-                                            "{" +
-                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
-                                                "\"code\": \""+sampelCode+"\"," +
-                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "]" +
-                                    "},";
-                        }
                         json = "{" +
                                     "\"resourceType\": \"Specimen\"," +
                                     "\"identifier\": [" +
                                         "{" +
                                             "\"system\": \"http://sys-ids.kemkes.go.id/specimen/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbObat.getValueAt(i,5).toString().replaceAll("PR","")+tbObat.getValueAt(i,12).toString()+"\"" +
+                                            "\"value\": \""+tbObat.getValueAt(i,5).toString()+"."+tbObat.getValueAt(i,12).toString()+"\"" +
                                         "}" +
                                     "]," +
                                     "\"status\": \"available\"," +
-                                    typeJson +
+                                    "\"type\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
+                                                "\"code\": \""+tbObat.getValueAt(i,8).toString()+"\"," +
+                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
+                                            "}" +
+                                        "]" +
+                                    "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
                                         "\"display\": \""+tbObat.getValueAt(i,3).toString()+"\"" +
@@ -628,7 +592,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if(!response.asText().equals("")){
-                            if(Sequel.menyimpantf2("satu_sehat_specimen_radiologi","?,?,?","No.Rawat",3,new String[]{
+                            if(Sequel.menyimpantf2("satu_sehat_specimen_radiologi","?,?,?","No.Order",3,new String[]{
                                 tbObat.getValueAt(i,5).toString(),tbObat.getValueAt(i,12).toString(),response.asText()
                             })==true){
                                 tbObat.setValueAt(response.asText(),i,13);
@@ -636,11 +600,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                             }
                         }
                     }catch(Exception e){
-                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
-                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
-                        }else{
-                            System.out.println("Notifikasi Bridging : "+e);
-                        }
+                        System.out.println("Notifikasi Bridging : "+e);
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -662,8 +622,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        JOptionPane.showMessageDialog(this,"Specimen tidak diperlukan untuk radiologi pada SatuSehat versi sekarang.\nGunakan ImagingStudy + Observation + DiagnosticReport.","Info",JOptionPane.INFORMATION_MESSAGE);
-        if(true) return;
         for(i=0;i<tbObat.getRowCount();i++){
             if(tbObat.getValueAt(i,0).toString().equals("true")&&(!tbObat.getValueAt(i,4).toString().equals(""))&&(!tbObat.getValueAt(i,13).toString().equals(""))){
                 try {
@@ -672,30 +630,25 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
                         headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        String sampelCode = tbObat.getValueAt(i,8).toString();
-                        String typeJson = "";
-                        if(!sampelCode.isEmpty()){
-                            typeJson = "\"type\": {" +
-                                        "\"coding\": [" +
-                                            "{" +
-                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
-                                                "\"code\": \""+sampelCode+"\"," +
-                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "]" +
-                                    "},";
-                        }
                         json = "{" +
                                     "\"resourceType\": \"Specimen\"," +
                                     "\"id\": \""+tbObat.getValueAt(i,13).toString()+"\"," +
                                     "\"identifier\": [" +
                                         "{" +
                                             "\"system\": \"http://sys-ids.kemkes.go.id/specimen/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbObat.getValueAt(i,5).toString().replaceAll("PR","")+tbObat.getValueAt(i,12).toString()+"\"" +
+                                            "\"value\": \""+tbObat.getValueAt(i,5).toString()+"."+tbObat.getValueAt(i,12).toString()+"\"" +
                                         "}" +
                                     "]," +
                                     "\"status\": \"available\"," +
-                                    typeJson +
+                                    "\"type\": {" +
+                                        "\"coding\": [" +
+                                            "{" +
+                                                "\"system\": \""+tbObat.getValueAt(i,9).toString()+"\"," +
+                                                "\"code\": \""+tbObat.getValueAt(i,8).toString()+"\"," +
+                                                "\"display\": \""+tbObat.getValueAt(i,10).toString()+"\"" +
+                                            "}" +
+                                        "]" +
+                                    "}," +
                                     "\"subject\": {" +
                                         "\"reference\": \"Patient/"+idpasien+"\"," +
                                         "\"display\": \""+tbObat.getValueAt(i,3).toString()+"\"" +
@@ -714,11 +667,7 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                         System.out.println("Result JSON : "+json);
                         tbObat.setValueAt(false,i,0);
                     }catch(Exception e){
-                        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
-                            System.out.println("Notifikasi Bridging : "+e+" => "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString());
-                        }else{
-                            System.out.println("Notifikasi Bridging : "+e);
-                        }
+                        System.out.println("Notifikasi Bridging : "+e);
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -729,21 +678,42 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
-        tampil();
+        runBackground(() ->tampil());
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
-            tampil();
+            runBackground(() ->tampil());
         }else{
             Valid.pindah(evt, BtnPrint, BtnKeluar);
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void CmbStatusActionPerformed(java.awt.event.ActionEvent evt) {
-        tampil();
-    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if(koneksiDB.CARICEPAT().equals("aktif")){
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        runBackground(() ->tampil());
+                    }
+                }
+            });
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
@@ -786,8 +756,6 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbObat;
-    private widget.ComboBox CmbStatus;
-    private widget.Label jLabel18;
     // End of variables declaration//GEN-END:variables
     private void tampil() {
         Valid.tabelKosong(tabMode);
@@ -805,14 +773,10 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                    "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
                    "left join satu_sehat_specimen_radiologi on satu_sehat_servicerequest_radiologi.noorder=satu_sehat_specimen_radiologi.noorder "+
                    "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=satu_sehat_specimen_radiologi.kd_jenis_prw "+
-                   "inner join nota_jalan on nota_jalan.no_rawat=reg_periksa.no_rawat "+
-                   "where nota_jalan.tanggal between ? and ? "+
+                   "where reg_periksa.tgl_registrasi between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or jns_perawatan_radiologi.nm_perawatan like ? or "+
-                   "satu_sehat_mapping_radiologi.sampel_code like ? or permintaan_radiologi.noorder like ?)") +
-                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_specimen_radiologi.id_specimen,'') = ''" : "") +
-                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_specimen_radiologi.id_specimen,'') != ''" : "") +
-                   " order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg");
+                   "satu_sehat_mapping_radiologi.sampel_code like ? or permintaan_radiologi.noorder like ?)"));
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -828,9 +792,9 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        false,rs.getString("reg_periksa.no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),rs.getString("noorder"),
-                        rs.getString("tgl_sampel")+" "+rs.getString("jam_sampel"),rs.getString("nm_perawatan"),rs.getString("sampel_code"),rs.getString("sampel_system"),rs.getString("sampel_display"),
-                        rs.getString("id_servicerequest"),rs.getString("kd_jenis_prw"),rs.getString("id_specimen")
+                        false,rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),rs.getString("noorder"),
+                        rs.getString("tgl_sampel")+" "+rs.getString("jam_sampel"),rs.getString("nm_perawatan"),rs.getString("sampel_code"),rs.getString("sampel_system"),
+                        rs.getString("sampel_display"),rs.getString("id_servicerequest"),rs.getString("kd_jenis_prw"),rs.getString("id_specimen")
                     });
                 }
             } catch (Exception e) {
@@ -857,14 +821,10 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                    "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw "+
                    "left join satu_sehat_specimen_radiologi on satu_sehat_servicerequest_radiologi.noorder=satu_sehat_specimen_radiologi.noorder "+
                    "and satu_sehat_servicerequest_radiologi.kd_jenis_prw=satu_sehat_specimen_radiologi.kd_jenis_prw "+
-                   "inner join nota_inap on nota_inap.no_rawat=reg_periksa.no_rawat "+
-                   "where nota_inap.tanggal between ? and ? "+
+                   "where reg_periksa.tgl_registrasi between ? and ? "+
                    (TCari.getText().equals("")?"":"and (reg_periksa.no_rawat like ? or reg_periksa.no_rkm_medis like ? or "+
                    "pasien.nm_pasien like ? or pasien.no_ktp like ? or jns_perawatan_radiologi.nm_perawatan like ? or "+
-                   "satu_sehat_mapping_radiologi.sampel_code like ? or permintaan_radiologi.noorder like ?)") +
-                   (CmbStatus.getSelectedItem().toString().equals("Belum Terkirim") ? " and ifnull(satu_sehat_specimen_radiologi.id_specimen,'') = ''" : "") +
-                   (CmbStatus.getSelectedItem().toString().equals("Sudah Terkirim") ? " and ifnull(satu_sehat_specimen_radiologi.id_specimen,'') != ''" : "") +
-                   " order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg");
+                   "satu_sehat_mapping_radiologi.sampel_code like ? or permintaan_radiologi.noorder like ?)"));
             try {
                 ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -880,9 +840,9 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        false,rs.getString("reg_periksa.no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),rs.getString("noorder"),
-                        rs.getString("tgl_sampel")+" "+rs.getString("jam_sampel"),rs.getString("nm_perawatan"),rs.getString("sampel_code"),rs.getString("sampel_system"),rs.getString("sampel_display"),
-                        rs.getString("id_servicerequest"),rs.getString("kd_jenis_prw"),rs.getString("id_specimen")
+                        false,rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("no_ktp"),rs.getString("noorder"),
+                        rs.getString("tgl_sampel")+" "+rs.getString("jam_sampel"),rs.getString("nm_perawatan"),rs.getString("sampel_code"),rs.getString("sampel_system"),
+                        rs.getString("sampel_display"),rs.getString("id_servicerequest"),rs.getString("kd_jenis_prw"),rs.getString("id_specimen")
                     });
                 }
             } catch (Exception e) {
@@ -903,34 +863,43 @@ public final class SatuSehatKirimSpecimenRadiologi extends javax.swing.JDialog {
 
     public void isCek(){
         BtnKirim.setEnabled(akses.getsatu_sehat_kirim_specimen_radiologi());
+        BtnUpdate.setEnabled(akses.getsatu_sehat_kirim_specimen_radiologi());
         BtnPrint.setEnabled(akses.getsatu_sehat_kirim_specimen_radiologi());
     }
     
     public JTable getTable(){
         return tbObat;
     }
+    
+    private void runBackground(Runnable task) {
+        if (ceksukses) return;
+        if (executor.isShutdown() || executor.isTerminated()) return;
+        if (!isDisplayable()) return;
 
-    /** Escape JSON string value: " \ \b \f \n \r \t + non-printable.
-     *  Fix Rule 20006 Invalid JSON kalau data DB ada TAB/newline. */
-    private static String jsonEscape(String s) {
-        if (s == null) return "";
-        StringBuilder sb = new StringBuilder(s.length() + 8);
-        for (int idx = 0; idx < s.length(); idx++) {
-            char c = s.charAt(idx);
-            switch (c) {
-                case '"':  sb.append("\\\""); break;
-                case '\\': sb.append("\\\\"); break;
-                case '\b': sb.append("\\b"); break;
-                case '\f': sb.append("\\f"); break;
-                case '\n': sb.append("\\n"); break;
-                case '\r': sb.append("\\r"); break;
-                case '\t': sb.append("\\t"); break;
-                default:
-                    if (c < 0x20) sb.append(String.format("\\u%04x", (int) c));
-                    else sb.append(c);
-            }
+        ceksukses = true;
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        try {
+            executor.submit(() -> {
+                try {
+                    task.run();
+                } finally {
+                    ceksukses = false;
+                    SwingUtilities.invokeLater(() -> {
+                        if (isDisplayable()) {
+                            setCursor(Cursor.getDefaultCursor());
+                        }
+                    });
+                }
+            });
+        } catch (RejectedExecutionException ex) {
+            ceksukses = false;
         }
-        return sb.toString();
     }
-
+    
+    @Override
+    public void dispose() {
+        executor.shutdownNow();
+        super.dispose();
+    }
 }

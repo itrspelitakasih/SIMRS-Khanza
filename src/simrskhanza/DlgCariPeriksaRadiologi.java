@@ -2677,7 +2677,9 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
                         + ", Series " + tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 2).toString()
                         + " ]::",
                         tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString().replaceAll("/", ""),
-                        tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 2).toString());
+                        tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 2).toString(),
+                        tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 1).toString(),
+                        tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString());
                 try {
                     System.out.println("URL : " + koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC()
                             + "/web-viewer/app/viewer.html?series="

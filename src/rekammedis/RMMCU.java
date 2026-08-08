@@ -52,6 +52,10 @@ import simrskhanza.DlgCariPerusahaan;
  * @author perpustakaan
  */
 public final class RMMCU extends javax.swing.JDialog {
+    private static final String[] URUTAN_KOLOM_TAMPIL_MCU = {
+            "No.Rawat", "Badge", "No.RM", "Nama Pasien", "Tanggal", "Unit/Poliklinik", "Dokter PJ", "Perusahaan",
+            "Kesimpulan"
+    };
     private final DefaultTableModel tabMode;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
@@ -353,7 +357,8 @@ public final class RMMCU extends javax.swing.JDialog {
                 "Narkoba Morphine",
                 "Narkoba Benzodiazepine",
                 "Narkoba Cocain",
-                "Narkoba Marijuana"
+                "Narkoba Marijuana",
+                "Unit/Poliklinik"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -377,6 +382,11 @@ public final class RMMCU extends javax.swing.JDialog {
                 column.setMaxWidth(Integer.MAX_VALUE);
                 column.setPreferredWidth(getLebarKolomMcu(header));
             }
+        }
+        for (i = 0; i < URUTAN_KOLOM_TAMPIL_MCU.length; i++) {
+            int indexModel = tabMode.findColumn(URUTAN_KOLOM_TAMPIL_MCU[i]);
+            int indexView = tbObat.convertColumnIndexToView(indexModel);
+            tbObat.getColumnModel().moveColumn(indexView, i);
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
 
@@ -1468,12 +1478,12 @@ public final class RMMCU extends javax.swing.JDialog {
         jLabel53.setBounds(440, 650, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026 15:21:21" }));
-        TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglAsuhan.setDisplayFormat("dd-MM-yyyy");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
         FormInput.add(TglAsuhan);
-        TglAsuhan.setBounds(680, 10, 130, 23);
+        TglAsuhan.setBounds(680, 10, 100, 23);
 
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
@@ -8613,7 +8623,9 @@ public final class RMMCU extends javax.swing.JDialog {
                 +
                 "dokter.nm_dokter,petugas.nama as nm_petugas," + selectNamaPenanggungJawab()
                 + " as perusahaan_pasien,pasien.nip,pasien.alamat as alamat_pasien," +
-                "ifnull(penilaian_mcu.nama_pasien,pasien.nm_pasien) as nm_pasien,penilaian_mcu.kd_petugas_lab,petugas_lab.nama as nm_petugas_lab "
+                "ifnull(penilaian_mcu.nama_pasien,pasien.nm_pasien) as nm_pasien,penilaian_mcu.kd_petugas_lab,petugas_lab.nama as nm_petugas_lab,"
+                +
+                "poliklinik.nm_poli "
                 +
                 "from penilaian_mcu " +
                 "inner join reg_periksa on penilaian_mcu.no_rawat=reg_periksa.no_rawat " +
@@ -8622,7 +8634,8 @@ public final class RMMCU extends javax.swing.JDialog {
                 "left join perusahaan_pasien on perusahaan_pasien.kode_perusahaan=pasien.perusahaan_pasien " +
                 "left join dokter on penilaian_mcu.kd_dokter=dokter.kd_dokter " +
                 "left join petugas on penilaian_mcu.kd_petugas=petugas.nip " +
-                "left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab=petugas_lab.nip ";
+                "left join petugas petugas_lab on penilaian_mcu.kd_petugas_lab=petugas_lab.nip " +
+                "left join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli ";
     }
 
     private String getTanggalAsuhan() {
@@ -9457,17 +9470,15 @@ public final class RMMCU extends javax.swing.JDialog {
         if("drug_benzodiazepine".equals(kolom)) return 266;
         if("drug_cocain".equals(kolom)) return 267;
         if("drug_marijuana".equals(kolom)) return 268;
+        if("nm_poli".equals(kolom)) return 269;
         return -1;
     }
 
     private boolean isKolomSembunyiUi(String header) {
-        if ("Alamat".equals(header)) return true;
-        if ("Kode Dokter".equals(header)) return true;
-        if ("Kode Petugas".equals(header)) return true;
-        if ("Nama Petugas".equals(header)) return true;
-        if ("Kode Petugas Lab".equals(header)) return true;
-        if ("Nama Petugas Lab".equals(header)) return true;
-        return false;
+        for (String kolomTampil : URUTAN_KOLOM_TAMPIL_MCU) {
+            if (kolomTampil.equals(header)) return false;
+        }
+        return true;
     }
 
     private int getLebarKolomMcu(String header) {
@@ -9479,6 +9490,7 @@ public final class RMMCU extends javax.swing.JDialog {
         if ("Perusahaan".equals(header)) return 200;
         if ("Badge".equals(header)) return 55;
         if ("Tanggal".equals(header)) return 120;
+        if ("Unit/Poliklinik".equals(header)) return 150;
         if ("Dokter PJ".equals(header)) return 200;
         if ("Saran".equals(header)) return 200;
         if ("MCU Grup".equals(header)) return 80;
@@ -9489,7 +9501,7 @@ public final class RMMCU extends javax.swing.JDialog {
         if ("Conclusion EKG".equals(header)) return 130;
         if ("Conclusion Spirometry".equals(header)) return 180;
         if ("Conclusion Audiometry".equals(header)) return 180;
-        if ("Kesimpulan".equals(header)) return 200;
+        if ("Kesimpulan".equals(header)) return 260;
         if ("Pemeriksaan Laboratorium".equals(header)) return 180;
         if ("ECG Abnormal".equals(header)) return 180;
         return 90;
@@ -9771,7 +9783,7 @@ public final class RMMCU extends javax.swing.JDialog {
                             rs.getString("drug_amphetamine"),
                             rs.getString("drug_methamphetamine"), rs.getString("drug_morphine"),
                             rs.getString("drug_benzodiazepine"), rs.getString("drug_cocain"),
-                            rs.getString("drug_marijuana")
+                            rs.getString("drug_marijuana"), rs.getString("nm_poli")
                     });
                 }
             } catch (Exception e) {

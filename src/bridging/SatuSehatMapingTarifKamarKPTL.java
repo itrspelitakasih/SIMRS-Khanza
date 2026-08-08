@@ -30,13 +30,13 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import keuangan.DlgJnsPerawatanOperasi;
+import keuangan.DlgKamar;
 
 /**
  *
  * @author dosen
  */
-public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialog {
+public final class SatuSehatMapingTarifKamarKPTL extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
@@ -50,7 +50,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
     /** Creates new form DlgJnsPerawatanRalan
      * @param parent
      * @param modal */
-    public SatuSehatMapingTindakanOperasiKPTL(java.awt.Frame parent, boolean modal) {
+    public SatuSehatMapingTarifKamarKPTL(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -58,7 +58,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
         setSize(628,674);
 
         tabMode=new DefaultTableModel(null,new Object[]{
-                "Code","System","Kode Tindakan","Nama Tindakan","Display"
+                "Code","System","Kode/Bed","Nama Ruang/Kamar/Bed","Display"
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -147,7 +147,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Mapping Tarif Tindakan Operasi KPTL Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Mapping Tarif Kamar KPTL Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -390,7 +390,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
         jLabel4.setText("System :");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
-        jLabel4.setBounds(385, 10, 60, 23);
+        jLabel4.setBounds(375, 10, 60, 23);
 
         btnBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnBarang.setMnemonic('1');
@@ -407,17 +407,17 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
         FormInput.add(btnBarang);
-        btnBarang.setBounds(343, 10, 28, 23);
+        btnBarang.setBounds(333, 10, 28, 23);
 
-        jLabel9.setText("Tindakan :");
+        jLabel9.setText("Kamar :");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
-        jLabel9.setBounds(0, 10, 65, 23);
+        jLabel9.setBounds(0, 10, 55, 23);
 
         jLabel10.setText("Display :");
         jLabel10.setName("jLabel10"); // NOI18N
         FormInput.add(jLabel10);
-        jLabel10.setBounds(0, 40, 65, 23);
+        jLabel10.setBounds(0, 40, 55, 23);
 
         Display.setHighlighter(null);
         Display.setName("Display"); // NOI18N
@@ -427,7 +427,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
         FormInput.add(Display);
-        Display.setBounds(69, 40, 655, 23);
+        Display.setBounds(59, 40, 665, 23);
 
         TindakanSystem.setHighlighter(null);
         TindakanSystem.setName("TindakanSystem"); // NOI18N
@@ -437,7 +437,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
         FormInput.add(TindakanSystem);
-        TindakanSystem.setBounds(449, 10, 275, 23);
+        TindakanSystem.setBounds(439, 10, 285, 23);
 
         btnBarang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnBarang1.setMnemonic('1');
@@ -454,13 +454,13 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
         FormInput.add(btnBarang1);
-        btnBarang1.setBounds(191, 10, 28, 23);
+        btnBarang1.setBounds(181, 10, 28, 23);
 
         KodeTindakan.setEditable(false);
         KodeTindakan.setHighlighter(null);
         KodeTindakan.setName("KodeTindakan"); // NOI18N
         FormInput.add(KodeTindakan);
-        KodeTindakan.setBounds(221, 10, 120, 23);
+        KodeTindakan.setBounds(211, 10, 120, 23);
 
         Code.setHighlighter(null);
         Code.setName("Code"); // NOI18N
@@ -470,7 +470,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             }
         });
         FormInput.add(Code);
-        Code.setBounds(69, 10, 120, 23);
+        Code.setBounds(59, 10, 120, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -482,7 +482,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangActionPerformed
-        DlgJnsPerawatanOperasi pemeriksaan=new DlgJnsPerawatanOperasi(null,false);
+        DlgKamar pemeriksaan=new DlgKamar(null,false);
         pemeriksaan.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {}
@@ -492,7 +492,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             public void windowClosed(WindowEvent e) {
                 if(pemeriksaan.getTable().getSelectedRow()!= -1){                    
                     KodeTindakan.setText(pemeriksaan.getTable().getValueAt(pemeriksaan.getTable().getSelectedRow(),1).toString());
-                    NamaTindakan.setText(pemeriksaan.getTable().getValueAt(pemeriksaan.getTable().getSelectedRow(),2).toString());
+                    NamaTindakan.setText(pemeriksaan.getTable().getValueAt(pemeriksaan.getTable().getSelectedRow(),3).toString());
                 }
                 btnBarang.requestFocus();
             }
@@ -538,7 +538,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
         }else if(Display.getText().trim().equals("")){
             Valid.textKosong(Display,"Tindakan Display");
         }else{
-            if(Sequel.menyimpantf("satu_sehat_mapping_tindakanoperasi_kptl","?,?,?,?","Mapping Tindakan Rawat Jalan",4,new String[]{
+            if(Sequel.menyimpantf("satu_sehat_mapping_tarifkamar_kptl","?,?,?,?","Mapping Tindakan Rawat Jalan",4,new String[]{
                 KodeTindakan.getText(),Code.getText(),TindakanSystem.getText(),Display.getText()
             })==true){
                 tabMode.addRow(new Object[]{
@@ -567,7 +567,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if(Valid.hapusTabletf(tabMode,KodeTindakan,"satu_sehat_mapping_tindakanoperasi_kptl","kode_paket")==true){
+        if(Valid.hapusTabletf(tabMode,KodeTindakan,"satu_sehat_mapping_tarifkamar_kptl","kd_kamar")==true){
             tabMode.removeRow(tbJnsPerawatan.getSelectedRow());
             emptTeks();
             LCount.setText(""+tabMode.getRowCount());
@@ -593,7 +593,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             Valid.textKosong(Display,"Tindakan Display");
         }else{
             if(tbJnsPerawatan.getSelectedRow()>-1){
-                if(Sequel.mengedittf("satu_sehat_mapping_tindakanoperasi_kptl","kode_paket=?","kode_paket=?,code=?,system=?,display=?",5,new String[]{
+                if(Sequel.mengedittf("satu_sehat_mapping_tarifkamar_kptl","kd_kamar=?","kd_kamar=?,code=?,system=?,display=?",5,new String[]{
                         KodeTindakan.getText(),Code.getText(),TindakanSystem.getText(),Display.getText(),tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),2).toString()
                     })==true){
                     tabMode.setValueAt(Code.getText(),tbJnsPerawatan.getSelectedRow(),0);
@@ -640,7 +640,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
                 param.put("emailrs",akses.getemailrs());   
                 param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
                 param.put("parameter","%"+TCari.getText().trim()+"%");
-                Valid.MyReport("rptMapingTindakanOperasiKPTLSatuSehat.jasper","report","::[ Mapping Tindakan Operasi KPTL Satu Sehat Kemenkes ]::",param);            
+                Valid.MyReport("rptMapingTarifKamarKPTLSatuSehat.jasper","report","::[ Mapping Tarif Kamar KPTL Satu Sehat Kemenkes ]::",param);            
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -802,7 +802,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            SatuSehatMapingTindakanOperasiKPTL dialog = new SatuSehatMapingTindakanOperasiKPTL(new javax.swing.JFrame(), true);
+            SatuSehatMapingTarifKamarKPTL dialog = new SatuSehatMapingTarifKamarKPTL(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -851,11 +851,11 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
         Valid.tabelKosong(tabMode);
         try{
            ps=koneksi.prepareStatement(
-                   "select satu_sehat_mapping_tindakanoperasi_kptl.kode_paket,paket_operasi.nm_perawatan,satu_sehat_mapping_tindakanoperasi_kptl.code,satu_sehat_mapping_tindakanoperasi_kptl.system,"+
-                   "satu_sehat_mapping_tindakanoperasi_kptl.display from satu_sehat_mapping_tindakanoperasi_kptl inner join paket_operasi on satu_sehat_mapping_tindakanoperasi_kptl.kode_paket=paket_operasi.kode_paket "+
-                   (TCari.getText().equals("")?"":"where satu_sehat_mapping_tindakanoperasi_kptl.kode_paket like ? or paket_operasi.nm_perawatan like ? or "+
-                   "satu_sehat_mapping_tindakanoperasi_kptl.code like ? or satu_sehat_mapping_tindakanoperasi_kptl.display like ? ")+
-                   " order by satu_sehat_mapping_tindakanoperasi_kptl.code");
+                   "select satu_sehat_mapping_tarifkamar_kptl.kd_kamar,bangsal.nm_bangsal,satu_sehat_mapping_tarifkamar_kptl.code,satu_sehat_mapping_tarifkamar_kptl.system,"+
+                   "satu_sehat_mapping_tarifkamar_kptl.display from satu_sehat_mapping_tarifkamar_kptl inner join kamar on satu_sehat_mapping_tarifkamar_kptl.kd_kamar=kamar.kd_kamar "+
+                   "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+(TCari.getText().equals("")?"":"where satu_sehat_mapping_tarifkamar_kptl.kd_kamar like ? or "+
+                   "bangsal.nm_bangsal like ? or satu_sehat_mapping_tarifkamar_kptl.code like ? or satu_sehat_mapping_tarifkamar_kptl.display like ? ")+
+                   "order by satu_sehat_mapping_tarifkamar_kptl.code");
             try {
                 if(!TCari.getText().equals("")){
                     ps.setString(1,"%"+TCari.getText()+"%");
@@ -866,7 +866,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        rs.getString("code"),rs.getString("system"),rs.getString("kode_paket"),rs.getString("nm_perawatan"),rs.getString("display")
+                        rs.getString("code"),rs.getString("system"),rs.getString("kd_kamar"),rs.getString("nm_bangsal"),rs.getString("display")
                     });
                 }
             } catch (Exception e) {
@@ -907,10 +907,10 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getsatu_sehat_mapping_kptl_tindakan_operasi());
-        BtnHapus.setEnabled(akses.getsatu_sehat_mapping_kptl_tindakan_operasi());
-        BtnEdit.setEnabled(akses.getsatu_sehat_mapping_kptl_tindakan_operasi());
-        BtnPrint.setEnabled(akses.getsatu_sehat_mapping_kptl_tindakan_operasi());
+        BtnSimpan.setEnabled(akses.getsatu_sehat_mapping_kptl_tarif_kamar());
+        BtnHapus.setEnabled(akses.getsatu_sehat_mapping_kptl_tarif_kamar());
+        BtnEdit.setEnabled(akses.getsatu_sehat_mapping_kptl_tarif_kamar());
+        BtnPrint.setEnabled(akses.getsatu_sehat_mapping_kptl_tarif_kamar());
     }
     
     public JTable getTable(){

@@ -41,7 +41,6 @@ import laporan.DlgCariPenyakit;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgCariPoli2;
 import wa.GoWAService;
-import wa.ServiceWADelphi;
 
 /**
  *
@@ -2525,7 +2524,7 @@ public class SuratKontrol extends javax.swing.JDialog {
     private void kirimReminderTerjadwal(String norm, String namaPasien, String namaPoli, String namaDokter,
             String kdDokter, Object tglPeriksa) {
         try {
-            if (!ServiceWADelphi.isNotifAktif()) {
+            if (!GoWAService.isNotifAktif()) {
                 System.out.println("Notifikasi WA dimatikan di database.xml");
                 notifInfo("Notifikasi WA dimatikan di database.xml");
                 return;
@@ -2568,8 +2567,7 @@ public class SuratKontrol extends javax.swing.JDialog {
                     + "Harap datang *30 menit sebelum jam praktek*.\n"
                     + "Terima kasih.";
 
-            ServiceWADelphi wa = new ServiceWADelphi();
-            wa.kirimText(nohp, pesan, datajam, "KONTROL");
+            GoWAService.kirimText(nohp, pesan, datajam, "KONTROL");
 
             System.out.println("Reminder masuk antrian WA");
             notifInfo("Reminder berhasil masuk antrian WA ke nomor tujuan:\n" + nohp);

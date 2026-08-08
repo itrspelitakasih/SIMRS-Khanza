@@ -904,7 +904,7 @@ public final class validasi {
             kiri.requestFocus();
         }
     }
-    
+
     public void pindah(java.awt.event.KeyEvent evt,JTextField kiri,JCheckBox kanan){
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             kanan.requestFocus();

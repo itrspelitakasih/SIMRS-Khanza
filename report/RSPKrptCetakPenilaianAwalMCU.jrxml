@@ -1421,6 +1421,11 @@ java.util.stream.Stream.of(
     )
 )]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="29" y="226" width="100" height="30" uuid="ccf74cca-3142-4fb3-ad68-00e48239bd89"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="822">
 			<rectangle>
@@ -6007,7 +6012,8 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_l}) ? "  \u2713" : "  -"
+]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="240" y="163" width="65" height="17" uuid="ce13ae8d-32f8-4c4f-9485-ba623ba991ec"/>
@@ -6020,7 +6026,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_r}) ? "  \u2713" : "  -"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="240" y="146" width="65" height="17" uuid="c1a19ba7-5e27-497e-a3f7-22887c878c5b"/>
@@ -6097,7 +6103,7 @@ I am willing that if required, work related medical information may be released 
 			<textField>
 				<reportElement x="177" y="146" width="62" height="17" uuid="f39071bc-3391-4669-a87b-8b029c524bc8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{eye_glasses_distant_l}]]></textFieldExpression>
 			</textField>
@@ -6111,7 +6117,7 @@ I am willing that if required, work related medical information may be released 
 			<textField>
 				<reportElement x="240" y="146" width="63" height="17" uuid="ae9e6d17-0ea2-41c3-bdb3-0b94bc1b9fa9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{eye_glasses_distant_r}]]></textFieldExpression>
 			</textField>
