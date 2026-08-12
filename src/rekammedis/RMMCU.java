@@ -8664,6 +8664,25 @@ public final class RMMCU extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Memaksa tanggal asuhan mengikuti tanggal registrasi No. Rawat tujuan. Dipakai setelah
+     * copy pengkajian MCU agar data hasil paste memakai tanggal registrasi tujuan, bukan
+     * tanggal asuhan bawaan dari data sumber yang disalin.
+     */
+    private void setTanggalAsuhanSamaDenganRegistrasi() {
+        String tanggalRegistrasi = TanggalRegistrasi.getText().trim();
+        if (tanggalRegistrasi.equals("")) {
+            return;
+        }
+        try {
+            java.text.SimpleDateFormat formatTanggal = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date registrasi = formatTanggal.parse(tanggalRegistrasi);
+            TglAsuhan.setDate(registrasi);
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+    }
+
     private String getTahunDariTanggal(String tanggal) {
         String nilai = tanggal == null ? "" : tanggal.trim();
         return nilai.length() >= 4 ? nilai.substring(0, 4) : "";
@@ -10254,6 +10273,28 @@ public final class RMMCU extends javax.swing.JDialog {
     }
 
     /**
+     * Memastikan tab "Data Pengkajian" langsung menampilkan data No. Rawat yang baru dibuka
+     * lewat {@link #setNoRm}. Rentang tanggal pencarian (DTPCari1/DTPCari2) yang dibawa
+     * pemanggil bisa jadi tidak mencakup tanggal registrasi No. Rawat ini (mis. masih memakai
+     * tanggal kunjungan sumber saat mencari data untuk di-copy), sehingga tanpa penyesuaian ini
+     * data yang baru saja disalin/disimpan tidak akan pernah muncul di daftar.
+     */
+    private void tampilkanDataPengkajianTujuan() {
+        if (TanggalRegistrasi.getText().trim().equals("")) {
+            return;
+        }
+        Date registrasi = DTPCari1.getDate();
+        Date akhir = DTPCari2.getDate();
+        if (registrasi != null && (akhir == null || !akhir.after(registrasi))) {
+            java.util.Calendar kalender = java.util.Calendar.getInstance();
+            kalender.setTime(registrasi);
+            kalender.add(java.util.Calendar.DATE, 1);
+            DTPCari2.setDate(kalender.getTime());
+        }
+        tampil();
+    }
+
+    /**
      * Menyalin seluruh data inputan pengkajian MCU dari baris sumber (dipilih lewat menu
      * "Copy Pengkajian") ke No. Rawat tujuan yang baru saja dimuat oleh {@link #isRawat()}.
      * Identitas kunjungan/pasien tujuan (No.Rawat, No.RM, nama, tanggal lahir, dokter PJ, dll)
@@ -10285,6 +10326,7 @@ public final class RMMCU extends javax.swing.JDialog {
             return;
         }
         isiDataPengkajian(baris);
+        setTanggalAsuhanSamaDenganRegistrasi();
         tbObat.clearSelection();
         JOptionPane.showMessageDialog(null,
                 "Data pengkajian berhasil disalin. Silahkan periksa kembali datanya lalu klik Simpan..!!");
@@ -10295,6 +10337,7 @@ public final class RMMCU extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
         isRawat();
+        tampilkanDataPengkajianTujuan();
     }
 
     public void isCek() {

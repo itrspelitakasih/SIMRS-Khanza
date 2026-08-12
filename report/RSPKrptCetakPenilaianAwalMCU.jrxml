@@ -6012,8 +6012,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_l}) ? "  \u2713" : "  -"
-]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_glasses_near_l}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="240" y="163" width="65" height="17" uuid="ce13ae8d-32f8-4c4f-9485-ba623ba991ec"/>
@@ -6026,7 +6025,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_distant_r}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_glasses_near_r}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="240" y="146" width="65" height="17" uuid="c1a19ba7-5e27-497e-a3f7-22887c878c5b"/>
@@ -6096,12 +6095,12 @@ I am willing that if required, work related medical information may be released 
 			<textField>
 				<reportElement x="51" y="163" width="54" height="16" uuid="7aa796e1-02a7-4888-a30b-4b3363d8161f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_unaided_near_l}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_unaided_near_l}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="177" y="146" width="62" height="17" uuid="f39071bc-3391-4669-a87b-8b029c524bc8"/>
+				<reportElement x="176" y="146" width="62" height="17" uuid="f39071bc-3391-4669-a87b-8b029c524bc8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
@@ -6110,9 +6109,9 @@ I am willing that if required, work related medical information may be released 
 			<textField>
 				<reportElement x="116" y="163" width="54" height="16" uuid="dd6cb301-1631-4b73-92bf-52c60e7b687b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
+					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_glasses_near_r}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_unaided_near_r}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="240" y="146" width="63" height="17" uuid="ae9e6d17-0ea2-41c3-bdb3-0b94bc1b9fa9"/>
@@ -6178,14 +6177,14 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_night_vision_1}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_night_vision_1}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="366" y="163" width="54" height="16" uuid="2e4366b2-41c6-4c30-bb79-60c8b39eb300"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Yes".equals($F{eye_night_vision_2}) ? "  \u2713" : "  -"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{eye_night_vision_2}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="426" y="142" width="31" height="25" uuid="9101c5f3-aadd-4386-bccf-8183cf6785cf"/>
