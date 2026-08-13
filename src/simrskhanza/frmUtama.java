@@ -2118,7 +2118,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08/06/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/08/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -8361,6 +8361,50 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenu7.add(MnRekapHadir6);
+
+        MenuBar.add(jMenu7);
+
+        MnLaboratorium.setBackground(new java.awt.Color(20, 0, 20));
+        MnLaboratorium.setBorder(null);
+        MnLaboratorium.setForeground(new java.awt.Color(255, 255, 255));
+        MnLaboratorium.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnLaboratorium.setMnemonic('L');
+        MnLaboratorium.setText("Laboratorium");
+        MnLaboratorium.setToolTipText("Alt+L");
+        MnLaboratorium.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLaboratorium.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLaboratorium.setName("MnLaboratorium"); // NOI18N
+        MnLaboratorium.setPreferredSize(new java.awt.Dimension(110, 26));
+
+        MnCariPeriksaLab.setBackground(new java.awt.Color(255, 255, 254));
+        MnCariPeriksaLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCariPeriksaLab.setForeground(new java.awt.Color(50, 90, 40));
+        MnCariPeriksaLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCariPeriksaLab.setText("1. DlgCariPeriksaLab");
+        MnCariPeriksaLab.setName("MnCariPeriksaLab"); // NOI18N
+        MnCariPeriksaLab.setPreferredSize(new java.awt.Dimension(205, 30));
+        MnCariPeriksaLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCariPeriksaLabActionPerformed(evt);
+            }
+        });
+        MnLaboratorium.add(MnCariPeriksaLab);
+
+        MnCariPermintaanLab.setBackground(new java.awt.Color(255, 255, 254));
+        MnCariPermintaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCariPermintaanLab.setForeground(new java.awt.Color(50, 90, 40));
+        MnCariPermintaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCariPermintaanLab.setText("2. DlgCariPermintaanLab");
+        MnCariPermintaanLab.setName("MnCariPermintaanLab"); // NOI18N
+        MnCariPermintaanLab.setPreferredSize(new java.awt.Dimension(205, 30));
+        MnCariPermintaanLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCariPermintaanLabActionPerformed(evt);
+            }
+        });
+        MnLaboratorium.add(MnCariPermintaanLab);
+
+        MenuBar.add(MnLaboratorium);
 
         jMenu4.setBackground(new java.awt.Color(20, 0, 20));
         jMenu4.setBorder(null);
@@ -24950,7 +24994,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.13"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.14"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
