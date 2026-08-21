@@ -84,7 +84,15 @@ public class GoWAService {
     public static boolean isNotifAktif() {
         try {
             Properties prop = new Properties();
-            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+                prop.loadFromXML(fis);
+            }
+            File extra = new File("setting/database-extra.xml");
+            if (extra.exists()) {
+                try (FileInputStream fis = new FileInputStream(extra)) {
+                    prop.loadFromXML(fis);
+                }
+            }
             return prop.getProperty("NOTIFWAKONTROL", "no").equalsIgnoreCase("yes");
         } catch (Exception e) {
             return false;

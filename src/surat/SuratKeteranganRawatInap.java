@@ -84,7 +84,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)25).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));  
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           
         if(koneksiDB.CARICEPAT().equals("aktif")){

@@ -87,7 +87,7 @@ public final class SuratSakit extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoSurat.setDocument(new batasInput((byte)26).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));  
         LamaSakit.setDocument(new batasInput((byte)20).getKata(LamaSakit));         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           

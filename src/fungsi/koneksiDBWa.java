@@ -8,6 +8,7 @@ package fungsi;
 
 import AESsecurity.EnkripsiAES;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.util.Properties;
@@ -22,14 +23,27 @@ public class koneksiDBWa {
     private static Connection connection=null;
     private static final Properties prop = new Properties();  
     private static final MysqlDataSource dataSource=new MysqlDataSource();
-    private static String var="";
-    
-    public koneksiDBWa(){} 
-    public static Connection newConnection() throws Exception {
+
+    public koneksiDBWa(){}
+
+    private static Properties loadSettings() throws Exception {
         Properties setting = new Properties();
+        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+            setting.loadFromXML(fis);
+        }
+        File extra = new File("setting/database-extra.xml");
+        if (extra.exists()) {
+            try (FileInputStream fis = new FileInputStream(extra)) {
+                setting.loadFromXML(fis);
+            }
+        }
+        return setting;
+    }
+
+    public static Connection newConnection() throws Exception {
+        Properties setting = loadSettings();
         MysqlDataSource source = new MysqlDataSource();
 
-        setting.loadFromXML(new FileInputStream("setting/database.xml"));
         source.setURL("jdbc:mysql://"
                 + EnkripsiAES.decrypt(setting.getProperty("HOSTWA")) + ":"
                 + EnkripsiAES.decrypt(setting.getProperty("PORTWA")) + "/"
@@ -55,7 +69,7 @@ public class koneksiDBWa {
     private static void load() {
         try {
             if(prop.isEmpty()){
-                prop.loadFromXML(new FileInputStream("setting/database.xml"));
+                prop.putAll(loadSettings());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
@@ -98,58 +112,35 @@ public class koneksiDBWa {
    
    //SETTING GOWA
 
-//    public static String GOWA_BASE_URL() {
-//        load();
-//        return prop.getProperty("GOWA_BASE_URL", "").trim();
-//    }
-//
-//    public static String GOWA_USERNAME() {
-//        load();
-//        return prop.getProperty("GOWA_USERNAME", "").trim();
-//    }
-//
-//    public static String GOWA_PASSWORD() {
-//        load();
-//        return prop.getProperty("GOWA_PASSWORD", "").trim();
-//    }
     public static String GOWA_BASE_URL() {
-        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
-            prop.loadFromXML(fis);
-            var = EnkripsiAES.decrypt(prop.getProperty("GOWA_BASE_URL"));
+        load();
+        try {
+            return EnkripsiAES.decrypt(prop.getProperty("GOWA_BASE_URL"));
         } catch (Exception e) {
-            var = "";
+            return "";
         }
-        return var;
     }
 
     public static String GOWA_USERNAME() {
-        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
-            prop.loadFromXML(fis);
-            var = EnkripsiAES.decrypt(prop.getProperty("GOWA_USERNAME"));
+        load();
+        try {
+            return EnkripsiAES.decrypt(prop.getProperty("GOWA_USERNAME"));
         } catch (Exception e) {
-            var = "";
+            return "";
         }
-        return var;
     }
 
     public static String GOWA_PASSWORD() {
-        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
-            prop.loadFromXML(fis);
-            var = EnkripsiAES.decrypt(prop.getProperty("GOWA_PASSWORD"));
+        load();
+        try {
+            return EnkripsiAES.decrypt(prop.getProperty("GOWA_PASSWORD"));
         } catch (Exception e) {
-            var = "";
+            return "";
         }
-        return var;
     }
 
     public static String GOWA_DEVICE_ID() {
-        String var = "";
-        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
-            prop.loadFromXML(fis);
-            var = prop.getProperty("GOWA_DEVICE_ID");
-        } catch (Exception e) {
-            var = "";
-        }
-        return var;
+        load();
+        return prop.getProperty("GOWA_DEVICE_ID", "");
     }
 }

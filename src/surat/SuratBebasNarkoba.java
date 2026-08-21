@@ -116,7 +116,7 @@ public final class SuratBebasNarkoba extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
 
-        NoSurat.setDocument(new batasInput((byte) 26).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte) 30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));
         Keperluan.setDocument(new batasInput((byte) 300).getKata(Keperluan));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));

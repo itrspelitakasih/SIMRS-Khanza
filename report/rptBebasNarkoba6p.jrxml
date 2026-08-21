@@ -322,7 +322,7 @@
 					<font fontName="Cambria" size="11" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Nomor : 0"+$P{nosurat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Nomor : "+$P{nosurat}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="183" y="276" width="111" height="14" uuid="79879758-4039-4923-a70c-1869f9c551f8">

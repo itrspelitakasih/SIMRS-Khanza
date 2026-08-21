@@ -7,6 +7,7 @@ package fungsi;
 
 import AESsecurity.EnkripsiAES;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -1810,9 +1811,28 @@ public class koneksiDB {
      public static String NOWABOOKINGPERIKSA(){
         try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
             prop.loadFromXML(fis);
+            File extra = new File("setting/database-extra.xml");
+            if (extra.exists()) {
+                try (FileInputStream fisExtra = new FileInputStream(extra)) {
+                    prop.loadFromXML(fisExtra);
+                }
+            }
             var=prop.getProperty("NOWABOOKINGPERIKSA");
         }catch(Exception e){
             var="";
+        }
+        return var;
+    }
+
+    public static String URLAPPLINKSATUSEHAT() {
+        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+            prop.loadFromXML(fis);
+            var = prop.getProperty("URLAPPLINKSATUSEHAT");
+            if (var == null) {
+                var = "";
+            }
+        } catch (Exception e) {
+            var = "";
         }
         return var;
     }

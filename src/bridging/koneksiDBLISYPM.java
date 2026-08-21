@@ -7,6 +7,7 @@ package bridging;
 
 import AESsecurity.EnkripsiAES;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.util.Properties;
@@ -25,7 +26,15 @@ public class koneksiDBLISYPM {
     public static Connection condb(){ 
         if(connection == null){
             try{
-                prop.loadFromXML(new FileInputStream("setting/database.xml"));
+                try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+                    prop.loadFromXML(fis);
+                }
+                File extra = new File("setting/database-extra.xml");
+                if (extra.exists()) {
+                    try (FileInputStream fis = new FileInputStream(extra)) {
+                        prop.loadFromXML(fis);
+                    }
+                }
                 dataSource.setURL("jdbc:mysql://"+EnkripsiAES.decrypt(prop.getProperty("HOSTLISYPM"))+":"+EnkripsiAES.decrypt(prop.getProperty("PORTLISYPM"))+"/"+EnkripsiAES.decrypt(prop.getProperty("DATABASELISYPM"))+"?zeroDateTimeBehavior=convertToNull&autoReconnect=true&useCompression=true");
                 dataSource.setUser(EnkripsiAES.decrypt(prop.getProperty("USERLISYPM")));
                 dataSource.setPassword(EnkripsiAES.decrypt(prop.getProperty("PASLISYPM")));
