@@ -1,4 +1,5 @@
 package informasi;
+import simrskhanza.DlgCariCaraBayar;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -6,7 +7,10 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -26,11 +31,14 @@ import javax.swing.table.TableColumn;
 public final class InformasiTarifRadiologi extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
     private validasi Valid=new validasi();
+    private sekuel Sequel=new sekuel();
     private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps;
-    private ResultSet rs;    
+    private ResultSet rs;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
+    private volatile boolean pending = false;
+    private DlgCariCaraBayar penjab;
 
     /** Creates new form DlgJnsPerawatanRalan
      * @param parent
@@ -87,6 +95,12 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         BtnKeluar = new widget.Button();
+        jLabel5 = new widget.Label();
+        Kelas = new widget.ComboBox();
+        jLabel24 = new widget.Label();
+        Kdpnj = new widget.TextBox();
+        nmpnj = new widget.TextBox();
+        BtnPenjab = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -100,8 +114,9 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Informasi Tarif Pemeriksaan Radiologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Informasi Tarif Pemeriksaan Radiologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
+        internalFrame1.setPreferredSize(new java.awt.Dimension(958, 231));
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
@@ -124,7 +139,7 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel6);
 
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(400, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(140, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -189,6 +204,54 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
         });
         panelGlass9.add(BtnKeluar);
 
+        jLabel5.setText("Kelas :");
+        jLabel5.setName("jLabel5"); // NOI18N
+        panelGlass9.add(jLabel5);
+
+        Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kelas 1", "Kelas 2", "Kelas 3", "Kelas Utama", "Kelas VIP", "Kelas VVIP" }));
+        Kelas.setName("Kelas"); // NOI18N
+        Kelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KelasActionPerformed(evt);
+            }
+        });
+        Kelas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KelasKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(Kelas);
+
+        jLabel24.setText("Penjamin :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass9.add(jLabel24);
+
+        Kdpnj.setHighlighter(null);
+        Kdpnj.setName("Kdpnj"); // NOI18N
+        Kdpnj.setPreferredSize(new java.awt.Dimension(70, 24));
+        Kdpnj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                KdpnjKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(Kdpnj);
+
+        nmpnj.setEditable(false);
+        nmpnj.setName("nmpnj"); // NOI18N
+        nmpnj.setPreferredSize(new java.awt.Dimension(150, 24));
+        panelGlass9.add(nmpnj);
+
+        BtnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPenjab.setMnemonic('1');
+        BtnPenjab.setToolTipText("ALt+1");
+        BtnPenjab.setName("BtnPenjab"); // NOI18N
+        BtnPenjab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPenjabActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnPenjab);
+
         internalFrame1.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -246,12 +309,18 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
+        Kelas.setSelectedIndex(0);
+        Kdpnj.setText("-");
+        nmpnj.setText("-");
         runBackground(() ->tampil());
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             TCari.setText("");
+            Kelas.setSelectedIndex(0);
+            Kdpnj.setText("-");
+            nmpnj.setText("-");
             runBackground(() ->tampil());
         }else{
             Valid.pindah(evt, BtnCari, BtnKeluar);
@@ -265,6 +334,75 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         TCari.requestFocus();
     }//GEN-LAST:event_formWindowActivated
+
+    private void KelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KelasActionPerformed
+        runBackground(() ->tampil());
+    }//GEN-LAST:event_KelasActionPerformed
+
+    private void KelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KelasKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            runBackground(() ->tampil());
+            Kdpnj.requestFocus();
+        }else{
+            Valid.pindah(evt,BtnAll,Kdpnj);
+        }
+    }//GEN-LAST:event_KelasKeyPressed
+
+    private void KdpnjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdpnjKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+            Sequel.cariIsi("select penjab.png_jawab from penjab where penjab.kd_pj=?",nmpnj,Kdpnj.getText());
+        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Sequel.cariIsi("select penjab.png_jawab from penjab where penjab.kd_pj=?",nmpnj,Kdpnj.getText());
+            runBackground(() ->tampil());
+        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+            BtnPenjabActionPerformed(null);
+        }else{
+            Valid.pindah(evt,Kelas,BtnPenjab);
+        }
+    }//GEN-LAST:event_KdpnjKeyPressed
+
+    private void BtnPenjabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPenjabActionPerformed
+        if (penjab == null || !penjab.isDisplayable()) {
+            penjab=new DlgCariCaraBayar(null,false);
+            penjab.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            penjab.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if(penjab.getTable().getSelectedRow()!= -1){
+                        Kdpnj.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(),1).toString());
+                        nmpnj.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(),2).toString());
+                        runBackground(() ->tampil());
+                    }
+                    Kdpnj.requestFocus();
+                    penjab=null;
+                }
+            });
+
+            penjab.getTable().addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                        penjab.dispose();
+                    }
+                }
+            });
+            penjab.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            penjab.setLocationRelativeTo(internalFrame1);
+            penjab.setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+        }
+
+        if (penjab == null) return;
+        if (!penjab.isVisible()) {
+            penjab.emptTeks();
+            penjab.isCek();
+        }
+        if (penjab.isVisible()) {
+            penjab.toFront();
+            return;
+        }
+        penjab.setVisible(true);
+        penjab.toFront();
+    }//GEN-LAST:event_BtnPenjabActionPerformed
 
     /**
     * @param args the command line arguments
@@ -286,30 +424,54 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPenjab;
+    private widget.TextBox Kdpnj;
+    private widget.ComboBox Kelas;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.InternalFrame internalFrame1;
+    private widget.Label jLabel24;
+    private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.TextBox nmpnj;
     private widget.panelisi panelGlass9;
     private widget.Table tbJnsPerawatan;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
+        String kelas=Kelas.getSelectedItem()==null?"":Kelas.getSelectedItem().toString();
+        String kdpj=Kdpnj.getText().trim();
+        boolean adaKelas=!kelas.isEmpty()&&!kelas.equals("-");
+        boolean adaKdpj=!kdpj.isEmpty()&&!kdpj.equals("-");
         try{
-            ps=koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where jns_perawatan_radiologi.status='1' and "+
-                        " (jns_perawatan_radiologi.kd_jenis_prw like ? or  jns_perawatan_radiologi.nm_perawatan like ? or "+
-                        " penjab.png_jawab like ? or jns_perawatan_radiologi.total_byr like ?)  "+
-                        "order by jns_perawatan_radiologi.kd_jenis_prw");
-            try {                            
-                ps.setString(1,"%"+TCari.getText().trim()+"%");
-                ps.setString(2,"%"+TCari.getText().trim()+"%");
-                ps.setString(3,"%"+TCari.getText().trim()+"%");
-                ps.setString(4,"%"+TCari.getText().trim()+"%");
+            String query=
+                    "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,penjab.png_jawab "+
+                    "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where jns_perawatan_radiologi.status='1' and "+
+                    " (jns_perawatan_radiologi.kd_jenis_prw like ? or  jns_perawatan_radiologi.nm_perawatan like ? or "+
+                    " penjab.png_jawab like ? or jns_perawatan_radiologi.total_byr like ?) ";
+            if(adaKelas){
+                query+=" and jns_perawatan_radiologi.kelas=? ";
+            }
+            if(adaKdpj){
+                query+=" and jns_perawatan_radiologi.kd_pj=? ";
+            }
+            query+="order by jns_perawatan_radiologi.kd_jenis_prw";
+            ps=koneksi.prepareStatement(query);
+            try {
+                int idx=1;
+                ps.setString(idx++,"%"+TCari.getText().trim()+"%");
+                ps.setString(idx++,"%"+TCari.getText().trim()+"%");
+                ps.setString(idx++,"%"+TCari.getText().trim()+"%");
+                ps.setString(idx++,"%"+TCari.getText().trim()+"%");
+                if(adaKelas){
+                    ps.setString(idx++,kelas);
+                }
+                if(adaKdpj){
+                    ps.setString(idx++,kdpj);
+                }
                 rs=ps.executeQuery();
                 while(rs.next()){                
                     tabMode.addRow(new Object[]{rs.getString(1),
@@ -334,9 +496,13 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
     }
 
     private void runBackground(Runnable task) {
-        if (ceksukses) return;
         if (executor.isShutdown() || executor.isTerminated()) return;
         if (!isDisplayable()) return;
+
+        if (ceksukses) {
+            pending = true;
+            return;
+        }
 
         ceksukses = true;
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -350,6 +516,10 @@ public final class InformasiTarifRadiologi extends javax.swing.JDialog {
                     SwingUtilities.invokeLater(() -> {
                         if (isDisplayable()) {
                             setCursor(Cursor.getDefaultCursor());
+                        }
+                        if (pending) {
+                            pending = false;
+                            runBackground(task);
                         }
                     });
                 }

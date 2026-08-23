@@ -1905,6 +1905,9 @@ public class frmUtama extends javax.swing.JFrame {
         MnInfoLaborat2 = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         MnRekapHadir6 = new javax.swing.JMenuItem();
+        MnLaboratorium = new javax.swing.JMenu();
+        MnCariPeriksaLab = new javax.swing.JMenuItem();
+        MnCariPermintaanLab = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuUpdate = new javax.swing.JMenu();
         MnUpdate = new javax.swing.JMenuItem();
@@ -1913,9 +1916,8 @@ public class frmUtama extends javax.swing.JFrame {
         MnLaporanRL = new javax.swing.JMenuItem();
         MnKadaluarsa = new javax.swing.JMenuItem();
         PenyerahanResep = new javax.swing.JMenuItem();
-        MnLaboratorium = new javax.swing.JMenu();
-        MnCariPeriksaLab = new javax.swing.JMenuItem();
-        MnCariPermintaanLab = new javax.swing.JMenuItem();
+        LaporIT = new javax.swing.JMenuItem();
+        eksekutif = new javax.swing.JMenuItem();
 
         DlgLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgLogin.setName("DlgLogin"); // NOI18N
@@ -2122,7 +2124,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/08/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22/08/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -8433,7 +8435,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenuUpdate.setForeground(new java.awt.Color(255, 255, 253));
         jMenuUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
         jMenuUpdate.setMnemonic('A');
-        jMenuUpdate.setText("Add On");
+        jMenuUpdate.setText("Ekstra");
         jMenuUpdate.setToolTipText("Alt+A");
         jMenuUpdate.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMenuUpdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -8516,6 +8518,34 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenuUpdate.add(PenyerahanResep);
+
+        LaporIT.setBackground(new java.awt.Color(255, 255, 254));
+        LaporIT.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        LaporIT.setForeground(new java.awt.Color(50, 90, 40));
+        LaporIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/speaker.png"))); // NOI18N
+        LaporIT.setText("Lapor IT");
+        LaporIT.setName("LaporIT"); // NOI18N
+        LaporIT.setPreferredSize(new java.awt.Dimension(205, 30));
+        LaporIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LaporITActionPerformed(evt);
+            }
+        });
+        jMenuUpdate.add(LaporIT);
+
+        eksekutif.setBackground(new java.awt.Color(255, 255, 254));
+        eksekutif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        eksekutif.setForeground(new java.awt.Color(50, 90, 40));
+        eksekutif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png"))); // NOI18N
+        eksekutif.setText("e-Eksekutif");
+        eksekutif.setName("eksekutif"); // NOI18N
+        eksekutif.setPreferredSize(new java.awt.Dimension(205, 30));
+        eksekutif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eksekutifActionPerformed(evt);
+            }
+        });
+        jMenuUpdate.add(eksekutif);
 
         MenuBar.add(jMenuUpdate);
 
@@ -14695,7 +14725,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         isTutup();
         DlgHome.dispose();
-        InformasiTarifLab belum = new InformasiTarifLab(this, true);
+        InformasiTarifLab belum = new InformasiTarifLab(this, false);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         belum.setLocationRelativeTo(PanelUtama);
         belum.setVisible(true);
@@ -14706,7 +14736,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         isTutup();
         DlgHome.dispose();
-        InformasiTarifRadiologi belum = new InformasiTarifRadiologi(this, true);
+        InformasiTarifRadiologi belum = new InformasiTarifRadiologi(this, false);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         belum.setLocationRelativeTo(PanelUtama);
         belum.setVisible(true);
@@ -15043,6 +15073,22 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMCUActionPerformed
+
+    private void LaporITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LaporITActionPerformed
+        try {
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("https://lapor.rspelitakasih.id/lapor"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal membuka halaman Lapor : " + e.getMessage());
+        }
+    }//GEN-LAST:event_LaporITActionPerformed
+
+    private void eksekutifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eksekutifActionPerformed
+        try {
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("http://172.22.10.158:8001"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal membuka halaman : " + e.getMessage());
+        }
+    }//GEN-LAST:event_eksekutifActionPerformed
 
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -24329,6 +24375,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JDialog DlgHome;
     private javax.swing.JDialog DlgLogin;
     private usu.widget.glass.PanelGlass FlayMenu;
+    private javax.swing.JMenuItem LaporIT;
     private javax.swing.JLabel LblIP;
     private widget.MenuBar MenuBar;
     private javax.swing.JMenuItem MenuKeluar;
@@ -24340,6 +24387,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem MnBelumDatang1;
     private javax.swing.JMenuItem MnCariEbook;
     private javax.swing.JMenuItem MnCariInventarisPerpustakaan;
+    private javax.swing.JMenuItem MnCariPeriksaLab;
+    private javax.swing.JMenuItem MnCariPermintaanLab;
     private javax.swing.JMenuItem MnGantiPassword;
     private javax.swing.JMenuItem MnInfoBed;
     private javax.swing.JMenuItem MnInfoBed1;
@@ -24354,6 +24403,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem MnInfoMobileJKN;
     private javax.swing.JMenuItem MnKadaluarsa;
     private javax.swing.JMenuItem MnKoleksiPenelitian;
+    private javax.swing.JMenu MnLaboratorium;
     private javax.swing.JMenuItem MnLaporanRL;
     private javax.swing.JMenuItem MnLogin;
     private javax.swing.JMenuItem MnPengajuanCutiPegawai;
@@ -24383,9 +24433,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenu MnTarif;
     private javax.swing.JMenu MnTarif1;
     private javax.swing.JMenuItem MnUpdate;
-    private javax.swing.JMenu MnLaboratorium;
-    private javax.swing.JMenuItem MnCariPeriksaLab;
-    private javax.swing.JMenuItem MnCariPermintaanLab;
     private javax.swing.JPanel PanelUtama;
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.panelGlass Panelmenu;
@@ -24857,6 +24904,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ComboBox cmbMenu;
     private widget.PasswordBox edAdmin;
     private widget.PasswordBox edPwd;
+    private javax.swing.JMenuItem eksekutif;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
@@ -25047,7 +25095,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.15.0"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.15.1"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
