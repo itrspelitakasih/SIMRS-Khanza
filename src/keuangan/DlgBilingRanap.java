@@ -119,7 +119,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             sqlpsbiayaharian="select biaya_harian.nama_biaya,biaya_harian.besar_biaya,biaya_harian.jml,(biaya_harian.jml*biaya_harian.besar_biaya*?) as total from biaya_harian "+
                     " where biaya_harian.kd_kamar=? order by biaya_harian.nama_biaya",
             sqlpsreseppulang="select databarang.nama_brng,resep_pulang.harga,"+
-                    "resep_pulang.jml_barang,resep_pulang.dosis,resep_pulang.total "+
+                    "resep_pulang.jml_barang,resep_pulang.dosis,"+
+                    "(resep_pulang.total-(ifnull(resep_pulang.embalase,0)+ifnull(resep_pulang.tuslah,0))) as total,"+
+                    "(ifnull(resep_pulang.embalase,0)+ifnull(resep_pulang.tuslah,0)) as tambahan_ob "+
                     "from resep_pulang inner join databarang "+
                     "on resep_pulang.kode_brng=databarang.kode_brng where "+
                     "resep_pulang.no_rawat=? order by databarang.nama_brng",
@@ -5590,6 +5592,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             pstamkur.close();
                         }
                     }
+                    tamkur=tamkur+rsreseppulang.getDouble("tambahan_ob");
                     tabModeRwJlDr.addRow(new Object[]{true,"                           ",rsreseppulang.getString("nama_brng")+" "+rsreseppulang.getString("dosis"),":",
                                    rsreseppulang.getDouble("harga"),rsreseppulang.getDouble("jml_barang"),tamkur,(tamkur+rsreseppulang.getDouble("total")),"Resep Pulang"});
                     subttl=subttl+rsreseppulang.getDouble("total")+tamkur;

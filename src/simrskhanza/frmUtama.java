@@ -25095,7 +25095,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.15.1"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.16.2"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
@@ -25203,11 +25203,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private void isCombo() {
         if(cmbMenu.getSelectedIndex()==0){
             jmlmenu=0;     
-            if(akses.getsatu_sehat_kirim_encounter()==true){
-                Panelmenu.add(btnKirimImagingStudySatuSehat);
-                jmlmenu++;
-            }
-            
             if(akses.getinformasi_kamar()==true){
                 Panelmenu.add(btnAnalisaKamar);
                 jmlmenu++;
@@ -28696,6 +28691,12 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnKirimCarePlanSatuSehat);
                 jmlmenu++;
             }
+            
+            if(akses.getsatu_sehat_kirim_encounter()==true){
+                Panelmenu.add(btnKirimImagingStudySatuSehat);
+                jmlmenu++;
+            }
+            
             
             if(akses.getreferensi_poli_mobilejknfktp()==true){
                 Panelmenu.add(btnReferensiPoliMobileJKNFKTP);
