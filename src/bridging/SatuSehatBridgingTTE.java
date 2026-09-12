@@ -323,8 +323,8 @@ public class SatuSehatBridgingTTE extends JDialog {
         });
         getContentPane().setLayout(new java.awt.BorderLayout(1, 1));
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tanda Tangan Elektronik (TTE) SATUSEHAT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tanda Tangan Elektronik (TTE) SATUSEHAT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -693,8 +693,8 @@ public class SatuSehatBridgingTTE extends JDialog {
      * sel-nya, renderer warna status, sorter untuk RowFilter, lebar kolom, dan tanggal awal filter.
      */
     private void bangunUi() {
-        // Font Tahoma 11 plain: seragam dengan seluruh form Khanza (SatuSehatBundle dkk).
-        Font plain = new Font("Tahoma", Font.PLAIN, 11);
+        // Font Arial 11 plain: seragam dengan seluruh form Khanza (SatuSehatBundle dkk).
+        Font plain = new Font("Arial", Font.PLAIN, 11);
 
         LocalDate now = LocalDate.now();
         // Rentang tanggal awal (30 hari terakhir) dihitung saat dialog dibuka, jadi tak bisa
@@ -3055,7 +3055,7 @@ public class SatuSehatBridgingTTE extends JDialog {
             this.taskUuid = nzt(taskUuid);
             this.basisApplink = nzt(koneksiDB.URLAPPLINKSATUSEHAT());
 
-            Font plain = new Font("Tahoma", Font.PLAIN, 11);
+            Font plain = new Font("Arial", Font.PLAIN, 11);
             JPanel isi = new JPanel(new BorderLayout(6, 6));
             isi.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
             isi.setBackground(Color.WHITE);

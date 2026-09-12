@@ -150,7 +150,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         LoadHTMLRetensi.setEditorKit(kit);
         LoadHTMLWearable.setEditorKit(kit);
         StyleSheet styleSheet = kit.getStyleSheet();
-        styleSheet.addRule(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Tahoma;font-size: 8.5px;border: white;}");
+        styleSheet.addRule(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Arial;font-size: 8.5px;border: white;}");
         Document doc = kit.createDefaultDocument();
         LoadHTMLRiwayatPerawatan.setDocument(doc);
         LoadHTMLRiwayatPerawatan.setEditable(false);
@@ -539,7 +539,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnGeneratePDF.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDF.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnGeneratePDF.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         MnGeneratePDF.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDF.setText("Jadikan File PDF");
@@ -553,7 +553,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         jPopupMenu1.add(MnGeneratePDF);
 
         MnGeneratePDFESign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFESign.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnGeneratePDFESign.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         MnGeneratePDFESign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFESign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFESign.setText("Jadikan File PDF E-Sign");
@@ -567,7 +567,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         jPopupMenu1.add(MnGeneratePDFESign);
 
         MnGeneratePDFSertiSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFSertiSign.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnGeneratePDFSertiSign.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         MnGeneratePDFSertiSign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFSertiSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFSertiSign.setText("Jadikan File PDF SertiSign");
@@ -586,7 +586,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         WindowPhrase.setUndecorated(true);
         WindowPhrase.setResizable(false);
 
-        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ E-Sign / Tanda Tangan Elektronik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ E-Sign / Tanda Tangan Elektronik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setLayout(new java.awt.BorderLayout());
 
@@ -638,7 +638,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
 
         ChkTampilPhrase.setBorder(null);
         ChkTampilPhrase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/matatutup.png"))); // NOI18N
-        ChkTampilPhrase.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkTampilPhrase.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         ChkTampilPhrase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkTampilPhrase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ChkTampilPhrase.setIconTextGap(1);
@@ -668,7 +668,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         WindowURLSertisign.setUndecorated(true);
         WindowURLSertisign.setResizable(false);
 
-        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ URL File Hasil Tanda Tangan Sertisign ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ URL File Hasil Tanda Tangan Sertisign ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame9.setName("internalFrame9"); // NOI18N
         internalFrame9.setLayout(new java.awt.BorderLayout());
 
@@ -752,7 +752,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Riwayat/Rincian Tindakan/Terapi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Riwayat/Rincian Tindakan/Terapi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -883,7 +883,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3501,7 +3501,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 tampilPerawatan();
                 File g = new File("file.css");            
                 BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-                bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Tahoma;font-size: 8.5px;border: white;}");
+                bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Arial;font-size: 8.5px;border: white;}");
                 bg.close();
 
                 PdfWriter pdf = new PdfWriter("RPP"+NoRawat.getText().trim().replaceAll("/","")+".pdf");
@@ -3516,8 +3516,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 "</td>" +
                                                 "<td width='85%' border='0'>" +
                                                     "<center>" +
-                                                        "<font color='000000' size='3'  face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                                        "<font color='000000' size='1'  face='Tahoma'>"+
+                                                        "<font color='000000' size='3'  face='Arial'>"+akses.getnamars()+"</font><br>"+
+                                                        "<font color='000000' size='1'  face='Arial'>"+
                                                             akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br/>" +
                                                             akses.getkontakrs()+", E-mail : "+akses.getemailrs()+
                                                             "<br>RIWAYAT PERAWATAN" +
@@ -3627,7 +3627,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 if(esign==true){
                     File g = new File("file.css");            
                     BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-                    bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Tahoma;font-size: 8.5px;border: white;}");
+                    bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Arial;font-size: 8.5px;border: white;}");
                     bg.close();
 
                     PdfWriter pdf = new PdfWriter("RPP"+NoRawat.getText().trim().replaceAll("/","")+".pdf");
@@ -3642,8 +3642,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     "</td>" +
                                                     "<td width='85%' border='0'>" +
                                                         "<center>" +
-                                                            "<font color='000000' size='3'  face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                                            "<font color='000000' size='1'  face='Tahoma'>"+
+                                                            "<font color='000000' size='3'  face='Arial'>"+akses.getnamars()+"</font><br>"+
+                                                            "<font color='000000' size='1'  face='Arial'>"+
                                                                 akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br/>" +
                                                                 akses.getkontakrs()+", E-mail : "+akses.getemailrs()+
                                                                 "<br>RIWAYAT PERAWATAN" +
@@ -3821,7 +3821,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 if(sertisign==true){
                     File g = new File("file.css");            
                     BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-                    bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Tahoma;font-size: 8.5px;border: white;}");
+                    bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Arial;font-size: 8.5px;border: white;}");
                     bg.close();
 
                     PdfWriter pdf = new PdfWriter("RPP"+NoRawat.getText().trim().replaceAll("/","")+".pdf");
@@ -3836,8 +3836,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     "</td>" +
                                                     "<td width='85%' border='0'>" +
                                                         "<center>" +
-                                                            "<font color='000000' size='3'  face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                                            "<font color='000000' size='1'  face='Tahoma'>"+
+                                                            "<font color='000000' size='3'  face='Arial'>"+akses.getnamars()+"</font><br>"+
+                                                            "<font color='000000' size='1'  face='Arial'>"+
                                                                 akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br/>" +
                                                                 akses.getkontakrs()+", E-mail : "+akses.getemailrs()+
                                                                 "<br>RIWAYAT PERAWATAN" +
@@ -7300,7 +7300,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         try{
             File g = new File("file.css");            
             BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Tahoma;font-size: 8.5px;border: white;}");
+            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi a{text-decoration:none;color:#8b9b95;padding:0 0 0 0px;font-family: Arial;font-size: 8.5px;border: white;}");
             bg.close();
 
             File f = new File("riwayat.html");            
@@ -7316,8 +7316,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             "</td>" +
                                             "<td width='85%' border='0'>" +
                                                 "<center>" +
-                                                    "<font color='000000' size='3'  face='Tahoma'>"+akses.getnamars()+"</font><br>"+
-                                                    "<font color='000000' size='1'  face='Tahoma'>"+
+                                                    "<font color='000000' size='3'  face='Arial'>"+akses.getnamars()+"</font><br>"+
+                                                    "<font color='000000' size='1'  face='Arial'>"+
                                                         akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br/>" +
                                                         akses.getkontakrs()+", E-mail : "+akses.getemailrs()+
                                                         "<br>RIWAYAT PERAWATAN" +

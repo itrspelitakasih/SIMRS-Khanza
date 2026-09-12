@@ -180,8 +180,8 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
         LoadHTML.setEditorKit(kit);
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(
-                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"
+                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}"
         );
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
@@ -222,7 +222,7 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1");
         ppPilihSemua.setBackground(new java.awt.Color(255, 255, 254));
-        ppPilihSemua.setFont(new java.awt.Font("Tahoma", 0, 11));
+        ppPilihSemua.setFont(new java.awt.Font("Arial", 0, 11));
         ppPilihSemua.setForeground(new java.awt.Color(50, 50, 50));
         ppPilihSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
         ppPilihSemua.setText("Pilih Semua");
@@ -236,7 +236,7 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
         jPopupMenu1.add(ppPilihSemua);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11));
+        ppBersihkan.setFont(new java.awt.Font("Arial", 0, 11));
         ppBersihkan.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
         ppBersihkan.setText("Hilangkan Pilihan");
@@ -258,8 +258,8 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
             public void windowOpened(java.awt.event.WindowEvent evt) { formWindowOpened(evt); }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data RME Rawat Inap Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50)));
-        internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 11));
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data RME Rawat Inap Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50)));
+        internalFrame1.setFont(new java.awt.Font("Arial", 0, 11));
         internalFrame1.setName("internalFrame1");
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -382,10 +382,10 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
             LoadHTML.setText("<html><table width='100%' border='0' align='center' cellpadding='1px' cellspacing='0' class='tbl_form'>"+htmlContent.toString()+"</table></html>");
             htmlContent=null;
             File g = new File("file2.css"); BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}");
+            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}.isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}");
             bg.close();
             File f = new File("DataSatuSehatRMERawatInap.html"); BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-            bw.write(LoadHTML.getText().replaceAll("<head>","<head><link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" /><table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'><tr class='isi2'><td valign='top' align='center'><font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br><font size='2' face='Tahoma'>DATA PENGIRIMAN SATU SEHAT RME RAWAT INAP<br><br></font></td></tr></table>"));
+            bw.write(LoadHTML.getText().replaceAll("<head>","<head><link href=\"file2.css\" rel=\"stylesheet\" type=\"text/css\" /><table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'><tr class='isi2'><td valign='top' align='center'><font size='4' face='Arial'>"+akses.getnamars()+"</font><br>"+akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br><font size='2' face='Arial'>DATA PENGIRIMAN SATU SEHAT RME RAWAT INAP<br><br></font></td></tr></table>"));
             bw.close(); Desktop.getDesktop().browse(f.toURI());
         }catch(Exception e){ System.out.println("Notifikasi : "+e); }
         this.setCursor(Cursor.getDefaultCursor());

@@ -289,13 +289,13 @@ public class frmUtama extends javax.swing.JFrame {
         setTitle("SIMKES Khanza Service PCare");
 
         TeksArea.setColumns(20);
-        TeksArea.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        TeksArea.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TeksArea.setRows(5);
         jScrollPane1.setViewportView(TeksArea);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton1.setText("Keluar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

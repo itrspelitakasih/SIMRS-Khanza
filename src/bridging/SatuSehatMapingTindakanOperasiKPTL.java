@@ -519,6 +519,7 @@ public final class SatuSehatMapingTindakanOperasiKPTL extends javax.swing.JDialo
             public void keyReleased(KeyEvent e) {}
         });
         pemeriksaan.isCek();
+        pemeriksaan.setTabData();
         pemeriksaan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         pemeriksaan.setLocationRelativeTo(internalFrame1);
         pemeriksaan.setVisible(true);

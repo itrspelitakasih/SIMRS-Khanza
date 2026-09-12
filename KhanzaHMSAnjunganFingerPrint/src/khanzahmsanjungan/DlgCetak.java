@@ -82,7 +82,7 @@ public class DlgCetak extends javax.swing.JDialog {
 
         LblNoRw.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNoRw.setText("Norm");
-        LblNoRw.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNoRw.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNoRw.setPreferredSize(new java.awt.Dimension(20, 14));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -100,7 +100,7 @@ public class DlgCetak extends javax.swing.JDialog {
         getContentPane().setLayout(new java.awt.BorderLayout(1, 1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Proses Registrasi Berhasil, Silahkan Cetak Dokumen Yang Diperlukan !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Proses Registrasi Berhasil, Silahkan Cetak Dokumen Yang Diperlukan !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 70));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 1));
 

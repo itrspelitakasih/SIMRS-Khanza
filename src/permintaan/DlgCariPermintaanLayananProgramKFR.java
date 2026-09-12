@@ -120,15 +120,15 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         LoadHTML.setEditorKit(kit);
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(
-                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"+
-                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
-                ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
-                ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
-                ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
-                ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}"
+                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}"+
+                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi4 td{font: 11px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi5 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
+                ".isi6 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
+                ".isi7 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
+                ".isi8 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
+                ".isi9 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#969696;}"
         );
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
@@ -194,7 +194,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.setName("Popup"); // NOI18N
 
         Tinggi70.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi70.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi70.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi70.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi70.setText("Tinggi Baris 100");
@@ -210,7 +210,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.add(Tinggi70);
 
         Tinggi200.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi200.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi200.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi200.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi200.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi200.setText("Tinggi Baris 200");
@@ -226,7 +226,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.add(Tinggi200);
 
         Tinggi250.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi250.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi250.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi250.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi250.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi250.setText("Tinggi Baris 250");
@@ -242,7 +242,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.add(Tinggi250);
 
         Tinggi300.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi300.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi300.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi300.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi300.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi300.setText("Tinggi Baris 300");
@@ -258,7 +258,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.add(Tinggi300);
 
         Tinggi350.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi350.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi350.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi350.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi350.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi350.setText("Tinggi Baris 350");
@@ -274,7 +274,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         Popup.add(Tinggi350);
 
         Tinggi400.setBackground(new java.awt.Color(255, 255, 254));
-        Tinggi400.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tinggi400.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Tinggi400.setForeground(new java.awt.Color(50, 50, 50));
         Tinggi400.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         Tinggi400.setText("Tinggi Baris 400");
@@ -298,7 +298,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Permintaan Layanan Program Kedokteran Fisik & Rehabilitasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Permintaan Layanan Program Kedokteran Fisik & Rehabilitasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -613,7 +613,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         BtnRiwayatPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRiwayatPasien.setText("Riwayat Perawatan");
         BtnRiwayatPasien.setFocusPainted(false);
-        BtnRiwayatPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnRiwayatPasien.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnRiwayatPasien.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRiwayatPasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRiwayatPasien.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -630,7 +630,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         BtnAwalFisioTerapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalFisioTerapi.setText("Pengkajian Awal Fisioterapi");
         BtnAwalFisioTerapi.setFocusPainted(false);
-        BtnAwalFisioTerapi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnAwalFisioTerapi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnAwalFisioTerapi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalFisioTerapi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalFisioTerapi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -647,7 +647,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         BtnSOAPTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSOAPTindakan.setText("SOAP & Tindakan");
         BtnSOAPTindakan.setFocusPainted(false);
-        BtnSOAPTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnSOAPTindakan.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnSOAPTindakan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSOAPTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSOAPTindakan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -664,7 +664,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         BtnDetailPermintaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnDetailPermintaan.setText("Detail Permintaan Layanan");
         BtnDetailPermintaan.setFocusPainted(false);
-        BtnDetailPermintaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnDetailPermintaan.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnDetailPermintaan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnDetailPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnDetailPermintaan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -681,7 +681,7 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
         BtnRiwayatProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRiwayatProgram.setText("Riwayat Program KFR");
         BtnRiwayatProgram.setFocusPainted(false);
-        BtnRiwayatProgram.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnRiwayatProgram.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnRiwayatProgram.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRiwayatProgram.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRiwayatProgram.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -996,15 +996,15 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
                 File g = new File("file2.css");            
                 BufferedWriter bg = new BufferedWriter(new FileWriter(g));
                 bg.write(
-                    ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                    ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"+
-                    ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                    ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                    ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
-                    ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
-                    ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
-                    ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
-                    ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}"
+                    ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                    ".isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}"+
+                    ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                    ".isi4 td{font: 11px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                    ".isi5 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
+                    ".isi6 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
+                    ".isi7 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
+                    ".isi8 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
+                    ".isi9 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#969696;}"
                 );
                 bg.close();
 
@@ -1061,10 +1061,10 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
                                         "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                             "<tr class='isi2'>"+
                                                 "<td valign='top' align='center'>"+
-                                                    "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
+                                                    "<font size='4' face='Arial'>"+akses.getnamars()+"</font><br>"+
                                                     akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
                                                     akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
-                                                    "<font size='2' face='Tahoma'>DATA PERMINTAAN LAYANAN PROGRAM KFR<br><br></font>"+        
+                                                    "<font size='2' face='Arial'>DATA PERMINTAAN LAYANAN PROGRAM KFR<br><br></font>"+        
                                                 "</td>"+
                                            "</tr>"+
                                         "</table>")
@@ -1120,10 +1120,10 @@ public class DlgCariPermintaanLayananProgramKFR extends javax.swing.JDialog {
                                         "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                             "<tr class='isi2'>"+
                                                 "<td valign='top' align='center'>"+
-                                                    "<font size='4' face='Tahoma'>"+akses.getnamars()+"</font><br>"+
+                                                    "<font size='4' face='Arial'>"+akses.getnamars()+"</font><br>"+
                                                     akses.getalamatrs()+", "+akses.getkabupatenrs()+", "+akses.getpropinsirs()+"<br>"+
                                                     akses.getkontakrs()+", E-mail : "+akses.getemailrs()+"<br><br>"+
-                                                    "<font size='2' face='Tahoma'>DATA PERMINTAAN LAYANAN PROGRAM KFR<br><br></font>"+        
+                                                    "<font size='2' face='Arial'>DATA PERMINTAAN LAYANAN PROGRAM KFR<br><br></font>"+        
                                                 "</td>"+
                                            "</tr>"+
                                         "</table>")

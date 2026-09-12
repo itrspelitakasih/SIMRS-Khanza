@@ -1248,7 +1248,65 @@ public final class sekuel {
         }
         return bool;
     }
-    
+
+    /**
+     * Menggabungkan seluruh data transaksi (di banyak tabel) dari no_rawat lama ke no_rawat baru
+     * secara atomik dalam satu transaksi database, lalu menghapus baris reg_periksa lama.
+     * Dijalankan di koneksi terpisah (bukan koneksi global) agar tidak mengganggu dialog/thread
+     * lain yang sedang memakai koneksi bersama. Jika ada satu saja langkah yang gagal, seluruh
+     * perubahan di-rollback sehingga tidak ada data yang tertinggal setengah-pindah.
+     *
+     * @param tabelBiasa daftar tabel yang cukup di-update no_rawat-nya
+     * @param tabelUpdateAtauHapus daftar tabel yang punya kunci unik pada no_rawat: jika update
+     *        gagal karena baris tujuan sudah ada, baris lama pada tabel tsb dihapus (mengikuti
+     *        perilaku asli fitur ini)
+     * @return true jika seluruh operasi berhasil di-commit, false jika di-rollback
+     */
+    public boolean gabungNoRawat(String[] tabelBiasa, String[] tabelUpdateAtauHapus, String noRawatBaru, String noRawatLama){
+        Connection tx = null;
+        try {
+            tx = koneksiDB.newTransactionalConnection();
+            for(String t : tabelBiasa){
+                try(PreparedStatement psTx = tx.prepareStatement("update "+t+" set no_rawat=? where no_rawat=?")){
+                    psTx.setString(1, noRawatBaru);
+                    psTx.setString(2, noRawatLama);
+                    psTx.executeUpdate();
+                }
+            }
+            for(String t : tabelUpdateAtauHapus){
+                try {
+                    try(PreparedStatement psTx = tx.prepareStatement("update "+t+" set no_rawat=? where no_rawat=?")){
+                        psTx.setString(1, noRawatBaru);
+                        psTx.setString(2, noRawatLama);
+                        psTx.executeUpdate();
+                    }
+                } catch(SQLException dupKey){
+                    try(PreparedStatement psTx = tx.prepareStatement("delete from "+t+" where no_rawat=?")){
+                        psTx.setString(1, noRawatLama);
+                        psTx.executeUpdate();
+                    }
+                }
+            }
+            try(PreparedStatement psTx = tx.prepareStatement("delete from reg_periksa where no_rawat=?")){
+                psTx.setString(1, noRawatLama);
+                psTx.executeUpdate();
+            }
+            tx.commit();
+            SimpanTrack("gabung no_rawat "+noRawatLama+" -> "+noRawatBaru);
+            return true;
+        } catch (SQLException e){
+            if(tx != null){
+                try { tx.rollback(); } catch (SQLException ex) { System.out.println("Notifikasi : "+ex); }
+            }
+            System.out.println("Notifikasi : "+e);
+            return false;
+        } finally {
+            if(tx != null){
+                try { tx.close(); } catch (SQLException ex) { System.out.println("Notifikasi : "+ex); }
+            }
+        }
+    }
+
     public void queryu3(String qry,int i,String[] a){
         try {
             try{            

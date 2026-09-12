@@ -18,7 +18,7 @@ public class Label extends JLabel {
         super();
         //setForeground(new Color(90,90,90));
         setForeground(new Color(160,130,160));
-        setFont(new java.awt.Font("Tahoma", 0, 20));
+        setFont(new java.awt.Font("Arial", 0, 20));
 
         setHorizontalAlignment(RIGHT);
         setVerticalAlignment(CENTER);

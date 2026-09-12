@@ -408,10 +408,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
 
         DlgDisplay.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
-        Popup1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Popup1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Popup1.setName("Popup1"); // NOI18N
 
-        ppAntri1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppAntri1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppAntri1.setForeground(new java.awt.Color(102, 51, 0));
         ppAntri1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
         ppAntri1.setText("Masukkan Antrian");
@@ -427,7 +427,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup1.add(ppAntri1);
 
-        ppUndo1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppUndo1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppUndo1.setForeground(new java.awt.Color(102, 51, 0));
         ppUndo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/101.png"))); // NOI18N
         ppUndo1.setText("Batal Periksa");
@@ -443,10 +443,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup1.add(ppUndo1);
 
-        Popup2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Popup2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Popup2.setName("Popup2"); // NOI18N
 
-        ppAntri2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppAntri2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppAntri2.setForeground(new java.awt.Color(102, 51, 0));
         ppAntri2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
         ppAntri2.setText("Masukkan Antrian");
@@ -462,7 +462,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup2.add(ppAntri2);
 
-        ppUndo2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppUndo2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppUndo2.setForeground(new java.awt.Color(102, 51, 0));
         ppUndo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/101.png"))); // NOI18N
         ppUndo2.setText("Batal Periksa");
@@ -478,10 +478,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup2.add(ppUndo2);
 
-        Popup3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Popup3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Popup3.setName("Popup3"); // NOI18N
 
-        ppAntri3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppAntri3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppAntri3.setForeground(new java.awt.Color(102, 51, 0));
         ppAntri3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
         ppAntri3.setText("Masukkan Antrian");
@@ -497,7 +497,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup3.add(ppAntri3);
 
-        ppUndo3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppUndo3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppUndo3.setForeground(new java.awt.Color(102, 51, 0));
         ppUndo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/101.png"))); // NOI18N
         ppUndo3.setText("Batal Periksa");
@@ -513,10 +513,10 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         });
         Popup3.add(ppUndo3);
 
-        Popup4.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Popup4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         Popup4.setName("Popup4"); // NOI18N
 
-        ppClose.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppClose.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         ppClose.setForeground(new java.awt.Color(102, 51, 0));
         ppClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/101.png"))); // NOI18N
         ppClose.setText("Tutup Display");
@@ -533,19 +533,19 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         Popup4.add(ppClose);
 
         norawat1.setEditable(false);
-        norawat1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        norawat1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         norawat1.setName("norawat1"); // NOI18N
         norawat1.setPreferredSize(new java.awt.Dimension(230, 23));
         norawat1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         norawat2.setEditable(false);
-        norawat2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        norawat2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         norawat2.setName("norawat2"); // NOI18N
         norawat2.setPreferredSize(new java.awt.Dimension(230, 23));
         norawat2.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         norawat3.setEditable(false);
-        norawat3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        norawat3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         norawat3.setName("norawat3"); // NOI18N
         norawat3.setPreferredSize(new java.awt.Dimension(230, 23));
         norawat3.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -564,7 +564,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Periksa Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Periksa Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -607,7 +607,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         jPanel1.setLayout(new java.awt.GridLayout(1, 3));
 
         jPanel2.setBackground(new java.awt.Color(245, 180, 245));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 1 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 1 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.BorderLayout(1, 1));
@@ -720,7 +720,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         jPanel1.add(jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(245, 180, 245));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 2 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 2 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.BorderLayout(1, 1));
@@ -833,7 +833,7 @@ public class DlgAntrian extends javax.swing.JDialog implements ActionListener{
         jPanel1.add(jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(245, 180, 245));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 3 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), ".: Antrian Pasien 3 :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
         jPanel4.setName("jPanel4"); // NOI18N
         jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.BorderLayout(1, 1));

@@ -1905,9 +1905,6 @@ public class frmUtama extends javax.swing.JFrame {
         MnInfoLaborat2 = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         MnRekapHadir6 = new javax.swing.JMenuItem();
-        MnLaboratorium = new javax.swing.JMenu();
-        MnCariPeriksaLab = new javax.swing.JMenuItem();
-        MnCariPermintaanLab = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuUpdate = new javax.swing.JMenu();
         MnUpdate = new javax.swing.JMenuItem();
@@ -2124,7 +2121,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22/08/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/09/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -8370,48 +8367,6 @@ public class frmUtama extends javax.swing.JFrame {
 
         MenuBar.add(jMenu7);
 
-        MnLaboratorium.setBackground(new java.awt.Color(20, 0, 20));
-        MnLaboratorium.setBorder(null);
-        MnLaboratorium.setForeground(new java.awt.Color(255, 255, 255));
-        MnLaboratorium.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
-        MnLaboratorium.setMnemonic('L');
-        MnLaboratorium.setText("Laboratorium");
-        MnLaboratorium.setToolTipText("Alt+L");
-        MnLaboratorium.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLaboratorium.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLaboratorium.setName("MnLaboratorium"); // NOI18N
-        MnLaboratorium.setPreferredSize(new java.awt.Dimension(110, 26));
-
-        MnCariPeriksaLab.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPeriksaLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariPeriksaLab.setForeground(new java.awt.Color(50, 90, 40));
-        MnCariPeriksaLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariPeriksaLab.setText("1. DlgCariPeriksaLab");
-        MnCariPeriksaLab.setName("MnCariPeriksaLab"); // NOI18N
-        MnCariPeriksaLab.setPreferredSize(new java.awt.Dimension(205, 30));
-        MnCariPeriksaLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariPeriksaLabActionPerformed(evt);
-            }
-        });
-        MnLaboratorium.add(MnCariPeriksaLab);
-
-        MnCariPermintaanLab.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPermintaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCariPermintaanLab.setForeground(new java.awt.Color(50, 90, 40));
-        MnCariPermintaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCariPermintaanLab.setText("2. DlgCariPermintaanLab");
-        MnCariPermintaanLab.setName("MnCariPermintaanLab"); // NOI18N
-        MnCariPermintaanLab.setPreferredSize(new java.awt.Dimension(205, 30));
-        MnCariPermintaanLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCariPermintaanLabActionPerformed(evt);
-            }
-        });
-        MnLaboratorium.add(MnCariPermintaanLab);
-
-        MenuBar.add(MnLaboratorium);
-
         jMenu4.setBackground(new java.awt.Color(20, 0, 20));
         jMenu4.setBorder(null);
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
@@ -8636,8 +8591,6 @@ public class frmUtama extends javax.swing.JFrame {
                     btnPermintaanLabPA.setEnabled(true);
                     btnPermintaanLabMB.setEnabled(true);
                     btnLaboratorium.setEnabled(true);
-                    MnCariPeriksaLab.setEnabled(true);
-                    MnCariPermintaanLab.setEnabled(true);
                     btnLaboratoriumPA.setEnabled(true);
                     btnLaboratoriumMB.setEnabled(true);
                     btnPermintaanRadiologi.setEnabled(true);
@@ -8698,8 +8651,6 @@ public class frmUtama extends javax.swing.JFrame {
                         
                     btnToolIGD.setEnabled(akses.getigd());                
                     btnLaboratorium.setEnabled(akses.getperiksa_lab());
-                    MnCariPeriksaLab.setEnabled(akses.getperiksa_lab());
-                    MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
                     btnLaboratoriumPA.setEnabled(akses.getpemeriksaan_lab_pa());
                     btnLaboratoriumMB.setEnabled(akses.getpemeriksaan_lab_pa());
                     btnPeriksaRadiologi.setEnabled(akses.getperiksa_radiologi());  
@@ -8723,8 +8674,6 @@ public class frmUtama extends javax.swing.JFrame {
                     btnPermintaanLabPA.setEnabled(false);
                     btnPermintaanLabMB.setEnabled(false);
                     btnLaboratorium.setEnabled(false);
-                    MnCariPeriksaLab.setEnabled(false);
-                    MnCariPermintaanLab.setEnabled(false);
                     btnLaboratoriumPA.setEnabled(false);
                     btnLaboratoriumMB.setEnabled(false);
                     btnPermintaanRadiologi.setEnabled(false);
@@ -24387,8 +24336,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem MnBelumDatang1;
     private javax.swing.JMenuItem MnCariEbook;
     private javax.swing.JMenuItem MnCariInventarisPerpustakaan;
-    private javax.swing.JMenuItem MnCariPeriksaLab;
-    private javax.swing.JMenuItem MnCariPermintaanLab;
     private javax.swing.JMenuItem MnGantiPassword;
     private javax.swing.JMenuItem MnInfoBed;
     private javax.swing.JMenuItem MnInfoBed1;
@@ -24403,7 +24350,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem MnInfoMobileJKN;
     private javax.swing.JMenuItem MnKadaluarsa;
     private javax.swing.JMenuItem MnKoleksiPenelitian;
-    private javax.swing.JMenu MnLaboratorium;
     private javax.swing.JMenuItem MnLaporanRL;
     private javax.swing.JMenuItem MnLogin;
     private javax.swing.JMenuItem MnPengajuanCutiPegawai;
@@ -25095,7 +25041,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.16.2"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.16.5"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));

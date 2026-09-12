@@ -58,10 +58,10 @@ public class DlgAntrian extends javax.swing.JDialog{
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             loket=Integer.parseInt(prop.getProperty("LOKETANTRIAN"));
             Loket.setText(Integer.toString(loket));
-            form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255,255)), " Antrian Loket "+Loket.getText(), javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 55), new java.awt.Color(255, 255, 51)));
+            form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255,255)), " Antrian Loket "+Loket.getText(), javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 55), new java.awt.Color(255, 255, 51)));
         } catch (IOException ex) {
             Loket.setText("1");
-            form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255,255)), " Antrian Loket "+Loket.getText(), javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 55), new java.awt.Color(255, 255, 51)));
+            form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255,255)), " Antrian Loket "+Loket.getText(), javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 55), new java.awt.Color(255, 255, 51)));
         }
         
         jam();
@@ -101,7 +101,7 @@ public class DlgAntrian extends javax.swing.JDialog{
         DlgDisplay.setName("DlgDisplay"); // NOI18N
 
         form1.setBackground(new java.awt.Color(250, 255, 250));
-        form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), " Antrian Loket ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 55), new java.awt.Color(255, 255, 51))); // NOI18N
+        form1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), " Antrian Loket ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 55), new java.awt.Color(255, 255, 51))); // NOI18N
         form1.setName("form1"); // NOI18N
         form1.setPreferredSize(new java.awt.Dimension(550, 150));
         form1.setWarnaAtas(new java.awt.Color(0, 50, 0));
@@ -112,7 +112,7 @@ public class DlgAntrian extends javax.swing.JDialog{
         labelantri1.setForeground(new java.awt.Color(255, 255, 255));
         labelantri1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelantri1.setText("1");
-        labelantri1.setFont(new java.awt.Font("Tahoma", 0, 700)); // NOI18N
+        labelantri1.setFont(new java.awt.Font("Arial", 0, 700)); // NOI18N
         labelantri1.setName("labelantri1"); // NOI18N
         labelantri1.setPreferredSize(new java.awt.Dimension(300, 50));
         form1.add(labelantri1, java.awt.BorderLayout.CENTER);
@@ -133,7 +133,7 @@ public class DlgAntrian extends javax.swing.JDialog{
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Loket Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Antrian Loket Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 

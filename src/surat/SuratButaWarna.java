@@ -177,7 +177,7 @@ public final class SuratButaWarna extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnCetakSuratButaWarna.setBackground(new java.awt.Color(255, 255, 254));
-        MnCetakSuratButaWarna.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSuratButaWarna.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         MnCetakSuratButaWarna.setForeground(new java.awt.Color(50, 50, 50));
         MnCetakSuratButaWarna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakSuratButaWarna.setText("Cetak Buta Warna");
@@ -194,8 +194,8 @@ public final class SuratButaWarna extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Keterangan Buta Warna ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Surat Keterangan Buta Warna ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -351,7 +351,7 @@ public final class SuratButaWarna extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
-        CbPassword.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        CbPassword.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         CbPassword.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Password", "No Password" }));
         CbPassword.setName("CbPassword"); // NOI18N
         CbPassword.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -366,7 +366,7 @@ public final class SuratButaWarna extends javax.swing.JDialog {
         BtnKirimGOWa.setMnemonic('K');
         BtnKirimGOWa.setText("Kirim PDF");
         BtnKirimGOWa.setToolTipText("Alt+K");
-        BtnKirimGOWa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnKirimGOWa.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         BtnKirimGOWa.setName("BtnKirimGOWa"); // NOI18N
         BtnKirimGOWa.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnKirimGOWa.addActionListener(new java.awt.event.ActionListener() {

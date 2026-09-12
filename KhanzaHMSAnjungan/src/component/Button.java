@@ -17,7 +17,7 @@ public class Button extends JButton {
 
     public Button() {
         super();
-        setFont(new java.awt.Font("Tahoma", 0, 18));
+        setFont(new java.awt.Font("Arial", 0, 18));
         setForeground(new Color(130,80,130));
         setMargin(new Insets(2, 5, 2, 5));
         setIconTextGap(4);

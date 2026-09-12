@@ -205,12 +205,12 @@ public class DlgRegistrasi extends javax.swing.JDialog {
 
         LblKdPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblKdPoli.setText("Norm");
-        LblKdPoli.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblKdPoli.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblKdPoli.setPreferredSize(new java.awt.Dimension(20, 14));
 
         LblKdDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblKdDokter.setText("Norm");
-        LblKdDokter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblKdDokter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblKdDokter.setPreferredSize(new java.awt.Dimension(20, 14));
 
         Tanggal.setDisplayFormat("yyyy-MM-dd");
@@ -263,7 +263,7 @@ public class DlgRegistrasi extends javax.swing.JDialog {
         getContentPane().setLayout(new java.awt.BorderLayout(1, 1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Cek Kembali & Simpan Registrasi Anda !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Cek Kembali & Simpan Registrasi Anda !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 70));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 1));
 
@@ -272,55 +272,55 @@ public class DlgRegistrasi extends javax.swing.JDialog {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Nama Pasien");
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(20, 195, 160, 23);
 
         jLabel6.setForeground(new java.awt.Color(160, 110, 160));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText(":");
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel6);
         jLabel6.setBounds(180, 195, 20, 23);
 
         LblNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNama.setText("Nama");
-        LblNama.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNama.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNama.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNama);
         LblNama.setBounds(195, 195, 440, 23);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("No. RM");
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel8);
         jLabel8.setBounds(20, 165, 160, 23);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText(":");
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel9.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel9);
         jLabel9.setBounds(180, 165, 20, 23);
 
         LblNoRm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNoRm.setText("Norm");
-        LblNoRm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNoRm.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNoRm.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNoRm);
         LblNoRm.setBounds(195, 165, 440, 23);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Unit/Poliklinik");
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel5);
         jLabel5.setBounds(20, 135, 160, 23);
 
         LblNamaPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNamaPoli.setText("Poliklinik");
-        LblNamaPoli.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNamaPoli.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNamaPoli.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNamaPoli);
         LblNamaPoli.setBounds(195, 135, 440, 23);
@@ -328,112 +328,112 @@ public class DlgRegistrasi extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(160, 110, 160));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText(":");
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel7);
         jLabel7.setBounds(180, 135, 20, 23);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("No. Registrasi");
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel10);
         jLabel10.setBounds(20, 15, 160, 23);
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText(":");
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel11);
         jLabel11.setBounds(180, 15, 20, 23);
 
         LblNoReg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNoReg.setText("Noreg");
-        LblNoReg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNoReg.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNoReg.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNoReg);
         LblNoReg.setBounds(195, 15, 440, 23);
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("No. Rawat");
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel12);
         jLabel12.setBounds(20, 45, 160, 23);
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText(":");
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel13.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel13);
         jLabel13.setBounds(180, 45, 20, 23);
 
         LblNoRawat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNoRawat.setText("Norawat");
-        LblNoRawat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNoRawat.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNoRawat.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNoRawat);
         LblNoRawat.setBounds(195, 45, 440, 23);
 
         LblTanggal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblTanggal.setText("Tanggal");
-        LblTanggal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblTanggal.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblTanggal.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblTanggal);
         LblTanggal.setBounds(195, 75, 160, 23);
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel14.setText(":");
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel14.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel14);
         jLabel14.setBounds(180, 75, 20, 23);
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel15.setText("Tgl. Registrasi");
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel15.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel15);
         jLabel15.setBounds(20, 75, 160, 23);
 
         LblJam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblJam.setText("Jam");
-        LblJam.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblJam.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblJam.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblJam);
         LblJam.setBounds(320, 75, 100, 23);
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("Dr Dituju");
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel16.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel16);
         jLabel16.setBounds(20, 105, 160, 23);
 
         LblDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblDokter.setText("Dokter");
-        LblDokter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblDokter.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblDokter.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblDokter);
         LblDokter.setBounds(195, 105, 440, 23);
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel17.setText(":");
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel17.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel17);
         jLabel17.setBounds(180, 105, 20, 23);
 
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel18.setText("Penanggung Jawab");
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel18);
         jLabel18.setBounds(20, 224, 160, 25);
 
         jLabel19.setForeground(new java.awt.Color(160, 110, 160));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel19.setText(":");
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel19.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel19);
         jLabel19.setBounds(180, 224, 20, 25);
@@ -454,14 +454,14 @@ public class DlgRegistrasi extends javax.swing.JDialog {
 
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel20.setText("Hubungan P. J.");
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel20);
         jLabel20.setBounds(20, 254, 160, 25);
 
         jLabel21.setForeground(new java.awt.Color(160, 110, 160));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel21.setText(":");
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel21.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel21);
         jLabel21.setBounds(180, 254, 20, 25);
@@ -483,14 +483,14 @@ public class DlgRegistrasi extends javax.swing.JDialog {
         jLabel22.setForeground(new java.awt.Color(160, 110, 160));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel22.setText(":");
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel22.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel22);
         jLabel22.setBounds(180, 284, 20, 25);
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel23.setText("Alamat P. J.");
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel23);
         jLabel23.setBounds(20, 284, 160, 25);
 
@@ -525,21 +525,21 @@ public class DlgRegistrasi extends javax.swing.JDialog {
         jLabel24.setForeground(new java.awt.Color(160, 110, 160));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel24.setText(":");
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel24.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel24);
         jLabel24.setBounds(180, 314, 20, 25);
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel25.setText("Status Pasien");
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel25);
         jLabel25.setBounds(20, 314, 160, 25);
 
         jLabel26.setForeground(new java.awt.Color(160, 110, 160));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel26.setText(":");
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel26.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel26);
         jLabel26.setBounds(180, 344, 20, 25);
@@ -561,7 +561,7 @@ public class DlgRegistrasi extends javax.swing.JDialog {
 
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel27.setText("Jenis Bayar");
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel27);
         jLabel27.setBounds(20, 344, 160, 25);
 

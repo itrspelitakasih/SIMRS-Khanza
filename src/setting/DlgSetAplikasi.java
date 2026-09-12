@@ -166,7 +166,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup Aplikasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup Aplikasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -365,7 +365,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         BtnCariGb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnCariGb.setMnemonic('C');
         BtnCariGb.setToolTipText("Alt+C");
-        BtnCariGb.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BtnCariGb.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnCariGb.setName("BtnCariGb"); // NOI18N
         BtnCariGb.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnCariGb.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +470,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         BtnCariLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnCariLogo.setMnemonic('C');
         BtnCariLogo.setToolTipText("Alt+C");
-        BtnCariLogo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        BtnCariLogo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnCariLogo.setName("BtnCariLogo"); // NOI18N
         BtnCariLogo.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnCariLogo.addActionListener(new java.awt.event.ActionListener() {

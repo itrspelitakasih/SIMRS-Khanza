@@ -17,7 +17,7 @@ public class TextBox extends JTextField {
         setHorizontalAlignment(LEFT);
         setSize(WIDTH,23);
         setMargin(new Insets(1, 4, 1,1));
-        setFont(new java.awt.Font("Tahoma", 0, 18));
+        setFont(new java.awt.Font("Arial", 0, 18));
         setBorder(javax.swing.BorderFactory.createLineBorder(new Color(205,150,205)));
         setSelectionColor(new Color(200,51,0));
 

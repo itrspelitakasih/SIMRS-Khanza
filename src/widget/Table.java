@@ -28,7 +28,7 @@ public class Table extends JTable {
         //setBackground(new Color(255,255,255));
         setGridColor(new Color(255,255,255));
         //setForeground(new Color(50,50,50));//warna font
-        setFont(new java.awt.Font("Tahoma", 0, 11)); //font isi
+        setFont(new java.awt.Font("Arial", 0, 11)); //font isi
         setRowHeight(24);//tinggi tabel
         setSelectionBackground(new Color(255,255,255));
         setSelectionForeground(new Color(0,0,0));//warna saat dipilih
@@ -36,7 +36,7 @@ public class Table extends JTable {
         getTableHeader().setForeground(new Color(255, 255, 255));//warna judul
         getTableHeader().setBackground(new Color(50,50,50));//bg judul
         //getTableHeader().setBorder(javax.swing.BorderFactory.createLineBorder(new Color(255,250,250)));
-        getTableHeader().setFont(new java.awt.Font("Tahoma", 1, 11)); //font judul
+        getTableHeader().setFont(new java.awt.Font("Arial", 1, 11)); //font judul
         
         // Tambahkan renderer untuk bold baris yang dipilih
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -56,7 +56,7 @@ public class Table extends JTable {
         JTableHeader header = getTableHeader();
         header.setForeground(Color.WHITE);
         header.setBackground(new Color(0,0,0)); // Hitam
-        header.setFont(new java.awt.Font("Tahoma", Font.BOLD, 11));
+        header.setFont(new java.awt.Font("Arial", Font.BOLD, 11));
         header.setBorder(BorderFactory.createLineBorder(new Color(0, 80, 40)));
         header.setPreferredSize(new Dimension(header.getPreferredSize().width, 35));
         setIntercellSpacing(new Dimension(1, 1));

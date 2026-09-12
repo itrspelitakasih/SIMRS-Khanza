@@ -496,15 +496,15 @@ public final class RMMCU extends javax.swing.JDialog {
         LoadHTML.setEditorKit(kit);
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(
-                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"+
-                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
-                ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
-                ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
-                ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
-                ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
-                ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}"
+                ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}"+
+                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi4 td{font: 11px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"+
+                ".isi5 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#AA0000;}"+
+                ".isi6 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#FF0000;}"+
+                ".isi7 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#C8C800;}"+
+                ".isi8 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#00AA00;}"+
+                ".isi9 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#969696;}"
         );
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
@@ -1101,6 +1101,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jSeparator8 = new javax.swing.JSeparator();
         TglLahir = new widget.Tanggal();
         Jk = new widget.ComboBox();
+        btn_AmbilData = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -1479,11 +1480,11 @@ public final class RMMCU extends javax.swing.JDialog {
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
         TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
-        TglAsuhan.setDisplayFormat("dd-MM-yyyy");
+        TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
         FormInput.add(TglAsuhan);
-        TglAsuhan.setBounds(680, 10, 100, 23);
+        TglAsuhan.setBounds(680, 10, 130, 23);
 
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
@@ -4482,7 +4483,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jSeparator8.setBounds(0, 2621, 880, 1);
 
         TglLahir.setForeground(new java.awt.Color(50, 70, 50));
-        TglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2026" }));
         TglLahir.setDisplayFormat("dd-MM-yyyy");
         TglLahir.setName("TglLahir"); // NOI18N
         TglLahir.setOpaque(false);
@@ -4493,6 +4494,17 @@ public final class RMMCU extends javax.swing.JDialog {
         Jk.setName("Jk"); // NOI18N
         FormInput.add(Jk);
         Jk.setBounds(790, 140, 80, 23);
+
+        btn_AmbilData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/preview-16x16.png"))); // NOI18N
+        btn_AmbilData.setText("Cari Data");
+        btn_AmbilData.setName("btn_AmbilData"); // NOI18N
+        btn_AmbilData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AmbilDataActionPerformed(evt);
+            }
+        });
+        FormInput.add(btn_AmbilData);
+        btn_AmbilData.setBounds(760, 50, 90, 22);
 
         scrollInput.setViewportView(FormInput);
 
@@ -4536,7 +4548,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4550,7 +4562,7 @@ public final class RMMCU extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4672,21 +4684,16 @@ public final class RMMCU extends javax.swing.JDialog {
             if (akses.getkode().equals("Admin Utama")) {
                 hapus();
             } else {
-                if (bolehUbahDataTerpilih()) {
-                    String depUser = Sequel.cariIsi("select departemen from pegawai where nik=?", akses.getkode());
-                    boolean bolehHapus = false;
-                    if ("R01".equals(depUser) || "R023".equals(depUser) || "R07".equals(depUser)) {
-                        bolehHapus = true;
-                    } else {
-                        bolehHapus = Sequel.cekTanggal48jam(getTabelValue("tanggal"), Sequel.ambiltanggalsekarang());
-                    }
-
-                    if (bolehHapus) {
-                        hapus();
-                    }
+                String depUser = Sequel.cariIsi("select departemen from pegawai where nik=?", akses.getkode());
+                boolean bolehHapus = false;
+                if ("R01".equals(depUser) || "R023".equals(depUser) || "R07".equals(depUser)) {
+                    bolehHapus = true;
                 } else {
-                    JOptionPane.showMessageDialog(null,
-                            "Hanya bisa dihapus oleh dokter atau petugas penginput yang bersangkutan..!!");
+                    bolehHapus = Sequel.cekTanggal48jam(getTabelValue("tanggal"), Sequel.ambiltanggalsekarang());
+                }
+
+                if (bolehHapus) {
+                    hapus();
                 }
             }
         } else {
@@ -4727,32 +4734,27 @@ public final class RMMCU extends javax.swing.JDialog {
 
                     ganti();
                 } else {
-                    if (bolehUbahDataTerpilih()) {
-                        String depUser = Sequel.cariIsi("select departemen from pegawai where nik=?", akses.getkode());
-                        boolean bolehGanti = false;
-                        // Bebas Akses 48Jam
-                        if ("R01".equals(depUser) || "R023".equals(depUser) || "R07".equals(depUser)) {
-                            bolehGanti = true;
-                        } else {
-                            bolehGanti = Sequel.cekTanggal48jam(getTabelValue("tanggal"),
-                                    Sequel.ambiltanggalsekarang());
-                        }
-
-                        if (bolehGanti) {
-                            if (TanggalRegistrasi.getText().equals("")) {
-                                TanggalRegistrasi.setText(Sequel.cariIsi(
-                                        "select concat(reg_periksa.tgl_registrasi,' ',reg_periksa.jam_reg) from reg_periksa where reg_periksa.no_rawat=?",
-                                        TNoRw.getText()));
-                            }
-                            setTanggalAsuhanMinimalRegistrasi();
-                            if (Sequel.cekTanggalRegistrasi(TanggalRegistrasi.getText(),
-                                    getTanggalJamAsuhan()) == true) {
-                                ganti();
-                            }
-                        }
+                    String depUser = Sequel.cariIsi("select departemen from pegawai where nik=?", akses.getkode());
+                    boolean bolehGanti = false;
+                    // Bebas Akses 48Jam
+                    if ("R01".equals(depUser) || "R023".equals(depUser) || "R07".equals(depUser)) {
+                        bolehGanti = true;
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                                "Hanya bisa diganti oleh dokter atau petugas penginput yang bersangkutan..!!");
+                        bolehGanti = Sequel.cekTanggal48jam(getTabelValue("tanggal"),
+                                Sequel.ambiltanggalsekarang());
+                    }
+
+                    if (bolehGanti) {
+                        if (TanggalRegistrasi.getText().equals("")) {
+                            TanggalRegistrasi.setText(Sequel.cariIsi(
+                                    "select concat(reg_periksa.tgl_registrasi,' ',reg_periksa.jam_reg) from reg_periksa where reg_periksa.no_rawat=?",
+                                    TNoRw.getText()));
+                        }
+                        setTanggalAsuhanMinimalRegistrasi();
+                        if (Sequel.cekTanggalRegistrasi(TanggalRegistrasi.getText(),
+                                getTanggalJamAsuhan()) == true) {
+                            ganti();
+                        }
                     }
                 }
             } else {
@@ -4807,23 +4809,23 @@ public final class RMMCU extends javax.swing.JDialog {
                 File g = new File("file2.css");
                 BufferedWriter bg = new BufferedWriter(new FileWriter(g));
                 bg.write(
-                        ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
+                        ".isi td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
                                 +
-                                ".isi2 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#323232;}"
+                                ".isi2 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#323232;}"
                                 +
-                                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
+                                ".isi3 td{border-right: 1px solid #e2e7dd;font: 8.5px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
                                 +
-                                ".isi4 td{font: 11px tahoma;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
+                                ".isi4 td{font: 11px Arial;height:12px;border-top: 1px solid #e2e7dd;background: #ffffff;color:#323232;}"
                                 +
-                                ".isi5 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#AA0000;}"
+                                ".isi5 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#AA0000;}"
                                 +
-                                ".isi6 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#FF0000;}"
+                                ".isi6 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#FF0000;}"
                                 +
-                                ".isi7 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#C8C800;}"
+                                ".isi7 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#C8C800;}"
                                 +
-                                ".isi8 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#00AA00;}"
+                                ".isi8 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#00AA00;}"
                                 +
-                                ".isi9 td{font: 8.5px tahoma;border:none;height:12px;background: #ffffff;color:#969696;}");
+                                ".isi9 td{font: 8.5px Arial;border:none;height:12px;background: #ffffff;color:#969696;}");
                 bg.close();
 
                 File f;
@@ -4859,11 +4861,11 @@ public final class RMMCU extends javax.swing.JDialog {
                                     +
                                     "<tr class='isi2'>" +
                                     "<td valign='top' align='center'>" +
-                                    "<font size='4' face='Tahoma'>" + akses.getnamars() + "</font><br>" +
+                                    "<font size='4' face='Arial'>" + akses.getnamars() + "</font><br>" +
                                     akses.getalamatrs() + ", " + akses.getkabupatenrs() + ", " + akses.getpropinsirs()
                                     + "<br>" +
                                     akses.getkontakrs() + ", E-mail : " + akses.getemailrs() + "<br><br>" +
-                                    "<font size='2' face='Tahoma'>DATA PEMERIKSAAN MCU<br><br></font>" +
+                                    "<font size='2' face='Arial'>DATA PEMERIKSAAN MCU<br><br></font>" +
                                     "</td>" +
                                     "</tr>" +
                                     "</table>"));
@@ -5320,11 +5322,11 @@ public final class RMMCU extends javax.swing.JDialog {
                                 +
                                 "<tr class='isi2'>" +
                                 "<td valign='top' align='center'>" +
-                                "<font size='4' face='Tahoma'>" + akses.getnamars() + "</font><br>" +
+                                "<font size='4' face='Arial'>" + akses.getnamars() + "</font><br>" +
                                 akses.getalamatrs() + ", " + akses.getkabupatenrs() + ", " + akses.getpropinsirs()
                                 + "<br>" +
                                 akses.getkontakrs() + ", E-mail : " + akses.getemailrs() + "<br><br>" +
-                                "<font size='2' face='Tahoma'>DATA PEMERIKSAAN MCU<br><br></font>" +
+                                "<font size='2' face='Arial'>DATA PEMERIKSAAN MCU<br><br></font>" +
                                 "</td>" +
                                 "</tr>" +
                                 "</table>"));
@@ -5781,11 +5783,11 @@ public final class RMMCU extends javax.swing.JDialog {
                                 +
                                 "<tr class='isi2'>" +
                                 "<td valign='top' align='center'>" +
-                                "<font size='4' face='Tahoma'>" + akses.getnamars() + "</font><br>" +
+                                "<font size='4' face='Arial'>" + akses.getnamars() + "</font><br>" +
                                 akses.getalamatrs() + ", " + akses.getkabupatenrs() + ", " + akses.getpropinsirs()
                                 + "<br>" +
                                 akses.getkontakrs() + ", E-mail : " + akses.getemailrs() + "<br><br>" +
-                                "<font size='2' face='Tahoma'>DATA PEMERIKSAAN MCU<br><br></font>" +
+                                "<font size='2' face='Arial'>DATA PEMERIKSAAN MCU<br><br></font>" +
                                 "</td>" +
                                 "</tr>" +
                                 "</table>"));
@@ -6389,6 +6391,95 @@ public final class RMMCU extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnCopyPengkajianActionPerformed
 
+    private void btn_AmbilDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AmbilDataActionPerformed
+        if (TNoRM.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih/cari data pasien terlebih dahulu..!!");
+        } else {
+            ambilDataPengkajianTerakhir();
+        }
+    }//GEN-LAST:event_btn_AmbilDataActionPerformed
+
+    /**
+     * Mencari data pengkajian MCU terakhir (berdasar tanggal) milik No. Rekam Medis pasien yang
+     * sedang dibuka (dari No. Rawat lain, bukan No. Rawat yang sedang dibuka saat ini), lalu
+     * mengisikannya ke form ini. Memakai mekanisme yang sama dengan "Copy Pengkajian" (tampil()
+     * + isiDataPengkajian()); bedanya sumber dicari otomatis berdasar No. RM, tidak perlu
+     * dipilih manual dari daftar.
+     */
+    private void ambilDataPengkajianTerakhir() {
+        String noRM = TNoRM.getText().trim();
+        String noRawatSaatIni = TNoRw.getText().trim();
+        String noRawatSumber = "";
+        try {
+            java.sql.PreparedStatement psCari = koneksi.prepareStatement(
+                    "select no_rawat from penilaian_mcu where no_rkm_medis=? and no_rawat<>? order by tanggal desc limit 1");
+            try {
+                psCari.setString(1, noRM);
+                psCari.setString(2, noRawatSaatIni);
+                java.sql.ResultSet rsCari = psCari.executeQuery();
+                try {
+                    if (rsCari.next()) {
+                        noRawatSumber = rsCari.getString("no_rawat");
+                    }
+                } finally {
+                    rsCari.close();
+                }
+            } finally {
+                psCari.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+
+        if (noRawatSumber.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Maaf, belum ada data pengkajian MCU sebelumnya untuk No. RM " + noRM + "..!!");
+            return;
+        }
+
+        int reply = JOptionPane.showConfirmDialog(rootPane,
+                "Ambil data pengkajian MCU terakhir milik No. RM " + noRM + " (No. Rawat sumber: "
+                        + noRawatSumber + ") ke No. Rawat " + noRawatSaatIni + " ini..??",
+                "Konfirmasi Ambil Data", JOptionPane.YES_NO_OPTION);
+        if (reply != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        String tCariAsal = TCari.getText();
+        Date dtCari1Asal = DTPCari1.getDate();
+        Date dtCari2Asal = DTPCari2.getDate();
+        try {
+            TCari.setText(noRawatSumber);
+            DTPCari1.setDate(new Date(0));
+            DTPCari2.setDate(new Date());
+            tampil();
+
+            int baris = -1;
+            for (int i = 0; i < tbObat.getRowCount(); i++) {
+                if (noRawatSumber.equals(getTabelValue("no_rawat", i))) {
+                    baris = i;
+                    break;
+                }
+            }
+            if (baris < 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Maaf, data sumber tidak ditemukan lagi (daftar berubah)..!!");
+                return;
+            }
+            isiDataPengkajian(baris);
+            setTanggalAsuhanSamaDenganRegistrasi();
+            isiPetugasLogin();
+            tbObat.clearSelection();
+            JOptionPane.showMessageDialog(null,
+                    "Data pengkajian MCU terakhir berhasil diambil. Silahkan periksa kembali datanya lalu klik Simpan..!!");
+        } finally {
+            TCari.setText(tCariAsal);
+            DTPCari1.setDate(dtCari1Asal);
+            DTPCari2.setDate(dtCari2Asal);
+            tampil();
+        }
+    }
+
     private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
         modeCopyPengkajian = false;
         barisSumberCopyPengkajian = -1;
@@ -6461,7 +6552,7 @@ public final class RMMCU extends javax.swing.JDialog {
                 javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)),
                 "::[ Copy Dari " + noRawatSumber + " - " + namaPasienSumber + " ]::",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11),
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11),
                 new java.awt.Color(50, 50, 50)));
 
         NoRmTujuan.setText("");
@@ -6747,6 +6838,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox bl_group;
     private widget.TextBox blood;
     private widget.ComboBox blood_group;
+    private widget.Button btn_AmbilData;
     private widget.TextArea catatan;
     private widget.ComboBox cbConcEcg;
     private widget.TextBox cea;
@@ -8644,7 +8736,8 @@ public final class RMMCU extends javax.swing.JDialog {
 
     private String getTanggalJamAsuhan() {
         String nilai = TglAsuhan.getSelectedItem() == null ? "" : TglAsuhan.getSelectedItem().toString();
-        return Valid.SetTgl(nilai) + " " + (nilai.length() >= 19 ? nilai.substring(11, 19) : "00:00:00");
+        String jamSekarang = new java.text.SimpleDateFormat("HH:mm:ss").format(new Date());
+        return Valid.SetTgl(nilai) + " " + (nilai.length() >= 19 ? nilai.substring(11, 19) : jamSekarang);
     }
 
     private void setTanggalAsuhanMinimalRegistrasi() {
@@ -8836,11 +8929,11 @@ public final class RMMCU extends javax.swing.JDialog {
                 "<table width='10000px' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>" +
                 "<tr class='isi2'>" +
                 "<td valign='top' align='center'>" +
-                "<font size='4' face='Tahoma'>" + escapeHtml(akses.getnamars()) + "</font><br>" +
+                "<font size='4' face='Arial'>" + escapeHtml(akses.getnamars()) + "</font><br>" +
                 escapeHtml(akses.getalamatrs()) + ", " + escapeHtml(akses.getkabupatenrs()) + ", "
                 + escapeHtml(akses.getpropinsirs()) + "<br>" +
                 escapeHtml(akses.getkontakrs()) + ", E-mail : " + escapeHtml(akses.getemailrs()) + "<br><br>" +
-                "<font size='2' face='Tahoma'>DATA PEMERIKSAAN MCU<br><br></font>" +
+                "<font size='2' face='Arial'>DATA PEMERIKSAAN MCU<br><br></font>" +
                 "</td>" +
                 "</tr>" +
                 "</table>" +
@@ -10327,6 +10420,11 @@ public final class RMMCU extends javax.swing.JDialog {
         }
         isiDataPengkajian(baris);
         setTanggalAsuhanSamaDenganRegistrasi();
+        // isiDataPengkajian ikut menyalin KdPetugas/NmPetugas dari data sumber. Petugas
+        // penginput data hasil copy ini harus tetap user yang sedang login (yang benar-benar
+        // melakukan copy & simpan), bukan petugas dari data sumber, supaya kolom kd_petugas
+        // dan log riwayat perubahan tetap mencatat siapa yang benar-benar mengisi data ini.
+        isiPetugasLogin();
         tbObat.clearSelection();
         JOptionPane.showMessageDialog(null,
                 "Data pengkajian berhasil disalin. Silahkan periksa kembali datanya lalu klik Simpan..!!");
@@ -10392,11 +10490,6 @@ public final class RMMCU extends javax.swing.JDialog {
             // yang mengisi.
             BtnPetugas.setEnabled(false);
         }
-    }
-
-    private boolean bolehUbahDataTerpilih() {
-        String kodeLogin = akses.getkode();
-        return kodeLogin.equals(getTabelValue("kd_dokter")) || kodeLogin.equals(getTabelValue("kd_petugas"));
     }
 
     public void setTampil() {

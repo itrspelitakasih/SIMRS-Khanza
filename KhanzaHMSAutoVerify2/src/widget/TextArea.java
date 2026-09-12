@@ -32,7 +32,7 @@ public class TextArea extends JTextArea {
         setLineWrap(true);
         setWrapStyleWord(true);
         setBorder(new EmptyBorder(5, 5, 5, 5));
-        setFont(new java.awt.Font("Tahoma", 0, 11));        
+        setFont(new java.awt.Font("Arial", 0, 11));        
         setSelectionColor(new Color(50,51,0));
         setSelectedTextColor(new Color(255,255,0));
         setForeground(new Color(70,70,70));

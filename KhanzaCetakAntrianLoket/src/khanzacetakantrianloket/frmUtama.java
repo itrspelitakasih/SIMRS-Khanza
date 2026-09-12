@@ -71,7 +71,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         BtnCetak.setForeground(new java.awt.Color(255, 255, 51));
         BtnCetak.setText("Cetak");
-        BtnCetak.setFont(new java.awt.Font("Tahoma", 1, 80)); // NOI18N
+        BtnCetak.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
         BtnCetak.setGlassColor(new java.awt.Color(255, 255, 204));
         BtnCetak.setPreferredSize(new java.awt.Dimension(158, 125));
         BtnCetak.addActionListener(new java.awt.event.ActionListener() {
@@ -84,13 +84,13 @@ public class frmUtama extends javax.swing.JFrame {
         LabelNomor.setForeground(new java.awt.Color(255, 255, 255));
         LabelNomor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelNomor.setText("001");
-        LabelNomor.setFont(new java.awt.Font("Tahoma", 0, 350)); // NOI18N
+        LabelNomor.setFont(new java.awt.Font("Arial", 0, 350)); // NOI18N
         internalFrame1.add(LabelNomor, java.awt.BorderLayout.CENTER);
 
         LabelTanggal.setForeground(new java.awt.Color(255, 255, 51));
         LabelTanggal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelTanggal.setText("Antrian Loket Pendaftaran Tanggal :");
-        LabelTanggal.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        LabelTanggal.setFont(new java.awt.Font("Arial", 0, 30)); // NOI18N
         internalFrame1.add(LabelTanggal, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);

@@ -256,7 +256,7 @@ public class GoWAService {
     // =====================================================
     private static String prepareNoHP(String noRM, String inputNoHP) {
         try {
-            Font font = new Font("Tahoma", Font.PLAIN, 12);
+            Font font = new Font("Arial", Font.PLAIN, 12);
             UIManager.put("OptionPane.messageFont", font);
             UIManager.put("OptionPane.buttonFont", font);
             UIManager.put("Label.font", font);
@@ -332,7 +332,7 @@ public class GoWAService {
                 return noHPTerakhir;
             }
 
-            Font font = new Font("Tahoma", Font.PLAIN, 12);
+            Font font = new Font("Arial", Font.PLAIN, 12);
             UIManager.put("OptionPane.messageFont", font);
             UIManager.put("OptionPane.buttonFont", font);
             UIManager.put("Label.font", font);

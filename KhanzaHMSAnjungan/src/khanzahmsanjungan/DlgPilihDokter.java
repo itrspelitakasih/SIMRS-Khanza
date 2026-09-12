@@ -105,7 +105,7 @@ public class DlgPilihDokter extends javax.swing.JDialog {
 
         LblKdPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblKdPoli.setText("Norm");
-        LblKdPoli.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblKdPoli.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblKdPoli.setPreferredSize(new java.awt.Dimension(20, 14));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,7 +120,7 @@ public class DlgPilihDokter extends javax.swing.JDialog {
         getContentPane().setLayout(new java.awt.BorderLayout(1, 1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Silahkan Pilih Dokter !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 215, 255)), "::[ Silahkan Pilih Dokter !!! ]::", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 24), new java.awt.Color(160, 130, 160))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 70));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 1));
 
@@ -129,55 +129,55 @@ public class DlgPilihDokter extends javax.swing.JDialog {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Nama Pasien");
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(20, 45, 120, 23);
 
         jLabel6.setForeground(new java.awt.Color(160, 110, 160));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText(":");
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel6);
         jLabel6.setBounds(145, 45, 20, 23);
 
         LblNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNama.setText("Nama");
-        LblNama.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNama.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNama.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNama);
         LblNama.setBounds(165, 45, 440, 23);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("No.RM");
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel8);
         jLabel8.setBounds(20, 15, 120, 23);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText(":");
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel9.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel9);
         jLabel9.setBounds(145, 15, 20, 23);
 
         LblNoRm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNoRm.setText("Norm");
-        LblNoRm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNoRm.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNoRm.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNoRm);
         LblNoRm.setBounds(165, 15, 440, 23);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Unit/Poliklinik");
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel2.add(jLabel5);
         jLabel5.setBounds(20, 75, 120, 23);
 
         LblNamaPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblNamaPoli.setText("Poliklinik");
-        LblNamaPoli.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        LblNamaPoli.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         LblNamaPoli.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(LblNamaPoli);
         LblNamaPoli.setBounds(165, 75, 440, 23);
@@ -185,7 +185,7 @@ public class DlgPilihDokter extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(160, 110, 160));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText(":");
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(20, 14));
         jPanel2.add(jLabel7);
         jLabel7.setBounds(145, 75, 20, 23);
@@ -224,7 +224,7 @@ public class DlgPilihDokter extends javax.swing.JDialog {
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 3, 9));
 
         jLabel3.setText("Kata Kunci :");
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(110, 30));
         jPanel4.add(jLabel3);
 
@@ -285,7 +285,7 @@ public class DlgPilihDokter extends javax.swing.JDialog {
         btnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         btnKeluar.setMnemonic('K');
         btnKeluar.setToolTipText("Alt+K");
-        btnKeluar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        btnKeluar.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         btnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnKeluar.setPreferredSize(new java.awt.Dimension(30, 30));
         btnKeluar.addActionListener(new java.awt.event.ActionListener() {

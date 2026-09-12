@@ -368,9 +368,9 @@ public final class SatuSehatCariOrganisasi extends javax.swing.JDialog {
             
             if (iyembuilder.length() > 0) {
                 iyembuilder.setLength(iyembuilder.length() - 1);
-                fileWriter.write("{\"satu_sehat_mapping_departemen\":["+iyembuilder+"]}");
-                fileWriter.flush();
             }
+            fileWriter.write("{\"satu_sehat_mapping_departemen\":["+iyembuilder+"]}");
+            fileWriter.flush();
             
             fileWriter.close();
             iyembuilder=null;

@@ -149,6 +149,32 @@ public class koneksiDB {
         }
     }
 
+    /**
+     * Membuka koneksi baru yang terpisah dari koneksi global (connection) yang dipakai bersama
+     * di seluruh aplikasi. Dipakai untuk operasi yang butuh transaksi eksplisit (setAutoCommit(false)
+     * + commit/rollback) agar tidak mengunci/mempengaruhi thread atau dialog lain yang sedang
+     * memakai koneksi bersama tersebut. Pemanggil wajib menutup (close) koneksi ini sendiri.
+     */
+    public static Connection newTransactionalConnection() throws SQLException {
+        if (!initialized.get()) {
+            synchronized (LOCK) {
+                if (!initialized.get()) {
+                    try {
+                        initDataSource();
+                    } catch (Exception e) {
+                        throw new SQLException("Gagal inisialisasi konfigurasi database.", e);
+                    }
+                    reconnect();
+                    initialized.set(true);
+                }
+            }
+        }
+        Connection tx = dataSource.getConnection();
+        tx.setAutoCommit(false);
+        tx.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+        return tx;
+    }
+
     public static void closeConnection() {
         try {
             if (connection != null &&!connection.isClosed()) {

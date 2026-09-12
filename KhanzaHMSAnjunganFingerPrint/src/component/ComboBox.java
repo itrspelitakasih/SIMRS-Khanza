@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
  */
 public final class ComboBox extends JComboBox {
     public ComboBox(){    
-        setFont(new java.awt.Font("Tahoma", 0, 11));
+        setFont(new java.awt.Font("Arial", 0, 11));
         setBorder(new LineBorder(new Color(225,120,225), 1, true));
         setBackground(new Color(255,255,255));
         setForeground(new Color(140,90,140));
