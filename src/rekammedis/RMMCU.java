@@ -1122,7 +1122,7 @@ public final class RMMCU extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnPenilaianMCU.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenilaianMCU.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPenilaianMCU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnPenilaianMCU.setForeground(new java.awt.Color(50, 50, 50));
         MnPenilaianMCU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPenilaianMCU.setText("Laporan Pengkajian MCU");
@@ -1135,7 +1135,7 @@ public final class RMMCU extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnPenilaianMCU);
 
-        MnCopyPengkajian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopyPengkajian.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnCopyPengkajian.setForeground(new java.awt.Color(50, 50, 50));
         MnCopyPengkajian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCopyPengkajian.setText("Copy Data");
@@ -1159,7 +1159,7 @@ public final class RMMCU extends javax.swing.JDialog {
         WindowGabungMCU.setUndecorated(true);
         WindowGabungMCU.setResizable(false);
 
-        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Copy Data Pengkajian MCU ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Copy Data Pengkajian MCU ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setLayout(null);
 
@@ -1241,8 +1241,8 @@ public final class RMMCU extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengkajian Medical Check Up (MCU) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengkajian Medical Check Up (MCU) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1398,7 +1398,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(254, 255, 254));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
 
         internalFrame2.setBorder(null);
@@ -1473,7 +1473,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel53.setText("D. CONSUMPTION");
-        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel53.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel53.setName("jLabel53"); // NOI18N
         FormInput.add(jLabel53);
         jLabel53.setBounds(440, 650, 180, 23);
@@ -1495,7 +1495,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel59.setText("E. PEMERIKSAAN LABORATORIUM (TERLAMPIR)");
-        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel59.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel59.setName("jLabel59"); // NOI18N
         FormInput.add(jLabel59);
         jLabel59.setBounds(10, 830, 280, 23);
@@ -1516,14 +1516,14 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel61.setText("G. EKG");
-        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel61.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel61.setName("jLabel61"); // NOI18N
         FormInput.add(jLabel61);
         jLabel61.setBounds(470, 1370, 40, 23);
 
         jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel62.setText("F. RONTGEN THORAX");
-        jLabel62.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel62.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel62.setName("jLabel62"); // NOI18N
         FormInput.add(jLabel62);
         jLabel62.setBounds(10, 1370, 182, 23);
@@ -1543,7 +1543,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel102.setText("P. KESIMPULAN");
-        jLabel102.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel102.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel102.setName("jLabel102"); // NOI18N
         FormInput.add(jLabel102);
         jLabel102.setBounds(10, 2770, 190, 23);
@@ -2014,7 +2014,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel55.setText("B. RIWAYAT PENYAKIT");
-        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel55.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel55.setName("jLabel55"); // NOI18N
         FormInput.add(jLabel55);
         jLabel55.setBounds(10, 400, 180, 23);
@@ -2056,7 +2056,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel56.setText("C. RIWAYAT PENYAKIT KELUARGA");
-        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel56.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel56.setName("jLabel56"); // NOI18N
         FormInput.add(jLabel56);
         jLabel56.setBounds(10, 650, 220, 23);
@@ -2278,7 +2278,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel111.setText("H. SPIROMETRI");
-        jLabel111.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel111.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel111.setName("jLabel111"); // NOI18N
         FormInput.add(jLabel111);
         jLabel111.setBounds(10, 1500, 182, 23);
@@ -2292,7 +2292,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel112.setText("I. AUDIOMETRI");
-        jLabel112.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel112.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel112.setName("jLabel112"); // NOI18N
         FormInput.add(jLabel112);
         jLabel112.setBounds(10, 1660, 182, 23);
@@ -2445,7 +2445,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel80.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel80.setText("L. IMUNISASI");
-        jLabel80.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel80.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel80.setName("jLabel80"); // NOI18N
         FormInput.add(jLabel80);
         jLabel80.setBounds(10, 2250, 180, 23);
@@ -2593,7 +2593,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel81.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel81.setText("J. PEMERIKSAAN FISIK");
-        jLabel81.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel81.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel81.setName("jLabel81"); // NOI18N
         FormInput.add(jLabel81);
         jLabel81.setBounds(10, 2010, 180, 23);
@@ -2701,7 +2701,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel134.setText("K. PEMERIKSAAN MATA");
-        jLabel134.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel134.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel134.setName("jLabel134"); // NOI18N
         FormInput.add(jLabel134);
         jLabel134.setBounds(10, 2100, 180, 23);
@@ -2805,7 +2805,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel144.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel144.setText("M. VERTEBRA");
-        jLabel144.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel144.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel144.setName("jLabel144"); // NOI18N
         FormInput.add(jLabel144);
         jLabel144.setBounds(10, 2340, 180, 23);
@@ -2909,7 +2909,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel154.setText("O. SCORE DASS 21");
-        jLabel154.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel154.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel154.setName("jLabel154"); // NOI18N
         FormInput.add(jLabel154);
         jLabel154.setBounds(10, 2650, 180, 23);
@@ -3003,7 +3003,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel110.setText("A. INFORMASI UMUM");
-        jLabel110.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel110.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel110.setName("jLabel110"); // NOI18N
         FormInput.add(jLabel110);
         jLabel110.setBounds(10, 90, 180, 23);
@@ -4085,7 +4085,7 @@ public final class RMMCU extends javax.swing.JDialog {
         lbUricAcid.setBounds(660, 1130, 70, 23);
 
         lbUrinalisis.setText("URINALISIS :");
-        lbUrinalisis.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbUrinalisis.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         lbUrinalisis.setName("lbUrinalisis"); // NOI18N
         FormInput.add(lbUrinalisis);
         lbUrinalisis.setBounds(20, 1160, 80, 23);
@@ -4146,7 +4146,7 @@ public final class RMMCU extends javax.swing.JDialog {
         lbUrineEpitel.setBounds(240, 1310, 60, 23);
 
         lbImunologi.setText("IMUNOLOGI / SEROLOGI :");
-        lbImunologi.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbImunologi.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         lbImunologi.setName("lbImunologi"); // NOI18N
         FormInput.add(lbImunologi);
         lbImunologi.setBounds(390, 1160, 160, 23);
@@ -4172,7 +4172,7 @@ public final class RMMCU extends javax.swing.JDialog {
         lbAfp.setBounds(710, 1190, 50, 23);
 
         lbNapza.setText("UJI NAPZA :");
-        lbNapza.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbNapza.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         lbNapza.setName("lbNapza"); // NOI18N
         FormInput.add(lbNapza);
         lbNapza.setBounds(390, 1220, 80, 23);
@@ -4264,7 +4264,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel171.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel171.setText("N. HASIL PEMERIKSAAN");
-        jLabel171.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel171.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel171.setName("jLabel171"); // NOI18N
         FormInput.add(jLabel171);
         jLabel171.setBounds(10, 2430, 180, 23);
@@ -4292,7 +4292,7 @@ public final class RMMCU extends javax.swing.JDialog {
 
         jLabel203.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel203.setText("Jawaban :");
-        jLabel203.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jLabel203.setFont(new java.awt.Font("Arial", 3, 11)); // NOI18N
         jLabel203.setName("jLabel203"); // NOI18N
         FormInput.add(jLabel203);
         jLabel203.setBounds(10, 2680, 220, 23);
@@ -6552,7 +6552,7 @@ public final class RMMCU extends javax.swing.JDialog {
                 javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)),
                 "::[ Copy Dari " + noRawatSumber + " - " + namaPasienSumber + " ]::",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11),
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12),
                 new java.awt.Color(50, 50, 50)));
 
         NoRmTujuan.setText("");

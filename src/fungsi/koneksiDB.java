@@ -1862,4 +1862,24 @@ public class koneksiDB {
         }
         return var;
     }
+
+    public static String IDORGBPJSSATUSEHAT() {
+        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+            prop.loadFromXML(fis);
+            var = prop.getProperty("IDORGBPJSSATUSEHAT");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+
+    public static String KODEAKUNPENGELUARANHARIAN() {
+        try (FileInputStream fis = new FileInputStream("setting/database.xml")) {
+            prop.loadFromXML(fis);
+            var = prop.getProperty("KODEAKUNPENGELUARANHARIAN");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

@@ -238,7 +238,7 @@ public final class RMSkriningKesehatanGigiMulutDewasa extends javax.swing.JDialo
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnSkriningKesehatanGigiMulutDewasa.setBackground(new java.awt.Color(255, 255, 254));
-        MnSkriningKesehatanGigiMulutDewasa.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnSkriningKesehatanGigiMulutDewasa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnSkriningKesehatanGigiMulutDewasa.setForeground(new java.awt.Color(50, 50, 50));
         MnSkriningKesehatanGigiMulutDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSkriningKesehatanGigiMulutDewasa.setText("Formulir Skrining Kesehatan Gigi & Mulut Dewasa");
@@ -270,7 +270,7 @@ public final class RMSkriningKesehatanGigiMulutDewasa extends javax.swing.JDialo
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Skrining Kesehatan Gigi & Mulut Dewasa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Skrining Kesehatan Gigi & Mulut Dewasa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));

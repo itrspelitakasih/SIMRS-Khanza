@@ -445,7 +445,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnLaporanResume.setBackground(new java.awt.Color(255, 255, 254));
-        MnLaporanResume.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnLaporanResume.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnLaporanResume.setForeground(new java.awt.Color(50, 50, 50));
         MnLaporanResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporanResume.setText("Laporan Resume Pasien");
@@ -459,7 +459,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnLaporanResume);
 
         MnLaporanResumeESign.setBackground(new java.awt.Color(255, 255, 254));
-        MnLaporanResumeESign.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnLaporanResumeESign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnLaporanResumeESign.setForeground(new java.awt.Color(50, 50, 50));
         MnLaporanResumeESign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporanResumeESign.setText("Laporan Resume Pasien PDF E-Sign");
@@ -473,7 +473,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnLaporanResumeESign);
 
         MnLaporanResumeSertisign.setBackground(new java.awt.Color(255, 255, 254));
-        MnLaporanResumeSertisign.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnLaporanResumeSertisign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnLaporanResumeSertisign.setForeground(new java.awt.Color(50, 50, 50));
         MnLaporanResumeSertisign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporanResumeSertisign.setText("Laporan Resume Pasien PDF Sertisign");
@@ -487,7 +487,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnLaporanResumeSertisign);
 
         MnInputDiagnosa.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputDiagnosa.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnInputDiagnosa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnInputDiagnosa.setForeground(new java.awt.Color(50, 50, 50));
         MnInputDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputDiagnosa.setText("Input Diagnosa Pasien");
@@ -501,7 +501,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnInputDiagnosa);
 
         ppBerkasDigital.setBackground(new java.awt.Color(255, 255, 254));
-        ppBerkasDigital.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        ppBerkasDigital.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ppBerkasDigital.setForeground(new java.awt.Color(50, 50, 50));
         ppBerkasDigital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBerkasDigital.setText("Berkas Digital Perawatan");
@@ -522,7 +522,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         WindowURLSertisign.setUndecorated(true);
         WindowURLSertisign.setResizable(false);
 
-        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ URL File Hasil Tanda Tangan Sertisign ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ URL File Hasil Tanda Tangan Sertisign ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame9.setName("internalFrame9"); // NOI18N
         internalFrame9.setLayout(new java.awt.BorderLayout());
 
@@ -608,7 +608,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         WindowPhrase.setUndecorated(true);
         WindowPhrase.setResizable(false);
 
-        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ E-Sign / Tanda Tangan Elektronik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ E-Sign / Tanda Tangan Elektronik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setLayout(new java.awt.BorderLayout());
 
@@ -670,7 +670,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Resume Medis Pasien Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Resume Medis Pasien Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -2352,7 +2352,6 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                 public void windowDeactivated(WindowEvent e) {}
             });
             carikeluhan.setNoRawat(TNoRw.getText());
-            carikeluhan.tampil();
             carikeluhan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             carikeluhan.setLocationRelativeTo(internalFrame1);
             carikeluhan.setVisible(true);
@@ -2535,7 +2534,6 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                 public void windowDeactivated(WindowEvent e) {}
             });
             caripemeriksaan.setNoRawat(TNoRw.getText());
-            caripemeriksaan.tampil();
             caripemeriksaan.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
             caripemeriksaan.setLocationRelativeTo(internalFrame1);
             caripemeriksaan.setVisible(true);
@@ -3611,7 +3609,8 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);    
-        isRawat();              
+        isRawat();    
+        Alasan.setText(Sequel.cariIsi("select permintaan_ranap.alasan from permintaan_ranap where permintaan_ranap.no_rawat=?",norwt));
         ChkInput.setSelected(true);
         isForm();
         CaraKeluar.requestFocus();

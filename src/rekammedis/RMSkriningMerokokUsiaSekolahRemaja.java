@@ -355,7 +355,7 @@ public final class RMSkriningMerokokUsiaSekolahRemaja extends javax.swing.JDialo
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnSkriningMerokok.setBackground(new java.awt.Color(255, 255, 254));
-        MnSkriningMerokok.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnSkriningMerokok.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnSkriningMerokok.setForeground(new java.awt.Color(50, 50, 50));
         MnSkriningMerokok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSkriningMerokok.setText("Formulir Skrining Merokok Usia Sekolah & Remaja");
@@ -383,7 +383,7 @@ public final class RMSkriningMerokokUsiaSekolahRemaja extends javax.swing.JDialo
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Skrining Perilaku Merokok Bagi Anak Usia Sekolah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Skrining Perilaku Merokok Bagi Anak Usia Sekolah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));

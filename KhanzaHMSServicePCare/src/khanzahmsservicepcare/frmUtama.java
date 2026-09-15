@@ -289,7 +289,7 @@ public class frmUtama extends javax.swing.JFrame {
         setTitle("SIMKES Khanza Service PCare");
 
         TeksArea.setColumns(20);
-        TeksArea.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TeksArea.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TeksArea.setRows(5);
         jScrollPane1.setViewportView(TeksArea);
 

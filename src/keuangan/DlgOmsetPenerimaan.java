@@ -512,7 +512,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Penerimaan/Omset/Kas Masuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Penerimaan/Omset/Kas Masuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -569,7 +569,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnCari);
 
-        jLabel16.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(50, 50, 50));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Total Penerimaan :");
@@ -627,7 +627,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 104));
         panelGlass9.setLayout(null);
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(50, 50, 50));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Rawat Jalan :");
@@ -654,7 +654,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountRawatInap);
         LCountRawatInap.setBounds(318, 10, 110, 23);
 
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(50, 50, 50));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Rawat Inap :");
@@ -663,7 +663,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(jLabel11);
         jLabel11.setBounds(234, 10, 80, 23);
 
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(50, 50, 50));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Penjualan Bebas :");
@@ -681,7 +681,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountJualBebas);
         LCountJualBebas.setBounds(534, 10, 110, 23);
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(50, 50, 50));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Pemasukan Lain-lain :");
@@ -699,7 +699,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountPemasukanLain);
         LCountPemasukanLain.setBounds(124, 40, 110, 23);
 
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(50, 50, 50));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("Deposit :");
@@ -717,7 +717,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountDeposit);
         LCountDeposit.setBounds(318, 40, 110, 23);
 
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(50, 50, 50));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Piutang Pasien :");
@@ -735,7 +735,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountPiutangDibayar);
         LCountPiutangDibayar.setBounds(534, 40, 110, 23);
 
-        jLabel17.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(50, 50, 50));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Piutang Uang :");
@@ -744,7 +744,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(jLabel17);
         jLabel17.setBounds(0, 70, 120, 23);
 
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(50, 50, 50));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Piutang Jasa :");
@@ -771,7 +771,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountPiutangJasa);
         LCountPiutangJasa.setBounds(318, 70, 110, 23);
 
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(50, 50, 50));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("Lab Kesling :");
@@ -789,7 +789,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountKesehatanLingkungan);
         LCountKesehatanLingkungan.setBounds(534, 70, 110, 23);
 
-        jLabel22.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(50, 50, 50));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel22.setText("Penjualan Toko :");
@@ -807,7 +807,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         panelGlass9.add(LCountJualToko);
         LCountJualToko.setBounds(751, 10, 110, 23);
 
-        jLabel23.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(50, 50, 50));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel23.setText("Piutang Toko :");
@@ -832,7 +832,7 @@ public final class DlgOmsetPenerimaan extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
 
         Scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));

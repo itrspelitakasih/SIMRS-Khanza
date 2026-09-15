@@ -18,7 +18,7 @@ public class CekBox extends JCheckBox{
 
     public CekBox(){
         super();
-        setFont(new java.awt.Font("Arial", 0, 11));
+        setFont(new java.awt.Font("Arial", 0, 12));
         //setBackground(new Color(209,209,209));
         //setForeground(new Color(90,90,90));
         setBackground(new Color(255,255,255));

@@ -22,13 +22,13 @@ public class Table extends JTable {
         setBackground(new Color(255,255,255));
         setGridColor(new Color(237,242,232));
         setForeground(new Color(70,70,70));
-        setFont(new java.awt.Font("Arial", 0, 11));
+        setFont(new java.awt.Font("Arial", 0, 12));
         setRowHeight(22);
         setSelectionBackground(new Color(255,255,255));
         setSelectionForeground(new Color(100,100,0));
         getTableHeader().setForeground(new Color(70,70,70));
         getTableHeader().setBackground(new Color(248,253,243));
         getTableHeader().setBorder(javax.swing.BorderFactory.createLineBorder(new Color(248,253,243)));
-        getTableHeader().setFont(new java.awt.Font("Arial", 0, 11));
+        getTableHeader().setFont(new java.awt.Font("Arial", 0, 12));
     }
 }

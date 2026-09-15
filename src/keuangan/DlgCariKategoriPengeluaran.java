@@ -117,7 +117,7 @@ public final class DlgCariKategoriPengeluaran extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kategori Pengeluaran Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kategori Pengeluaran Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -382,10 +382,13 @@ public final class DlgCariKategoriPengeluaran extends javax.swing.JDialog {
             fileWriter = new FileWriter(file);
             StringBuilder iyembuilder = new StringBuilder();
             ps=koneksi.prepareStatement(
-                     "select kategori_pengeluaran_harian.kode_kategori,kategori_pengeluaran_harian.nama_kategori,akun1.nm_rek as akun1,akun2.nm_rek as akun2 "+
-                     "from kategori_pengeluaran_harian inner join rekening as akun1 on kategori_pengeluaran_harian.kd_rek=akun1.kd_rek "+
-                     "inner join rekening as akun2 on kategori_pengeluaran_harian.kd_rek2=akun2.kd_rek order by kategori_pengeluaran_harian.nama_kategori"); 
+                "select kategori_pengeluaran_harian.kode_kategori,kategori_pengeluaran_harian.nama_kategori,akun1.nm_rek as akun1,akun2.nm_rek as akun2 from kategori_pengeluaran_harian "+
+                "inner join rekening as akun1 on kategori_pengeluaran_harian.kd_rek=akun1.kd_rek inner join rekening as akun2 on kategori_pengeluaran_harian.kd_rek2=akun2.kd_rek "+
+                (koneksiDB.KODEAKUNPENGELUARANHARIAN().equals("")?"":"where kategori_pengeluaran_harian.kd_rek2=?")+" order by kategori_pengeluaran_harian.nama_kategori");
             try {
+                if(!koneksiDB.KODEAKUNPENGELUARANHARIAN().equals("")){
+                    ps.setString(1,koneksiDB.KODEAKUNPENGELUARANHARIAN());
+                }
                 rs=ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
@@ -406,9 +409,9 @@ public final class DlgCariKategoriPengeluaran extends javax.swing.JDialog {
             
             if (iyembuilder.length() > 0) {
                 iyembuilder.setLength(iyembuilder.length() - 1);
+                fileWriter.write("{\"kategoripengeluaran\":["+iyembuilder+"]}");
+                fileWriter.flush();
             }
-            fileWriter.write("{\"kategoripengeluaran\":["+iyembuilder+"]}");
-            fileWriter.flush();
             
             fileWriter.close();
             iyembuilder=null;

@@ -222,7 +222,7 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1");
         ppPilihSemua.setBackground(new java.awt.Color(255, 255, 254));
-        ppPilihSemua.setFont(new java.awt.Font("Arial", 0, 11));
+        ppPilihSemua.setFont(new java.awt.Font("Arial", 0, 12));
         ppPilihSemua.setForeground(new java.awt.Color(50, 50, 50));
         ppPilihSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
         ppPilihSemua.setText("Pilih Semua");
@@ -236,7 +236,7 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
         jPopupMenu1.add(ppPilihSemua);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan.setFont(new java.awt.Font("Arial", 0, 11));
+        ppBersihkan.setFont(new java.awt.Font("Arial", 0, 12));
         ppBersihkan.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
         ppBersihkan.setText("Hilangkan Pilihan");
@@ -258,8 +258,8 @@ public final class SatuSehatKirimRMERawatInap extends javax.swing.JDialog {
             public void windowOpened(java.awt.event.WindowEvent evt) { formWindowOpened(evt); }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data RME Rawat Inap Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50)));
-        internalFrame1.setFont(new java.awt.Font("Arial", 0, 11));
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengiriman Data RME Rawat Inap Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50)));
+        internalFrame1.setFont(new java.awt.Font("Arial", 0, 12));
         internalFrame1.setName("internalFrame1");
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 

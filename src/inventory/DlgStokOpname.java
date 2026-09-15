@@ -466,7 +466,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.setName("Popup1"); // NOI18N
 
         MnKodeBarangDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKodeBarangDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKodeBarangDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKodeBarangDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnKodeBarangDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKodeBarangDesc.setText("Urutkan Berdasar Kode Barang Descending");
@@ -482,7 +482,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKodeBarangDesc);
 
         MnKodeBarangAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKodeBarangAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKodeBarangAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKodeBarangAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnKodeBarangAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKodeBarangAsc.setText("Urutkan Berdasar Kode Barang Ascending");
@@ -498,7 +498,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKodeBarangAsc);
 
         MnNamaBarangDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnNamaBarangDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnNamaBarangDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnNamaBarangDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnNamaBarangDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnNamaBarangDesc.setText("Urutkan Berdasar Nama Barang Descending");
@@ -514,7 +514,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnNamaBarangDesc);
 
         MnNamaBarangAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnNamaBarangAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnNamaBarangAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnNamaBarangAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnNamaBarangAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnNamaBarangAsc.setText("Urutkan Berdasar Nama Barang Ascending");
@@ -530,7 +530,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnNamaBarangAsc);
 
         MnKategoriAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKategoriAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKategoriAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKategoriAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnKategoriAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKategoriAsc.setText("Urutkan Berdasar Kategori Ascending");
@@ -546,7 +546,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKategoriAsc);
 
         MnKategoriDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKategoriDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKategoriDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKategoriDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnKategoriDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKategoriDesc.setText("Urutkan Berdasar Kategori Descending");
@@ -562,7 +562,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKategoriDesc);
 
         MnJenisDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnJenisDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnJenisDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnJenisDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnJenisDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnJenisDesc.setText("Urutkan Berdasar Jenis Descending");
@@ -578,7 +578,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnJenisDesc);
 
         MnJenisAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnJenisAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnJenisAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnJenisAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnJenisAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnJenisAsc.setText("Urutkan Berdasar Jenis Ascending");
@@ -594,7 +594,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnJenisAsc);
 
         MnGolonganDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnGolonganDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnGolonganDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnGolonganDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnGolonganDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGolonganDesc.setText("Urutkan Berdasar Golongan Descending");
@@ -610,7 +610,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnGolonganDesc);
 
         MnGolonganAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnGolonganAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnGolonganAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnGolonganAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnGolonganAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGolonganAsc.setText("Urutkan Berdasar Golongan Ascending");
@@ -626,7 +626,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnGolonganAsc);
 
         MnKodeLokasiOpnameDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKodeLokasiOpnameDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKodeLokasiOpnameDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKodeLokasiOpnameDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnKodeLokasiOpnameDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKodeLokasiOpnameDesc.setText("Urutkan Berdasar Kode Lokasi Opname Descending");
@@ -642,7 +642,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKodeLokasiOpnameDesc);
 
         MnKodeLokasiOpnameAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnKodeLokasiOpnameAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKodeLokasiOpnameAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnKodeLokasiOpnameAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnKodeLokasiOpnameAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKodeLokasiOpnameAsc.setText("Urutkan Berdasar Kode Lokasi Opname Ascending");
@@ -658,7 +658,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnKodeLokasiOpnameAsc);
 
         MnNamaLokasiOpnameDesc.setBackground(new java.awt.Color(255, 255, 254));
-        MnNamaLokasiOpnameDesc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnNamaLokasiOpnameDesc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnNamaLokasiOpnameDesc.setForeground(new java.awt.Color(50, 50, 50));
         MnNamaLokasiOpnameDesc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnNamaLokasiOpnameDesc.setText("Urutkan Berdasar Nama Lokasi Opname Descending");
@@ -674,7 +674,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
         Popup1.add(MnNamaLokasiOpnameDesc);
 
         MnNamaLokasiOpnameAsc.setBackground(new java.awt.Color(255, 255, 254));
-        MnNamaLokasiOpnameAsc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnNamaLokasiOpnameAsc.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnNamaLokasiOpnameAsc.setForeground(new java.awt.Color(50, 50, 50));
         MnNamaLokasiOpnameAsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnNamaLokasiOpnameAsc.setText("Urutkan Berdasar Nama Lokasi Opname Ascending");
@@ -698,7 +698,7 @@ public final class DlgStokOpname extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Stok Opname Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Stok Opname Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 

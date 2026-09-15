@@ -180,7 +180,7 @@ public class DlgCariPasien extends javax.swing.JDialog {
         tbPasien = new widget.Table();
         panelGlass9 = new widget.panelisi();
         jLabel11 = new widget.Label();
-        Carialamat = new widget.TextBox();
+        CArialamat = new widget.TextBox();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new widget.Label();
         TCari = new widget.TextBox();
@@ -204,7 +204,7 @@ public class DlgCariPasien extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -240,14 +240,14 @@ public class DlgCariPasien extends javax.swing.JDialog {
         jLabel11.setPreferredSize(new java.awt.Dimension(48, 23));
         panelGlass9.add(jLabel11);
 
-        Carialamat.setName("Carialamat"); // NOI18N
-        Carialamat.setPreferredSize(new java.awt.Dimension(160, 23));
-        Carialamat.addKeyListener(new java.awt.event.KeyAdapter() {
+        CArialamat.setName("CArialamat"); // NOI18N
+        CArialamat.setPreferredSize(new java.awt.Dimension(160, 23));
+        CArialamat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                CarialamatKeyPressed(evt);
+                CArialamatKeyPressed(evt);
             }
         });
-        panelGlass9.add(Carialamat);
+        panelGlass9.add(CArialamat);
 
         jSeparator5.setBackground(new java.awt.Color(220, 225, 215));
         jSeparator5.setForeground(new java.awt.Color(220, 225, 215));
@@ -380,7 +380,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
 private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
-        Carialamat.setText("");
+        CArialamat.setText("");
         runBackground(() -> tampil());
 }//GEN-LAST:event_BtnAllActionPerformed
 
@@ -426,7 +426,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
 }//GEN-LAST:event_BtnCariKeyPressed
 
-private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CarialamatKeyPressed
+private void CArialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CArialamatKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             BtnCariActionPerformed(null);
         }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -436,7 +436,7 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             BtnCariActionPerformed(null);
             BtnKeluar.requestFocus();
         }
-}//GEN-LAST:event_CarialamatKeyPressed
+}//GEN-LAST:event_CArialamatKeyPressed
 
     private void tbPasienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPasienKeyReleased
         if(tabMode.getRowCount()!=0){
@@ -521,7 +521,7 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Button BtnAll;
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
-    private widget.TextBox Carialamat;
+    private widget.TextBox CArialamat;
     private widget.TextBox Kd2;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
@@ -541,7 +541,7 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         Valid.tabelKosong(tabMode);
         try{
             if(cmbHlm.getSelectedItem().toString().equals("Semua")){
-                 if(Carialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
+                 if(CArialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
                       ps=koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.no_ktp, pasien.jk, "+
                            "pasien.tmp_lahir, pasien.tgl_lahir,pasien.nm_ibu, pasien.alamat,kelurahan.nm_kel,kecamatan.nm_kec,kabupaten.nm_kab,propinsi.nm_prop,"+
                            "pasien.gol_darah, pasien.pekerjaan,pasien.stts_nikah,pasien.agama,pasien.tgl_daftar,pasien.no_tlp,pasien.umur,"+
@@ -575,7 +575,7 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                            "or pasien.no_tlp like ?) order by pasien.no_rkm_medis desc");  
                  }    
             }else{
-                if(Carialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
+                if(CArialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
                     ps=koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.no_ktp, pasien.jk, "+
                            "pasien.tmp_lahir, pasien.tgl_lahir,pasien.nm_ibu, pasien.alamat,kelurahan.nm_kel,kecamatan.nm_kec,kabupaten.nm_kab,propinsi.nm_prop,"+
                            "pasien.gol_darah, pasien.pekerjaan,pasien.stts_nikah,pasien.agama,pasien.tgl_daftar,pasien.no_tlp,pasien.umur,"+
@@ -611,8 +611,8 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             }          
             try{
                 if(cmbHlm.getSelectedItem().toString().equals("Semua")){
-                    if(Carialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){}else{
-                        ps.setString(1,"%"+Carialamat.getText().trim()+"%");
+                    if(CArialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){}else{
+                        ps.setString(1,"%"+CArialamat.getText().trim()+"%");
                         ps.setString(2,"%"+TCari.getText().trim()+"%");
                         ps.setString(3, "%"+TCari.getText().trim()+"%");
                         ps.setString(4, "%"+TCari.getText().trim()+"%");
@@ -636,10 +636,10 @@ private void CarialamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         ps.setString(22, "%"+TCari.getText().trim()+"%");
                     }   
                 }else{
-                    if(Carialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
+                    if(CArialamat.getText().trim().equals("")&&TCari.getText().trim().equals("")){
                         ps.setInt(1,Integer.parseInt(cmbHlm.getSelectedItem().toString()));
                     }else{
-                        ps.setString(1,"%"+Carialamat.getText().trim()+"%");
+                        ps.setString(1,"%"+CArialamat.getText().trim()+"%");
                         ps.setString(2,"%"+TCari.getText().trim()+"%");
                         ps.setString(3, "%"+TCari.getText().trim()+"%");
                         ps.setString(4, "%"+TCari.getText().trim()+"%");

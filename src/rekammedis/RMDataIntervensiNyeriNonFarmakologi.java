@@ -181,7 +181,7 @@ public final class RMDataIntervensiNyeriNonFarmakologi extends javax.swing.JDial
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnFormulirIntervensiNyeriNonFarmakologi.setBackground(new java.awt.Color(255, 255, 254));
-        MnFormulirIntervensiNyeriNonFarmakologi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnFormulirIntervensiNyeriNonFarmakologi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnFormulirIntervensiNyeriNonFarmakologi.setForeground(new java.awt.Color(50, 50, 50));
         MnFormulirIntervensiNyeriNonFarmakologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnFormulirIntervensiNyeriNonFarmakologi.setText("Formulir Intervensi Nyeri Non Farmakologi");
@@ -212,7 +212,7 @@ public final class RMDataIntervensiNyeriNonFarmakologi extends javax.swing.JDial
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Intervensi Nyeri Non Farmakologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Intervensi Nyeri Non Farmakologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));

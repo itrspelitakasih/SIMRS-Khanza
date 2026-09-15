@@ -482,7 +482,7 @@ public final class ApotekBPJSInputResepObat extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Obat Apotek BPJS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Obat Apotek BPJS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -711,7 +711,7 @@ public final class ApotekBPJSInputResepObat extends javax.swing.JDialog {
         FormInput.add(NoResep);
         NoResep.setBounds(300, 70, 138, 23);
 
-        Iterasi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Iterasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         Iterasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0. Tanpa Iterasi", "1. Iterasi 1x", "2. Iterasi 2x" }));
         Iterasi.setName("Iterasi"); // NOI18N
         FormInput.add(Iterasi);
@@ -722,7 +722,7 @@ public final class ApotekBPJSInputResepObat extends javax.swing.JDialog {
         FormInput.add(jLabel16);
         jLabel16.setBounds(330, 130, 52, 23);
 
-        JnsObat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        JnsObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         JnsObat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1. Obat PRB", "2. Obat Kronis Belum Stabil", "3. Obat Kemoterapi" }));
         JnsObat.setSelectedIndex(1);
         JnsObat.setName("JnsObat"); // NOI18N
@@ -814,7 +814,7 @@ public final class ApotekBPJSInputResepObat extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
 
         Scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));

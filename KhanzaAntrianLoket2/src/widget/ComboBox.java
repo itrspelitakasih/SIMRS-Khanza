@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 public final class ComboBox extends JComboBox {
 
     public ComboBox(){
-        setFont(new java.awt.Font("Arial", 0, 11));
+        setFont(new java.awt.Font("Arial", 0, 12));
         setBackground(new Color(255,255,255));
         setForeground(new Color(70,70,70));
         setSize(WIDTH,23);
