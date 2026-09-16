@@ -23,6 +23,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -850,11 +853,11 @@ public final class SuratSakit extends javax.swing.JDialog {
     }//GEN-LAST:event_LamaSakitActionPerformed
 
     private void TanggalAkhirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanggalAkhirActionPerformed
-        // TODO add your handling code here:
+        hitungLamaSakit();
     }//GEN-LAST:event_TanggalAkhirActionPerformed
 
     private void TanggalAwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TanggalAwalActionPerformed
-        // TODO add your handling code here:
+        hitungLamaSakit();
     }//GEN-LAST:event_TanggalAwalActionPerformed
 
     private void TanggalAwalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalAwalKeyPressed
@@ -1085,13 +1088,38 @@ public final class SuratSakit extends javax.swing.JDialog {
         TNoRM.setText("");
         TPasien.setText("");
         NoSurat.setText("");
-        LamaSakit.setText("1 (Satu)");
         TanggalAwal.setDate(new Date());
         TanggalAkhir.setDate(new Date());
+        hitungLamaSakit();
 //        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(suratsakit.no_surat,3),signed)),0) from suratsakit where suratsakit.tanggalawal='"+Valid.SetTgl(TanggalAwal.getSelectedItem()+"")+"' ",
-//                "SKS"+TanggalAwal.getSelectedItem().toString().substring(6,10)+TanggalAwal.getSelectedItem().toString().substring(3,5)+TanggalAwal.getSelectedItem().toString().substring(0,2),3,NoSurat); 
+//                "SKS"+TanggalAwal.getSelectedItem().toString().substring(6,10)+TanggalAwal.getSelectedItem().toString().substring(3,5)+TanggalAwal.getSelectedItem().toString().substring(0,2),3,NoSurat);
 //        NoSurat.requestFocus();
         nomorSurat();
+    }
+
+    /**
+     * Menghitung Lama Sakit otomatis dari selisih TanggalAwal ke TanggalAkhir
+     * (inklusif, mis. 10 s.d 12 = 3 hari). Nilai hanya disarankan ke field
+     * LamaSakit sehingga user tetap bisa mengubahnya secara manual.
+     */
+    private void hitungLamaSakit() {
+        try {
+            Date tglAwal = TanggalAwal.getDate();
+            Date tglAkhir = TanggalAkhir.getDate();
+            if (tglAwal == null || tglAkhir == null) {
+                return;
+            }
+            LocalDate awal = tglAwal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate akhir = tglAkhir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            long hari = ChronoUnit.DAYS.between(awal, akhir) + 1;
+            if (hari > 0) {
+                String kata = Valid.terbilang((double) hari).trim();
+                kata = Character.toUpperCase(kata.charAt(0)) + kata.substring(1);
+                LamaSakit.setText(hari + " (" + kata + ")");
+            }
+        } catch (Exception e) {
+            System.out.println("Error menghitung lama sakit: " + e.getMessage());
+        }
     }
 
     private void nomorSurat() {
