@@ -143,4 +143,16 @@ public class koneksiDBWa {
         load();
         return prop.getProperty("GOWA_DEVICE_ID", "");
     }
+
+    // SETTING PANGGIL ANTREAN PWA E-PASIEN
+
+    public static String ANTRIAN_API_BASE_URL() {
+        load();
+        return prop.getProperty("ANTRIAN_API_BASE_URL", "").trim();
+    }
+
+    public static String ANTRIAN_API_TOKEN() {
+        load();
+        return prop.getProperty("ANTRIAN_API_TOKEN", "").trim();
+    }
 }
