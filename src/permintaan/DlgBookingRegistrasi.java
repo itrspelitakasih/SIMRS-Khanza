@@ -38,6 +38,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariDokter2;
 import simrskhanza.DlgCariCaraBayar;
+import wa.NotifRegistrasiPasien;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgCariPoli2;
 import simrskhanza.DlgPasien;
@@ -1251,11 +1252,17 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     Sequel.queryu2("update booking_registrasi set status='Terdaftar' where no_rkm_medis=? and tanggal_periksa=?",2,new String[]{
                         tbObat.getValueAt(i,3).toString(),tbObat.getValueAt(i,5).toString()
                     });
+                    // WA ke pasien (aktif bila NOTIFWAREGISTRASIPASIEN=yes di database-extra.xml, teks di wa/pesanWA.java).
+                    NotifRegistrasiPasien.kirim(no_rawat);
                 }
             }
         }
         runBackground(() ->tampil());
     }//GEN-LAST:event_BtnEditActionPerformed
+
+    private static String nz(String nilai,String pengganti){
+        return nilai==null?pengganti:nilai;
+    }
 
     private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
@@ -1724,16 +1731,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ps.setString(4,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
                 while(rs.next()){                    
+                    // nz(): kolom NULL diganti nilai aman. Satu baris tidak lengkap (mis. limit_reg NULL)
+                    // sebelumnya membuat seluruh tabel gagal tampil, dan tombol Registrasi memanggil toString() di tiap kolom.
                     tabMode.addRow(new Object[]{
-                        false,rs.getString("tanggal_booking"),rs.getString("jam_booking"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),
-                        rs.getString("tanggal_periksa"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),
-                        rs.getString("kd_poli"),rs.getString("nm_poli"),rs.getString("no_reg"),
-                        rs.getString("namakeluarga"),rs.getString("alamatpj"),rs.getString("kelurahanpj"),
-                        rs.getString("kecamatanpj"),rs.getString("kabupatenpj"),rs.getString("propinsipj"),
-                        rs.getString("keluarga"),rs.getString("kd_pj"),rs.getString("tahun"),rs.getString("bulan"),
-                        rs.getString("hari"),rs.getString("limit_reg").replaceAll("0","Offline").replace("1","Online"),
-                        rs.getString("status"),rs.getString("kd_pj"),rs.getString("png_jawab"),rs.getString("no_tlp")
-                    });                    
+                        false,nz(rs.getString("tanggal_booking"),""),nz(rs.getString("jam_booking"),""),nz(rs.getString("no_rkm_medis"),""),nz(rs.getString("nm_pasien"),""),
+                        nz(rs.getString("tanggal_periksa"),""),nz(rs.getString("kd_dokter"),""),nz(rs.getString("nm_dokter"),""),
+                        nz(rs.getString("kd_poli"),""),nz(rs.getString("nm_poli"),""),nz(rs.getString("no_reg"),""),
+                        nz(rs.getString("namakeluarga"),""),nz(rs.getString("alamatpj"),""),nz(rs.getString("kelurahanpj"),""),
+                        nz(rs.getString("kecamatanpj"),""),nz(rs.getString("kabupatenpj"),""),nz(rs.getString("propinsipj"),""),
+                        nz(rs.getString("keluarga"),""),nz(rs.getString("kd_pj"),""),nz(rs.getString("tahun"),"0"),nz(rs.getString("bulan"),"0"),
+                        nz(rs.getString("hari"),"0"),nz(rs.getString("limit_reg"),"0").replaceAll("0","Offline").replace("1","Online"),
+                        nz(rs.getString("status"),""),nz(rs.getString("kd_pj"),""),nz(rs.getString("png_jawab"),""),nz(rs.getString("no_tlp"),"")
+                    });
                 }
             } catch (Exception e) {
                 System.out.println("Notif : "+e);

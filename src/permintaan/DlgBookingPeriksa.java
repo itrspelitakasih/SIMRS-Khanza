@@ -11,6 +11,7 @@ import fungsi.WarnaTable;
 import fungsi.akses;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
+import fungsi.koneksiDBWa;
 import fungsi.sekuel;
 import fungsi.validasi;
 import java.awt.Color;
@@ -51,6 +52,8 @@ import simrskhanza.DlgKelurahan;
 import simrskhanza.DlgCariCaraBayar;
 import simrskhanza.DlgPropinsi;
 import wa.GoWAService;
+import wa.NotifRegistrasiPasien;
+import wa.pesanWA;
 
 /**
  *
@@ -67,6 +70,8 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
     private String pilihtampil="";
     private String alarm="",nol_detik,detik,pengurutan="",tahun="",bulan="",posisitahun="",awalantahun="",awalanbulan="";
     private String noWaAdminBooking="";
+    private final widget.CekBox ChkLangsungRegistrasi = new widget.CekBox();
+    private String noRawatBaru="";
     private boolean aktif=false;
     private int nilai_detik,i=0,bookingbaru=0,p_kelurahan=0,p_kecamatan=0,p_kabupaten=0,p_propinsi=0,kuota=0;
     private BackgroundMusic music;
@@ -82,7 +87,18 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
      */
     public DlgBookingPeriksa() {
         initComponents();
-        
+
+        // Ditambahkan lewat kode (bukan .form): saat Diterima, langsung buat reg_periksa + WA ke pasien.
+        ChkLangsungRegistrasi.setText("Langsung Registrasi (reg_periksa) & kirim WA ke pasien");
+        ChkLangsungRegistrasi.setBorder(null);
+        ChkLangsungRegistrasi.setSelected(true);
+        ChkLangsungRegistrasi.setFont(new java.awt.Font("Arial", 1, 11));
+        ChkLangsungRegistrasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        FormInput.add(ChkLangsungRegistrasi);
+        ChkLangsungRegistrasi.setBounds(120, 380, 400, 23);
+        FormInput.setPreferredSize(new Dimension(775, 410));
+        StatusBalas.addItemListener(e -> ChkLangsungRegistrasi.setEnabled(StatusBalas.getSelectedItem().toString().equals("Diterima")));
+
         PanelAccor.setVisible(false);
         
         Object[] row={"No.Booking","Tgl.Booking","Tgl.Periksa","Nama","Alamat","No.Telp","E-Mail","Kode Poli","Unit/Poli","Tambahan Pesan","Status"};
@@ -2177,9 +2193,10 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
                 
                 rs=ps.executeQuery();
                 while(rs.next()){
+                    // nz(): kolom NULL jadi "", karena getData() memanggil toString() di tiap kolom.
                     tabMode.addRow(new Object[]{
-                        rs.getString("no_booking"),rs.getString("tanggal_booking"),rs.getString("tanggal"),rs.getString("nama"),rs.getString("alamat"),rs.getString("no_telp"),
-                        rs.getString("email"),rs.getString("kd_poli"),rs.getString("nm_poli"),rs.getString("tambahan_pesan"),rs.getString("status")
+                        nz(rs.getString("no_booking")),nz(rs.getString("tanggal_booking")),nz(rs.getString("tanggal")),nz(rs.getString("nama")),nz(rs.getString("alamat")),nz(rs.getString("no_telp")),
+                        nz(rs.getString("email")),nz(rs.getString("kd_poli")),nz(rs.getString("nm_poli")),nz(rs.getString("tambahan_pesan")),nz(rs.getString("status"))
                     });
                 }
             } catch (Exception e) {
@@ -2245,7 +2262,8 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
      * (insert sukses) sehingga WA hanya terkirim sekali per booking.
      */
     private void cekDanKirimNotifWaBookingBaru(){
-        if(noWaAdminBooking==null || noWaAdminBooking.trim().equals("")){
+        if(noWaAdminBooking==null || noWaAdminBooking.trim().equals("")
+                || !koneksiDBWa.NOTIFWABOOKINGPERIKSA().equalsIgnoreCase("yes")){
             return;
         }
 
@@ -2263,11 +2281,13 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
                         String noBooking = rsCek.getString("no_booking");
                         boolean klaim = Sequel.menyimpantf2("booking_periksa_notifwa", "?,now()", 1, new String[]{noBooking});
                         if(klaim){
-                            String pesan = "Ada booking periksa baru dari website.\n\n"
-                                    + "Nama : "+rsCek.getString("nama")+"\n"
-                                    + "Poli : "+rsCek.getString("nm_poli")+"\n"
-                                    + "Tgl. Periksa : "+rsCek.getString("tanggal")+"\n"
-                                    + "No.Telp : "+rsCek.getString("no_telp");
+                            // Teks pesan diatur di wa/pesanWA.java.
+                            Map<String,String> dataPesan = new HashMap<>();
+                            dataPesan.put("nama", rsCek.getString("nama"));
+                            dataPesan.put("poli", rsCek.getString("nm_poli"));
+                            dataPesan.put("tanggal", rsCek.getString("tanggal"));
+                            dataPesan.put("notelp", rsCek.getString("no_telp"));
+                            String pesan = pesanWA.isi(pesanWA.BOOKING_PERIKSA_BARU, dataPesan);
                             String noWaTujuan = noWaAdminBooking;
                             new Thread(() -> GoWAService.kirimText(noWaTujuan, pesan)).start();
                         }
@@ -2281,6 +2301,10 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+
+    private static String nz(String nilai){
+        return nilai==null?"":nilai;
     }
 
     private void getData(){
@@ -2531,12 +2555,38 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
             sukses=Sequel.menyimpantf2("booking_periksa_balasan","?,?","Balasan Pesan",2,new String[]{NoBooking.getText(),BalasanPesan.getText()});
         }
         
+        // Langsung Registrasi: di transaksi yang sama, jadi ikut batal bila penyimpanan lain gagal.
+        // Gagal registrasi tidak membatalkan penerimaan booking; bisa diulang dari Booking Registrasi.
+        noRawatBaru="";
+        String gagalRegistrasi="";
+        if(sukses==true&&StatusBalas.getSelectedItem().toString().equals("Diterima")&&ChkLangsungRegistrasi.isSelected()){
+            java.sql.Savepoint sebelumRegistrasi=null;
+            try {
+                sebelumRegistrasi=koneksi.setSavepoint();
+                noRawatBaru=RegistrasiBooking.registrasi(koneksi,TNo.getText(),TanggalPeriksa.getText());
+                if(noRawatBaru.equals("")){
+                    gagalRegistrasi="booking registrasi tidak ditemukan / sudah diproses";
+                }
+            } catch (Exception e) {
+                noRawatBaru="";
+                gagalRegistrasi=e.getMessage();
+                System.out.println("Notif Langsung Registrasi : "+e);
+                try {
+                    if(sebelumRegistrasi!=null){
+                        koneksi.rollback(sebelumRegistrasi); // buang registrasi setengah jadi, penerimaan tetap disimpan
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Notif Rollback Registrasi : "+ex);
+                }
+            }
+        }
+
         if(sukses==true){
             Sequel.mengedit("booking_periksa","no_booking=?","status=?",2,new String[]{StatusBalas.getSelectedItem().toString(),NoBooking.getText()});
             if(ChkRM.isSelected()==true){
                 Sequel.queryu2("delete from set_no_rkm_medis");
-                Sequel.queryu2("insert into set_no_rkm_medis values(?)",1,new String[]{TNo.getText()});            
-            } 
+                Sequel.queryu2("insert into set_no_rkm_medis values(?)",1,new String[]{TNo.getText()});
+            }
             Sequel.Commit();
         }else{
             JOptionPane.showMessageDialog(null,"Terjadi kesalahan saat pemrosesan data, transaksi dibatalkan.\nPeriksa kembali data sebelum melanjutkan menyimpan..!!");
@@ -2544,6 +2594,12 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
         }
         Sequel.AutoComitTrue();
         if(sukses==true){
+            if(!noRawatBaru.equals("")){
+                NotifRegistrasiPasien.kirim(noRawatBaru);
+                JOptionPane.showMessageDialog(null,"Booking diterima. No.RM : "+TNo.getText()+"\nPasien langsung diregistrasi, No.Rawat : "+noRawatBaru);
+            }else if(!gagalRegistrasi.equals("")){
+                JOptionPane.showMessageDialog(null,"Booking diterima, tetapi registrasi belum dibuat : "+gagalRegistrasi+"\nSilakan registrasi dari menu Booking Registrasi.");
+            }
             runBackground(() ->tampil());
             BtnCloseBalasanActionPerformed(null);
         }

@@ -155,4 +155,24 @@ public class koneksiDBWa {
         load();
         return prop.getProperty("ANTRIAN_API_TOKEN", "").trim();
     }
+
+    // SETTING NOTIF WA BOOKING & REGISTRASI (teks pesan di wa/pesanWA.java)
+
+    /** yes/no: WA ke admin pendaftaran (NOWABOOKINGPERIKSA) saat ada booking periksa baru. Default yes. */
+    public static String NOTIFWABOOKINGPERIKSA() {
+        load();
+        return prop.getProperty("NOTIFWABOOKINGPERIKSA", "yes").trim();
+    }
+
+    /** yes/no: WA ke pasien saat booking diregistrasi (reg_periksa dibuat). Default yes. */
+    public static String NOTIFWAREGISTRASIPASIEN() {
+        load();
+        return prop.getProperty("NOTIFWAREGISTRASIPASIEN", "yes").trim();
+    }
+
+    /** Alamat portal pasien yang dicantumkan di WA registrasi, untuk cek status antrean. */
+    public static String URLPORTALPASIEN() {
+        load();
+        return prop.getProperty("URLPORTALPASIEN", "http://me.rspelitakasih.id/").trim();
+    }
 }

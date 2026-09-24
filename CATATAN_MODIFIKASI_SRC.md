@@ -1726,3 +1726,12 @@ Dibuat: 2026-09-10. Perbandingan seluruh folder `src/` proyek Dev terhadap sourc
 - ZISPenghasilanPenerimaDankes (form,java)
 - ZISTernakPenerimaDankes (form,java)
 - ZISUkuranRumahPenerimaDankes (form,java)
+
+## Modifikasi 2026-09-25 — Booking, registrasi langsung & WA pasien
+
+- **wa/pesanWA.java (baru)**: semua teks WA booking/registrasi dalam bentuk template (`{nama}`, `{poli}`, dst.). Ubah teks pesan di sini.
+- **wa/NotifRegistrasiPasien.java (baru)**: WA ke pasien (`pasien.no_tlp`) saat booking diregistrasi: poli, dokter, tanggal, no. antrean, ajakan login ke portal pasien. Pasien baru (kunjungan pertama) juga diberi No. RM.
+- **permintaan/RegistrasiBooking.java (baru)**: ubah satu `booking_registrasi` 'Belum' menjadi `reg_periksa` (isi kolom sama dengan tombol Registrasi DlgBookingRegistrasi) lalu tandai 'Terdaftar'. Memakai transaksi pemanggil.
+- **permintaan/DlgBookingRegistrasi.java**: `tampil()` aman dari kolom NULL (sebelumnya `limit_reg` NULL membuat tabel gagal tampil); tombol Registrasi mengirim WA ke pasien.
+- **permintaan/DlgBookingPeriksa.java**: `tampil()` aman dari kolom NULL (sebelumnya email/pesan NULL membuat tombol Jawab error); centang "Langsung Registrasi" di jendela Jawab (ditambahkan lewat kode di constructor, bukan .form) — saat Diterima langsung membuat `reg_periksa` di transaksi yang sama (savepoint, gagal registrasi tidak membatalkan penerimaan) lalu WA ke pasien; notif WA booking baru ke admin bisa dimatikan.
+- **fungsi/koneksiDBWa.java**: `NOTIFWABOOKINGPERIKSA()`, `NOTIFWAREGISTRASIPASIEN()` (yes/no, default yes) dan `URLPORTALPASIEN()` dari `setting/database-extra.xml`.
