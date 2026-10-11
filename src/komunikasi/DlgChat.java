@@ -156,11 +156,11 @@ public class DlgChat extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("::[ Chat Antar User ]::");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
             }
         });
 
@@ -210,6 +210,7 @@ public class DlgChat extends javax.swing.JDialog {
         BtnKirimGlobal.setMnemonic('I');
         BtnKirimGlobal.setText("Kirim");
         BtnKirimGlobal.setToolTipText("Alt+I, Enter");
+        BtnKirimGlobal.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnKirimGlobal.setName("BtnKirimGlobal"); // NOI18N
         BtnKirimGlobal.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnKirimGlobal.addActionListener(new java.awt.event.ActionListener() {
