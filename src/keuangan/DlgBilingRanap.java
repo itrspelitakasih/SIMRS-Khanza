@@ -127,7 +127,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "resep_pulang.no_rawat=? order by databarang.nama_brng",
             sqlpstambahanbiaya="select tambahan_biaya.nama_biaya, tambahan_biaya.besar_biaya from tambahan_biaya where tambahan_biaya.no_rawat=?  ",
             sqlpspotonganbiaya="select pengurangan_biaya.nama_pengurangan, pengurangan_biaya.besar_pengurangan from pengurangan_biaya where pengurangan_biaya.no_rawat=?  ",
-            sqlpsralandokter="select jns_perawatan.nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,count(rawat_jl_dr.kd_jenis_prw) as jml, "+
+            sqlpsralandokter="select left(concat(jns_perawatan.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,count(rawat_jl_dr.kd_jenis_prw) as jml, "+
                     "sum(rawat_jl_dr.biaya_rawat) as biaya,"+
                     "sum(rawat_jl_dr.bhp) as totalbhp,"+
                     "(sum(rawat_jl_dr.material)+sum(rawat_jl_dr.menejemen)+sum(rawat_jl_dr.kso)) as totalmaterial,"+
@@ -135,9 +135,10 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "sum(rawat_jl_dr.tarif_tindakandr) as totaltarif_tindakandr  "+
                     "from rawat_jl_dr inner join jns_perawatan inner join kategori_perawatan "+
                     "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "+
-                    "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori where "+
-                    "rawat_jl_dr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_dr.kd_jenis_prw",
-            sqlpsralandrpr="select jns_perawatan.nm_perawatan,rawat_jl_drpr.biaya_rawat as total_byrdr,count(rawat_jl_drpr.kd_jenis_prw) as jml, "+
+                    "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori "+
+                    "inner join dokter on rawat_jl_dr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_jl_dr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_dr.kd_jenis_prw,rawat_jl_dr.kd_dokter",
+            sqlpsralandrpr="select left(concat(jns_perawatan.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_jl_drpr.biaya_rawat as total_byrdr,count(rawat_jl_drpr.kd_jenis_prw) as jml, "+
                     "sum(rawat_jl_drpr.biaya_rawat) as biaya,"+
                     "sum(rawat_jl_drpr.bhp) as totalbhp,"+
                     "(sum(rawat_jl_drpr.material)+sum(rawat_jl_drpr.menejemen)+sum(rawat_jl_drpr.kso)) as totalmaterial,"+
@@ -146,9 +147,10 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "sum(rawat_jl_drpr.tarif_tindakandr) as totaltarif_tindakandr  "+
                     "from rawat_jl_drpr inner join jns_perawatan inner join kategori_perawatan "+
                     "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "+
-                    "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori where "+
-                    "rawat_jl_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_drpr.kd_jenis_prw",
-            sqlpsranapdokter="select jns_perawatan_inap.nm_perawatan,rawat_inap_dr.biaya_rawat as total_byrdr,count(rawat_inap_dr.kd_jenis_prw) as jml, "+
+                    "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori "+
+                    "inner join dokter on rawat_jl_drpr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_jl_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_drpr.kd_jenis_prw,rawat_jl_drpr.kd_dokter",
+            sqlpsranapdokter="select left(concat(jns_perawatan_inap.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_inap_dr.biaya_rawat as total_byrdr,count(rawat_inap_dr.kd_jenis_prw) as jml, "+
                     "sum(rawat_inap_dr.biaya_rawat) as biaya,"+
                     "sum(rawat_inap_dr.bhp) as totalbhp,"+
                     "(sum(rawat_inap_dr.material)+sum(rawat_inap_dr.menejemen)+sum(rawat_inap_dr.kso)) as totalmaterial,"+
@@ -156,9 +158,10 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "sum(rawat_inap_dr.tarif_tindakandr) as totaltarif_tindakandr "+
                     "from rawat_inap_dr inner join jns_perawatan_inap inner join kategori_perawatan "+
                     "on rawat_inap_dr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "+
-                    "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori where "+
-                    "rawat_inap_dr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_dr.kd_jenis_prw",
-            sqlpsranapdrpr="select jns_perawatan_inap.nm_perawatan,rawat_inap_drpr.biaya_rawat as total_byrdr,count(rawat_inap_drpr.kd_jenis_prw) as jml, "+
+                    "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori "+
+                    "inner join dokter on rawat_inap_dr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_inap_dr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_dr.kd_jenis_prw,rawat_inap_dr.kd_dokter",
+            sqlpsranapdrpr="select left(concat(jns_perawatan_inap.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_inap_drpr.biaya_rawat as total_byrdr,count(rawat_inap_drpr.kd_jenis_prw) as jml, "+
                     "sum(rawat_inap_drpr.biaya_rawat) as biaya,"+
                     "sum(rawat_inap_drpr.bhp) as totalbhp,"+
                     "(sum(rawat_inap_drpr.material)+sum(rawat_inap_drpr.menejemen)+sum(rawat_inap_drpr.kso)) as totalmaterial,"+
@@ -167,8 +170,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     "sum(rawat_inap_drpr.tarif_tindakandr) as totaltarif_tindakandr "+
                     "from rawat_inap_drpr inner join jns_perawatan_inap inner join kategori_perawatan "+
                     "on rawat_inap_drpr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "+
-                    "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori where "+
-                    "rawat_inap_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_drpr.kd_jenis_prw",
+                    "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori "+
+                    "inner join dokter on rawat_inap_drpr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_inap_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_drpr.kd_jenis_prw,rawat_inap_drpr.kd_dokter",
             sqlpsralanperawat="select jns_perawatan.nm_perawatan,jns_perawatan.total_byrpr,count(jns_perawatan.nm_perawatan) as jml, "+
                                            "jns_perawatan.total_byrpr*count(jns_perawatan.nm_perawatan) as biaya "+
                                            "from rawat_jl_pr inner join jns_perawatan inner join kategori_perawatan  "+
@@ -673,6 +677,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         BtnSimpan = new widget.Button();
         BtnNota = new widget.Button();
         BtnView = new widget.Button();
+        BtnUpdateTarifKelas = new widget.Button();
         BtnKeluar = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
@@ -713,7 +718,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnRawatJalan.setBackground(new java.awt.Color(255, 255, 254));
-        MnRawatJalan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnRawatJalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRawatJalan.setForeground(new java.awt.Color(50, 50, 50));
         MnRawatJalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRawatJalan.setText("Tagihan/Tindakan Rawat Jalan");
@@ -729,7 +734,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnRawatJalan);
 
         MnRawatInap.setBackground(new java.awt.Color(255, 255, 254));
-        MnRawatInap.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnRawatInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRawatInap.setForeground(new java.awt.Color(50, 50, 50));
         MnRawatInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRawatInap.setText("Tagihan/Tindakan Rawat Inap");
@@ -745,7 +750,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnRawatInap);
 
         MnInputObat.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnInputObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInputObat.setForeground(new java.awt.Color(50, 50, 50));
         MnInputObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputObat.setText("Input Pemberian Obat");
@@ -761,7 +766,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnInputObat);
 
         MnInputResepPulang.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputResepPulang.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnInputResepPulang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInputResepPulang.setForeground(new java.awt.Color(50, 50, 50));
         MnInputResepPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputResepPulang.setText("Input Resep Pulang");
@@ -777,7 +782,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnInputResepPulang);
 
         MnPeriksaLab.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaLab.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaLab.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaLab.setText("Input Periksa Lab PK");
@@ -793,7 +798,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPeriksaLab);
 
         MnPeriksaLabPA.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaLabPA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaLabPA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaLabPA.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaLabPA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaLabPA.setText("Input Periksa Lab PA");
@@ -809,7 +814,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPeriksaLabPA);
 
         MnPeriksaLabMB.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaLabMB.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaLabMB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaLabMB.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaLabMB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaLabMB.setText("Input Periksa Lab MB");
@@ -825,7 +830,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPeriksaLabMB);
 
         MnPeriksaRadiologi.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaRadiologi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaRadiologi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaRadiologi.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaRadiologi.setText("Input Periksa Radiologi");
@@ -841,7 +846,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPeriksaRadiologi);
 
         MnTagihanOperasi.setBackground(new java.awt.Color(255, 255, 254));
-        MnTagihanOperasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnTagihanOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTagihanOperasi.setForeground(new java.awt.Color(50, 50, 50));
         MnTagihanOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnTagihanOperasi.setText("Tagihan Operasi/VK");
@@ -857,7 +862,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnTagihanOperasi);
 
         MnTambahan.setBackground(new java.awt.Color(255, 255, 254));
-        MnTambahan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnTambahan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTambahan.setForeground(new java.awt.Color(50, 50, 50));
         MnTambahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnTambahan.setText("Tambahan Biaya");
@@ -873,7 +878,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnTambahan);
 
         MnPotongan.setBackground(new java.awt.Color(255, 255, 254));
-        MnPotongan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPotongan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPotongan.setForeground(new java.awt.Color(50, 50, 50));
         MnPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPotongan.setText("Potongan Biaya");
@@ -889,7 +894,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPotongan);
 
         MnUbahLamaInap.setBackground(new java.awt.Color(255, 255, 254));
-        MnUbahLamaInap.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnUbahLamaInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnUbahLamaInap.setForeground(new java.awt.Color(50, 50, 50));
         MnUbahLamaInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnUbahLamaInap.setText("Ubah Lama Inap");
@@ -905,7 +910,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnUbahLamaInap);
 
         MnObatLangsung.setBackground(new java.awt.Color(255, 255, 254));
-        MnObatLangsung.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnObatLangsung.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnObatLangsung.setForeground(new java.awt.Color(50, 50, 50));
         MnObatLangsung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnObatLangsung.setText("Tagihan BHP & Obat Langsung");
@@ -921,7 +926,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnObatLangsung);
 
         MnReturJual.setBackground(new java.awt.Color(255, 255, 254));
-        MnReturJual.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnReturJual.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnReturJual.setForeground(new java.awt.Color(50, 50, 50));
         MnReturJual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnReturJual.setText("Retur Obat/Barang/Alkes");
@@ -937,7 +942,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnReturJual);
 
         MnPenjab.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenjab.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPenjab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPenjab.setForeground(new java.awt.Color(50, 50, 50));
         MnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPenjab.setText("Ganti Jenis Bayar");
@@ -953,7 +958,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnPenjab);
 
         MnDataObat.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDataObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataObat.setForeground(new java.awt.Color(50, 50, 50));
         MnDataObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataObat.setText("Data Pemberian Obat");
@@ -969,7 +974,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnDataObat);
 
         MnDataResepPulang.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataResepPulang.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDataResepPulang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataResepPulang.setForeground(new java.awt.Color(50, 50, 50));
         MnDataResepPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataResepPulang.setText("Data Resep Pulang");
@@ -985,7 +990,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnDataResepPulang);
 
         MnCariPeriksaLab.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPeriksaLab.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariPeriksaLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariPeriksaLab.setForeground(new java.awt.Color(50, 50, 50));
         MnCariPeriksaLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariPeriksaLab.setText("Data Pemeriksaan Lab PK");
@@ -1001,7 +1006,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnCariPeriksaLab);
 
         MnCariPeriksaLabPA.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPeriksaLabPA.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariPeriksaLabPA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariPeriksaLabPA.setForeground(new java.awt.Color(50, 50, 50));
         MnCariPeriksaLabPA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariPeriksaLabPA.setText("Data Pemeriksaan Lab PA");
@@ -1017,7 +1022,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnCariPeriksaLabPA);
 
         MnCariPeriksaLabMB.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPeriksaLabMB.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariPeriksaLabMB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariPeriksaLabMB.setForeground(new java.awt.Color(50, 50, 50));
         MnCariPeriksaLabMB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariPeriksaLabMB.setText("Data Pemeriksaan Lab MB");
@@ -1033,7 +1038,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnCariPeriksaLabMB);
 
         MnCariRadiologi.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariRadiologi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariRadiologi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariRadiologi.setForeground(new java.awt.Color(50, 50, 50));
         MnCariRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariRadiologi.setText("Data Pemeriksaan Radiologi");
@@ -1052,7 +1057,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.setForeground(new java.awt.Color(50, 50, 50));
         MnBayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBayi.setText("Tagihan Bayi");
-        MnBayi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnBayi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBayi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBayi.setIconTextGap(5);
@@ -1060,7 +1065,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.setPreferredSize(new java.awt.Dimension(250, 28));
 
         MnRawatJalan1.setBackground(new java.awt.Color(255, 255, 254));
-        MnRawatJalan1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnRawatJalan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRawatJalan1.setForeground(new java.awt.Color(50, 50, 50));
         MnRawatJalan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRawatJalan1.setText("Tagihan/Tindakan Rawat Jalan");
@@ -1076,7 +1081,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnRawatJalan1);
 
         MnRawatInap1.setBackground(new java.awt.Color(255, 255, 254));
-        MnRawatInap1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnRawatInap1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRawatInap1.setForeground(new java.awt.Color(50, 50, 50));
         MnRawatInap1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRawatInap1.setText("Tagihan/Tindakan Rawat Inap");
@@ -1092,7 +1097,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnRawatInap1);
 
         MnInputObat1.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputObat1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnInputObat1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInputObat1.setForeground(new java.awt.Color(50, 50, 50));
         MnInputObat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputObat1.setText("Input Pemberian Obat");
@@ -1108,7 +1113,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnInputObat1);
 
         MnInputResepPulang1.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputResepPulang1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnInputResepPulang1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInputResepPulang1.setForeground(new java.awt.Color(50, 50, 50));
         MnInputResepPulang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputResepPulang1.setText("Input Resep Pulang");
@@ -1124,7 +1129,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnInputResepPulang1);
 
         MnPeriksaRadiologi1.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaRadiologi1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaRadiologi1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaRadiologi1.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaRadiologi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaRadiologi1.setText("Input Periksa Radiologi");
@@ -1140,7 +1145,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnPeriksaRadiologi1);
 
         MnPeriksaLab1.setBackground(new java.awt.Color(255, 255, 254));
-        MnPeriksaLab1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPeriksaLab1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPeriksaLab1.setForeground(new java.awt.Color(50, 50, 50));
         MnPeriksaLab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPeriksaLab1.setText("Input Periksa Lab");
@@ -1156,7 +1161,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnPeriksaLab1);
 
         MnTambahan1.setBackground(new java.awt.Color(255, 255, 254));
-        MnTambahan1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnTambahan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTambahan1.setForeground(new java.awt.Color(50, 50, 50));
         MnTambahan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnTambahan1.setText("Tambahan Biaya");
@@ -1172,7 +1177,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnTambahan1);
 
         MnPotongan1.setBackground(new java.awt.Color(255, 255, 254));
-        MnPotongan1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnPotongan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPotongan1.setForeground(new java.awt.Color(50, 50, 50));
         MnPotongan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPotongan1.setText("Potongan Biaya");
@@ -1188,7 +1193,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnPotongan1);
 
         MnObatLangsung1.setBackground(new java.awt.Color(255, 255, 254));
-        MnObatLangsung1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnObatLangsung1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnObatLangsung1.setForeground(new java.awt.Color(50, 50, 50));
         MnObatLangsung1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnObatLangsung1.setText("Tagihan BHP & Obat Langsung");
@@ -1204,7 +1209,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnObatLangsung1);
 
         MnDataObat1.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataObat1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDataObat1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataObat1.setForeground(new java.awt.Color(50, 50, 50));
         MnDataObat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataObat1.setText("Data Pemberian Obat");
@@ -1220,7 +1225,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnDataObat1);
 
         MnDataResepPulang1.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataResepPulang1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDataResepPulang1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataResepPulang1.setForeground(new java.awt.Color(50, 50, 50));
         MnDataResepPulang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataResepPulang1.setText("Data Resep Pulang");
@@ -1236,7 +1241,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnDataResepPulang1);
 
         MnReturJual1.setBackground(new java.awt.Color(255, 255, 254));
-        MnReturJual1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnReturJual1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnReturJual1.setForeground(new java.awt.Color(50, 50, 50));
         MnReturJual1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnReturJual1.setText("Retur Obat/Barang/Alkes");
@@ -1252,7 +1257,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnReturJual1);
 
         MnCariPeriksaLab1.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariPeriksaLab1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariPeriksaLab1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariPeriksaLab1.setForeground(new java.awt.Color(50, 50, 50));
         MnCariPeriksaLab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariPeriksaLab1.setText("Data Pemeriksaan Lab");
@@ -1268,7 +1273,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnBayi.add(MnCariPeriksaLab1);
 
         MnCariRadiologi1.setBackground(new java.awt.Color(255, 255, 254));
-        MnCariRadiologi1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCariRadiologi1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariRadiologi1.setForeground(new java.awt.Color(50, 50, 50));
         MnCariRadiologi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariRadiologi1.setText("Data Pemeriksaan Radiologi");
@@ -1286,7 +1291,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnBayi);
 
         MnHapusTagihan.setBackground(new java.awt.Color(255, 255, 254));
-        MnHapusTagihan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnHapusTagihan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHapusTagihan.setForeground(new java.awt.Color(50, 50, 50));
         MnHapusTagihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHapusTagihan.setText("Hapus Nota Salah");
@@ -1306,7 +1311,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput.setUndecorated(true);
         WindowInput.setResizable(false);
 
-        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Total BHP & Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Total BHP & Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(null);
 
@@ -1385,7 +1390,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput3.setUndecorated(true);
         WindowInput3.setResizable(false);
 
-        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tambah Biaya ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tambah Biaya ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1489,7 +1494,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput4.setUndecorated(true);
         WindowInput4.setResizable(false);
 
-        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Potongan Biaya ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Potongan Biaya ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame5.setName("internalFrame5"); // NOI18N
         internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1593,7 +1598,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput5.setUndecorated(true);
         WindowInput5.setResizable(false);
 
-        internalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Manual Lama Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Manual Lama Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame6.setName("internalFrame6"); // NOI18N
         internalFrame6.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1670,7 +1675,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput6.setUndecorated(true);
         WindowInput6.setResizable(false);
 
-        internalFrame7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ganti Jenis Bayar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ganti Jenis Bayar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame7.setName("internalFrame7"); // NOI18N
         internalFrame7.setLayout(null);
 
@@ -1740,7 +1745,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         PopupPiutang.setName("PopupPiutang"); // NOI18N
 
-        ppBersihkanPiutang.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppBersihkanPiutang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkanPiutang.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkanPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkanPiutang.setText("Bersihkan Piutang");
@@ -1757,7 +1762,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         PopupBayar.setName("PopupBayar"); // NOI18N
 
-        ppBersihkanBayar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppBersihkanBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkanBayar.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkanBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkanBayar.setText("Bersihkan Pembayaran");
@@ -1781,7 +1786,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Billing/Pembayaran Ranap Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Billing/Pembayaran Ranap Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1834,7 +1839,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-03-2026 08:16:53" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-10-2026 12:21:39" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1912,6 +1917,21 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
         panelGlass2.add(BtnView);
 
+        BtnUpdateTarifKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
+        BtnUpdateTarifKelas.setMnemonic('U');
+        BtnUpdateTarifKelas.setText("Update");
+        BtnUpdateTarifKelas.setToolTipText("Alt+U, update tarif Lab & Radiologi yang diinput saat Ralan/IGD sesuai kelas kamar inap");
+        BtnUpdateTarifKelas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnUpdateTarifKelas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnUpdateTarifKelas.setName("BtnUpdateTarifKelas"); // NOI18N
+        BtnUpdateTarifKelas.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnUpdateTarifKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUpdateTarifKelasActionPerformed(evt);
+            }
+        });
+        panelGlass2.add(BtnUpdateTarifKelas);
+
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -1937,7 +1957,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 255));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1987,7 +2007,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         TtlSemua.setEditable(false);
         TtlSemua.setText("0");
-        TtlSemua.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        TtlSemua.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         TtlSemua.setHighlighter(null);
         TtlSemua.setName("TtlSemua"); // NOI18N
         TtlSemua.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -2000,7 +2020,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         TKembali.setEditable(false);
         TKembali.setText("0");
-        TKembali.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        TKembali.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         TKembali.setHighlighter(null);
         TKembali.setName("TKembali"); // NOI18N
         panelBayar.add(TKembali);
@@ -2020,7 +2040,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         TagihanPPn.setEditable(false);
         TagihanPPn.setText("0");
-        TagihanPPn.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        TagihanPPn.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         TagihanPPn.setHighlighter(null);
         TagihanPPn.setName("TagihanPPn"); // NOI18N
         panelBayar.add(TagihanPPn);
@@ -2166,7 +2186,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel13.setBounds(0, 380, 110, 23);
 
         Deposit.setEditable(false);
-        Deposit.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        Deposit.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         Deposit.setName("Deposit"); // NOI18N
         panelBayar.add(Deposit);
         Deposit.setBounds(110, 380, 220, 23);
@@ -2273,7 +2293,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         panelPermintaan.setPreferredSize(new java.awt.Dimension(100, 137));
         panelPermintaan.setLayout(new java.awt.GridLayout(3, 0));
 
-        scrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "1. Permintaan Laborat : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        scrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "1. Permintaan Laborat : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         scrollPane6.setName("scrollPane6"); // NOI18N
 
         tbLab.setModel(new javax.swing.table.DefaultTableModel(
@@ -2293,7 +2313,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         panelPermintaan.add(scrollPane6);
 
-        scrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "2. Permintaan Radiologi : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        scrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "2. Permintaan Radiologi : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         scrollPane7.setName("scrollPane7"); // NOI18N
 
         tbRadiologi.setModel(new javax.swing.table.DefaultTableModel(
@@ -2313,7 +2333,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         panelPermintaan.add(scrollPane7);
 
-        scrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "3. Permintaan Resep : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        scrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)), "3. Permintaan Resep : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         scrollPane8.setName("scrollPane8"); // NOI18N
 
         tbApotek.setModel(new javax.swing.table.DefaultTableModel(
@@ -3880,13 +3900,16 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                 i = 0;
                 try{
-                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota 1", "Nota 2", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota 1");
+                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota Umum", "Nota PT", "Nota Asuransi", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota Umum");
                       switch (biaya) {
-                            case "Nota 1":
+                            case "Nota Umum":
                                   i=1;
                                   break;
-                            case "Nota 2":
+                            case "Nota PT":
                                   i=2;
+                                  break;
+                            case "Nota Asuransi":
+                                  i=6;
                                   break;
                             case "Kwitansi":
                                   i=3;
@@ -3908,9 +3931,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     if(i==1){
                         ttl=(ttlLaborat+ttlRadiologi+ttlOperasi+ttlObat+ttlRanap_Dokter+ttlRanap_Paramedis+ttlRalan_Dokter+
                                 ttlRalan_Paramedis+ttlTambahan+ttlKamar+ttlRegistrasi+ttlHarian+ttlRetur_Obat+ttlResep_Pulang+ttlService);
-                        Valid.panggilUrl("billing/LaporanBilling2.php?petugas="+akses.getkode().replaceAll(" ","_")+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                        Valid.panggilUrl("billing/LaporanBillingUmum.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==2){
-                        Valid.panggilUrl("billing/LaporanBilling3.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                        Valid.panggilUrl("billing/LaporanBillingPT.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                    }else if(i==6){
+                        Valid.panggilUrl("billing/LaporanBillingAS.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==3){
                         if(piutang>0){
                             Valid.panggilUrl("billing/LaporanBilling8.php?petugas="+akses.getkode().replaceAll(" ","_")+"&nonota="+Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "+
@@ -3922,7 +3947,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }else if(i==4){
                         ttl=(ttlLaborat+ttlRadiologi+ttlOperasi+ttlObat+ttlRanap_Dokter+ttlRanap_Paramedis+ttlRalan_Dokter+
                                 ttlRalan_Paramedis+ttlTambahan+ttlKamar+ttlRegistrasi+ttlHarian+ttlRetur_Obat+ttlResep_Pulang+ttlService);
-                        Valid.panggilUrl("billing/LaporanBilling2.php?petugas="+akses.getkode().replaceAll(" ","_")+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                        Valid.panggilUrl("billing/LaporanBillingUmum.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                         Valid.panggilUrl("billing/LaporanBilling3.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                         if(piutang>0){
                             Valid.panggilUrl("billing/LaporanBilling8.php?petugas="+akses.getkode().replaceAll(" ","_")+"&nonota="+Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "+
@@ -4750,6 +4775,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnSimpanUbahLama;
     private widget.Button BtnTambah;
     private widget.Button BtnTambahPotongan;
+    private widget.Button BtnUpdateTarifKelas;
     private widget.Button BtnView;
     private widget.CekBox ChkPiutang;
     private widget.Tanggal DTPTgl;
@@ -4868,8 +4894,34 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Table tbUbahLama;
     // End of variables declaration//GEN-END:variables
 
+    private void BtnUpdateTarifKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateTarifKelasActionPerformed
+        if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, pilih dulu pasien yang mau diupdate tarifnya...!!!");
+            return;
+        }
+        if(Sequel.cariRegistrasi(TNoRw.getText())>0){
+            JOptionPane.showMessageDialog(null,"Data billing sudah terverifikasi, tarif tidak boleh diubah.\nSilahkan hapus/batalkan nota terlebih dahulu..!!");
+            return;
+        }
+        UpdateTarifKelasLabRad update=new UpdateTarifKelasLabRad();
+        String kelaspasien=update.cariKelas(TNoRw.getText());
+        if(kelaspasien.equals("")){
+            JOptionPane.showMessageDialog(null,"Pasien belum memiliki data kamar inap, kelas tidak diketahui..!!");
+            return;
+        }
+        if(update.jumlahProses(TNoRw.getText())==0){
+            JOptionPane.showMessageDialog(null,"Tidak ada pemeriksaan Lab/Radiologi Ralan atau bertarif tanpa kelas untuk pasien ini..!!");
+            return;
+        }
+        DlgUpdateTarifKelas dlgupdate=new DlgUpdateTarifKelas(null,true);
+        dlgupdate.setData(TNoRw.getText(),TNoRM.getText()+" "+TPasien.getText(),false);
+        dlgupdate.setSetelahSelesai(() -> isRawat());
+        dlgupdate.setLocationRelativeTo(internalFrame1);
+        dlgupdate.setVisible(true);
+    }//GEN-LAST:event_BtnUpdateTarifKelasActionPerformed
+
     public void isRawat() {
-         try {      
+         try {
             pscekbilling=koneksi.prepareStatement(sqlpscekbilling);
             try {
                 pscekbilling.setString(1,TNoRw.getText());
@@ -5786,6 +5838,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnSimpan.setEnabled(akses.getbilling_ranap());
         BtnNota.setEnabled(akses.getbilling_ranap());
         BtnView.setEnabled(akses.getbilling_ranap());
+        BtnUpdateTarifKelas.setEnabled(akses.getbilling_ranap());
         MnRawatJalan.setEnabled(akses.gettindakan_ralan());
         MnRawatInap.setEnabled(akses.gettindakan_ranap());
         MnInputObat.setEnabled(akses.getberi_obat());
@@ -7223,7 +7276,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         psnota.executeUpdate();
                         Sequel.SimpanTrack("insert into nota_inap values('"+TNoRw.getText()+"','"+no_nota+"','"+Valid.SetTgl(DTPTgl.getSelectedItem()+"")+"','"+DTPTgl.getSelectedItem().toString().substring(11,19)+"','"+uangdeposit+"')");
                     }  catch (Exception ex) {
-                        System.out.println("Notifikasi Nota 2 : "+ex);
+                        System.out.println("Notifikasi Nota PT : "+ex);
                     } finally{
                         psnota.close();
                     }
@@ -7244,7 +7297,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     psnota.executeUpdate();
                     Sequel.SimpanTrack("insert into nota_inap values('"+TNoRw.getText()+"','"+no_nota+"','"+Valid.SetTgl(DTPTgl.getSelectedItem()+"")+"','"+DTPTgl.getSelectedItem().toString().substring(11,19)+"','"+uangdeposit+"')");
                 }  catch (Exception ex) {
-                    System.out.println("Notifikasi Nota 2 : "+ex);
+                    System.out.println("Notifikasi Nota PT : "+ex);
                 } finally{
                     psnota.close();
                 }
@@ -7277,7 +7330,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }
                     subttl=0;
                     try {
-                        if((!tbBilling.getValueAt(i,8).toString().equals("Laborat"))&&(!tbBilling.getValueAt(i,8).toString().equals("Obat"))&&(!tbBilling.getValueAt(i,8).toString().equals("Operasi"))){
+                        // Kolom tambahan Resep Pulang berisi embalase+tuslah yang sudah termasuk di total resep_pulang,
+                        // jadi tidak boleh disimpan lagi ke tambahan_biaya (tagihan jadi dobel)
+                        if((!tbBilling.getValueAt(i,8).toString().equals("Laborat"))&&(!tbBilling.getValueAt(i,8).toString().equals("Obat"))&&(!tbBilling.getValueAt(i,8).toString().equals("Operasi"))&&(!tbBilling.getValueAt(i,8).toString().equals("Resep Pulang"))){
                             subttl=Valid.SetAngka(tbBilling.getValueAt(i,6).toString());
                         }
                         psbiling.setDouble(9,Valid.SetAngka(tbBilling.getValueAt(i,6).toString()));                        

@@ -7475,6 +7475,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",norawat.getText())==0){
                                 Sequel.mengedit("reg_periksa","no_rawat='"+norawat.getText()+"'","status_lanjut='Ralan'");
                                 Sequel.mengedit("reg_periksa","no_rawat='"+norawat.getText()+"'","stts='Sudah'");
+                                kembalikanTarifLabRadTanpaKelas(norawat.getText());
                             }
                             if(tabMode.getRowCount()>1){
                                 try {
@@ -7492,6 +7493,19 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_MnHapusDataSalahActionPerformed
+
+    /** Pasien batal ranap: lab/radiologi Ranap dikembalikan ke tarif & kode tanpa kelas dan status Ralan. */
+    private void kembalikanTarifLabRadTanpaKelas(String norawat){
+        if(new keuangan.UpdateTarifKelasLabRad().jumlahRanap(norawat)==0){
+            return;
+        }
+        keuangan.DlgUpdateTarifKelas dlgupdate=new keuangan.DlgUpdateTarifKelas(null,true);
+        dlgupdate.setData(norawat,Sequel.cariIsi("select concat(pasien.no_rkm_medis,' ',pasien.nm_pasien) from reg_periksa inner join pasien "+
+                "on pasien.no_rkm_medis=reg_periksa.no_rkm_medis where reg_periksa.no_rawat=?",norawat),true);
+        dlgupdate.setLocationRelativeTo(internalFrame1);
+        dlgupdate.mulai(); // kamar sudah terhapus, pengembalian langsung dijalankan
+        dlgupdate.setVisible(true);
+    }
 
     private void MnStokObatPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnStokObatPasienActionPerformed
         if(tabMode.getRowCount()==0){
