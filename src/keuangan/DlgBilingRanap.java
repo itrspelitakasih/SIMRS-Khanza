@@ -4910,7 +4910,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             return;
         }
         if(update.jumlahProses(TNoRw.getText())==0){
-            JOptionPane.showMessageDialog(null,"Tidak ada pemeriksaan Lab/Radiologi Ralan atau bertarif tanpa kelas untuk pasien ini..!!");
+            JOptionPane.showMessageDialog(null,"Semua pemeriksaan Lab/Radiologi pasien ini sudah memakai tarif kelas kamar terakhir..!!");
             return;
         }
         DlgUpdateTarifKelas dlgupdate=new DlgUpdateTarifKelas(null,true);

@@ -41,9 +41,9 @@ public class UpdateTarifKelasLabRad {
     // id_template pada template kode tujuan yang namanya sama dengan item t1
     private static final String MAP_TEMPLATE=
         "(select min(x.id_template) from template_laboratorium x where x.kd_jenis_prw=? and x.Pemeriksaan=t1.Pemeriksaan)";
-    // ke kelas: pemeriksaan Ralan, atau Ranap yang masih memakai kode tanpa kelas
-    private static final String FILTER_KE_KELAS=
-        "(p.status='Ralan' or (p.status='Ranap' and j.kelas in ('-','Rawat Jalan')))";
+    // ke kelas: pemeriksaan Ralan, atau Ranap yang kodenya bukan kelas kamar terakhir (tanpa kelas,
+    // atau kelas kamar sebelumnya saat pasien pindah kelas). Parameter: kelas kamar terakhir.
+    private static final String FILTER_KE_KELAS="(p.status='Ralan' or j.kelas<>?)";
     // kembali tanpa kelas: semua pemeriksaan Ranap
     private static final String FILTER_KE_RALAN="p.status='Ranap'";
     private static final String KELAS_TANPA_KELAS="Rawat Jalan";
@@ -66,19 +66,20 @@ public class UpdateTarifKelasLabRad {
 
     /** Jumlah pemeriksaan yang akan diproses ke kelas kamar. */
     public int jumlahProses(String norawat){
-        return jumlah(norawat,FILTER_KE_KELAS);
+        String kelaskamar=cariKelas(norawat);
+        if(kelaskamar.equals("")){
+            return 0;
+        }
+        return Sequel.cariInteger("select count(*) from periksa_lab p inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw "+
+                    "where p.no_rawat=? and "+FILTER_KE_KELAS,norawat,kelaskamar)+
+               Sequel.cariInteger("select count(*) from periksa_radiologi p inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw "+
+                    "where p.no_rawat=? and "+FILTER_KE_KELAS,norawat,kelaskamar);
     }
 
     /** Jumlah pemeriksaan Ranap yang akan dikembalikan ke tanpa kelas. */
     public int jumlahRanap(String norawat){
-        return jumlah(norawat,FILTER_KE_RALAN);
-    }
-
-    private int jumlah(String norawat,String filter){
-        return Sequel.cariInteger("select count(*) from periksa_lab p inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw "+
-                    "where p.no_rawat=? and "+filter,norawat)+
-               Sequel.cariInteger("select count(*) from periksa_radiologi p inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw "+
-                    "where p.no_rawat=? and "+filter,norawat);
+        return Sequel.cariInteger("select count(*) from periksa_lab p where p.no_rawat=? and "+FILTER_KE_RALAN,norawat)+
+               Sequel.cariInteger("select count(*) from periksa_radiologi p where p.no_rawat=? and "+FILTER_KE_RALAN,norawat);
     }
 
     /** Satu baris pemeriksaan yang akan diproses. jenis: PK, PA, MB atau RAD. */
@@ -109,10 +110,109 @@ public class UpdateTarifKelasLabRad {
         return jalankan(norawat);
     }
 
-    private boolean jalankan(String norawat){
-        jmlLab=0;jmlRad=0;jmlKode=0;
-        tidakDitemukan.clear();kodeTetap.clear();dilewati.clear();templateDisalin.clear();
-        String filter=keRalan?FILTER_KE_RALAN:FILTER_KE_KELAS,statusBaru=keRalan?"Ralan":"Ranap";
+    /** Satu baris perbandingan tarif sekarang dengan tarif tujuan (untuk ditampilkan sebelum diproses). */
+    public static class Banding {
+        public String jenis="",waktu="",nama="",status="",kdSekarang="",kdTujuan="",keterangan="";
+        public double tarifSekarang,tarifTujuan;
+    }
+
+    /**
+     * Perkiraan hasil proses tanpa menyimpan apa pun: kode & tarif sekarang dibandingkan dengan
+     * kode & tarif tujuan. keRalan=false ke kelas kamar inap, true kembali ke tarif tanpa kelas.
+     */
+    public List<Banding> bandingkan(String norawat,boolean keRalan){
+        List<Banding> hasil=new ArrayList<>();
+        this.keRalan=keRalan;
+        kelas=keRalan?KELAS_TANPA_KELAS:cariKelas(norawat);
+        if(kelas.equals("")){
+            return hasil;
+        }
+        siapkanTarif(norawat);
+        String statusBaru=keRalan?"Ralan":"Ranap";
+        try {
+            for(Periksa p:bacaDaftar(norawat)){
+                Banding b=new Banding();
+                b.jenis=p.isLab()?"Lab "+p.jenis:"Radiologi";
+                b.waktu=p.tgl+" "+p.jam;
+                b.nama=p.nama;
+                b.status=p.status+" -> "+statusBaru;
+                b.kdSekarang=p.kd;
+                b.tarifSekarang=jumlahTarif(norawat,p)[0];
+                b.kdTujuan=p.kd;
+                b.tarifTujuan=b.tarifSekarang;
+                if(sudahDibayar(norawat,p)){
+                    b.status=p.status;
+                    b.keterangan="Dilewati, jasa medis sudah dibayar";
+                    hasil.add(b);
+                    continue;
+                }
+                String kdbaru=p.isLab()?
+                        cariTarif("jns_perawatan_lab",p.nama,caraBayarLab,"and jns_perawatan_lab.kategori='"+p.jenis+"' "):
+                        cariTarif("jns_perawatan_radiologi",p.nama,caraBayarRad,"");
+                if(kdbaru.equals("")){
+                    if(p.status.equals(statusBaru)){
+                        continue; // tidak ada yang berubah
+                    }
+                    b.keterangan="Tarif "+kelas+" tidak ditemukan, harga & kode tetap";
+                }else if(kdbaru.equals(p.kd)){
+                    b.tarifTujuan=perkiraanTarif(norawat,p,kdbaru,false);
+                    b.keterangan="Kode sudah sesuai";
+                }else{
+                    boolean salin=perluSalinTemplate(p,kdbaru);
+                    String alasan=alasanKodeTetap(norawat,p,kdbaru,salin);
+                    if(alasan.equals("")){
+                        b.kdTujuan=kdbaru;
+                        b.tarifTujuan=perkiraanTarif(norawat,p,kdbaru,salin);
+                        b.keterangan="Kode & tarif diganti"+(salin?", item template hasil lab disalin":"");
+                    }else{
+                        b.tarifTujuan=perkiraanTarif(norawat,p,kdbaru,false);
+                        b.keterangan="Kode tetap ("+alasan+"), tarif disesuaikan ke "+kdbaru;
+                    }
+                }
+                if(p.status.equals(statusBaru)&&b.kdTujuan.equals(b.kdSekarang)&&b.tarifTujuan==b.tarifSekarang){
+                    continue; // tidak ada yang berubah
+                }
+                hasil.add(b);
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi Banding Tarif Kelas : "+e);
+        }
+        return hasil;
+    }
+
+    /** Total tarif setelah proses: tarif master kode tujuan + tarif item hasil lab yang terpetakan. */
+    private double perkiraanTarif(String norawat,Periksa p,String kdbaru,boolean salin) throws Exception{
+        String master=p.isLab()?"jns_perawatan_lab":"jns_perawatan_radiologi";
+        double total;
+        try (PreparedStatement ps=koneksi.prepareStatement("select ifnull(total_byr,0) from "+master+" where kd_jenis_prw=?")){
+            ps.setString(1,kdbaru);
+            try (ResultSet rs=ps.executeQuery()){
+                total=rs.next()?rs.getDouble(1):0;
+            }
+        }
+        if(p.isLab()){
+            // item tanpa pasangan di template tujuan: tetap (atau ikut tarif item asal bila template akan disalin)
+            try (PreparedStatement ps=koneksi.prepareStatement(
+                    "select ifnull(sum(ifnull(t2.biaya_item,"+(salin?"t1.biaya_item":"d.biaya_item")+")),0) from detail_periksa_lab d "+
+                    "inner join template_laboratorium t1 on t1.id_template=d.id_template "+
+                    "left join template_laboratorium t2 on t2.id_template="+MAP_TEMPLATE+" "+
+                    "where d.no_rawat=? and d.kd_jenis_prw=? and d.tgl_periksa=? and d.jam=?")){
+                ps.setString(1,kdbaru);
+                ps.setString(2,norawat);
+                ps.setString(3,p.kd);
+                ps.setString(4,p.tgl);
+                ps.setString(5,p.jam);
+                try (ResultSet rs=ps.executeQuery()){
+                    if(rs.next()){
+                        total+=rs.getDouble(1);
+                    }
+                }
+            }
+        }
+        return total;
+    }
+
+    private void siapkanTarif(String norawat){
         kdpj=Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",norawat);
         caraBayarLab=Sequel.cariIsi("select set_tarif.cara_bayar_lab from set_tarif");
         caraBayarRad=Sequel.cariIsi("select set_tarif.cara_bayar_radiologi from set_tarif");
@@ -122,6 +222,47 @@ public class UpdateTarifKelasLabRad {
         if(caraBayarRad.equals("")){
             caraBayarRad="Yes";
         }
+    }
+
+    private List<Periksa> bacaDaftar(String norawat) throws Exception{
+        String filter=keRalan?FILTER_KE_RALAN:FILTER_KE_KELAS;
+        List<Periksa> daftar=new ArrayList<>();
+        try (PreparedStatement ps=koneksi.prepareStatement(
+                "select p.kategori,p.kd_jenis_prw,p.tgl_periksa,p.jam,j.nm_perawatan,p.status from periksa_lab p "+
+                "inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw where p.no_rawat=? and "+filter+
+                " order by p.tgl_periksa,p.jam")){
+            ps.setString(1,norawat);
+            if(!keRalan){
+                ps.setString(2,kelas);
+            }
+            try (ResultSet rs=ps.executeQuery()){
+                while(rs.next()){
+                    daftar.add(new Periksa(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
+                }
+            }
+        }
+        try (PreparedStatement ps=koneksi.prepareStatement(
+                "select p.kd_jenis_prw,p.tgl_periksa,p.jam,j.nm_perawatan,p.status from periksa_radiologi p "+
+                "inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw where p.no_rawat=? and "+filter+
+                " order by p.tgl_periksa,p.jam")){
+            ps.setString(1,norawat);
+            if(!keRalan){
+                ps.setString(2,kelas);
+            }
+            try (ResultSet rs=ps.executeQuery()){
+                while(rs.next()){
+                    daftar.add(new Periksa("RAD",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+                }
+            }
+        }
+        return daftar;
+    }
+
+    private boolean jalankan(String norawat){
+        jmlLab=0;jmlRad=0;jmlKode=0;
+        tidakDitemukan.clear();kodeTetap.clear();dilewati.clear();templateDisalin.clear();
+        String statusBaru=keRalan?"Ralan":"Ranap";
+        siapkanTarif(norawat);
         if(akuntindakanlaborat.getSuspen_Piutang_Laborat_Ralan().equals("")||akuntindakanlaborat.getSuspen_Piutang_Laborat_Ranap().equals("")){
             akuntindakanlaborat.SetAkunTindakanLaborat();
         }
@@ -134,28 +275,7 @@ public class UpdateTarifKelasLabRad {
                  lamaRadRalan=new double[8],lamaRadRanap=new double[8],baruRad=new double[8];
         Sequel.AutoComitFalse();
         try {
-            List<Periksa> daftar=new ArrayList<>();
-            try (PreparedStatement ps=koneksi.prepareStatement(
-                    "select p.kategori,p.kd_jenis_prw,p.tgl_periksa,p.jam,j.nm_perawatan,p.status from periksa_lab p "+
-                    "inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw where p.no_rawat=? and "+filter)){
-                ps.setString(1,norawat);
-                try (ResultSet rs=ps.executeQuery()){
-                    while(rs.next()){
-                        daftar.add(new Periksa(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
-                    }
-                }
-            }
-            try (PreparedStatement ps=koneksi.prepareStatement(
-                    "select p.kd_jenis_prw,p.tgl_periksa,p.jam,j.nm_perawatan,p.status from periksa_radiologi p "+
-                    "inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw where p.no_rawat=? and "+filter)){
-                ps.setString(1,norawat);
-                try (ResultSet rs=ps.executeQuery()){
-                    while(rs.next()){
-                        daftar.add(new Periksa("RAD",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
-                    }
-                }
-            }
-
+            List<Periksa> daftar=bacaDaftar(norawat);
             log("Ditemukan "+daftar.size()+" pemeriksaan untuk diproses ke "+(keRalan?"tarif tanpa kelas (Ralan)":"tarif "+kelas)+".");
             int ke=0;
             progres(0,daftar.size());
@@ -215,6 +335,12 @@ public class UpdateTarifKelasLabRad {
                 }
                 if(sukses){
                     double[] baru=jumlahTarif(norawat,p);
+                    if(p.status.equals(statusBaru)&&p.kd.equals(kdlama)&&java.util.Arrays.equals(lama,baru)){
+                        // mis. kode harus tetap & tarif sudah sama: tidak perlu jurnal koreksi bernilai nol
+                        log("    Tidak ada perubahan tarif.");
+                        progres(ke,daftar.size());
+                        continue;
+                    }
                     log("    Tarif "+rupiah(lama[0])+" -> "+rupiah(baru[0])+", status "+p.status+" -> "+statusBaru+".");
                     if(p.isLab()){
                         tambahKe(p.isRalan()?lamaLabRalan:lamaLabRanap,lama);tambahKe(baruLab,baru);jmlLab++;
@@ -315,9 +441,7 @@ public class UpdateTarifKelasLabRad {
      * urutan) agar hasil lab bisa ikut dipindah. Kode yang sudah punya item tidak disentuh.
      */
     private boolean salinTemplate(Periksa p,String kdbaru) throws Exception{
-        if(!(p.jenis.equals("PK")||p.jenis.equals("MB"))||
-                hitung("select count(*) from template_laboratorium where kd_jenis_prw=?",kdbaru)>0||
-                hitung("select count(*) from template_laboratorium where kd_jenis_prw=?",p.kd)==0){
+        if(!perluSalinTemplate(p,kdbaru)){
             return true;
         }
         boolean ok=Sequel.queryu2tf(
@@ -333,14 +457,26 @@ public class UpdateTarifKelasLabRad {
         return ok;
     }
 
+    /** Kode tujuan lab PK/MB belum punya item template sama sekali, sedangkan kode asal punya. */
+    private boolean perluSalinTemplate(Periksa p,String kdbaru) throws Exception{
+        return (p.jenis.equals("PK")||p.jenis.equals("MB"))&&
+                hitung("select count(*) from template_laboratorium where kd_jenis_prw=?",kdbaru)==0&&
+                hitung("select count(*) from template_laboratorium where kd_jenis_prw=?",p.kd)>0;
+    }
+
     /** Kosong jika kode aman diganti, selain itu alasan kode dipertahankan. */
     private String alasanKodeTetap(String norawat,Periksa p,String kdbaru) throws Exception{
+        return alasanKodeTetap(norawat,p,kdbaru,false);
+    }
+
+    /** templateAkanDisalin=true: cek kecocokan item dilewati karena item tujuan disalin dari kode asal. */
+    private String alasanKodeTetap(String norawat,Periksa p,String kdbaru,boolean templateAkanDisalin) throws Exception{
         String tabelPeriksa=p.isLab()?"periksa_lab":"periksa_radiologi";
         if(hitung("select count(*) from "+tabelPeriksa+" where no_rawat=? and kd_jenis_prw=? and tgl_periksa=? and jam=?",
                 norawat,kdbaru,p.tgl,p.jam)>0){
             return "kode "+kdbaru+" sudah ada di waktu periksa yang sama";
         }
-        if(p.isLab()&&!templateCocok(
+        if(p.isLab()&&!templateAkanDisalin&&!templateCocok(
                 "from detail_periksa_lab d inner join template_laboratorium t1 on t1.id_template=d.id_template "+
                 "where d.no_rawat=? and d.kd_jenis_prw=? and d.tgl_periksa=? and d.jam=?",kdbaru,norawat,p.kd,p.tgl,p.jam)){
             return "item hasil lab tidak semua ada di template "+kdbaru;
@@ -355,7 +491,7 @@ public class UpdateTarifKelasLabRad {
                 return "kode "+kdbaru+" sudah ada di permintaan "+noorder;
             }
             String detail=tabelDetailOrder(p);
-            if(detail!=null&&!templateCocok(
+            if(detail!=null&&!templateAkanDisalin&&!templateCocok(
                     "from "+detail+" d inner join template_laboratorium t1 on t1.id_template=d.id_template "+
                     "where d.noorder=? and d.kd_jenis_prw=?",kdbaru,noorder,p.kd)){
                 return "item permintaan "+noorder+" tidak semua ada di template "+kdbaru;

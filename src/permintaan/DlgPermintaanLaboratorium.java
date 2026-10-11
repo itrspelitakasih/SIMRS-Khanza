@@ -341,19 +341,23 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         TabRawat = new javax.swing.JTabbedPane();
         PanelCariUtama = new javax.swing.JPanel();
-        Scroll = new widget.ScrollPane();
-        tbDetailPK = new widget.Table();
+        SplitPK = new javax.swing.JSplitPane();
+        PanelPemeriksaanPK = new javax.swing.JPanel();
         panelGlass11 = new widget.panelisi();
-        jLabel6 = new widget.Label();
-        TCari = new widget.TextBox();
-        BtnCari2 = new widget.Button();
         jLabel11 = new widget.Label();
         Pemeriksaan = new widget.TextBox();
-        Scroll1 = new widget.ScrollPane();
-        tbTarifPK = new widget.Table();
         BtnCari1 = new widget.Button();
         jLabel4 = new widget.Label();
         TNoPermintaanPK = new widget.TextBox();
+        Scroll1 = new widget.ScrollPane();
+        tbTarifPK = new widget.Table();
+        PanelDetailPK = new javax.swing.JPanel();
+        panelDetailPK = new widget.panelisi();
+        jLabel6 = new widget.Label();
+        TCari = new widget.TextBox();
+        BtnCari2 = new widget.Button();
+        Scroll = new widget.ScrollPane();
+        tbDetailPK = new widget.Table();
         PanelCariUtama1 = new javax.swing.JPanel();
         panelGlass12 = new widget.panelisi();
         jLabel8 = new widget.Label();
@@ -380,19 +384,23 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         Scroll2 = new widget.ScrollPane();
         tbTarifPA = new widget.Table();
         PanelCariUtama2 = new javax.swing.JPanel();
-        Scroll3 = new widget.ScrollPane();
-        tbDetailMB = new widget.Table();
+        SplitMB = new javax.swing.JSplitPane();
+        PanelPemeriksaanMB = new javax.swing.JPanel();
         panelGlass13 = new widget.panelisi();
-        jLabel22 = new widget.Label();
-        TCariMB = new widget.TextBox();
-        BtnCariMB = new widget.Button();
         jLabel23 = new widget.Label();
         PemeriksaanMB = new widget.TextBox();
-        Scroll4 = new widget.ScrollPane();
-        tbTarifMB = new widget.Table();
         BtnCari5 = new widget.Button();
         jLabel24 = new widget.Label();
         TNoPermintaanMB = new widget.TextBox();
+        Scroll4 = new widget.ScrollPane();
+        tbTarifMB = new widget.Table();
+        PanelDetailMB = new javax.swing.JPanel();
+        panelDetailMB = new widget.panelisi();
+        jLabel22 = new widget.Label();
+        TCariMB = new widget.TextBox();
+        BtnCariMB = new widget.Button();
+        Scroll3 = new widget.ScrollPane();
+        tbDetailMB = new widget.Table();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -414,7 +422,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         Popup.setName("Popup"); // NOI18N
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Pilihan");
@@ -430,7 +438,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         Popup.add(ppBersihkan);
 
         ppSemua.setBackground(new java.awt.Color(255, 255, 254));
-        ppSemua.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppSemua.setForeground(new java.awt.Color(50, 50, 50));
         ppSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua.setText("Pilih Semua");
@@ -460,7 +468,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         PopupMB.setName("PopupMB"); // NOI18N
 
         ppBersihkan1.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppBersihkan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan1.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan1.setText("Bersihkan Pilihan");
@@ -476,7 +484,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         PopupMB.add(ppBersihkan1);
 
         ppSemua1.setBackground(new java.awt.Color(255, 255, 254));
-        ppSemua1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppSemua1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppSemua1.setForeground(new java.awt.Color(50, 50, 50));
         ppSemua1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua1.setText("Pilih Semua");
@@ -500,7 +508,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Data Permintaan Laboratorium ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Data Permintaan Laboratorium ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -568,7 +576,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel9.setBounds(0, 40, 92, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-10-2026" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -602,7 +610,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
 
         ChkJln.setBorder(null);
         ChkJln.setSelected(true);
-        ChkJln.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        ChkJln.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ChkJln.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkJln.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ChkJln.setName("ChkJln"); // NOI18N
@@ -678,7 +686,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -691,37 +699,108 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         PanelCariUtama.setPreferredSize(new java.awt.Dimension(100, 143));
         PanelCariUtama.setLayout(new java.awt.BorderLayout());
 
-        Scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Scroll.setComponentPopupMenu(Popup);
-        Scroll.setName("Scroll"); // NOI18N
-        Scroll.setOpaque(true);
+        SplitPK.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        SplitPK.setDividerSize(6);
+        SplitPK.setResizeWeight(0.5);
+        SplitPK.setName("SplitPK"); // NOI18N
+        SplitPK.setOpaque(false);
 
-        tbDetailPK.setComponentPopupMenu(Popup);
-        tbDetailPK.setName("tbDetailPK"); // NOI18N
-        Scroll.setViewportView(tbDetailPK);
-
-        PanelCariUtama.add(Scroll, java.awt.BorderLayout.CENTER);
+        PanelPemeriksaanPK.setName("PanelPemeriksaanPK"); // NOI18N
+        PanelPemeriksaanPK.setOpaque(false);
+        PanelPemeriksaanPK.setPreferredSize(new java.awt.Dimension(450, 100));
+        PanelPemeriksaanPK.setLayout(new java.awt.BorderLayout());
 
         panelGlass11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         panelGlass11.setName("panelGlass11"); // NOI18N
-        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 157));
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 43));
         panelGlass11.setLayout(null);
+
+        jLabel11.setText("Pemeriksaan :");
+        jLabel11.setName("jLabel11"); // NOI18N
+        panelGlass11.add(jLabel11);
+        jLabel11.setBounds(10, 10, 82, 23);
+
+        Pemeriksaan.setHighlighter(null);
+        Pemeriksaan.setName("Pemeriksaan"); // NOI18N
+        Pemeriksaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PemeriksaanKeyPressed(evt);
+            }
+        });
+        panelGlass11.add(Pemeriksaan);
+        Pemeriksaan.setBounds(100, 10, 155, 23);
+
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
+        BtnCari1.setToolTipText("Alt+1");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnCari1);
+        BtnCari1.setBounds(260, 10, 28, 23);
+
+        jLabel4.setText("No.Permintaan :");
+        jLabel4.setName("jLabel4"); // NOI18N
+        panelGlass11.add(jLabel4);
+        jLabel4.setBounds(290, 10, 87, 23);
+
+        TNoPermintaanPK.setHighlighter(null);
+        TNoPermintaanPK.setName("TNoPermintaanPK"); // NOI18N
+        TNoPermintaanPK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNoPermintaanPKKeyPressed(evt);
+            }
+        });
+        panelGlass11.add(TNoPermintaanPK);
+        TNoPermintaanPK.setBounds(380, 10, 120, 23);
+
+        PanelPemeriksaanPK.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
+
+        Scroll1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        tbTarifPK.setName("tbTarifPK"); // NOI18N
+        tbTarifPK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTarifPKMouseClicked(evt);
+            }
+        });
+        Scroll1.setViewportView(tbTarifPK);
+
+        PanelPemeriksaanPK.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        SplitPK.setLeftComponent(PanelPemeriksaanPK);
+
+        PanelDetailPK.setName("PanelDetailPK"); // NOI18N
+        PanelDetailPK.setOpaque(false);
+        PanelDetailPK.setPreferredSize(new java.awt.Dimension(450, 100));
+        PanelDetailPK.setLayout(new java.awt.BorderLayout());
+
+        panelDetailPK.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        panelDetailPK.setName("panelDetailPK"); // NOI18N
+        panelDetailPK.setPreferredSize(new java.awt.Dimension(44, 43));
+        panelDetailPK.setLayout(null);
 
         jLabel6.setText("Detail Pemeriksaan :");
         jLabel6.setName("jLabel6"); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(110, 23));
-        panelGlass11.add(jLabel6);
-        jLabel6.setBounds(4, 130, 110, 23);
+        panelDetailPK.add(jLabel6);
+        jLabel6.setBounds(10, 10, 112, 23);
 
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(625, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(300, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
             }
         });
-        panelGlass11.add(TCari);
-        TCari.setBounds(117, 130, 623, 23);
+        panelDetailPK.add(TCari);
+        TCari.setBounds(130, 10, 300, 23);
 
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari2.setMnemonic('4');
@@ -738,67 +817,25 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
                 BtnCari2KeyPressed(evt);
             }
         });
-        panelGlass11.add(BtnCari2);
-        BtnCari2.setBounds(744, 130, 28, 23);
+        panelDetailPK.add(BtnCari2);
+        BtnCari2.setBounds(430, 10, 28, 23);
 
-        jLabel11.setText("Pemeriksaan :");
-        jLabel11.setName("jLabel11"); // NOI18N
-        panelGlass11.add(jLabel11);
-        jLabel11.setBounds(0, 10, 82, 23);
+        PanelDetailPK.add(panelDetailPK, java.awt.BorderLayout.PAGE_START);
 
-        Pemeriksaan.setHighlighter(null);
-        Pemeriksaan.setName("Pemeriksaan"); // NOI18N
-        Pemeriksaan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                PemeriksaanKeyPressed(evt);
-            }
-        });
-        panelGlass11.add(Pemeriksaan);
-        Pemeriksaan.setBounds(85, 10, 420, 23);
+        Scroll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        Scroll.setComponentPopupMenu(Popup);
+        Scroll.setName("Scroll"); // NOI18N
+        Scroll.setOpaque(true);
 
-        Scroll1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
-        Scroll1.setName("Scroll1"); // NOI18N
+        tbDetailPK.setComponentPopupMenu(Popup);
+        tbDetailPK.setName("tbDetailPK"); // NOI18N
+        Scroll.setViewportView(tbDetailPK);
 
-        tbTarifPK.setName("tbTarifPK"); // NOI18N
-        tbTarifPK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTarifPKMouseClicked(evt);
-            }
-        });
-        Scroll1.setViewportView(tbTarifPK);
+        PanelDetailPK.add(Scroll, java.awt.BorderLayout.CENTER);
 
-        panelGlass11.add(Scroll1);
-        Scroll1.setBounds(85, 35, 687, 90);
+        SplitPK.setRightComponent(PanelDetailPK);
 
-        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
-        BtnCari1.setToolTipText("Alt+1");
-        BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCari1ActionPerformed(evt);
-            }
-        });
-        panelGlass11.add(BtnCari1);
-        BtnCari1.setBounds(507, 10, 28, 23);
-
-        jLabel4.setText("No.Permintaan :");
-        jLabel4.setName("jLabel4"); // NOI18N
-        panelGlass11.add(jLabel4);
-        jLabel4.setBounds(541, 10, 98, 23);
-
-        TNoPermintaanPK.setHighlighter(null);
-        TNoPermintaanPK.setName("TNoPermintaanPK"); // NOI18N
-        TNoPermintaanPK.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoPermintaanPKKeyPressed(evt);
-            }
-        });
-        panelGlass11.add(TNoPermintaanPK);
-        TNoPermintaanPK.setBounds(642, 10, 130, 23);
-
-        PanelCariUtama.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
+        PanelCariUtama.add(SplitPK, java.awt.BorderLayout.CENTER);
 
         TabRawat.addTab("Patologi Klinis", PanelCariUtama);
 
@@ -912,7 +949,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel17.setBounds(235, 10, 120, 23);
 
         TanggalPA.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
+        TanggalPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-10-2026" }));
         TanggalPA.setDisplayFormat("dd-MM-yyyy");
         TanggalPA.setName("TanggalPA"); // NOI18N
         TanggalPA.setOpaque(false);
@@ -955,7 +992,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         DiagnosaPA.setBounds(432, 100, 340, 23);
 
         TanggalBahan.setForeground(new java.awt.Color(50, 70, 50));
-        TanggalBahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2026" }));
+        TanggalBahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-10-2026" }));
         TanggalBahan.setDisplayFormat("dd-MM-yyyy");
         TanggalBahan.setName("TanggalBahan"); // NOI18N
         TanggalBahan.setOpaque(false);
@@ -1007,37 +1044,108 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         PanelCariUtama2.setPreferredSize(new java.awt.Dimension(100, 143));
         PanelCariUtama2.setLayout(new java.awt.BorderLayout());
 
-        Scroll3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Scroll3.setComponentPopupMenu(PopupMB);
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
+        SplitMB.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        SplitMB.setDividerSize(6);
+        SplitMB.setResizeWeight(0.5);
+        SplitMB.setName("SplitMB"); // NOI18N
+        SplitMB.setOpaque(false);
 
-        tbDetailMB.setComponentPopupMenu(PopupMB);
-        tbDetailMB.setName("tbDetailMB"); // NOI18N
-        Scroll3.setViewportView(tbDetailMB);
-
-        PanelCariUtama2.add(Scroll3, java.awt.BorderLayout.CENTER);
+        PanelPemeriksaanMB.setName("PanelPemeriksaanMB"); // NOI18N
+        PanelPemeriksaanMB.setOpaque(false);
+        PanelPemeriksaanMB.setPreferredSize(new java.awt.Dimension(450, 100));
+        PanelPemeriksaanMB.setLayout(new java.awt.BorderLayout());
 
         panelGlass13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         panelGlass13.setName("panelGlass13"); // NOI18N
-        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 157));
+        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 43));
         panelGlass13.setLayout(null);
+
+        jLabel23.setText("Pemeriksaan :");
+        jLabel23.setName("jLabel23"); // NOI18N
+        panelGlass13.add(jLabel23);
+        jLabel23.setBounds(0, 10, 82, 23);
+
+        PemeriksaanMB.setHighlighter(null);
+        PemeriksaanMB.setName("PemeriksaanMB"); // NOI18N
+        PemeriksaanMB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PemeriksaanMBKeyPressed(evt);
+            }
+        });
+        panelGlass13.add(PemeriksaanMB);
+        PemeriksaanMB.setBounds(85, 10, 155, 23);
+
+        BtnCari5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari5.setMnemonic('1');
+        BtnCari5.setToolTipText("Alt+1");
+        BtnCari5.setName("BtnCari5"); // NOI18N
+        BtnCari5.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari5ActionPerformed(evt);
+            }
+        });
+        panelGlass13.add(BtnCari5);
+        BtnCari5.setBounds(242, 10, 28, 23);
+
+        jLabel24.setText("No.Permintaan :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass13.add(jLabel24);
+        jLabel24.setBounds(273, 10, 87, 23);
+
+        TNoPermintaanMB.setHighlighter(null);
+        TNoPermintaanMB.setName("TNoPermintaanMB"); // NOI18N
+        TNoPermintaanMB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TNoPermintaanMBKeyPressed(evt);
+            }
+        });
+        panelGlass13.add(TNoPermintaanMB);
+        TNoPermintaanMB.setBounds(363, 10, 120, 23);
+
+        PanelPemeriksaanMB.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+
+        tbTarifMB.setName("tbTarifMB"); // NOI18N
+        tbTarifMB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTarifMBMouseClicked(evt);
+            }
+        });
+        Scroll4.setViewportView(tbTarifMB);
+
+        PanelPemeriksaanMB.add(Scroll4, java.awt.BorderLayout.CENTER);
+
+        SplitMB.setLeftComponent(PanelPemeriksaanMB);
+
+        PanelDetailMB.setName("PanelDetailMB"); // NOI18N
+        PanelDetailMB.setOpaque(false);
+        PanelDetailMB.setPreferredSize(new java.awt.Dimension(450, 100));
+        PanelDetailMB.setLayout(new java.awt.BorderLayout());
+
+        panelDetailMB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        panelDetailMB.setName("panelDetailMB"); // NOI18N
+        panelDetailMB.setPreferredSize(new java.awt.Dimension(44, 43));
+        panelDetailMB.setLayout(null);
 
         jLabel22.setText("Detail Pemeriksaan :");
         jLabel22.setName("jLabel22"); // NOI18N
         jLabel22.setPreferredSize(new java.awt.Dimension(110, 23));
-        panelGlass13.add(jLabel22);
-        jLabel22.setBounds(4, 130, 110, 23);
+        panelDetailMB.add(jLabel22);
+        jLabel22.setBounds(0, 10, 112, 23);
 
         TCariMB.setName("TCariMB"); // NOI18N
-        TCariMB.setPreferredSize(new java.awt.Dimension(625, 23));
+        TCariMB.setPreferredSize(new java.awt.Dimension(300, 23));
         TCariMB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariMBKeyPressed(evt);
             }
         });
-        panelGlass13.add(TCariMB);
-        TCariMB.setBounds(117, 130, 623, 23);
+        panelDetailMB.add(TCariMB);
+        TCariMB.setBounds(115, 10, 300, 23);
 
         BtnCariMB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCariMB.setMnemonic('4');
@@ -1054,67 +1162,25 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
                 BtnCariMBKeyPressed(evt);
             }
         });
-        panelGlass13.add(BtnCariMB);
-        BtnCariMB.setBounds(744, 130, 28, 23);
+        panelDetailMB.add(BtnCariMB);
+        BtnCariMB.setBounds(418, 10, 28, 23);
 
-        jLabel23.setText("Pemeriksaan :");
-        jLabel23.setName("jLabel23"); // NOI18N
-        panelGlass13.add(jLabel23);
-        jLabel23.setBounds(0, 10, 82, 23);
+        PanelDetailMB.add(panelDetailMB, java.awt.BorderLayout.PAGE_START);
 
-        PemeriksaanMB.setHighlighter(null);
-        PemeriksaanMB.setName("PemeriksaanMB"); // NOI18N
-        PemeriksaanMB.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                PemeriksaanMBKeyPressed(evt);
-            }
-        });
-        panelGlass13.add(PemeriksaanMB);
-        PemeriksaanMB.setBounds(85, 10, 420, 23);
+        Scroll3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        Scroll3.setComponentPopupMenu(PopupMB);
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
 
-        Scroll4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
-        Scroll4.setName("Scroll4"); // NOI18N
+        tbDetailMB.setComponentPopupMenu(PopupMB);
+        tbDetailMB.setName("tbDetailMB"); // NOI18N
+        Scroll3.setViewportView(tbDetailMB);
 
-        tbTarifMB.setName("tbTarifMB"); // NOI18N
-        tbTarifMB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTarifMBMouseClicked(evt);
-            }
-        });
-        Scroll4.setViewportView(tbTarifMB);
+        PanelDetailMB.add(Scroll3, java.awt.BorderLayout.CENTER);
 
-        panelGlass13.add(Scroll4);
-        Scroll4.setBounds(85, 35, 687, 90);
+        SplitMB.setRightComponent(PanelDetailMB);
 
-        BtnCari5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari5.setMnemonic('1');
-        BtnCari5.setToolTipText("Alt+1");
-        BtnCari5.setName("BtnCari5"); // NOI18N
-        BtnCari5.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnCari5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCari5ActionPerformed(evt);
-            }
-        });
-        panelGlass13.add(BtnCari5);
-        BtnCari5.setBounds(507, 10, 28, 23);
-
-        jLabel24.setText("No.Permintaan :");
-        jLabel24.setName("jLabel24"); // NOI18N
-        panelGlass13.add(jLabel24);
-        jLabel24.setBounds(541, 10, 98, 23);
-
-        TNoPermintaanMB.setHighlighter(null);
-        TNoPermintaanMB.setName("TNoPermintaanMB"); // NOI18N
-        TNoPermintaanMB.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoPermintaanMBKeyPressed(evt);
-            }
-        });
-        panelGlass13.add(TNoPermintaanMB);
-        TNoPermintaanMB.setBounds(642, 10, 130, 23);
-
-        PanelCariUtama2.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
+        PanelCariUtama2.add(SplitMB, java.awt.BorderLayout.CENTER);
 
         TabRawat.addTab("Mikrobiologi & Bio Molekuler", PanelCariUtama2);
 
@@ -1983,7 +2049,11 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel PanelCariUtama;
     private javax.swing.JPanel PanelCariUtama1;
     private javax.swing.JPanel PanelCariUtama2;
+    private javax.swing.JPanel PanelDetailMB;
+    private javax.swing.JPanel PanelDetailPK;
     private widget.PanelBiasa PanelInput;
+    private javax.swing.JPanel PanelPemeriksaanMB;
+    private javax.swing.JPanel PanelPemeriksaanPK;
     private widget.TextBox Pemeriksaan;
     private widget.TextBox PemeriksaanMB;
     private widget.TextBox PemeriksaanPA;
@@ -1995,6 +2065,8 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
+    private javax.swing.JSplitPane SplitMB;
+    private javax.swing.JSplitPane SplitPK;
     private widget.TextBox TCari;
     private widget.TextBox TCariMB;
     private widget.TextBox TNoPermintaanMB;
@@ -2033,6 +2105,8 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
+    private widget.panelisi panelDetailMB;
+    private widget.panelisi panelDetailPK;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;

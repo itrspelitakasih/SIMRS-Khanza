@@ -1,8 +1,14 @@
 package keuangan;
 
+import fungsi.WarnaTable;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Popup proses penyesuaian tarif Lab & Radiologi pasien: ke tarif kelas kamar inap
@@ -14,6 +20,7 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
     private String norawat="";
     private boolean keRalan=false,berjalan=false;
     private Runnable setelahSelesai;
+    private final DefaultTableModel tabMode;
 
     /** Creates new form DlgUpdateTarifKelas
      * @param parent
@@ -21,7 +28,26 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
     public DlgUpdateTarifKelas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setSize(720,480);
+        this.setSize(980,560);
+
+        Object[] judul={"Jenis","Tgl.Periksa","Pemeriksaan","Status","Kode Sekarang","Tarif Sekarang",
+                        "Kode Tujuan","Tarif Tujuan","Selisih","Keterangan"};
+        tabMode=new DefaultTableModel(null,judul){
+            @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        };
+        tbBanding.setModel(tabMode);
+        tbBanding.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbBanding.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        int[] lebar={70,120,200,100,100,100,100,100,90,330};
+        for(int i=0;i<lebar.length;i++){
+            tbBanding.getColumnModel().getColumn(i).setPreferredWidth(lebar[i]);
+        }
+        tbBanding.setDefaultRenderer(Object.class,new WarnaTable());
+        DefaultTableCellRenderer kanan=new DefaultTableCellRenderer();
+        kanan.setHorizontalAlignment(SwingConstants.RIGHT);
+        for(int i:new int[]{5,7,8}){
+            tbBanding.getColumnModel().getColumn(i).setCellRenderer(kanan);
+        }
 
         update.setPantau(new UpdateTarifKelasLabRad.Pantau() {
             @Override
@@ -34,11 +60,8 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
 
             @Override
             public void progres(int ke,int total) {
-                SwingUtilities.invokeLater(() -> {
-                    // widget.ProgressBar hanya menggambar isi saat nilai < maksimum
-                    Progres.setValue(total==0?0:Math.min(999,ke*999/total));
-                    LblStatus.setText("Memproses "+ke+" dari "+total);
-                });
+                // kemajuan per pemeriksaan ditampilkan di LblStatus
+                SwingUtilities.invokeLater(() -> LblStatus.setText("Memproses "+ke+" dari "+total));
             }
         });
     }
@@ -61,9 +84,8 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         }else{
             LblTujuan.setText(update.cariKelas(norawat));
             jumlah=update.jumlahProses(norawat);
-            LblJumlah.setText(jumlah+" pemeriksaan Lab/Radiologi Ralan / bertarif tanpa kelas");
+            LblJumlah.setText(jumlah+" pemeriksaan Lab/Radiologi belum bertarif "+LblTujuan.getText());
         }
-        Progres.setValue(0);
         TLog.setText("");
         TLog.append((keRalan?
                 "Pemeriksaan Ranap akan dikembalikan ke tarif & kode tanpa kelas, status diubah menjadi Ralan.\n":
@@ -74,6 +96,29 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         LblStatus.setText(jumlah>0?"Siap diproses":"Tidak ada data");
         BtnProses.setEnabled(jumlah>0);
         BtnKeluar.setEnabled(true);
+        tampilBanding();
+        TabProses.setSelectedIndex(0);
+    }
+
+    /** Isi tab Perbandingan Tarif: kode & tarif sekarang vs yang akan dipakai (belum disimpan). */
+    private void tampilBanding(){
+        tabMode.setRowCount(0);
+        double sekarang=0,tujuan=0;
+        for(UpdateTarifKelasLabRad.Banding b:update.bandingkan(norawat,keRalan)){
+            tabMode.addRow(new Object[]{
+                b.jenis,b.waktu,b.nama,b.status,b.kdSekarang,rupiah(b.tarifSekarang),
+                b.kdTujuan,rupiah(b.tarifTujuan),rupiah(b.tarifTujuan-b.tarifSekarang),b.keterangan
+            });
+            sekarang+=b.tarifSekarang;
+            tujuan+=b.tarifTujuan;
+        }
+        LblTotal.setText(tabMode.getRowCount()==0?"-":
+                "Sekarang "+rupiah(sekarang)+"   ->   "+(keRalan?"Tanpa Kelas ":LblTujuan.getText()+" ")+rupiah(tujuan)+
+                "   (selisih "+rupiah(tujuan-sekarang)+")");
+    }
+
+    private String rupiah(double nilai){
+        return String.format("%,.0f",nilai);
     }
 
     /** Dipanggil di thread layar setelah proses selesai (berhasil maupun gagal). */
@@ -90,6 +135,7 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         BtnProses.setEnabled(false);
         BtnKeluar.setEnabled(false);
         TLog.append("\n");
+        TabProses.setSelectedIndex(1);
         LblStatus.setText("Memproses...");
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         new Thread(() -> {
@@ -109,7 +155,6 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         berjalan=false;
         this.setCursor(Cursor.getDefaultCursor());
         BtnKeluar.setEnabled(true);
-        Progres.setValue(ok?999:0);
         if(ok){
             LblStatus.setText("Selesai");
             TLog.append("\nRINGKASAN\n"+
@@ -154,10 +199,14 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         LblTujuan = new widget.Label();
         label4 = new widget.Label();
         LblJumlah = new widget.Label();
+        label5 = new widget.Label();
+        LblTotal = new widget.Label();
+        TabProses = new widget.TabPane();
+        scrollPane2 = new widget.ScrollPane();
+        tbBanding = new widget.Table();
         scrollPane1 = new widget.ScrollPane();
         TLog = new widget.TextArea();
         panelBawah = new widget.panelisi();
-        Progres = new widget.ProgressBar();
         LblStatus = new widget.Label();
         BtnProses = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -171,7 +220,7 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelInfo.setName("panelInfo"); // NOI18N
-        panelInfo.setPreferredSize(new java.awt.Dimension(100, 66));
+        panelInfo.setPreferredSize(new java.awt.Dimension(100, 94));
         panelInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 5));
 
         label1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -218,7 +267,40 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         LblJumlah.setPreferredSize(new java.awt.Dimension(400, 23));
         panelInfo.add(LblJumlah);
 
+        label5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label5.setText("Total :");
+        label5.setName("label5"); // NOI18N
+        label5.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelInfo.add(label5);
+
+        LblTotal.setText("-");
+        LblTotal.setName("LblTotal"); // NOI18N
+        LblTotal.setPreferredSize(new java.awt.Dimension(605, 23));
+        panelInfo.add(LblTotal);
+
         internalFrame1.add(panelInfo, java.awt.BorderLayout.PAGE_START);
+
+        TabProses.setName("TabProses"); // NOI18N
+
+        scrollPane2.setName("scrollPane2"); // NOI18N
+        scrollPane2.setOpaque(true);
+
+        tbBanding.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbBanding.setToolTipText("Perbandingan kode & tarif sekarang dengan kode & tarif yang akan dipakai");
+        tbBanding.setName("tbBanding"); // NOI18N
+        scrollPane2.setViewportView(tbBanding);
+
+        TabProses.addTab("Perbandingan Tarif", scrollPane2);
 
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
@@ -229,16 +311,14 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
         TLog.setName("TLog"); // NOI18N
         scrollPane1.setViewportView(TLog);
 
-        internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
+        TabProses.addTab("Log Proses", scrollPane1);
+
+        internalFrame1.add(TabProses, java.awt.BorderLayout.CENTER);
 
         panelBawah.setName("panelBawah"); // NOI18N
         panelBawah.setPreferredSize(new java.awt.Dimension(100, 56));
         panelBawah.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        Progres.setMaximum(1000);
-        Progres.setName("Progres"); // NOI18N
-        Progres.setPreferredSize(new java.awt.Dimension(280, 23));
-        panelBawah.add(Progres);
 
         LblStatus.setText("Siap diproses");
         LblStatus.setName("LblStatus"); // NOI18N
@@ -299,16 +379,20 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
     private widget.Label LblNoRawat;
     private widget.Label LblPasien;
     private widget.Label LblStatus;
+    private widget.Label LblTotal;
     private widget.Label LblTujuan;
-    private widget.ProgressBar Progres;
     private widget.TextArea TLog;
+    private widget.TabPane TabProses;
     private widget.InternalFrame internalFrame1;
     private widget.Label label1;
     private widget.Label label2;
     private widget.Label label3;
     private widget.Label label4;
+    private widget.Label label5;
     private widget.panelisi panelBawah;
     private widget.panelisi panelInfo;
     private widget.ScrollPane scrollPane1;
+    private widget.ScrollPane scrollPane2;
+    private widget.Table tbBanding;
     // End of variables declaration//GEN-END:variables
 }
