@@ -12,7 +12,7 @@
 package simrskhanza;
 
 import usu.widget.util.WidgetUtilities;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 /**
  *

@@ -40,7 +40,7 @@ import javax.swing.text.html.StyleSheet;
 import laporan.DlgBerkasRawat;
 import rekammedis.RMRiwayatPerawatan;
 import surat.SuratKeteranganCovid;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 public class DlgCariPeriksaLab extends javax.swing.JDialog {
     private final DefaultTableModel tabMode,tabMode2;

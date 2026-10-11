@@ -50,7 +50,7 @@ import simrskhanza.DlgKecamatan;
 import simrskhanza.DlgKelurahan;
 import simrskhanza.DlgCariCaraBayar;
 import simrskhanza.DlgPropinsi;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 /**
  *

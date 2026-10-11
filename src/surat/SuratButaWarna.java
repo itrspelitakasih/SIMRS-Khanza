@@ -29,7 +29,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import AESsecurity.EnkripsiAES;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 /**
  *
  * @author salimmulyana

@@ -1,6 +1,6 @@
 -- Skema tabel wa_outbox untuk antrian pengiriman WhatsApp via GoWA
 -- (menggantikan service Delphi/ServiceWADelphi yang sebelumnya menulis ke
--- tabel yang sama, database `wagw`). Dipakai oleh src/wa/GoWAService.java:
+-- tabel yang sama, database `wagw`). Dipakai oleh src/komunikasi/GoWAService.java:
 --   - kirim langsung   (kirimText(nomor, pesan) / kirimTextNow)
 --   - kirim terjadwal  (kirimText(nomor, pesan, tanggalJam, source), mis.
 --     reminder H-1 Surat Kontrol di src/surat/SuratKontrol.java)
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `wa_outbox` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Kolom device_id: rekam GOWA_DEVICE_ID (setting/database.xml) yang dipakai
--- saat pesan diantrikan (src/wa/GoWAService.java, enqueueText()), supaya
+-- saat pesan diantrikan (src/komunikasi/GoWAService.java, enqueueText()), supaya
 -- bisa ditelusuri device mana yang bertanggung jawab jika suatu saat ada
 -- lebih dari satu device GoWA. Kolom ini baru, belum ada di tabel lama.
 SET @has_device_id = (
