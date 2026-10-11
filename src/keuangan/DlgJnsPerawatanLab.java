@@ -135,6 +135,7 @@ public final class DlgJnsPerawatanLab extends javax.swing.JDialog {
 
         Popup = new javax.swing.JPopupMenu();
         ppTemplate = new javax.swing.JMenuItem();
+        ppSalinTemplate = new javax.swing.JMenuItem();
         MnRestore = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -203,6 +204,22 @@ public final class DlgJnsPerawatanLab extends javax.swing.JDialog {
             }
         });
         Popup.add(ppTemplate);
+
+        ppSalinTemplate.setBackground(new java.awt.Color(255, 255, 254));
+        ppSalinTemplate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppSalinTemplate.setForeground(new java.awt.Color(50, 50, 50));
+        ppSalinTemplate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppSalinTemplate.setText("Salin Template Lab");
+        ppSalinTemplate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppSalinTemplate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppSalinTemplate.setName("ppSalinTemplate"); // NOI18N
+        ppSalinTemplate.setPreferredSize(new java.awt.Dimension(150, 25));
+        ppSalinTemplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppSalinTemplateActionPerformed(evt);
+            }
+        });
+        Popup.add(ppSalinTemplate);
 
         MnRestore.setBackground(new java.awt.Color(255, 255, 254));
         MnRestore.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -1018,6 +1035,21 @@ private void btnPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         }            
     }//GEN-LAST:event_ppTemplateActionPerformed
 
+    private void ppSalinTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSalinTemplateActionPerformed
+        int row=tbJnsPerawatan.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null,"Silahkan pilih pemeriksaan terlebih dahulu..!!");
+        }else if(!(tbJnsPerawatan.getValueAt(row,13).toString().equals("PK")||tbJnsPerawatan.getValueAt(row,13).toString().equals("MB"))){
+            JOptionPane.showMessageDialog(null,"Template Laboratorium hanya untuk kategori PK dan MB");
+        }else{
+            DlgSalinTemplateLab salin=new DlgSalinTemplateLab(null,true);
+            if(salin.setData(tbJnsPerawatan.getValueAt(row,1).toString(),tbJnsPerawatan.getValueAt(row,2).toString(),tbJnsPerawatan.getValueAt(row,13).toString())){
+                salin.setLocationRelativeTo(internalFrame1);
+                salin.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_ppSalinTemplateActionPerformed
+
     private void BagianRsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BagianRsKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
             isjml();
@@ -1224,6 +1256,7 @@ private void btnPjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
     private widget.TextBox nmpnj;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
+    private javax.swing.JMenuItem ppSalinTemplate;
     private javax.swing.JMenuItem ppTemplate;
     private widget.Table tbJnsPerawatan;
     // End of variables declaration//GEN-END:variables

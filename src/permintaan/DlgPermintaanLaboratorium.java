@@ -746,7 +746,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel4.setText("No.Permintaan :");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass11.add(jLabel4);
-        jLabel4.setBounds(290, 10, 87, 23);
+        jLabel4.setBounds(290, 10, 98, 23);
 
         TNoPermintaanPK.setHighlighter(null);
         TNoPermintaanPK.setName("TNoPermintaanPK"); // NOI18N
@@ -756,7 +756,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelGlass11.add(TNoPermintaanPK);
-        TNoPermintaanPK.setBounds(380, 10, 120, 23);
+        TNoPermintaanPK.setBounds(391, 10, 120, 23);
 
         PanelPemeriksaanPK.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
 
@@ -790,7 +790,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel6.setName("jLabel6"); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(110, 23));
         panelDetailPK.add(jLabel6);
-        jLabel6.setBounds(10, 10, 112, 23);
+        jLabel6.setBounds(10, 10, 122, 23);
 
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(300, 23));
@@ -800,7 +800,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelDetailPK.add(TCari);
-        TCari.setBounds(130, 10, 300, 23);
+        TCari.setBounds(135, 10, 300, 23);
 
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari2.setMnemonic('4');
@@ -818,7 +818,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelDetailPK.add(BtnCari2);
-        BtnCari2.setBounds(430, 10, 28, 23);
+        BtnCari2.setBounds(438, 10, 28, 23);
 
         PanelDetailPK.add(panelDetailPK, java.awt.BorderLayout.PAGE_START);
 
@@ -1091,7 +1091,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel24.setText("No.Permintaan :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelGlass13.add(jLabel24);
-        jLabel24.setBounds(273, 10, 87, 23);
+        jLabel24.setBounds(273, 10, 98, 23);
 
         TNoPermintaanMB.setHighlighter(null);
         TNoPermintaanMB.setName("TNoPermintaanMB"); // NOI18N
@@ -1101,7 +1101,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelGlass13.add(TNoPermintaanMB);
-        TNoPermintaanMB.setBounds(363, 10, 120, 23);
+        TNoPermintaanMB.setBounds(374, 10, 120, 23);
 
         PanelPemeriksaanMB.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
@@ -1135,7 +1135,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
         jLabel22.setName("jLabel22"); // NOI18N
         jLabel22.setPreferredSize(new java.awt.Dimension(110, 23));
         panelDetailMB.add(jLabel22);
-        jLabel22.setBounds(0, 10, 112, 23);
+        jLabel22.setBounds(0, 10, 122, 23);
 
         TCariMB.setName("TCariMB"); // NOI18N
         TCariMB.setPreferredSize(new java.awt.Dimension(300, 23));
@@ -1145,7 +1145,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelDetailMB.add(TCariMB);
-        TCariMB.setBounds(115, 10, 300, 23);
+        TCariMB.setBounds(125, 10, 300, 23);
 
         BtnCariMB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCariMB.setMnemonic('4');
@@ -1163,7 +1163,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
             }
         });
         panelDetailMB.add(BtnCariMB);
-        BtnCariMB.setBounds(418, 10, 28, 23);
+        BtnCariMB.setBounds(428, 10, 28, 23);
 
         PanelDetailMB.add(panelDetailMB, java.awt.BorderLayout.PAGE_START);
 
