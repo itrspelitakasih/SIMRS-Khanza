@@ -36,11 +36,13 @@ public final class pesanWA {
     public static final String REGISTRASI_PASIEN =
             "Halo {nama},\n\n"
             + "{pembuka}\n\n"
-            + "No. RM : {norm}\n"
-            + "Poli : {poli}\n"
-            + "Dokter : {dokter}\n"
+            + "No. RM   : {norm}\n"
+            + "Poli     : {poli}\n"
+            + "Dokter   : {dokter}\n"
             + "Tgl. Periksa : {tanggal}\n"
-            + "No. Antrean : {noantrean}\n\n"
+            + "No. Antrean  : {noantrean}\n\n"
+            + "Mohon sudah berada di ruang tunggu sebelum nomor Anda dipanggil. "
+            + "Jika Anda tidak ada saat dipanggil, giliran Anda akan dipindahkan ke setelah 4 antrean berikutnya.\n\n"
             + "{penutup}";
 
     /** {pembuka} untuk pasien lama. */
@@ -57,7 +59,7 @@ public final class pesanWA {
 
     /** {penutup} bila NIK pasien belum ada (login portal memakai NIK). Penanda: {portal} */
     public static final String REGISTRASI_PENUTUP_TANPA_NIK =
-            "Cek status antrean Anda dengan login ke {portal}. Login memakai NIK, jadi mohon lengkapi NIK Anda di loket pendaftaran.";
+            "Cek status antrean Anda dengan login ke {portal}. Login menggunakan NIK, jadi mohon lengkapi data NIK Anda di loket pendaftaran.";
 
     // =====================================================
     // PENGISI PENANDA

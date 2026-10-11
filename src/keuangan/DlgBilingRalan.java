@@ -87,7 +87,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             sqlpscaripoli2="select poliklinik.nm_poli from rujukan_internal_poli "+
                             "inner join poliklinik on rujukan_internal_poli.kd_poli=poliklinik.kd_poli "+
                             "where rujukan_internal_poli.no_rawat=?",
-            sqlpscariralandokter="select jns_perawatan.nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,"+
+            sqlpscariralandokter="select left(concat(jns_perawatan.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,"+
                     "count(rawat_jl_dr.kd_jenis_prw) as jml, "+
                     "sum(rawat_jl_dr.biaya_rawat) as biaya,"+
                     "sum(rawat_jl_dr.bhp) as totalbhp,"+
@@ -95,8 +95,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     "rawat_jl_dr.tarif_tindakandr,"+
                     "sum(rawat_jl_dr.tarif_tindakandr) as totaltarif_tindakandr "+
                     "from rawat_jl_dr inner join jns_perawatan "+
-                    "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw where "+
-                    "rawat_jl_dr.no_rawat=? group by jns_perawatan.nm_perawatan",
+                    "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "+
+                    "inner join dokter on rawat_jl_dr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_jl_dr.no_rawat=? group by jns_perawatan.nm_perawatan,rawat_jl_dr.kd_dokter",
             sqlpscariralanperawat="select jns_perawatan.nm_perawatan,rawat_jl_pr.biaya_rawat as total_byrpr,"+
                     "count(rawat_jl_pr.kd_jenis_prw) as jml, "+
                     "sum(rawat_jl_pr.biaya_rawat) as biaya, "+
@@ -106,7 +107,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     "from rawat_jl_pr inner join jns_perawatan "+
                     "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw where "+
                     "rawat_jl_pr.no_rawat=? group by jns_perawatan.nm_perawatan ",
-            sqlpscariralandrpr="select jns_perawatan.nm_perawatan,rawat_jl_drpr.biaya_rawat as total_byrdrpr,"+
+            sqlpscariralandrpr="select left(concat(jns_perawatan.nm_perawatan,' (',dokter.nm_dokter,')'),100) as nm_perawatan,rawat_jl_drpr.biaya_rawat as total_byrdrpr,"+
                     "count(rawat_jl_drpr.kd_jenis_prw) as jml, "+
                     "sum(rawat_jl_drpr.biaya_rawat) as biaya,"+
                     "sum(rawat_jl_drpr.bhp) as totalbhp,"+
@@ -115,8 +116,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     "sum(rawat_jl_drpr.tarif_tindakanpr) as totaltarif_tindakanpr, "+
                     "sum(rawat_jl_drpr.tarif_tindakandr) as totaltarif_tindakandr "+
                     "from rawat_jl_drpr inner join jns_perawatan "+
-                    "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw where "+
-                    "rawat_jl_drpr.no_rawat=? group by jns_perawatan.nm_perawatan",
+                    "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "+
+                    "inner join dokter on rawat_jl_drpr.kd_dokter=dokter.kd_dokter where "+
+                    "rawat_jl_drpr.no_rawat=? group by jns_perawatan.nm_perawatan,rawat_jl_drpr.kd_dokter",
             sqlpscarilab="select jns_perawatan_lab.nm_perawatan, count(periksa_lab.kd_jenis_prw) as jml,periksa_lab.biaya as biaya, "+
                     "sum(periksa_lab.biaya) as total,jns_perawatan_lab.kd_jenis_prw,sum(periksa_lab.tarif_perujuk+periksa_lab.tarif_tindakan_dokter) as totaldokter, "+
                     "sum(periksa_lab.tarif_tindakan_petugas) as totalpetugas,sum(periksa_lab.kso) as totalkso,sum(periksa_lab.bhp) as totalbhp "+

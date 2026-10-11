@@ -286,6 +286,7 @@ import surat.SuratTidakHamil;
 import java.util.List;
 import javax.swing.WindowConstants;
 import permintaan.DlgBookingPeriksa;
+import permintaan.DlgBookingRegistrasi;
 import permintaan.DlgPermintaanKonsultasiPerawat;
 import rekammedis.RMChecklistKriteriaMasukIsolasi;
 import rekammedis.RMDataCatatanObservasiRuangOperasi;
@@ -6384,6 +6385,18 @@ public final class DlgReg extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(CekBookingOnline);
+
+        BookingRegistrasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/regist.png"))); // NOI18N
+        BookingRegistrasi.setText("");
+        BookingRegistrasi.setToolTipText("Booking Registrasi");
+        BookingRegistrasi.setName("BookingRegistrasi"); // NOI18N
+        BookingRegistrasi.setPreferredSize(new java.awt.Dimension(28, 23));
+        BookingRegistrasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookingRegistrasiActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BookingRegistrasi);
 
         //TAMBAH TOMBOL
 
@@ -16629,6 +16642,22 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         DlgBookingPeriksa aplikasi = new DlgBookingPeriksa();
         aplikasi.isCek();
         aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private void BookingRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgBookingRegistrasi form=new DlgBookingRegistrasi(null,false);
+        form.isCek();
+        form.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                tampil();
+            }
+        });
+        form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }
 

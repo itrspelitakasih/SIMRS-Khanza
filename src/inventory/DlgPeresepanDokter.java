@@ -140,7 +140,9 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
             }else if(i==6){
                 column.setPreferredWidth(110);
             }else if(i==7){
-                column.setPreferredWidth(85);
+//                column.setPreferredWidth(85);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==8){
                 column.setPreferredWidth(110);
             }else if(i==9){

@@ -11349,6 +11349,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             @Override
             public void keyReleased(KeyEvent e) {}
         });
+
+        cekUpdateOtomatis();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnHarianKamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHarianKamarActionPerformed
@@ -14924,20 +14926,27 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             String destinationDir = System.getProperty("user.dir");
             String zipFilePath = destinationDir + "/update.zip";
 
+            String[] versiServer = cekVersiServer(URLSERVER);
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             downloadFile(URLSERVER, zipFilePath);
+            this.setCursor(Cursor.getDefaultCursor());
             JOptionPane.showMessageDialog(this, "Download Selesai, Proses mengekstrak...", "Info",
                 JOptionPane.INFORMATION_MESSAGE);
 
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unzip(zipFilePath, destinationDir);
+            this.setCursor(Cursor.getDefaultCursor());
             JOptionPane.showMessageDialog(this, "Ekstraksi selesai!", "Info", JOptionPane.INFORMATION_MESSAGE);
 
             File zipFile = new File(zipFilePath);
             zipFile.delete();
+            simpanVersiTerpasang(versiServer);
 
             JOptionPane.showMessageDialog(this, "SIMRS berhasil diupdate.Silahkan Tutup Aplikasi", "Info",
                 JOptionPane.INFORMATION_MESSAGE);
 
         } catch (IOException ex) {
+            this.setCursor(Cursor.getDefaultCursor());
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
@@ -14973,6 +14982,103 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 }
             }
     }//GEN-LAST:event_MnUpdateBtnLogActionPerformed
+
+    // Cek update.zip di server saat aplikasi dibuka (background, tanpa popup bila tidak ada versi baru)
+    private void cekUpdateOtomatis() {
+        new Thread(() -> {
+            try {
+                Properties propServ = new Properties();
+                try (FileInputStream fis = new FileInputStream("settingupdate/database.xml")) {
+                    propServ.loadFromXML(fis);
+                }
+                String URLSERVER = propServ.getProperty("URLSERVERUPDATE");
+                if (URLSERVER == null || URLSERVER.trim().isEmpty()) {
+                    return;
+                }
+                String[] versiServer = cekVersiServer(URLSERVER.trim());
+                if (versiServer == null || !adaVersiBaru(versiServer)) {
+                    return;
+                }
+                long modifServer = Long.parseLong(versiServer[1]);
+                String tanggal = modifServer > 0 ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date(modifServer)) : "-";
+                java.awt.EventQueue.invokeLater(() -> {
+                    int jawab = JOptionPane.showConfirmDialog(this,
+                        "Versi baru tersedia (rilis " + tanggal + ").\nDownload sekarang?",
+                        "Update Tersedia", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                    if (jawab == JOptionPane.YES_OPTION) {
+                        MnUpdateBtnLogActionPerformed(null);
+                    }
+                });
+            } catch (Exception ex) {
+                System.out.println("Notifikasi Cek Update : " + ex);
+            }
+        }, "cek-update-simrs").start();
+    }
+
+    // Mengembalikan {ETag, Last-Modified(ms)} dari update.zip di server, null bila gagal
+    private String[] cekVersiServer(String fileURL) {
+        java.net.HttpURLConnection conn = null;
+        try {
+            conn = (java.net.HttpURLConnection) new URL(fileURL).openConnection();
+            conn.setRequestMethod("HEAD");
+            conn.setConnectTimeout(3000);
+            conn.setReadTimeout(3000);
+            if (conn.getResponseCode() != java.net.HttpURLConnection.HTTP_OK) {
+                return null;
+            }
+            String etag = conn.getHeaderField("ETag");
+            return new String[]{etag == null ? "" : etag, String.valueOf(conn.getLastModified())};
+        } catch (Exception ex) {
+            System.out.println("Notifikasi Cek Versi Server : " + ex);
+            return null;
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+    }
+
+    private boolean adaVersiBaru(String[] versiServer) {
+        String etagServer = versiServer[0];
+        long modifServer = Long.parseLong(versiServer[1]);
+        Properties versi = new Properties();
+        try (FileInputStream fis = new FileInputStream("settingupdate/version.xml")) {
+            versi.loadFromXML(fis);
+        } catch (Exception ex) {
+            // belum ada version.xml, pakai pembanding tanggal jar
+        }
+        String etagLokal = versi.getProperty("UPDATE_ETAG", "");
+        String modifLokal = versi.getProperty("UPDATE_LASTMODIFIED", "");
+        if (!etagLokal.isEmpty() && !etagServer.isEmpty()) {
+            return !etagLokal.equals(etagServer);
+        }
+        if (!modifLokal.isEmpty()) {
+            return modifServer > Long.parseLong(modifLokal);
+        }
+        // Belum pernah update lewat menu: bandingkan dengan tanggal SIMRSKhanza.jar
+        File jar = new File(System.getProperty("user.dir"), "SIMRSKhanza.jar");
+        return jar.exists() && modifServer > jar.lastModified();
+    }
+
+    private void simpanVersiTerpasang(String[] versiServer) {
+        if (versiServer == null) {
+            return;
+        }
+        Properties versi = new Properties();
+        try (FileInputStream fis = new FileInputStream("settingupdate/version.xml")) {
+            versi.loadFromXML(fis);
+        } catch (Exception ex) {
+            // file belum ada, dibuat baru
+        }
+        versi.setProperty("UPDATE_ETAG", versiServer[0]);
+        versi.setProperty("UPDATE_LASTMODIFIED", versiServer[1]);
+        new File("settingupdate").mkdirs();
+        try (FileOutputStream fos = new FileOutputStream("settingupdate/version.xml")) {
+            versi.storeToXML(fos, "KhanzaHMS");
+        } catch (Exception ex) {
+            System.out.println("Notifikasi Simpan Versi : " + ex);
+        }
+    }
 
     private void MnAntrianPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnAntrianPoliActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -25076,7 +25182,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 2026.16.5"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.03"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));

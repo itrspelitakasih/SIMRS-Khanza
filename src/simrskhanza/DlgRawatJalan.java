@@ -13261,7 +13261,33 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void SimpanPenangananDokter(){        
+    private boolean cekKonsulSpesialis(widget.Table tabel,String kodedokter,String namadokter){
+        if(!kodedokter.equals(Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText()))){
+            return true;
+        }
+        String daftarkonsul="";
+        for(int r=0;r<tabel.getRowCount();r++){
+            if(tabel.getValueAt(r,0).toString().equals("true")){
+                String nama=tabel.getValueAt(r,2).toString().toLowerCase();
+                if(nama.contains("konsul")&&nama.contains("spesialis")){
+                    daftarkonsul=daftarkonsul+"- "+tabel.getValueAt(r,2).toString()+"\n";
+                }
+            }
+        }
+        if(daftarkonsul.equals("")){
+            return true;
+        }
+        return JOptionPane.showConfirmDialog(rootPane,
+                "Tindakan berikut akan disimpan atas nama "+namadokter+" (DPJP) :\n"+daftarkonsul+
+                "\nJika dilakukan oleh dokter konsul, pilih Tidak lalu ganti dokternya\n"+
+                "dan simpan tindakan konsul tersebut secara terpisah.\n\nTetap simpan atas nama DPJP?",
+                "Konfirmasi Dokter Konsul",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)==JOptionPane.YES_OPTION;
+    }
+
+    private void SimpanPenangananDokter(){
+        if(!cekKonsulSpesialis(tbTindakan,KdDok.getText(),TDokter.getText())){
+            return;
+        }
         try {
             ChkJln.setSelected(false);
             Sequel.AutoComitFalse();
@@ -13457,7 +13483,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void SimpanPenangananDokterPetugas(){        
+    private void SimpanPenangananDokterPetugas(){
+        if(!cekKonsulSpesialis(tbTindakan3,KdDok2.getText(),TDokter2.getText())){
+            return;
+        }
         try {
             ChkJln.setSelected(false);
             Sequel.AutoComitFalse();

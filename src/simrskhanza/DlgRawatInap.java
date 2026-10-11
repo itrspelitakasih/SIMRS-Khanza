@@ -11647,6 +11647,21 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnPenilaianDerajatDehidrasi);
     }
 
+    private boolean cekKonsulSpesialis(String namaperawatan,String kodedokter,String namadokter){
+        String nama=namaperawatan.toLowerCase();
+        if(!(nama.contains("konsul")&&nama.contains("visite"))){
+            return true;
+        }
+        if(Sequel.cariInteger("select count(dpjp_ranap.kd_dokter) from dpjp_ranap where dpjp_ranap.no_rawat=? and dpjp_ranap.kd_dokter=?",TNoRw.getText(),kodedokter)==0&&
+                !kodedokter.equals(Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText()))){
+            return true;
+        }
+        return JOptionPane.showConfirmDialog(rootPane,
+                "Tindakan "+namaperawatan+" akan disimpan atas nama "+namadokter+" (DPJP).\n"+
+                "\nJika dilakukan oleh dokter konsul, pilih Tidak lalu ganti dokternya.\n\nTetap simpan atas nama DPJP?",
+                "Konfirmasi Dokter Konsul",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE)==JOptionPane.YES_OPTION;
+    }
+
     private void simpan() {
         switch (TabRawat.getSelectedIndex()) {
             case 0:
@@ -11654,6 +11669,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Valid.textKosong(KdDok,"Dokter");
                 }else if(TKdPrw.getText().trim().equals("")||TNmPrw.getText().trim().equals("")){
                     Valid.textKosong(TKdPrw,"perawatan");
+                }else if(!cekKonsulSpesialis(TNmPrw.getText(),KdDok.getText(),TDokter.getText())){
+                    KdDok.requestFocus();
                 }else{
                     if(Sequel.cariRegistrasi(TNoRw.getText().trim())>0){
                         JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi.\nSilahkan hubungi bagian kasir/keuangan ..!!");
@@ -11833,6 +11850,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Valid.textKosong(kdptg2,"Petugas");
                 }else if(TKdPrwDokterPetugas.getText().trim().equals("")||TNmPrwDokterPetugas.getText().trim().equals("")){
                     Valid.textKosong(TKdPrwDokterPetugas,"perawatan");
+                }else if(!cekKonsulSpesialis(TNmPrwDokterPetugas.getText(),KdDok2.getText(),TDokter2.getText())){
+                    KdDok2.requestFocus();
                 }else{
                     if(Sequel.cariRegistrasi(TNoRw.getText().trim())>0){
                         JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi.\nSilahkan hubungi bagian kasir/keuangan ..!!");

@@ -1260,7 +1260,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 pskamar.close();
                             } 
                         }
-                        dpjp=Sequel.cariIsi("select dpjp_ranap.kd_dokter from dpjp_ranap where dpjp_ranap.no_rawat=?",rsreg.getString("no_rawat"));
+                        dpjp=Sequel.cariIsi("select dokter.nm_dokter from dpjp_ranap inner join dokter on dpjp_ranap.kd_dokter=dokter.kd_dokter where dpjp_ranap.no_rawat=?",rsreg.getString("no_rawat"));
                         if(dpjp.equals("")){
                             dpjp=rsreg.getString("nm_dokter");
                         }
@@ -1276,7 +1276,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_jl_dr inner join jns_perawatan inner join dokter on "+
                                 "rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "+
                                 "rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat=? "+
-                                "group by rawat_jl_dr.kd_jenis_prw,rawat_jl_dr.tgl_perawatan");
+                                "group by rawat_jl_dr.kd_jenis_prw,rawat_jl_dr.tgl_perawatan,rawat_jl_dr.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1319,7 +1319,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_jl_drpr inner join jns_perawatan inner join dokter on "+
                                 "rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "+
                                 "rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat=? "+
-                                "group by rawat_jl_drpr.kd_jenis_prw,rawat_jl_drpr.tgl_perawatan");
+                                "group by rawat_jl_drpr.kd_jenis_prw,rawat_jl_drpr.tgl_perawatan,rawat_jl_drpr.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1362,7 +1362,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_jl_pr inner join jns_perawatan inner join petugas on "+
                                 "rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "+
                                 "rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat=? "+
-                                "group by rawat_jl_pr.kd_jenis_prw,rawat_jl_pr.tgl_perawatan");
+                                "group by rawat_jl_pr.kd_jenis_prw,rawat_jl_pr.tgl_perawatan,rawat_jl_pr.nip");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1407,7 +1407,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_inap_dr inner join jns_perawatan_inap inner join dokter on "+
                                 "rawat_inap_dr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "+
                                 "rawat_inap_dr.kd_dokter=dokter.kd_dokter where rawat_inap_dr.no_rawat=? "+
-                                "group by rawat_inap_dr.kd_jenis_prw,rawat_inap_dr.tgl_perawatan");
+                                "group by rawat_inap_dr.kd_jenis_prw,rawat_inap_dr.tgl_perawatan,rawat_inap_dr.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1450,7 +1450,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_inap_drpr inner join jns_perawatan_inap inner join dokter on "+
                                 "rawat_inap_drpr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "+
                                 "rawat_inap_drpr.kd_dokter=dokter.kd_dokter where rawat_inap_drpr.no_rawat=? "+
-                                "group by rawat_inap_drpr.kd_jenis_prw,rawat_inap_drpr.tgl_perawatan");
+                                "group by rawat_inap_drpr.kd_jenis_prw,rawat_inap_drpr.tgl_perawatan,rawat_inap_drpr.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1493,7 +1493,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from rawat_inap_pr inner join jns_perawatan_inap inner join petugas on "+
                                 "rawat_inap_pr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "+
                                 "rawat_inap_pr.nip=petugas.nip where rawat_inap_pr.no_rawat=? "+
-                                "group by rawat_inap_pr.kd_jenis_prw,rawat_inap_pr.tgl_perawatan");
+                                "group by rawat_inap_pr.kd_jenis_prw,rawat_inap_pr.tgl_perawatan,rawat_inap_pr.nip");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1538,7 +1538,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from periksa_radiologi inner join jns_perawatan_radiologi inner join dokter on "+
                                 "periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and "+
                                 "periksa_radiologi.kd_dokter=dokter.kd_dokter where periksa_radiologi.no_rawat=? "+
-                                "group by periksa_radiologi.kd_jenis_prw,periksa_radiologi.tgl_periksa");
+                                "group by periksa_radiologi.kd_jenis_prw,periksa_radiologi.tgl_periksa,periksa_radiologi.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();
@@ -1648,7 +1648,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "from periksa_lab inner join jns_perawatan_lab inner join dokter on "+
                                 "periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw and "+
                                 "periksa_lab.kd_dokter=dokter.kd_dokter where periksa_lab.no_rawat=? and periksa_lab.biaya>0 "+
-                                "group by periksa_lab.kd_jenis_prw,periksa_lab.tgl_periksa");
+                                "group by periksa_lab.kd_jenis_prw,periksa_lab.tgl_periksa,periksa_lab.kd_dokter");
                         try {
                             pstindakan.setString(1,rsreg.getString("no_rawat"));
                             rstindakan=pstindakan.executeQuery();

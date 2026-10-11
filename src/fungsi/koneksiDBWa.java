@@ -45,14 +45,23 @@ public class koneksiDBWa {
         MysqlDataSource source = new MysqlDataSource();
 
         source.setURL("jdbc:mysql://"
-                + EnkripsiAES.decrypt(setting.getProperty("HOSTWA")) + ":"
-                + EnkripsiAES.decrypt(setting.getProperty("PORTWA")) + "/"
-                + EnkripsiAES.decrypt(setting.getProperty("DATABASEWA"))
-                + "?zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true");
-        source.setUser(EnkripsiAES.decrypt(setting.getProperty("USERWA")));
-        source.setPassword(EnkripsiAES.decrypt(setting.getProperty("PASWA")));
+                + setting(setting, "HOSTWA", "HOST") + ":"
+                + setting(setting, "PORTWA", "PORT") + "/"
+                + setting(setting, "DATABASEWA", "DATABASE")
+                + "?zeroDateTimeBehavior=convertToNull&autoReconnect=true");
+        source.setUser(setting(setting, "USERWA", "USER"));
+        source.setPassword(setting(setting, "PASWA", "PAS"));
 
         return source.getConnection();
+    }
+
+    /** Ambil key WA terenkripsi; bila tidak diisi, pakai key database utama (tabel WA ada di DB SIMRS). */
+    private static String setting(Properties setting, String keyWA, String keyUtama) throws Exception {
+        String nilai = setting.getProperty(keyWA, "").trim();
+        if (nilai.isEmpty()) {
+            nilai = setting.getProperty(keyUtama, "").trim();
+        }
+        return EnkripsiAES.decrypt(nilai);
     }
 
     public static Connection condb(){ 

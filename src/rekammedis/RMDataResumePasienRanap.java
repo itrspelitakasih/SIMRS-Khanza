@@ -3076,105 +3076,12 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No Rawat masih kosong...!!!");
         } else {
-            KeluhanUtama.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT("
-                    + "CONCAT_WS(' ',pemeriksaan_ranap.tgl_perawatan,"
-                    + "pemeriksaan_ranap.jam_rawat,'-',pemeriksaan_ranap.keluhan) "
-                    + "ORDER BY pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat "
-                    + "SEPARATOR '\\n'),'') "
-                    + "FROM pemeriksaan_ranap "
-                    + "WHERE pemeriksaan_ranap.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            PemeriksaanFisik.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT("
-                    + "CONCAT_WS(' ',pemeriksaan_ranap.tgl_perawatan,"
-                    + "pemeriksaan_ranap.jam_rawat,'-',pemeriksaan_ranap.pemeriksaan) "
-                    + "ORDER BY pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat "
-                    + "SEPARATOR '\\n'),'') "
-                    + "FROM pemeriksaan_ranap "
-                    + "WHERE pemeriksaan_ranap.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            PemeriksaanRad.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT("
-                    + "CONCAT_WS(' ',hasil_radiologi.tgl_periksa,"
-                    + "hasil_radiologi.jam,'-',hasil_radiologi.hasil) "
-                    + "ORDER BY hasil_radiologi.tgl_periksa,hasil_radiologi.jam "
-                    + "SEPARATOR '\\n'),'') "
-                    + "FROM hasil_radiologi "
-                    + "WHERE hasil_radiologi.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            HasilLaborat.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT(jns_perawatan_lab.nm_perawatan,' - ',"
-                    + "template_laboratorium.Pemeriksaan,' : ',detail_periksa_lab.nilai "
-                    + "ORDER BY template_laboratorium.Pemeriksaan SEPARATOR '\\n'),'') "
-                    + "FROM detail_periksa_lab "
-                    + "INNER JOIN template_laboratorium "
-                    + "ON detail_periksa_lab.id_template=template_laboratorium.id_template "
-                    + "INNER JOIN jns_perawatan_lab "
-                    + "ON detail_periksa_lab.kd_jenis_prw=jns_perawatan_lab.kd_jenis_prw "
-                    + "WHERE detail_periksa_lab.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            TindakanSelamaDiRS.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT(\n"
-                    + "    CONCAT_WS(' ',rawat_inap_dr.tgl_perawatan,\n"
-                    + "    rawat_inap_dr.jam_rawat,'-',jns_perawatan_inap.nm_perawatan)\n"
-                    + "    ORDER BY rawat_inap_dr.tgl_perawatan,rawat_inap_dr.jam_rawat\n"
-                    + "    SEPARATOR '\\n'),'')\n"
-                    + "FROM rawat_inap_dr\n"
-                    + "INNER JOIN jns_perawatan_inap\n"
-                    + "ON rawat_inap_dr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw\n"
-                    + "WHERE rawat_inap_dr.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            ObatSelamaDiRS.setText(
-                Sequel.cariIsi(
-                    "SELECT GROUP_CONCAT(databarang.nama_brng SEPARATOR ', ') "
-                    + "FROM detail_pemberian_obat "
-                    + "INNER JOIN databarang ON detail_pemberian_obat.kode_brng=databarang.kode_brng "
-                    + "WHERE detail_pemberian_obat.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
-            Diet.setText(
-                Sequel.cariIsi("select detail_beri_diet.tanggal, detail_beri_diet.waktu, diet.nama_diet \"+\n"
-                    + "                    \"from detail_beri_diet INNER JOIN diet ON detail_beri_diet.kd_diet=diet.kd_diet where \"+\n"
-                    + "                    \"detail_beri_diet.no_rawat=?", TNoRw.getText()
-                )
-            );
-            LabBelum.setText(
-                Sequel.cariIsi("select permintaan_lab.tgl_permintaan,permintaan_lab.jam_permintaan,template_laboratorium.Pemeriksaan "
-                    + "from permintaan_lab inner join permintaan_detail_permintaan_lab on permintaan_detail_permintaan_lab.noorder=permintaan_lab.noorder "
-                    + "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template where "
-                    + "permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.no_rawat=?", TNoRw.getText()
-                )
-            );
-            ObatPulang.setText(
-                Sequel.cariIsi(
-                    "SELECT IFNULL(GROUP_CONCAT("
-                    + "CONCAT_WS(' ',resep_pulang.tanggal,resep_pulang.jam,'-',databarang.nama_brng,"
-                    + "'(',resep_pulang.jml_barang,')',resep_pulang.dosis) "
-                    + "ORDER BY resep_pulang.tanggal,resep_pulang.jam "
-                    + "SEPARATOR '\\n'),'') "
-                    + "FROM resep_pulang "
-                    + "INNER JOIN databarang ON databarang.kode_brng=resep_pulang.kode_brng "
-                    + "WHERE resep_pulang.no_rawat=?",
-                    TNoRw.getText()
-                )
-            );
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            try {
+                isiDataRanap(TNoRw.getText());
+            } finally {
+                setCursor(Cursor.getDefaultCursor());
+            }
         }
     }//GEN-LAST:event_btnCariDataActionPerformed
 
@@ -3610,7 +3517,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);    
         isRawat();    
-        Alasan.setText(Sequel.cariIsi("select permintaan_ranap.alasan from permintaan_ranap where permintaan_ranap.no_rawat=?",norwt));
+        Alasan.setText(alasanRanap(norwt));
         ChkInput.setSelected(true);
         isForm();
         CaraKeluar.requestFocus();
@@ -3856,5 +3763,149 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
     public void dispose() {
         executor.shutdownNow();
         super.dispose();
+    }
+
+    private void isiDataRanap(String norawat) {
+        // pengkajian ranap didahulukan, bila belum ada pakai pengkajian IGD/ralan pada no_rawat yang sama
+        Map<String,String> medis=ResumeOtomatis.penilaian(koneksi,norawat,ResumeOtomatis.AWAL_MEDIS_RANAP,ResumeOtomatis.AWAL_MEDIS_RALAN);
+        Map<String,String> medisMasuk=ResumeOtomatis.penilaian(koneksi,norawat,ResumeOtomatis.AWAL_MEDIS_RALAN);
+        Map<String,String> perawat=ResumeOtomatis.penilaian(koneksi,norawat,ResumeOtomatis.AWAL_KEPERAWATAN_RANAP,ResumeOtomatis.AWAL_KEPERAWATAN_RALAN);
+        Map<String,String> skrining=ResumeOtomatis.skrining(koneksi,norawat);
+        ResumeOtomatis.Soap soap=ResumeOtomatis.soap(koneksi,norawat,true);
+
+        // ================= Alasan Masuk, Diagnosa Awal, Alergi =================
+        ResumeOtomatis.setJikaKosong(Alasan,alasanRanap(norawat));
+        ResumeOtomatis.setJikaKosong(DiagnosaAwal,ResumeOtomatis.nilai(medisMasuk,"diagnosis"));
+        ResumeOtomatis.setJikaKosong(Alergi,ResumeOtomatis.pilih(medis,perawat,"alergi"));
+
+        // ================= Keluhan Utama & Riwayat Penyakit =================
+        ResumeOtomatis.setIsi(KeluhanUtama,ResumeOtomatis.keluhan(medis,perawat,soap.keluhan));
+
+        // ================= Pemeriksaan Fisik =================
+        StringBuilder fisik=new StringBuilder();
+        ResumeOtomatis.tambah(fisik,"\n","Skrining Awal : ",ResumeOtomatis.triase(skrining));
+        ResumeOtomatis.tambah(fisik,"\n","",ResumeOtomatis.tandaVital(medis.isEmpty()?perawat:medis));
+        ResumeOtomatis.tambah(fisik,"\n","",ResumeOtomatis.nilai(medis,"ket_fisik"));
+        ResumeOtomatis.tambah(fisik,"\n","Status Lokalis : ",ResumeOtomatis.nilai(medis,"ket_lokalis"));
+        if(medis.isEmpty()){
+            ResumeOtomatis.tambah(fisik,"\n","",soap.objektif);
+        }
+        ResumeOtomatis.setIsi(PemeriksaanFisik,fisik.toString());
+
+        // ================= Jalannya Penyakit =================
+        ResumeOtomatis.setIsi(JalannyaPenyakit,soap.teks);
+
+        // ================= Penunjang & Laboratorium =================
+        StringBuilder penunjang=new StringBuilder(ResumeOtomatis.radiologi(koneksi,norawat));
+        ResumeOtomatis.tambah(penunjang,"\n","",ResumeOtomatis.nilai(medis,"penunjang"));
+        ResumeOtomatis.setIsi(PemeriksaanRad,penunjang.toString());
+        ResumeOtomatis.setIsi(HasilLaborat,ResumeOtomatis.laborat(koneksi,norawat));
+        ResumeOtomatis.setIsi(LabBelum,ResumeOtomatis.daftar(koneksi,
+            "select concat(permintaan_lab.tgl_permintaan,' ',permintaan_lab.jam_permintaan,' - ',template_laboratorium.Pemeriksaan) "+
+            "from permintaan_lab inner join permintaan_detail_permintaan_lab on permintaan_detail_permintaan_lab.noorder=permintaan_lab.noorder "+
+            "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template "+
+            "where permintaan_lab.tgl_hasil='0000-00-00' and permintaan_lab.no_rawat=? "+
+            "order by permintaan_lab.tgl_permintaan,permintaan_lab.jam_permintaan,template_laboratorium.urut",norawat));
+
+        // ================= Tindakan & Obat Selama di RS =================
+        ResumeOtomatis.setIsi(TindakanSelamaDiRS,ResumeOtomatis.daftar(koneksi,
+            "select concat(tindakan.tgl_perawatan,' ',tindakan.jam_rawat,' - ',jns_perawatan_inap.nm_perawatan) from ("+
+            "select kd_jenis_prw,tgl_perawatan,jam_rawat from rawat_inap_dr where no_rawat=? union all "+
+            "select kd_jenis_prw,tgl_perawatan,jam_rawat from rawat_inap_drpr where no_rawat=?) tindakan "+
+            "inner join jns_perawatan_inap on tindakan.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw "+
+            "order by tindakan.tgl_perawatan,tindakan.jam_rawat",norawat,norawat));
+        ResumeOtomatis.setIsi(ObatSelamaDiRS,ResumeOtomatis.daftar(koneksi,
+            "select concat(databarang.nama_brng,' ',sum(detail_pemberian_obat.jml),' ',databarang.kode_sat) "+
+            "from detail_pemberian_obat inner join databarang on detail_pemberian_obat.kode_brng=databarang.kode_brng "+
+            "where detail_pemberian_obat.no_rawat=? group by databarang.kode_brng,databarang.nama_brng,databarang.kode_sat "+
+            "order by min(detail_pemberian_obat.tgl_perawatan),databarang.nama_brng",norawat));
+        ResumeOtomatis.setIsi(Diet,ResumeOtomatis.daftar(koneksi,
+            "select concat(detail_beri_diet.tanggal,' ',detail_beri_diet.waktu,' - ',diet.nama_diet) "+
+            "from detail_beri_diet inner join diet on detail_beri_diet.kd_diet=diet.kd_diet "+
+            "where detail_beri_diet.no_rawat=? order by detail_beri_diet.tanggal",norawat));
+
+        // ================= Diagnosa & Prosedur =================
+        isiDiagnosaProsedur(norawat);
+        String diagnosis=ResumeOtomatis.nilai(medis,"diagnosis");
+        ResumeOtomatis.setJikaKosong(DiagnosaUtama,diagnosis.equals("")?soap.penilaian:diagnosis);
+
+        // ================= Edukasi & Obat Pulang =================
+        ResumeOtomatis.setIsi(Edukasi,ResumeOtomatis.nilai(medis,"edukasi"));
+        ResumeOtomatis.setIsi(ObatPulang,ResumeOtomatis.daftar(koneksi,
+            "select concat(resep_pulang.tanggal,' ',resep_pulang.jam,' - ',databarang.nama_brng,' ',resep_pulang.jml_barang,' ',"+
+            "databarang.kode_sat,if(ifnull(resep_pulang.dosis,'')='','',concat(' (',resep_pulang.dosis,')'))) "+
+            "from resep_pulang inner join databarang on databarang.kode_brng=resep_pulang.kode_brng "+
+            "where resep_pulang.no_rawat=? order by resep_pulang.tanggal,resep_pulang.jam",norawat));
+
+        if(medis.isEmpty()&&perawat.isEmpty()&&skrining.isEmpty()&&soap.teks.equals("")){
+            JOptionPane.showMessageDialog(null,"Data skrining, pengkajian awal maupun SOAP tidak ditemukan..!!","Peringatan",JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private String alasanRanap(String norawat) {
+        return Sequel.cariIsi("select permintaan_ranap.alasan from permintaan_ranap where permintaan_ranap.no_rawat=?",norawat);
+    }
+
+    private void isiDiagnosaProsedur(String norawat) {
+        try {
+            ps=koneksi.prepareStatement(
+                    "select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit,diagnosa_pasien.prioritas "+
+                    "from diagnosa_pasien inner join penyakit on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "+
+                    "where diagnosa_pasien.no_rawat=? and diagnosa_pasien.status='Ranap' order by diagnosa_pasien.prioritas ");
+            try {
+                ps.setString(1,norawat);
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    switch(rs.getInt("prioritas")){
+                        case 1: KodeDiagnosaUtama.setText(rs.getString("kd_penyakit")); DiagnosaUtama.setText(rs.getString("nm_penyakit")); break;
+                        case 2: KodeDiagnosaSekunder1.setText(rs.getString("kd_penyakit")); DiagnosaSekunder1.setText(rs.getString("nm_penyakit")); break;
+                        case 3: KodeDiagnosaSekunder2.setText(rs.getString("kd_penyakit")); DiagnosaSekunder2.setText(rs.getString("nm_penyakit")); break;
+                        case 4: KodeDiagnosaSekunder3.setText(rs.getString("kd_penyakit")); DiagnosaSekunder3.setText(rs.getString("nm_penyakit")); break;
+                        case 5: KodeDiagnosaSekunder4.setText(rs.getString("kd_penyakit")); DiagnosaSekunder4.setText(rs.getString("nm_penyakit")); break;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
+
+        try {
+            ps=koneksi.prepareStatement(
+                    "select prosedur_pasien.kode,icd9.deskripsi_panjang,prosedur_pasien.prioritas "+
+                    "from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode "+
+                    "where prosedur_pasien.no_rawat=? and prosedur_pasien.status='Ranap' order by prosedur_pasien.prioritas ");
+            try {
+                ps.setString(1,norawat);
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    switch(rs.getInt("prioritas")){
+                        case 1: KodeProsedurUtama.setText(rs.getString("kode")); ProsedurUtama.setText(rs.getString("deskripsi_panjang")); break;
+                        case 2: KodeProsedurSekunder1.setText(rs.getString("kode")); ProsedurSekunder1.setText(rs.getString("deskripsi_panjang")); break;
+                        case 3: KodeProsedurSekunder2.setText(rs.getString("kode")); ProsedurSekunder2.setText(rs.getString("deskripsi_panjang")); break;
+                        case 4: KodeProsedurSekunder3.setText(rs.getString("kode")); ProsedurSekunder3.setText(rs.getString("deskripsi_panjang")); break;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
     }
 }
