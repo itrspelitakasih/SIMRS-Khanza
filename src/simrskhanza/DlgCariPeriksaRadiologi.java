@@ -59,7 +59,7 @@ import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import rekammedis.MasterCariTemplateHasilRadiologi;
 import rekammedis.RMRiwayatPerawatan;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 

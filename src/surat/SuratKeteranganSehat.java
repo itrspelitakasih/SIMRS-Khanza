@@ -35,7 +35,7 @@ import org.apache.poi.hssf.record.formula.functions.Setvalue;
 import AESsecurity.EnkripsiAES;
 import java.io.File;
 import java.sql.SQLException;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 
 /**

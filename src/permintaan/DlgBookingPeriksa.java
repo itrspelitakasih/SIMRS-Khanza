@@ -51,9 +51,9 @@ import simrskhanza.DlgKecamatan;
 import simrskhanza.DlgKelurahan;
 import simrskhanza.DlgCariCaraBayar;
 import simrskhanza.DlgPropinsi;
-import wa.GoWAService;
-import wa.NotifRegistrasiPasien;
-import wa.pesanWA;
+import komunikasi.GoWAService;
+import komunikasi.NotifRegistrasiPasien;
+import komunikasi.pesanWA;
 
 /**
  *

@@ -38,7 +38,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariDokter;
 import kepegawaian.DlgCariDokter2;
 import simrskhanza.DlgCariCaraBayar;
-import wa.NotifRegistrasiPasien;
+import komunikasi.NotifRegistrasiPasien;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgCariPoli2;
 import simrskhanza.DlgPasien;

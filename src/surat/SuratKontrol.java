@@ -40,7 +40,7 @@ import kepegawaian.DlgCariDokter2;
 import laporan.DlgCariPenyakit;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgCariPoli2;
-import wa.GoWAService;
+import komunikasi.GoWAService;
 
 /**
  *

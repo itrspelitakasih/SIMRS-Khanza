@@ -1,4 +1,4 @@
-package wa;
+package komunikasi;
 
 import java.util.Map;
 

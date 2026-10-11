@@ -1,4 +1,4 @@
-package wa;
+package komunikasi;
 
 import fungsi.koneksiDB;
 import fungsi.koneksiDBWa;
