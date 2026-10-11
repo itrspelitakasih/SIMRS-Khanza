@@ -280,6 +280,7 @@ public class DlgUpdateTarifKelas extends javax.swing.JDialog {
 
         internalFrame1.add(panelInfo, java.awt.BorderLayout.PAGE_START);
 
+        TabProses.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         TabProses.setName("TabProses"); // NOI18N
 
         scrollPane2.setName("scrollPane2"); // NOI18N

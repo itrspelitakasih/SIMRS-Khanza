@@ -15000,10 +15000,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                     return;
                 }
                 long modifServer = Long.parseLong(versiServer[1]);
-                String tanggal = modifServer > 0 ? new java.text.SimpleDateFormat("dd-MM-yyyy HH:mm").format(new java.util.Date(modifServer)) : "-";
+                String tanggal = modifServer > 0 ? new java.text.SimpleDateFormat("dd-MM-yyyy").format(new java.util.Date(modifServer)) : "-";
                 java.awt.EventQueue.invokeLater(() -> {
                     int jawab = JOptionPane.showConfirmDialog(this,
-                        "Versi baru tersedia (rilis " + tanggal + ").\nDownload sekarang?",
+                        "Versi tersedia (rilis " + tanggal + ").\nDownload sekarang?",
                         "Update Tersedia", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
                     if (jawab == JOptionPane.YES_OPTION) {
                         MnUpdateBtnLogActionPerformed(null);
