@@ -47,7 +47,17 @@ public class DlgChat extends javax.swing.JDialog {
     private final DefaultTableModel tabUser,tabInbox;
     private final TableRowSorter<DefaultTableModel> sorterUser;
     private final Map<String,String> namaUser=new HashMap<>();
-    private final StringBuilder isiChat=new StringBuilder();
+    private static final int UKURAN_AVATAR=30,UKURAN_AVATAR_JUDUL=36,UKURAN_AVATAR_PESAN=26;
+    /** Pesan percakapan aktif: {waktu, pengirim, pesan}; HTML dibangun ulang dari sini saat foto avatar siap. */
+    private final List<Object[]> pesanTampil=new ArrayList<>();
+    private final Runnable pendengarAvatar=() -> {
+        this.tbUser.repaint();
+        this.tbInbox.repaint();
+        tampilkanJudul();
+        if(!this.pesanTampil.isEmpty()){
+            tampilkan();
+        }
+    };
     private final SimpleDateFormat fmtWaktu=new SimpleDateFormat("dd-MM-yyyy HH:mm"),
             fmtJam=new SimpleDateFormat("HH:mm"),fmtTgl=new SimpleDateFormat("dd-MM"),fmtHari=new SimpleDateFormat("yyyyMMdd");
     private final String kodeSaya=akses.getkode();
@@ -67,11 +77,11 @@ public class DlgChat extends javax.swing.JDialog {
         initComponents();
         this.setSize(1000,640);
 
-        tabUser=new DefaultTableModel(null,new Object[]{"Kode","Nama User","Status","Baru"}){
+        tabUser=new DefaultTableModel(null,new Object[]{"Kode","Nama User","Baru"}){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        siapkanTabel(tbUser,tabUser,new int[]{0,195,55,40});
-        tbUser.setDefaultRenderer(Object.class,new RendererChat(tabUser,3));
+        siapkanTabel(tbUser,tabUser,new int[]{0,255,40});
+        tbUser.setDefaultRenderer(Object.class,new RendererChat(tabUser,2));
         sorterUser=new TableRowSorter<>(tabUser);
         for(int i=0;i<tabUser.getColumnCount();i++){
             sorterUser.setSortable(i,false);
@@ -81,8 +91,12 @@ public class DlgChat extends javax.swing.JDialog {
         tabInbox=new DefaultTableModel(null,new Object[]{"Kode","Nama","Pesan Terakhir","Jam","Baru"}){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        siapkanTabel(tbInbox,tabInbox,new int[]{0,120,110,45,35});
+        siapkanTabel(tbInbox,tabInbox,new int[]{0,140,95,45,35});
         tbInbox.setDefaultRenderer(Object.class,new RendererChat(tabInbox,4));
+        tbUser.setRowHeight(UKURAN_AVATAR+6);
+        tbInbox.setRowHeight(UKURAN_AVATAR+6);
+        // foto selesai diunduh -> gambar ulang avatar di daftar, judul & gelembung chat
+        AvatarChat.tambahPendengar(pendengarAvatar);
 
         tbUser.getSelectionModel().addListSelectionListener(e -> {
             if(!e.getValueIsAdjusting()&&tbUser.getSelectedRow()>-1){
@@ -254,7 +268,7 @@ public class DlgChat extends javax.swing.JDialog {
         BtnPesanBaru.setText("Pesan Baru");
         BtnPesanBaru.setToolTipText("Alt+P");
         BtnPesanBaru.setName("BtnPesanBaru"); // NOI18N
-        BtnPesanBaru.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPesanBaru.setPreferredSize(new java.awt.Dimension(120, 30));
         BtnPesanBaru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPesanBaruActionPerformed(evt);
@@ -312,10 +326,13 @@ public class DlgChat extends javax.swing.JDialog {
         panelKanan.setName("panelKanan"); // NOI18N
         panelKanan.setLayout(new java.awt.BorderLayout(1, 1));
 
+        LblLawan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
         LblLawan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LblLawan.setText("  Pesan Pribadi");
+        LblLawan.setText("Pesan Pribadi");
+        LblLawan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        LblLawan.setIconTextGap(8);
         LblLawan.setName("LblLawan"); // NOI18N
-        LblLawan.setPreferredSize(new java.awt.Dimension(100, 30));
+        LblLawan.setPreferredSize(new java.awt.Dimension(100, 44));
         panelKanan.add(LblLawan, java.awt.BorderLayout.PAGE_START);
 
         ScrollPribadi.setName("ScrollPribadi"); // NOI18N
@@ -467,6 +484,7 @@ public class DlgChat extends javax.swing.JDialog {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         timer.stop();
+        AvatarChat.hapusPendengar(pendengarAvatar);
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -579,7 +597,7 @@ public class DlgChat extends javax.swing.JDialog {
 
         tabUser.setRowCount(0);
         for(String[] a:daftar){
-            tabUser.addRow(new Object[]{a[0],a[1],"",""});
+            tabUser.addRow(new Object[]{a[0],a[1],""});
         }
         pilihBarisLawan();
     }
@@ -644,15 +662,13 @@ public class DlgChat extends javax.swing.JDialog {
         }
         versi++;
         idTerakhir=0;
-        isiChat.setLength(0);
+        pesanTampil.clear();
         int tab=modeGlobal()?0:1;
         if(TabChat.getSelectedIndex()!=tab){
             TabChat.setSelectedIndex(tab);
         }
         boolean adaLawan=lawan!=null&&!modeGlobal();
-        if(!modeGlobal()){
-            LblLawan.setText(adaLawan?"  Chat Pribadi : "+nama(kode)+" ("+kode+")":"  Pesan Pribadi");
-        }
+        tampilkanJudul();
         TPesanPribadi.setEnabled(adaLawan);
         BtnKirimPribadi.setEnabled(adaLawan);
         BtnHapus.setEnabled(adaLawan||(modeGlobal()&&kodeSaya.equals("Admin Utama")));
@@ -906,9 +922,10 @@ public class DlgChat extends javax.swing.JDialog {
             if(on){
                 jmlOnline++;
             }
-            tabUser.setValueAt(on?"Online":"",i,2);
-            tabUser.setValueAt(baru==null?"":baru.toString(),i,3);
+            tabUser.setValueAt(baru==null?"":baru.toString(),i,2);
         }
+        tbUser.repaint();
+        tampilkanJudul();
         for(Integer n:h.belumDibaca.values()){
             totalPribadi+=n;
         }
@@ -950,23 +967,55 @@ public class DlgChat extends javax.swing.JDialog {
     }
 
     private void tambahPesan(Timestamp waktu,String pengirim,String pesan){
+        pesanTampil.add(new Object[]{waktu,pengirim,pesan});
+    }
+
+    /** Gelembung pesan; pesan orang lain diberi avatar pengirim di kiri. */
+    private void htmlPesan(StringBuilder sb,Timestamp waktu,String pengirim,String pesan){
         boolean saya=pengirim.equals(kodeSaya);
-        isiChat.append("<table width='100%' cellspacing='0' cellpadding='3'><tr><td align='").append(saya?"right":"left").append("'>")
-               .append("<table cellspacing='0' cellpadding='6' bgcolor='").append(saya?"#DCF8C6":"#EEF2F7").append("'><tr><td>")
-               .append("<span class='nama'>").append(esc(saya?"Saya":nama(pengirim))).append("</span> ")
-               .append("<span class='jam'>").append(fmtWaktu.format(waktu)).append("</span><br>")
-               .append(esc(pesan).replace("\n","<br>"))
-               .append("</td></tr></table></td></tr></table>");
+        sb.append("<table width='100%' cellspacing='0' cellpadding='3'><tr><td align='").append(saya?"right":"left").append("'>");
+        if(!saya){
+            sb.append("<table cellspacing='0' cellpadding='0'><tr><td valign='top' width='").append(UKURAN_AVATAR_PESAN+6).append("'>")
+              .append("<img src='").append(AvatarChat.urlFile(pengirim,nama(pengirim),UKURAN_AVATAR_PESAN))
+              .append("' width='").append(UKURAN_AVATAR_PESAN).append("' height='").append(UKURAN_AVATAR_PESAN).append("'></td><td>");
+        }
+        sb.append("<table cellspacing='0' cellpadding='6' bgcolor='").append(saya?"#DCF8C6":"#EEF2F7").append("'><tr><td>")
+          .append("<span class='nama'>").append(esc(saya?"Saya":nama(pengirim))).append("</span> ")
+          .append("<span class='jam'>").append(fmtWaktu.format(waktu)).append("</span><br>")
+          .append(esc(pesan).replace("\n","<br>"))
+          .append("</td></tr></table>");
+        if(!saya){
+            sb.append("</td></tr></table>");
+        }
+        sb.append("</td></tr></table>");
+    }
+
+    /** Judul percakapan pribadi: avatar lawan chat (titik hijau bila online) + nama. */
+    private void tampilkanJudul(){
+        if(modeGlobal()){
+            return;
+        }
+        if(lawan==null){
+            LblLawan.setIcon(null);
+            LblLawan.setText("Pesan Pribadi");
+        }else{
+            LblLawan.setIcon(AvatarChat.ikon(lawan,nama(lawan),UKURAN_AVATAR_JUDUL,online.contains(lawan)));
+            LblLawan.setText(nama(lawan)+(online.contains(lawan)?"  -  Online":""));
+        }
     }
 
     private void tampilkan(){
         String isi;
         if(lawan==null){
             isi="<p style='color:#888888'>Pilih percakapan di sebelah kiri, atau klik 'Pesan Baru' untuk memulai chat pribadi.</p>";
-        }else if(isiChat.length()==0){
+        }else if(pesanTampil.isEmpty()){
             isi="<p style='color:#888888'>Belum ada pesan.</p>";
         }else{
-            isi=isiChat.toString();
+            StringBuilder sb=new StringBuilder();
+            for(Object[] p:pesanTampil){
+                htmlPesan(sb,(Timestamp)p[0],(String)p[1],(String)p[2]);
+            }
+            isi=sb.toString();
         }
         final editorpane tampil=tampilanAktif();
         tampil.setText("<html><head><style>body{font-family:Arial;font-size:11pt;color:#323232;margin:4px}"+
@@ -976,7 +1025,7 @@ public class DlgChat extends javax.swing.JDialog {
         SwingUtilities.invokeLater(() -> bar.setValue(bar.getMaximum()));
     }
 
-    /** Baris dengan pesan baru tebal, kolom "Baru" merah, kolom status & nama user online hijau. */
+    /** Kolom nama diberi avatar (titik hijau bila online), baris berpesan baru berlatar merah muda, kolom "Baru" merah. */
     private class RendererChat extends DefaultTableCellRenderer {
         private final DefaultTableModel model;
         private final int kolomBaru;
@@ -988,20 +1037,16 @@ public class DlgChat extends javax.swing.JDialog {
 
         @Override
         public Component getTableCellRendererComponent(JTable table,Object value,boolean isSelected,boolean hasFocus,int row,int column){
-            Component c=super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
+            super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
             int baris=table.convertRowIndexToModel(row);
+            String kode=model.getValueAt(baris,0).toString();
             boolean adaBaru=!model.getValueAt(baris,kolomBaru).toString().equals("");
-            boolean on=online.contains(model.getValueAt(baris,0).toString());
-            c.setFont(c.getFont().deriveFont(isSelected?java.awt.Font.BOLD:java.awt.Font.PLAIN));
-            c.setBackground(isSelected?table.getSelectionBackground():(adaBaru?new Color(255,235,238):Color.WHITE));
-            if(column==kolomBaru){
-                c.setForeground(new Color(198,40,40));
-            }else if((column==1&&on)||model.getValueAt(baris,column).equals("Online")){
-                c.setForeground(new Color(46,125,50));
-            }else{
-                c.setForeground(new Color(50,50,50));
-            }
-            return c;
+            setFont(getFont().deriveFont(isSelected?java.awt.Font.BOLD:java.awt.Font.PLAIN));
+            setBackground(isSelected?table.getSelectionBackground():(adaBaru?new Color(255,235,238):Color.WHITE));
+            setForeground(column==kolomBaru?new Color(198,40,40):new Color(50,50,50));
+            setIcon(column==1?AvatarChat.ikon(kode,model.getValueAt(baris,1).toString(),UKURAN_AVATAR,online.contains(kode)):null);
+            setIconTextGap(6);
+            return this;
         }
     }
 }

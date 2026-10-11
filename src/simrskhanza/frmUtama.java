@@ -1266,10 +1266,10 @@ public class frmUtama extends javax.swing.JFrame {
     private DlgChat dlgChat=null;
     private ChatNotifier.Info infoChat=new ChatNotifier.Info();
     private boolean kedipMerah=false;
-    // tombol Pesan di toolbar berkedip merah selama ada pesan pribadi belum dibaca
+    // angka di lonceng notifikasi berkedip merah selama ada pesan pribadi belum dibaca
     private final javax.swing.Timer kedipPesan=new javax.swing.Timer(600,e -> {
         kedipMerah=!kedipMerah;
-        this.BtnToolChat.setForeground(kedipMerah?new java.awt.Color(220,0,0):new java.awt.Color(120,0,0));
+        this.BtnNotif.setForeground(kedipMerah?new java.awt.Color(220,0,0):new java.awt.Color(120,0,0));
     });
     private final INACBGHybrid inacbgklaim=new INACBGHybrid(this,false);
     private final INACBGCariCoderNIK cariNIK=new INACBGCariCoderNIK(this,false);
@@ -1828,6 +1828,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnLaboratoriumPA = new widget.ButtonBig();
         btnLaboratoriumMB = new widget.ButtonBig();
         internalFrame1 = new widget.InternalFrame();
+        panelToolKiri = new widget.Panel();
         BtnMenu = new widget.ButtonBig();
         jSeparator4 = new javax.swing.JSeparator();
         BtnToolReg = new widget.ButtonBig();
@@ -1844,6 +1845,8 @@ public class frmUtama extends javax.swing.JFrame {
         BtnLog = new widget.ButtonBig();
         BtnToolChat = new widget.ButtonBig();
         BtnClose = new widget.ButtonBig();
+        panelToolKanan = new widget.Panel();
+        BtnNotif = new widget.ButtonBig();
         internalFrame4 = new widget.InternalFrame();
         lblStts = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -7229,7 +7232,11 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame1.setVerifyInputWhenFocusTarget(false);
         internalFrame1.setWarnaAtas(new java.awt.Color(245, 255, 245));
         internalFrame1.setWarnaBawah(new java.awt.Color(51, 153, 255));
-        internalFrame1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 2));
+        internalFrame1.setLayout(new java.awt.BorderLayout());
+
+        panelToolKiri.setName("panelToolKiri"); // NOI18N
+        panelToolKiri.setOpaque(false);
+        panelToolKiri.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 2));
 
         BtnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/menu.png"))); // NOI18N
         BtnMenu.setMnemonic('M');
@@ -7247,7 +7254,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnMenuActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnMenu);
+        panelToolKiri.add(BtnMenu);
 
         jSeparator4.setBackground(new java.awt.Color(0, 158, 96));
         jSeparator4.setForeground(new java.awt.Color(0, 158, 96));
@@ -7256,7 +7263,7 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator4.setName("jSeparator4"); // NOI18N
         jSeparator4.setOpaque(true);
         jSeparator4.setPreferredSize(new java.awt.Dimension(1, 36));
-        internalFrame1.add(jSeparator4);
+        panelToolKiri.add(jSeparator4);
 
         BtnToolReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
         BtnToolReg.setMnemonic('R');
@@ -7274,7 +7281,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolRegActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnToolReg);
+        panelToolKiri.add(BtnToolReg);
 
         btnToolIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Doctor.png"))); // NOI18N
         btnToolIGD.setMnemonic('D');
@@ -7292,7 +7299,7 @@ public class frmUtama extends javax.swing.JFrame {
                 btnToolIGDActionPerformed(evt);
             }
         });
-        internalFrame1.add(btnToolIGD);
+        panelToolKiri.add(btnToolIGD);
 
         jSeparator5.setBackground(new java.awt.Color(0, 158, 96));
         jSeparator5.setForeground(new java.awt.Color(0, 158, 96));
@@ -7301,7 +7308,7 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator5.setName("jSeparator5"); // NOI18N
         jSeparator5.setOpaque(true);
         jSeparator5.setPreferredSize(new java.awt.Dimension(1, 36));
-        internalFrame1.add(jSeparator5);
+        panelToolKiri.add(jSeparator5);
 
         btnToolLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-search24.png"))); // NOI18N
         btnToolLab.setMnemonic('O');
@@ -7318,7 +7325,7 @@ public class frmUtama extends javax.swing.JFrame {
                 btnToolLabActionPerformed(evt);
             }
         });
-        internalFrame1.add(btnToolLab);
+        panelToolKiri.add(btnToolLab);
 
         btnToolRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Surgeon.png"))); // NOI18N
         btnToolRad.setMnemonic('A');
@@ -7335,7 +7342,7 @@ public class frmUtama extends javax.swing.JFrame {
                 btnToolRadActionPerformed(evt);
             }
         });
-        internalFrame1.add(btnToolRad);
+        panelToolKiri.add(btnToolRad);
 
         BtnToolJualObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/shopping-cart-insert24.png"))); // NOI18N
         BtnToolJualObat.setMnemonic('j');
@@ -7352,7 +7359,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolJualObatActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnToolJualObat);
+        panelToolKiri.add(BtnToolJualObat);
 
         btnToolMCU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/MCU24.png"))); // NOI18N
         btnToolMCU.setMnemonic('A');
@@ -7369,7 +7376,7 @@ public class frmUtama extends javax.swing.JFrame {
                 btnToolMCUActionPerformed(evt);
             }
         });
-        internalFrame1.add(btnToolMCU);
+        panelToolKiri.add(btnToolMCU);
 
         jSeparator9.setBackground(new java.awt.Color(0, 158, 96));
         jSeparator9.setForeground(new java.awt.Color(0, 158, 96));
@@ -7378,7 +7385,7 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator9.setName("jSeparator9"); // NOI18N
         jSeparator9.setOpaque(true);
         jSeparator9.setPreferredSize(new java.awt.Dimension(1, 36));
-        internalFrame1.add(jSeparator9);
+        panelToolKiri.add(jSeparator9);
 
         BtnToolKamnap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/home24.png"))); // NOI18N
         BtnToolKamnap.setMnemonic('K');
@@ -7396,7 +7403,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolKamnapActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnToolKamnap);
+        panelToolKiri.add(BtnToolKamnap);
 
         BtnToolKasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
         BtnToolKasir.setMnemonic('S');
@@ -7414,7 +7421,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolKasirActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnToolKasir);
+        panelToolKiri.add(BtnToolKasir);
 
         jSeparator7.setBackground(new java.awt.Color(0, 158, 96));
         jSeparator7.setForeground(new java.awt.Color(0, 158, 96));
@@ -7423,7 +7430,7 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator7.setName("jSeparator7"); // NOI18N
         jSeparator7.setOpaque(true);
         jSeparator7.setPreferredSize(new java.awt.Dimension(1, 36));
-        internalFrame1.add(jSeparator7);
+        panelToolKiri.add(jSeparator7);
 
         BtnLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/login2.png"))); // NOI18N
         BtnLog.setMnemonic('L');
@@ -7440,7 +7447,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnLogActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnLog);
+        panelToolKiri.add(BtnLog);
 
         BtnToolChat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mail_receive.png"))); // NOI18N
         BtnToolChat.setText("Pesan");
@@ -7457,7 +7464,7 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnToolChatActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnToolChat);
+        panelToolKiri.add(BtnToolChat);
 
         BtnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Delete.png"))); // NOI18N
         BtnClose.setMnemonic('U');
@@ -7474,7 +7481,32 @@ public class frmUtama extends javax.swing.JFrame {
                 BtnCloseActionPerformed(evt);
             }
         });
-        internalFrame1.add(BtnClose);
+        panelToolKiri.add(BtnClose);
+
+        internalFrame1.add(panelToolKiri, java.awt.BorderLayout.CENTER);
+
+        panelToolKanan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 15));
+        panelToolKanan.setName("panelToolKanan"); // NOI18N
+        panelToolKanan.setOpaque(false);
+        panelToolKanan.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 2));
+
+        BtnNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/bell.png"))); // NOI18N
+        BtnNotif.setToolTipText("Tidak ada pesan baru");
+        BtnNotif.setEnabled(false);
+        BtnNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnNotif.setIconTextGap(3);
+        BtnNotif.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnNotif.setName("BtnNotif"); // NOI18N
+        BtnNotif.setPreferredSize(new java.awt.Dimension(60, 38));
+        BtnNotif.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNotifActionPerformed(evt);
+            }
+        });
+        panelToolKanan.add(BtnNotif);
+
+        internalFrame1.add(panelToolKanan, java.awt.BorderLayout.EAST);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.PAGE_START);
 
@@ -8790,6 +8822,15 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 }//GEN-LAST:event_BtnToolKasirActionPerformed
 
     private void BtnToolChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolChatActionPerformed
+        bukaChat();
+    }//GEN-LAST:event_BtnToolChatActionPerformed
+
+    private void BtnNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotifActionPerformed
+        bukaChat();
+    }//GEN-LAST:event_BtnNotifActionPerformed
+
+    /** Buka jendela chat, langsung ke percakapan pesan belum dibaca terbaru bila ada. */
+    private void bukaChat(){
         if(dlgChat==null||!dlgChat.isDisplayable()){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dlgChat=new DlgChat(null,false);
@@ -8804,30 +8845,31 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
         dlgChat.setVisible(true);
         dlgChat.toFront();
-    }//GEN-LAST:event_BtnToolChatActionPerformed
+    }
 
     private void mulaiChat(){
         BtnToolChat.setEnabled(true);
+        BtnNotif.setEnabled(true);
         ChatNotifier.start(akses.getkode(),info -> {
-            if(!BtnToolChat.isEnabled()){
+            if(!BtnNotif.isEnabled()){
                 return;
             }
             infoChat=info;
             int total=info.personal+info.global;
-            BtnToolChat.setText(total>0?"Pesan ("+total+")":"Pesan");
+            BtnNotif.setText(total>0?(total>99?"99+":String.valueOf(total)):"");
             if(info.personal>0){
-                // rincian pengirim & cuplikan pesan di tooltip, tombol berkedip merah
+                // rincian pengirim & cuplikan pesan di tooltip, lonceng berkedip merah
                 String dari=info.jmlPengirim>1?info.dariNama+" & "+(info.jmlPengirim-1)+" user lain":info.dariNama;
                 String cuplikan=info.cuplikan.length()>60?info.cuplikan.substring(0,60)+"...":info.cuplikan;
-                BtnToolChat.setToolTipText("<html>"+info.personal+" pesan pribadi dari "+escHtml(dari)+"<br>\""+escHtml(cuplikan)+"\""+
+                BtnNotif.setToolTipText("<html>"+info.personal+" pesan pribadi dari "+escHtml(dari)+"<br>\""+escHtml(cuplikan)+"\""+
                         (info.global>0?"<br>Chat Semua : "+info.global+" pesan baru":"")+"<br>Klik untuk membalas</html>");
                 if(!kedipPesan.isRunning()){
                     kedipPesan.start();
                 }
             }else{
                 kedipPesan.stop();
-                BtnToolChat.setForeground(new java.awt.Color(50,50,50));
-                BtnToolChat.setToolTipText(info.global>0?"Chat Semua : "+info.global+" pesan baru":"Klik untuk membuka Chat Antar User");
+                BtnNotif.setForeground(new java.awt.Color(50,50,50));
+                BtnNotif.setToolTipText(info.global>0?"Chat Semua : "+info.global+" pesan baru":"Tidak ada pesan baru");
             }
         });
     }
@@ -8845,9 +8887,10 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             dlgChat=null;
         }
         BtnToolChat.setEnabled(false);
-        BtnToolChat.setText("Pesan");
-        BtnToolChat.setForeground(new java.awt.Color(50,50,50));
-        BtnToolChat.setToolTipText("Klik untuk membuka Chat Antar User");
+        BtnNotif.setEnabled(false);
+        BtnNotif.setText("");
+        BtnNotif.setForeground(new java.awt.Color(50,50,50));
+        BtnNotif.setToolTipText("Tidak ada pesan baru");
     }
 
 private void BtnToolRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolRegActionPerformed
@@ -24547,6 +24590,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ButtonBig BtnClose;
     private widget.ButtonBig BtnDpjp;
     private widget.ButtonBig BtnJadwal;
+    private widget.ButtonBig BtnNotif;
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
@@ -25124,6 +25168,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private usu.widget.glass.PanelGlass panelGlass1;
     private usu.widget.glass.PanelGlass panelJudul;
     private widget.InternalFrame panelMenu;
+    private widget.Panel panelToolKanan;
+    private widget.Panel panelToolKiri;
     private widget.panelisi panelisi2;
     private widget.ScrollPane scrollPane1;
     private widget.ScrollPane scrollPane2;
@@ -25319,7 +25365,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     }
     
     private void setToolbar(){
-        if(internalFrame1.getWidth()<(BtnMenu.getWidth()+BtnToolReg.getWidth()+btnToolIGD.getWidth()+
+        if(panelToolKiri.getWidth()<(BtnMenu.getWidth()+BtnToolReg.getWidth()+btnToolIGD.getWidth()+
                 btnToolLab.getWidth()+btnToolRad.getWidth()+BtnToolJualObat.getWidth()+BtnToolKamnap.getWidth()+
                 BtnToolKasir.getWidth()+BtnLog.getWidth()+BtnToolChat.getWidth()+BtnClose.getWidth()+8)){
             internalFrame1.setSize(new Dimension(PanelUtama.getWidth(),90));
