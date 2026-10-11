@@ -7450,7 +7450,7 @@ public class frmUtama extends javax.swing.JFrame {
         BtnToolChat.setIconTextGap(2);
         BtnToolChat.setMargin(new java.awt.Insets(0, 0, 0, 0));
         BtnToolChat.setName("BtnToolChat"); // NOI18N
-        BtnToolChat.setPreferredSize(new java.awt.Dimension(105, 38));
+        BtnToolChat.setPreferredSize(new java.awt.Dimension(80, 38));
         BtnToolChat.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
         BtnToolChat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8793,6 +8793,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if(dlgChat==null||!dlgChat.isDisplayable()){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dlgChat=new DlgChat(null,false);
+            dlgChat.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
             dlgChat.setLocationRelativeTo(PanelUtama);
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -25320,7 +25321,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private void setToolbar(){
         if(internalFrame1.getWidth()<(BtnMenu.getWidth()+BtnToolReg.getWidth()+btnToolIGD.getWidth()+
                 btnToolLab.getWidth()+btnToolRad.getWidth()+BtnToolJualObat.getWidth()+BtnToolKamnap.getWidth()+
-                BtnToolKasir.getWidth()+BtnLog.getWidth()+BtnClose.getWidth()+8)){
+                BtnToolKasir.getWidth()+BtnLog.getWidth()+BtnToolChat.getWidth()+BtnClose.getWidth()+8)){
             internalFrame1.setSize(new Dimension(PanelUtama.getWidth(),90));
         }else{
             internalFrame1.setSize(new Dimension(PanelUtama.getWidth(),44));

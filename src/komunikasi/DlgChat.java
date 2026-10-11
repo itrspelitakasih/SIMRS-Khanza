@@ -154,7 +154,8 @@ public class DlgChat extends javax.swing.JDialog {
         LblStatus = new widget.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("::[ Chat Antar User ]::");
+        setUndecorated(true);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -168,6 +169,10 @@ public class DlgChat extends javax.swing.JDialog {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
+        TabChat.setBackground(new java.awt.Color(255, 255, 253));
+        TabChat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
+        TabChat.setForeground(new java.awt.Color(50, 50, 50));
+        TabChat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TabChat.setName("TabChat"); // NOI18N
         TabChat.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -231,6 +236,10 @@ public class DlgChat extends javax.swing.JDialog {
         panelKiri.setPreferredSize(new java.awt.Dimension(330, 100));
         panelKiri.setLayout(new java.awt.BorderLayout(1, 1));
 
+        TabDaftar.setBackground(new java.awt.Color(255, 255, 253));
+        TabDaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
+        TabDaftar.setForeground(new java.awt.Color(50, 50, 50));
+        TabDaftar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TabDaftar.setName("TabDaftar"); // NOI18N
 
         panelInbox.setName("panelInbox"); // NOI18N

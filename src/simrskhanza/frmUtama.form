@@ -9917,7 +9917,7 @@
             </Property>
             <Property name="name" type="java.lang.String" value="BtnToolChat" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[105, 38]"/>
+              <Dimension value="[80, 38]"/>
             </Property>
             <Property name="verticalTextPosition" type="int" value="0"/>
           </Properties>
