@@ -2561,6 +2561,14 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         TCari.setText(pasien);
     }
 
+    /** Tampilkan permintaan dari notifikasi: cari noorder di tab Ralan/Ranap mulai tanggal tgl. Panggil setelah setVisible. */
+    public void tampilNotif(String noorder,boolean ranap,java.util.Date tgl){
+        TCari.setText(noorder);
+        Tgl1.setDate(tgl);
+        TabPilihRawat.setSelectedIndex(ranap?1:0);
+        pilihTab();
+    }
+
     private void pilihTab(){
         if(TabPilihRawat.getSelectedIndex()==0){
             pilihRalan();

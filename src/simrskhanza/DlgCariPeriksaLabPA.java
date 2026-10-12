@@ -2620,6 +2620,14 @@ private void tbDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     public void setPasien(String pasien){
         NoRawat.setText(pasien);
     }
+
+    /** Tampilkan pemeriksaan satu no.rawat mulai tanggal tgl (dari notifikasi hasil). Panggil setelah setVisible. */
+    public void tampilHasil(String pasien,java.util.Date tgl){
+        NoRawat.setText(pasien);
+        Tgl1.setDate(tgl);
+        TabRawat.setSelectedIndex(0);
+        BtnCariActionPerformed(null);
+    }
  
     private void isPhoto(){
         if(ChkAccor.isSelected()==true){

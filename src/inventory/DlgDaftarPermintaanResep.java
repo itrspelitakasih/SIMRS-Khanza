@@ -4118,6 +4118,14 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         TCari.setText(cari);
     }
 
+    /** Tampilkan resep dari notifikasi: cari no_resep di tab Ralan/Ranap mulai tanggal tgl. Panggil setelah setVisible. */
+    public void tampilNotif(String noresep,boolean ranap,java.util.Date tgl){
+        TCari.setText(noresep);
+        DTPCari1.setDate(tgl);
+        TabPilihRawat.setSelectedIndex(ranap?1:0);
+        pilihTab();
+    }
+
     private void tampil2() {
         if(ceksukses==false){
             ceksukses=true;

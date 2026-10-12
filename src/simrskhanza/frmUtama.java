@@ -392,8 +392,10 @@ import laporan.DlgRl38;
 import laporan.DlgSensusHarianPoli;
 import laporan.DlgSensusHarianRalan;
 import laporan.frmPengaduan;
+import komunikasi.AvatarChat;
 import komunikasi.ChatNotifier;
 import komunikasi.DlgChat;
+import komunikasi.SuaraNotif;
 import parkir.DlgParkirBarcode;
 import parkir.DlgParkirJenis;
 import parkir.DlgParkirMasuk;
@@ -1827,6 +1829,16 @@ public class frmUtama extends javax.swing.JFrame {
         btnGrafikLimbahDomestikPerTanggal = new widget.ButtonBig();
         btnLaboratoriumPA = new widget.ButtonBig();
         btnLaboratoriumMB = new widget.ButtonBig();
+        PopupNotif = new javax.swing.JPopupMenu();
+        internalFrameNotif = new widget.InternalFrame();
+        panelJudulNotif = new widget.panelisi();
+        LblJudulNotif = new widget.Label();
+        ChkSuaraNotif = new widget.CekBox();
+        ScrollNotif = new widget.ScrollPane();
+        PanelDaftarNotif = new widget.panelisi();
+        panelBawahNotif = new widget.panelisi();
+        BtnTandaiHasil = new widget.Button();
+        BtnBukaChatNotif = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         panelToolKiri = new widget.Panel();
         BtnMenu = new widget.ButtonBig();
@@ -7203,6 +7215,91 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
 
+        PopupNotif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        PopupNotif.setName("PopupNotif"); // NOI18N
+
+        internalFrameNotif.setBorder(null);
+        internalFrameNotif.setName("internalFrameNotif"); // NOI18N
+        internalFrameNotif.setLayout(new java.awt.BorderLayout());
+
+        panelJudulNotif.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 12));
+        panelJudulNotif.setName("panelJudulNotif"); // NOI18N
+        panelJudulNotif.setPreferredSize(new java.awt.Dimension(380, 36));
+        panelJudulNotif.setWarnaAtas(new java.awt.Color(51, 153, 255));
+        panelJudulNotif.setWarnaBawah(new java.awt.Color(120, 190, 255));
+        panelJudulNotif.setLayout(new java.awt.BorderLayout());
+
+        LblJudulNotif.setForeground(new java.awt.Color(255, 255, 255));
+        LblJudulNotif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblJudulNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/bell.png"))); // NOI18N
+        LblJudulNotif.setText("Notifikasi");
+        LblJudulNotif.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        LblJudulNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        LblJudulNotif.setIconTextGap(6);
+        LblJudulNotif.setName("LblJudulNotif"); // NOI18N
+        panelJudulNotif.add(LblJudulNotif, java.awt.BorderLayout.CENTER);
+
+        ChkSuaraNotif.setBorder(null);
+        ChkSuaraNotif.setForeground(new java.awt.Color(255, 255, 255));
+        ChkSuaraNotif.setSelected(true);
+        ChkSuaraNotif.setText("Suara");
+        ChkSuaraNotif.setToolTipText("Bunyikan suara saat ada notifikasi baru");
+        ChkSuaraNotif.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        ChkSuaraNotif.setName("ChkSuaraNotif"); // NOI18N
+        ChkSuaraNotif.setOpaque(false);
+        ChkSuaraNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkSuaraNotifActionPerformed(evt);
+            }
+        });
+        panelJudulNotif.add(ChkSuaraNotif, java.awt.BorderLayout.EAST);
+
+        internalFrameNotif.add(panelJudulNotif, java.awt.BorderLayout.NORTH);
+
+        ScrollNotif.setBorder(null);
+        ScrollNotif.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        ScrollNotif.setName("ScrollNotif"); // NOI18N
+        ScrollNotif.setOpaque(true);
+
+        PanelDaftarNotif.setBorder(null);
+        PanelDaftarNotif.setName("PanelDaftarNotif"); // NOI18N
+        PanelDaftarNotif.setLayout(new javax.swing.BoxLayout(PanelDaftarNotif, javax.swing.BoxLayout.Y_AXIS));
+        ScrollNotif.setViewportView(PanelDaftarNotif);
+
+        internalFrameNotif.add(ScrollNotif, java.awt.BorderLayout.CENTER);
+
+        panelBawahNotif.setName("panelBawahNotif"); // NOI18N
+        panelBawahNotif.setPreferredSize(new java.awt.Dimension(380, 40));
+        panelBawahNotif.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 6));
+
+        BtnTandaiHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnTandaiHasil.setText("Tandai Semua Dilihat");
+        BtnTandaiHasil.setToolTipText("Tandai semua hasil, permintaan, dan booking di daftar sudah dilihat");
+        BtnTandaiHasil.setName("BtnTandaiHasil"); // NOI18N
+        BtnTandaiHasil.setPreferredSize(new java.awt.Dimension(165, 28));
+        BtnTandaiHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTandaiHasilActionPerformed(evt);
+            }
+        });
+        panelBawahNotif.add(BtnTandaiHasil);
+
+        BtnBukaChatNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mail_receive.png"))); // NOI18N
+        BtnBukaChatNotif.setText("Buka Chat");
+        BtnBukaChatNotif.setToolTipText("Buka jendela chat");
+        BtnBukaChatNotif.setName("BtnBukaChatNotif"); // NOI18N
+        BtnBukaChatNotif.setPreferredSize(new java.awt.Dimension(115, 28));
+        BtnBukaChatNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBukaChatNotifActionPerformed(evt);
+            }
+        });
+        panelBawahNotif.add(BtnBukaChatNotif);
+
+        internalFrameNotif.add(panelBawahNotif, java.awt.BorderLayout.SOUTH);
+
+        PopupNotif.add(internalFrameNotif);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("::[ Khanza SIMKES 2022 ]::");
         setBackground(new java.awt.Color(255, 254, 254));
@@ -7488,6 +7585,7 @@ public class frmUtama extends javax.swing.JFrame {
         panelToolKanan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 15));
         panelToolKanan.setName("panelToolKanan"); // NOI18N
         panelToolKanan.setOpaque(false);
+        panelToolKanan.setPreferredSize(new java.awt.Dimension(50, 42));
         panelToolKanan.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 2));
 
         BtnNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/bell.png"))); // NOI18N
@@ -8826,11 +8924,345 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }//GEN-LAST:event_BtnToolChatActionPerformed
 
     private void BtnNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotifActionPerformed
-        bukaChat();
+        tampilMenuNotif();
     }//GEN-LAST:event_BtnNotifActionPerformed
 
-    /** Buka jendela chat, langsung ke percakapan pesan belum dibaca terbaru bila ada. */
-    private void bukaChat(){
+    private void ChkSuaraNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkSuaraNotifActionPerformed
+        SuaraNotif.setAktif(ChkSuaraNotif.isSelected());
+    }//GEN-LAST:event_ChkSuaraNotifActionPerformed
+
+    private void BtnTandaiHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTandaiHasilActionPerformed
+        PopupNotif.setVisible(false);
+        ChatNotifier.tandaiHasilDilihat(infoChat.hasil);
+        ChatNotifier.tandaiTugasDilihat(infoChat.tugas);
+    }//GEN-LAST:event_BtnTandaiHasilActionPerformed
+
+    private void BtnBukaChatNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBukaChatNotifActionPerformed
+        PopupNotif.setVisible(false);
+        bukaChat();
+    }//GEN-LAST:event_BtnBukaChatNotifActionPerformed
+
+    private static final int LEBAR_NOTIF=380,TINGGI_MAKS_NOTIF=380,MAKS_HASIL_NOTIF=20;
+    private static final java.awt.Color WARNA_BARIS=new java.awt.Color(255,255,255),
+            WARNA_BARIS_HOVER=new java.awt.Color(225,240,255),WARNA_SEKSI=new java.awt.Color(240,246,255),
+            WARNA_GARIS=new java.awt.Color(230,236,242),WARNA_KETERANGAN=new java.awt.Color(110,110,110);
+
+    private static String potong(String s,int maks){
+        return s.length()>maks?s.substring(0,maks)+"...":s;
+    }
+
+    /** Judul kelompok di daftar notifikasi, mis. "PESAN BARU (3)". */
+    private widget.panelisi seksiNotif(String teks){
+        widget.panelisi seksi=new widget.panelisi(new java.awt.BorderLayout());
+        seksi.setWarnaAtas(WARNA_SEKSI);
+        seksi.setWarnaBawah(WARNA_SEKSI);
+        seksi.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createMatteBorder(0,0,1,0,WARNA_GARIS),
+                javax.swing.BorderFactory.createEmptyBorder(4,10,4,10)));
+        widget.Label lbl=new widget.Label();
+        lbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbl.setFont(new java.awt.Font("Arial",1,11));
+        lbl.setForeground(new java.awt.Color(51,102,170));
+        lbl.setText(teks);
+        seksi.add(lbl,java.awt.BorderLayout.CENTER);
+        rapikanBaris(seksi);
+        return seksi;
+    }
+
+    /**
+     * Satu baris notifikasi: ikon, judul tebal + keterangan abu-abu, info kecil di kanan (jumlah/jam).
+     * Disorot saat kursor di atasnya; klik menutup daftar lalu menjalankan aksi.
+     */
+    private widget.panelisi barisNotif(javax.swing.Icon ikon,String judul,String keterangan,String info,Runnable aksi){
+        widget.panelisi baris=new widget.panelisi(new java.awt.BorderLayout(8,0));
+        baris.setWarnaAtas(WARNA_BARIS);
+        baris.setWarnaBawah(WARNA_BARIS);
+        baris.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createMatteBorder(0,0,1,0,WARNA_GARIS),
+                javax.swing.BorderFactory.createEmptyBorder(6,10,6,10)));
+        baris.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        widget.Label lblIkon=new widget.Label();
+        lblIkon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIkon.setIcon(ikon);
+        lblIkon.setPreferredSize(new java.awt.Dimension(32,32));
+        baris.add(lblIkon,java.awt.BorderLayout.WEST);
+
+        widget.Label lblTeks=new widget.Label();
+        lblTeks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTeks.setText("<html><b>"+escHtml(judul)+"</b><br><font color='#6e6e6e'>"+escHtml(keterangan)+"</font></html>");
+        baris.add(lblTeks,java.awt.BorderLayout.CENTER);
+
+        if(!info.equals("")){
+            widget.Label lblInfo=new widget.Label();
+            lblInfo.setFont(new java.awt.Font("Arial",0,11));
+            lblInfo.setForeground(WARNA_KETERANGAN);
+            lblInfo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+            lblInfo.setText(info);
+            baris.add(lblInfo,java.awt.BorderLayout.EAST);
+        }
+
+        // dipasang juga di label anak supaya sorotan & klik tetap jalan saat kursor di atas teks/ikon
+        java.awt.event.MouseAdapter mouse=new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                warnaBaris(baris,WARNA_BARIS_HOVER);
+            }
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                if(!baris.contains(javax.swing.SwingUtilities.convertPoint(e.getComponent(),e.getPoint(),baris))){
+                    warnaBaris(baris,WARNA_BARIS);
+                }
+            }
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent e) {
+                if(baris.contains(javax.swing.SwingUtilities.convertPoint(e.getComponent(),e.getPoint(),baris))){
+                    PopupNotif.setVisible(false);
+                    aksi.run();
+                }
+            }
+        };
+        baris.addMouseListener(mouse);
+        for(java.awt.Component c:baris.getComponents()){
+            c.addMouseListener(mouse);
+        }
+        rapikanBaris(baris);
+        return baris;
+    }
+
+    private static void warnaBaris(widget.panelisi baris,java.awt.Color warna){
+        baris.setWarnaAtas(warna);
+        baris.setWarnaBawah(warna);
+        baris.repaint();
+    }
+
+    /**
+     * Baris BoxLayout: lebar dikunci selebar daftar dikurangi scrollbar (tidak ada scroll ke samping),
+     * melebar penuh bila tidak ada scrollbar, tinggi tetap.
+     */
+    private static void rapikanBaris(javax.swing.JComponent baris){
+        int tinggi=baris.getPreferredSize().height;
+        baris.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT);
+        baris.setPreferredSize(new java.awt.Dimension(LEBAR_NOTIF-18,tinggi));
+        baris.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE,tinggi));
+    }
+
+    /**
+     * Daftar notifikasi di lonceng (PopupNotif): pesan pribadi per pengirim, Chat Semua, dan hasil lab/radiologi baru.
+     * Tiap baris langsung membuka jendela yang sesuai.
+     */
+    private void tampilMenuNotif(){
+        ChatNotifier.Info info=infoChat;
+        PanelDaftarNotif.removeAll();
+        if(!info.pesan.isEmpty()||info.global>0){
+            PanelDaftarNotif.add(seksiNotif("PESAN BARU ("+(info.personal+info.global)+")"));
+            for(ChatNotifier.Pesan p:info.pesan){
+                PanelDaftarNotif.add(barisNotif(AvatarChat.ikon(p.kode,p.nama,32,false),p.nama,potong(p.cuplikan,45),
+                        p.jumlah>1?p.jumlah+" pesan":"",() -> bukaChatPribadi(p.kode)));
+            }
+            if(info.global>0){
+                PanelDaftarNotif.add(barisNotif(new ImageIcon(getClass().getResource("/picture/chat2.png")),"Chat Semua",
+                        potong(info.globalDari+" : "+info.globalCuplikan,45),info.global+" pesan",this::bukaChatGlobal));
+            }
+        }
+        if(!info.hasil.isEmpty()){
+            PanelDaftarNotif.add(seksiNotif("HASIL LAB / RADIOLOGI BARU ("+info.hasil.size()+")"));
+            String hariIni=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+            for(int j=0;j<info.hasil.size()&&j<MAKS_HASIL_NOTIF;j++){
+                ChatNotifier.Hasil h=info.hasil.get(j);
+                String ikon=h.jenis.equals("Radiologi")?"/picture/radio.png":"/picture/lab.png";
+                String waktu=(h.tgl.equals(hariIni)?"":Valid.SetTgl3(h.tgl).substring(0,5)+" ")+h.jam.substring(0,5);
+                PanelDaftarNotif.add(barisNotif(new ImageIcon(getClass().getResource(ikon)),
+                        h.jenis+(h.kategori.equals("")?"":" "+h.kategori)+" : "+potong(h.pasien,30),
+                        h.noRawat+" · "+h.peran,waktu,() -> {
+                            ChatNotifier.tandaiHasilDilihat(java.util.Collections.singletonList(h));
+                            bukaHasil(h);
+                        }));
+            }
+            if(info.hasil.size()>MAKS_HASIL_NOTIF){
+                PanelDaftarNotif.add(seksiNotif("... dan "+(info.hasil.size()-MAKS_HASIL_NOTIF)+" hasil lain"));
+            }
+        }
+        if(!info.tugas.isEmpty()){
+            PanelDaftarNotif.add(seksiNotif("PERMINTAAN / BOOKING BARU ("+info.tugas.size()+")"));
+            String hariIni=new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+            for(int j=0;j<info.tugas.size()&&j<MAKS_HASIL_NOTIF;j++){
+                ChatNotifier.Tugas t=info.tugas.get(j);
+                String waktu=t.waktu.length()>=16?(t.waktu.startsWith(hariIni)?"":Valid.SetTgl3(t.waktu).substring(0,5)+" ")+
+                        t.waktu.substring(11,16):"";
+                String ket=t.kunci+(t.rawat.equals("ranap")?" · Ranap":t.noRawat.equals("")?"":" · Ralan")+" · "+t.keterangan;
+                PanelDaftarNotif.add(barisNotif(new ImageIcon(getClass().getResource(ikonTugas(t.jenis))),
+                        namaTugas(t.jenis)+" : "+potong(t.nama,26),potong(ket,46),waktu,() -> {
+                            ChatNotifier.tandaiTugasDilihat(java.util.Collections.singletonList(t));
+                            bukaTugas(t);
+                        }));
+            }
+            if(info.tugas.size()>MAKS_HASIL_NOTIF){
+                PanelDaftarNotif.add(seksiNotif("... dan "+(info.tugas.size()-MAKS_HASIL_NOTIF)+" permintaan lain"));
+            }
+        }
+        if(PanelDaftarNotif.getComponentCount()==0){
+            widget.Label kosong=new widget.Label();
+            kosong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            kosong.setForeground(WARNA_KETERANGAN);
+            kosong.setText("Tidak ada notifikasi baru");
+            kosong.setIcon(new ImageIcon(getClass().getResource("/picture/bell.png")));
+            kosong.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            kosong.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+            kosong.setIconTextGap(6);
+            kosong.setPreferredSize(new java.awt.Dimension(LEBAR_NOTIF,80));
+            rapikanBaris(kosong);
+            PanelDaftarNotif.add(kosong);
+        }
+        BtnTandaiHasil.setVisible(!info.hasil.isEmpty()||!info.tugas.isEmpty());
+        ChkSuaraNotif.setSelected(SuaraNotif.isAktif());
+
+        // tinggi daftar mengikuti isi, maksimal TINGGI_MAKS_NOTIF lalu bisa digulir
+        int tinggi=PanelDaftarNotif.getPreferredSize().height;
+        ScrollNotif.setPreferredSize(new java.awt.Dimension(LEBAR_NOTIF,Math.min(tinggi,TINGGI_MAKS_NOTIF)));
+        ScrollNotif.getVerticalScrollBar().setValue(0);
+        PopupNotif.pack();
+        // tooltip lonceng jangan menutupi daftar; dipasang lagi oleh listener setelah daftar ditutup
+        BtnNotif.setToolTipText(null);
+        PopupNotif.show(BtnNotif,BtnNotif.getWidth()-PopupNotif.getPreferredSize().width,BtnNotif.getHeight());
+    }
+
+    private static String namaTugas(String jenis){
+        switch(jenis){
+            case "PermLab": return "Lab PK";
+            case "PermLabPA": return "Lab PA";
+            case "PermLabMB": return "Lab MB";
+            case "PermRad": return "Radiologi";
+            case "Resep": return "Resep";
+            case "BookPrk": return "Booking Periksa";
+            case "BookReg": return "Booking Registrasi";
+            default: return jenis;
+        }
+    }
+
+    private static String ikonTugas(String jenis){
+        switch(jenis){
+            case "PermRad": return "/picture/radio.png";
+            case "Resep": return "/picture/Pills.png";
+            case "BookPrk": return "/picture/Calendar.png";
+            case "BookReg": return "/picture/addressbook-add24.png";
+            default: return "/picture/lab.png";
+        }
+    }
+
+    /**
+     * Buka form kerja petugas untuk tugas dari notifikasi, tanpa menutup form lain yang sedang dikerjakan.
+     * Permintaan & resep langsung dicari nomornya; booking dibuka seperti dari menu.
+     */
+    private void bukaTugas(ChatNotifier.Tugas t){
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        boolean ranap=t.rawat.equals("ranap");
+        java.util.Date tgl=java.sql.Date.valueOf(t.tgl);
+        switch(t.jenis){
+            case "PermLab":{
+                DlgCariPermintaanLab form=new DlgCariPermintaanLab(this,false);
+                form.isCek();
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                form.tampilNotif(t.kunci,ranap,tgl);
+                break;
+            }
+            case "PermLabPA":{
+                DlgCariPermintaanLabPA form=new DlgCariPermintaanLabPA(this,false);
+                form.isCek();
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                form.tampilNotif(t.kunci,ranap,tgl);
+                break;
+            }
+            case "PermLabMB":{
+                DlgCariPermintaanLabMB form=new DlgCariPermintaanLabMB(this,false);
+                form.isCek();
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                form.tampilNotif(t.kunci,ranap,tgl);
+                break;
+            }
+            case "PermRad":{
+                DlgCariPermintaanRadiologi form=new DlgCariPermintaanRadiologi(this,false);
+                form.isCek();
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                form.tampilNotif(t.kunci,ranap,tgl);
+                break;
+            }
+            case "Resep":{
+                DlgDaftarPermintaanResep form=new DlgDaftarPermintaanResep(null,false);
+                form.emptTeks();
+                form.isCek();
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                form.tampilNotif(t.kunci,ranap,tgl);
+                break;
+            }
+            case "BookPrk":{
+                DlgBookingPeriksa form=new DlgBookingPeriksa();
+                form.isCek();
+                form.setSize(800,PanelUtama.getHeight()-40);
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                break;
+            }
+            case "BookReg":{
+                DlgBookingRegistrasi form=new DlgBookingRegistrasi(this,false);
+                form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+                form.setLocationRelativeTo(PanelUtama);
+                form.setVisible(true);
+                break;
+            }
+            default:
+                break;
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    /** Buka form hasil lab/radiologi untuk pasien dari notifikasi, tanpa menutup form lain yang sedang dikerjakan. */
+    private void bukaHasil(ChatNotifier.Hasil h){
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        java.util.Date tgl=java.sql.Date.valueOf(h.tgl);
+        if(h.jenis.equals("Radiologi")){
+            DlgCariPeriksaRadiologi form=new DlgCariPeriksaRadiologi(this,false);
+            form.isCek();
+            form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+            form.setLocationRelativeTo(PanelUtama);
+            form.setVisible(true);
+            form.tampilHasil(h.noRawat,tgl);
+        }else if(h.kategori.equals("PA")){
+            DlgCariPeriksaLabPA form=new DlgCariPeriksaLabPA(this,false);
+            form.isCek();
+            form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+            form.setLocationRelativeTo(PanelUtama);
+            form.setVisible(true);
+            form.tampilHasil(h.noRawat,tgl);
+        }else if(h.kategori.equals("MB")){
+            DlgCariPeriksaLabMB form=new DlgCariPeriksaLabMB(this,false);
+            form.isCek();
+            form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+            form.setLocationRelativeTo(PanelUtama);
+            form.setVisible(true);
+            form.tampilHasil(h.noRawat,tgl);
+        }else{
+            DlgCariPeriksaLab form=new DlgCariPeriksaLab(this,false);
+            form.isCek();
+            form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+            form.setLocationRelativeTo(PanelUtama);
+            form.setVisible(true);
+            form.tampilHasil(h.noRawat,tgl);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private DlgChat siapkanChat(){
         if(dlgChat==null||!dlgChat.isDisplayable()){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dlgChat=new DlgChat(null,false);
@@ -8838,13 +9270,33 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             dlgChat.setLocationRelativeTo(PanelUtama);
             this.setCursor(Cursor.getDefaultCursor());
         }
+        return dlgChat;
+    }
+
+    private void tampilChat(){
+        dlgChat.setVisible(true);
+        dlgChat.toFront();
+    }
+
+    /** Buka jendela chat, langsung ke percakapan pesan belum dibaca terbaru bila ada. */
+    private void bukaChat(){
+        siapkanChat();
         if(infoChat.personal>0){
             dlgChat.bukaPribadi(infoChat.dariKode);
         }else if(infoChat.global>0){
             dlgChat.bukaGlobal();
         }
-        dlgChat.setVisible(true);
-        dlgChat.toFront();
+        tampilChat();
+    }
+
+    private void bukaChatPribadi(String kode){
+        siapkanChat().bukaPribadi(kode);
+        tampilChat();
+    }
+
+    private void bukaChatGlobal(){
+        siapkanChat().bukaGlobal();
+        tampilChat();
     }
 
     private void mulaiChat(){
@@ -8855,21 +9307,43 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 return;
             }
             infoChat=info;
-            int total=info.personal+info.global;
+            int total=info.personal+info.global+info.hasil.size()+info.tugas.size();
             BtnNotif.setText(total>0?(total>99?"99+":String.valueOf(total)):"");
+            // rincian di tooltip; lonceng berkedip merah selama ada pesan pribadi atau hasil penunjang baru
+            StringBuilder tip=new StringBuilder();
             if(info.personal>0){
-                // rincian pengirim & cuplikan pesan di tooltip, lonceng berkedip merah
                 String dari=info.jmlPengirim>1?info.dariNama+" & "+(info.jmlPengirim-1)+" user lain":info.dariNama;
                 String cuplikan=info.cuplikan.length()>60?info.cuplikan.substring(0,60)+"...":info.cuplikan;
-                BtnNotif.setToolTipText("<html>"+info.personal+" pesan pribadi dari "+escHtml(dari)+"<br>\""+escHtml(cuplikan)+"\""+
-                        (info.global>0?"<br>Chat Semua : "+info.global+" pesan baru":"")+"<br>Klik untuk membalas</html>");
+                tip.append("<br>").append(info.personal).append(" pesan pribadi dari ").append(escHtml(dari))
+                   .append("<br>\"").append(escHtml(cuplikan)).append("\"");
+            }
+            if(info.global>0){
+                tip.append("<br>Chat Semua : ").append(info.global).append(" pesan baru");
+            }
+            if(!info.hasil.isEmpty()){
+                ChatNotifier.Hasil h=info.hasil.get(0);
+                tip.append("<br>").append(info.hasil.size()).append(" hasil lab/radiologi baru, terbaru : ")
+                   .append(h.jenis).append(" ").append(escHtml(h.pasien));
+            }
+            if(!info.tugas.isEmpty()){
+                ChatNotifier.Tugas t=info.tugas.get(0);
+                tip.append("<br>").append(info.tugas.size()).append(" permintaan/booking baru, terbaru : ")
+                   .append(namaTugas(t.jenis)).append(" ").append(escHtml(t.nama));
+            }
+            if(PopupNotif.isVisible()){
+                // daftar sedang terbuka: tooltip tetap kosong
+            }else if(tip.length()==0){
+                BtnNotif.setToolTipText("Tidak ada notifikasi baru");
+            }else{
+                BtnNotif.setToolTipText("<html>"+tip.substring(4)+"<br>Klik untuk melihat daftar notifikasi</html>");
+            }
+            if(info.personal>0||!info.hasil.isEmpty()||!info.tugas.isEmpty()){
                 if(!kedipPesan.isRunning()){
                     kedipPesan.start();
                 }
             }else{
                 kedipPesan.stop();
                 BtnNotif.setForeground(new java.awt.Color(50,50,50));
-                BtnNotif.setToolTipText(info.global>0?"Chat Semua : "+info.global+" pesan baru":"Tidak ada pesan baru");
             }
         });
     }
@@ -15059,40 +15533,106 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                     JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            String destinationDir = System.getProperty("user.dir");
-            String zipFilePath = destinationDir + "/update.zip";
+            // evt==null berarti dipanggil dari popup "Update Tersedia" yang sudah dikonfirmasi
+            if (evt != null) {
+                int jawab = JOptionPane.showConfirmDialog(this,
+                    "Update SIMRS sekarang?\nSelama proses update jangan tutup aplikasi.",
+                    "Konfirmasi Update", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (jawab != JOptionPane.YES_OPTION) {
+                    return;
+                }
+            }
 
-            String[] versiServer = cekVersiServer(URLSERVER);
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            downloadFile(URLSERVER, zipFilePath);
-            this.setCursor(Cursor.getDefaultCursor());
-            JOptionPane.showMessageDialog(this, "Download Selesai, Proses mengekstrak...", "Info",
-                JOptionPane.INFORMATION_MESSAGE);
+            final String urlUpdate = URLSERVER.trim();
+            final String destinationDir = System.getProperty("user.dir");
+            final String zipFilePath = destinationDir + "/update.zip";
 
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            unzip(zipFilePath, destinationDir);
-            this.setCursor(Cursor.getDefaultCursor());
-            JOptionPane.showMessageDialog(this, "Ekstraksi selesai!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            final javax.swing.JDialog dlgTunggu = new javax.swing.JDialog(this, "Update SIMRS", true);
+            final javax.swing.JLabel lblTunggu = new javax.swing.JLabel("Mohon tunggu, menghubungi server update...");
+            final javax.swing.JProgressBar progress = new javax.swing.JProgressBar(0, 100);
+            progress.setStringPainted(true);
+            progress.setIndeterminate(true);
+            javax.swing.JPanel panelTunggu = new javax.swing.JPanel(new java.awt.BorderLayout(0, 10));
+            panelTunggu.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            panelTunggu.add(lblTunggu, java.awt.BorderLayout.NORTH);
+            panelTunggu.add(progress, java.awt.BorderLayout.CENTER);
+            dlgTunggu.setContentPane(panelTunggu);
+            dlgTunggu.setDefaultCloseOperation(javax.swing.JDialog.DO_NOTHING_ON_CLOSE);
+            dlgTunggu.setSize(420, 120);
+            dlgTunggu.setResizable(false);
+            dlgTunggu.setLocationRelativeTo(this);
 
-            File zipFile = new File(zipFilePath);
-            zipFile.delete();
-            simpanVersiTerpasang(versiServer);
+            javax.swing.SwingWorker<Void, Object[]> worker = new javax.swing.SwingWorker<Void, Object[]>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    String[] versiServer = cekVersiServer(urlUpdate);
+                    downloadFile(urlUpdate, zipFilePath, (sudah, total) -> {
+                        String teks = "Mohon tunggu, mengunduh update... " + (sudah / 1048576) + " MB"
+                            + (total > 0 ? " dari " + (total / 1048576) + " MB" : "");
+                        publish(new Object[]{teks, total > 0 ? (int) (sudah * 100 / total) : -1});
+                    });
+                    publish(new Object[]{"Mohon tunggu, memasang update...", -1});
+                    unzip(zipFilePath, destinationDir);
+                    new File(zipFilePath).delete();
+                    simpanVersiTerpasang(versiServer);
+                    return null;
+                }
 
-            JOptionPane.showMessageDialog(this, "SIMRS berhasil diupdate.Silahkan Tutup Aplikasi", "Info",
-                JOptionPane.INFORMATION_MESSAGE);
+                @Override
+                protected void process(java.util.List<Object[]> chunks) {
+                    Object[] terakhir = chunks.get(chunks.size() - 1);
+                    lblTunggu.setText((String) terakhir[0]);
+                    int persen = (Integer) terakhir[1];
+                    progress.setIndeterminate(persen < 0);
+                    if (persen >= 0) {
+                        progress.setValue(persen);
+                    }
+                }
+
+                @Override
+                protected void done() {
+                    dlgTunggu.dispose();
+                }
+            };
+            worker.execute();
+            dlgTunggu.setVisible(true); // modal: menunggu sampai worker selesai
+
+            try {
+                worker.get();
+                int tutup = JOptionPane.showConfirmDialog(this,
+                    "SIMRS berhasil diupdate.\nAplikasi perlu ditutup dan dibuka ulang agar update berlaku.\n\nTutup aplikasi sekarang?",
+                    "Update Selesai", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                if (tutup == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            } catch (java.util.concurrent.ExecutionException ex) {
+                new File(zipFilePath).delete();
+                JOptionPane.showMessageDialog(this, "Update gagal: " + ex.getCause().getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
 
         } catch (IOException ex) {
-            this.setCursor(Cursor.getDefaultCursor());
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         }
 
-        private void downloadFile(String fileURL, String saveDir) throws IOException {
-            try (InputStream in = new URL(fileURL).openStream(); FileOutputStream out = new FileOutputStream(saveDir)) {
-                byte[] buffer = new byte[1024];
+        private void downloadFile(String fileURL, String saveDir, java.util.function.BiConsumer<Long, Long> progres) throws IOException {
+            java.net.URLConnection conn = new URL(fileURL).openConnection();
+            conn.setConnectTimeout(10000);
+            conn.setReadTimeout(60000);
+            long total = conn.getContentLengthLong();
+            try (InputStream in = conn.getInputStream(); FileOutputStream out = new FileOutputStream(saveDir)) {
+                byte[] buffer = new byte[65536];
                 int bytesRead;
+                long sudah = 0, terakhirLapor = 0;
                 while ((bytesRead = in.read(buffer)) != -1) {
                     out.write(buffer, 0, bytesRead);
+                    sudah += bytesRead;
+                    if (sudah - terakhirLapor >= 524288 || sudah == total) {
+                        progres.accept(sudah, total);
+                        terakhirLapor = sudah;
+                    }
                 }
             }
         }
@@ -24586,6 +25126,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.Button BtnBukaChatNotif;
     private widget.Button BtnCancel;
     private widget.ButtonBig BtnClose;
     private widget.ButtonBig BtnDpjp;
@@ -24594,17 +25135,20 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
+    private widget.Button BtnTandaiHasil;
     private widget.ButtonBig BtnToolChat;
     private widget.ButtonBig BtnToolJualObat;
     private widget.ButtonBig BtnToolKamnap;
     private widget.ButtonBig BtnToolKasir;
     private widget.ButtonBig BtnToolReg;
     private widget.CekBox ChkInput;
+    private widget.CekBox ChkSuaraNotif;
     private javax.swing.JDialog DlgHome;
     private javax.swing.JDialog DlgLogin;
     private usu.widget.glass.PanelGlass FlayMenu;
     private javax.swing.JMenuItem LaporIT;
     private javax.swing.JLabel LblIP;
+    private widget.Label LblJudulNotif;
     private widget.MenuBar MenuBar;
     private javax.swing.JMenuItem MenuKeluar;
     private javax.swing.JMenuItem MnAnjungan;
@@ -24658,10 +25202,13 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenu MnTarif;
     private javax.swing.JMenu MnTarif1;
     private javax.swing.JMenuItem MnUpdate;
+    private widget.panelisi PanelDaftarNotif;
     private javax.swing.JPanel PanelUtama;
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.panelGlass Panelmenu;
     private javax.swing.JMenuItem PenyerahanResep;
+    private javax.swing.JPopupMenu PopupNotif;
+    private widget.ScrollPane ScrollNotif;
     private widget.TextBox TCari;
     private widget.ButtonBig btnAdmin;
     private widget.ButtonBig btnAkunPiutang;
@@ -25134,6 +25681,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
+    private widget.InternalFrame internalFrameNotif;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -25165,8 +25713,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JLabel lblStts;
     private javax.swing.JLabel lblTgl;
     private javax.swing.JLabel lblUser;
+    private widget.panelisi panelBawahNotif;
     private usu.widget.glass.PanelGlass panelGlass1;
     private usu.widget.glass.PanelGlass panelJudul;
+    private widget.panelisi panelJudulNotif;
     private widget.InternalFrame panelMenu;
     private widget.Panel panelToolKanan;
     private widget.Panel panelToolKiri;

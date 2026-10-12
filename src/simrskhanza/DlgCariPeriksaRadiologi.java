@@ -3614,6 +3614,13 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         NoRawat.setText(pasien);
     }
 
+    /** Tampilkan pemeriksaan satu no.rawat mulai tanggal tgl (dari notifikasi hasil). Panggil setelah setVisible. */
+    public void tampilHasil(String pasien, java.util.Date tgl) {
+        NoRawat.setText(pasien);
+        Tgl1.setDate(tgl);
+        tampil();
+    }
+
     private void panggilMedis() {
         try {
             ps5 = koneksi.prepareStatement(
