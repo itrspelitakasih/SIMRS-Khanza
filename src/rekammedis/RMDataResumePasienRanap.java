@@ -1938,6 +1938,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                         KetKeadaanPulang.getText(),CaraKeluar.getSelectedItem().toString(),KetKeluar.getText(),DIlanjutkan.getSelectedItem().toString(),KetDilanjutkan.getText(),
                         Valid.SetTgl(Kontrol.getSelectedItem()+"")+" "+Kontrol.getSelectedItem().toString().substring(11,19),ObatPulang.getText(),KdPj.getText(),CaraBayar.getText()
                     });
+                    widget.NotifPopup.sukses(this,"Resume Berhasil Disimpan","Resume pasien "+TPasien.getText()+" ("+TNoRw.getText()+") berhasil disimpan");
                     emptTeks();
                     LCount.setText(""+tabMode.getRowCount());
             }
@@ -3717,6 +3718,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
                    tbObat.setValueAt(ObatPulang.getText(),tbObat.getSelectedRow(),51);
                    tbObat.setValueAt(KdPj.getText(),tbObat.getSelectedRow(),52);
                    tbObat.setValueAt(CaraBayar.getText(),tbObat.getSelectedRow(),53);
+                   widget.NotifPopup.sukses(this,"Resume Berhasil Diperbarui","Resume pasien "+TPasien.getText()+" ("+TNoRw.getText()+") berhasil diperbarui");
                    emptTeks();
             }
     }

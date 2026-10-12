@@ -1231,6 +1231,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
                     KodeProsedurSekunder3.getText(),Obat2an.getText()
                 });
                 LCount.setText(""+tabMode.getRowCount());
+                widget.NotifPopup.sukses(this,"Resume Berhasil Disimpan","Resume pasien "+TPasien.getText()+" ("+TNoRw.getText()+") berhasil disimpan");
                 emptTeks();
             }
         }
@@ -2516,6 +2517,7 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
             tbObat.setValueAt(ProsedurSekunder3.getText(),tbObat.getSelectedRow(),27);
             tbObat.setValueAt(KodeProsedurSekunder3.getText(),tbObat.getSelectedRow(),28);
             tbObat.setValueAt(Obat2an.getText(),tbObat.getSelectedRow(),29);
+            widget.NotifPopup.sukses(this,"Resume Berhasil Diperbarui","Resume pasien "+TPasien.getText()+" ("+TNoRw.getText()+") berhasil diperbarui");
             emptTeks();
         }
     }
