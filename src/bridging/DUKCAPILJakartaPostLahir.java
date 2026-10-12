@@ -11,7 +11,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import java.io.FileInputStream;
 import java.util.Properties;
-import javax.swing.JOptionPane;
+import widget.JOptionPane;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.http.HttpEntity;

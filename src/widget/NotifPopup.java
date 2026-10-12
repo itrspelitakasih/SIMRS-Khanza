@@ -208,8 +208,8 @@ public class NotifPopup extends JWindow {
     private class Isi extends JComponent {
 
         private static final long serialVersionUID = 1L;
-        private final Font fJudul = new Font("Tahoma", Font.BOLD, 13);
-        private final Font fPesan = new Font("Tahoma", Font.PLAIN, 11);
+        private final Font fJudul = new Font("Arial", Font.BOLD, 13);
+        private final Font fPesan = new Font("Arial", Font.PLAIN, 11);
 
         Isi() {
             setPreferredSize(new Dimension(LEBAR, TINGGI));
