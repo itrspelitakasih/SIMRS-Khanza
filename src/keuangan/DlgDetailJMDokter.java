@@ -1244,17 +1244,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                    tabMode.addRow(new Object[]{i+".",rs.getString("nm_dokter"),"","","","",null,null,null,null,null,null});                 
                    c=1;
                    //jmralan
-                   if(chkRalan.isSelected()==true){
+                   if((chkRalan.isSelected()==true)||(chkRanap.isSelected()==true)){
                         pspasienralan=koneksi.prepareStatement(
-                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,reg_periksa.tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,reg_periksa.tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_dr inner join reg_periksa on rawat_jl_dr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_dr.no_rawat");
+                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_dr.no_rawat");
                         try {
                             pspasienralan.setString(1,rs.getString("kd_dokter"));
                             pspasienralan.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralan.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralan.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralan.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralan.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralan.executeQuery();
                             while(rspasien.next()){ 
                                 pstindakanralan=koneksi.prepareStatement(
@@ -1309,15 +1311,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
 
                         pspasienralandrpr=koneksi.prepareStatement(
-                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,reg_periksa.tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,reg_periksa.tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_drpr inner join reg_periksa on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_drpr.no_rawat");
+                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_drpr.no_rawat");
                         try {
                             pspasienralandrpr.setString(1,rs.getString("kd_dokter"));
                             pspasienralandrpr.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralandrpr.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralandrpr.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralandrpr.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralandrpr.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralandrpr.executeQuery();
                             while(rspasien.next()){ 
                                 a=1; 
@@ -2854,17 +2858,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     );
                     c=1;
                     //jmralan
-                    if(chkRalan.isSelected()==true){
+                    if((chkRalan.isSelected()==true)||(chkRanap.isSelected()==true)){
                         pspasienralan=koneksi.prepareStatement(
-                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_dr inner join reg_periksa on rawat_jl_dr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_dr.no_rawat");
+                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_dr.no_rawat");
                         try {
                             pspasienralan.setString(1,rs.getString("kd_dokter"));
                             pspasienralan.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralan.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralan.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralan.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralan.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralan.executeQuery();
                             while(rspasien.next()){ 
                                 pstindakanralan=koneksi.prepareStatement(
@@ -2951,15 +2957,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
 
                         pspasienralandrpr=koneksi.prepareStatement(
-                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_drpr inner join reg_periksa on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_drpr.no_rawat");
+                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_drpr.no_rawat");
                         try {
                             pspasienralandrpr.setString(1,rs.getString("kd_dokter"));
                             pspasienralandrpr.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralandrpr.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralandrpr.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralandrpr.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralandrpr.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralandrpr.executeQuery();
                             while(rspasien.next()){ 
                                 a=1; 
@@ -5112,17 +5120,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     );
                     c=1;
                     //jmralan
-                    if(chkRalan.isSelected()==true){
+                    if((chkRalan.isSelected()==true)||(chkRanap.isSelected()==true)){
                         pspasienralan=koneksi.prepareStatement(
-                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_dr inner join reg_periksa on rawat_jl_dr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_dr.no_rawat");
+                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_dr.no_rawat");
                         try {
                             pspasienralan.setString(1,rs.getString("kd_dokter"));
                             pspasienralan.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralan.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralan.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralan.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralan.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralan.executeQuery();
                             while(rspasien.next()){ 
                                 pstindakanralan=koneksi.prepareStatement(
@@ -5209,15 +5219,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
 
                         pspasienralandrpr=koneksi.prepareStatement(
-                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_drpr inner join reg_periksa on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_drpr.no_rawat");
+                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_drpr.no_rawat");
                         try {
                             pspasienralandrpr.setString(1,rs.getString("kd_dokter"));
                             pspasienralandrpr.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralandrpr.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralandrpr.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralandrpr.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralandrpr.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralandrpr.executeQuery();
                             while(rspasien.next()){ 
                                 a=1; 
@@ -7377,17 +7389,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     );
                     c=1;
                     //jmralan
-                    if(chkRalan.isSelected()==true){
+                    if((chkRalan.isSelected()==true)||(chkRanap.isSelected()==true)){
                         pspasienralan=koneksi.prepareStatement(
-                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_dr inner join reg_periksa on rawat_jl_dr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_dr.no_rawat");
+                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_dr.no_rawat");
                         try {
                             pspasienralan.setString(1,rs.getString("kd_dokter"));
                             pspasienralan.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralan.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralan.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralan.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralan.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralan.executeQuery();
                             while(rspasien.next()){ 
                                 pstindakanralan=koneksi.prepareStatement(
@@ -7466,15 +7480,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
 
                         pspasienralandrpr=koneksi.prepareStatement(
-                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_drpr inner join reg_periksa on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_drpr.no_rawat");
+                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_drpr.no_rawat");
                         try {
                             pspasienralandrpr.setString(1,rs.getString("kd_dokter"));
                             pspasienralandrpr.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralandrpr.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralandrpr.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralandrpr.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralandrpr.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralandrpr.executeQuery();
                             while(rspasien.next()){ 
                                 a=1; 
@@ -9506,17 +9522,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     );
                     c=1;
                     //jmralan
-                    if(chkRalan.isSelected()==true){
+                    if((chkRalan.isSelected()==true)||(chkRanap.isSelected()==true)){
                         pspasienralan=koneksi.prepareStatement(
-                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_dr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_dr inner join reg_periksa on rawat_jl_dr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_dr.no_rawat");
+                            "where rawat_jl_dr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_dr.no_rawat");
                         try {
                             pspasienralan.setString(1,rs.getString("kd_dokter"));
                             pspasienralan.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralan.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralan.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralan.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralan.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralan.executeQuery();
                             while(rspasien.next()){ 
                                 pstindakanralan=koneksi.prepareStatement(
@@ -9595,15 +9613,17 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
 
                         pspasienralandrpr=koneksi.prepareStatement(
-                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,poliklinik.nm_poli "+
+                            "select rawat_jl_drpr.no_rawat,reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y')as tgl_registrasi,pasien.nm_pasien,penjab.png_jawab,if(reg_periksa.status_lanjut='Ranap',concat(poliklinik.nm_poli,' (Ranap)'),poliklinik.nm_poli) as nm_poli "+
                             "from rawat_jl_drpr inner join reg_periksa on rawat_jl_drpr.no_rawat=reg_periksa.no_rawat inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                             "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? group by rawat_jl_drpr.no_rawat");
+                            "where rawat_jl_drpr.kd_dokter=? and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? and reg_periksa.status_lanjut in (?,?) group by rawat_jl_drpr.no_rawat");
                         try {
                             pspasienralandrpr.setString(1,rs.getString("kd_dokter"));
                             pspasienralandrpr.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                             pspasienralandrpr.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                             pspasienralandrpr.setString(4,"%"+pilihancarabayar+"%");
+                            pspasienralandrpr.setString(5,chkRalan.isSelected()?"Ralan":"-");
+                            pspasienralandrpr.setString(6,chkRanap.isSelected()?"Ranap":"-");
                             rspasien=pspasienralandrpr.executeQuery();
                             while(rspasien.next()){ 
                                 a=1; 
