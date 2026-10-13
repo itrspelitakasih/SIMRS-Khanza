@@ -1282,7 +1282,14 @@ public class frmUtama extends javax.swing.JFrame {
     private int jmlmenu=0,grid=0,tinggi=0,i=0,menuawal=0;
     private String coder_nik="",pilihpage="",judulform="",tampilkantni=Sequel.cariIsi("select set_tni_polri.tampilkan_tni_polri from set_tni_polri"),
             AKTIFKANTRACKSQL=koneksiDB.AKTIFKANTRACKSQL();
-    
+    // captcha login: salah 3x (password/captcha) login dikunci 1 menit, disimpan di Preferences agar tidak lepas saat aplikasi dibuka ulang
+    private static final int MAKS_GAGAL_LOGIN=3;
+    private static final long LAMA_KUNCI_LOGIN=60000;
+    private static final String HURUF_CAPTCHA="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    private final java.security.SecureRandom acak=new java.security.SecureRandom();
+    private final java.util.prefs.Preferences prefLogin=java.util.prefs.Preferences.userNodeForPackage(frmUtama.class);
+    private String kodeCaptcha="";
+
     private frmUtama() {
         super();
         initComponents();
@@ -1294,7 +1301,9 @@ public class frmUtama extends javax.swing.JFrame {
         //this.setSize(screen.width,screen.height);
         edAdmin.setDocument(new batasInput((byte)100).getKata(edAdmin));
         edPwd.setDocument(new batasInput((byte)100).getKata(edPwd));
-        DlgLogin.setSize(299,180);
+        DlgLogin.setSize(299,244);
+        TCaptcha.setDocument(new batasInput((byte)6).getKata(TCaptcha));
+        buatCaptcha();
         DlgLogin.setLocationRelativeTo(null);
         jMenu1.setOpaque(false);
         jMenu5.setOpaque(false);
@@ -1354,6 +1363,11 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         edAdmin = new widget.PasswordBox();
         edPwd = new widget.PasswordBox();
+        LblJudulCaptcha = new widget.Label();
+        LblCaptcha = new widget.Label();
+        BtnCaptcha = new widget.Button();
+        LblKodeCaptcha = new widget.Label();
+        TCaptcha = new widget.TextBox();
         BtnLogin = new widget.Button();
         BtnCancel = new widget.Button();
         jLabel6 = new javax.swing.JLabel();
@@ -2010,8 +2024,49 @@ public class frmUtama extends javax.swing.JFrame {
         panelGlass1.add(edPwd);
         edPwd.setBounds(80, 40, 193, 23);
 
+        LblJudulCaptcha.setText("Captcha :");
+        LblJudulCaptcha.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        LblJudulCaptcha.setName("LblJudulCaptcha"); // NOI18N
+        panelGlass1.add(LblJudulCaptcha);
+        LblJudulCaptcha.setBounds(2, 70, 75, 30);
+
+        LblCaptcha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(175, 175, 100)));
+        LblCaptcha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblCaptcha.setToolTipText("Ketik ulang kode pada gambar ini");
+        LblCaptcha.setName("LblCaptcha"); // NOI18N
+        panelGlass1.add(LblCaptcha);
+        LblCaptcha.setBounds(80, 70, 152, 30);
+
+        BtnCaptcha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        BtnCaptcha.setToolTipText("Ganti kode captcha");
+        BtnCaptcha.setName("BtnCaptcha"); // NOI18N
+        BtnCaptcha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCaptchaActionPerformed(evt);
+            }
+        });
+        panelGlass1.add(BtnCaptcha);
+        BtnCaptcha.setBounds(237, 70, 36, 30);
+
+        LblKodeCaptcha.setText("Kode :");
+        LblKodeCaptcha.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        LblKodeCaptcha.setName("LblKodeCaptcha"); // NOI18N
+        panelGlass1.add(LblKodeCaptcha);
+        LblKodeCaptcha.setBounds(2, 106, 75, 23);
+
+        TCaptcha.setToolTipText("Silahkan masukkan kode captcha");
+        TCaptcha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        TCaptcha.setName("TCaptcha"); // NOI18N
+        TCaptcha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCaptchaKeyPressed(evt);
+            }
+        });
+        panelGlass1.add(TCaptcha);
+        TCaptcha.setBounds(80, 106, 193, 23);
+
         internalFrame3.add(panelGlass1);
-        panelGlass1.setBounds(-1, 25, 342, 76);
+        panelGlass1.setBounds(-1, 25, 342, 140);
 
         BtnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/lock.png"))); // NOI18N
         BtnLogin.setMnemonic('Z');
@@ -2024,7 +2079,7 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         internalFrame3.add(BtnLogin);
-        BtnLogin.setBounds(12, 110, 105, 32);
+        BtnLogin.setBounds(12, 174, 105, 32);
 
         BtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnCancel.setMnemonic('Y');
@@ -2037,7 +2092,7 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         internalFrame3.add(BtnCancel);
-        BtnCancel.setBounds(177, 110, 105, 32);
+        BtnCancel.setBounds(177, 174, 105, 32);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/LaST (Cobalt) Lock n Gear.png"))); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
@@ -2045,7 +2100,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel6.setBounds(105, 5, 135, 145);
 
         internalFrame2.add(internalFrame3);
-        internalFrame3.setBounds(2, 12, 295, 155);
+        internalFrame3.setBounds(2, 12, 295, 219);
 
         DlgLogin.getContentPane().add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -7585,7 +7640,7 @@ public class frmUtama extends javax.swing.JFrame {
         panelToolKanan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 15));
         panelToolKanan.setName("panelToolKanan"); // NOI18N
         panelToolKanan.setOpaque(false);
-        panelToolKanan.setPreferredSize(new java.awt.Dimension(50, 42));
+        panelToolKanan.setPreferredSize(new java.awt.Dimension(80, 42));
         panelToolKanan.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 2));
 
         BtnNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/bell.png"))); // NOI18N
@@ -8725,8 +8780,7 @@ public class frmUtama extends javax.swing.JFrame {
                 break;
             case "Log In":
                 isTutup();
-                DlgLogin.setVisible(true);
-                edAdmin.requestFocus();
+                bukaLogin();
                 break;
         }
     }//GEN-LAST:event_BtnLogActionPerformed
@@ -8736,6 +8790,13 @@ public class frmUtama extends javax.swing.JFrame {
             Valid.textKosong(edAdmin,"ID User");
         }else if(edPwd.getText().trim().equals("")){
             Valid.textKosong(edPwd,"Password");
+        }else if(sisaKunciLogin()>0){
+            DlgLogin.dispose();
+            bukaLogin();
+        }else if(TCaptcha.getText().trim().equals("")){
+            Valid.textKosong(TCaptcha,"Kode Captcha");
+        }else if(!TCaptcha.getText().trim().equalsIgnoreCase(kodeCaptcha)){
+            loginGagal("kode captcha salah",TCaptcha);
         }else {
             try {   
                 cacheigd.reset();
@@ -8827,7 +8888,6 @@ public class frmUtama extends javax.swing.JFrame {
                         Sequel.menyimpan("tracker","'"+edAdmin.getText()+"',current_date(),current_time()","Login");
                     }
                 }else if((akses.getjml1()==0)&&(akses.getjml2()==0)){
-                    JOptionPane.showMessageDialog(null,"Maaf, Gagal login. ID User atau password ada yang salah ...!");
                     BtnToolReg.setEnabled(false);
                     BtnToolKamnap.setEnabled(false);
                     BtnToolKasir.setEnabled(false);
@@ -8852,11 +8912,14 @@ public class frmUtama extends javax.swing.JFrame {
                      
                     BtnMenu.setEnabled(false);
 
-                    edAdmin.requestFocus();
                     BtnLog.setText("Log In");
                     MnLogin.setText("Log In");
                     lblStts.setText("Status Admin : ");
-                    lblUser.setText("Log Out");   
+                    lblUser.setText("Log Out");
+                    loginGagal("ID User atau password ada yang salah",edAdmin);
+                }
+                if(akses.getjml1()>=1||akses.getjml2()>=1){
+                    prefLogin.putInt("gagal_login",0);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);
@@ -8882,14 +8945,23 @@ private void edAdminKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_e
 }//GEN-LAST:event_edAdminKeyPressed
 
 private void edPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edPwdKeyPressed
+        Valid.pindah(evt,edAdmin,TCaptcha);
+}//GEN-LAST:event_edPwdKeyPressed
+
+    private void TCaptchaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCaptchaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             BtnLoginActionPerformed(null);
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            edAdmin.requestFocus();
+            edPwd.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
             BtnLogin.requestFocus();
         }
-}//GEN-LAST:event_edPwdKeyPressed
+    }//GEN-LAST:event_TCaptchaKeyPressed
+
+    private void BtnCaptchaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCaptchaActionPerformed
+        buatCaptcha();
+        TCaptcha.requestFocus();
+    }//GEN-LAST:event_BtnCaptchaActionPerformed
 
 private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
@@ -9297,6 +9369,73 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void bukaChatGlobal(){
         siapkanChat().bukaGlobal();
         tampilChat();
+    }
+
+    private void buatCaptcha(){
+        StringBuilder kode=new StringBuilder();
+        for(int a=0;a<5;a++){
+            kode.append(HURUF_CAPTCHA.charAt(acak.nextInt(HURUF_CAPTCHA.length())));
+        }
+        kodeCaptcha=kode.toString();
+
+        int lebar=150,tinggi=28;
+        java.awt.image.BufferedImage gambar=new java.awt.image.BufferedImage(lebar,tinggi,java.awt.image.BufferedImage.TYPE_INT_RGB);
+        java.awt.Graphics2D g=gambar.createGraphics();
+        g.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setPaint(new java.awt.GradientPaint(0,0,new java.awt.Color(255,255,235),lebar,tinggi,new java.awt.Color(225,240,255)));
+        g.fillRect(0,0,lebar,tinggi);
+        for(int a=0;a<60;a++){
+            g.setColor(new java.awt.Color(150+acak.nextInt(90),150+acak.nextInt(90),150+acak.nextInt(90)));
+            g.fillOval(acak.nextInt(lebar),acak.nextInt(tinggi),2,2);
+        }
+        for(int a=0;a<5;a++){
+            g.setColor(new java.awt.Color(120+acak.nextInt(100),120+acak.nextInt(100),120+acak.nextInt(100)));
+            g.drawLine(acak.nextInt(lebar),acak.nextInt(tinggi),acak.nextInt(lebar),acak.nextInt(tinggi));
+        }
+        g.setFont(new java.awt.Font("Arial",java.awt.Font.BOLD,20));
+        for(int a=0;a<kodeCaptcha.length();a++){
+            java.awt.geom.AffineTransform awal=g.getTransform();
+            int x=14+(a*26),y=21+acak.nextInt(4);
+            g.rotate(Math.toRadians(acak.nextInt(41)-20),x+7,y-7);
+            g.setColor(new java.awt.Color(acak.nextInt(110),acak.nextInt(110),acak.nextInt(140)));
+            g.drawString(String.valueOf(kodeCaptcha.charAt(a)),x,y);
+            g.setTransform(awal);
+        }
+        g.dispose();
+        LblCaptcha.setIcon(new ImageIcon(gambar));
+        TCaptcha.setText("");
+    }
+
+    private long sisaKunciLogin(){
+        return Math.max(0,prefLogin.getLong("kunci_login_sampai",0)-System.currentTimeMillis());
+    }
+
+    private void bukaLogin(){
+        long sisa=sisaKunciLogin();
+        if(sisa>0){
+            widget.JOptionPane.peringatan(this,"Login Dikunci","Maaf, login dikunci karena "+MAKS_GAGAL_LOGIN+"x salah.\nSilahkan coba lagi dalam "+((sisa+999)/1000)+" detik ...!");
+            return;
+        }
+        buatCaptcha();
+        DlgLogin.setVisible(true);
+        edAdmin.requestFocus();
+    }
+
+    private void loginGagal(String alasan,javax.swing.JComponent fokus){
+        int gagal=prefLogin.getInt("gagal_login",0)+1;
+        buatCaptcha();
+        if(gagal>=MAKS_GAGAL_LOGIN){
+            prefLogin.putInt("gagal_login",0);
+            prefLogin.putLong("kunci_login_sampai",System.currentTimeMillis()+LAMA_KUNCI_LOGIN);
+            edAdmin.setText("");
+            edPwd.setText("");
+            DlgLogin.dispose();
+            widget.JOptionPane.gagal(this,"Login Dikunci","Maaf, "+alasan+".\nAnda sudah "+MAKS_GAGAL_LOGIN+"x gagal login, silahkan tunggu "+(LAMA_KUNCI_LOGIN/1000)+" detik ...!");
+        }else{
+            prefLogin.putInt("gagal_login",gagal);
+            widget.JOptionPane.gagal(DlgLogin,"Gagal Login","Maaf, "+alasan+" ...!\nSisa percobaan : "+(MAKS_GAGAL_LOGIN-gagal)+"x");
+            fokus.requestFocus();
+        }
     }
 
     private void mulaiChat(){
@@ -15139,8 +15278,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             break;
             case "Log In":
             isTutup();
-            DlgLogin.setVisible(true);
-            edAdmin.requestFocus();
+            bukaLogin();
             break;
 
         }
@@ -25128,6 +25266,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnBukaChatNotif;
     private widget.Button BtnCancel;
+    private widget.Button BtnCaptcha;
     private widget.ButtonBig BtnClose;
     private widget.ButtonBig BtnDpjp;
     private widget.ButtonBig BtnJadwal;
@@ -25148,7 +25287,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private usu.widget.glass.PanelGlass FlayMenu;
     private javax.swing.JMenuItem LaporIT;
     private javax.swing.JLabel LblIP;
+    private widget.Label LblCaptcha;
+    private widget.Label LblJudulCaptcha;
     private widget.Label LblJudulNotif;
+    private widget.Label LblKodeCaptcha;
     private widget.MenuBar MenuBar;
     private javax.swing.JMenuItem MenuKeluar;
     private javax.swing.JMenuItem MnAnjungan;
@@ -25209,6 +25351,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem PenyerahanResep;
     private javax.swing.JPopupMenu PopupNotif;
     private widget.ScrollPane ScrollNotif;
+    private widget.TextBox TCaptcha;
     private widget.TextBox TCari;
     private widget.ButtonBig btnAdmin;
     private widget.ButtonBig btnAkunPiutang;
@@ -25872,7 +26015,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.04"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.05"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
