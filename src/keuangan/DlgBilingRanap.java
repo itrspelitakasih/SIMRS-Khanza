@@ -3933,7 +3933,16 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 ttlRalan_Paramedis+ttlTambahan+ttlKamar+ttlRegistrasi+ttlHarian+ttlRetur_Obat+ttlResep_Pulang+ttlService);
                         Valid.panggilUrl("billing/LaporanBillingUmum.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==2){
-                        Valid.panggilUrl("billing/LaporanBillingPT.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                        // No. Kwitansi terisi otomatis, bisa diubah sebelum dicetak; batal = tidak jadi cetak
+                        this.setCursor(Cursor.getDefaultCursor());
+                        String nokwitansi=new DlgNoKwitansi(null,true).tampil(noKwitansiPT(kd_pj),internalFrame1);
+                        if(nokwitansi!=null){
+                            try {
+                                Valid.panggilUrl("billing/LaporanBillingPT.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+java.net.URLEncoder.encode(nokwitansi.trim(),"UTF-8")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                            } catch (Exception e) {
+                                System.out.println("Notif No. Kwitansi : "+e);
+                            }
+                        }
                     }else if(i==6){
                         Valid.panggilUrl("billing/LaporanBillingAS.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==3){
@@ -4919,6 +4928,35 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         dlgupdate.setLocationRelativeTo(internalFrame1);
         dlgupdate.setVisible(true);
     }//GEN-LAST:event_BtnUpdateTarifKelasActionPerformed
+
+    // Nomor kwitansi otomatis Nota PT, sama dengan LaporanBillingPT.php: urut/RSPK/INV/bulan romawi/tahun.
+    // Urut = urutan nota rawat inap penjamin yang sama pada bulan tanggal nota (nota belum disimpan: hari ini, urutan berikutnya).
+    private String noKwitansiPT(String kdpj){
+        String tgl=Sequel.cariIsi("select nota_inap.tanggal from nota_inap where nota_inap.no_rawat=?",TNoRw.getText());
+        String jam=Sequel.cariIsi("select nota_inap.jam from nota_inap where nota_inap.no_rawat=?",TNoRw.getText());
+        boolean adanota=!tgl.equals("");
+        if(!adanota){
+            tgl=Sequel.cariIsi("select current_date()");
+            jam=Sequel.cariIsi("select current_time()");
+        }
+        int urut=0;
+        try {
+            urut=Integer.parseInt(Sequel.cariIsi("select count(nota_inap.no_rawat) from nota_inap inner join reg_periksa on nota_inap.no_rawat=reg_periksa.no_rawat "+
+                    "where reg_periksa.kd_pj='"+kdpj.replace("'","''")+"' and nota_inap.tanggal between '"+tgl.substring(0,8)+"01' and '"+tgl+"' "+
+                    "and concat(nota_inap.tanggal,' ',nota_inap.jam)<='"+tgl+" "+jam+"'"));
+        } catch (Exception e) {
+            urut=0;
+        }
+        if(!adanota){
+            urut++;
+        }
+        String[] romawi={"I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"};
+        try {
+            return String.format("%03d",Math.max(1,urut))+"/RSPK/INV/"+romawi[Integer.parseInt(tgl.substring(5,7))-1]+"/"+tgl.substring(0,4);
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
     public void isRawat() {
          try {
