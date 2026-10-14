@@ -137,6 +137,8 @@ public final class DlgPoli extends javax.swing.JDialog {
         Nm = new widget.TextBox();
         label33 = new widget.Label();
         ByLm = new widget.TextBox();
+        label35 = new widget.Label();
+        ByLain = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         panelisi3 = new widget.panelisi();
         label9 = new widget.Label();
@@ -159,11 +161,11 @@ public final class DlgPoli extends javax.swing.JDialog {
         ppOrder.setForeground(new java.awt.Color(50, 50, 50));
         ppOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppOrder.setText("Urutkan Berdasar");
-        ppOrder.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppOrder.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ppOrder.setName("ppOrder"); // NOI18N
 
         ppOrderKode.setBackground(new java.awt.Color(254, 254, 254));
-        ppOrderKode.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppOrderKode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ppOrderKode.setForeground(new java.awt.Color(50, 50, 50));
         ppOrderKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppOrderKode.setText("Kode Unit");
@@ -179,7 +181,7 @@ public final class DlgPoli extends javax.swing.JDialog {
         ppOrder.add(ppOrderKode);
 
         ppOrderNama.setBackground(new java.awt.Color(254, 254, 254));
-        ppOrderNama.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppOrderNama.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ppOrderNama.setForeground(new java.awt.Color(50, 50, 50));
         ppOrderNama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppOrderNama.setText("Nama Unit");
@@ -195,7 +197,7 @@ public final class DlgPoli extends javax.swing.JDialog {
         ppOrder.add(ppOrderNama);
 
         ppOrderKtg.setBackground(new java.awt.Color(254, 254, 254));
-        ppOrderKtg.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        ppOrderKtg.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ppOrderKtg.setForeground(new java.awt.Color(50, 50, 50));
         ppOrderKtg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppOrderKtg.setText("Registrasi");
@@ -212,7 +214,7 @@ public final class DlgPoli extends javax.swing.JDialog {
 
         Popup.add(ppOrder);
 
-        MnRestore.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnRestore.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRestore.setForeground(new java.awt.Color(50, 50, 50));
         MnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRestore.setText("Data Sampah");
@@ -244,7 +246,7 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Unit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Unit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -339,6 +341,23 @@ public final class DlgPoli extends javax.swing.JDialog {
         });
         panelisi4.add(ByLm);
         ByLm.setBounds(517, 12, 100, 23);
+
+        label35.setText("Registrasi Lain :");
+        label35.setName("label35"); // NOI18N
+        label35.setPreferredSize(new java.awt.Dimension(35, 23));
+        panelisi4.add(label35);
+        label35.setBounds(620, 10, 100, 23);
+
+        ByLain.setText("0");
+        ByLain.setHighlighter(null);
+        ByLain.setName("ByLain"); // NOI18N
+        ByLain.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ByLainKeyPressed(evt);
+            }
+        });
+        panelisi4.add(ByLain);
+        ByLain.setBounds(730, 10, 100, 23);
 
         internalFrame1.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -778,6 +797,10 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
         restore.setVisible(true);
     }//GEN-LAST:event_MnRestoreActionPerformed
 
+    private void ByLainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ByLainKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ByLainKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -804,6 +827,7 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.TextBox By;
+    private widget.TextBox ByLain;
     private widget.TextBox ByLm;
     private widget.TextBox Kd;
     private widget.TextBox Kd2;
@@ -819,6 +843,7 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
     private widget.Label label32;
     private widget.Label label33;
     private widget.Label label34;
+    private widget.Label label35;
     private widget.Label label36;
     private widget.Label label9;
     private widget.panelisi panelisi1;
