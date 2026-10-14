@@ -2039,6 +2039,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         BtnCaptcha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
         BtnCaptcha.setToolTipText("Ganti kode captcha");
+        BtnCaptcha.setFocusable(false);
         BtnCaptcha.setName("BtnCaptcha"); // NOI18N
         BtnCaptcha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

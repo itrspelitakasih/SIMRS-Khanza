@@ -212,6 +212,7 @@
                           <Image iconType="3" name="/picture/refresh.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Ganti kode captcha"/>
+                        <Property name="focusable" type="boolean" value="false"/>
                         <Property name="name" type="java.lang.String" value="BtnCaptcha" noResource="true"/>
                       </Properties>
                       <Events>

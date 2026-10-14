@@ -137,8 +137,6 @@ public final class DlgPoli extends javax.swing.JDialog {
         Nm = new widget.TextBox();
         label33 = new widget.Label();
         ByLm = new widget.TextBox();
-        label35 = new widget.Label();
-        ByLain = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         panelisi3 = new widget.panelisi();
         label9 = new widget.Label();
@@ -341,23 +339,6 @@ public final class DlgPoli extends javax.swing.JDialog {
         });
         panelisi4.add(ByLm);
         ByLm.setBounds(517, 12, 100, 23);
-
-        label35.setText("Registrasi Lain :");
-        label35.setName("label35"); // NOI18N
-        label35.setPreferredSize(new java.awt.Dimension(35, 23));
-        panelisi4.add(label35);
-        label35.setBounds(620, 10, 100, 23);
-
-        ByLain.setText("0");
-        ByLain.setHighlighter(null);
-        ByLain.setName("ByLain"); // NOI18N
-        ByLain.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ByLainKeyPressed(evt);
-            }
-        });
-        panelisi4.add(ByLain);
-        ByLain.setBounds(730, 10, 100, 23);
 
         internalFrame1.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -797,10 +778,6 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
         restore.setVisible(true);
     }//GEN-LAST:event_MnRestoreActionPerformed
 
-    private void ByLainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ByLainKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ByLainKeyPressed
-
     /**
     * @param args the command line arguments
     */
@@ -827,7 +804,6 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.TextBox By;
-    private widget.TextBox ByLain;
     private widget.TextBox ByLm;
     private widget.TextBox Kd;
     private widget.TextBox Kd2;
@@ -843,7 +819,6 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
     private widget.Label label32;
     private widget.Label label33;
     private widget.Label label34;
-    private widget.Label label35;
     private widget.Label label36;
     private widget.Label label9;
     private widget.panelisi panelisi1;
