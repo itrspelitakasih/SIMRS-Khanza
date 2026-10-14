@@ -922,7 +922,10 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 while(rs.next()){
                     Operasi=0;Laborat=0;Radiologi=0;Obat=0;Ralan_Dokter=0;Ralan_Dokter_paramedis=0;Ralan_Paramedis=0;Tambahan=0;Potongan=0;Registrasi=0;ekses=0;dibayar=0;sisa=0;
                     ps2=koneksi.prepareStatement(
-                        "select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_rawat=? ");
+                        "select billing.nm_perawatan,billing.totalbiaya,"+
+                        "if(billing.status in ('Ralan Dokter','Ralan Dokter Paramedis','Ralan Paramedis') and "+
+                        "(billing.nm_perawatan like '%registrasi%' or billing.nm_perawatan like '%pendaftaran%'),'Registrasi',billing.status) as status "+
+                        "from billing where billing.no_rawat=? ");
                     try {
                         ps2.setString(1,rs.getString("no_rawat"));
                         rs2=ps2.executeQuery();                

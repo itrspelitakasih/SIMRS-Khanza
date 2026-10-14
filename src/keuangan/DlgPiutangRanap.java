@@ -58,7 +58,9 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
              Service=0,ttlLaborat=0,ttlRadiologi=0,ttlOperasi=0,ttlObat=0,ttlRanap_Dokter=0,ttlRanap_Paramedis=0,ttlRalan_Dokter=0,
              ttlRalan_Paramedis=0,ttlTambahan=0,ttlPotongan=0,ttlKamar=0,ttlRegistrasi=0,ttlHarian=0,ttlRetur_Obat=0,ttlResep_Pulang=0,ttlService=0,
              ekses=0,ttlekses=0,dibayar=0,ttldibayar=0,sisa=0,ttlsisa=0,diskon=0,ttldiskon=0,tidakdibayar=0,ttltidakdibayar=0;
-    private String sqlps2="select sum(billing.totalbiaya) from billing where billing.no_rawat=? and billing.status=? ",pilihan="",status="";
+    private String sqlps2="select sum(billing.totalbiaya) from billing where billing.no_rawat=? and "+
+            "if(billing.status in ('Ranap Dokter','Ranap Dokter Paramedis','Ranap Paramedis','Ralan Dokter','Ralan Dokter Paramedis','Ralan Paramedis') and "+
+            "(billing.nm_perawatan like '%registrasi%' or billing.nm_perawatan like '%pendaftaran%'),'Registrasi',billing.status)=? ",pilihan="",status="";
     private StringBuilder htmlContent;
     private int i=0;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
