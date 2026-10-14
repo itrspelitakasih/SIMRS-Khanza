@@ -25,7 +25,7 @@
               <Color blue="fe" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Arial" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="32" green="32" red="32" type="rgb"/>
@@ -46,7 +46,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="MnCopyPengkajian">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Arial" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="32" green="32" red="32" type="rgb"/>
@@ -97,7 +97,7 @@
                       <Color PropertyName="color" blue="e1" green="eb" red="e6" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
+                  <Font PropertyName="font" name="Arial" size="12" style="0"/>
                   <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -273,13 +273,13 @@
                   <Color PropertyName="color" blue="eb" green="f5" red="f0" type="rgb"/>
                 </LineBorder>
               </Border>
-              <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
+              <Font PropertyName="font" name="Arial" size="12" style="0"/>
               <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="12" style="2"/>
+          <Font name="Arial" size="12" style="2"/>
         </Property>
         <Property name="name" type="java.lang.String" value="internalFrame1" noResource="true"/>
       </Properties>
@@ -467,7 +467,7 @@
               <Color blue="32" green="32" red="32" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Arial" size="12" style="0"/>
             </Property>
             <Property name="name" type="java.lang.String" value="TabRawat" noResource="true"/>
           </Properties>
@@ -654,7 +654,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="D. CONSUMPTION"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel53" noResource="true"/>
                           </Properties>
@@ -712,7 +712,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="E. PEMERIKSAAN LABORATORIUM (TERLAMPIR)"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel59" noResource="true"/>
                           </Properties>
@@ -764,7 +764,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="G. EKG"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel61" noResource="true"/>
                           </Properties>
@@ -779,7 +779,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="F. RONTGEN THORAX"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel62" noResource="true"/>
                           </Properties>
@@ -828,7 +828,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="P. KESIMPULAN"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel102" noResource="true"/>
                           </Properties>
@@ -1850,7 +1850,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="B. RIWAYAT PENYAKIT"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel55" noResource="true"/>
                           </Properties>
@@ -1942,7 +1942,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="C. RIWAYAT PENYAKIT KELUARGA"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel56" noResource="true"/>
                           </Properties>
@@ -2436,7 +2436,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="H. SPIROMETRI"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel111" noResource="true"/>
                           </Properties>
@@ -2474,7 +2474,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="I. AUDIOMETRI"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel112" noResource="true"/>
                           </Properties>
@@ -2789,7 +2789,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="L. IMUNISASI"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel80" noResource="true"/>
                           </Properties>
@@ -3117,7 +3117,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="J. PEMERIKSAAN FISIK"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel81" noResource="true"/>
                           </Properties>
@@ -3369,7 +3369,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="K. PEMERIKSAAN MATA"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel134" noResource="true"/>
                           </Properties>
@@ -3659,7 +3659,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="M. VERTEBRA"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel144" noResource="true"/>
                           </Properties>
@@ -3949,7 +3949,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="O. SCORE DASS 21"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel154" noResource="true"/>
                           </Properties>
@@ -4147,7 +4147,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="A. INFORMASI UMUM"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel110" noResource="true"/>
                           </Properties>
@@ -6635,7 +6635,7 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="URINALISIS :"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="lbUrinalisis" noResource="true"/>
                           </Properties>
@@ -6770,7 +6770,7 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="IMUNOLOGI / SEROLOGI :"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="lbImunologi" noResource="true"/>
                           </Properties>
@@ -6828,7 +6828,7 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="UJI NAPZA :"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="lbNapza" noResource="true"/>
                           </Properties>
@@ -7029,7 +7029,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="N. HASIL PEMERIKSAAN"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="1"/>
+                              <Font name="Arial" size="11" style="1"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel171" noResource="true"/>
                           </Properties>
@@ -7089,7 +7089,7 @@
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="Jawaban :"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="11" style="3"/>
+                              <Font name="Arial" size="11" style="3"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jLabel203" noResource="true"/>
                           </Properties>
