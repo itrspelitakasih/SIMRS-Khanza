@@ -15685,19 +15685,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             final String destinationDir = System.getProperty("user.dir");
             final String zipFilePath = destinationDir + "/update.zip";
 
-            final javax.swing.JDialog dlgTunggu = new javax.swing.JDialog(this, "Update SIMRS", true);
-            final javax.swing.JLabel lblTunggu = new javax.swing.JLabel("Mohon tunggu, menghubungi server update...");
-            final javax.swing.JProgressBar progress = new javax.swing.JProgressBar(0, 100);
-            progress.setStringPainted(true);
-            progress.setIndeterminate(true);
-            javax.swing.JPanel panelTunggu = new javax.swing.JPanel(new java.awt.BorderLayout(0, 10));
-            panelTunggu.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
-            panelTunggu.add(lblTunggu, java.awt.BorderLayout.NORTH);
-            panelTunggu.add(progress, java.awt.BorderLayout.CENTER);
-            dlgTunggu.setContentPane(panelTunggu);
-            dlgTunggu.setDefaultCloseOperation(javax.swing.JDialog.DO_NOTHING_ON_CLOSE);
-            dlgTunggu.setSize(420, 120);
-            dlgTunggu.setResizable(false);
+            final DlgUpdateSIMRS dlgTunggu = new DlgUpdateSIMRS(this, true);
             dlgTunggu.setLocationRelativeTo(this);
 
             javax.swing.SwingWorker<Void, Object[]> worker = new javax.swing.SwingWorker<Void, Object[]>() {
@@ -15719,12 +15707,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 @Override
                 protected void process(java.util.List<Object[]> chunks) {
                     Object[] terakhir = chunks.get(chunks.size() - 1);
-                    lblTunggu.setText((String) terakhir[0]);
-                    int persen = (Integer) terakhir[1];
-                    progress.setIndeterminate(persen < 0);
-                    if (persen >= 0) {
-                        progress.setValue(persen);
-                    }
+                    dlgTunggu.setStatus((String) terakhir[0], (Integer) terakhir[1]);
                 }
 
                 @Override
@@ -26015,7 +25998,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.05"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.06"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
