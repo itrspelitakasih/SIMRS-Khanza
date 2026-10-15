@@ -1735,3 +1735,13 @@ Dibuat: 2026-09-10. Perbandingan seluruh folder `src/` proyek Dev terhadap sourc
 - **permintaan/DlgBookingRegistrasi.java**: `tampil()` aman dari kolom NULL (sebelumnya `limit_reg` NULL membuat tabel gagal tampil); tombol Registrasi mengirim WA ke pasien.
 - **permintaan/DlgBookingPeriksa.java**: `tampil()` aman dari kolom NULL (sebelumnya email/pesan NULL membuat tombol Jawab error); centang "Langsung Registrasi" di jendela Jawab (ditambahkan lewat kode di constructor, bukan .form) — saat Diterima langsung membuat `reg_periksa` di transaksi yang sama (savepoint, gagal registrasi tidak membatalkan penerimaan) lalu WA ke pasien; notif WA booking baru ke admin bisa dimatikan.
 - **fungsi/koneksiDBWa.java**: `NOTIFWABOOKINGPERIKSA()`, `NOTIFWAREGISTRASIPASIEN()` (yes/no, default yes) dan `URLPORTALPASIEN()` dari `setting/database-extra.xml`.
+
+## Modifikasi 2026-10-15 — Jadwal perawatan inventaris & pengingat WA H-1
+
+- **inventaris/InventarisPemeliharaan (form,java)**: baris baru "Jadwal Berikutnya" (Tidak Ada/Manual/1 Minggu/1 Bulan/3 Bulan/6 Bulan/1 Tahun, dihitung dari tanggal pemeliharaan) dan "No.WA Pengingat" (default `petugas.no_telp` penanggung jawab). Simpan/Ganti mengantrikan WA pengingat H-1 pukul 08.00 (langsung bila sudah lewat); Ganti/Hapus membatalkan antrian lama. Kolom `tgl_berikutnya`, `no_wa`, `wa_nomor` ditambahkan otomatis (lihat `update_jadwal_perawatan_inventaris.sql`).
+- **komunikasi/GoWAService.java**: `kirimTextTerjadwal()` (mengembalikan nomor antrian), `batalkanAntrian()`, worker juga memproses SOURCE `PRWINV`.
+
+## Modifikasi 2026-10-15 — Filter perusahaan di Piutang Ralan/Ranap
+
+- **keuangan/DlgPiutangRalan, DlgPiutangRanap (form,java)**: filter "Perusahaan" (`KdPerusahaan` non-visual, `NmPerusahaan`, `BtnPerusahaan` Alt+4) memakai `DlgCariPerusahaan`; query ditambah `and pasien.perusahaan_pasien=?` bila terisi; BtnAll ikut mengosongkan. Ralan setelah Unit/Poli, Ranap setelah Jenis Bayar.
+- **update_perusahaan_pasien_dari_penjab.sql**: backup + reset `pasien.perusahaan_pasien` ke '-', pemetaan penjab → perusahaan_pasien, lalu isi ulang dari penjab registrasi terakhir yang terpetakan.
