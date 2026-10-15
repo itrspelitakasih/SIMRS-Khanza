@@ -4915,6 +4915,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         btnPenjab1.setBounds(852, 132, 28, 23);
 
         ChkTracker.setBorder(null);
+        ChkTracker.setSelected(true);
         ChkTracker.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         ChkTracker.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkTracker.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
