@@ -9339,14 +9339,30 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if(dlgChat==null||!dlgChat.isDisplayable()){
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dlgChat=new DlgChat(null,false);
-            dlgChat.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
-            dlgChat.setLocationRelativeTo(PanelUtama);
             this.setCursor(Cursor.getDefaultCursor());
         }
         return dlgChat;
     }
 
+    /** Popup chat kecil di pojok kanan bawah area kerja (di atas status bar), tidak menutupi seluruh layar. */
+    private void posisiChat(){
+        java.awt.Rectangle area;
+        if(PanelUtama.isShowing()){
+            area=new java.awt.Rectangle(PanelUtama.getLocationOnScreen(),PanelUtama.getSize());
+        }else if(this.isShowing()){
+            area=this.getBounds();
+        }else{
+            area=java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        }
+        int lebar=dlgChat.getWidth(),tinggi=Math.min(dlgChat.getHeight(),area.height-20);
+        dlgChat.setSize(lebar,tinggi);
+        dlgChat.setLocation(area.x+area.width-lebar-10,area.y+area.height-tinggi-10);
+    }
+
     private void tampilChat(){
+        if(!dlgChat.isVisible()){
+            posisiChat();
+        }
         dlgChat.setVisible(true);
         dlgChat.toFront();
     }
@@ -11819,7 +11835,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         Window[] wins = Window.getWindows();
         for (Window win : wins) {
-            if (win instanceof JDialog) {
+            // popup chat punya posisi sendiri (pojok kanan bawah), jangan ditengahkan
+            if (win instanceof JDialog && !(win instanceof DlgChat)) {
                 win.setLocationRelativeTo(PanelUtama);
                 win.toFront();
             }
@@ -11848,7 +11865,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         setToolbar();
         Window[] wins = Window.getWindows();
         for (Window win : wins) {
-            if (win instanceof JDialog) {
+            // popup chat punya posisi sendiri (pojok kanan bawah), jangan ditengahkan
+            if (win instanceof JDialog && !(win instanceof DlgChat)) {
                 win.setLocationRelativeTo(PanelUtama);
                 win.toFront();
             }

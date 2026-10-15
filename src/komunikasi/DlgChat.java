@@ -2,9 +2,13 @@ package komunikasi;
 
 import fungsi.akses;
 import fungsi.koneksiDB;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,12 +79,13 @@ public class DlgChat extends javax.swing.JDialog {
     public DlgChat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setSize(1000,640);
+        // ukuran popup mengikuti preferredSize internalFrame1 (diatur di Design view)
+        geserDenganBingkai();
 
         tabUser=new DefaultTableModel(null,new Object[]{"Kode","Nama User","Baru"}){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        siapkanTabel(tbUser,tabUser,new int[]{0,255,40});
+        siapkanTabel(tbUser,tabUser,new int[]{0,400,40});
         tbUser.setDefaultRenderer(Object.class,new RendererChat(tabUser,2));
         sorterUser=new TableRowSorter<>(tabUser);
         for(int i=0;i<tabUser.getColumnCount();i++){
@@ -91,7 +96,7 @@ public class DlgChat extends javax.swing.JDialog {
         tabInbox=new DefaultTableModel(null,new Object[]{"Kode","Nama","Pesan Terakhir","Jam","Baru"}){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        siapkanTabel(tbInbox,tabInbox,new int[]{0,140,95,45,35});
+        siapkanTabel(tbInbox,tabInbox,new int[]{0,170,180,50,40});
         tbInbox.setDefaultRenderer(Object.class,new RendererChat(tabInbox,4));
         tbUser.setRowHeight(UKURAN_AVATAR+6);
         tbInbox.setRowHeight(UKURAN_AVATAR+6);
@@ -154,6 +159,8 @@ public class DlgChat extends javax.swing.JDialog {
         ScrollUser = new widget.ScrollPane();
         tbUser = new widget.Table();
         panelKanan = new widget.panelisi();
+        panelJudul = new widget.panelisi();
+        BtnKembali = new widget.Button();
         LblLawan = new widget.Label();
         ScrollPribadi = new widget.ScrollPane();
         TampilPribadi = new widget.editorpane();
@@ -180,12 +187,13 @@ public class DlgChat extends javax.swing.JDialog {
         });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Chat Antar User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setMinimumSize(new java.awt.Dimension(420, 400));
         internalFrame1.setName("internalFrame1"); // NOI18N
+        internalFrame1.setPreferredSize(new java.awt.Dimension(500, 620));
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         TabChat.setBackground(new java.awt.Color(255, 255, 253));
         TabChat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabChat.setForeground(new java.awt.Color(50, 50, 50));
         TabChat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TabChat.setName("TabChat"); // NOI18N
         TabChat.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -244,15 +252,13 @@ public class DlgChat extends javax.swing.JDialog {
         TabChat.addTab("Chat Semua", panelGlobal);
 
         panelPribadi.setName("panelPribadi"); // NOI18N
-        panelPribadi.setLayout(new java.awt.BorderLayout(1, 1));
+        panelPribadi.setLayout(new java.awt.CardLayout());
 
         panelKiri.setName("panelKiri"); // NOI18N
-        panelKiri.setPreferredSize(new java.awt.Dimension(330, 100));
         panelKiri.setLayout(new java.awt.BorderLayout(1, 1));
 
         TabDaftar.setBackground(new java.awt.Color(255, 255, 253));
         TabDaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabDaftar.setForeground(new java.awt.Color(50, 50, 50));
         TabDaftar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         TabDaftar.setName("TabDaftar"); // NOI18N
 
@@ -321,10 +327,27 @@ public class DlgChat extends javax.swing.JDialog {
 
         panelKiri.add(TabDaftar, java.awt.BorderLayout.CENTER);
 
-        panelPribadi.add(panelKiri, java.awt.BorderLayout.WEST);
+        panelPribadi.add(panelKiri, "daftar");
 
         panelKanan.setName("panelKanan"); // NOI18N
         panelKanan.setLayout(new java.awt.BorderLayout(1, 1));
+
+        panelJudul.setName("panelJudul"); // NOI18N
+        panelJudul.setPreferredSize(new java.awt.Dimension(100, 44));
+        panelJudul.setLayout(new java.awt.BorderLayout(1, 1));
+
+        BtnKembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
+        BtnKembali.setMnemonic('B');
+        BtnKembali.setText("Kembali");
+        BtnKembali.setToolTipText("Kembali ke daftar percakapan (Alt+B)");
+        BtnKembali.setName("BtnKembali"); // NOI18N
+        BtnKembali.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKembaliActionPerformed(evt);
+            }
+        });
+        panelJudul.add(BtnKembali, java.awt.BorderLayout.LINE_START);
 
         LblLawan.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
         LblLawan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -332,8 +355,9 @@ public class DlgChat extends javax.swing.JDialog {
         LblLawan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         LblLawan.setIconTextGap(8);
         LblLawan.setName("LblLawan"); // NOI18N
-        LblLawan.setPreferredSize(new java.awt.Dimension(100, 44));
-        panelKanan.add(LblLawan, java.awt.BorderLayout.PAGE_START);
+        panelJudul.add(LblLawan, java.awt.BorderLayout.CENTER);
+
+        panelKanan.add(panelJudul, java.awt.BorderLayout.PAGE_START);
 
         ScrollPribadi.setName("ScrollPribadi"); // NOI18N
         ScrollPribadi.setOpaque(true);
@@ -378,7 +402,7 @@ public class DlgChat extends javax.swing.JDialog {
 
         panelKanan.add(panelKirimPribadi, java.awt.BorderLayout.PAGE_END);
 
-        panelPribadi.add(panelKanan, java.awt.BorderLayout.CENTER);
+        panelPribadi.add(panelKanan, "chat");
 
         TabChat.addTab("Pesan Pribadi", panelPribadi);
 
@@ -430,7 +454,7 @@ public class DlgChat extends javax.swing.JDialog {
         LblStatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblStatus.setText("-");
         LblStatus.setName("LblStatus"); // NOI18N
-        LblStatus.setPreferredSize(new java.awt.Dimension(420, 23));
+        LblStatus.setPreferredSize(new java.awt.Dimension(150, 23));
         panelBawah.add(LblStatus);
 
         internalFrame1.add(panelBawah, java.awt.BorderLayout.PAGE_END);
@@ -482,6 +506,11 @@ public class DlgChat extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
+    private void BtnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKembaliActionPerformed
+        lawanPribadi=null;
+        bukaPercakapan(null);
+    }//GEN-LAST:event_BtnKembaliActionPerformed
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         timer.stop();
         AvatarChat.hapusPendengar(pendengarAvatar);
@@ -496,6 +525,7 @@ public class DlgChat extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKembali;
     private widget.Button BtnKirimGlobal;
     private widget.Button BtnKirimPribadi;
     private widget.Button BtnMuatUlang;
@@ -523,6 +553,7 @@ public class DlgChat extends javax.swing.JDialog {
     private widget.panelisi panelGlobal;
     private widget.panelisi panelInbox;
     private widget.panelisi panelInboxAtas;
+    private widget.panelisi panelJudul;
     private widget.panelisi panelKanan;
     private widget.panelisi panelKiri;
     private widget.panelisi panelKirimGlobal;
@@ -540,6 +571,22 @@ public class DlgChat extends javax.swing.JDialog {
 
     public void bukaGlobal(){
         bukaPercakapan("");
+    }
+
+    /** Jendela tanpa title bar: geser popup dengan menarik bingkai judul "Chat Antar User". */
+    private void geserDenganBingkai(){
+        MouseAdapter geser=new MouseAdapter(){
+            private Point awal;
+            @Override public void mousePressed(MouseEvent e){awal=e.getPoint();}
+            @Override public void mouseDragged(MouseEvent e){
+                if(awal!=null){
+                    Point p=getLocation();
+                    setLocation(p.x+e.getX()-awal.x,p.y+e.getY()-awal.y);
+                }
+            }
+        };
+        internalFrame1.addMouseListener(geser);
+        internalFrame1.addMouseMotionListener(geser);
     }
 
     private void siapkanTabel(JTable tabel,DefaultTableModel model,int[] lebar){
@@ -668,6 +715,8 @@ public class DlgChat extends javax.swing.JDialog {
             TabChat.setSelectedIndex(tab);
         }
         boolean adaLawan=lawan!=null&&!modeGlobal();
+        // popup sempit: daftar percakapan dan isi chat pribadi tampil bergantian
+        ((CardLayout)panelPribadi.getLayout()).show(panelPribadi,adaLawan?"chat":"daftar");
         tampilkanJudul();
         TPesanPribadi.setEnabled(adaLawan);
         BtnKirimPribadi.setEnabled(adaLawan);
