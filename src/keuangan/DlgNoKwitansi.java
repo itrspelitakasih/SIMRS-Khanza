@@ -3,7 +3,7 @@ package keuangan;
 import java.awt.event.KeyEvent;
 
 /**
- * Isian No. Kwitansi sebelum cetak Nota PT di billing ranap.
+ * Isian No. Kwitansi sebelum cetak nota/kwitansi di billing ranap.
  * Terisi nomor otomatis, bisa diubah petugas. Tampilan bisa diatur lewat Design view NetBeans (DlgNoKwitansi.form).
  */
 public final class DlgNoKwitansi extends javax.swing.JDialog {
@@ -35,7 +35,7 @@ public final class DlgNoKwitansi extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ No. Kwitansi Nota PT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ No. Kwitansi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(360, 115));
         internalFrame1.setLayout(null);
