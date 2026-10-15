@@ -1547,7 +1547,9 @@ private void NmPetugasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             btnPetugas.setEnabled(false);
             KdPetugas.setText(akses.getkode());
             NmPetugas.setText(Sequel.CariPetugas(KdPetugas.getText()));
-        }  
+            Bidang.setText(Sequel.cariIsi("select pegawai.bidang from pegawai where pegawai.nik=?",KdPetugas.getText()));
+            Departemen.setText(Sequel.cariIsi("select pegawai.departemen from pegawai where pegawai.nik=?",KdPetugas.getText()));
+        }
     }
     
     private void autoNomor() {

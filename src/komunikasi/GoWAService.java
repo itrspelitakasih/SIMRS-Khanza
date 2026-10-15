@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,6 +49,8 @@ public class GoWAService {
     private static final int CONNECT_TIMEOUT = 30000;
     private static final int READ_TIMEOUT = 180000;
     private static final String QUEUE_LOCK_NAME = "simrs_gowa_queue_worker";
+    /** Source wa_outbox untuk pengingat H-1 jadwal perawatan inventaris (InventarisPemeliharaan). */
+    public static final String SOURCE_PERAWATAN_INVENTARIS = "PRWINV";
     private static final AtomicBoolean QUEUE_WORKER_STARTED = new AtomicBoolean(false);
     private static final ScheduledExecutorService QUEUE_EXECUTOR
             = Executors.newSingleThreadScheduledExecutor(runnable -> {
@@ -105,6 +108,25 @@ public class GoWAService {
         startQueueWorker();
     }
 
+    /** Seperti kirimText terjadwal, tetapi mengembalikan NOMOR antrian agar bisa dibatalkan. */
+    public static long kirimTextTerjadwal(String nomor, String pesan, String tanggalJam, String source)
+            throws Exception {
+        long nomorAntrian = enqueueText(nomor, pesan, tanggalJam, source);
+        startQueueWorker();
+        return nomorAntrian;
+    }
+
+    /** Batalkan pesan yang masih menunggu di antrian (belum diproses/terkirim). */
+    public static void batalkanAntrian(long nomorAntrian) throws Exception {
+        try (Connection connection = koneksiDBWa.newConnection();
+                PreparedStatement ps = connection.prepareStatement(
+                        "UPDATE wa_outbox SET STATUS='BATAL',RESPONSE='Dibatalkan dari SIMRS' "
+                        + "WHERE NOMOR=? AND STATUS='ANTRIAN'")) {
+            ps.setLong(1, nomorAntrian);
+            ps.executeUpdate();
+        }
+    }
+
     public static void kirimTextNow(String nomor, String pesan, String source) throws Exception {
         String sekarang = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -112,14 +134,14 @@ public class GoWAService {
         processQueueNow();
     }
 
-    private static void enqueueText(String nomor, String pesan, String tanggalJam, String source)
+    private static long enqueueText(String nomor, String pesan, String tanggalJam, String source)
             throws Exception {
         String sql = "INSERT INTO wa_outbox "
                 + "(NOWA,PESAN,TANGGAL_JAM,STATUS,SOURCE,SENDER,SUCCESS,RESPONSE,REQUEST,FILE,TYPE,DEVICE_ID) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = koneksiDBWa.newConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)) {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, normalizePhone(nomor) + "@c.us");
             ps.setString(2, pesan);
             ps.setString(3, tanggalJam);
@@ -133,6 +155,9 @@ public class GoWAService {
             ps.setString(11, "TEXT");
             ps.setString(12, deviceId());
             ps.executeUpdate();
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                return rs.next() ? rs.getLong(1) : 0;
+            }
         }
     }
 
@@ -179,7 +204,7 @@ public class GoWAService {
     private static void processDueMessages(Connection connection) throws Exception {
         List<QueueMessage> messages = new ArrayList<>();
         String sql = "SELECT NOMOR,NOWA,PESAN FROM wa_outbox "
-                + "WHERE STATUS='ANTRIAN' AND TYPE='TEXT' AND SOURCE='KONTROL' "
+                + "WHERE STATUS='ANTRIAN' AND TYPE='TEXT' AND SOURCE IN ('KONTROL','" + SOURCE_PERAWATAN_INVENTARIS + "') "
                 + "AND TANGGAL_JAM<=NOW() ORDER BY TANGGAL_JAM LIMIT 20";
 
         try (PreparedStatement ps = connection.prepareStatement(sql);

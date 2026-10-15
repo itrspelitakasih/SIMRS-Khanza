@@ -26,8 +26,13 @@ import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -40,6 +45,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
+import komunikasi.GoWAService;
 
 /**
  *
@@ -57,6 +63,7 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
     private double total;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
+    private static boolean kolomSiap=false;
 
     /** Creates new form DlgJnsPerawatan
      * @param parent
@@ -69,7 +76,8 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         setSize(628,674);
 
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Inventaris","Kode Barang","Nama Barang","Ruang","NIP","Penanggung Jawab","Kegiatan","Tanggal","Pelaksana","Biaya","Jenis Pemeliharaan"
+            "No.Inventaris","Kode Barang","Nama Barang","Ruang","NIP","Penanggung Jawab","Kegiatan","Tanggal","Pelaksana","Biaya","Jenis Pemeliharaan",
+            "Jadwal Berikutnya","No.WA Pengingat"
         }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -79,7 +87,7 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         tbJnsPerawatan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbJnsPerawatan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 13; i++) {
             TableColumn column = tbJnsPerawatan.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(110);
@@ -103,6 +111,10 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
                 column.setPreferredWidth(80);
             }else if(i==10){
                 column.setPreferredWidth(125);
+            }else if(i==11){
+                column.setPreferredWidth(105);
+            }else if(i==12){
+                column.setPreferredWidth(100);
             }
         }
         tbJnsPerawatan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -110,10 +122,13 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         UraianKegiatan.setDocument(new batasInput((int)255).getKata(UraianKegiatan));
         Biaya.setDocument(new batasInput((int)15).getOnlyAngka(Biaya));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        NoWA.setDocument(new batasInput((int)20).getOnlyAngka(NoWA));
         TCari.requestFocus();
-        
+
+        siapkanKolom(koneksi);
+        TglBerikutnya.setEnabled(false);
         ChkInput.setSelected(false);
-        isForm(); 
+        isForm();
     }
 
     /** This method is called from within the constructor to
@@ -171,6 +186,12 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         Biaya = new widget.TextBox();
         label13 = new widget.Label();
         Status = new widget.ComboBox();
+        label12 = new widget.Label();
+        Periode = new widget.ComboBox();
+        TglBerikutnya = new widget.Tanggal();
+        label14 = new widget.Label();
+        NoWA = new widget.TextBox();
+        label15 = new widget.Label();
         ChkInput = new widget.CekBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -459,11 +480,11 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 155));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 185));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 127));
+        FormInput.setPreferredSize(new java.awt.Dimension(100, 157));
         FormInput.setLayout(null);
 
         label1.setText("Nomor Inventaris :");
@@ -624,6 +645,59 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         FormInput.add(Status);
         Status.setBounds(634, 100, 170, 23);
 
+        label12.setText("Jadwal Berikutnya :");
+        label12.setName("label12"); // NOI18N
+        FormInput.add(label12);
+        label12.setBounds(0, 130, 119, 23);
+
+        Periode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak Ada", "Manual", "1 Minggu", "1 Bulan", "3 Bulan", "6 Bulan", "1 Tahun" }));
+        Periode.setName("Periode"); // NOI18N
+        Periode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PeriodeActionPerformed(evt);
+            }
+        });
+        Periode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PeriodeKeyPressed(evt);
+            }
+        });
+        FormInput.add(Periode);
+        Periode.setBounds(123, 130, 95, 23);
+
+        TglBerikutnya.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-04-2025" }));
+        TglBerikutnya.setDisplayFormat("dd-MM-yyyy");
+        TglBerikutnya.setName("TglBerikutnya"); // NOI18N
+        TglBerikutnya.setOpaque(false);
+        TglBerikutnya.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TglBerikutnyaKeyPressed(evt);
+            }
+        });
+        FormInput.add(TglBerikutnya);
+        TglBerikutnya.setBounds(222, 130, 90, 23);
+
+        label14.setText("No.WA Pengingat :");
+        label14.setName("label14"); // NOI18N
+        FormInput.add(label14);
+        label14.setBounds(315, 130, 105, 23);
+
+        NoWA.setName("NoWA"); // NOI18N
+        NoWA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NoWAKeyPressed(evt);
+            }
+        });
+        FormInput.add(NoWA);
+        NoWA.setBounds(424, 130, 130, 23);
+
+        label15.setForeground(new java.awt.Color(130, 130, 130));
+        label15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label15.setText("WA pengingat dikirim H-1 pukul 08.00");
+        label15.setName("label15"); // NOI18N
+        FormInput.add(label15);
+        label15.setBounds(560, 130, 244, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -663,14 +737,18 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
             Valid.textKosong(UraianKegiatan,"Uraian Kegiatan");
         }else if(Biaya.getText().trim().equals("")){
             Valid.textKosong(Biaya,"Biaya");
+        }else if(!jadwalValid()){
+            TglBerikutnya.requestFocus();
         }else {
-            if(Sequel.menyimpantf("pemeliharaan_inventaris","?,?,?,?,?,?,?","Nomor Inventaris",7,new String[]{
+            if(Sequel.menyimpantf("pemeliharaan_inventaris","?,?,?,?,?,?,?,?,?,?","Nomor Inventaris",10,new String[]{
                     NoInventaris.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),UraianKegiatan.getText(),NIP.getText(),
-                    Pelaksana.getSelectedItem().toString(),Biaya.getText(),Status.getSelectedItem().toString()
+                    Pelaksana.getSelectedItem().toString(),Biaya.getText(),Status.getSelectedItem().toString(),
+                    tglBerikutnya(),NoWA.getText().trim().equals("")?null:NoWA.getText().trim(),null
                 })==true){
+                jadwalkanWA(NoInventaris.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""));
                 runBackground(() ->tampil());
                 emptTeks();
-            }   
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -678,7 +756,7 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,Status,BtnBatal);
+            Valid.pindah(evt,NoWA,BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -693,7 +771,16 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,NoInventaris,"pemeliharaan_inventaris","tanggal='"+tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),7).toString()+"' and no_inventaris");
+        if(tbJnsPerawatan.getSelectedRow()> -1){
+            String noinv=tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),0).toString();
+            String tgl=tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),7).toString();
+            String wa=nomorAntrianWA(noinv,tgl);
+            if(Valid.hapusTabletf(tabMode,NoInventaris,"pemeliharaan_inventaris","tanggal='"+tgl+"' and no_inventaris")){
+                batalkanWA(wa);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus.\nKlik data pada table untuk memilih...!!!!");
+        }
         BtnCariActionPerformed(evt);
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -714,13 +801,20 @@ public final class InventarisPemeliharaan extends javax.swing.JDialog {
             Valid.textKosong(UraianKegiatan,"Uraian Kegiatan");
         }else if(Biaya.getText().trim().equals("")){
             Valid.textKosong(Biaya,"Biaya");
+        }else if(!jadwalValid()){
+            TglBerikutnya.requestFocus();
         }else {
             if(tbJnsPerawatan.getSelectedRow()> -1){
-                if(Sequel.mengedittf("pemeliharaan_inventaris","no_inventaris=? and tanggal=?","no_inventaris=?,tanggal=?,uraian_kegiatan=?,nip=?,pelaksana=?,biaya=?,jenis_pemeliharaan=?",9,new String[]{
+                String noinvlama=tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),0).toString();
+                String tgllama=tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),7).toString();
+                String walama=nomorAntrianWA(noinvlama,tgllama);
+                if(Sequel.mengedittf("pemeliharaan_inventaris","no_inventaris=? and tanggal=?","no_inventaris=?,tanggal=?,uraian_kegiatan=?,nip=?,pelaksana=?,biaya=?,jenis_pemeliharaan=?,tgl_berikutnya=?,no_wa=?,wa_nomor=null",11,new String[]{
                         NoInventaris.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""),UraianKegiatan.getText(),NIP.getText(),
                         Pelaksana.getSelectedItem().toString(),Biaya.getText(),Status.getSelectedItem().toString(),
-                        tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),0).toString(),tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),7).toString()
+                        tglBerikutnya(),NoWA.getText().trim().equals("")?null:NoWA.getText().trim(),noinvlama,tgllama
                     })==true){
+                        batalkanWA(walama);
+                        jadwalkanWA(NoInventaris.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+""));
                         runBackground(() ->tampil());
                         emptTeks();
                 }
@@ -995,7 +1089,8 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                     if(petugas.getTable().getSelectedRow()!= -1){                   
                         NIP.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),0).toString());
                         NamaPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(),1).toString());
-                    } 
+                        NoWA.setText(Sequel.cariIsi("select petugas.no_telp from petugas where petugas.nip=?",NIP.getText()));
+                    }
                     petugas=null;
                 }
             });
@@ -1029,7 +1124,7 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
     }//GEN-LAST:event_BiayaKeyPressed
 
     private void StatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_StatusKeyPressed
-        Valid.pindah(evt,Pelaksana,BtnSimpan);
+        Valid.pindah(evt,Pelaksana,Periode);
     }//GEN-LAST:event_StatusKeyPressed
 
     private void btnInvKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnInvKeyPressed
@@ -1039,6 +1134,22 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
     private void btnPtgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPtgKeyPressed
         Valid.pindah(evt,UraianKegiatan,Biaya);
     }//GEN-LAST:event_btnPtgKeyPressed
+
+    private void PeriodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodeActionPerformed
+        hitungJadwalBerikutnya();
+    }//GEN-LAST:event_PeriodeActionPerformed
+
+    private void PeriodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PeriodeKeyPressed
+        Valid.pindah(evt,Status,TglBerikutnya);
+    }//GEN-LAST:event_PeriodeKeyPressed
+
+    private void TglBerikutnyaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglBerikutnyaKeyPressed
+        Valid.pindah(evt,Periode,NoWA);
+    }//GEN-LAST:event_TglBerikutnyaKeyPressed
+
+    private void NoWAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoWAKeyPressed
+        Valid.pindah(evt,TglBerikutnya,BtnSimpan);
+    }//GEN-LAST:event_NoWAKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1076,12 +1187,15 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
     private widget.TextBox NamaBarang;
     private widget.TextBox NamaPetugas;
     private widget.TextBox NoInventaris;
+    private widget.TextBox NoWA;
     private javax.swing.JPanel PanelInput;
     private widget.ComboBox Pelaksana;
+    private widget.ComboBox Periode;
     private widget.ScrollPane Scroll;
     private widget.ComboBox Status;
     private widget.TextBox TCari;
     private widget.Tanggal Tanggal;
+    private widget.Tanggal TglBerikutnya;
     private widget.TextBox UraianKegiatan;
     private widget.Button btnInv;
     private widget.Button btnPtg;
@@ -1095,7 +1209,10 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
     private widget.Label label1;
     private widget.Label label10;
     private widget.Label label11;
+    private widget.Label label12;
     private widget.Label label13;
+    private widget.Label label14;
+    private widget.Label label15;
     private widget.Label label23;
     private widget.Label label7;
     private widget.Label label8;
@@ -1114,7 +1231,7 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                     "select pemeliharaan_inventaris.no_inventaris,inventaris.kode_barang,inventaris_barang.nama_barang,"+
                     "inventaris_ruang.nama_ruang,pemeliharaan_inventaris.nip,petugas.nama,pemeliharaan_inventaris.uraian_kegiatan,"+
                     "pemeliharaan_inventaris.tanggal,pemeliharaan_inventaris.pelaksana,pemeliharaan_inventaris.biaya, "+
-                    "pemeliharaan_inventaris.jenis_pemeliharaan from pemeliharaan_inventaris inner join inventaris "+
+                    "pemeliharaan_inventaris.jenis_pemeliharaan,pemeliharaan_inventaris.tgl_berikutnya,pemeliharaan_inventaris.no_wa from pemeliharaan_inventaris inner join inventaris "+
                     "on pemeliharaan_inventaris.no_inventaris=inventaris.no_inventaris "+
                     "inner join inventaris_barang on inventaris.kode_barang=inventaris_barang.kode_barang "+
                     "inner join inventaris_ruang on inventaris.id_ruang=inventaris_ruang.id_ruang "+
@@ -1145,12 +1262,13 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                     tabMode.addRow(new Object[]{
                         rs.getString("no_inventaris"),rs.getString("kode_barang"),rs.getString("nama_barang"),
                         rs.getString("nama_ruang"),rs.getString("nip"),rs.getString("nama"),rs.getString("uraian_kegiatan"),rs.getString("tanggal"),
-                        rs.getString("pelaksana"),Valid.SetAngka(rs.getDouble("biaya")),rs.getString("jenis_pemeliharaan")
+                        rs.getString("pelaksana"),Valid.SetAngka(rs.getDouble("biaya")),rs.getString("jenis_pemeliharaan"),
+                        rs.getString("tgl_berikutnya")==null?"":rs.getString("tgl_berikutnya"),rs.getString("no_wa")==null?"":rs.getString("no_wa")
                     });
                 }
                 if(total>0){
                     tabMode.addRow(new Object[]{
-                        "","","","","","","Total Biaya : ","","",Valid.SetAngka(total),""
+                        "","","","","","","Total Biaya : ","","",Valid.SetAngka(total),"","",""
                     });
                 }
             } catch (Exception e) {
@@ -1180,6 +1298,8 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
         Pelaksana.setSelectedIndex(0);
         Status.setSelectedIndex(0);
         Tanggal.setDate(new Date());
+        Periode.setSelectedIndex(0);
+        NoWA.setText(Sequel.cariIsi("select petugas.no_telp from petugas where petugas.nip=?",NIP.getText()));
         UraianKegiatan.requestFocus();
     }
 
@@ -1195,6 +1315,13 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
              Biaya.setText(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),9).toString());
              Status.setSelectedItem(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),10).toString());
              Valid.SetTgl2(Tanggal,tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),7).toString());
+             if(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),11).toString().equals("")){
+                 Periode.setSelectedIndex(0);
+             }else{
+                 Periode.setSelectedItem("Manual");
+                 Valid.SetTgl2(TglBerikutnya,tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),11).toString());
+             }
+             NoWA.setText(tbJnsPerawatan.getValueAt(tbJnsPerawatan.getSelectedRow(),12).toString());
         }
     }
 
@@ -1205,7 +1332,7 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
     private void isForm(){
         if(ChkInput.isSelected()==true){
             ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH,155));
+            PanelInput.setPreferredSize(new Dimension(WIDTH,185));
             FormInput.setVisible(true);      
             ChkInput.setVisible(true);
         }else if(ChkInput.isSelected()==false){           
@@ -1226,10 +1353,148 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
             BtnPrint.setEnabled(akses.getpemeliharaan_inventaris());
             NIP.setText(akses.getkode());
             NamaPetugas.setText(Sequel.CariPetugas(NIP.getText()));
+            NoWA.setText(Sequel.cariIsi("select petugas.no_telp from petugas where petugas.nip=?",NIP.getText()));
         } 
         TCari.requestFocus();
     }
-    
+
+    /** Tambah kolom jadwal berikutnya & pengingat WA bila belum ada (sekali per aplikasi, butuh hak ALTER). */
+    private static synchronized void siapkanKolom(Connection koneksi){
+        if(kolomSiap){
+            return;
+        }
+        try (Statement st=koneksi.createStatement()){
+            tambahKolom(st,"tgl_berikutnya","date DEFAULT NULL");
+            tambahKolom(st,"no_wa","varchar(20) DEFAULT NULL");
+            tambahKolom(st,"wa_nomor","bigint(20) DEFAULT NULL");
+            kolomSiap=true;
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
+    }
+
+    private static void tambahKolom(Statement st,String kolom,String definisi) throws Exception {
+        try (ResultSet rs=st.executeQuery(
+                "select count(*) from information_schema.columns where table_schema=database() "+
+                "and table_name='pemeliharaan_inventaris' and column_name='"+kolom+"'")){
+            if(rs.next()&&rs.getInt(1)>0){
+                return;
+            }
+        }
+        st.executeUpdate("ALTER TABLE pemeliharaan_inventaris ADD COLUMN "+kolom+" "+definisi);
+    }
+
+    private void hitungJadwalBerikutnya(){
+        TglBerikutnya.setEnabled(Periode.getSelectedIndex()>0);
+        LocalDate tgl=LocalDate.parse(Valid.SetTgl(Tanggal.getSelectedItem()+""));
+        switch(Periode.getSelectedItem().toString()){
+            case "1 Minggu": tgl=tgl.plusWeeks(1); break;
+            case "1 Bulan": tgl=tgl.plusMonths(1); break;
+            case "3 Bulan": tgl=tgl.plusMonths(3); break;
+            case "6 Bulan": tgl=tgl.plusMonths(6); break;
+            case "1 Tahun": tgl=tgl.plusYears(1); break;
+            default: return;
+        }
+        TglBerikutnya.setDate(java.sql.Date.valueOf(tgl));
+    }
+
+    /** Tanggal jadwal berikutnya (yyyy-MM-dd), null bila tidak ada jadwal. */
+    private String tglBerikutnya(){
+        return Periode.getSelectedIndex()==0?null:Valid.SetTgl(TglBerikutnya.getSelectedItem()+"");
+    }
+
+    private boolean jadwalValid(){
+        if(Periode.getSelectedIndex()>0&&tglBerikutnya().compareTo(Valid.SetTgl(Tanggal.getSelectedItem()+""))<=0){
+            JOptionPane.showMessageDialog(null,"Jadwal perawatan berikutnya harus setelah tanggal pemeliharaan...!");
+            return false;
+        }
+        return true;
+    }
+
+    /** Nomor antrian wa_outbox milik data pemeliharaan, kosong bila tidak ada. */
+    private String nomorAntrianWA(String noinv,String tgl){
+        try (PreparedStatement ps2=koneksi.prepareStatement(
+                "select ifnull(wa_nomor,'') from pemeliharaan_inventaris where no_inventaris=? and tanggal=?")){
+            ps2.setString(1,noinv);
+            ps2.setString(2,tgl);
+            try (ResultSet rs2=ps2.executeQuery()){
+                if(rs2.next()){
+                    return rs2.getString(1);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
+        return "";
+    }
+
+    private void batalkanWA(String nomor){
+        if(nomor.equals("")){
+            return;
+        }
+        try {
+            GoWAService.batalkanAntrian(Long.parseLong(nomor));
+        } catch (Exception e) {
+            System.out.println("Gagal membatalkan WA pengingat : "+e);
+        }
+    }
+
+    /** Antrikan WA pengingat H-1 pukul 08.00 untuk jadwal perawatan berikutnya (lewat worker GoWA). */
+    private void jadwalkanWA(String noinv,String tgl){
+        try (PreparedStatement ps2=koneksi.prepareStatement(
+                "select pemeliharaan_inventaris.tgl_berikutnya,pemeliharaan_inventaris.no_wa,pemeliharaan_inventaris.uraian_kegiatan,"+
+                "pemeliharaan_inventaris.jenis_pemeliharaan,pemeliharaan_inventaris.pelaksana,inventaris_barang.nama_barang,"+
+                "ifnull(inventaris_ruang.nama_ruang,'-'),ifnull(petugas.nama,pemeliharaan_inventaris.nip) from pemeliharaan_inventaris "+
+                "inner join inventaris on pemeliharaan_inventaris.no_inventaris=inventaris.no_inventaris "+
+                "inner join inventaris_barang on inventaris.kode_barang=inventaris_barang.kode_barang "+
+                "left join inventaris_ruang on inventaris.id_ruang=inventaris_ruang.id_ruang "+
+                "left join petugas on pemeliharaan_inventaris.nip=petugas.nip "+
+                "where pemeliharaan_inventaris.no_inventaris=? and pemeliharaan_inventaris.tanggal=?")){
+            ps2.setString(1,noinv);
+            ps2.setString(2,tgl);
+            try (ResultSet rs2=ps2.executeQuery()){
+                if(!rs2.next()||rs2.getString(1)==null||rs2.getString(2)==null||rs2.getString(2).trim().equals("")){
+                    return;
+                }
+                LocalDate jadwal=LocalDate.parse(rs2.getString(1));
+                LocalDate hariIni=LocalDate.now();
+                if(jadwal.isBefore(hariIni)){
+                    return;
+                }
+                if(!GoWAService.isNotifAktif()){
+                    JOptionPane.showMessageDialog(null,"Jadwal berikutnya tersimpan, tetapi WA pengingat tidak dikirim\nkarena notifikasi WA dimatikan (NOTIFWAKONTROL di setting/database.xml).");
+                    return;
+                }
+                LocalDateTime kirim=jadwal.minusDays(1).atTime(8,0);
+                if(kirim.isBefore(LocalDateTime.now())){
+                    kirim=LocalDateTime.now();
+                }
+                String pesan="*Pengingat Perawatan Aset/Inventaris*\n\n"+
+                    "Jadwal perawatan berikutnya jatuh pada *"+(jadwal.equals(hariIni)?"hari ini":"besok")+", "+
+                    jadwal.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy",new Locale("id","ID")))+"* untuk :\n\n"+
+                    "*No.Inventaris* : "+noinv+"\n"+
+                    "*Nama Barang* : "+rs2.getString(6)+"\n"+
+                    "*Ruang* : "+rs2.getString(7)+"\n"+
+                    "*Jenis Pemeliharaan* : "+rs2.getString(4)+"\n"+
+                    "*Pelaksana* : "+rs2.getString(5)+"\n"+
+                    "*Penanggung Jawab* : "+rs2.getString(8)+"\n\n"+
+                    "*Pemeliharaan terakhir* ("+LocalDate.parse(tgl).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))+") :\n"+
+                    rs2.getString(3)+"\n\n"+
+                    "Mohon dipersiapkan. Terima kasih.\n_"+akses.getnamars()+"_";
+                long nomor=GoWAService.kirimTextTerjadwal(rs2.getString(2).trim(),pesan,
+                        kirim.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),GoWAService.SOURCE_PERAWATAN_INVENTARIS);
+                Sequel.queryu2tf("update pemeliharaan_inventaris set wa_nomor=? where no_inventaris=? and tanggal=?",3,new String[]{
+                    String.valueOf(nomor),noinv,tgl
+                });
+                JOptionPane.showMessageDialog(null,"WA pengingat perawatan berikutnya dijadwalkan "+
+                        kirim.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))+" ke nomor "+rs2.getString(2).trim());
+            }
+        } catch (Exception e) {
+            System.out.println("Gagal menjadwalkan WA pengingat : "+e);
+            JOptionPane.showMessageDialog(null,"Data tersimpan, tetapi WA pengingat gagal dijadwalkan :\n"+e.getMessage());
+        }
+    }
+
     private void runBackground(Runnable task) {
         if (ceksukses) return;
         if (executor.isShutdown() || executor.isTerminated()) return;
