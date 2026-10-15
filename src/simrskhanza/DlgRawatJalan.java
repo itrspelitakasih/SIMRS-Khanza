@@ -271,6 +271,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         initRawatJalan();
+        initShortcutPemeriksaan();
+        initCariMenu();
 
         this.setLocation(8,1);
         setSize(885,674);
@@ -1138,8 +1140,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         isForm3(); 
         ChkInput3.setSelected(false);
         isForm4();
-        ChkAccor.setSelected(true);
-        isMenu(); 
+        ChkAccor.setSelected(false);
+        isMenu();
         jam();
         
         if(kodebpjs.getKodeBPJS().equals("")){
@@ -11340,7 +11342,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnCatatanPengkajianPaskaOperasi,BtnSkriningFrailtySyndrome,BtnCatatanObservasiBayi,BtnChecklistKesiapanAnestesi,BtnHasilPemeriksaanSlitLamp,BtnHasilPemeriksaanOCT,BtnSkriningInstrumenACRS,
                           BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaMasukPICU,BtnSkriningInstrumenMentalEmosional,BtnSkriningInstrumenAMT,BtnSkriningPneumoniaSeverityIndex,BtnAwalMedisJantung,BtnAwalMedisUrologi,
                           BtnHasilPemeriksaanTreadmill,BtnHasilPemeriksaanECHOPediatrik,BtnSkriningCURB65,BtnSkriningGiziKehamilan,BtnResepIterasiBPJS,BtnPermintaanKonsultasiPerawat,BtnCatatanObservasiRuangOperasi,
-                          BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi;   
+                          BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi;
+    private widget.Button[] shortcutPemeriksaan;
+    private widget.TextBox CariMenu;
+    private javax.swing.JPanel PanelCariMenu;
+    private final java.util.ArrayList<java.awt.Component> menuBerakses=new java.util.ArrayList<>();
+    private Dimension ukuranMenuAwal;
     private javax.swing.JPopupMenu PopupSOAP,PopupPemeriksaan;
     private javax.swing.JMenuItem MnSOAPDokter,MnSOAPPetugas,MnCopySOAP,MnPasteSOAP;
     
@@ -11633,12 +11640,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(ChkAccor.isSelected()==true){
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(205,HEIGHT));
-            FormMenu.setVisible(true);  
+            FormMenu.setVisible(true);
+            PanelCariMenu.setVisible(true);
             ChkAccor.setVisible(true);
         }else if(ChkAccor.isSelected()==false){
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
             FormMenu.setVisible(false);
+            PanelCariMenu.setVisible(false);
             ChkAccor.setVisible(true);
         }
     }
@@ -12362,6 +12371,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tinggi=tinggi+24;
         }
         FormMenu.setPreferredSize(new Dimension(195,(tinggi+10)));
+        susunShortcutPemeriksaan();
+        simpanMenuBerakses();
         TCari.setPreferredSize(new Dimension(207,23));
         
         if(akses.getjml2()>=1){
@@ -13684,6 +13695,54 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     public void emptTeks(){
         BtnBatalActionPerformed(null);
         TabRawat.setSelectedIndex(3);
+    }
+
+    private void initShortcutPemeriksaan(){
+        shortcutPemeriksaan=new widget.Button[]{
+            buatShortcutPemeriksaan("Permintaan Lab","5898990_blood_clipboard_lab_report_test_icon.png",e->BtnPermintaanLabActionPerformed(null)),
+            buatShortcutPemeriksaan("Permintaan Radiologi","1410153940_radiology.png",e->BtnPermintaanRadActionPerformed(null)),
+            buatShortcutPemeriksaan("Resep Obat","5994864_capsule_drug_medicine_pill_tablet_icon.png",e->BtnResepObatActionPerformed(null)),
+            buatShortcutPemeriksaan("Hasil Pemeriksaan EKG","8960620_cardiogram_tape_cardiology_electrocardiography_electrocardiogram_icon.png",e->BtnHasilPemeriksaanEKGActionPerformed(null)),
+            buatShortcutPemeriksaan("Resume Medis","6012901_diagnosis_document_medical_paper_records_icon.png",e->BtnResumeActionPerformed(null)),
+            buatShortcutPemeriksaan("Triase IGD","5958979_ambulance_call_emergency_hospital_medical_icon.png",e->BtnTriaseIGDActionPerformed(null)),
+            buatShortcutPemeriksaan("Riwayat Pasien","4852556_doctor_files_medical_record_icon.png",e->BtnRiwayatActionPerformed(null))
+        };
+        for(widget.Button btn:shortcutPemeriksaan){
+            panelGlass12.add(btn);
+        }
+    }
+
+    private widget.Button buatShortcutPemeriksaan(String teks,String ikon,ActionListener aksi){
+        widget.Button btn=new widget.Button();
+        btn.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/"+ikon)).getImage().getScaledInstance(18,18,java.awt.Image.SCALE_SMOOTH)));
+        btn.setText(teks);
+        btn.setToolTipText(teks);
+        btn.setFocusPainted(false);
+        btn.setFont(new java.awt.Font("Arial", 0, 11));
+        btn.setGlassColor(new java.awt.Color(255, 255, 255));
+        btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn.setIconTextGap(5);
+        btn.setMargin(new java.awt.Insets(1, 4, 1, 1));
+        btn.setName("Shortcut"+teks.replace(" ",""));
+        btn.setRoundRect(false);
+        btn.addActionListener(aksi);
+        return btn;
+    }
+
+    private void susunShortcutPemeriksaan(){
+        //1 kolom kecil di kanan kolom Asesmen/Plan/Inst/Evaluasi, hanya yang punya hak akses, urutan sama dengan initShortcutPemeriksaan()
+        boolean[] hakakses={
+            akses.getpermintaan_lab(),akses.getpermintaan_radiologi(),akses.getresep_dokter(),akses.gethasil_pemeriksaan_ekg(),
+            akses.getdata_resume_pasien(),akses.getdata_triase_igd(),akses.getresume_pasien()
+        };
+        int urut=0;
+        for(int s=0;s<shortcutPemeriksaan.length;s++){
+            shortcutPemeriksaan[s].setVisible(hakakses[s]);
+            if(hakakses[s]){
+                shortcutPemeriksaan[s].setBounds(915,40+(urut*29),160,26);
+                urut++;
+            }
+        }
     }
     
     private void initRawatJalan(){
@@ -15100,6 +15159,88 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } 
     }
     
+    private void initCariMenu(){
+        CariMenu=new widget.TextBox();
+        CariMenu.setName("CariMenu");
+        CariMenu.setToolTipText("Ketik nama menu, Enter untuk membuka menu teratas, Esc untuk mengosongkan");
+        CariMenu.setPreferredSize(new Dimension(140,23));
+        CariMenu.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+                    for(java.awt.Component menu:menuBerakses){
+                        if(menu.isVisible()&&(menu instanceof javax.swing.AbstractButton)){
+                            ((javax.swing.AbstractButton)menu).doClick();
+                            break;
+                        }
+                    }
+                }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+                    CariMenu.setText("");
+                    saringMenu();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                if((evt.getKeyCode()!=KeyEvent.VK_ENTER)&&(evt.getKeyCode()!=KeyEvent.VK_ESCAPE)){
+                    saringMenu();
+                }
+            }
+        });
+
+        widget.Label LabelCariMenu=new widget.Label();
+        LabelCariMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png")));
+        LabelCariMenu.setPreferredSize(new Dimension(22,23));
+
+        PanelCariMenu=new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT,2,0));
+        PanelCariMenu.setName("PanelCariMenu");
+        PanelCariMenu.setBackground(new java.awt.Color(255, 255, 255));
+        PanelCariMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 3, 2));
+        PanelCariMenu.add(LabelCariMenu);
+        PanelCariMenu.add(CariMenu);
+        PanelAccor.add(PanelCariMenu,java.awt.BorderLayout.NORTH);
+    }
+
+    private void simpanMenuBerakses(){
+        //dipanggil di akhir isCek(), menu yang terlihat saat itu adalah menu sesuai hak akses
+        menuBerakses.clear();
+        for(java.awt.Component menu:FormMenu.getComponents()){
+            if(menu.isVisible()){
+                menuBerakses.add(menu);
+            }
+        }
+        ukuranMenuAwal=FormMenu.getPreferredSize();
+        saringMenu();
+    }
+
+    private void saringMenu(){
+        String[] kata=CariMenu.getText().trim().toLowerCase().split("\\s+");
+        int jml=0;
+        for(java.awt.Component menu:menuBerakses){
+            boolean tampil=true;
+            if(menu instanceof javax.swing.AbstractButton){
+                String nama=((javax.swing.AbstractButton)menu).getText().toLowerCase();
+                for(String k:kata){
+                    if(!nama.contains(k)){
+                        tampil=false;
+                        break;
+                    }
+                }
+            }
+            menu.setVisible(tampil);
+            if(tampil){
+                jml++;
+            }
+        }
+        if(CariMenu.getText().trim().equals("")&&(ukuranMenuAwal!=null)){
+            FormMenu.setPreferredSize(ukuranMenuAwal);
+        }else{
+            FormMenu.setPreferredSize(new Dimension(195,(jml*24)+10));
+        }
+        FormMenu.revalidate();
+        FormMenu.repaint();
+        ScrollMenu.getVerticalScrollBar().setValue(0);
+    }
+
     private void runBackground(Runnable task) {
         if (ceksukses) return;
         if (executor.isShutdown() || executor.isTerminated()) return;

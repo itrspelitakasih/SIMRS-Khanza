@@ -13,6 +13,13 @@ package simrskhanza;
 
 import rekammedis.RMRiwayatPerawatan;
 import surat.SuratKontrol;
+import surat.SuratBebasNarkoba;
+import surat.SuratButaWarna;
+import surat.SuratKeteranganBerobat;
+import surat.SuratKeteranganLayakTerbang;
+import surat.SuratKeteranganRawatInap;
+import surat.SuratKeteranganSehat;
+import surat.SuratSakit;
 import keuangan.DlgCariPerawatanRanap;
 import keuangan.DlgCariPerawatanRanap2;
 import inventory.DlgPemberianObat;
@@ -214,6 +221,9 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         initRawatInap();
+        initShortcutPemeriksaan();
+        initCariMenu();
+        initDokumen();
 
         this.setLocation(8,1);
         setSize(885,674);
@@ -746,7 +756,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         isForm2();
         ChkInput2.setSelected(false);
         isForm3(); 
-        ChkAccor.setSelected(true);
+        ChkAccor.setSelected(false);
         isMenu();
         jam();
         
@@ -9522,6 +9532,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnPelaksanaanInformasiEdukasi,BtnCatatanObservasiHemodialisa,BtnCatatanCairanHemodialisa,BtnCatatanPengkajianPaskaOperasi,BtnCatatanObservasiBayi,BtnChecklistKesiapanAnestesi,BtnHasilPemeriksaanSlitLamp,BtnHasilPemeriksaanOCT,
                           BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaKeluarNICU,BtnAwalMedisPsikiatri,BtnChecklistKriteriaMasukPICU,BtnChecklistKriteriaKeluarPICU,BtnHasilPemeriksaanTreadmill,BtnHasilPemeriksaanECHOPediatrik,BtnAwalMedisJantung,
                           BtnSkriningGiziKehamilan,BtnPermintaanKonsultasiPerawat,BtnCatatanObservasiRuangOperasi,BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi;
+    private widget.Button[] shortcutPemeriksaan;
+    private widget.Label lblJnsSurat;
+    private widget.ComboBox cmbJnsSurat;
+    private widget.Button btnSurat;
+    private widget.TextBox CariMenu;
+    private javax.swing.JPanel PanelCariMenu;
+    private final java.util.ArrayList<java.awt.Component> menuBerakses=new java.util.ArrayList<>();
+    private Dimension ukuranMenuAwal;
     private javax.swing.JPopupMenu PopupSOAP,PopupPemeriksaan;
     private javax.swing.JMenuItem MnCopySOAP,MnPasteSOAP;
     
@@ -10437,6 +10455,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tinggi=tinggi+24;
         }
         FormMenu.setPreferredSize(new Dimension(195,(tinggi+10)));
+        susunShortcutPemeriksaan();
+        simpanMenuBerakses();
         
         if(akses.getjml2()>=1){
             KdPeg.setText(akses.getkode());
@@ -10831,16 +10851,195 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(ChkAccor.isSelected()==true){
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(205,HEIGHT));
-            FormMenu.setVisible(true); 
+            FormMenu.setVisible(true);
+            PanelCariMenu.setVisible(true);
             ChkAccor.setVisible(true);
         }else if(ChkAccor.isSelected()==false){  
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
-            FormMenu.setVisible(false);    
+            FormMenu.setVisible(false);
+            PanelCariMenu.setVisible(false);
             ChkAccor.setVisible(true);
         }
     }
     
+    private void initDokumen(){
+        lblJnsSurat=new widget.Label();
+        lblJnsSurat.setText("Dokumen :");
+        lblJnsSurat.setName("lblJnsSurat");
+        FormInput.add(lblJnsSurat);
+        lblJnsSurat.setBounds(936, 10, 70, 23);
+
+        cmbJnsSurat=new widget.ComboBox();
+        cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Surat Kontrol", "SKK", "Buta Warna","Bebas Narkoba","SKS", "Suket Layak Terbang", "Suket Berobat", "Suket Rawat Inap 2" }));
+        cmbJnsSurat.setName("cmbJnsSurat");
+        FormInput.add(cmbJnsSurat);
+        cmbJnsSurat.setBounds(1010, 10, 120, 23);
+
+        btnSurat=new widget.Button();
+        btnSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-write-16.png")));
+        btnSurat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSurat.setToolTipText("Buat Surat");
+        btnSurat.setName("btnSurat");
+        btnSurat.addActionListener(this::btnSuratActionPerformed);
+        FormInput.add(btnSurat);
+        btnSurat.setBounds(1140, 10, 23, 23);
+    }
+
+    private void btnSuratActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+            return;
+        }
+
+        final String jenisSurat=String.valueOf(cmbJnsSurat.getSelectedItem()).trim();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            switch (jenisSurat) {
+                case "Surat Kontrol": {
+                    BtnSKDPActionPerformed(null);
+                    break;
+                }
+                case "SKS": {
+                    SuratSakit dlg=new SuratSakit(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.tampil();
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "SKK": {
+                    SuratKeteranganSehat dlg=new SuratKeteranganSehat(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.tampil();
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Buta Warna": {
+                    SuratButaWarna dlg=new SuratButaWarna(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText(),DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.tampil();
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Bebas Narkoba": {
+                    SuratBebasNarkoba dlg=new SuratBebasNarkoba(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText(),KdDok.getText(),TDokter.getText(),DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.tampil();
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Suket Layak Terbang": {
+                    SuratKeteranganLayakTerbang dlg=new SuratKeteranganLayakTerbang(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText(),DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Suket Berobat": {
+                    kode_poli=Sequel.cariIsi("select reg_periksa.kd_poli from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText());
+                    SuratKeteranganBerobat dlg=new SuratKeteranganBerobat(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText(),
+                            Sequel.cariIsi("select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli=?",kode_poli),
+                            KdDok.getText(),TDokter.getText(),
+                            Sequel.cariIsi("select concat(reg_periksa.tgl_registrasi,' ',reg_periksa.jam_reg) from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText()),
+                            DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Suket Rawat Inap 2": {
+                    //sama dengan menu Surat Keterangan Rawat Inap 2 di DlgKamarInap
+                    SuratKeteranganRawatInap form=new SuratKeteranganRawatInap(null,false);
+                    form.isCek();
+                    form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.emptTeks();
+                    form.setNoRm(TNoRw.getText());
+                    form.setVisible(true);
+                    break;
+                }
+                default: {
+                    JOptionPane.showMessageDialog(null,"Jenis Dokumen tidak ditemukan: "+jenisSurat);
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Terjadi kesalahan: "+ex.getMessage());
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
+    private void initShortcutPemeriksaan(){
+        shortcutPemeriksaan=new widget.Button[]{
+            buatShortcutPemeriksaan("Permintaan Lab","5898990_blood_clipboard_lab_report_test_icon.png",e->BtnPermintaanLabActionPerformed(null)),
+            buatShortcutPemeriksaan("Permintaan Radiologi","1410153940_radiology.png",e->BtnPermintaanRadActionPerformed(null)),
+            buatShortcutPemeriksaan("Resep Obat","5994864_capsule_drug_medicine_pill_tablet_icon.png",e->BtnResepObatActionPerformed(null)),
+            buatShortcutPemeriksaan("Hasil Pemeriksaan EKG","8960620_cardiogram_tape_cardiology_electrocardiography_electrocardiogram_icon.png",e->BtnHasilPemeriksaanEKGActionPerformed(null)),
+            buatShortcutPemeriksaan("Resume Medis","6012901_diagnosis_document_medical_paper_records_icon.png",e->BtnResumeActionPerformed(null)),
+            buatShortcutPemeriksaan("Riwayat Pasien","4852556_doctor_files_medical_record_icon.png",e->BtnRiwayatActionPerformed(null))
+        };
+        for(widget.Button btn:shortcutPemeriksaan){
+            panelGlass12.add(btn);
+        }
+    }
+
+    private widget.Button buatShortcutPemeriksaan(String teks,String ikon,ActionListener aksi){
+        widget.Button btn=new widget.Button();
+        btn.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/"+ikon)).getImage().getScaledInstance(18,18,java.awt.Image.SCALE_SMOOTH)));
+        btn.setText(teks);
+        btn.setToolTipText(teks);
+        btn.setFocusPainted(false);
+        btn.setFont(new java.awt.Font("Arial", 0, 11));
+        btn.setGlassColor(new java.awt.Color(255, 255, 255));
+        btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn.setIconTextGap(5);
+        btn.setMargin(new java.awt.Insets(1, 4, 1, 1));
+        btn.setName("Shortcut"+teks.replace(" ",""));
+        btn.setRoundRect(false);
+        btn.addActionListener(aksi);
+        return btn;
+    }
+
+    private void susunShortcutPemeriksaan(){
+        //1 kolom kecil di kanan kolom Asesmen/Plan/Inst/Evaluasi, hanya yang punya hak akses, urutan sama dengan initShortcutPemeriksaan()
+        boolean[] hakakses={
+            akses.getpermintaan_lab(),akses.getpermintaan_radiologi(),akses.getresep_dokter(),akses.gethasil_pemeriksaan_ekg(),
+            akses.getdata_resume_pasien(),akses.getresume_pasien()
+        };
+        int urut=0;
+        for(int s=0;s<shortcutPemeriksaan.length;s++){
+            shortcutPemeriksaan[s].setVisible(hakakses[s]);
+            if(hakakses[s]){
+                shortcutPemeriksaan[s].setBounds(915,40+(urut*29),160,26);
+                urut++;
+            }
+        }
+    }
+
     private void initRawatInap(){
         BtnSkorBromagePascaAnestesi = new widget.Button();
         BtnSkorBromagePascaAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
@@ -12606,6 +12805,88 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         TNoRw.requestFocus();
     }
     
+    private void initCariMenu(){
+        CariMenu=new widget.TextBox();
+        CariMenu.setName("CariMenu");
+        CariMenu.setToolTipText("Ketik nama menu, Enter untuk membuka menu teratas, Esc untuk mengosongkan");
+        CariMenu.setPreferredSize(new Dimension(140,23));
+        CariMenu.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+                    for(java.awt.Component menu:menuBerakses){
+                        if(menu.isVisible()&&(menu instanceof javax.swing.AbstractButton)){
+                            ((javax.swing.AbstractButton)menu).doClick();
+                            break;
+                        }
+                    }
+                }else if(evt.getKeyCode()==KeyEvent.VK_ESCAPE){
+                    CariMenu.setText("");
+                    saringMenu();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                if((evt.getKeyCode()!=KeyEvent.VK_ENTER)&&(evt.getKeyCode()!=KeyEvent.VK_ESCAPE)){
+                    saringMenu();
+                }
+            }
+        });
+
+        widget.Label LabelCariMenu=new widget.Label();
+        LabelCariMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png")));
+        LabelCariMenu.setPreferredSize(new Dimension(22,23));
+
+        PanelCariMenu=new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT,2,0));
+        PanelCariMenu.setName("PanelCariMenu");
+        PanelCariMenu.setBackground(new java.awt.Color(255, 255, 255));
+        PanelCariMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 3, 2));
+        PanelCariMenu.add(LabelCariMenu);
+        PanelCariMenu.add(CariMenu);
+        PanelAccor.add(PanelCariMenu,java.awt.BorderLayout.NORTH);
+    }
+
+    private void simpanMenuBerakses(){
+        //dipanggil di akhir isCek(), menu yang terlihat saat itu adalah menu sesuai hak akses
+        menuBerakses.clear();
+        for(java.awt.Component menu:FormMenu.getComponents()){
+            if(menu.isVisible()){
+                menuBerakses.add(menu);
+            }
+        }
+        ukuranMenuAwal=FormMenu.getPreferredSize();
+        saringMenu();
+    }
+
+    private void saringMenu(){
+        String[] kata=CariMenu.getText().trim().toLowerCase().split("\\s+");
+        int jml=0;
+        for(java.awt.Component menu:menuBerakses){
+            boolean tampil=true;
+            if(menu instanceof javax.swing.AbstractButton){
+                String nama=((javax.swing.AbstractButton)menu).getText().toLowerCase();
+                for(String k:kata){
+                    if(!nama.contains(k)){
+                        tampil=false;
+                        break;
+                    }
+                }
+            }
+            menu.setVisible(tampil);
+            if(tampil){
+                jml++;
+            }
+        }
+        if(CariMenu.getText().trim().equals("")&&(ukuranMenuAwal!=null)){
+            FormMenu.setPreferredSize(ukuranMenuAwal);
+        }else{
+            FormMenu.setPreferredSize(new Dimension(195,(jml*24)+10));
+        }
+        FormMenu.revalidate();
+        FormMenu.repaint();
+        ScrollMenu.getVerticalScrollBar().setValue(0);
+    }
+
     private void runBackground(Runnable task) {
         if (ceksukses) return;
         if (executor.isShutdown() || executor.isTerminated()) return;
