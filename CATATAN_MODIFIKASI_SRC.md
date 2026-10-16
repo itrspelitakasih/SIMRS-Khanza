@@ -1745,3 +1745,8 @@ Dibuat: 2026-09-10. Perbandingan seluruh folder `src/` proyek Dev terhadap sourc
 
 - **keuangan/DlgPiutangRalan, DlgPiutangRanap (form,java)**: filter "Perusahaan" (`KdPerusahaan` non-visual, `NmPerusahaan`, `BtnPerusahaan` Alt+4) memakai `DlgCariPerusahaan`; query ditambah `and pasien.perusahaan_pasien=?` bila terisi; BtnAll ikut mengosongkan. Ralan setelah Unit/Poli, Ranap setelah Jenis Bayar.
 - **update_perusahaan_pasien_dari_penjab.sql**: backup + reset `pasien.perusahaan_pasien` ke '-', pemetaan penjab → perusahaan_pasien, lalu isi ulang dari penjab registrasi terakhir yang terpetakan.
+
+## Modifikasi 2026-10-16 — Update perusahaan & No.HP pasien, perusahaan di Lembar Rawat Jalan
+
+- **simrskhanza/DlgUpdatePerusahaanPasien (form,java) (baru)**: popup ubah `pasien.perusahaan_pasien` (pilih lewat `DlgCariPerusahaan`) dan `pasien.no_tlp`. `setPasien(norm)` memuat data, `isBerhasil()` true bila tersimpan.
+- **simrskhanza/DlgReg, DlgIGD, DlgMCU (java; DlgMCU juga form)**: tombol "Prsh & HP" (`BtnPerusahaanPasien`, Alt+U) sebelum Keluar, aktif bila `akses.getpasien()`; membuka popup untuk pasien terpilih lalu `tampil()` bila berhasil. Query cetak `rptRM11.jasper` ditambah kolom `perusahaan_pasien` (nama perusahaan, fallback kode).

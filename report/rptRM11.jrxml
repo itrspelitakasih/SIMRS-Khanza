@@ -32,6 +32,7 @@
 	pasien.tmp_lahir,
 	pasien.tgl_lahir,
 	pasien.nm_ibu,
+	pasien.perusahaan_pasien,
 	concat(
 		pasien.alamat,
 		', ',
@@ -145,6 +146,7 @@ INNER JOIN poliklinik ON poliklinik.kd_poli = reg_periksa.kd_poli]]>
 	<field name="alamatpj" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="perusahaan_pasien" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
@@ -556,14 +558,6 @@ INNER JOIN poliklinik ON poliklinik.kd_poli = reg_periksa.kd_poli]]>
 				</textElement>
 				<text><![CDATA[Hubungan Keluarga :]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="292" y="5" width="68" height="13" uuid="2d6f8869-23f4-4c0e-b4ac-177ddb3294b0"/>
-				<textElement textAlignment="Right">
-					<font fontName="Tahoma"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Jenis Bayar :]]></text>
-			</staticText>
 			<line>
 				<reportElement x="31" y="241" width="510" height="1" uuid="9d820eee-a414-433e-b89b-97c4f5402ff3"/>
 				<graphicElement>
@@ -825,12 +819,12 @@ INNER JOIN poliklinik ON poliklinik.kd_poli = reg_periksa.kd_poli]]>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement mode="Transparent" x="361" y="5" width="180" height="13" uuid="205c678b-901e-4c8a-b54a-de68e01fa5e2"/>
-				<textElement verticalAlignment="Top">
+				<reportElement mode="Transparent" x="280" y="5" width="260" height="13" uuid="205c678b-901e-4c8a-b54a-de68e01fa5e2"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{png_jawab}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Perusahaan : "+$F{perusahaan_pasien}]]></textFieldExpression>
 			</textField>
 			<componentElement>
 				<reportElement x="419" y="25" width="112" height="47" uuid="a174ac38-3329-4c53-804e-57c58129b528"/>

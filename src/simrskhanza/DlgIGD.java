@@ -795,6 +795,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
+        BtnPerusahaanPasien = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass7 = new widget.panelisi();
         jLabel15 = new widget.Label();
@@ -4543,6 +4544,24 @@ public final class DlgIGD extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(72, 30));
         panelGlass6.add(LCount);
 
+        BtnPerusahaanPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
+        BtnPerusahaanPasien.setMnemonic('U');
+        BtnPerusahaanPasien.setText("Prsh & HP");
+        BtnPerusahaanPasien.setToolTipText("Alt+U - Update Perusahaan & No.HP Pasien");
+        BtnPerusahaanPasien.setName("BtnPerusahaanPasien"); // NOI18N
+        BtnPerusahaanPasien.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnPerusahaanPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPerusahaanPasienActionPerformed(evt);
+            }
+        });
+        BtnPerusahaanPasien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPerusahaanPasienKeyPressed(evt);
+            }
+        });
+        panelGlass6.add(BtnPerusahaanPasien);
+
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -5222,6 +5241,35 @@ public final class DlgIGD extends javax.swing.JDialog {
             Valid.pindah(evt, BtnHapus, BtnAll);
         }
 }//GEN-LAST:event_BtnPrintKeyPressed
+
+    private void BtnPerusahaanPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPerusahaanPasienActionPerformed
+        if(TNoRM.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan pilih data pasien terlebih dahulu dengan mengklik data pada tabel...!!!");
+            tbPetugas.requestFocus();
+        }else{
+            DlgUpdatePerusahaanPasien form=new DlgUpdatePerusahaanPasien(null,false);
+            form.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosed(java.awt.event.WindowEvent e) {
+                    if(form.isBerhasil()){
+                        tampil();
+                    }
+                }
+            });
+            form.setPasien(TNoRM.getText());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setAlwaysOnTop(true);
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_BtnPerusahaanPasienActionPerformed
+
+    private void BtnPerusahaanPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPerusahaanPasienKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnPerusahaanPasienActionPerformed(null);
+        }else{
+            Valid.pindah(evt,BtnAll,BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnPerusahaanPasienKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         pasien.dispose();
@@ -8208,7 +8256,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 "pasien.gol_darah,pasien.pekerjaan,pasien.stts_nikah,"+
                 "pasien.agama,pasien.tgl_daftar,pasien.no_tlp,pasien.umur,"+
                 "pasien.pnd,pasien.keluarga,pasien.namakeluarga,"+
-                "penjab.png_jawab,pasien.pekerjaanpj,concat(pasien.alamatpj,"+
+                "penjab.png_jawab,ifnull((select perusahaan_pasien.nama_perusahaan from perusahaan_pasien where perusahaan_pasien.kode_perusahaan=pasien.perusahaan_pasien),pasien.perusahaan_pasien) as perusahaan_pasien,"+
+                "pasien.pekerjaanpj,concat(pasien.alamatpj,"+
                 "', ',pasien.kelurahanpj,', ',pasien.kecamatanpj,', ',"+
                 "pasien.kabupatenpj) AS alamatpj FROM pasien INNER JOIN "+
                 "kelurahan INNER JOIN kecamatan INNER JOIN kabupaten "+
@@ -12566,6 +12615,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPerusahaanPasien;
     private widget.Button BtnKeluar3;
     private widget.Button BtnKeluar4;
     private widget.Button BtnPasien;
@@ -13174,6 +13224,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         BtnSimpan.setEnabled(akses.getigd());
         BtnHapus.setEnabled(akses.getigd());
         BtnEdit.setEnabled(akses.getigd());
+        BtnPerusahaanPasien.setEnabled(akses.getpasien());
         BtnPrint.setEnabled(akses.getigd());
         MnKamarInap.setEnabled(akses.getkamar_inap());
         MnRawatJalan.setEnabled(akses.gettindakan_ralan());
