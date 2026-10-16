@@ -76,7 +76,7 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] rowRwJlDr={"Tgl.Pulang","No.Nota","No.RM","Nama Pasien","Jenis Bayar","Perujuk","Registrasi","Tindakan","Obt+Emb+Tsl","Retur Obat","Resep Pulang",
+        Object[] rowRwJlDr={"Tgl.Pulang","No.Nota","No.RM","Nama Pasien","Penjamin","Perusahaan Pasien","Perujuk","Registrasi","Tindakan","Obt+Emb+Tsl","Retur Obat","Resep Pulang",
                             "Laborat","Radiologi","Potongan","Tambahan","Kamar+Service","Operasi","Harian","Total","Ekses","Sudah Dibayar","Diskon Bayar",
                             "Tidak Terbayar","Sisa","Nama Kamar"};
         tabMode=new DefaultTableModel(null,rowRwJlDr){
@@ -87,7 +87,7 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 26; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(70);
@@ -100,10 +100,12 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
             }else if(i==4){
                 column.setPreferredWidth(100);
             }else if(i==5){
+                column.setPreferredWidth(150);
+            }else if(i==6){
                 column.setPreferredWidth(100);
-            }else if(i==18){
+            }else if(i==19){
                 column.setPreferredWidth(100);
-            }else if(i==24){
+            }else if(i==25){
                 column.setPreferredWidth(150);
             }else{
                 column.setPreferredWidth(85);
@@ -345,7 +347,7 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
         Tgl2.setPreferredSize(new java.awt.Dimension(100, 23));
         panelisi4.add(Tgl2);
 
-        label17.setText("Jenis Bayar :");
+        label17.setText("Penjamin :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(75, 23));
         panelisi4.add(label17);
@@ -440,7 +442,8 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.Nota</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.RM</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Nama Pasien</td>"+
-                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Jenis Bayar</td>"+
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Penjamin</td>"+
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perusahaan Pasien</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perujuk</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Registrasi</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Tindakan</td>"+
@@ -472,7 +475,7 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                         "<td valign='top'>"+tabMode.getValueAt(i,3)+"</td>"+
                                         "<td valign='top'>"+tabMode.getValueAt(i,4)+"</td>"+
                                         "<td valign='top'>"+tabMode.getValueAt(i,5)+"</td>"+
-                                        "<td valign='top' align='right'>"+tabMode.getValueAt(i,6)+"</td>"+
+                                        "<td valign='top'>"+tabMode.getValueAt(i,6)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,7)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,8)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,9)+"</td>"+
@@ -490,7 +493,8 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,21)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,22)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,23)+"</td>"+
-                                        "<td valign='top'>"+tabMode.getValueAt(i,24)+"</td>"+
+                                        "<td valign='top' align='right'>"+tabMode.getValueAt(i,24)+"</td>"+
+                                        "<td valign='top'>"+tabMode.getValueAt(i,25)+"</td>"+
                                     "</tr>"
                                 ); 
                             }            
@@ -528,7 +532,8 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.Nota</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.RM</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Nama Pasien</td>"+
-                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Jenis Bayar</td>"+
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Penjamin</td>"+
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perusahaan Pasien</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perujuk</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Registrasi</td>"+
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Tindakan</td>"+
@@ -560,7 +565,7 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                         "<td valign='top'>"+tabMode.getValueAt(i,3)+"</td>"+
                                         "<td valign='top'>"+tabMode.getValueAt(i,4)+"</td>"+
                                         "<td valign='top'>"+tabMode.getValueAt(i,5)+"</td>"+
-                                        "<td valign='top' align='right'>"+tabMode.getValueAt(i,6)+"</td>"+
+                                        "<td valign='top'>"+tabMode.getValueAt(i,6)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,7)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,8)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,9)+"</td>"+
@@ -578,7 +583,8 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,21)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,22)+"</td>"+
                                         "<td valign='top' align='right'>"+tabMode.getValueAt(i,23)+"</td>"+
-                                        "<td valign='top'>"+tabMode.getValueAt(i,24)+"</td>"+
+                                        "<td valign='top' align='right'>"+tabMode.getValueAt(i,24)+"</td>"+
+                                        "<td valign='top'>"+tabMode.getValueAt(i,25)+"</td>"+
                                     "</tr>"
                                 ); 
                             }         
@@ -611,11 +617,11 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                     case "Laporan 3 (CSV)":
                             htmlContent = new StringBuilder();
                             htmlContent.append(                             
-                                "\"Tgl.Pulang\";\"No.Nota\";\"No.RM\";\"Nama Pasien\";\"Jenis Bayar\";\"Perujuk\";\"Registrasi\";\"Tindakan\";\"Obt+Emb+Tsl\";\"Retur Obat\";\"Resep Pulang\";\"Laborat\";\"Radiologi\";\"Potongan\";\"Tambahan\";\"Kamar+Service\";\"Operasi\";\"Harian\";\"Total\";\"Ekses\";\"Sudah Dibayar\";\"Diskon Bayar\";\"Tidak Terbayar\";\"Sisa\";\"Nama Kamar\"\n"
+                                "\"Tgl.Pulang\";\"No.Nota\";\"No.RM\";\"Nama Pasien\";\"Penjamin\";\"Perusahaan Pasien\";\"Perujuk\";\"Registrasi\";\"Tindakan\";\"Obt+Emb+Tsl\";\"Retur Obat\";\"Resep Pulang\";\"Laborat\";\"Radiologi\";\"Potongan\";\"Tambahan\";\"Kamar+Service\";\"Operasi\";\"Harian\";\"Total\";\"Ekses\";\"Sudah Dibayar\";\"Diskon Bayar\";\"Tidak Terbayar\";\"Sisa\";\"Nama Kamar\"\n"
                             ); 
                             for(i=0;i<tabMode.getRowCount();i++){  
                                 htmlContent.append(                             
-                                    "\""+tabMode.getValueAt(i,0)+"\";\""+tabMode.getValueAt(i,1)+"\";\""+tabMode.getValueAt(i,2)+"\";\""+tabMode.getValueAt(i,3)+"\";\""+tabMode.getValueAt(i,4)+"\";\""+tabMode.getValueAt(i,5)+"\";\""+tabMode.getValueAt(i,6)+"\";\""+tabMode.getValueAt(i,7)+"\";\""+tabMode.getValueAt(i,8)+"\";\""+tabMode.getValueAt(i,9)+"\";\""+tabMode.getValueAt(i,10)+"\";\""+tabMode.getValueAt(i,11)+"\";\""+tabMode.getValueAt(i,12)+"\";\""+tabMode.getValueAt(i,13)+"\";\""+tabMode.getValueAt(i,14)+"\";\""+tabMode.getValueAt(i,15)+"\";\""+tabMode.getValueAt(i,16)+"\";\""+tabMode.getValueAt(i,17)+"\";\""+tabMode.getValueAt(i,18)+"\";\""+tabMode.getValueAt(i,19)+"\";\""+tabMode.getValueAt(i,20)+"\";\""+tabMode.getValueAt(i,21)+"\";\""+tabMode.getValueAt(i,22)+"\";\""+tabMode.getValueAt(i,23)+"\";\""+tabMode.getValueAt(i,24)+"\"\n"
+                                    "\""+tabMode.getValueAt(i,0)+"\";\""+tabMode.getValueAt(i,1)+"\";\""+tabMode.getValueAt(i,2)+"\";\""+tabMode.getValueAt(i,3)+"\";\""+tabMode.getValueAt(i,4)+"\";\""+tabMode.getValueAt(i,5)+"\";\""+tabMode.getValueAt(i,6)+"\";\""+tabMode.getValueAt(i,7)+"\";\""+tabMode.getValueAt(i,8)+"\";\""+tabMode.getValueAt(i,9)+"\";\""+tabMode.getValueAt(i,10)+"\";\""+tabMode.getValueAt(i,11)+"\";\""+tabMode.getValueAt(i,12)+"\";\""+tabMode.getValueAt(i,13)+"\";\""+tabMode.getValueAt(i,14)+"\";\""+tabMode.getValueAt(i,15)+"\";\""+tabMode.getValueAt(i,16)+"\";\""+tabMode.getValueAt(i,17)+"\";\""+tabMode.getValueAt(i,18)+"\";\""+tabMode.getValueAt(i,19)+"\";\""+tabMode.getValueAt(i,20)+"\";\""+tabMode.getValueAt(i,21)+"\";\""+tabMode.getValueAt(i,22)+"\";\""+tabMode.getValueAt(i,23)+"\";\""+tabMode.getValueAt(i,24)+"\";\""+tabMode.getValueAt(i,25)+"\"\n"
                                 ); 
                             }            
 
@@ -635,7 +641,6 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                                     tabMode.getValueAt(r,2).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,3).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,4).toString().replaceAll("'","`")+"','"+
-                                                    tabMode.getValueAt(r,5).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,6).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,7).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,8).toString().replaceAll("'","`")+"','"+
@@ -654,7 +659,8 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
                                                     tabMode.getValueAt(r,21).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,22).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,23).toString().replaceAll("'","`")+"','"+
-                                                    tabMode.getValueAt(r,24).toString().replaceAll("'","`")+"','','','','','','','','','','','','"+akses.getalamatip()+"'","Rekap Nota Pembayaran");
+                                                    tabMode.getValueAt(r,24).toString().replaceAll("'","`")+"','"+
+                                                    tabMode.getValueAt(r,25).toString().replaceAll("'","`")+"','','','','','','','','','','','','"+akses.getalamatip()+"'","Rekap Nota Pembayaran");
                             }
 
                             Map<String, Object> param = new HashMap<>();                 
@@ -929,10 +935,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             }
             ps= koneksi.prepareStatement(
                 "select kamar_inap.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,kamar_inap.tgl_keluar, "+
-                "penjab.png_jawab,kamar_inap.stts_pulang,kamar.kd_kamar, bangsal.nm_bangsal,piutang_pasien.uangmuka,piutang_pasien.totalpiutang "+
+                "penjab.png_jawab,ifnull(perusahaan_pasien.nama_perusahaan,'') as perusahaan_pasien,kamar_inap.stts_pulang,kamar.kd_kamar, bangsal.nm_bangsal,piutang_pasien.uangmuka,piutang_pasien.totalpiutang "+
                 "from kamar_inap inner join reg_periksa on kamar_inap.no_rawat=reg_periksa.no_rawat "+
                 "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                "left join perusahaan_pasien on pasien.perusahaan_pasien=perusahaan_pasien.kode_perusahaan "+
                 "inner join kamar on kamar_inap.kd_kamar=kamar.kd_kamar "+
                 "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal "+
                 "inner join piutang_pasien on piutang_pasien.no_rawat=reg_periksa.no_rawat where "+
@@ -1347,7 +1354,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
                             tabMode.addRow(new Object[]{
                                 rs.getString("tgl_keluar"),Sequel.cariIsi("select nota_inap.no_nota from nota_inap where nota_inap.no_rawat=?",rs.getString("no_rawat")),
-                                rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("png_jawab"),
+                                rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("png_jawab"),rs.getString("perusahaan_pasien"),
                                 Sequel.cariIsi("select rujuk_masuk.perujuk from rujuk_masuk where rujuk_masuk.no_rawat=?",rs.getString("no_rawat")),Valid.SetAngka(Registrasi),
                                 Valid.SetAngka(Ranap_Dokter+Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis),
                                 Valid.SetAngka(Obat),Valid.SetAngka(Retur_Obat),Valid.SetAngka(Resep_Pulang),Valid.SetAngka(Laborat),Valid.SetAngka(Radiologi),Valid.SetAngka(Potongan),
@@ -1363,7 +1370,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 LCount2.setText(""+tabMode.getRowCount());
                 if(tabMode.getRowCount()>0){
                     tabMode.addRow(new Object[]{
-                            ">> Total ",":","","","","",Valid.SetAngka(ttlRegistrasi),Valid.SetAngka(ttlRanap_Dokter+ttlRanap_Paramedis+ttlRalan_Dokter+ttlRalan_Paramedis),
+                            ">> Total ",":","","","","","",Valid.SetAngka(ttlRegistrasi),Valid.SetAngka(ttlRanap_Dokter+ttlRanap_Paramedis+ttlRalan_Dokter+ttlRalan_Paramedis),
                             Valid.SetAngka(ttlObat),Valid.SetAngka(ttlRetur_Obat),Valid.SetAngka(ttlResep_Pulang),Valid.SetAngka(ttlLaborat),Valid.SetAngka(ttlRadiologi),Valid.SetAngka(ttlPotongan),
                             Valid.SetAngka(ttlTambahan),Valid.SetAngka(ttlKamar+ttlService),Valid.SetAngka(ttlOperasi),Valid.SetAngka(ttlHarian),Valid.SetAngka(all),
                             Valid.SetAngka(ttlekses),Valid.SetAngka(ttldibayar),Valid.SetAngka(ttldiskon),Valid.SetAngka(ttltidakdibayar),Valid.SetAngka(ttlsisa),""

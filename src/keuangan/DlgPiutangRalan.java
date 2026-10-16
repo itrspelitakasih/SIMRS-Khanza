@@ -72,7 +72,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] rowRwJlDr={"Tanggal","No.Nota","No.RM","Nama Pasien","Jenis Bayar","Perujuk",
+        Object[] rowRwJlDr={"Tanggal","No.Nota","No.RM","Nama Pasien","Penjamin","Perusahaan Pasien","Perujuk",
                             "Registrasi","Obat+Emb+Tsl","Paket Tindakan","Operasi",
                             "Laborat","Radiologi","Tambahan","Potongan",
                             "Total","Ekses","Sudah Dibayar","Diskon Bayar","Tidak Terbayar","Sisa","Dokter"};
@@ -84,7 +84,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(65);
@@ -97,8 +97,10 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
             }else if(i==4){
                 column.setPreferredWidth(85);
             }else if(i==5){
+                column.setPreferredWidth(150);
+            }else if(i==6){
                 column.setPreferredWidth(90);
-            }else if(i==18){
+            }else if(i==19){
                 column.setPreferredWidth(150);
             }else{
                 column.setPreferredWidth(85);
@@ -359,7 +361,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
         StatusLunas.setPreferredSize(new java.awt.Dimension(119, 23));
         panelisi4.add(StatusLunas);
 
-        label17.setText("Jenis Bayar :");
+        label17.setText("Penjamin :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi4.add(label17);
@@ -468,7 +470,8 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.Nota</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.RM</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Nama Pasien</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Jenis Bayar</td>").append(
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Penjamin</td>").append(
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perusahaan Pasien</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perujuk</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Registrasi</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Obat).append(Emb).append(Tsl</td>").append(
@@ -496,7 +499,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                         "<td valign='top'>").append(tabMode.getValueAt(i,3)).append("</td>").append(
                                         "<td valign='top'>").append(tabMode.getValueAt(i,4)).append("</td>").append(
                                         "<td valign='top'>").append(tabMode.getValueAt(i,5)).append("</td>").append(
-                                        "<td valign='top' align='right'>").append(tabMode.getValueAt(i,6)).append("</td>").append(
+                                        "<td valign='top'>").append(tabMode.getValueAt(i,6)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,7)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,8)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,9)).append("</td>").append(
@@ -510,7 +513,8 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,17)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,18)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,19)).append("</td>").append(
-                                        "<td valign='top'>").append(tabMode.getValueAt(i,20)).append("</td>").append(
+                                        "<td valign='top' align='right'>").append(tabMode.getValueAt(i,20)).append("</td>").append(
+                                        "<td valign='top'>").append(tabMode.getValueAt(i,21)).append("</td>").append(
                                     "</tr>"
                                 ); 
                             }            
@@ -548,7 +552,8 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.Nota</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>No.RM</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Nama Pasien</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Jenis Bayar</td>").append(
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Penjamin</td>").append(
+                                    "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perusahaan Pasien</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Perujuk</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Registrasi</td>").append(
                                     "<td valign='middle' bgcolor='#FFFAFA' align='center'>Obat).append(Emb).append(Tsl</td>").append(
@@ -576,7 +581,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                         "<td valign='top'>").append(tabMode.getValueAt(i,3)).append("</td>").append(
                                         "<td valign='top'>").append(tabMode.getValueAt(i,4)).append("</td>").append(
                                         "<td valign='top'>").append(tabMode.getValueAt(i,5)).append("</td>").append(
-                                        "<td valign='top' align='right'>").append(tabMode.getValueAt(i,6)).append("</td>").append(
+                                        "<td valign='top'>").append(tabMode.getValueAt(i,6)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,7)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,8)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,9)).append("</td>").append(
@@ -590,7 +595,8 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,17)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,18)).append("</td>").append(
                                         "<td valign='top' align='right'>").append(tabMode.getValueAt(i,19)).append("</td>").append(
-                                        "<td valign='top'>").append(tabMode.getValueAt(i,20)).append("</td>").append(
+                                        "<td valign='top' align='right'>").append(tabMode.getValueAt(i,20)).append("</td>").append(
+                                        "<td valign='top'>").append(tabMode.getValueAt(i,21)).append("</td>").append(
                                     "</tr>"
                                 ); 
                             }           
@@ -623,11 +629,11 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                     case "Laporan 3 (CSV)":
                             htmlContent = new StringBuilder();
                             htmlContent.append(                             
-                                "\"Tanggal\";\"No.Nota\";\"No.RM\";\"Nama Pasien\";\"Jenis Bayar\";\"Perujuk\";\"Registrasi\";\"Obat+Emb+Tsl\";\"Paket Tindakan\";\"Operasi\";\"Laborat\";\"Radiologi\";\"Tambahan\";\"Potongan\";\"Total\";\"Ekses\";\"Sudah Dibayar\";\"Diskon Bayar\";\"Tidak Terbayar\";\"Sisa\";\"Dokter\"\n"
+                                "\"Tanggal\";\"No.Nota\";\"No.RM\";\"Nama Pasien\";\"Penjamin\";\"Perusahaan Pasien\";\"Perujuk\";\"Registrasi\";\"Obat+Emb+Tsl\";\"Paket Tindakan\";\"Operasi\";\"Laborat\";\"Radiologi\";\"Tambahan\";\"Potongan\";\"Total\";\"Ekses\";\"Sudah Dibayar\";\"Diskon Bayar\";\"Tidak Terbayar\";\"Sisa\";\"Dokter\"\n"
                             ); 
                             for(i=0;i<tabMode.getRowCount();i++){  
                                 htmlContent.append(                             
-                                    "\"").append(tabMode.getValueAt(i,0)).append("\";\"").append(tabMode.getValueAt(i,1)).append("\";\"").append(tabMode.getValueAt(i,2)).append("\";\"").append(tabMode.getValueAt(i,3)).append("\";\"").append(tabMode.getValueAt(i,4)).append("\";\"").append(tabMode.getValueAt(i,5)).append("\";\"").append(tabMode.getValueAt(i,6)).append("\";\"").append(tabMode.getValueAt(i,7)).append("\";\"").append(tabMode.getValueAt(i,8)).append("\";\"").append(tabMode.getValueAt(i,9)).append("\";\"").append(tabMode.getValueAt(i,10)).append("\";\"").append(tabMode.getValueAt(i,11)).append("\";\"").append(tabMode.getValueAt(i,12)).append("\";\"").append(tabMode.getValueAt(i,13)).append("\";\"").append(tabMode.getValueAt(i,14)).append("\";\"").append(tabMode.getValueAt(i,15)).append("\";\"").append(tabMode.getValueAt(i,16)).append("\";\"").append(tabMode.getValueAt(i,17)).append("\";\"").append(tabMode.getValueAt(i,18)).append("\";\"").append(tabMode.getValueAt(i,19)).append("\";\"").append(tabMode.getValueAt(i,20)).append("\"\n"
+                                    "\"").append(tabMode.getValueAt(i,0)).append("\";\"").append(tabMode.getValueAt(i,1)).append("\";\"").append(tabMode.getValueAt(i,2)).append("\";\"").append(tabMode.getValueAt(i,3)).append("\";\"").append(tabMode.getValueAt(i,4)).append("\";\"").append(tabMode.getValueAt(i,5)).append("\";\"").append(tabMode.getValueAt(i,6)).append("\";\"").append(tabMode.getValueAt(i,7)).append("\";\"").append(tabMode.getValueAt(i,8)).append("\";\"").append(tabMode.getValueAt(i,9)).append("\";\"").append(tabMode.getValueAt(i,10)).append("\";\"").append(tabMode.getValueAt(i,11)).append("\";\"").append(tabMode.getValueAt(i,12)).append("\";\"").append(tabMode.getValueAt(i,13)).append("\";\"").append(tabMode.getValueAt(i,14)).append("\";\"").append(tabMode.getValueAt(i,15)).append("\";\"").append(tabMode.getValueAt(i,16)).append("\";\"").append(tabMode.getValueAt(i,17)).append("\";\"").append(tabMode.getValueAt(i,18)).append("\";\"").append(tabMode.getValueAt(i,19)).append("\";\"").append(tabMode.getValueAt(i,20)).append("\";\"").append(tabMode.getValueAt(i,21)).append("\"\n"
                                 ); 
                             }            
 
@@ -647,7 +653,6 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                                     tabMode.getValueAt(r,2).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,3).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,4).toString().replaceAll("'","`")+"','"+
-                                                    tabMode.getValueAt(r,5).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,6).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,7).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,8).toString().replaceAll("'","`")+"','"+
@@ -662,7 +667,8 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
                                                     tabMode.getValueAt(r,17).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,18).toString().replaceAll("'","`")+"','"+
                                                     tabMode.getValueAt(r,19).toString().replaceAll("'","`")+"','"+
-                                                    tabMode.getValueAt(r,20).toString().replaceAll("'","`")+"','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","data");
+                                                    tabMode.getValueAt(r,20).toString().replaceAll("'","`")+"','"+
+                                                    tabMode.getValueAt(r,21).toString().replaceAll("'","`")+"','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","data");
                             }
 
                             Map<String, Object> param = new HashMap<>();                 
@@ -989,10 +995,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             if(!KdPerusahaan.getText().trim().equals("")){
                 perusahaan="and pasien.perusahaan_pasien=? ";
             }
-            ps= koneksi.prepareStatement("select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,reg_periksa.tgl_registrasi,dokter.nm_dokter,penjab.png_jawab, "+
+            ps= koneksi.prepareStatement("select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,reg_periksa.tgl_registrasi,dokter.nm_dokter,penjab.png_jawab,ifnull(perusahaan_pasien.nama_perusahaan,'') as perusahaan_pasien, "+
                         "piutang_pasien.uangmuka,piutang_pasien.totalpiutang "+
                         "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                         "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
+                        "left join perusahaan_pasien on pasien.perusahaan_pasien=perusahaan_pasien.kode_perusahaan "+
                         "inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter "+
                         "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
                         "inner join piutang_pasien on piutang_pasien.no_rawat=reg_periksa.no_rawat "+
@@ -1089,7 +1096,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     tabMode.addRow(new Object[] {
                         rs.getString("tgl_registrasi"),
                         Sequel.cariIsi("select nota_jalan.no_nota from nota_jalan where nota_jalan.no_rawat=?",rs.getString("no_rawat")),
-                        rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("png_jawab"),
+                        rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("png_jawab"),rs.getString("perusahaan_pasien"),
                         Sequel.cariIsi("select rujuk_masuk.perujuk from rujuk_masuk where rujuk_masuk.no_rawat=?",rs.getString("no_rawat")),
                         Valid.SetAngka(Registrasi),Valid.SetAngka(Obat),Valid.SetAngka(Ralan_Dokter+Ralan_Paramedis+Ralan_Dokter_paramedis),
                         Valid.SetAngka(Operasi),Valid.SetAngka(Laborat),Valid.SetAngka(Radiologi),Valid.SetAngka(Tambahan),Valid.SetAngka(Potongan),
@@ -1101,7 +1108,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 LCount2.setText(""+tabMode.getRowCount());
                 if(tabMode.getRowCount()>0){
                     tabMode.addRow(new Object[] {
-                            ">> Total",":","","","","",Valid.SetAngka(ttlRegistrasi),Valid.SetAngka(ttlObat),Valid.SetAngka(ttlRalan_Dokter+ttlRalan_Paramedis),
+                            ">> Total",":","","","","","",Valid.SetAngka(ttlRegistrasi),Valid.SetAngka(ttlObat),Valid.SetAngka(ttlRalan_Dokter+ttlRalan_Paramedis),
                             Valid.SetAngka(ttlOperasi),Valid.SetAngka(ttlLaborat),Valid.SetAngka(ttlRadiologi),Valid.SetAngka(ttlTambahan),Valid.SetAngka(ttlPotongan),
                             Valid.SetAngka(ttlLaborat+ttlRadiologi+ttlObat+ttlRalan_Dokter+ttlRalan_Paramedis+ttlTambahan+ttlPotongan+ttlRegistrasi+ttlOperasi),
                             Valid.SetAngka(ttlekses),Valid.SetAngka(ttldibayar),Valid.SetAngka(ttldiskon),Valid.SetAngka(ttltidakdibayar),Valid.SetAngka(ttlsisa),""
