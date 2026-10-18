@@ -395,6 +395,7 @@ import laporan.frmPengaduan;
 import komunikasi.AvatarChat;
 import komunikasi.ChatNotifier;
 import komunikasi.DlgChat;
+import komunikasi.FrmAsistenAI;
 import komunikasi.SuaraNotif;
 import parkir.DlgParkirBarcode;
 import parkir.DlgParkirJenis;
@@ -1266,6 +1267,7 @@ public class frmUtama extends javax.swing.JFrame {
     private final sekuel Sequel=new sekuel();
     private final validasi Valid=new validasi();
     private DlgChat dlgChat=null;
+    private FrmAsistenAI frmAsistenAI=null;
     private ChatNotifier.Info infoChat=new ChatNotifier.Info();
     private boolean kedipMerah=false;
     // angka di lonceng notifikasi berkedip merah selama ada pesan pribadi belum dibaca
@@ -1958,6 +1960,7 @@ public class frmUtama extends javax.swing.JFrame {
         PenyerahanResep = new javax.swing.JMenuItem();
         LaporIT = new javax.swing.JMenuItem();
         eksekutif = new javax.swing.JMenuItem();
+        MnAsistenAI = new javax.swing.JMenu();
 
         DlgLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgLogin.setName("DlgLogin"); // NOI18N
@@ -8602,6 +8605,23 @@ public class frmUtama extends javax.swing.JFrame {
         });
         MenuBar.add(jMenu4);
 
+        MnAsistenAI.setBackground(new java.awt.Color(20, 0, 20));
+        MnAsistenAI.setBorder(null);
+        MnAsistenAI.setForeground(new java.awt.Color(255, 255, 255));
+        MnAsistenAI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Diversity-Avatars-Avatars-Robot-02.16.png"))); // NOI18N
+        MnAsistenAI.setText("Asisten AI");
+        MnAsistenAI.setToolTipText("Buka Asisten AI");
+        MnAsistenAI.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnAsistenAI.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnAsistenAI.setName("MnAsistenAI"); // NOI18N
+        MnAsistenAI.setPreferredSize(new java.awt.Dimension(86, 26));
+        MnAsistenAI.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MnAsistenAIMouseClicked(evt);
+            }
+        });
+        MenuBar.add(MnAsistenAI);
+
         jMenuUpdate.setBackground(new java.awt.Color(204, 0, 51));
         jMenuUpdate.setBorder(null);
         jMenuUpdate.setForeground(new java.awt.Color(255, 255, 253));
@@ -8776,6 +8796,7 @@ public class frmUtama extends javax.swing.JFrame {
                 lblUser.setText("Log Out");
                 BtnMenu.setEnabled(false);
                 hentikanChat();
+                tutupAsistenAI();
                 akses.setLogOut();
                 isTutup();
                 break;
@@ -9369,6 +9390,9 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     /** Buka jendela chat, langsung ke percakapan pesan belum dibaca terbaru bila ada. */
     private void bukaChat(){
+        if(!FITUR_PESAN){
+            return;
+        }
         siapkanChat();
         if(infoChat.personal>0){
             dlgChat.bukaPribadi(infoChat.dariKode);
@@ -9379,11 +9403,17 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     private void bukaChatPribadi(String kode){
+        if(!FITUR_PESAN){
+            return;
+        }
         siapkanChat().bukaPribadi(kode);
         tampilChat();
     }
 
     private void bukaChatGlobal(){
+        if(!FITUR_PESAN){
+            return;
+        }
         siapkanChat().bukaGlobal();
         tampilChat();
     }
@@ -9455,12 +9485,23 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
 
+    /** Fitur Pesan (Chat Antar User) dinonaktifkan sementara; lonceng tetap untuk hasil lab/radiologi & permintaan. */
+    private static final boolean FITUR_PESAN=false;
+
     private void mulaiChat(){
-        BtnToolChat.setEnabled(true);
+        BtnToolChat.setEnabled(FITUR_PESAN);
+        BtnBukaChatNotif.setVisible(FITUR_PESAN);
         BtnNotif.setEnabled(true);
         ChatNotifier.start(akses.getkode(),info -> {
             if(!BtnNotif.isEnabled()){
                 return;
+            }
+            if(!FITUR_PESAN){
+                // pesan lama yang belum dibaca tidak dihitung/ditampilkan di lonceng
+                info.personal=0;
+                info.global=0;
+                info.jmlPengirim=0;
+                info.pesan.clear();
             }
             infoChat=info;
             int total=info.personal+info.global+info.hasil.size()+info.tugas.size();
@@ -15292,6 +15333,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             lblUser.setText("Log Out");
             BtnMenu.setEnabled(false);
             hentikanChat();
+            tutupAsistenAI();
             akses.setLogOut();
             isTutup();
             break;
@@ -15962,6 +16004,36 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             JOptionPane.showMessageDialog(this, "Gagal membuka halaman : " + e.getMessage());
         }
     }//GEN-LAST:event_eksekutifActionPerformed
+
+    private void MnAsistenAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MnAsistenAIMouseClicked
+        // menu tanpa isi: lepas sorotan menu setelah diklik
+        MnAsistenAI.setSelected(false);
+        if(akses.getkode()==null||akses.getkode().equals("")){
+            JOptionPane.showMessageDialog(this,"Silakan Log In terlebih dahulu.");
+            return;
+        }
+        if(frmAsistenAI==null||!frmAsistenAI.isDisplayable()){
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            frmAsistenAI=new FrmAsistenAI();
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+        // pojok kanan bawah area kerja, sama seperti popup chat
+        java.awt.Rectangle area;
+        if(PanelUtama.isShowing()){
+            area=new java.awt.Rectangle(PanelUtama.getLocationOnScreen(),PanelUtama.getSize());
+        }else{
+            area=java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+        }
+        frmAsistenAI.tampil(area);
+    }//GEN-LAST:event_MnAsistenAIMouseClicked
+
+    /** Popup Asisten AI hanya ditutup permanen saat Log Out (isTutup tidak menyentuhnya karena bukan JDialog). */
+    private void tutupAsistenAI(){
+        if(frmAsistenAI!=null){
+            frmAsistenAI.dispose();
+            frmAsistenAI=null;
+        }
+    }
 
     private void btnKategoriPerpustakaanActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -25822,6 +25894,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.PasswordBox edAdmin;
     private widget.PasswordBox edPwd;
     private javax.swing.JMenuItem eksekutif;
+    private javax.swing.JMenu MnAsistenAI;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
