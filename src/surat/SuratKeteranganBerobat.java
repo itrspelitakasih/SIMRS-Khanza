@@ -6,6 +6,7 @@
 
 package surat;
 
+import AESsecurity.EnkripsiAES;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -41,7 +42,8 @@ public final class SuratKeteranganBerobat extends javax.swing.JDialog {
     private int i=0;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
-    private String tgl,finger="";
+    private String tgl;
+    private static volatile boolean kolomSiap=false;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -86,12 +88,17 @@ public final class SuratKeteranganBerobat extends javax.swing.JDialog {
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());        
-        NoSurat.setDocument(new batasInput((byte)25).getKata(NoSurat));
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));
         TNoRw.setDocument(new batasInput((byte)25).getKata(TNoRw));           
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));                
         
         ChkInput.setSelected(false);
         isForm();
+        if(!kolomSiap){
+            // format nomor NNN/SKB/RJ-RSPK/X/2026 lebih panjang dari kolom bawaan varchar(17)
+            NomorSuratRSPK.lebarkanKolom(koneksi,"surat_keterangan_berobat",30);
+            kolomSiap=true;
+        }
     }
         
         
@@ -791,26 +798,47 @@ public final class SuratKeteranganBerobat extends javax.swing.JDialog {
        if(TPasien.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
         }else{
+            // surat yang dicetak: yang dipilih di tabel, atau surat terbaru no.rawat ini
+            String noSuratCetak="";
+            try (PreparedStatement psSurat=koneksi.prepareStatement(
+                    "select surat_keterangan_berobat.no_surat from surat_keterangan_berobat where surat_keterangan_berobat.no_rawat=? "+
+                    "order by surat_keterangan_berobat.no_surat=? desc,surat_keterangan_berobat.tanggal_surat desc,surat_keterangan_berobat.no_surat desc limit 1")){
+                psSurat.setString(1,TNoRw.getText());
+                psSurat.setString(2,NoSurat.getText());
+                try (ResultSet rsSurat=psSurat.executeQuery()){
+                    if(rsSurat.next()){
+                        noSuratCetak=rsSurat.getString(1);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            if(noSuratCetak.equals("")){
+                JOptionPane.showMessageDialog(null,"Surat untuk pasien ini belum disimpan.\nSimpan dulu supaya QR code bisa diverifikasi.");
+                return;
+            }
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();         
+                Map<String, Object> param = new HashMap<>();
                 param.put("namars",akses.getnamars());
                 param.put("alamatrs",akses.getalamatrs());
                 param.put("kotars",akses.getkabupatenrs());
                 param.put("propinsirs",akses.getpropinsirs());
                 param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());    
-                finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-                param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),6).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()));  
-                param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
+                param.put("emailrs",akses.getemailrs());
+                // QR verifikasi keaslian surat, dibaca verifyPDF (jenis 'skb' di dokumen.php)
+                param.put("finger","https://apps.rspelitakasih.id/verifyPDF/?id="+EnkripsiAES.encrypt("{'x':'skb','t':'"+noSuratCetak+"'}"));
+                param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
                 Valid.MyReportqry("rptSuratBerobat.jasper","report","::[ Surat Keterangan Berobat]::",
                         "select surat_keterangan_berobat.no_surat,surat_keterangan_berobat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tgl_registrasi,"+
                         "reg_periksa.jam_reg,pasien.alamat,kelurahan.nm_kel,kecamatan.nm_kec,kabupaten.nm_kab,propinsi.nm_prop,pasien.jk,pasien.pekerjaan,reg_periksa.umurdaftar,"+
                         "reg_periksa.sttsumur,date_format(surat_keterangan_berobat.tanggal_surat,'%d-%m-%Y') as tanggal_surat,poliklinik.nm_poli,reg_periksa.kd_dokter,"+
-                        "dokter.nm_dokter from surat_keterangan_berobat inner join reg_periksa on surat_keterangan_berobat.no_rawat=reg_periksa.no_rawat "+
+                        "dokter.nm_dokter,dokter.no_ijn_praktek,(select group_concat(concat(diagnosa_pasien.kd_penyakit,' ',penyakit.nm_penyakit) order by diagnosa_pasien.prioritas separator ', ') "+
+                        "from diagnosa_pasien inner join penyakit on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit where diagnosa_pasien.no_rawat=reg_periksa.no_rawat) as diagnosa "+
+                        "from surat_keterangan_berobat inner join reg_periksa on surat_keterangan_berobat.no_rawat=reg_periksa.no_rawat "+
                         "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter=reg_periksa.kd_dokter "+
                         "inner join kelurahan on pasien.kd_kel=kelurahan.kd_kel inner join kecamatan on pasien.kd_kec=kecamatan.kd_kec "+
                         "inner join kabupaten on pasien.kd_kab=kabupaten.kd_kab inner join propinsi on pasien.kd_prop=propinsi.kd_prop "+
-                        "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
+                        "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where surat_keterangan_berobat.no_surat='"+noSuratCetak+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());  
        }
     }//GEN-LAST:event_MnCetakSuratKeteranganActionPerformed
@@ -978,8 +1006,7 @@ public final class SuratKeteranganBerobat extends javax.swing.JDialog {
         Poli.setText("");
         TanggalJamPeriksa.setText("");
         TanggalSurat.setDate(new Date());
-        Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(surat_keterangan_berobat.no_surat,3),signed)),0) from surat_keterangan_berobat where surat_keterangan_berobat.tanggal_surat='"+Valid.SetTgl(TanggalSurat.getSelectedItem()+"")+"' ",
-                "SKB"+TanggalSurat.getSelectedItem().toString().substring(6,10)+TanggalSurat.getSelectedItem().toString().substring(3,5)+TanggalSurat.getSelectedItem().toString().substring(0,2),3,NoSurat); 
+        NoSurat.setText(NomorSuratRSPK.berikutnya(koneksi,"surat_keterangan_berobat","SKB",Valid.SetTgl(TanggalSurat.getSelectedItem()+"")));
         NoSurat.requestFocus();
     }
 

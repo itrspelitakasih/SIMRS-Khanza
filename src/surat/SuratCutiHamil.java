@@ -36,6 +36,7 @@ import javax.swing.table.TableColumn;
  * @author salimmulyana
  */
 public final class SuratCutiHamil extends javax.swing.JDialog {
+    private static volatile boolean kolomSiap=false;
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -50,6 +51,11 @@ public final class SuratCutiHamil extends javax.swing.JDialog {
     public SuratCutiHamil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        if(!kolomSiap){
+            // format nomor NNN/KODE/RJ-RSPK/BULAN_ROMAWI/TAHUN lebih panjang dari kolom bawaan Khanza
+            NomorSuratRSPK.lebarkanKolom(koneksi,"surat_cuti_hamil",30);
+            kolomSiap=true;
+        }
         this.setLocation(8,1);
         setSize(628,674);
         
@@ -93,7 +99,7 @@ public final class SuratCutiHamil extends javax.swing.JDialog {
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());        
-        NoSurat.setDocument(new batasInput((byte)20).getKata(NoSurat));   
+        NoSurat.setDocument(new batasInput((byte)30).getKata(NoSurat));   
         KeadaanPasien.setDocument(new batasInput((byte)25).getKata(KeadaanPasien));
         TNoRw.setDocument(new batasInput((byte)25).getKata(TNoRw));           
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));           
@@ -1026,7 +1032,7 @@ public final class SuratCutiHamil extends javax.swing.JDialog {
 
             // Query untuk mencari nomor terakhir
             String query = "SELECT IFNULL(MAX(CAST(SUBSTRING_INDEX(no_surat, '/', 1) AS UNSIGNED)), 0) "
-                    + "FROM surat_keterangan_sehat "
+                    + "FROM surat_cuti_hamil "
                     + "WHERE no_surat LIKE '%" + formatPattern + "'";
 
             // Eksekusi query secara manual

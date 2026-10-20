@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Dibuat ulang lewat generator; query diisi dari SuratKeteranganLayakTerbang.cetak() -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSuratLayakTerbangHC" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a1c0005-5b2e-4c3d-9e8f-00000000002e">
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="suhu" class="java.lang.String"/>
+	<parameter name="berat" class="java.lang.String"/>
+	<parameter name="spo2" class="java.lang.String"/>
+	<parameter name="tensi" class="java.lang.String"/>
+	<parameter name="nadi" class="java.lang.String"/>
+	<parameter name="tbj" class="java.lang.String"/>
+	<parameter name="diagnosa" class="java.lang.String"/>
+	<parameter name="finger" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[select surat_keterangan_layak_terbang.no_surat from surat_keterangan_layak_terbang]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="tanggal_periksa" class="java.util.Date"/>
+	<field name="kehamilan" class="java.lang.String"/>
+	<field name="nm_pasien" class="java.lang.String"/>
+	<field name="tmp_lahir" class="java.lang.String"/>
+	<field name="tgl_lahir" class="java.util.Date"/>
+	<field name="jk" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="nm_dokter" class="java.lang.String"/>
+	<field name="nm_sps" class="java.lang.String"/>
+	<field name="no_ijn_praktek" class="java.lang.String"/>
+	<field name="umur" class="java.lang.String"/>
+	<detail>
+		<band height="618" splitType="Stretch">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="13" y="0" width="48" height="45" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000002f"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="485" height="17" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000030"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="17" width="485" height="13" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000031"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="30" width="485" height="13" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000032"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Telp : "+$P{kontakrs}+", E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="12" y="50" width="535" height="1" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000033"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="12" y="66" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000001"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SURAT KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="82" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000002"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HEALTH CERTIFICATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="104" width="60" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000003"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="104" width="475" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000004"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="120" width="60" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000005"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Hal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="120" width="475" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000006"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[: Keperluan Melakukan Perjalanan Dengan Pesawat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="146" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000007"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Yang bertanda tangan di bawah ini :]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="52" y="162" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000008"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000009"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Nama / <style isItalic="true">Name</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="178" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000b"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000c"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Jabatan / <style isItalic="true">Profesion</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{nm_sps}==null||$F{nm_sps}.trim().isEmpty()?"Dokter":$F{nm_sps})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="194" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000e"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000000f"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Instansi / <style isItalic="true">Office</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000010"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$P{namars}]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="210" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000011"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000012"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Alamat / <style isItalic="true">Address</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000013"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{alamatrs}+", "+$P{kotars})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<staticText>
+				<reportElement x="12" y="240" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000014"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Dengan ini menyatakan bahwa :]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="52" y="256" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000015"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000016"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Nama / <style isItalic="true">name</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000017"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{nm_pasien})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="272" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000018"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000019"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Tempat tanggal lahir / <style isItalic="true">Date Of Birth</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+(($F{tmp_lahir}==null||$F{tmp_lahir}.trim().isEmpty()||$F{tmp_lahir}.trim().equals("-")?"":org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{tmp_lahir})+", ")+($F{tgl_lahir}==null?"":new java.text.SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id","ID")).format($F{tgl_lahir})))]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="288" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001b"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001c"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Umur / <style isItalic="true">Age</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{umur})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="304" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001e"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000001f"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Alamat / <style isItalic="true">Address</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000020"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{alamat}==null?"":org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat}).replaceAll("(?i)\\bRt\\b","RT").replaceAll("(?i)\\bRw\\b","RW"))]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="326" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000021"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000022"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Suhu Badan / <style isItalic="true">Temperature</style>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000023"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{suhu}.isEmpty()?"-":$P{suhu}.replace(".",",")+" °C")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="342" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000024"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000025"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Berat Badan / Weight]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000026"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{berat}.isEmpty()?"-":$P{berat}.replace(".",",")+" kg")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="12" y="382" width="535" height="30" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000027"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dalam kondisi sehat dan dapat melakukan perjalanan dengan transportasi udara / <style isItalic=\"true\">I certify that "+($F{jk}!=null&&$F{jk}.equals("P")?"she":"he")+" is Fit to travel by plane and follow all the procedure.</style>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="414" width="535" height="30" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000028"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Demikian surat keterangan ini dibuat agar dapat dipergunakan sebagai mana mestinya.
+Terima kasih]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="12" y="478" width="300" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000029"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+new java.text.SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id","ID")).format($F{tanggal_periksa})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="500" width="300" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000002a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[Dokter Pemeriksa]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="Float" x="12" y="518" width="56" height="56" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000002b"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" margin="0" errorCorrectionLevel="M">
+					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="12" y="576" width="300" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000002c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="12" y="592" width="400" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000002d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SIP : "+($F{no_ijn_praktek}==null?"":$F{no_ijn_praktek})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

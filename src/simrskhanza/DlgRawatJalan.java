@@ -234,6 +234,7 @@ import rekammedis.RMUjiFungsiKFR;
 import surat.SuratBebasNarkoba;
 import surat.SuratButaWarna;
 import surat.SuratKeteranganBerobat;
+import surat.SuratKeteranganMenemaniBerobat;
 import surat.SuratKeteranganLayakTerbang;
 import surat.SuratKeteranganSehat;
 import surat.SuratSakit;
@@ -1574,7 +1575,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(btnSurat);
         btnSurat.setBounds(1140, 10, 23, 23);
 
-        cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Surat Kontrol", "SKK", "Buta Warna","Bebas Narkoba","SKS", "Suket Layak Terbang", "Suket Berobat" }));
+        cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Surat Kontrol", "SKK", "Buta Warna","Bebas Narkoba","SKS", "Suket Layak Terbang", "Suket Berobat", "Suket Menemani Berobat" }));
         cmbJnsSurat.setName("cmbJnsSurat"); // NOI18N
         cmbJnsSurat.setPreferredSize(new java.awt.Dimension(150, 23));
         cmbJnsSurat.addActionListener(new java.awt.event.ActionListener() {
@@ -5506,6 +5507,25 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 }
                 case "Suket Berobat": {
                     SuratKeteranganBerobat dlg = new SuratKeteranganBerobat(null, false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(
+                            TNoRw.getText(),
+                            TNoRM.getText(),
+                            TPasien.getText(),
+                            Sequel.cariIsi("select nm_poli from poliklinik where kd_poli=?", kode_poli),
+                            KdDok.getText(),
+                            TDokter.getText(),
+                            Sequel.cariIsi("select concat(tgl_registrasi,' ',jam_reg) from reg_periksa where no_rawat=?", TNoRw.getText()),
+                            DTPCari1.getDate(),
+                            DTPCari2.getDate());
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Suket Menemani Berobat": {
+                    SuratKeteranganMenemaniBerobat dlg = new SuratKeteranganMenemaniBerobat(null, false);
                     dlg.isCek();
                     dlg.emptTeks();
                     dlg.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);

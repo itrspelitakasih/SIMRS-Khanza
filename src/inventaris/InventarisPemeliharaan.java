@@ -46,6 +46,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import komunikasi.GoWAService;
+import komunikasi.pesanWA;
 
 /**
  *
@@ -1469,18 +1470,19 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                 if(kirim.isBefore(LocalDateTime.now())){
                     kirim=LocalDateTime.now();
                 }
-                String pesan="*Pengingat Perawatan Aset/Inventaris*\n\n"+
-                    "Jadwal perawatan berikutnya jatuh pada *"+(jadwal.equals(hariIni)?"hari ini":"besok")+", "+
-                    jadwal.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy",new Locale("id","ID")))+"* untuk :\n\n"+
-                    "*No.Inventaris* : "+noinv+"\n"+
-                    "*Nama Barang* : "+rs2.getString(6)+"\n"+
-                    "*Ruang* : "+rs2.getString(7)+"\n"+
-                    "*Jenis Pemeliharaan* : "+rs2.getString(4)+"\n"+
-                    "*Pelaksana* : "+rs2.getString(5)+"\n"+
-                    "*Penanggung Jawab* : "+rs2.getString(8)+"\n\n"+
-                    "*Pemeliharaan terakhir* ("+LocalDate.parse(tgl).format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))+") :\n"+
-                    rs2.getString(3)+"\n\n"+
-                    "Mohon dipersiapkan. Terima kasih.\n_"+akses.getnamars()+"_";
+                Map<String,String> dataPesan=new HashMap<>();
+                dataPesan.put("kapan",jadwal.equals(hariIni)?"hari ini":"besok");
+                dataPesan.put("tanggal",jadwal.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy",new Locale("id","ID"))));
+                dataPesan.put("noinventaris",noinv);
+                dataPesan.put("barang",rs2.getString(6));
+                dataPesan.put("ruang",rs2.getString(7));
+                dataPesan.put("jenis",rs2.getString(4));
+                dataPesan.put("pelaksana",rs2.getString(5));
+                dataPesan.put("pj",rs2.getString(8));
+                dataPesan.put("tgl_terakhir",LocalDate.parse(tgl).format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+                dataPesan.put("kegiatan",rs2.getString(3));
+                dataPesan.put("namars",akses.getnamars());
+                String pesan=pesanWA.isi(pesanWA.PENGINGAT_INVENTARIS,dataPesan);
                 long nomor=GoWAService.kirimTextTerjadwal(rs2.getString(2).trim(),pesan,
                         kirim.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),GoWAService.SOURCE_PERAWATAN_INVENTARIS);
                 Sequel.queryu2tf("update pemeliharaan_inventaris set wa_nomor=? where no_inventaris=? and tanggal=?",3,new String[]{

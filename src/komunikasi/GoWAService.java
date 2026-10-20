@@ -531,6 +531,29 @@ public class GoWAService {
     }
 
     // =====================================================
+    // PESAN WA PENGIRIMAN SURAT
+    // =====================================================
+    public static final String URL_VERIFIKASI_SURAT = "https://apps.rspelitakasih.id/verifyPDF/cek.php";
+
+    /** Teks WA pengantar PDF surat (template Kirim surat di pesanWA), lengkap dengan info password dan tautan verifikasi. */
+    public static String pesanSurat(String namaPasien, String jenisSurat, boolean pakaiPassword) {
+        return pesanSurat(namaPasien, jenisSurat, pakaiPassword, "");
+    }
+
+    /** @param catatan diisi ke penanda {catatan} (boleh kosong), mis. template Surat Kontrol - catatan tambahan */
+    public static String pesanSurat(String namaPasien, String jenisSurat, boolean pakaiPassword, String catatan) {
+        java.util.Map<String, String> data = new java.util.HashMap<>();
+        data.put("nama", namaPasien);
+        data.put("jenis_surat", jenisSurat);
+        data.put("namars", fungsi.akses.getnamars());
+        data.put("password", pakaiPassword ? pesanWA.ambil(pesanWA.SURAT_PASSWORD) : "");
+        data.put("portal", koneksiDBWa.URLPORTALPASIEN());
+        data.put("verifikasi", URL_VERIFIKASI_SURAT);
+        data.put("catatan", catatan);
+        return pesanWA.isi(pesanWA.suratJenis(jenisSurat), data);
+    }
+
+    // =====================================================
     // PUBLIC REPORT
     // =====================================================
     public static boolean kirimDariNoRM(

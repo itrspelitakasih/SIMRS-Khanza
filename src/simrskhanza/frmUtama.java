@@ -1308,6 +1308,7 @@ public class frmUtama extends javax.swing.JFrame {
         buatCaptcha();
         DlgLogin.setLocationRelativeTo(null);
         jMenu1.setOpaque(false);
+        tambahMenuTemplatePesanWA();
         jMenu5.setOpaque(false);
         jMenu6.setOpaque(false);
         jMenu7.setOpaque(false);
@@ -16027,6 +16028,48 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         frmAsistenAI.tampil(area);
     }//GEN-LAST:event_MnAsistenAIMouseClicked
 
+    /** Tombol menu utama Template Pesan WA (kategori [U] dan pencarian menu), khusus Admin Utama. */
+    private final widget.ButtonBig btnTemplatePesanWA=new widget.ButtonBig();
+
+    /**
+     * Template Pesan WA (Admin Utama): tombol di menu utama dan item di menu Program.
+     * Dibuat di kode, bukan di .form, supaya aman dari regenerate NetBeans.
+     */
+    private void tambahMenuTemplatePesanWA(){
+        btnTemplatePesanWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486151_sms.png")));
+        btnTemplatePesanWA.setText("Template Pesan WA");
+        btnTemplatePesanWA.setIconTextGap(0);
+        btnTemplatePesanWA.setName("btnTemplatePesanWA");
+        btnTemplatePesanWA.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTemplatePesanWA.addActionListener(evt -> bukaTemplatePesanWA());
+
+        javax.swing.JMenuItem MnTemplatePesanWA=new javax.swing.JMenuItem();
+        MnTemplatePesanWA.setBackground(new java.awt.Color(255, 255, 254));
+        MnTemplatePesanWA.setFont(new java.awt.Font("Arial", 0, 11));
+        MnTemplatePesanWA.setForeground(new java.awt.Color(50, 90, 40));
+        MnTemplatePesanWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png")));
+        MnTemplatePesanWA.setText("Template Pesan WA");
+        MnTemplatePesanWA.setName("MnTemplatePesanWA");
+        MnTemplatePesanWA.setPreferredSize(new java.awt.Dimension(170, 30));
+        MnTemplatePesanWA.addActionListener(evt -> bukaTemplatePesanWA());
+        jMenu1.insert(MnTemplatePesanWA,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+    }
+
+    private void bukaTemplatePesanWA(){
+        if(!"Admin Utama".equals(akses.getkode())){
+            JOptionPane.showMessageDialog(this,"Template Pesan WA hanya bisa diubah oleh Admin Utama.");
+            return;
+        }
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        komunikasi.DlgSetPesanWA dlg=new komunikasi.DlgSetPesanWA(this,false);
+        dlg.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        dlg.setLocationRelativeTo(PanelUtama);
+        dlg.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
     /** Popup Asisten AI hanya ditutup permanen saat Log Out (isTutup tidak menyentuhnya karena bukan JDialog). */
     private void tutupAsistenAI(){
         if(frmAsistenAI!=null){
@@ -26090,7 +26133,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.06"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.07"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
@@ -32151,10 +32194,15 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnZISPatologisPenerimaDankes);
                 jmlmenu++;
             }
-        }else if(cmbMenu.getSelectedIndex()==20){   
+        }else if(cmbMenu.getSelectedIndex()==20){
             jmlmenu=0;
             if(akses.getaplikasi()==true){
                 Panelmenu.add(btnSetupAplikasi);
+                jmlmenu++;
+            }
+
+            if("Admin Utama".equals(akses.getkode())){
+                Panelmenu.add(btnTemplatePesanWA);
                 jmlmenu++;
             }
 
@@ -38219,6 +38267,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
         if(akses.getaplikasi()==true){
             Panelmenu.add(btnSetupAplikasi);
+            jmlmenu++;
+        }
+
+        if("Admin Utama".equals(akses.getkode())){
+            Panelmenu.add(btnTemplatePesanWA);
             jmlmenu++;
         }
 
@@ -46688,7 +46741,14 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             if(btnSetupAplikasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSetupAplikasi);
                 jmlmenu++;
-            }                
+            }
+        }
+
+        if("Admin Utama".equals(akses.getkode())){
+            if(btnTemplatePesanWA.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnTemplatePesanWA);
+                jmlmenu++;
+            }
         }
 
         if(akses.getadmin()==true){

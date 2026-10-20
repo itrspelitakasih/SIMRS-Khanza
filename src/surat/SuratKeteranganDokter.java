@@ -947,16 +947,9 @@ public final class SuratKeteranganDokter extends javax.swing.JDialog {
                       " and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
                       "where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
             //GENERATE WAHA KIRIM PDF//
-            String pesan = "Halo *" + TPasien.getText() + "* 👋\n\n"
-                    + "Berikut Surat Sakit Anda.\n\n"
-                    + "🔐 Password PDF: tanggal lahir (format: ddMMyyyy)\n\n"
-                    + "⚠️ Pesan ini merupakan notifikasi otomatis dari sistem.\n"
-                    + "Nomor ini tidak dapat menerima atau membalas pesan.\n\n"
-                    + "Terima kasih.\n"
-                    + akses.getnamars() + "\n";
-
             String modePassword = CbPassword.getSelectedItem().toString();
             boolean pakaiPassword = modePassword.equalsIgnoreCase("Password");
+            String pesan = GoWAService.pesanSurat(TPasien.getText(), "Surat Keterangan Sakit", pakaiPassword);
 
             boolean sukses = GoWAService.kirimDariNoRawat(
                     "rptSuratSakitRSPK.pdf",

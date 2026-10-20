@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Dibuat ulang lewat generator; query diisi dari SuratKeteranganLayakTerbang.cetak() -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptSuratLayakTerbangHamil" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7a1c0005-5b2e-4c3d-9e8f-00000000006d">
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="suhu" class="java.lang.String"/>
+	<parameter name="berat" class="java.lang.String"/>
+	<parameter name="spo2" class="java.lang.String"/>
+	<parameter name="tensi" class="java.lang.String"/>
+	<parameter name="nadi" class="java.lang.String"/>
+	<parameter name="tbj" class="java.lang.String"/>
+	<parameter name="diagnosa" class="java.lang.String"/>
+	<parameter name="finger" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[select surat_keterangan_layak_terbang.no_surat from surat_keterangan_layak_terbang]]>
+	</queryString>
+	<field name="no_surat" class="java.lang.String"/>
+	<field name="tanggal_periksa" class="java.util.Date"/>
+	<field name="kehamilan" class="java.lang.String"/>
+	<field name="nm_pasien" class="java.lang.String"/>
+	<field name="tmp_lahir" class="java.lang.String"/>
+	<field name="tgl_lahir" class="java.util.Date"/>
+	<field name="jk" class="java.lang.String"/>
+	<field name="alamat" class="java.lang.String"/>
+	<field name="nm_dokter" class="java.lang.String"/>
+	<field name="nm_sps" class="java.lang.String"/>
+	<field name="no_ijn_praktek" class="java.lang.String"/>
+	<field name="umur" class="java.lang.String"/>
+	<detail>
+		<band height="666" splitType="Stretch">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="13" y="0" width="48" height="45" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000006e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="485" height="17" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000006f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="17" width="485" height="13" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000070"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="30" width="485" height="13" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000071"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Telp : "+$P{kontakrs}+", E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="12" y="50" width="535" height="1" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000072"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="12" y="62" width="60" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000034"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="62" width="475" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000035"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="78" width="60" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000036"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Hal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="78" width="475" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000037"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[: Keperluan Melakukan Perjalanan Dengan Pesawat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="112" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000038"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SURAT KETERANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="128" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000039"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Cambria" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HEALTH CERTIFICATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="156" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Yang bertanda tangan di bawah ini :]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="52" y="172" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003b"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003c"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Nama / Name]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="188" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003e"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000003f"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Jabatan / Profesion]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000040"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{nm_sps}==null||$F{nm_sps}.trim().isEmpty()?"Dokter":$F{nm_sps})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="204" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000041"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000042"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Instansi / Office]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000043"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$P{namars}]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="220" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000044"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000045"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Alamat / Address]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="285" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000046"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{alamatrs}+", "+$P{kotars})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<staticText>
+				<reportElement x="12" y="250" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000047"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Dengan ini menyatakan bahwa :]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="52" y="266" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000048"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000049"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Nama / name]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{nm_pasien})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="282" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004b"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004c"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Tempat tanggal lahir / Date Of Birth]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+(($F{tmp_lahir}==null||$F{tmp_lahir}.trim().isEmpty()||$F{tmp_lahir}.trim().equals("-")?"":org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{tmp_lahir})+", ")+($F{tgl_lahir}==null?"":new java.text.SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id","ID")).format($F{tgl_lahir})))]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="298" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004e"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000004f"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Umur / Age]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000050"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{umur})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="314" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000051"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000052"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Alamat / Address]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000053"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($F{alamat}==null?"":org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat}).replaceAll("(?i)\\bRt\\b","RT").replaceAll("(?i)\\bRw\\b","RW"))]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="336" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000054"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000055"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Suhu Badan / Temperature]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000056"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{suhu}.isEmpty()?"-":$P{suhu}.replace(".",",")+" °C")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="352" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000057"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000058"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Saturasi Oksigen / Saturation]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000059"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{spo2}.isEmpty()?"-":$P{spo2}+" %")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="368" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005a"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005b"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Tekanan Darah / Blood Pressure]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005c"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{tensi}.isEmpty()?"-":$P{tensi}+" mmHg")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="384" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005d"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005e"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Nadi / Pulse]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000005f"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{nadi}.isEmpty()?"-":$P{nadi}+" x/mnt")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="400" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000060"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000061"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Tafsiran Berat Janin]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000062"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{tbj}.isEmpty()?"-":$P{tbj}+" gram")]]></textFieldExpression>
+			</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="52" y="416" width="495" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000063"/>
+			<staticText>
+				<reportElement x="0" y="0" width="248" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000064"/>
+				<textElement verticalAlignment="Top" markup="styled">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Diagnosa]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="248" y="0" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000065"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+($P{diagnosa}.isEmpty()?"-":$P{diagnosa})]]></textFieldExpression>
+			</textField>
+			</frame>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="448" width="535" height="30" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000066"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Demikian surat keterangan ini dibuat untuk keperluan perjalanan menggunakan transportasi udara. Dan agar dapat di pergunakan sebagai mana mestinya.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="478" width="535" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000067"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Terima kasih]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="300" y="528" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000068"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+new java.text.SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id","ID")).format($F{tanggal_periksa})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="300" y="548" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-000000000069"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11"/>
+				</textElement>
+				<text><![CDATA[Dokter Pemeriksa]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="Float" x="300" y="566" width="56" height="56" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000006a"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" margin="0" errorCorrectionLevel="M">
+					<jr:codeExpression><![CDATA[$P{finger}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="300" y="624" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000006b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Cambria" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="300" y="640" width="247" height="16" uuid="7a1c0001-5b2e-4c3d-9e8f-00000000006c"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Cambria" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SIP : "+($F{no_ijn_praktek}==null?"":$F{no_ijn_praktek})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

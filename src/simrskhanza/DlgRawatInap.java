@@ -16,6 +16,7 @@ import surat.SuratKontrol;
 import surat.SuratBebasNarkoba;
 import surat.SuratButaWarna;
 import surat.SuratKeteranganBerobat;
+import surat.SuratKeteranganMenemaniBerobat;
 import surat.SuratKeteranganLayakTerbang;
 import surat.SuratKeteranganRawatInap;
 import surat.SuratKeteranganSehat;
@@ -10871,7 +10872,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         lblJnsSurat.setBounds(936, 10, 70, 23);
 
         cmbJnsSurat=new widget.ComboBox();
-        cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Surat Kontrol", "SKK", "Buta Warna","Bebas Narkoba","SKS", "Suket Layak Terbang", "Suket Berobat", "Suket Rawat Inap 2" }));
+        cmbJnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Surat Kontrol", "SKK", "Buta Warna","Bebas Narkoba","SKS", "Suket Layak Terbang", "Suket Berobat", "Suket Menemani Berobat", "Suket Rawat Inap 2" }));
         cmbJnsSurat.setName("cmbJnsSurat");
         FormInput.add(cmbJnsSurat);
         cmbJnsSurat.setBounds(1010, 10, 120, 23);
@@ -10958,6 +10959,21 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 case "Suket Berobat": {
                     kode_poli=Sequel.cariIsi("select reg_periksa.kd_poli from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText());
                     SuratKeteranganBerobat dlg=new SuratKeteranganBerobat(null,false);
+                    dlg.isCek();
+                    dlg.emptTeks();
+                    dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    dlg.setLocationRelativeTo(internalFrame1);
+                    dlg.setNoRm(TNoRw.getText(),TNoRM.getText(),TPasien.getText(),
+                            Sequel.cariIsi("select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli=?",kode_poli),
+                            KdDok.getText(),TDokter.getText(),
+                            Sequel.cariIsi("select concat(reg_periksa.tgl_registrasi,' ',reg_periksa.jam_reg) from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText()),
+                            DTPCari1.getDate(),DTPCari2.getDate());
+                    dlg.setVisible(true);
+                    break;
+                }
+                case "Suket Menemani Berobat": {
+                    kode_poli=Sequel.cariIsi("select reg_periksa.kd_poli from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText());
+                    SuratKeteranganMenemaniBerobat dlg=new SuratKeteranganMenemaniBerobat(null,false);
                     dlg.isCek();
                     dlg.emptTeks();
                     dlg.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);

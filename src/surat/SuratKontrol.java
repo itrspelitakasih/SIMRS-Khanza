@@ -41,6 +41,7 @@ import laporan.DlgCariPenyakit;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgCariPoli2;
 import komunikasi.GoWAService;
+import komunikasi.pesanWA;
 
 /**
  *
@@ -2003,24 +2004,8 @@ public class SuratKontrol extends javax.swing.JDialog {
                     "::[ Surat Kontrol ]::",
                     param);
 
-            String pesan;
-
-            if (pakaiPassword) {
-                pesan = "Yth. *" + namaPasien + "*\n\n"
-                        + "Berikut kami kirimkan *Surat Kontrol* Anda dari *" + akses.getnamars() + "*.\n\n"
-                        + "🔐 Password PDF: tanggal lahir pasien, format: ddMMyyyy\n\n"
-                        + "⚠️ Pesan ini merupakan notifikasi otomatis dari sistem.\n"
-                        + "Mohon konfirmasi kehadiran Anda ke WA: *+62 813-4641-6008*\n\n"
-                        + "Terima kasih.\n"
-                        + akses.getnamars() + "\n";
-            } else {
-                pesan = "Yth. *" + namaPasien + "*\n\n"
-                        + "Berikut kami kirimkan *Surat Kontrol* Anda dari *" + akses.getnamars() + "*.\n\n"
-                        + "⚠️ Pesan ini merupakan notifikasi otomatis dari sistem.\n"
-                        + "Mohon konfirmasi kehadiran Anda ke WA: *+62 813-4641-6008*\n\n"
-                        + "Terima kasih.\n"
-                        + akses.getnamars() + "\n";
-            }
+            String pesan = GoWAService.pesanSurat(namaPasien, "Surat Kontrol", pakaiPassword,
+                    pesanWA.ambil(pesanWA.SURAT_KONTROL_CATATAN));
 
             boolean sukses = GoWAService.kirimDariNoRM(
                     "rptSuratKontrolRSPK.pdf",
@@ -2555,17 +2540,14 @@ public class SuratKontrol extends javax.swing.JDialog {
                 jamPraktek = "-";
             }
 
-            String pesan = "Selamat pagi *" + namaPasien + "*.\n\n"
-                    + "Mengingatkan kembali jadwal kontrol Anda di *RS Pelita Kasih* pada:\n\n"
-                    + "*Hari/Tanggal* : " + hariTanggal + "\n"
-                    + "*Poliklinik* : " + namaPoli + "\n"
-                    + "*Dokter* : " + namaDokter + "\n"
-                    + "*Jam Praktek* : " + jamPraktek + "\n\n"
-                    + "Mohon konfirmasi kehadiran Anda ke WA: *+62 813-4641-6008*\n\n"
-                    + "Ketik *1* jika *HADIR*\n"
-                    + "Ketik *2* jika *BATAL / RESCHEDULE* _(Atur Jadwal Ulang)_\n\n"
-                    + "Harap datang *30 menit sebelum jam praktek*.\n"
-                    + "Terima kasih.";
+            Map<String, String> dataPesan = new HashMap<>();
+            dataPesan.put("nama", namaPasien);
+            dataPesan.put("hari_tanggal", hariTanggal);
+            dataPesan.put("poli", namaPoli);
+            dataPesan.put("dokter", namaDokter);
+            dataPesan.put("jam", jamPraktek);
+            dataPesan.put("namars", akses.getnamars());
+            String pesan = pesanWA.isi(pesanWA.PENGINGAT_KONTROL, dataPesan);
 
             GoWAService.kirimText(nohp, pesan, datajam, "KONTROL");
 
@@ -2606,17 +2588,14 @@ public class SuratKontrol extends javax.swing.JDialog {
                 jamPraktek = "-";
             }
 
-            String pesan = "Selamat pagi *" + namaPasien + "*.\n\n"
-                    + "Mengingatkan kembali jadwal kontrol Anda di *RS Pelita Kasih* pada:\n\n"
-                    + "*Hari/Tanggal* : " + hariTanggal + "\n"
-                    + "*Poliklinik* : " + namaPoli + "\n"
-                    + "*Dokter* : " + namaDokter + "\n"
-                    + "*Jam Praktek* : " + jamPraktek + "\n\n"
-                    + "Mohon konfirmasi kehadiran Anda ke WA: *+62 813-4641-6008*\n\n"
-                    + "Ketik *1* jika *HADIR*\n"
-                    + "Ketik *2* jika *BATAL / RESCHEDULE* _(Atur Jadwal Ulang)_\n\n"
-                    + "Harap datang *30 menit sebelum jam praktek*.\n"
-                    + "Terima kasih.";
+            Map<String, String> dataPesan = new HashMap<>();
+            dataPesan.put("nama", namaPasien);
+            dataPesan.put("hari_tanggal", hariTanggal);
+            dataPesan.put("poli", namaPoli);
+            dataPesan.put("dokter", namaDokter);
+            dataPesan.put("jam", jamPraktek);
+            dataPesan.put("namars", akses.getnamars());
+            String pesan = pesanWA.isi(pesanWA.PENGINGAT_KONTROL, dataPesan);
 
             boolean sukses = GoWAService.kirimText(nohp, pesan);
 

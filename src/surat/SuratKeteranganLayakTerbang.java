@@ -5,6 +5,7 @@
 
 package surat;
 
+import AESsecurity.EnkripsiAES;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -121,6 +122,7 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnCetakSuratKeterangan = new javax.swing.JMenuItem();
+        MnCetakSuratKehamilan = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -155,6 +157,27 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
         jLabel5 = new widget.Label();
         Kehamilan = new widget.TextBox();
         jLabel8 = new widget.Label();
+        jLabel9 = new widget.Label();
+        Suhu = new widget.TextBox();
+        jLabel10 = new widget.Label();
+        jLabel11 = new widget.Label();
+        Berat = new widget.TextBox();
+        jLabel12 = new widget.Label();
+        jLabel15 = new widget.Label();
+        SpO2 = new widget.TextBox();
+        jLabel16 = new widget.Label();
+        jLabel17 = new widget.Label();
+        Tensi = new widget.TextBox();
+        jLabel18 = new widget.Label();
+        jLabel20 = new widget.Label();
+        Nadi = new widget.TextBox();
+        jLabel21 = new widget.Label();
+        jLabel22 = new widget.Label();
+        TBJ = new widget.TextBox();
+        jLabel23 = new widget.Label();
+        jLabel24 = new widget.Label();
+        Diagnosa = new widget.TextBox();
+        jLabel14 = new widget.Label();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -163,15 +186,29 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
         MnCetakSuratKeterangan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         MnCetakSuratKeterangan.setForeground(new java.awt.Color(50, 50, 50));
         MnCetakSuratKeterangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSuratKeterangan.setText("Cetak Surat Keterangan Layak Terbang");
+        MnCetakSuratKeterangan.setText("Cetak Layak Terbang (Umum)");
         MnCetakSuratKeterangan.setName("MnCetakSuratKeterangan"); // NOI18N
-        MnCetakSuratKeterangan.setPreferredSize(new java.awt.Dimension(260, 18));
+        MnCetakSuratKeterangan.setPreferredSize(new java.awt.Dimension(260, 26));
         MnCetakSuratKeterangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakSuratKeteranganActionPerformed(evt);
             }
         });
         jPopupMenu1.add(MnCetakSuratKeterangan);
+
+        MnCetakSuratKehamilan.setBackground(new java.awt.Color(255, 255, 254));
+        MnCetakSuratKehamilan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCetakSuratKehamilan.setForeground(new java.awt.Color(50, 50, 50));
+        MnCetakSuratKehamilan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakSuratKehamilan.setText("Cetak Layak Terbang (Kehamilan)");
+        MnCetakSuratKehamilan.setName("MnCetakSuratKehamilan"); // NOI18N
+        MnCetakSuratKehamilan.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnCetakSuratKehamilan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakSuratKehamilanActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakSuratKehamilan);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -423,7 +460,7 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 96));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 156));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         FormInput.setName("FormInput"); // NOI18N
@@ -514,6 +551,161 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
         FormInput.add(jLabel8);
         jLabel8.setBounds(585, 40, 68, 23);
 
+        jLabel9.setText("Suhu :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        FormInput.add(jLabel9);
+        jLabel9.setBounds(0, 70, 70, 23);
+
+        Suhu.setToolTipText("Diambil dari pemeriksaan terakhir, bisa diubah");
+        Suhu.setHighlighter(null);
+        Suhu.setName("Suhu"); // NOI18N
+        Suhu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SuhuKeyPressed(evt);
+            }
+        });
+        FormInput.add(Suhu);
+        Suhu.setBounds(74, 70, 60, 23);
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("\u00b0C");
+        jLabel10.setName("jLabel10"); // NOI18N
+        FormInput.add(jLabel10);
+        jLabel10.setBounds(137, 70, 25, 23);
+
+        jLabel11.setText("Berat Badan :");
+        jLabel11.setName("jLabel11"); // NOI18N
+        FormInput.add(jLabel11);
+        jLabel11.setBounds(167, 70, 80, 23);
+
+        Berat.setToolTipText("Diambil dari pemeriksaan terakhir, bisa diubah");
+        Berat.setHighlighter(null);
+        Berat.setName("Berat"); // NOI18N
+        Berat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BeratKeyPressed(evt);
+            }
+        });
+        FormInput.add(Berat);
+        Berat.setBounds(251, 70, 60, 23);
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText("Kg");
+        jLabel12.setName("jLabel12"); // NOI18N
+        FormInput.add(jLabel12);
+        jLabel12.setBounds(314, 70, 25, 23);
+
+        jLabel15.setText("SpO2 :");
+        jLabel15.setName("jLabel15"); // NOI18N
+        FormInput.add(jLabel15);
+        jLabel15.setBounds(345, 70, 45, 23);
+
+        SpO2.setToolTipText("Saturasi oksigen, diambil dari pemeriksaan terakhir");
+        SpO2.setHighlighter(null);
+        SpO2.setName("SpO2"); // NOI18N
+        SpO2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SpO2KeyPressed(evt);
+            }
+        });
+        FormInput.add(SpO2);
+        SpO2.setBounds(393, 70, 45, 23);
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel16.setText("%");
+        jLabel16.setName("jLabel16"); // NOI18N
+        FormInput.add(jLabel16);
+        jLabel16.setBounds(441, 70, 20, 23);
+
+        jLabel17.setText("Tensi :");
+        jLabel17.setName("jLabel17"); // NOI18N
+        FormInput.add(jLabel17);
+        jLabel17.setBounds(465, 70, 45, 23);
+
+        Tensi.setToolTipText("Tekanan darah, diambil dari pemeriksaan terakhir");
+        Tensi.setHighlighter(null);
+        Tensi.setName("Tensi"); // NOI18N
+        Tensi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TensiKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tensi);
+        Tensi.setBounds(513, 70, 70, 23);
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel18.setText("mmHg");
+        jLabel18.setName("jLabel18"); // NOI18N
+        FormInput.add(jLabel18);
+        jLabel18.setBounds(586, 70, 40, 23);
+
+        jLabel20.setText("Nadi :");
+        jLabel20.setName("jLabel20"); // NOI18N
+        FormInput.add(jLabel20);
+        jLabel20.setBounds(0, 100, 70, 23);
+
+        Nadi.setToolTipText("Diambil dari pemeriksaan terakhir, bisa diubah");
+        Nadi.setHighlighter(null);
+        Nadi.setName("Nadi"); // NOI18N
+        Nadi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NadiKeyPressed(evt);
+            }
+        });
+        FormInput.add(Nadi);
+        Nadi.setBounds(74, 100, 60, 23);
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel21.setText("x/mnt");
+        jLabel21.setName("jLabel21"); // NOI18N
+        FormInput.add(jLabel21);
+        jLabel21.setBounds(137, 100, 30, 23);
+
+        jLabel22.setText("Tafsiran BJ :");
+        jLabel22.setName("jLabel22"); // NOI18N
+        FormInput.add(jLabel22);
+        jLabel22.setBounds(167, 100, 80, 23);
+
+        TBJ.setToolTipText("Tafsiran berat janin (cetak versi kehamilan)");
+        TBJ.setHighlighter(null);
+        TBJ.setName("TBJ"); // NOI18N
+        TBJ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TBJKeyPressed(evt);
+            }
+        });
+        FormInput.add(TBJ);
+        TBJ.setBounds(251, 100, 60, 23);
+
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel23.setText("gram");
+        jLabel23.setName("jLabel23"); // NOI18N
+        FormInput.add(jLabel23);
+        jLabel23.setBounds(314, 100, 30, 23);
+
+        jLabel24.setText("Diagnosa :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        FormInput.add(jLabel24);
+        jLabel24.setBounds(345, 100, 62, 23);
+
+        Diagnosa.setToolTipText("Diagnosa untuk cetak versi kehamilan, mis. G1P0A0 uk 26-27 minggu");
+        Diagnosa.setHighlighter(null);
+        Diagnosa.setName("Diagnosa"); // NOI18N
+        Diagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DiagnosaKeyPressed(evt);
+            }
+        });
+        FormInput.add(Diagnosa);
+        Diagnosa.setBounds(411, 100, 240, 23);
+
+        jLabel14.setForeground(new java.awt.Color(120, 120, 120));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel14.setText("(vital sign otomatis dari pemeriksaan terakhir; kehamilan, tafsiran BJ dan diagnosa hanya untuk cetak versi kehamilan)");
+        jLabel14.setName("jLabel14"); // NOI18N
+        FormInput.add(jLabel14);
+        jLabel14.setBounds(74, 130, 580, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -567,9 +759,7 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
             Valid.textKosong(NoSurat,"No.Surat");
         }else if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"pasien");
-        }else if(Kehamilan.getText().trim().equals("")){
-            Valid.textKosong(Kehamilan,"Kehamilan");
-        }else{
+                }else{
             if(Sequel.menyimpantf("surat_keterangan_layak_terbang","?,?,?,?","No.Surat",4,new String[]{
                     NoSurat.getText(),TNoRw.getText(),Valid.SetTgl(TanggalPeriksa.getSelectedItem()+""),Kehamilan.getText()
             })==true){
@@ -623,9 +813,7 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
             Valid.textKosong(NoSurat,"No.Surat");
         }else if(TNoRw.getText().trim().equals("")||TPasien.getText().trim().equals("")){
             Valid.textKosong(TNoRw,"pasien");
-        }else if(Kehamilan.getText().trim().equals("")){
-            Valid.textKosong(Kehamilan,"Kehamilan");
-        }else{
+                }else{
             if(tbObat.getSelectedRow()!= -1){
                 if(Sequel.mengedittf("surat_keterangan_layak_terbang","no_surat=?","no_surat=?,no_rawat=?,tanggal_periksa=?,kehamilan=?",5,new String[]{
                     NoSurat.getText(),TNoRw.getText(),Valid.SetTgl(TanggalPeriksa.getSelectedItem()+""),Kehamilan.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
@@ -771,32 +959,12 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
     }//GEN-LAST:event_tbObatKeyReleased
 
     private void MnCetakSuratKeteranganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratKeteranganActionPerformed
-       if(TPasien.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();         
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs());    
-                finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-                param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),6).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()));  
-                param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-                Valid.MyReportqry("rptSuratLayakTerbang.jasper","report","::[ Surat Keterangan Layak Terbang ]::",
-                        "select surat_keterangan_layak_terbang.no_surat,surat_keterangan_layak_terbang.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
-                        "pasien.alamat,kelurahan.nm_kel,kecamatan.nm_kec,kabupaten.nm_kab,propinsi.nm_prop,pasien.jk,pasien.pekerjaan,reg_periksa.umurdaftar,"+
-                        "reg_periksa.sttsumur,surat_keterangan_layak_terbang.tanggal_periksa,surat_keterangan_layak_terbang.kehamilan,reg_periksa.kd_dokter,"+
-                        "dokter.nm_dokter from surat_keterangan_layak_terbang inner join reg_periksa on surat_keterangan_layak_terbang.no_rawat=reg_periksa.no_rawat "+
-                        "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter=reg_periksa.kd_dokter "+
-                        "inner join kelurahan on pasien.kd_kel=kelurahan.kd_kel inner join kecamatan on pasien.kd_kec=kecamatan.kd_kec "+
-                        "inner join kabupaten on pasien.kd_kab=kabupaten.kd_kab inner join propinsi on pasien.kd_prop=propinsi.kd_prop "+
-                        "where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
-                this.setCursor(Cursor.getDefaultCursor());  
-       }
+        cetak("rptSuratLayakTerbangHC.jasper","::[ Surat Keterangan Layak Terbang ]::");
     }//GEN-LAST:event_MnCetakSuratKeteranganActionPerformed
+
+    private void MnCetakSuratKehamilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratKehamilanActionPerformed
+        cetak("rptSuratLayakTerbangHamil.jasper","::[ Surat Keterangan Layak Terbang Kehamilan ]::");
+    }//GEN-LAST:event_MnCetakSuratKehamilanActionPerformed
 
     private void DTPCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DTPCari1ActionPerformed
         // TODO add your handling code here:
@@ -807,8 +975,36 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
     }//GEN-LAST:event_DTPCari2ActionPerformed
 
     private void KehamilanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KehamilanKeyPressed
-        Valid.pindah(evt,TanggalPeriksa,BtnSimpan);
+        Valid.pindah(evt,TanggalPeriksa,Suhu);
     }//GEN-LAST:event_KehamilanKeyPressed
+
+    private void SuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SuhuKeyPressed
+        Valid.pindah(evt,Kehamilan,Berat);
+    }//GEN-LAST:event_SuhuKeyPressed
+
+    private void BeratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BeratKeyPressed
+        Valid.pindah(evt,Suhu,SpO2);
+    }//GEN-LAST:event_BeratKeyPressed
+
+    private void SpO2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SpO2KeyPressed
+        Valid.pindah(evt,Berat,Tensi);
+    }//GEN-LAST:event_SpO2KeyPressed
+
+    private void TensiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TensiKeyPressed
+        Valid.pindah(evt,SpO2,Nadi);
+    }//GEN-LAST:event_TensiKeyPressed
+
+    private void NadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NadiKeyPressed
+        Valid.pindah(evt,Tensi,TBJ);
+    }//GEN-LAST:event_NadiKeyPressed
+
+    private void TBJKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBJKeyPressed
+        Valid.pindah(evt,Nadi,Diagnosa);
+    }//GEN-LAST:event_TBJKeyPressed
+
+    private void DiagnosaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DiagnosaKeyPressed
+        Valid.pindah(evt,TBJ,BtnSimpan);
+    }//GEN-LAST:event_DiagnosaKeyPressed
 
     /**
     * @param args the command line arguments
@@ -841,6 +1037,7 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.TextBox Kehamilan;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnCetakSuratKehamilan;
     private javax.swing.JMenuItem MnCetakSuratKeterangan;
     private widget.TextBox NoSurat;
     private javax.swing.JPanel PanelInput;
@@ -864,6 +1061,27 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbObat;
+    private widget.Label jLabel9;
+    private widget.TextBox Suhu;
+    private widget.Label jLabel10;
+    private widget.Label jLabel11;
+    private widget.TextBox Berat;
+    private widget.Label jLabel12;
+    private widget.Label jLabel15;
+    private widget.TextBox SpO2;
+    private widget.Label jLabel16;
+    private widget.Label jLabel17;
+    private widget.TextBox Tensi;
+    private widget.Label jLabel18;
+    private widget.Label jLabel20;
+    private widget.TextBox Nadi;
+    private widget.Label jLabel21;
+    private widget.Label jLabel22;
+    private widget.TextBox TBJ;
+    private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.TextBox Diagnosa;
+    private widget.Label jLabel14;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
@@ -919,6 +1137,13 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
         TPasien.setText("");
         NoSurat.setText("");
         Kehamilan.setText("");
+        Suhu.setText("");
+        Berat.setText("");
+        SpO2.setText("");
+        Tensi.setText("");
+        Nadi.setText("");
+        TBJ.setText("");
+        Diagnosa.setText("");
         TanggalPeriksa.setDate(new Date());
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(surat_keterangan_layak_terbang.no_surat,3),signed)),0) from surat_keterangan_layak_terbang where surat_keterangan_layak_terbang.tanggal_periksa='"+Valid.SetTgl(TanggalPeriksa.getSelectedItem()+"")+"' ",
                 "SKLT"+TanggalPeriksa.getSelectedItem().toString().substring(6,10)+TanggalPeriksa.getSelectedItem().toString().substring(3,5)+TanggalPeriksa.getSelectedItem().toString().substring(0,2),3,NoSurat); 
@@ -933,8 +1158,118 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
             Valid.SetTgl(TanggalPeriksa,tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            Kehamilan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());      
+            Kehamilan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5)==null?"":tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            TBJ.setText("");
+            Diagnosa.setText("");
+            isiPemeriksaan();
         }
+    }
+
+    /** Isi suhu, berat, SpO2, tensi dan nadi dari pemeriksaan terakhir (ralan/ranap) no.rawat ini, diagnosa dari diagnosa utama. */
+    private void isiPemeriksaan(){
+        Suhu.setText("");
+        Berat.setText("");
+        SpO2.setText("");
+        Tensi.setText("");
+        Nadi.setText("");
+        try {
+            ps=koneksi.prepareStatement(
+                    "select suhu_tubuh,berat,spo2,tensi,nadi from ("+
+                    "select pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.berat,"+
+                    "pemeriksaan_ralan.spo2,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi from pemeriksaan_ralan where pemeriksaan_ralan.no_rawat=? "+
+                    "union all select pemeriksaan_ranap.tgl_perawatan,pemeriksaan_ranap.jam_rawat,pemeriksaan_ranap.suhu_tubuh,pemeriksaan_ranap.berat,"+
+                    "pemeriksaan_ranap.spo2,pemeriksaan_ranap.tensi,pemeriksaan_ranap.nadi from pemeriksaan_ranap where pemeriksaan_ranap.no_rawat=?"+
+                    ") as periksa order by tgl_perawatan desc,jam_rawat desc limit 1");
+            try {
+                ps.setString(1,TNoRw.getText());
+                ps.setString(2,TNoRw.getText());
+                rs=ps.executeQuery();
+                if(rs.next()){
+                    Suhu.setText(rs.getString("suhu_tubuh")==null?"":rs.getString("suhu_tubuh"));
+                    Berat.setText(rs.getString("berat")==null?"":rs.getString("berat"));
+                    SpO2.setText(rs.getString("spo2")==null?"":rs.getString("spo2"));
+                    Tensi.setText(rs.getString("tensi")==null?"":rs.getString("tensi"));
+                    Nadi.setText(rs.getString("nadi")==null?"":rs.getString("nadi"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
+        if(Diagnosa.getText().trim().equals("")){
+            Diagnosa.setText(Sequel.cariIsi("select penyakit.nm_penyakit from diagnosa_pasien inner join penyakit on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "+
+                    "where diagnosa_pasien.no_rawat=? order by diagnosa_pasien.prioritas limit 1",TNoRw.getText()));
+        }
+    }
+
+    /** Cetak surat layak terbang (format Health Certificate) untuk surat yang dipilih pada no.rawat ini. */
+    private void cetak(String report,String judul){
+        if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+            return;
+        }
+        // surat yang dicetak: yang dipilih di tabel, atau surat terbaru no.rawat ini
+        String noSuratCetak="";
+        try (PreparedStatement psSurat=koneksi.prepareStatement(
+                "select surat_keterangan_layak_terbang.no_surat from surat_keterangan_layak_terbang where surat_keterangan_layak_terbang.no_rawat=? "+
+                "order by surat_keterangan_layak_terbang.no_surat=? desc,surat_keterangan_layak_terbang.no_surat desc limit 1")){
+            psSurat.setString(1,TNoRw.getText());
+            psSurat.setString(2,NoSurat.getText());
+            try (ResultSet rsSurat=psSurat.executeQuery()){
+                if(rsSurat.next()){
+                    noSuratCetak=rsSurat.getString(1);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : "+e);
+        }
+        if(noSuratCetak.equals("")){
+            JOptionPane.showMessageDialog(null,"Surat untuk pasien ini belum disimpan.\nSimpan dulu supaya QR code bisa diverifikasi.");
+            return;
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars",akses.getnamars());
+        param.put("alamatrs",akses.getalamatrs());
+        param.put("kotars",akses.getkabupatenrs());
+        param.put("propinsirs",akses.getpropinsirs());
+        param.put("kontakrs",akses.getkontakrs());
+        param.put("emailrs",akses.getemailrs());
+        param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+        param.put("suhu",Suhu.getText().trim());
+        param.put("berat",Berat.getText().trim());
+        param.put("spo2",SpO2.getText().trim());
+        param.put("tensi",Tensi.getText().trim());
+        param.put("nadi",Nadi.getText().trim());
+        param.put("tbj",TBJ.getText().trim());
+        param.put("diagnosa",Diagnosa.getText().trim());
+        // QR verifikasi keaslian surat, dibaca verifyPDF (jenis 'sklt' di dokumen.php)
+        param.put("finger","https://apps.rspelitakasih.id/verifyPDF/?id="+EnkripsiAES.encrypt("{'x':'sklt','t':'"+noSuratCetak+"'}"));
+        // umur: di bawah 17 tahun ditulis tahun & bulan (mis. 1 Tahun 8 Bulan), selebihnya tahun saja
+        Valid.MyReportqry(report,"report",judul,
+                "select surat_keterangan_layak_terbang.no_surat,surat_keterangan_layak_terbang.tanggal_periksa,surat_keterangan_layak_terbang.kehamilan,"+
+                "pasien.nm_pasien,pasien.tmp_lahir,pasien.tgl_lahir,pasien.jk,pasien.alamat,dokter.nm_dokter,ifnull(spesialis.nm_sps,'') as nm_sps,dokter.no_ijn_praktek,"+
+                "case when timestampdiff(year,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa)>=17 "+
+                "then concat(timestampdiff(year,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),' Tahun') "+
+                "when timestampdiff(year,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa)=0 "+
+                "then concat(timestampdiff(month,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),' Bulan') "+
+                "when mod(timestampdiff(month,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),12)=0 "+
+                "then concat(timestampdiff(year,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),' Tahun') "+
+                "else concat(timestampdiff(year,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),' Tahun ',"+
+                "mod(timestampdiff(month,pasien.tgl_lahir,surat_keterangan_layak_terbang.tanggal_periksa),12),' Bulan') end as umur "+
+                "from surat_keterangan_layak_terbang inner join reg_periksa on surat_keterangan_layak_terbang.no_rawat=reg_periksa.no_rawat "+
+                "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter=reg_periksa.kd_dokter "+
+                "left join spesialis on dokter.kd_sps=spesialis.kd_sps "+
+                "where surat_keterangan_layak_terbang.no_surat='"+noSuratCetak+"' ",param);
+        this.setCursor(Cursor.getDefaultCursor());
     }
 
     private void isRawat() {
@@ -954,12 +1289,13 @@ public final class SuratKeteranganLayakTerbang extends javax.swing.JDialog {
         TPasien.setText(pasien);
         ChkInput.setSelected(true);
         isForm();
+        isiPemeriksaan();
     }
     
     private void isForm(){
         if(ChkInput.isSelected()==true){
             ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH,96));
+            PanelInput.setPreferredSize(new Dimension(WIDTH,156));
             FormInput.setVisible(true);      
             ChkInput.setVisible(true);
         }else if(ChkInput.isSelected()==false){           

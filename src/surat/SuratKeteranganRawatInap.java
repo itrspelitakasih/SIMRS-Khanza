@@ -38,6 +38,7 @@ import komunikasi.GoWAService;
  * @author salimmulyana
  */
 public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
+    private static volatile boolean kolomSiap=false;
     private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
@@ -52,6 +53,11 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
     public SuratKeteranganRawatInap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        if(!kolomSiap){
+            // format nomor NNN/KODE/RJ-RSPK/BULAN_ROMAWI/TAHUN lebih panjang dari kolom bawaan Khanza
+            NomorSuratRSPK.lebarkanKolom(koneksi,"surat_keterangan_rawat_inap",30);
+            kolomSiap=true;
+        }
         this.setLocation(8,1);
         setSize(628,674);
         
@@ -890,16 +896,9 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
                               "and pasien.perusahaan_pasien=perusahaan_pasien.kode_perusahaan and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
                               "where reg_periksa.no_rawat='"+TNoRw.getText()+"' ",param);
                 //GENERATE WAHA KIRIM PDF//
-            String pesan = "Halo *"+TPasien.getText()+"* 👋\n\n"
-                    + "Berikut Surat Keterangan Rawat Inap Anda.\n\n"
-                    + "🔐 Password PDF: tanggal lahir (format: ddMMyyyy)\n\n"
-                    + "⚠️ Pesan ini merupakan notifikasi otomatis dari sistem.\n"
-                    + "Nomor ini tidak dapat menerima atau membalas pesan.\n\n"
-                    + "Terima kasih.\n"
-                    + akses.getnamars() + "\n";
-
             String modePassword = CbPassword.getSelectedItem().toString();
             boolean pakaiPassword = modePassword.equalsIgnoreCase("Password");
+            String pesan = GoWAService.pesanSurat(TPasien.getText(), "Surat Keterangan Rawat Inap", pakaiPassword);
 
             boolean sukses = GoWAService.kirimDariNoRawat(
                     "rptSuratKeteranganRawatInapRSPK.pdf",
@@ -1095,7 +1094,7 @@ public final class SuratKeteranganRawatInap extends javax.swing.JDialog {
 
             // Query untuk mencari nomor terakhir
             String query = "SELECT IFNULL(MAX(CAST(SUBSTRING_INDEX(no_surat, '/', 1) AS UNSIGNED)), 0) "
-                    + "FROM surat_keterangan_sehat "
+                    + "FROM surat_keterangan_rawat_inap "
                     + "WHERE no_surat LIKE '%" + formatPattern + "'";
 
             // Eksekusi query secara manual
