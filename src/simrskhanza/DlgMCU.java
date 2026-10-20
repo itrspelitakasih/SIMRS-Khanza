@@ -579,6 +579,13 @@ public final class DlgMCU extends javax.swing.JDialog {
         TNoReg.setDocument(new batasInput((byte)8).getKata(TNoReg));
         TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
         TNoRM.setDocument(new batasInput((byte)15).getKata(TNoRM));
+        // foto pasien ikut berganti setiap No.RM berubah (pilih pasien, klik tabel, atau ketik)
+        timerFoto.setRepeats(false);
+        TNoRM.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+            @Override public void insertUpdate(javax.swing.event.DocumentEvent e){timerFoto.restart();}
+            @Override public void removeUpdate(javax.swing.event.DocumentEvent e){timerFoto.restart();}
+            @Override public void changedUpdate(javax.swing.event.DocumentEvent e){timerFoto.restart();}
+        });
         AsalRujukan.setDocument(new batasInput((byte)60).getKata(AsalRujukan));
         KdDokter.setDocument(new batasInput((byte)20).getKata(KdDokter));
         kdpnj.setDocument(new batasInput((byte)3).getKata(kdpnj));
@@ -1167,6 +1174,9 @@ public final class DlgMCU extends javax.swing.JDialog {
         jLabel31 = new widget.Label();
         NoKa = new widget.TextBox();
         btnCekBridging = new widget.Button();
+        LFotoPasien = new widget.Label();
+        BtnUpdateFoto = new widget.Button();
+        BtnRefreshFoto = new widget.Button();
         ChkInput = new widget.CekBox();
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
@@ -6197,10 +6207,10 @@ public final class DlgMCU extends javax.swing.JDialog {
 
         BtnPerusahaanPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
         BtnPerusahaanPasien.setMnemonic('U');
-        BtnPerusahaanPasien.setText("Prsh & HP");
-        BtnPerusahaanPasien.setToolTipText("Alt+U - Update Perusahaan & No.HP Pasien");
+        BtnPerusahaanPasien.setText("Update Data");
+        BtnPerusahaanPasien.setToolTipText("Alt+U - Update perusahaan, No.HP, NIK & NRP pasien");
         BtnPerusahaanPasien.setName("BtnPerusahaanPasien"); // NOI18N
-        BtnPerusahaanPasien.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnPerusahaanPasien.setPreferredSize(new java.awt.Dimension(120, 30));
         BtnPerusahaanPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPerusahaanPasienActionPerformed(evt);
@@ -6732,6 +6742,38 @@ public final class DlgMCU extends javax.swing.JDialog {
         });
         FormInput.add(btnCekBridging);
         btnCekBridging.setBounds(852, 102, 28, 23);
+
+        LFotoPasien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 200, 180)));
+        LFotoPasien.setForeground(new java.awt.Color(120, 120, 120));
+        LFotoPasien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LFotoPasien.setText("Foto Pasien");
+        LFotoPasien.setToolTipText("Foto pasien dari Data Pasien");
+        LFotoPasien.setName("LFotoPasien"); // NOI18N
+        FormInput.add(LFotoPasien);
+        LFotoPasien.setBounds(890, 6, 118, 118);
+
+        BtnUpdateFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnUpdateFoto.setText("Update Foto");
+        BtnUpdateFoto.setToolTipText("Ambil/ganti foto pasien (sama seperti tombol Ambil di Data Pasien)");
+        BtnUpdateFoto.setName("BtnUpdateFoto"); // NOI18N
+        BtnUpdateFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUpdateFotoActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnUpdateFoto);
+        BtnUpdateFoto.setBounds(890, 130, 118, 26);
+
+        BtnRefreshFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png"))); // NOI18N
+        BtnRefreshFoto.setToolTipText("Muat ulang foto pasien setelah foto diambil");
+        BtnRefreshFoto.setName("BtnRefreshFoto"); // NOI18N
+        BtnRefreshFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefreshFotoActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnRefreshFoto);
+        BtnRefreshFoto.setBounds(1011, 130, 28, 26);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -11201,6 +11243,86 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_btnCekBridgingActionPerformed
 
+    private void BtnUpdateFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateFotoActionPerformed
+        if(TNoRM.getText().trim().equals("")||TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data pasien terlebih dahulu...!!!!");
+            TNoRM.requestFocus();
+        }else{
+            // sama dengan tombol Ambil di Data Pasien: halaman web pengambilan foto, lalu tekan Refresh
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.menyimpan2("personal_pasien","?,'',''",1,new String[]{TNoRM.getText().trim()});
+            Valid.panggilUrl("photopasien/login.php?act=login&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&norm="+TNoRM.getText().trim());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnUpdateFotoActionPerformed
+
+    private void BtnRefreshFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefreshFotoActionPerformed
+        tampilFoto();
+    }//GEN-LAST:event_BtnRefreshFotoActionPerformed
+
+    /** Jeda singkat setelah No.RM berubah supaya foto tidak dimuat ulang di setiap ketikan. */
+    private final javax.swing.Timer timerFoto=new javax.swing.Timer(400,e -> tampilFoto());
+    private int urutanFoto=0;
+
+    /** Tampilkan foto pasien (personal_pasien.gambar di server web hybrid), dimuat di background. */
+    private void tampilFoto(){
+        final String norm=TNoRM.getText().trim();
+        final int urutan=++urutanFoto;
+        LFotoPasien.setIcon(null);
+        if(norm.equals("")){
+            LFotoPasien.setText("Foto Pasien");
+            return;
+        }
+        LFotoPasien.setText("Memuat...");
+        new javax.swing.SwingWorker<javax.swing.ImageIcon,Void>(){
+            @Override
+            protected javax.swing.ImageIcon doInBackground() throws Exception {
+                String gambar="";
+                try (PreparedStatement psFoto=koneksi.prepareStatement("select personal_pasien.gambar from personal_pasien where personal_pasien.no_rkm_medis=?")){
+                    psFoto.setString(1,norm);
+                    try (ResultSet rsFoto=psFoto.executeQuery()){
+                        if(rsFoto.next()&&rsFoto.getString(1)!=null){
+                            gambar=rsFoto.getString(1).trim();
+                        }
+                    }
+                }
+                if(gambar.equals("")||gambar.equals("-")){
+                    return null;
+                }
+                java.net.URLConnection con=new java.net.URL("http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+koneksiDB.HYBRIDWEB()+
+                        "/photopasien/"+gambar.replace(" ","%20")).openConnection();
+                con.setConnectTimeout(3000);
+                con.setReadTimeout(5000);
+                java.awt.image.BufferedImage img;
+                try (java.io.InputStream in=con.getInputStream()){
+                    img=javax.imageio.ImageIO.read(in);
+                }
+                if(img==null){
+                    return null;
+                }
+                // perkecil sesuai kotak foto dengan perbandingan sisi tetap
+                double skala=Math.min(114.0/img.getWidth(),114.0/img.getHeight());
+                return new javax.swing.ImageIcon(img.getScaledInstance(Math.max(1,(int)(img.getWidth()*skala)),Math.max(1,(int)(img.getHeight()*skala)),java.awt.Image.SCALE_SMOOTH));
+            }
+
+            @Override
+            protected void done() {
+                if(urutan!=urutanFoto){
+                    return; // No.RM sudah berganti lagi
+                }
+                try {
+                    javax.swing.ImageIcon foto=get();
+                    LFotoPasien.setIcon(foto);
+                    LFotoPasien.setText(foto==null?"Belum ada foto":"");
+                } catch (Exception e) {
+                    System.out.println("Notif foto pasien : "+e);
+                    LFotoPasien.setIcon(null);
+                    LFotoPasien.setText("Foto gagal dimuat");
+                }
+            }
+        }.execute();
+    }
+
     private void NoKaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoKaKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             btnCekBridgingActionPerformed(null);
@@ -15574,6 +15696,9 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.TextBox AsalRujukan;
+    private widget.Button BtnRefreshFoto;
+    private widget.Button BtnUpdateFoto;
+    private widget.Label LFotoPasien;
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;

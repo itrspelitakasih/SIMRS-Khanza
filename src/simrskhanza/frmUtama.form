@@ -197,7 +197,7 @@
                           </Border>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Ketik ulang kode pada gambar ini"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Hitung hasil penjumlahan pada gambar ini"/>
                         <Property name="name" type="java.lang.String" value="LblCaptcha" noResource="true"/>
                       </Properties>
                       <Constraints>
@@ -226,7 +226,7 @@
                     </Component>
                     <Component class="widget.Label" name="LblKodeCaptcha">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Kode :"/>
+                        <Property name="text" type="java.lang.String" value="Hasil :"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial" size="11" style="0"/>
                         </Property>
@@ -240,7 +240,7 @@
                     </Component>
                     <Component class="widget.TextBox" name="TCaptcha">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value="Silahkan masukkan kode captcha"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Silahkan masukkan hasil penjumlahan"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial" size="14" style="1"/>
                         </Property>

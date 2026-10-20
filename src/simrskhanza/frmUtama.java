@@ -1284,10 +1284,9 @@ public class frmUtama extends javax.swing.JFrame {
     private int jmlmenu=0,grid=0,tinggi=0,i=0,menuawal=0;
     private String coder_nik="",pilihpage="",judulform="",tampilkantni=Sequel.cariIsi("select set_tni_polri.tampilkan_tni_polri from set_tni_polri"),
             AKTIFKANTRACKSQL=koneksiDB.AKTIFKANTRACKSQL();
-    // captcha login: salah 3x (password/captcha) login dikunci 1 menit, disimpan di Preferences agar tidak lepas saat aplikasi dibuka ulang
+    // captcha login (soal penjumlahan): salah 3x (password/captcha) login dikunci 1 menit, disimpan di Preferences agar tidak lepas saat aplikasi dibuka ulang
     private static final int MAKS_GAGAL_LOGIN=3;
     private static final long LAMA_KUNCI_LOGIN=60000;
-    private static final String HURUF_CAPTCHA="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     private final java.security.SecureRandom acak=new java.security.SecureRandom();
     private final java.util.prefs.Preferences prefLogin=java.util.prefs.Preferences.userNodeForPackage(frmUtama.class);
     private String kodeCaptcha="";
@@ -1304,11 +1303,12 @@ public class frmUtama extends javax.swing.JFrame {
         edAdmin.setDocument(new batasInput((byte)100).getKata(edAdmin));
         edPwd.setDocument(new batasInput((byte)100).getKata(edPwd));
         DlgLogin.setSize(299,244);
-        TCaptcha.setDocument(new batasInput((byte)6).getKata(TCaptcha));
+        TCaptcha.setDocument(new batasInput((byte)3).getOnlyAngka(TCaptcha));
         buatCaptcha();
         DlgLogin.setLocationRelativeTo(null);
         jMenu1.setOpaque(false);
         tambahMenuTemplatePesanWA();
+        tambahMenuSuratMenemaniBerobat();
         jMenu5.setOpaque(false);
         jMenu6.setOpaque(false);
         jMenu7.setOpaque(false);
@@ -2036,7 +2036,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         LblCaptcha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(175, 175, 100)));
         LblCaptcha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblCaptcha.setToolTipText("Ketik ulang kode pada gambar ini");
+        LblCaptcha.setToolTipText("Hitung hasil penjumlahan pada gambar ini");
         LblCaptcha.setName("LblCaptcha"); // NOI18N
         panelGlass1.add(LblCaptcha);
         LblCaptcha.setBounds(80, 70, 152, 30);
@@ -2053,13 +2053,13 @@ public class frmUtama extends javax.swing.JFrame {
         panelGlass1.add(BtnCaptcha);
         BtnCaptcha.setBounds(237, 70, 36, 30);
 
-        LblKodeCaptcha.setText("Kode :");
+        LblKodeCaptcha.setText("Hasil :");
         LblKodeCaptcha.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         LblKodeCaptcha.setName("LblKodeCaptcha"); // NOI18N
         panelGlass1.add(LblKodeCaptcha);
         LblKodeCaptcha.setBounds(2, 106, 75, 23);
 
-        TCaptcha.setToolTipText("Silahkan masukkan kode captcha");
+        TCaptcha.setToolTipText("Silahkan masukkan hasil penjumlahan");
         TCaptcha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         TCaptcha.setName("TCaptcha"); // NOI18N
         TCaptcha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -8817,9 +8817,9 @@ public class frmUtama extends javax.swing.JFrame {
             DlgLogin.dispose();
             bukaLogin();
         }else if(TCaptcha.getText().trim().equals("")){
-            Valid.textKosong(TCaptcha,"Kode Captcha");
-        }else if(!TCaptcha.getText().trim().equalsIgnoreCase(kodeCaptcha)){
-            loginGagal("kode captcha salah",TCaptcha);
+            Valid.textKosong(TCaptcha,"Hasil Penjumlahan");
+        }else if(!TCaptcha.getText().trim().equals(kodeCaptcha)){
+            loginGagal("hasil penjumlahan salah",TCaptcha);
         }else {
             try {   
                 cacheigd.reset();
@@ -9420,11 +9420,9 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     private void buatCaptcha(){
-        StringBuilder kode=new StringBuilder();
-        for(int a=0;a<5;a++){
-            kode.append(HURUF_CAPTCHA.charAt(acak.nextInt(HURUF_CAPTCHA.length())));
-        }
-        kodeCaptcha=kode.toString();
+        int angka1=1+acak.nextInt(9),angka2=1+acak.nextInt(9);
+        kodeCaptcha=String.valueOf(angka1+angka2);
+        String soal=angka1+" + "+angka2+" = ?";
 
         int lebar=150,tinggi=28;
         java.awt.image.BufferedImage gambar=new java.awt.image.BufferedImage(lebar,tinggi,java.awt.image.BufferedImage.TYPE_INT_RGB);
@@ -9441,13 +9439,16 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             g.drawLine(acak.nextInt(lebar),acak.nextInt(tinggi),acak.nextInt(lebar),acak.nextInt(tinggi));
         }
         g.setFont(new java.awt.Font("Arial",java.awt.Font.BOLD,20));
-        for(int a=0;a<kodeCaptcha.length();a++){
+        String[] bagian=soal.split(" ");
+        int x=12;
+        for(int a=0;a<bagian.length;a++){
             java.awt.geom.AffineTransform awal=g.getTransform();
-            int x=14+(a*26),y=21+acak.nextInt(4);
-            g.rotate(Math.toRadians(acak.nextInt(41)-20),x+7,y-7);
+            int y=21+acak.nextInt(4);
+            g.rotate(Math.toRadians(acak.nextInt(21)-10),x+7,y-7);
             g.setColor(new java.awt.Color(acak.nextInt(110),acak.nextInt(110),acak.nextInt(140)));
-            g.drawString(String.valueOf(kodeCaptcha.charAt(a)),x,y);
+            g.drawString(bagian[a],x,y);
             g.setTransform(awal);
+            x+=g.getFontMetrics().stringWidth(bagian[a])+12;
         }
         g.dispose();
         LblCaptcha.setIcon(new ImageIcon(gambar));
@@ -16027,6 +16028,29 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         }
         frmAsistenAI.tampil(area);
     }//GEN-LAST:event_MnAsistenAIMouseClicked
+
+    /** Tombol menu utama Surat Keterangan Menemani Berobat (hak akses sama dengan Surat Keterangan Berobat). */
+    private final widget.ButtonBig btnSuratKeteranganMenemaniBerobat=new widget.ButtonBig();
+
+    private void tambahMenuSuratMenemaniBerobat(){
+        btnSuratKeteranganMenemaniBerobat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/register_11421976.png")));
+        btnSuratKeteranganMenemaniBerobat.setText("Surat Keterangan Menemani Berobat");
+        btnSuratKeteranganMenemaniBerobat.setIconTextGap(0);
+        btnSuratKeteranganMenemaniBerobat.setName("btnSuratKeteranganMenemaniBerobat");
+        btnSuratKeteranganMenemaniBerobat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKeteranganMenemaniBerobat.addActionListener(evt -> {
+            isTutup();
+            DlgHome.dispose();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            surat.SuratKeteranganMenemaniBerobat aplikasi=new surat.SuratKeteranganMenemaniBerobat(this,false);
+            aplikasi.isCek();
+            aplikasi.emptTeks();
+            aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+            aplikasi.setLocationRelativeTo(PanelUtama);
+            aplikasi.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        });
+    }
 
     /** Tombol menu utama Template Pesan WA (kategori [U] dan pencarian menu), khusus Admin Utama. */
     private final widget.ButtonBig btnTemplatePesanWA=new widget.ButtonBig();
@@ -31761,6 +31785,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnSuratKeteranganBerobat);
                 jmlmenu++;
             }
+
+            if(akses.getsurat_keterangan_berobat()==true){
+                Panelmenu.add(btnSuratKeteranganMenemaniBerobat);
+                jmlmenu++;
+            }
             
             if(akses.getsurat_kewaspadaan_kesehatan()==true){
                 Panelmenu.add(btnSuratKewaspadaanKesehatan);
@@ -37838,6 +37867,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         
         if(akses.getsurat_keterangan_berobat()==true){
             Panelmenu.add(btnSuratKeteranganBerobat);
+            jmlmenu++;
+        }
+
+        if(akses.getsurat_keterangan_berobat()==true){
+            Panelmenu.add(btnSuratKeteranganMenemaniBerobat);
             jmlmenu++;
         }
         
@@ -46135,6 +46169,13 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         if(akses.getsurat_keterangan_berobat()==true){
             if(btnSuratKeteranganBerobat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnSuratKeteranganBerobat);
+                jmlmenu++;
+            }
+        }
+
+        if(akses.getsurat_keterangan_berobat()==true){
+            if(btnSuratKeteranganMenemaniBerobat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSuratKeteranganMenemaniBerobat);
                 jmlmenu++;
             }
         }

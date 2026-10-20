@@ -832,7 +832,9 @@ public final class SuratKeteranganMenemaniBerobat extends javax.swing.JDialog {
                 param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
                 Valid.MyReportqry("rptSuratMenemaniBerobat.jasper","report","::[ Surat Keterangan Menemani Berobat]::",
                         "select surat_keterangan_menemani_berobat.no_surat,surat_keterangan_menemani_berobat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"+
-                        "date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tgl_registrasi,pasien.namakeluarga as p_jawab,pasien.keluarga as hubunganpj,pasien.pekerjaanpj,"+
+                        "date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tgl_registrasi,pasien.namakeluarga as p_jawab,pasien.keluarga as hubunganpj,"+
+                        // pekerjaan PJ + NRP dari pasien.nip, mis. "TNI AD, NRP / 61221490"
+                        "concat_ws(', ',nullif(nullif(trim(pasien.pekerjaanpj),''),'-'),if(trim(pasien.nip) in ('','-'),null,concat('NRP / ',trim(pasien.nip)))) as pekerjaanpj,"+
                         "concat_ws(', ',nullif(trim(pasien.alamatpj),''),nullif(nullif(trim(pasien.kelurahanpj),''),'-'),nullif(nullif(trim(pasien.kecamatanpj),''),'-'),nullif(nullif(trim(pasien.kabupatenpj),''),'-')) as almt_pj,"+
                         "date_format(surat_keterangan_menemani_berobat.tanggal_surat,'%d-%m-%Y') as tanggal_surat,poliklinik.nm_poli,dokter.nm_dokter,dokter.no_ijn_praktek "+
                         "from surat_keterangan_menemani_berobat inner join reg_periksa on surat_keterangan_menemani_berobat.no_rawat=reg_periksa.no_rawat "+

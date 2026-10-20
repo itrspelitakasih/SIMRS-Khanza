@@ -1,7 +1,7 @@
 /*
  * DlgUpdatePerusahaanPasien.java
  *
- * Popup untuk mengubah perusahaan/instansi pasien dan nomor HP pasien
+ * Popup untuk mengubah perusahaan/instansi, nomor HP, NIK (no_ktp) dan NRP (nip) pasien
  * dari DlgReg, DlgIGD dan DlgMCU.
  */
 
@@ -38,8 +38,10 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     public DlgUpdatePerusahaanPasien(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setSize(560,175);
+        setSize(560,235);
         NoHP.setDocument(new batasInput((byte)40).getKata(NoHP));
+        NIK.setDocument(new batasInput((byte)20).getKata(NIK));
+        NRP.setDocument(new batasInput((byte)30).getKata(NRP));
     }
 
     /** This method is called from within the constructor to
@@ -62,6 +64,10 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         BtnPerusahaan = new widget.Button();
         jLabel5 = new widget.Label();
         NoHP = new widget.TextBox();
+        jLabel6 = new widget.Label();
+        NIK = new widget.TextBox();
+        jLabel7 = new widget.Label();
+        NRP = new widget.TextBox();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -70,7 +76,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Perusahaan & No.HP Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Data Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -137,6 +143,36 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         });
         FormInput.add(NoHP);
         NoHP.setBounds(99, 72, 200, 23);
+
+        jLabel6.setText("NIK :");
+        jLabel6.setName("jLabel6"); // NOI18N
+        FormInput.add(jLabel6);
+        jLabel6.setBounds(0, 102, 95, 23);
+
+        NIK.setToolTipText("NIK / No.KTP pasien (16 digit)");
+        NIK.setName("NIK"); // NOI18N
+        NIK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NIKKeyPressed(evt);
+            }
+        });
+        FormInput.add(NIK);
+        NIK.setBounds(99, 102, 200, 23);
+
+        jLabel7.setText("NRP :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        FormInput.add(jLabel7);
+        jLabel7.setBounds(0, 132, 95, 23);
+
+        NRP.setToolTipText("NRP/NIP pasien (pasien.nip), tampil di Surat Keterangan Menemani Berobat");
+        NRP.setName("NRP"); // NOI18N
+        NRP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NRPKeyPressed(evt);
+            }
+        });
+        FormInput.add(NRP);
+        NRP.setBounds(99, 132, 200, 23);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -242,8 +278,16 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPerusahaanKeyPressed
 
     private void NoHPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoHPKeyPressed
-        Valid.pindah(evt,BtnPerusahaan,BtnSimpan);
+        Valid.pindah(evt,BtnPerusahaan,NIK);
     }//GEN-LAST:event_NoHPKeyPressed
+
+    private void NIKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NIKKeyPressed
+        Valid.pindah(evt,NoHP,NRP);
+    }//GEN-LAST:event_NIKKeyPressed
+
+    private void NRPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NRPKeyPressed
+        Valid.pindah(evt,NIK,BtnSimpan);
+    }//GEN-LAST:event_NRPKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(TNoRM.getText().trim().equals("")){
@@ -252,12 +296,17 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
             Valid.textKosong(BtnPerusahaan,"Perusahaan/Instansi Pasien");
         }else if(NoHP.getText().trim().equals("")){
             Valid.textKosong(NoHP,"No.HP/Telp");
+        }else if(!NIK.getText().trim().equals("")&&!NIK.getText().trim().equals("-")&&!NIK.getText().trim().matches("[0-9]{16}")&&
+                JOptionPane.showConfirmDialog(this,"NIK biasanya 16 digit angka, sedangkan yang diisi \""+NIK.getText().trim()+"\".\nTetap simpan?",
+                        "Konfirmasi",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+            NIK.requestFocus();
         }else{
-            if(Sequel.mengedittf("pasien","no_rkm_medis=?","perusahaan_pasien=?,no_tlp=?",3,new String[]{
-                    KdPerusahaan.getText(),NoHP.getText().trim(),TNoRM.getText()
+            // pasien.nip dan no_ktp boleh dikosongkan; nip NOT NULL sehingga kosong disimpan sebagai ""
+            if(Sequel.mengedittf("pasien","no_rkm_medis=?","perusahaan_pasien=?,no_tlp=?,no_ktp=?,nip=?",5,new String[]{
+                    KdPerusahaan.getText(),NoHP.getText().trim(),NIK.getText().trim(),NRP.getText().trim(),TNoRM.getText()
                 })==true){
                 berhasil=true;
-                JOptionPane.showMessageDialog(this,"Perusahaan & No.HP pasien berhasil diupdate...!!!");
+                JOptionPane.showMessageDialog(this,"Data pasien berhasil diupdate...!!!");
                 dispose();
             }
         }
@@ -267,7 +316,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,NoHP,BtnKeluar);
+            Valid.pindah(evt,NRP,BtnKeluar);
         }
     }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -308,7 +357,11 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
+    private widget.Label jLabel6;
+    private widget.Label jLabel7;
     private widget.TextBox KdPerusahaan;
+    private widget.TextBox NIK;
+    private widget.TextBox NRP;
     private widget.TextBox NmPerusahaan;
     private widget.TextBox NoHP;
     private widget.TextBox TNoRM;
@@ -323,9 +376,11 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         KdPerusahaan.setText("");
         NmPerusahaan.setText("");
         NoHP.setText("");
+        NIK.setText("");
+        NRP.setText("");
         try {
             ps=koneksi.prepareStatement(
-                "select pasien.nm_pasien,pasien.perusahaan_pasien,pasien.no_tlp,"+
+                "select pasien.nm_pasien,pasien.perusahaan_pasien,pasien.no_tlp,pasien.no_ktp,pasien.nip,"+
                 "ifnull(perusahaan_pasien.nama_perusahaan,'') as nama_perusahaan "+
                 "from pasien left join perusahaan_pasien on perusahaan_pasien.kode_perusahaan=pasien.perusahaan_pasien "+
                 "where pasien.no_rkm_medis=?");
@@ -337,6 +392,8 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
                     KdPerusahaan.setText(rs.getString("perusahaan_pasien"));
                     NmPerusahaan.setText(rs.getString("nama_perusahaan"));
                     NoHP.setText(rs.getString("no_tlp"));
+                    NIK.setText(rs.getString("no_ktp")==null?"":rs.getString("no_ktp"));
+                    NRP.setText(rs.getString("nip")==null?"":rs.getString("nip"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);

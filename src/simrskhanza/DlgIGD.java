@@ -4547,10 +4547,10 @@ public final class DlgIGD extends javax.swing.JDialog {
 
         BtnPerusahaanPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
         BtnPerusahaanPasien.setMnemonic('U');
-        BtnPerusahaanPasien.setText("Prsh & HP");
-        BtnPerusahaanPasien.setToolTipText("Alt+U - Update Perusahaan & No.HP Pasien");
+        BtnPerusahaanPasien.setText("Update Data");
+        BtnPerusahaanPasien.setToolTipText("Alt+U - Update perusahaan, No.HP, NIK & NRP pasien");
         BtnPerusahaanPasien.setName("BtnPerusahaanPasien"); // NOI18N
-        BtnPerusahaanPasien.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnPerusahaanPasien.setPreferredSize(new java.awt.Dimension(120, 30));
         BtnPerusahaanPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPerusahaanPasienActionPerformed(evt);
