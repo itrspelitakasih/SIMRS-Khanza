@@ -135,6 +135,7 @@ import bridging.PCareMapingTindakanRanap;
 import bridging.PCarePesertaKegiatanKelompok;
 import informasi.InformasiAnalisaKamin;
 import laporan.DlgDkkSurveilansRalan;
+import laporan.DlgDkkSurveilansMingguan;
 import laporan.DlgFrekuensiPenyakitRanap;
 import laporan.DlgFrekuensiPenyakitRalan;
 import laporan.DlgDkkSurveilansRanap;
@@ -1513,6 +1514,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSurveilansRalan = new widget.ButtonBig();
         btnDiagnosa = new widget.ButtonBig();
         btnSurveilansRanap = new widget.ButtonBig();
+        btnSurveilansMingguan = new widget.ButtonBig();
         btnPnyTakMenularRanap = new widget.ButtonBig();
         btnPnyTakMenularRalan = new widget.ButtonBig();
         btnKunjunganRalan = new widget.ButtonBig();
@@ -3609,6 +3611,17 @@ public class frmUtama extends javax.swing.JFrame {
         btnSurveilansRanap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSurveilansRanapActionPerformed(evt);
+            }
+        });
+
+        btnSurveilansMingguan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Gnome-X-Office-Address-Book-48.png"))); // NOI18N
+        btnSurveilansMingguan.setText("Surveilans Mingguan");
+        btnSurveilansMingguan.setIconTextGap(0);
+        btnSurveilansMingguan.setName("btnSurveilansMingguan"); // NOI18N
+        btnSurveilansMingguan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSurveilansMingguan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSurveilansMingguanActionPerformed(evt);
             }
         });
 
@@ -11217,6 +11230,17 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         aplikasi.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSurveilansRanapActionPerformed
+
+    private void btnSurveilansMingguanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSurveilansMingguanActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgDkkSurveilansMingguan aplikasi=new DlgDkkSurveilansMingguan(this,false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSurveilansMingguanActionPerformed
 
     private void btnPnyTakMenularRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPnyTakMenularRanapActionPerformed
         isTutup();
@@ -25921,6 +25945,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ButtonBig btnSurveilansPD3I;
     private widget.ButtonBig btnSurveilansRalan;
     private widget.ButtonBig btnSurveilansRanap;
+    private widget.ButtonBig btnSurveilansMingguan;
     private widget.ButtonBig btnTagihanDokter;
     private widget.ButtonBig btnTagihanMasuk;
     private widget.ButtonBig btnTagihanObatBangsal;
@@ -27970,6 +27995,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
             if(akses.getsurveilans_ranap()==true){
                 Panelmenu.add(btnSurveilansRanap);
+                jmlmenu++;
+            }
+
+            if((akses.getsurveilans_ralan()==true)||(akses.getsurveilans_ranap()==true)){
+                Panelmenu.add(btnSurveilansMingguan);
                 jmlmenu++;
             }
 
@@ -34066,6 +34096,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
         if(akses.getsurveilans_ranap()==true){
             Panelmenu.add(btnSurveilansRanap);
+            jmlmenu++;
+        }
+
+        if((akses.getsurveilans_ralan()==true)||(akses.getsurveilans_ranap()==true)){
+            Panelmenu.add(btnSurveilansMingguan);
             jmlmenu++;
         }
 
@@ -40849,6 +40884,13 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnSurveilansRanap);
                 jmlmenu++;
             }                
+        }
+
+        if((akses.getsurveilans_ralan()==true)||(akses.getsurveilans_ranap()==true)){
+            if(btnSurveilansMingguan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSurveilansMingguan);
+                jmlmenu++;
+            }
         }
 
         if(akses.getpny_takmenular_ralan()==true){
