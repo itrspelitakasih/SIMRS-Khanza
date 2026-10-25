@@ -729,7 +729,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                                 }
                             }
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }else if(!tbObat.getValueAt(i,27).toString().equals("")){
                         try{
@@ -820,7 +820,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                                 }
                             }
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }
                 } catch (Exception e) {
@@ -945,7 +945,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                             System.out.println("Result JSON : "+json);
                             tbObat.setValueAt(false,i,0);
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }else if(!tbObat.getValueAt(i,27).toString().equals("")){
                         try{
@@ -1028,7 +1028,7 @@ public final class SatuSehatKirimMedicationStatement extends javax.swing.JDialog
                             System.out.println("Result JSON : "+json);
                             tbObat.setValueAt(false,i,0);
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }
                 } catch (Exception e) {

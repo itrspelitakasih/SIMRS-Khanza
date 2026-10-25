@@ -68,7 +68,7 @@
                                     $no             = 1;
                                     $totalCaraBayar = 0;
                                     $dataCaraBayar  = [];
-                                    $querycarabayar = bukaquery("select penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
+                                    $querycarabayar = bukaquery("select penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
                                     while($rsquerycarabayar = mysqli_fetch_array($querycarabayar)) {
                                         $totalCaraBayar += $rsquerycarabayar["jumlah"];
                                         $dataCaraBayar[] = [
@@ -118,7 +118,7 @@
                                     $no          = 1;
                                     $totalDokter = 0;
                                     $dataDokter  = [];
-                                    $querydokter = bukaquery("select dokter.nm_dokter,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by dokter.kd_dokter order by jumlah desc");
+                                    $querydokter = bukaquery("select dokter.nm_dokter,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by dokter.kd_dokter order by jumlah desc");
                                     while($rsquerydokter = mysqli_fetch_array($querydokter)) {
                                         $totalDokter += $rsquerydokter["jumlah"];
                                         $dataDokter[] = [
@@ -168,7 +168,7 @@
                                     $no          = 1;
                                     $totalPerujuk = 0;
                                     $dataPerujuk  = [];
-                                    $queryperujuk = bukaquery("select ifnull(rujuk_masuk.perujuk,'-') as perujuk,count(rujuk_masuk.no_rawat) as jumlah from rujuk_masuk inner join reg_periksa on rujuk_masuk.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by rujuk_masuk.perujuk order by jumlah desc");
+                                    $queryperujuk = bukaquery("select ifnull(rujuk_masuk.perujuk,'-') as perujuk,count(rujuk_masuk.no_rawat) as jumlah from rujuk_masuk inner join reg_periksa on rujuk_masuk.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by rujuk_masuk.perujuk order by jumlah desc");
                                     while($rsqueryperujuk = mysqli_fetch_array($queryperujuk)) {
                                         $totalPerujuk += $rsqueryperujuk["jumlah"];
                                         $dataPerujuk[] = [
@@ -220,7 +220,7 @@
                                     $totalTanggal   = 0;
                                     $dataTanggal    = [];
                                     $tickTanggal    = [];
-                                    $querytanggal = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
+                                    $querytanggal = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
                                     while($rsquerytanggal = mysqli_fetch_array($querytanggal)) {
                                         $totalTanggal += $rsquerytanggal["jumlah"];
                                         $dataTanggal[] = [$indexTanggal, (int)$rsquerytanggal["jumlah"]];
@@ -273,7 +273,7 @@
                                     $totalBulan  = 0;
                                     $dataBulan   = [];
                                     $tickBulan   = [];
-                                    $querybulan = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
+                                    $querybulan = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
                                     while($rsquerybulan = mysqli_fetch_array($querybulan)) {
                                         $totalBulan += $rsquerybulan["jumlah"];
                                         $dataBulan[] = [$indexBulan, (int)$rsquerybulan["jumlah"]];
@@ -326,7 +326,7 @@
                                     $totalTanggalBaru  = 0;
                                     $dataTanggalBaru   = [];
                                     $tickTanggalBaru   = [];
-                                    $querytanggalbaru = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.stts_daftar='Baru' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
+                                    $querytanggalbaru = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.stts_daftar='Baru' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
                                     while($rsquerytanggalbaru = mysqli_fetch_array($querytanggalbaru)) {
                                         $totalTanggalBaru += $rsquerytanggalbaru["jumlah"];
                                         $dataTanggalBaru[] = [$indexTanggalBaru, (int)$rsquerytanggalbaru["jumlah"]];
@@ -379,7 +379,7 @@
                                     $totalBulanBaru  = 0;
                                     $dataBulanBaru   = [];
                                     $tickBulanBaru   = [];
-                                    $querybulanbaru = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.stts_daftar='Baru' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
+                                    $querybulanbaru = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.stts_daftar='Baru' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
                                     while($rsquerybulanbaru = mysqli_fetch_array($querybulanbaru)) {
                                         $totalBulanBaru += $rsquerybulanbaru["jumlah"];
                                         $dataBulanBaru[] = [$indexBulanBaru, (int)$rsquerybulanbaru["jumlah"]];
@@ -432,7 +432,7 @@
                                     $totalTanggalLama  = 0;
                                     $dataTanggalLama   = [];
                                     $tickTanggalLama   = [];
-                                    $querytanggallama = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.stts_daftar='Lama' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
+                                    $querytanggallama = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.stts_daftar='Lama' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
                                     while($rsquerytanggallama = mysqli_fetch_array($querytanggallama)) {
                                         $totalTanggalLama += $rsquerytanggallama["jumlah"];
                                         $dataTanggalLama[] = [$indexTanggalLama, (int)$rsquerytanggallama["jumlah"]];
@@ -485,7 +485,7 @@
                                     $totalBulanLama  = 0;
                                     $dataBulanLama   = [];
                                     $tickBulanLama   = [];
-                                    $querybulanlama = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.stts_daftar='Lama' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
+                                    $querybulanlama = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.stts_daftar='Lama' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
                                     while($rsquerybulanlama = mysqli_fetch_array($querybulanlama)) {
                                         $totalBulanLama += $rsquerybulanlama["jumlah"];
                                         $dataBulanLama[] = [$indexBulanLama, (int)$rsquerybulanlama["jumlah"]];
@@ -536,7 +536,7 @@
                                     $no                    = 1;
                                     $totalStatusPelayanan  = 0;
                                     $dataStatusPelayanan   = [];
-                                    $querystatuspelayanan  = bukaquery("select case when reg_periksa.stts='Batal' then 'Batal' when reg_periksa.stts='Dirujuk' then 'Dirujuk' when reg_periksa.stts='Meninggal' then 'Meninggal' when reg_periksa.stts='Pulang Paksa' then 'Pulang Paksa' when reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') then 'Terlayani' end as status_pelayanan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli='IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by status_pelayanan order by field(status_pelayanan,'Batal','Dirujuk','Meninggal','Pulang Paksa','Terlayani')");
+                                    $querystatuspelayanan  = bukaquery("select case when reg_periksa.stts='Batal' then 'Batal' when reg_periksa.stts='Dirujuk' then 'Dirujuk' when reg_periksa.stts='Meninggal' then 'Meninggal' when reg_periksa.stts='Pulang Paksa' then 'Pulang Paksa' when reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') then 'Terlayani' end as status_pelayanan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by status_pelayanan order by field(status_pelayanan,'Batal','Dirujuk','Meninggal','Pulang Paksa','Terlayani')");
                                     while($rsquerystatuspelayanan = mysqli_fetch_array($querystatuspelayanan)) {
                                         $totalStatusPelayanan += $rsquerystatuspelayanan["jumlah"];
                                         $dataStatusPelayanan[] = [

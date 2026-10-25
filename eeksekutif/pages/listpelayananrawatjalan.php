@@ -68,7 +68,7 @@
                                     $no             = 1;
                                     $totalCaraBayar = 0;
                                     $dataCaraBayar  = [];
-                                    $querycarabayar = bukaquery("select penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
+                                    $querycarabayar = bukaquery("select penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
                                     while($rsquerycarabayar = mysqli_fetch_array($querycarabayar)) {
                                         $totalCaraBayar += $rsquerycarabayar["jumlah"];
                                         $dataCaraBayar[] = [
@@ -118,7 +118,7 @@
                                     $no          = 1;
                                     $totalDokter = 0;
                                     $dataDokter  = [];
-                                    $querydokter = bukaquery("select dokter.nm_dokter,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by dokter.kd_dokter order by jumlah desc");
+                                    $querydokter = bukaquery("select dokter.nm_dokter,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by dokter.kd_dokter order by jumlah desc");
                                     while($rsquerydokter = mysqli_fetch_array($querydokter)) {
                                         $totalDokter += $rsquerydokter["jumlah"];
                                         $dataDokter[] = [
@@ -168,7 +168,7 @@
                                     $no        = 1;
                                     $totalPoli = 0;
                                     $dataPoli  = [];
-                                    $querypoli = bukaquery("select poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
+                                    $querypoli = bukaquery("select poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
                                     while($rsquerypoli = mysqli_fetch_array($querypoli)) {
                                         $totalPoli += $rsquerypoli["jumlah"];
                                         $dataPoli[] = [
@@ -218,7 +218,7 @@
                                     $no          = 1;
                                     $totalPerujuk = 0;
                                     $dataPerujuk  = [];
-                                    $queryperujuk = bukaquery("select ifnull(rujuk_masuk.perujuk,'-') as perujuk,count(rujuk_masuk.no_rawat) as jumlah from rujuk_masuk inner join reg_periksa on rujuk_masuk.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by rujuk_masuk.perujuk order by jumlah desc");
+                                    $queryperujuk = bukaquery("select ifnull(rujuk_masuk.perujuk,'-') as perujuk,count(rujuk_masuk.no_rawat) as jumlah from rujuk_masuk inner join reg_periksa on rujuk_masuk.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by rujuk_masuk.perujuk order by jumlah desc");
                                     while($rsqueryperujuk = mysqli_fetch_array($queryperujuk)) {
                                         $totalPerujuk += $rsqueryperujuk["jumlah"];
                                         $dataPerujuk[] = [
@@ -270,7 +270,7 @@
                                     $totalTanggal   = 0;
                                     $dataTanggal    = [];
                                     $tickTanggal    = [];
-                                    $querytanggal = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
+                                    $querytanggal = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') as tanggal,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by reg_periksa.tgl_registrasi order by reg_periksa.tgl_registrasi asc");
                                     while($rsquerytanggal = mysqli_fetch_array($querytanggal)) {
                                         $totalTanggal += $rsquerytanggal["jumlah"];
                                         $dataTanggal[] = [$indexTanggal, (int)$rsquerytanggal["jumlah"]];
@@ -323,7 +323,7 @@
                                     $totalBulan  = 0;
                                     $dataBulan   = [];
                                     $tickBulan   = [];
-                                    $querybulan = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
+                                    $querybulan = bukaquery("select date_format(reg_periksa.tgl_registrasi,'%m-%Y') as bulan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by date_format(reg_periksa.tgl_registrasi,'%Y-%m') order by date_format(reg_periksa.tgl_registrasi,'%Y-%m') asc");
                                     while($rsquerybulan = mysqli_fetch_array($querybulan)) {
                                         $totalBulan += $rsquerybulan["jumlah"];
                                         $dataBulan[] = [$indexBulan, (int)$rsquerybulan["jumlah"]];
@@ -373,7 +373,7 @@
                                 <?php
                                     $no               = 1;
                                     $totalDokterPoli  = 0;
-                                    $querypolidokter  = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
+                                    $querypolidokter  = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
                                     while($rsquerypolidokter = mysqli_fetch_array($querypolidokter)) {
                                         $totalDokterPoli += $rsquerypolidokter["jumlah"];
                                         echo "<tr>
@@ -425,7 +425,7 @@
                                     $totalPoliStts  = 0;
                                     $totalPoliLama  = 0;
                                     $totalPoliBaru  = 0;
-                                    $querypolistts  = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
+                                    $querypolistts  = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
                                     while($rsquerypolistts = mysqli_fetch_array($querypolistts)) {
                                         $totalPoliStts += $rsquerypolistts["jumlah"];
                                         echo "<tr>
@@ -491,7 +491,7 @@
                                     $totalPoliJk        = 0;
                                     $totalPoliLaki      = 0;
                                     $totalPoliPerempuan = 0;
-                                    $querypolijk = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
+                                    $querypolijk = bukaquery("select poliklinik.kd_poli,poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
                                     while($rsquerypolijk = mysqli_fetch_array($querypolijk)) {
                                         $totalPoliJk += $rsquerypolijk["jumlah"];
                                         echo "<tr>
@@ -555,7 +555,7 @@
                                 <?php
                                     $no                  = 1;
                                     $totalCaraBayarPoli  = 0;
-                                    $querycarabayarpoli  = bukaquery("select penjab.kd_pj,penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
+                                    $querycarabayarpoli  = bukaquery("select penjab.kd_pj,penjab.png_jawab,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by penjab.kd_pj order by jumlah desc");
                                     while($rsquerycarabayarpoli = mysqli_fetch_array($querycarabayarpoli)) {
                                         $totalCaraBayarPoli += $rsquerycarabayarpoli["jumlah"];
                                         echo "<tr>
@@ -563,7 +563,7 @@
                                                 <td align='left'><b>".$rsquerycarabayarpoli["png_jawab"]."</b></td>
                                                 <td align='center'><b>".$rsquerycarabayarpoli["jumlah"]."</b></td>
                                               </tr>";
-                                        $querypolicarabayar = bukaquery("select poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli<>'IGDK' and reg_periksa.kd_pj='".$rsquerycarabayarpoli["kd_pj"]."' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
+                                        $querypolicarabayar = bukaquery("select poliklinik.nm_poli,count(reg_periksa.no_rawat) as jumlah from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.kd_pj='".$rsquerycarabayarpoli["kd_pj"]."' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by poliklinik.kd_poli order by jumlah desc");
                                         while($rsquerypolicarabayar = mysqli_fetch_array($querypolicarabayar)) {
                                             echo "<tr>
                                                     <td></td>
@@ -606,7 +606,7 @@
                                     $no                    = 1;
                                     $totalStatusPelayanan  = 0;
                                     $dataStatusPelayanan   = [];
-                                    $querystatuspelayanan  = bukaquery("select case when reg_periksa.stts='Batal' then 'Batal' when reg_periksa.stts='Dirujuk' then 'Dirujuk' when reg_periksa.stts='Meninggal' then 'Meninggal' when reg_periksa.stts='Pulang Paksa' then 'Pulang Paksa' when reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') then 'Terlayani' end as status_pelayanan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli<>'IGDK' and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by status_pelayanan order by field(status_pelayanan,'Batal','Dirujuk','Meninggal','Pulang Paksa','Terlayani')");
+                                    $querystatuspelayanan  = bukaquery("select case when reg_periksa.stts='Batal' then 'Batal' when reg_periksa.stts='Dirujuk' then 'Dirujuk' when reg_periksa.stts='Meninggal' then 'Meninggal' when reg_periksa.stts='Pulang Paksa' then 'Pulang Paksa' when reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') then 'Terlayani' end as status_pelayanan,count(reg_periksa.no_rawat) as jumlah from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and reg_periksa.tgl_registrasi between '$thncaripelayanan-$blncaripelayanan-$tglcaripelayanan' and '$thncaripelayanan2-$blncaripelayanan2-$tglcaripelayanan2' group by status_pelayanan order by field(status_pelayanan,'Batal','Dirujuk','Meninggal','Pulang Paksa','Terlayani')");
                                     while($rsquerystatuspelayanan = mysqli_fetch_array($querystatuspelayanan)) {
                                         $totalStatusPelayanan += $rsquerystatuspelayanan["jumlah"];
                                         $dataStatusPelayanan[] = [

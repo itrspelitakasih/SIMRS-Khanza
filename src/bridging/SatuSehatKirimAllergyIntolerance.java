@@ -640,7 +640,7 @@ public final class SatuSehatKirimAllergyIntolerance extends javax.swing.JDialog 
                                 }
                             }
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }
                     myObj.close();
@@ -757,7 +757,7 @@ public final class SatuSehatKirimAllergyIntolerance extends javax.swing.JDialog 
                             System.out.println("Result JSON : "+json);
                             tbObat.setValueAt(false,i,0);
                         }catch(Exception e){
-                            System.out.println("Notifikasi Bridging : "+e);
+                            System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e));
                         }
                     }
                     myObj.close();

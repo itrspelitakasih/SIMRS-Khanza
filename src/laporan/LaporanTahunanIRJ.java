@@ -676,7 +676,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );            
             i=1;
             ps=koneksi.prepareStatement("select reg_periksa.kd_poli,poliklinik.nm_poli from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "where reg_periksa.kd_poli<>'IGDK' and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
+                    "where reg_periksa.kd_poli not in ('UGD','UGD-K') and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
             try {
                 ps.setString(1,ThnCari.getSelectedItem().toString());
                 rs=ps.executeQuery();
@@ -824,7 +824,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );            
             i=1;
             ps=koneksi.prepareStatement("select reg_periksa.kd_poli,poliklinik.nm_poli from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "where reg_periksa.kd_poli<>'IGDK' and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
+                    "where reg_periksa.kd_poli not in ('UGD','UGD-K') and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
             try {
                 ps.setString(1,ThnCari.getSelectedItem().toString());
                 rs=ps.executeQuery();
@@ -1044,7 +1044,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );            
             i=1;
             ps=koneksi.prepareStatement("select reg_periksa.kd_poli,poliklinik.nm_poli from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "where reg_periksa.kd_poli<>'IGDK' and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
+                    "where reg_periksa.kd_poli not in ('UGD','UGD-K') and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
             try {
                 ps.setString(1,ThnCari.getSelectedItem().toString());
                 rs=ps.executeQuery();
@@ -1344,7 +1344,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );            
             i=1;
             ps=koneksi.prepareStatement("select reg_periksa.kd_poli,poliklinik.nm_poli from reg_periksa inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli "+
-                    "where reg_periksa.kd_poli<>'IGDK' and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
+                    "where reg_periksa.kd_poli not in ('UGD','UGD-K') and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_poli order by reg_periksa.kd_poli");
             try {
                 ps.setString(1,ThnCari.getSelectedItem().toString());
                 rs=ps.executeQuery();
@@ -1645,36 +1645,36 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );            
             i=1;
             ps=koneksi.prepareStatement("select reg_periksa.kd_pj,penjab.png_jawab from reg_periksa inner join penjab on reg_periksa.kd_pj=penjab.kd_pj "+
-                    "where reg_periksa.kd_poli<>'IGDK' and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_pj order by reg_periksa.kd_pj");
+                    "where reg_periksa.kd_poli not in ('UGD','UGD-K') and year(reg_periksa.tgl_registrasi)=? group by reg_periksa.kd_pj order by reg_periksa.kd_pj");
             try {
                 ps.setString(1,ThnCari.getSelectedItem().toString());
                 rs=ps.executeQuery();
                 ttljan=0;ttlfeb=0;ttlmar=0;ttlapr=0;ttlmei=0;ttljun=0;ttljul=0;ttlagu=0;ttlsep=0;ttlokt=0;ttlnov=0;ttldes=0;
                 while(rs.next()){
                     jan=0;
-                    jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     feb=0;
-                    feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     mar=0;
-                    mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     apr=0;
-                    apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     mei=0;
-                    mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     jun=0;
-                    jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     jul=0;
-                    jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     agu=0;
-                    agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     sep=0;
-                    sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     okt=0;
-                    okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     nov=0;
-                    nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     des=0;
-                    des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     
                     ttljan=ttljan+jan;
                     ttlfeb=ttlfeb+feb;
@@ -1798,29 +1798,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                 ttljan=0;ttlfeb=0;ttlmar=0;ttlapr=0;ttlmei=0;ttljun=0;ttljul=0;ttlagu=0;ttlsep=0;ttlokt=0;ttlnov=0;ttldes=0;
                 while(rs.next()){
                     jan=0;
-                    jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     feb=0;
-                    feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     mar=0;
-                    mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     apr=0;
-                    apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     mei=0;
-                    mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     jun=0;
-                    jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     jul=0;
-                    jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     agu=0;
-                    agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     sep=0;
-                    sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     okt=0;
-                    okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     nov=0;
-                    nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     des=0;
-                    des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
+                    des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.kd_pj='"+rs.getString("kd_pj")+"'");
                     
                     ttljan=ttljan+jan;
                     ttlfeb=ttlfeb+feb;
@@ -1860,7 +1860,7 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
                             "</tr>"
                         );
                     
-                        ps2=koneksi.prepareStatement("select poliklinik.kd_poli,poliklinik.nm_poli from poliklinik where poliklinik.kd_poli<>'IGDK' order by poliklinik.kd_poli");
+                        ps2=koneksi.prepareStatement("select poliklinik.kd_poli,poliklinik.nm_poli from poliklinik where poliklinik.kd_poli not in ('UGD','UGD-K') order by poliklinik.kd_poli");
                         try {
                             rs2=ps2.executeQuery();
                             while(rs2.next()){
@@ -2009,29 +2009,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             ttljan=0;ttlfeb=0;ttlmar=0;ttlapr=0;ttlmei=0;ttljun=0;ttljul=0;ttlagu=0;ttlsep=0;ttlokt=0;ttlnov=0;ttldes=0;
             
             jan=0;
-            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Batal'");
+            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Batal'");
             feb=0;
-            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Batal'");
+            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Batal'");
             mar=0;
-            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Batal'");
+            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Batal'");
             apr=0;
-            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Batal'");
+            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Batal'");
             mei=0;
-            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Batal'");
+            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Batal'");
             jun=0;
-            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Batal'");
+            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Batal'");
             jul=0;
-            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Batal'");
+            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Batal'");
             agu=0;
-            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Batal'");
+            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Batal'");
             sep=0;
-            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Batal'");
+            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Batal'");
             okt=0;
-            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Batal'");
+            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Batal'");
             nov=0;
-            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Batal'");
+            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Batal'");
             des=0;
-            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Batal'");
+            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Batal'");
 
             ttljan=ttljan+jan;
             ttlfeb=ttlfeb+feb;
@@ -2071,29 +2071,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );
             
             jan=0;
-            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Dirujuk'");
+            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Dirujuk'");
             feb=0;
-            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Dirujuk'");
+            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Dirujuk'");
             mar=0;
-            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Dirujuk'");
+            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Dirujuk'");
             apr=0;
-            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Dirujuk'");
+            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Dirujuk'");
             mei=0;
-            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Dirujuk'");
+            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Dirujuk'");
             jun=0;
-            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Dirujuk'");
+            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Dirujuk'");
             jul=0;
-            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Dirujuk'");
+            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Dirujuk'");
             agu=0;
-            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Dirujuk'");
+            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Dirujuk'");
             sep=0;
-            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Dirujuk'");
+            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Dirujuk'");
             okt=0;
-            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Dirujuk'");
+            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Dirujuk'");
             nov=0;
-            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Dirujuk'");
+            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Dirujuk'");
             des=0;
-            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Dirujuk'");
+            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Dirujuk'");
 
             ttljan=ttljan+jan;
             ttlfeb=ttlfeb+feb;
@@ -2133,29 +2133,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );
                     
             jan=0;
-            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Meninggal'");
+            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Meninggal'");
             feb=0;
-            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Meninggal'");
+            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Meninggal'");
             mar=0;
-            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Meninggal'");
+            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Meninggal'");
             apr=0;
-            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Meninggal'");
+            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Meninggal'");
             mei=0;
-            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Meninggal'");
+            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Meninggal'");
             jun=0;
-            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Meninggal'");
+            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Meninggal'");
             jul=0;
-            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Meninggal'");
+            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Meninggal'");
             agu=0;
-            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Meninggal'");
+            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Meninggal'");
             sep=0;
-            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Meninggal'");
+            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Meninggal'");
             okt=0;
-            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Meninggal'");
+            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Meninggal'");
             nov=0;
-            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Meninggal'");
+            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Meninggal'");
             des=0;
-            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Meninggal'");
+            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Meninggal'");
 
             ttljan=ttljan+jan;
             ttlfeb=ttlfeb+feb;
@@ -2195,29 +2195,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );
             
             jan=0;
-            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Pulang Paksa'");
+            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts='Pulang Paksa'");
             feb=0;
-            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Pulang Paksa'");
+            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts='Pulang Paksa'");
             mar=0;
-            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Pulang Paksa'");
+            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts='Pulang Paksa'");
             apr=0;
-            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Pulang Paksa'");
+            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts='Pulang Paksa'");
             mei=0;
-            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Pulang Paksa'");
+            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts='Pulang Paksa'");
             jun=0;
-            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Pulang Paksa'");
+            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts='Pulang Paksa'");
             jul=0;
-            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Pulang Paksa'");
+            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts='Pulang Paksa'");
             agu=0;
-            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Pulang Paksa'");
+            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts='Pulang Paksa'");
             sep=0;
-            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Pulang Paksa'");
+            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts='Pulang Paksa'");
             okt=0;
-            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Pulang Paksa'");
+            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts='Pulang Paksa'");
             nov=0;
-            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Pulang Paksa'");
+            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts='Pulang Paksa'");
             des=0;
-            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Pulang Paksa'");
+            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts='Pulang Paksa'");
 
             ttljan=ttljan+jan;
             ttlfeb=ttlfeb+feb;
@@ -2257,29 +2257,29 @@ private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_b
             );
             
             jan=0;
-            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') ");
+            jan=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-01' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat') ");
             feb=0;
-            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            feb=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-02' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             mar=0;
-            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            mar=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-03' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             apr=0;
-            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            apr=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-04' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             mei=0;
-            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            mei=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-05' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             jun=0;
-            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            jun=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-06' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             jul=0;
-            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            jul=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-07' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             agu=0;
-            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            agu=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-08' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             sep=0;
-            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            sep=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-09' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             okt=0;
-            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            okt=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-10' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             nov=0;
-            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            nov=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-11' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
             des=0;
-            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli<>'IGDK' and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
+            des=Sequel.cariInteger("select count(reg_periksa.no_rawat) from reg_periksa where reg_periksa.kd_poli not in ('UGD','UGD-K') and DATE_FORMAT(reg_periksa.tgl_registrasi, '%Y-%m')='"+ThnCari.getSelectedItem()+"-12' and reg_periksa.stts in ('Belum','Sudah','Berkas Diterima','Dirawat')");
 
             ttljan=ttljan+jan;
             ttlfeb=ttlfeb+feb;

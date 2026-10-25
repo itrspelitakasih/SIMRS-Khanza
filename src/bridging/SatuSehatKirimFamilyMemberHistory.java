@@ -229,7 +229,7 @@ public final class SatuSehatKirimFamilyMemberHistory extends javax.swing.JDialog
                                 tbObat.setValueAt(false,i,0);
                             }
                         }
-                    }catch(Exception e){ System.out.println("Notifikasi Bridging : "+e); }
+                    }catch(Exception e){ System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e)); }
                 } catch (Exception e) { System.out.println("Notifikasi : "+e); }
             }
         }
@@ -248,7 +248,7 @@ public final class SatuSehatKirimFamilyMemberHistory extends javax.swing.JDialog
                         json=api.getRest().exchange(link+"/FamilyMemberHistory/"+tbObat.getValueAt(i,10).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
                         System.out.println("Result JSON : "+json);
                         tbObat.setValueAt(false,i,0);
-                    }catch(Exception e){ System.out.println("Notifikasi Bridging : "+e); }
+                    }catch(Exception e){ System.out.println("Notifikasi Bridging : "+ApiSatuSehat.pesanError(e)); }
                 } catch (Exception e) { System.out.println("Notifikasi : "+e); }
             }
         }

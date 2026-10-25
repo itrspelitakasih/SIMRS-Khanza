@@ -91,9 +91,9 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         
         try {
             ps=koneksi.prepareStatement("select kd_poli, nm_poli, registrasi "+
-                " from poliklinik where kd_poli<>'IGDK' and kd_poli like ? or "+
-                " kd_poli<>'IGDK' and nm_poli like ? or "+
-                " kd_poli<>'IGDK' and registrasi like ? order by nm_poli");
+                " from poliklinik where kd_poli not in ('UGD','UGD-K') and kd_poli like ? or "+
+                " kd_poli not in ('UGD','UGD-K') and nm_poli like ? or "+
+                " kd_poli not in ('UGD','UGD-K') and registrasi like ? order by nm_poli");
         } catch (Exception e) {
         }
     }

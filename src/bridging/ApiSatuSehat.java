@@ -60,6 +60,14 @@ public class ApiSatuSehat {
         }
         return token;
     }
+
+    // Pesan error kiriman beserta body respons server (OperationOutcome) agar alasan 4xx/5xx terlihat di log.
+    public static String pesanError(Exception e){
+        if(e instanceof org.springframework.web.client.HttpStatusCodeException){
+            return e+"\nResponse JSON : "+((org.springframework.web.client.HttpStatusCodeException)e).getResponseBodyAsString();
+        }
+        return String.valueOf(e);
+    }
         
     public long GetUTCdatetimeAsString(){    
         millis = System.currentTimeMillis();   
