@@ -3749,7 +3749,95 @@ public class DlgUser extends javax.swing.JDialog {
 
         TKd.setDocument(new batasInput((byte)30).getKata(TKd));
         TPass.setDocument(new batasInput((byte)50).getKata(TPass));
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));   
+        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        tambahKomponenAkun();
+    }
+
+    /** Generate password, No.WA & Kirim WA. Dibuat di kode, bukan di .form, supaya aman dari regenerate NetBeans. */
+    private final widget.Button BtnGenerate=new widget.Button();
+    private final widget.Label LNoWA=new widget.Label();
+    private final widget.TextBox TNoWA=new widget.TextBox();
+    private final widget.CekBox ChkKirimWA=new widget.CekBox();
+
+    private void tambahKomponenAkun(){
+        // ID & nama boleh diketik manual untuk user yang bukan dokter/petugas
+        TKd.setEditable(true);
+        TNmUser.setEditable(true);
+        TNmUser.setDocument(new batasInput((byte)100).getKata(TNmUser));
+
+        BtnGenerate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png")));
+        BtnGenerate.setToolTipText("Generate password acak");
+        BtnGenerate.addActionListener(evt -> {
+            TPass.setText(UserAkun.generatePassword(8));
+            ChkKirimWA.setSelected(true);
+        });
+        panelGlass5.add(BtnGenerate);
+        BtnGenerate.setBounds(694, 12, 28, 23);
+
+        LNoWA.setText("No.WA :");
+        panelGlass5.add(LNoWA);
+        LNoWA.setBounds(725, 12, 50, 23);
+
+        TNoWA.setDocument(new batasInput((byte)20).getOnlyAngka(TNoWA));
+        TNoWA.setToolTipText("Kosongkan untuk memakai no.telp dokter/petugas");
+        panelGlass5.add(TNoWA);
+        TNoWA.setBounds(778, 12, 120, 23);
+
+        ChkKirimWA.setText("Kirim WA");
+        ChkKirimWA.setOpaque(false);
+        ChkKirimWA.setToolTipText("Kirim username & password ke WA user saat Simpan / Ubah");
+        panelGlass5.add(ChkKirimWA);
+        ChkKirimWA.setBounds(903, 12, 80, 23);
+
+        BtnResetPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/refresh.png")));
+        BtnResetPassword.setMnemonic('R');
+        BtnResetPassword.setText("Reset Password");
+        BtnResetPassword.setToolTipText("Reset password beberapa user sekaligus (Alt+R)");
+        BtnResetPassword.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnResetPassword.addActionListener(evt -> bukaResetPassword());
+        panelGlass6.add(BtnResetPassword,panelGlass6.getComponentZOrder(BtnKeluar));
+    }
+
+    private final widget.Button BtnResetPassword=new widget.Button();
+    private DlgResetPasswordUser resetpassword;
+
+    private void bukaResetPassword(){
+        if (resetpassword == null || !resetpassword.isDisplayable()) {
+            resetpassword=new DlgResetPasswordUser(null,false);
+            resetpassword.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    resetpassword=null;
+                    tampil();
+                }
+            });
+            resetpassword.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            resetpassword.setLocationRelativeTo(internalFrame1);
+            resetpassword.tampil();
+        }
+        if (resetpassword.isVisible()) {
+            resetpassword.toFront();
+            return;
+        }
+        resetpassword.setVisible(true);
+    }
+
+    /** Simpan nama (user manual) & no.WA lalu kirim username/password ke WA bila dicentang. */
+    private void simpanAkun(String idUser,String nama,String password,boolean kirim){
+        String noWA=TNoWA.getText().trim();
+        String noPegawai=UserAkun.terhubungPegawai(idUser)?"":nama;
+        if(noWA.equals(UserAkun.noWA(idUser))&&UserAkun.noWATersimpan(idUser).isEmpty()){
+            noWA=""; // sama dengan no.telp dokter/petugas, tidak perlu disimpan
+        }
+        UserAkun.simpanKontak(idUser,noPegawai,noWA);
+        if(kirim&&ChkKirimWA.isSelected()){
+            noWA=UserAkun.noWA(idUser);
+            if(noWA.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Nomor WA user kosong, notifikasi tidak dikirim.");
+            }else{
+                UserAkun.kirimAkunAdmin(this,noWA,idUser,nama,password);
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -3794,7 +3882,7 @@ public class DlgUser extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCopyHakAkses.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnCopyHakAkses.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCopyHakAkses.setForeground(new java.awt.Color(50, 50, 50));
         MnCopyHakAkses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCopyHakAkses.setText("Copy Hak Akses");
@@ -3809,7 +3897,7 @@ public class DlgUser extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCopyHakAkses);
 
-        MnSetUser.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnSetUser.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSetUser.setForeground(new java.awt.Color(50, 50, 50));
         MnSetUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSetUser.setText("Set Personal");
@@ -3841,7 +3929,7 @@ public class DlgUser extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -4172,6 +4260,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){
+                simpanAkun(TKd.getText().trim(),TNmUser.getText().trim(),TPass.getText(),true);
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -4226,6 +4315,7 @@ public class DlgUser extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus.\nKlik data pada table untuk memilih...!!!!");
         }else if(! TPass.getText().trim().equals("")){
             if(Sequel.queryutf("delete from user where id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')")==true){
+                UserAkun.hapusKontak(TKd.getText());
                 if(tbUser.getSelectedRow()!= -1){
                     tabMode.removeRow(tbUser.getSelectedRow());
                     emptTeks();
@@ -5470,6 +5560,15 @@ public class DlgUser extends javax.swing.JDialog {
                     "ringkasan_hutang_vendor_inventaris='"+tbUser.getValueAt(i,1217).toString()+"',"+
                     "ringkasan_beban_hutang_lain='"+tbUser.getValueAt(i,1218).toString()+"',"+
                     "set_resep_per_cara_bayar='"+tbUser.getValueAt(i,1219).toString()+"'")==true){
+                    if(!tbUser.getValueAt(i,0).toString().equals(TKd.getText())){
+                        UserAkun.gantiId(tbUser.getValueAt(i,0).toString(),TKd.getText());
+                    }
+                    // WA hanya bila username/password berubah, bukan saat sekadar ubah hak akses
+                    simpanAkun(TKd.getText().trim(),TNmUser.getText().trim(),TPass.getText(),
+                        !tbUser.getValueAt(i,0).toString().equals(TKd.getText())||!tbUser.getValueAt(i,3).toString().equals(TPass.getText()));
+                    tbUser.setValueAt(TKd.getText(),i,0);
+                    tbUser.setValueAt(TNmUser.getText(),i,1);
+                    tbUser.setValueAt(TPass.getText(),i,3);
                     emptTeks();
                 }
             }         
@@ -5515,7 +5614,8 @@ public class DlgUser extends javax.swing.JDialog {
                         TNmUser.setText(dlgdokter.getTable().getValueAt(dlgdokter.getTable().getSelectedRow(),1).toString());
                         TPass.setText(dlgdokter.getTable().getValueAt(dlgdokter.getTable().getSelectedRow(),0).toString());
                         Jabatan.setText(dlgdokter.getTable().getValueAt(dlgdokter.getTable().getSelectedRow(),10).toString());
-                    }  
+                        TNoWA.setText(UserAkun.noWA(TKd.getText()));
+                    }
                     TKd.requestFocus();
                     dlgdokter=null;
                 }
@@ -5551,7 +5651,8 @@ public class DlgUser extends javax.swing.JDialog {
                         TNmUser.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),1).toString());
                         TPass.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),0).toString());
                         Jabatan.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),9).toString());
-                    }            
+                        TNoWA.setText(UserAkun.noWA(TKd.getText()));
+                    }
                     TKd.requestFocus();
                     dlgpetugas=null;
                 }
@@ -7325,7 +7426,11 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 if(user.equals("")){    
                                     user=Sequel.CariPetugas(rs.getString(1));
                                     jabatan=Sequel.cariIsi("select jabatan.nm_jbtn from jabatan where jabatan.kd_jbtn=?",Sequel.cariIsi("select petugas.kd_jbtn from petugas where petugas.nip=?",rs.getString(1)));
-                                }    
+                                }
+                                if(user.equals("")){
+                                    user=UserAkun.namaKontak(rs.getString(1));
+                                    jabatan="User Manual";
+                                }
                                 try {
                                     if(rs.getString(1).toLowerCase().contains(TCari.getText().toLowerCase())||
                                             user.toLowerCase().contains(TCari.getText().toLowerCase())||
@@ -9810,6 +9915,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         TKd.setText("");
         TNmUser.setText("");
         TPass.setText("");
+        TNoWA.setText("");
+        ChkKirimWA.setSelected(false);
         TKd.requestFocus();
     }
 
@@ -9818,7 +9925,9 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         if(i!= -1){
             TKd.setText(tbUser.getValueAt(i,0).toString());
             TNmUser.setText(tbUser.getValueAt(i,1).toString());
-            TPass.setText(tbUser.getValueAt(i,3).toString());            
+            TPass.setText(tbUser.getValueAt(i,3).toString());
+            TNoWA.setText(UserAkun.noWA(TKd.getText()));
+            ChkKirimWA.setSelected(false);
         }
     }
 }

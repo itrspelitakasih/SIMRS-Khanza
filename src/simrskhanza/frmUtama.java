@@ -15380,6 +15380,9 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         barcode.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
+        if(barcode.isTersimpan()){
+            MnLoginBtnLogActionPerformed(null);
+        }
     }//GEN-LAST:event_MnGantiPasswordBtnLogActionPerformed
 
     private void MenuKeluarBtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuKeluarBtnCloseActionPerformed

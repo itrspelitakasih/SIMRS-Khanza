@@ -181,11 +181,36 @@ public final class pesanWA {
             + "{kegiatan}\n\n"
             + "Mohon dipersiapkan. Terima kasih.\n_{namars}_");
 
+    // =====================================================
+    // AKUN USER SIMRS (ke nomor WA user, dari Setup User / setting.UserAkun)
+    // =====================================================
+
+    public static final Template AKUN_USER_ADMIN = new Template("AKUN_USER_ADMIN",
+            "Akun SIMRS - dibuat/direset admin (ke user)",
+            "{nama} {username} {password} {tanggal} {namars}",
+            "*Akun SIMRS {namars}*\n\n"
+            + "Halo *{nama}*, akun SIMRS Anda telah dibuat/diperbarui oleh admin.\n\n"
+            + "*Username* : {username}\n"
+            + "*Password* : {password}\n\n"
+            + "Demi keamanan, segera ganti password melalui menu *Program > Ubah Password* "
+            + "setelah login dan jangan bagikan kepada siapa pun.\n"
+            + "_{tanggal}_");
+
+    public static final Template AKUN_USER_UBAH = new Template("AKUN_USER_UBAH",
+            "Akun SIMRS - password diubah sendiri oleh user (pemberitahuan keamanan)",
+            "{nama} {username} {tanggal} {namars}\n"
+            + "Sengaja tanpa {password}, password hanya diketahui user.",
+            "*Pemberitahuan Keamanan Akun SIMRS*\n\n"
+            + "Halo *{nama}*, password akun SIMRS Anda (username *{username}*) "
+            + "baru saja diubah pada {tanggal}.\n\n"
+            + "Jika bukan Anda yang melakukan perubahan ini, segera hubungi Unit IT.\n"
+            + "_{namars}_");
+
     /** Urutan yang tampil di menu Template Pesan WA. */
     public static final Template[] DAFTAR = {
         SURAT, SURAT_PASSWORD, SURAT_KONTROL_CATATAN, PENGINGAT_KONTROL, PENGINGAT_INVENTARIS,
         BOOKING_PERIKSA_BARU, REGISTRASI_PASIEN, REGISTRASI_PEMBUKA_PASIEN_LAMA, REGISTRASI_PEMBUKA_PASIEN_BARU,
-        REGISTRASI_PENUTUP_ADA_NIK, REGISTRASI_PENUTUP_TANPA_NIK
+        REGISTRASI_PENUTUP_ADA_NIK, REGISTRASI_PENUTUP_TANPA_NIK, AKUN_USER_ADMIN, AKUN_USER_UBAH
     };
 
     // =====================================================

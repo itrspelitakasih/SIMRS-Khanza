@@ -19,6 +19,7 @@ public class WindowInputPassword extends javax.swing.JDialog {
     private final validasi Valid=new validasi();
     private final sekuel Sequel=new sekuel();
     private String user="",password="";
+    private boolean tersimpan=false;
     
     /**
      * Creates new form WindowInputPassword
@@ -150,8 +151,12 @@ public class WindowInputPassword extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Maaf, Password Baru 1 dan Password Baru 2 tidak sesuai...!!!");
             PassBaru2.requestFocus();
         }else{
-            Sequel.queryu("update user set password=AES_ENCRYPT('"+PassBaru2.getText()+"','windi')  where id_user=AES_ENCRYPT('"+user+"','nur')");
-            dispose();
+            if(Sequel.queryutf("update user set password=AES_ENCRYPT('"+PassBaru2.getText()+"','windi')  where id_user=AES_ENCRYPT('"+user+"','nur')")){
+                tersimpan=true;
+                UserAkun.kirimPasswordDiubah(user);
+                JOptionPane.showMessageDialog(null,"Password berhasil diubah.\nAnda akan Log Out, silahkan login ulang dengan password baru.");
+                dispose();
+            }
         }
     }//GEN-LAST:event_BtnSimpanPassActionPerformed
 
@@ -218,5 +223,11 @@ public class WindowInputPassword extends javax.swing.JDialog {
         PassBaru2.setText("");
         this.user=user;
         this.password=pass;
+        tersimpan=false;
+    }
+
+    /** true bila password berhasil diubah, frmUtama lalu Log Out otomatis. */
+    public boolean isTersimpan(){
+        return tersimpan;
     }
 }
