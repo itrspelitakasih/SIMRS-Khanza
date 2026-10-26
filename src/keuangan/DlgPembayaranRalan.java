@@ -59,7 +59,7 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
     private double all=0,Laborat=0,Radiologi=0,Obat=0,Ralan_Dokter=0,Ralan_Dokter_paramedis=0,Ralan_Paramedis=0,Tambahan=0,Potongan=0,Registrasi=0,
                     ttlLaborat=0,ttlRadiologi=0,ttlObat=0,ttlRalan_Dokter=0,ttlRalan_Paramedis=0,ttlTambahan=0,ttlPotongan=0,ttlRegistrasi=0,
                    Operasi=0,ttlOperasi=0;
-    private String Keterangan="Belum Lunas",pilihan="",tampilkan="Semua";
+    private String Keterangan="Belum Lunas",pilihan="",tampilkan="Semua",status="";
     private StringBuilder htmlContent;
     private int i=0;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -1132,7 +1132,13 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         ps2.setString(1,rs.getString("no_rawat"));
                         rs2=ps2.executeQuery();                
                         while(rs2.next()){
-                            switch (rs2.getString("status")) {
+                            status=rs2.getString("status");
+                            // tindakan biaya pendaftaran masuk ke kolom Registrasi, bukan Paket Tindakan
+                            if((status.equals("Ralan Dokter")||status.equals("Ralan Paramedis")||status.equals("Ralan Dokter Paramedis"))&&
+                                    rs2.getString("nm_perawatan").toLowerCase().contains("pendaftaran")){
+                                status="Registrasi";
+                            }
+                            switch (status) {
                                 case "Laborat":
                                     ttlLaborat=ttlLaborat+rs2.getDouble("totalbiaya");
                                     Laborat=Laborat+rs2.getDouble("totalbiaya");

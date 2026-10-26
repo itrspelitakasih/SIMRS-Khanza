@@ -1399,6 +1399,54 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             }
                         }
 
+                        // tindakan biaya pendaftaran masuk ke kolom Registrasi, bukan Tindakan
+                        ps2=koneksi.prepareStatement(
+                            "select billing.status,sum(billing.totalbiaya) from billing where billing.no_rawat=? and billing.nm_perawatan like '%pendaftaran%' and "+
+                            "billing.status in ('Ranap Dokter','Ranap Dokter Paramedis','Ranap Paramedis','Ralan Dokter','Ralan Dokter Paramedis','Ralan Paramedis') group by billing.status");
+                        try {
+                            ps2.setString(1,rs.getString("no_rawat"));
+                            rs2=ps2.executeQuery();
+                            while(rs2.next()){
+                                switch (rs2.getString(1)) {
+                                    case "Ranap Dokter":
+                                        Ranap_Dokter=Ranap_Dokter-rs2.getDouble(2);
+                                        ttlRanap_Dokter=ttlRanap_Dokter-rs2.getDouble(2);
+                                        break;
+                                    case "Ranap Dokter Paramedis":
+                                        Ranap_Dokter_Paramedis=Ranap_Dokter_Paramedis-rs2.getDouble(2);
+                                        ttlRanap_Dokter=ttlRanap_Dokter-rs2.getDouble(2);
+                                        break;
+                                    case "Ranap Paramedis":
+                                        Ranap_Paramedis=Ranap_Paramedis-rs2.getDouble(2);
+                                        ttlRanap_Paramedis=ttlRanap_Paramedis-rs2.getDouble(2);
+                                        break;
+                                    case "Ralan Dokter":
+                                        Ralan_Dokter=Ralan_Dokter-rs2.getDouble(2);
+                                        ttlRalan_Dokter=ttlRalan_Dokter-rs2.getDouble(2);
+                                        break;
+                                    case "Ralan Dokter Paramedis":
+                                        Ralan_Dokter_Paramedis=Ralan_Dokter_Paramedis-rs2.getDouble(2);
+                                        ttlRalan_Dokter=ttlRalan_Dokter-rs2.getDouble(2);
+                                        break;
+                                    case "Ralan Paramedis":
+                                        Ralan_Paramedis=Ralan_Paramedis-rs2.getDouble(2);
+                                        ttlRalan_Paramedis=ttlRalan_Paramedis-rs2.getDouble(2);
+                                        break;
+                                }
+                                Registrasi=Registrasi+rs2.getDouble(2);
+                                ttlRegistrasi=ttlRegistrasi+rs2.getDouble(2);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notif 2: "+e);
+                        } finally{
+                            if(rs2!=null){
+                                rs2.close();
+                            }
+                            if(ps2!=null){
+                                ps2.close();
+                            }
+                        }
+
                         all=all+Laborat+Radiologi+Operasi+Obat+Ranap_Dokter+Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis+Tambahan+Potongan+Kamar+Registrasi+Harian+Retur_Obat+Resep_Pulang+Service;
                         
                         if((Laborat+Radiologi+Operasi+Obat+Ranap_Dokter+Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis+Tambahan+Potongan+Kamar+Registrasi+Harian+Retur_Obat+Resep_Pulang+Service)>0){
