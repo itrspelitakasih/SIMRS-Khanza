@@ -454,6 +454,55 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         CrPoli = new widget.TextBox();
         BtnSeek4 = new widget.Button();
+        PanelTelaah = new widget.PanelBiasa();
+        ChkTelaah = new widget.CekBox();
+        ScrollTelaah = new widget.ScrollPane();
+        FormTelaah = new widget.PanelBiasa();
+        LblTelaahStatus = new widget.Label();
+        TelaahStatus = new widget.TextBox();
+        LblTelaahPetugas = new widget.Label();
+        TelaahPetugas = new widget.TextBox();
+        LblTelaahValidasi = new widget.Label();
+        TelaahValidasi = new widget.TextBox();
+        LblTelaahPenyerahan = new widget.Label();
+        TelaahPenyerahan = new widget.TextBox();
+        LblTelaahResep = new widget.Label();
+        LblTelaahResep1 = new widget.Label();
+        TelaahResep1 = new widget.ComboBox();
+        KetTelaahResep1 = new widget.TextBox();
+        LblTelaahResep2 = new widget.Label();
+        TelaahResep2 = new widget.ComboBox();
+        KetTelaahResep2 = new widget.TextBox();
+        LblTelaahResep3 = new widget.Label();
+        TelaahResep3 = new widget.ComboBox();
+        KetTelaahResep3 = new widget.TextBox();
+        LblTelaahResep4 = new widget.Label();
+        TelaahResep4 = new widget.ComboBox();
+        KetTelaahResep4 = new widget.TextBox();
+        LblTelaahResep5 = new widget.Label();
+        TelaahResep5 = new widget.ComboBox();
+        KetTelaahResep5 = new widget.TextBox();
+        LblTelaahResep6 = new widget.Label();
+        TelaahResep6 = new widget.ComboBox();
+        KetTelaahResep6 = new widget.TextBox();
+        LblTelaahResep7 = new widget.Label();
+        TelaahResep7 = new widget.ComboBox();
+        KetTelaahResep7 = new widget.TextBox();
+        LblTelaahResep8 = new widget.Label();
+        TelaahResep8 = new widget.ComboBox();
+        KetTelaahResep8 = new widget.TextBox();
+        LblTelaahObat = new widget.Label();
+        LblTelaahObat1 = new widget.Label();
+        TelaahObat1 = new widget.ComboBox();
+        LblTelaahObat2 = new widget.Label();
+        TelaahObat2 = new widget.ComboBox();
+        LblTelaahObat3 = new widget.Label();
+        TelaahObat3 = new widget.ComboBox();
+        LblTelaahObat4 = new widget.Label();
+        TelaahObat4 = new widget.ComboBox();
+        LblTelaahObat5 = new widget.Label();
+        TelaahObat5 = new widget.ComboBox();
+        BtnSimpanTelaah = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         TabRawatInap = new javax.swing.JTabbedPane();
         scrollPane3 = new widget.ScrollPane();
@@ -505,7 +554,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Peresepan Obat Oleh Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Peresepan Obat Oleh Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -525,7 +574,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         panelisi2.add(jLabel20);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -539,7 +588,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         panelisi2.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -753,7 +802,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
 
         TabPilihRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabPilihRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabPilihRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabPilihRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabPilihRawat.setName("TabPilihRawat"); // NOI18N
         TabPilihRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -767,7 +816,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
 
         TabRawatJalan.setBackground(new java.awt.Color(255, 255, 253));
         TabRawatJalan.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawatJalan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawatJalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawatJalan.setName("TabRawatJalan"); // NOI18N
         TabRawatJalan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -878,6 +927,290 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
 
         internalFrame2.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
+        PanelTelaah.setBackground(new java.awt.Color(255, 255, 255));
+        PanelTelaah.setName("PanelTelaah"); // NOI18N
+        PanelTelaah.setPreferredSize(new java.awt.Dimension(520, 43));
+        PanelTelaah.setLayout(new java.awt.BorderLayout());
+
+        ChkTelaah.setBackground(new java.awt.Color(255, 250, 250));
+        ChkTelaah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 255, 248)));
+        ChkTelaah.setSelected(true);
+        ChkTelaah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
+        ChkTelaah.setFocusable(false);
+        ChkTelaah.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkTelaah.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkTelaah.setName("ChkTelaah"); // NOI18N
+        ChkTelaah.setPreferredSize(new java.awt.Dimension(15, 20));
+        ChkTelaah.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
+        ChkTelaah.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
+        ChkTelaah.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
+        ChkTelaah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkTelaahActionPerformed(evt);
+            }
+        });
+        PanelTelaah.add(ChkTelaah, java.awt.BorderLayout.WEST);
+
+        ScrollTelaah.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 245, 239)), "::[ Pengkajian Resep ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
+        ScrollTelaah.setMinimumSize(new java.awt.Dimension(24, 40));
+        ScrollTelaah.setName("ScrollTelaah"); // NOI18N
+        ScrollTelaah.setOpaque(true);
+        ScrollTelaah.setPreferredSize(new java.awt.Dimension(430, 587));
+
+        FormTelaah.setBackground(new java.awt.Color(255, 255, 255));
+        FormTelaah.setBorder(null);
+        FormTelaah.setName("FormTelaah"); // NOI18N
+        FormTelaah.setPreferredSize(new java.awt.Dimension(450, 566));
+        FormTelaah.setLayout(null);
+
+        LblTelaahStatus.setText("Status :");
+        LblTelaahStatus.setName("LblTelaahStatus"); // NOI18N
+        FormTelaah.add(LblTelaahStatus);
+        LblTelaahStatus.setBounds(0, 10, 90, 23);
+
+        TelaahStatus.setEditable(false);
+        TelaahStatus.setName("TelaahStatus"); // NOI18N
+        FormTelaah.add(TelaahStatus);
+        TelaahStatus.setBounds(94, 10, 351, 23);
+
+        LblTelaahPetugas.setText("Petugas :");
+        LblTelaahPetugas.setName("LblTelaahPetugas"); // NOI18N
+        FormTelaah.add(LblTelaahPetugas);
+        LblTelaahPetugas.setBounds(0, 40, 90, 23);
+
+        TelaahPetugas.setEditable(false);
+        TelaahPetugas.setName("TelaahPetugas"); // NOI18N
+        FormTelaah.add(TelaahPetugas);
+        TelaahPetugas.setBounds(94, 40, 351, 23);
+
+        LblTelaahValidasi.setText("Validasi :");
+        LblTelaahValidasi.setName("LblTelaahValidasi"); // NOI18N
+        FormTelaah.add(LblTelaahValidasi);
+        LblTelaahValidasi.setBounds(0, 70, 90, 23);
+
+        TelaahValidasi.setEditable(false);
+        TelaahValidasi.setName("TelaahValidasi"); // NOI18N
+        FormTelaah.add(TelaahValidasi);
+        TelaahValidasi.setBounds(94, 70, 351, 23);
+
+        LblTelaahPenyerahan.setText("Penyerahan :");
+        LblTelaahPenyerahan.setName("LblTelaahPenyerahan"); // NOI18N
+        FormTelaah.add(LblTelaahPenyerahan);
+        LblTelaahPenyerahan.setBounds(0, 100, 90, 23);
+
+        TelaahPenyerahan.setEditable(false);
+        TelaahPenyerahan.setName("TelaahPenyerahan"); // NOI18N
+        FormTelaah.add(TelaahPenyerahan);
+        TelaahPenyerahan.setBounds(94, 100, 351, 23);
+
+        LblTelaahResep.setText("Pengkajian Resep :");
+        LblTelaahResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep.setName("LblTelaahResep"); // NOI18N
+        FormTelaah.add(LblTelaahResep);
+        LblTelaahResep.setBounds(0, 130, 120, 23);
+
+        LblTelaahResep1.setText("1. Tepat Identifikasi Pasien");
+        LblTelaahResep1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep1.setName("LblTelaahResep1"); // NOI18N
+        FormTelaah.add(LblTelaahResep1);
+        LblTelaahResep1.setBounds(10, 153, 170, 23);
+
+        TelaahResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep1.setName("TelaahResep1"); // NOI18N
+        FormTelaah.add(TelaahResep1);
+        TelaahResep1.setBounds(180, 153, 80, 23);
+
+        KetTelaahResep1.setName("KetTelaahResep1"); // NOI18N
+        FormTelaah.add(KetTelaahResep1);
+        KetTelaahResep1.setBounds(264, 153, 181, 23);
+
+        LblTelaahResep2.setText("2. Tepat Obat");
+        LblTelaahResep2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep2.setName("LblTelaahResep2"); // NOI18N
+        FormTelaah.add(LblTelaahResep2);
+        LblTelaahResep2.setBounds(10, 179, 170, 23);
+
+        TelaahResep2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep2.setName("TelaahResep2"); // NOI18N
+        FormTelaah.add(TelaahResep2);
+        TelaahResep2.setBounds(180, 179, 80, 23);
+
+        KetTelaahResep2.setName("KetTelaahResep2"); // NOI18N
+        FormTelaah.add(KetTelaahResep2);
+        KetTelaahResep2.setBounds(264, 179, 181, 23);
+
+        LblTelaahResep3.setText("3. Tepat Dosis");
+        LblTelaahResep3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep3.setName("LblTelaahResep3"); // NOI18N
+        FormTelaah.add(LblTelaahResep3);
+        LblTelaahResep3.setBounds(10, 205, 170, 23);
+
+        TelaahResep3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep3.setName("TelaahResep3"); // NOI18N
+        FormTelaah.add(TelaahResep3);
+        TelaahResep3.setBounds(180, 205, 80, 23);
+
+        KetTelaahResep3.setName("KetTelaahResep3"); // NOI18N
+        FormTelaah.add(KetTelaahResep3);
+        KetTelaahResep3.setBounds(264, 205, 181, 23);
+
+        LblTelaahResep4.setText("4. Tepat Cara Pemberian");
+        LblTelaahResep4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep4.setName("LblTelaahResep4"); // NOI18N
+        FormTelaah.add(LblTelaahResep4);
+        LblTelaahResep4.setBounds(10, 231, 170, 23);
+
+        TelaahResep4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep4.setName("TelaahResep4"); // NOI18N
+        FormTelaah.add(TelaahResep4);
+        TelaahResep4.setBounds(180, 231, 80, 23);
+
+        KetTelaahResep4.setName("KetTelaahResep4"); // NOI18N
+        FormTelaah.add(KetTelaahResep4);
+        KetTelaahResep4.setBounds(264, 231, 181, 23);
+
+        LblTelaahResep5.setText("5. Tepat Waktu Pemberian");
+        LblTelaahResep5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep5.setName("LblTelaahResep5"); // NOI18N
+        FormTelaah.add(LblTelaahResep5);
+        LblTelaahResep5.setBounds(10, 257, 170, 23);
+
+        TelaahResep5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep5.setName("TelaahResep5"); // NOI18N
+        FormTelaah.add(TelaahResep5);
+        TelaahResep5.setBounds(180, 257, 80, 23);
+
+        KetTelaahResep5.setName("KetTelaahResep5"); // NOI18N
+        FormTelaah.add(KetTelaahResep5);
+        KetTelaahResep5.setBounds(264, 257, 181, 23);
+
+        LblTelaahResep6.setText("6. Ada Tidak Duplikasi Obat");
+        LblTelaahResep6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep6.setName("LblTelaahResep6"); // NOI18N
+        FormTelaah.add(LblTelaahResep6);
+        LblTelaahResep6.setBounds(10, 283, 170, 23);
+
+        TelaahResep6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep6.setSelectedIndex(1);
+        TelaahResep6.setName("TelaahResep6"); // NOI18N
+        FormTelaah.add(TelaahResep6);
+        TelaahResep6.setBounds(180, 283, 80, 23);
+
+        KetTelaahResep6.setName("KetTelaahResep6"); // NOI18N
+        FormTelaah.add(KetTelaahResep6);
+        KetTelaahResep6.setBounds(264, 283, 181, 23);
+
+        LblTelaahResep7.setText("7. Interaksi Obat");
+        LblTelaahResep7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep7.setName("LblTelaahResep7"); // NOI18N
+        FormTelaah.add(LblTelaahResep7);
+        LblTelaahResep7.setBounds(10, 309, 170, 23);
+
+        TelaahResep7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep7.setSelectedIndex(1);
+        TelaahResep7.setName("TelaahResep7"); // NOI18N
+        FormTelaah.add(TelaahResep7);
+        TelaahResep7.setBounds(180, 309, 80, 23);
+
+        KetTelaahResep7.setName("KetTelaahResep7"); // NOI18N
+        FormTelaah.add(KetTelaahResep7);
+        KetTelaahResep7.setBounds(264, 309, 181, 23);
+
+        LblTelaahResep8.setText("8. Kontra Indikasi Obat");
+        LblTelaahResep8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahResep8.setName("LblTelaahResep8"); // NOI18N
+        FormTelaah.add(LblTelaahResep8);
+        LblTelaahResep8.setBounds(10, 335, 170, 23);
+
+        TelaahResep8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahResep8.setSelectedIndex(1);
+        TelaahResep8.setName("TelaahResep8"); // NOI18N
+        FormTelaah.add(TelaahResep8);
+        TelaahResep8.setBounds(180, 335, 80, 23);
+
+        KetTelaahResep8.setName("KetTelaahResep8"); // NOI18N
+        FormTelaah.add(KetTelaahResep8);
+        KetTelaahResep8.setBounds(264, 335, 181, 23);
+
+        LblTelaahObat.setText("Pengkajian Obat :");
+        LblTelaahObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat.setName("LblTelaahObat"); // NOI18N
+        FormTelaah.add(LblTelaahObat);
+        LblTelaahObat.setBounds(0, 368, 120, 23);
+
+        LblTelaahObat1.setText("1. Tepat Pasien");
+        LblTelaahObat1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat1.setName("LblTelaahObat1"); // NOI18N
+        FormTelaah.add(LblTelaahObat1);
+        LblTelaahObat1.setBounds(10, 391, 170, 23);
+
+        TelaahObat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahObat1.setName("TelaahObat1"); // NOI18N
+        FormTelaah.add(TelaahObat1);
+        TelaahObat1.setBounds(180, 391, 80, 23);
+
+        LblTelaahObat2.setText("2. Tepat Obat");
+        LblTelaahObat2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat2.setName("LblTelaahObat2"); // NOI18N
+        FormTelaah.add(LblTelaahObat2);
+        LblTelaahObat2.setBounds(10, 417, 170, 23);
+
+        TelaahObat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahObat2.setName("TelaahObat2"); // NOI18N
+        FormTelaah.add(TelaahObat2);
+        TelaahObat2.setBounds(180, 417, 80, 23);
+
+        LblTelaahObat3.setText("3. Tepat Dosis");
+        LblTelaahObat3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat3.setName("LblTelaahObat3"); // NOI18N
+        FormTelaah.add(LblTelaahObat3);
+        LblTelaahObat3.setBounds(10, 443, 170, 23);
+
+        TelaahObat3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahObat3.setName("TelaahObat3"); // NOI18N
+        FormTelaah.add(TelaahObat3);
+        TelaahObat3.setBounds(180, 443, 80, 23);
+
+        LblTelaahObat4.setText("4. Tepat Cara Pemberian");
+        LblTelaahObat4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat4.setName("LblTelaahObat4"); // NOI18N
+        FormTelaah.add(LblTelaahObat4);
+        LblTelaahObat4.setBounds(10, 469, 170, 23);
+
+        TelaahObat4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahObat4.setName("TelaahObat4"); // NOI18N
+        FormTelaah.add(TelaahObat4);
+        TelaahObat4.setBounds(180, 469, 80, 23);
+
+        LblTelaahObat5.setText("5. Tepat Waktu Pemberian");
+        LblTelaahObat5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LblTelaahObat5.setName("LblTelaahObat5"); // NOI18N
+        FormTelaah.add(LblTelaahObat5);
+        LblTelaahObat5.setBounds(10, 495, 170, 23);
+
+        TelaahObat5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
+        TelaahObat5.setName("TelaahObat5"); // NOI18N
+        FormTelaah.add(TelaahObat5);
+        TelaahObat5.setBounds(180, 495, 80, 23);
+
+        BtnSimpanTelaah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpanTelaah.setText("Simpan");
+        BtnSimpanTelaah.setToolTipText("Simpan Pengkajian Resep");
+        BtnSimpanTelaah.setName("BtnSimpanTelaah"); // NOI18N
+        BtnSimpanTelaah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpanTelaahActionPerformed(evt);
+            }
+        });
+        FormTelaah.add(BtnSimpanTelaah);
+        BtnSimpanTelaah.setBounds(94, 526, 100, 30);
+
+        ScrollTelaah.setViewportView(FormTelaah);
+
+        PanelTelaah.add(ScrollTelaah, java.awt.BorderLayout.CENTER);
+
+        internalFrame2.add(PanelTelaah, java.awt.BorderLayout.EAST);
+
         TabPilihRawat.addTab("Rawat Jalan", internalFrame2);
 
         internalFrame3.setBorder(null);
@@ -886,7 +1219,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
 
         TabRawatInap.setBackground(new java.awt.Color(255, 255, 253));
         TabRawatInap.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawatInap.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawatInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawatInap.setName("TabRawatInap"); // NOI18N
         TabRawatInap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1137,7 +1470,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRiwayat.setText("Riwayat Pasien");
         BtnRiwayat.setFocusPainted(false);
-        BtnRiwayat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnRiwayat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRiwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRiwayat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1154,7 +1487,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPemberianObat.setText("Obat Tervalidasi");
         BtnPemberianObat.setFocusPainted(false);
-        BtnPemberianObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnPemberianObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPemberianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemberianObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1171,7 +1504,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnPiutangObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPiutangObat.setText("Piutang Obat");
         BtnPiutangObat.setFocusPainted(false);
-        BtnPiutangObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPiutangObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnPiutangObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPiutangObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPiutangObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1186,9 +1519,9 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         FormMenu.add(BtnPiutangObat);
 
         BtnTelaahResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
-        BtnTelaahResep.setText("Pengkajian Resep");
+        BtnTelaahResep.setText("Telaah Resep");
         BtnTelaahResep.setFocusPainted(false);
-        BtnTelaahResep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnTelaahResep.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnTelaahResep.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnTelaahResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnTelaahResep.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1205,7 +1538,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnResepAwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnResepAwal.setText("Cetak Resep Awal");
         BtnResepAwal.setFocusPainted(false);
-        BtnResepAwal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnResepAwal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnResepAwal.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnResepAwal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnResepAwal.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1222,7 +1555,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnResepLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnResepLuar.setText("Resep Luar");
         BtnResepLuar.setFocusPainted(false);
-        BtnResepLuar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnResepLuar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnResepLuar.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnResepLuar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnResepLuar.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1239,7 +1572,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnKonselingFarmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnKonselingFarmasi.setText("Konseling Farmasi");
         BtnKonselingFarmasi.setFocusPainted(false);
-        BtnKonselingFarmasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnKonselingFarmasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnKonselingFarmasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnKonselingFarmasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnKonselingFarmasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1256,7 +1589,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnInformasiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnInformasiObat.setText("Informasi Obat");
         BtnInformasiObat.setFocusPainted(false);
-        BtnInformasiObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnInformasiObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnInformasiObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnInformasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnInformasiObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1273,7 +1606,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnSEPBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSEPBPJS.setText("Data SEP BPJS");
         BtnSEPBPJS.setFocusPainted(false);
-        BtnSEPBPJS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSEPBPJS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnSEPBPJS.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSEPBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSEPBPJS.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1290,7 +1623,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
         BtnObat23HariBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnObat23HariBPJS.setText("Obat ApOL BPJS");
         BtnObat23HariBPJS.setFocusPainted(false);
-        BtnObat23HariBPJS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnObat23HariBPJS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         BtnObat23HariBPJS.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnObat23HariBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnObat23HariBPJS.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -2364,6 +2697,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
         isMenu();
     }//GEN-LAST:event_ChkAccorActionPerformed
+
+    private void ChkTelaahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkTelaahActionPerformed
+        isTelaah();
+    }//GEN-LAST:event_ChkTelaahActionPerformed
 
     private void BtnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianObatActionPerformed
         if(TabPilihRawat.getSelectedIndex()==0){
@@ -3850,23 +4187,72 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Button BtnSeek4;
     private widget.Button BtnSeek5;
     private widget.Button BtnSeek6;
+    private widget.Button BtnSimpanTelaah;
     private widget.Button BtnTambah;
     private widget.Button BtnTelaahResep;
     private widget.CekBox ChkAccor;
+    private widget.CekBox ChkTelaah;
     private widget.TextBox CrDokter;
     private widget.TextBox CrDokter2;
     private widget.TextBox CrPoli;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormMenu;
+    private widget.PanelBiasa FormTelaah;
     private widget.TextBox Kamar;
+    private widget.TextBox KetTelaahResep1;
+    private widget.TextBox KetTelaahResep2;
+    private widget.TextBox KetTelaahResep3;
+    private widget.TextBox KetTelaahResep4;
+    private widget.TextBox KetTelaahResep5;
+    private widget.TextBox KetTelaahResep6;
+    private widget.TextBox KetTelaahResep7;
+    private widget.TextBox KetTelaahResep8;
     private widget.Label LCount;
+    private widget.Label LblTelaahObat;
+    private widget.Label LblTelaahObat1;
+    private widget.Label LblTelaahObat2;
+    private widget.Label LblTelaahObat3;
+    private widget.Label LblTelaahObat4;
+    private widget.Label LblTelaahObat5;
+    private widget.Label LblTelaahPenyerahan;
+    private widget.Label LblTelaahPetugas;
+    private widget.Label LblTelaahResep;
+    private widget.Label LblTelaahResep1;
+    private widget.Label LblTelaahResep2;
+    private widget.Label LblTelaahResep3;
+    private widget.Label LblTelaahResep4;
+    private widget.Label LblTelaahResep5;
+    private widget.Label LblTelaahResep6;
+    private widget.Label LblTelaahResep7;
+    private widget.Label LblTelaahResep8;
+    private widget.Label LblTelaahStatus;
+    private widget.Label LblTelaahValidasi;
     private widget.PanelBiasa PanelAccor;
+    private widget.PanelBiasa PanelTelaah;
     private widget.ScrollPane ScrollMenu;
+    private widget.ScrollPane ScrollTelaah;
     private widget.TextBox TCari;
     private javax.swing.JTabbedPane TabPilihRawat;
     private javax.swing.JTabbedPane TabRawatInap;
     private javax.swing.JTabbedPane TabRawatJalan;
+    private widget.ComboBox TelaahObat1;
+    private widget.ComboBox TelaahObat2;
+    private widget.ComboBox TelaahObat3;
+    private widget.ComboBox TelaahObat4;
+    private widget.ComboBox TelaahObat5;
+    private widget.TextBox TelaahPenyerahan;
+    private widget.TextBox TelaahPetugas;
+    private widget.ComboBox TelaahResep1;
+    private widget.ComboBox TelaahResep2;
+    private widget.ComboBox TelaahResep3;
+    private widget.ComboBox TelaahResep4;
+    private widget.ComboBox TelaahResep5;
+    private widget.ComboBox TelaahResep6;
+    private widget.ComboBox TelaahResep7;
+    private widget.ComboBox TelaahResep8;
+    private widget.TextBox TelaahStatus;
+    private widget.TextBox TelaahValidasi;
     private widget.ComboBox cmbStatus;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -3907,6 +4293,9 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         if(ceksukses==false){
             ceksukses=true;
             Valid.tabelKosong(tabMode);
+            emptTelaah();
+            TelaahValidasi.setText("");
+            TelaahPenyerahan.setText("");
             new SwingWorker<Void, Object[]>() {
                 @Override
                 protected Void doInBackground() {
@@ -4042,6 +4431,17 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             Ruang=tbResepRalan.getValueAt(tbResepRalan.getSelectedRow(),9).toString();
             KodeRuang=tbResepRalan.getValueAt(tbResepRalan.getSelectedRow(),10).toString();
             baris=tbResepRalan.getSelectedRow();
+            tampilTelaah(NoResep);
+            if(tbResepRalan.getValueAt(baris,12).toString().equals("")){
+                TelaahValidasi.setText("Belum Divalidasi");
+            }else{
+                TelaahValidasi.setText("Sudah Divalidasi, "+tbResepRalan.getValueAt(baris,12).toString()+" "+tbResepRalan.getValueAt(baris,13).toString());
+            }
+            if(tbResepRalan.getValueAt(baris,14).toString().equals("")){
+                TelaahPenyerahan.setText("Belum Diserahkan");
+            }else{
+                TelaahPenyerahan.setText("Sudah Diserahkan, "+tbResepRalan.getValueAt(baris,14).toString()+" "+tbResepRalan.getValueAt(baris,15).toString());
+            }
         }
     }
     
@@ -4111,7 +4511,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         BtnSEPBPJS.setEnabled(akses.getbpjs_sep()); 
         BtnResepLuar.setEnabled(akses.getresep_luar()); 
         BtnObat23HariBPJS.setEnabled(akses.getbpjs_obat_23hari_apotek()); 
-        BtnTelaahResep.setEnabled(akses.gettelaah_resep()); 
+        BtnTelaahResep.setEnabled(akses.gettelaah_resep());
+        BtnSimpanTelaah.setEnabled(akses.gettelaah_resep());
     }
     
     public void setCari(String cari){
@@ -6394,8 +6795,110 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         }else if(ChkAccor.isSelected()==false){  
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
-            FormMenu.setVisible(false);    
+            FormMenu.setVisible(false);
             ChkAccor.setVisible(true);
+        }
+    }
+
+    private void isTelaah(){
+        if(ChkTelaah.isSelected()==true){
+            ChkTelaah.setVisible(false);
+            PanelTelaah.setPreferredSize(new Dimension(520,HEIGHT));
+            ScrollTelaah.setVisible(true);
+            ChkTelaah.setVisible(true);
+        }else if(ChkTelaah.isSelected()==false){
+            ChkTelaah.setVisible(false);
+            PanelTelaah.setPreferredSize(new Dimension(15,HEIGHT));
+            ScrollTelaah.setVisible(false);
+            ChkTelaah.setVisible(true);
+        }
+    }
+
+    private void emptTelaah(){
+        TelaahStatus.setText("");
+        TelaahPetugas.setText("");
+        TelaahResep1.setSelectedIndex(0);TelaahResep2.setSelectedIndex(0);TelaahResep3.setSelectedIndex(0);TelaahResep4.setSelectedIndex(0);
+        TelaahResep5.setSelectedIndex(0);TelaahResep6.setSelectedIndex(1);TelaahResep7.setSelectedIndex(1);TelaahResep8.setSelectedIndex(1);
+        KetTelaahResep1.setText("");KetTelaahResep2.setText("");KetTelaahResep3.setText("");KetTelaahResep4.setText("");
+        KetTelaahResep5.setText("");KetTelaahResep6.setText("");KetTelaahResep7.setText("");KetTelaahResep8.setText("");
+        TelaahObat1.setSelectedIndex(0);TelaahObat2.setSelectedIndex(0);TelaahObat3.setSelectedIndex(0);TelaahObat4.setSelectedIndex(0);TelaahObat5.setSelectedIndex(0);
+    }
+
+    private void BtnSimpanTelaahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanTelaahActionPerformed
+        if(NoResep.equals("")||TelaahStatus.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan pilih data resep dokter terlebih dahulu..!!");
+        }else if(Sequel.CariPetugas(akses.getkode()).equals("")){
+            JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
+        }else{
+            boolean sukses;
+            String[] isian=new String[]{
+                TelaahResep1.getSelectedItem().toString(),KetTelaahResep1.getText(),TelaahResep2.getSelectedItem().toString(),KetTelaahResep2.getText(),
+                TelaahResep3.getSelectedItem().toString(),KetTelaahResep3.getText(),TelaahResep4.getSelectedItem().toString(),KetTelaahResep4.getText(),
+                TelaahResep5.getSelectedItem().toString(),KetTelaahResep5.getText(),TelaahResep6.getSelectedItem().toString(),KetTelaahResep6.getText(),
+                TelaahResep7.getSelectedItem().toString(),KetTelaahResep7.getText(),TelaahResep8.getSelectedItem().toString(),KetTelaahResep8.getText(),
+                TelaahObat1.getSelectedItem().toString(),TelaahObat2.getSelectedItem().toString(),TelaahObat3.getSelectedItem().toString(),
+                TelaahObat4.getSelectedItem().toString(),TelaahObat5.getSelectedItem().toString(),akses.getkode(),NoResep
+            };
+            if(TelaahStatus.getText().equals("Sudah Dikaji")){
+                sukses=Sequel.mengedittf("telaah_farmasi","no_resep=?","resep_identifikasi_pasien=?,resep_ket_identifikasi_pasien=?,resep_tepat_obat=?,resep_ket_tepat_obat=?,"+
+                    "resep_tepat_dosis=?,resep_ket_tepat_dosis=?,resep_tepat_cara_pemberian=?,resep_ket_tepat_cara_pemberian=?,resep_tepat_waktu_pemberian=?,resep_ket_tepat_waktu_pemberian=?,"+
+                    "resep_ada_tidak_duplikasi_obat=?,resep_ket_ada_tidak_duplikasi_obat=?,resep_interaksi_obat=?,resep_ket_interaksi_obat=?,resep_kontra_indikasi_obat=?,"+
+                    "resep_ket_kontra_indikasi_obat=?,obat_tepat_pasien=?,obat_tepat_obat=?,obat_tepat_dosis=?,obat_tepat_cara_pemberian=?,obat_tepat_waktu_pemberian=?,nip=?",23,isian);
+            }else{
+                String[] simpan=new String[23];
+                simpan[0]=NoResep;
+                System.arraycopy(isian,0,simpan,1,22);
+                sukses=Sequel.menyimpantf("telaah_farmasi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",23,simpan);
+            }
+            if(sukses==true){
+                tampilTelaah(NoResep);
+            }
+        }
+    }//GEN-LAST:event_BtnSimpanTelaahActionPerformed
+
+    private void tampilTelaah(String noresep){
+        emptTelaah();
+        try {
+            PreparedStatement pstelaah=koneksi.prepareStatement(
+                    "select telaah_farmasi.*,petugas.nama from telaah_farmasi left join petugas on telaah_farmasi.nip=petugas.nip "+
+                    "where telaah_farmasi.no_resep=?");
+            try {
+                pstelaah.setString(1,noresep);
+                ResultSet rstelaah=pstelaah.executeQuery();
+                if(rstelaah.next()){
+                    TelaahStatus.setText("Sudah Dikaji");
+                    TelaahPetugas.setText(rstelaah.getString("nama")==null?"":rstelaah.getString("nama"));
+                    TelaahResep1.setSelectedItem(rstelaah.getString("resep_identifikasi_pasien"));
+                    KetTelaahResep1.setText(rstelaah.getString("resep_ket_identifikasi_pasien"));
+                    TelaahResep2.setSelectedItem(rstelaah.getString("resep_tepat_obat"));
+                    KetTelaahResep2.setText(rstelaah.getString("resep_ket_tepat_obat"));
+                    TelaahResep3.setSelectedItem(rstelaah.getString("resep_tepat_dosis"));
+                    KetTelaahResep3.setText(rstelaah.getString("resep_ket_tepat_dosis"));
+                    TelaahResep4.setSelectedItem(rstelaah.getString("resep_tepat_cara_pemberian"));
+                    KetTelaahResep4.setText(rstelaah.getString("resep_ket_tepat_cara_pemberian"));
+                    TelaahResep5.setSelectedItem(rstelaah.getString("resep_tepat_waktu_pemberian"));
+                    KetTelaahResep5.setText(rstelaah.getString("resep_ket_tepat_waktu_pemberian"));
+                    TelaahResep6.setSelectedItem(rstelaah.getString("resep_ada_tidak_duplikasi_obat"));
+                    KetTelaahResep6.setText(rstelaah.getString("resep_ket_ada_tidak_duplikasi_obat"));
+                    TelaahResep7.setSelectedItem(rstelaah.getString("resep_interaksi_obat"));
+                    KetTelaahResep7.setText(rstelaah.getString("resep_ket_interaksi_obat"));
+                    TelaahResep8.setSelectedItem(rstelaah.getString("resep_kontra_indikasi_obat"));
+                    KetTelaahResep8.setText(rstelaah.getString("resep_ket_kontra_indikasi_obat"));
+                    TelaahObat1.setSelectedItem(rstelaah.getString("obat_tepat_pasien"));
+                    TelaahObat2.setSelectedItem(rstelaah.getString("obat_tepat_obat"));
+                    TelaahObat3.setSelectedItem(rstelaah.getString("obat_tepat_dosis"));
+                    TelaahObat4.setSelectedItem(rstelaah.getString("obat_tepat_cara_pemberian"));
+                    TelaahObat5.setSelectedItem(rstelaah.getString("obat_tepat_waktu_pemberian"));
+                }else{
+                    TelaahStatus.setText("Belum Dikaji");
+                    TelaahPetugas.setText(Sequel.CariPetugas(akses.getkode()));
+                }
+                rstelaah.close();
+            } finally {
+                pstelaah.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Telaah : "+e);
         }
     }
 }

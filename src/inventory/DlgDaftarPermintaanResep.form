@@ -115,7 +115,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="14-05-2026"/>
+                        <StringItem index="0" value="26-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -143,7 +143,7 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="14-05-2026"/>
+                        <StringItem index="0" value="26-10-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -631,6 +631,699 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSeek4ActionPerformed"/>
                       </Events>
                     </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="widget.PanelBiasa" name="PanelTelaah">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="PanelTelaah" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[520, 43]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="East"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                  <SubComponents>
+                    <Component class="widget.CekBox" name="ChkTelaah">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="fa" green="fa" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="f8" green="ff" red="fa" type="rgb"/>
+                            </LineBorder>
+                          </Border>
+                        </Property>
+                        <Property name="selected" type="boolean" value="true"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/kiri.png"/>
+                        </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="name" type="java.lang.String" value="ChkTelaah" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[15, 20]"/>
+                        </Property>
+                        <Property name="rolloverIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/kiri.png"/>
+                        </Property>
+                        <Property name="rolloverSelectedIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/kanan.png"/>
+                        </Property>
+                        <Property name="selectedIcon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/picture/kanan.png"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChkTelaahActionPerformed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                          <BorderConstraints direction="West"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Container class="widget.ScrollPane" name="ScrollTelaah">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                            <TitledBorder title="::[ Pengkajian Resep ]::">
+                              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder>
+                                  <Color PropertyName="color" blue="ef" green="f5" red="ef" type="rgb"/>
+                                </LineBorder>
+                              </Border>
+                              <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
+                              <Color PropertyName="color" blue="32" green="32" red="32" type="rgb"/>
+                            </TitledBorder>
+                          </Border>
+                        </Property>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[24, 40]"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="ScrollTelaah" noResource="true"/>
+                        <Property name="opaque" type="boolean" value="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[430, 587]"/>
+                        </Property>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                          <BorderConstraints direction="Center"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Container class="widget.PanelBiasa" name="FormTelaah">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="null"/>
+                            </Property>
+                            <Property name="name" type="java.lang.String" value="FormTelaah" noResource="true"/>
+                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[450, 566]"/>
+                            </Property>
+                          </Properties>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                            <Property name="useNullLayout" type="boolean" value="true"/>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="widget.Label" name="LblTelaahStatus">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Status :"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahStatus" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="10" width="90" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="TelaahStatus">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="TelaahStatus" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="94" y="10" width="351" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahPetugas">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Petugas :"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahPetugas" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="40" width="90" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="TelaahPetugas">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="TelaahPetugas" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="94" y="40" width="351" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahValidasi">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Validasi :"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahValidasi" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="70" width="90" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="TelaahValidasi">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="TelaahValidasi" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="94" y="70" width="351" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahPenyerahan">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Penyerahan :"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahPenyerahan" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="100" width="90" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="TelaahPenyerahan">
+                              <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
+                                <Property name="name" type="java.lang.String" value="TelaahPenyerahan" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="94" y="100" width="351" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Pengkajian Resep :"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="130" width="120" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep1">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="1. Tepat Identifikasi Pasien"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep1" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="153" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep1">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahResep1" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="153" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep1">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep1" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="153" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep2">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="2. Tepat Obat"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep2" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="179" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep2">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahResep2" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="179" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep2">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep2" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="179" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep3">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="3. Tepat Dosis"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep3" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="205" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep3">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahResep3" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="205" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep3">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep3" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="205" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep4">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="4. Tepat Cara Pemberian"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep4" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="231" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep4">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahResep4" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="231" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep4">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep4" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="231" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep5">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="5. Tepat Waktu Pemberian"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep5" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="257" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep5">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahResep5" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="257" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep5">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep5" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="257" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep6">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="6. Ada Tidak Duplikasi Obat"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep6" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="283" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep6">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="selectedIndex" type="int" value="1"/>
+                                <Property name="name" type="java.lang.String" value="TelaahResep6" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="283" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep6">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep6" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="283" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep7">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="7. Interaksi Obat"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep7" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="309" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep7">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="selectedIndex" type="int" value="1"/>
+                                <Property name="name" type="java.lang.String" value="TelaahResep7" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="309" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep7">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep7" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="309" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahResep8">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="8. Kontra Indikasi Obat"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahResep8" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="335" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahResep8">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="selectedIndex" type="int" value="1"/>
+                                <Property name="name" type="java.lang.String" value="TelaahResep8" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="335" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.TextBox" name="KetTelaahResep8">
+                              <Properties>
+                                <Property name="name" type="java.lang.String" value="KetTelaahResep8" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="264" y="335" width="181" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Pengkajian Obat :"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="0" y="368" width="120" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat1">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="1. Tepat Pasien"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat1" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="391" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahObat1">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahObat1" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="391" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat2">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="2. Tepat Obat"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat2" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="417" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahObat2">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahObat2" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="417" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat3">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="3. Tepat Dosis"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat3" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="443" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahObat3">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahObat3" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="443" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat4">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="4. Tepat Cara Pemberian"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat4" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="469" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahObat4">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahObat4" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="469" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Label" name="LblTelaahObat5">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="5. Tepat Waktu Pemberian"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="LblTelaahObat5" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="10" y="495" width="170" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.ComboBox" name="TelaahObat5">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="2">
+                                    <StringItem index="0" value="Ya"/>
+                                    <StringItem index="1" value="Tidak"/>
+                                  </StringArray>
+                                </Property>
+                                <Property name="name" type="java.lang.String" value="TelaahObat5" noResource="true"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="180" y="495" width="80" height="23"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                            <Component class="widget.Button" name="BtnSimpanTelaah">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/picture/save-16x16.png"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Simpan"/>
+                                <Property name="toolTipText" type="java.lang.String" value="Simpan Pengkajian Resep"/>
+                                <Property name="name" type="java.lang.String" value="BtnSimpanTelaah" noResource="true"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSimpanTelaahActionPerformed"/>
+                              </Events>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                  <AbsoluteConstraints x="94" y="526" width="100" height="30"/>
+                                </Constraint>
+                              </Constraints>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>
