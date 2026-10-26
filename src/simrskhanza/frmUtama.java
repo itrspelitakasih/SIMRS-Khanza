@@ -1955,6 +1955,7 @@ public class frmUtama extends javax.swing.JFrame {
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
         MnRekapHadir6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        MnAsistenAI = new javax.swing.JMenu();
         jMenuUpdate = new javax.swing.JMenu();
         MnUpdate = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
@@ -1964,7 +1965,7 @@ public class frmUtama extends javax.swing.JFrame {
         PenyerahanResep = new javax.swing.JMenuItem();
         LaporIT = new javax.swing.JMenuItem();
         eksekutif = new javax.swing.JMenuItem();
-        MnAsistenAI = new javax.swing.JMenu();
+        MnKYCSatuSehat = new javax.swing.JMenuItem();
 
         DlgLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgLogin.setName("DlgLogin"); // NOI18N
@@ -2213,7 +2214,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/09/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/10/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -8745,6 +8746,7 @@ public class frmUtama extends javax.swing.JFrame {
         eksekutif.setForeground(new java.awt.Color(50, 90, 40));
         eksekutif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png"))); // NOI18N
         eksekutif.setText("e-Eksekutif");
+        eksekutif.setEnabled(false);
         eksekutif.setName("eksekutif"); // NOI18N
         eksekutif.setPreferredSize(new java.awt.Dimension(205, 30));
         eksekutif.addActionListener(new java.awt.event.ActionListener() {
@@ -8753,6 +8755,20 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenuUpdate.add(eksekutif);
+
+        MnKYCSatuSehat.setBackground(new java.awt.Color(255, 255, 254));
+        MnKYCSatuSehat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        MnKYCSatuSehat.setForeground(new java.awt.Color(50, 90, 40));
+        MnKYCSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept-female-user24.png"))); // NOI18N
+        MnKYCSatuSehat.setText("KYC SatuSehat");
+        MnKYCSatuSehat.setName("MnKYCSatuSehat"); // NOI18N
+        MnKYCSatuSehat.setPreferredSize(new java.awt.Dimension(205, 30));
+        MnKYCSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKYCSatuSehatActionPerformed(evt);
+            }
+        });
+        jMenuUpdate.add(MnKYCSatuSehat);
 
         MenuBar.add(jMenuUpdate);
 
@@ -16034,6 +16050,21 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             JOptionPane.showMessageDialog(this, "Gagal membuka halaman : " + e.getMessage());
         }
     }//GEN-LAST:event_eksekutifActionPerformed
+
+    private void MnKYCSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKYCSatuSehatActionPerformed
+        if(akses.getkode()==null||akses.getkode().equals("")){
+            JOptionPane.showMessageDialog(this,"Silakan Log In terlebih dahulu.");
+            return;
+        }
+        // NIK & nama petugas diambil otomatis dari data pegawai sesuai user login (webapps/kyc/login.php)
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            Valid.panggilUrl("kyc/login.php?usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&kode="+java.net.URLEncoder.encode(akses.getkode(),"UTF-8"));
+        } catch (Exception e) {
+            System.out.println("Notif KYC : "+e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnKYCSatuSehatActionPerformed
 
     private void MnAsistenAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MnAsistenAIMouseClicked
         // menu tanpa isi: lepas sorotan menu setelah diklik
@@ -25450,10 +25481,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ButtonBig BtnClose;
     private widget.ButtonBig BtnDpjp;
     private widget.ButtonBig BtnJadwal;
-    private widget.ButtonBig BtnNotif;
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
+    private widget.ButtonBig BtnNotif;
     private widget.Button BtnTandaiHasil;
     private widget.ButtonBig BtnToolChat;
     private widget.ButtonBig BtnToolJualObat;
@@ -25466,8 +25497,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JDialog DlgLogin;
     private usu.widget.glass.PanelGlass FlayMenu;
     private javax.swing.JMenuItem LaporIT;
-    private javax.swing.JLabel LblIP;
     private widget.Label LblCaptcha;
+    private javax.swing.JLabel LblIP;
     private widget.Label LblJudulCaptcha;
     private widget.Label LblJudulNotif;
     private widget.Label LblKodeCaptcha;
@@ -25477,6 +25508,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenu MnAntrianFarmasi;
     private javax.swing.JMenu MnAntrianLaborat;
     private javax.swing.JMenuItem MnAntrianPoli;
+    private javax.swing.JMenu MnAsistenAI;
     private javax.swing.JMenuItem MnBelumDatang;
     private javax.swing.JMenuItem MnBelumDatang1;
     private javax.swing.JMenuItem MnCariEbook;
@@ -25493,6 +25525,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private javax.swing.JMenuItem MnInfoLaborat2;
     private javax.swing.JMenuItem MnInfoLaborat3;
     private javax.swing.JMenuItem MnInfoMobileJKN;
+    private javax.swing.JMenuItem MnKYCSatuSehat;
     private javax.swing.JMenuItem MnKadaluarsa;
     private javax.swing.JMenuItem MnKoleksiPenelitian;
     private javax.swing.JMenuItem MnLaporanRL;
@@ -25957,10 +25990,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.ButtonBig btnSuratRuang;
     private widget.ButtonBig btnSuratSifat;
     private widget.ButtonBig btnSuratStatus;
+    private widget.ButtonBig btnSurveilansMingguan;
     private widget.ButtonBig btnSurveilansPD3I;
     private widget.ButtonBig btnSurveilansRalan;
     private widget.ButtonBig btnSurveilansRanap;
-    private widget.ButtonBig btnSurveilansMingguan;
     private widget.ButtonBig btnTagihanDokter;
     private widget.ButtonBig btnTagihanMasuk;
     private widget.ButtonBig btnTagihanObatBangsal;
@@ -26001,7 +26034,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.PasswordBox edAdmin;
     private widget.PasswordBox edPwd;
     private javax.swing.JMenuItem eksekutif;
-    private javax.swing.JMenu MnAsistenAI;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
@@ -26197,7 +26229,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.08"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202610.09"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
