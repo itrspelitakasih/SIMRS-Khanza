@@ -60,6 +60,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import rekammedis.MasterCariTemplateHasilRadiologi;
 import rekammedis.RMRiwayatPerawatan;
 import komunikasi.GoWAService;
+import komunikasi.AsistenAI;
+import javax.swing.SwingWorker;
 
 public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 
@@ -87,6 +89,13 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private MasterCariTemplateHasilRadiologi templatehasil = new MasterCariTemplateHasilRadiologi(null, false);
+    private static final String PROMPT_HASIL_RADIOLOGI
+            = "Anda membantu dokter spesialis radiologi menyusun draf hasil bacaan (expertise) radiologi dalam Bahasa Indonesia medis yang baku. "
+            + "Anda TIDAK melihat gambar radiologi. Tulis hanya berdasarkan jenis pemeriksaan, data klinis dan catatan temuan dokter yang diberikan; "
+            + "jangan menambahkan temuan patologis yang tidak disebutkan dalam catatan. "
+            + "Bila catatan temuan tidak ada, buat kerangka laporan dengan deskripsi normal yang lazim untuk jenis pemeriksaan tersebut. "
+            + "Format: teks polos tanpa markdown (tanpa **, #, tabel), uraian temuan per organ/struktur, lalu baris 'Kesan :' di akhir. "
+            + "Jangan menulis kalimat pembuka/penutup, identitas pasien, maupun nama dokter.";
     private ApiOrthanc orthanc = new ApiOrthanc();
     private boolean sukses = false;
     private JsonNode root;
@@ -636,6 +645,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         HasilPeriksa = new widget.TextArea();
         panelGlass6 = new widget.panelisi();
         btnAmbilPhoto1 = new widget.Button();
+        BtnGenerateAI = new widget.Button();
         BtnSimpan = new widget.Button();
         BtnPrint1 = new widget.Button();
         FormOrthan = new widget.PanelBiasa();
@@ -1340,6 +1350,18 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         panelGlass6.add(btnAmbilPhoto1);
+
+        BtnGenerateAI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Diversity-Avatars-Avatars-Robot-02.16.png"))); // NOI18N
+        BtnGenerateAI.setText("Generate AI");
+        BtnGenerateAI.setToolTipText("Susun draf hasil bacaan dengan Asisten AI dari jenis pemeriksaan, diagnosa klinis dan catatan temuan yang sudah diketik");
+        BtnGenerateAI.setName("BtnGenerateAI"); // NOI18N
+        BtnGenerateAI.setPreferredSize(new java.awt.Dimension(125, 30));
+        BtnGenerateAI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGenerateAIActionPerformed(evt);
+            }
+        });
+        panelGlass6.add(BtnGenerateAI);
 
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('U');
@@ -2660,6 +2682,122 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         templatehasil.setVisible(true);
     }// GEN-LAST:event_btnAmbilPhoto1ActionPerformed
 
+    private void BtnGenerateAIActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BtnGenerateAIActionPerformed
+        if (Kd2.getText().equals("") || NoRawatDicari.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu...!!!!");
+            return;
+        }
+        final String teksAwal = HasilPeriksa.getText();
+        if (!teksAwal.trim().equals("") && JOptionPane.showConfirmDialog(null,
+                "Teks hasil bacaan saat ini dipakai sebagai catatan temuan untuk AI,\nlalu diganti dengan draf dari AI. Lanjutkan?",
+                "Generate AI", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+            return;
+        }
+        final String pesan;
+        try {
+            pesan = dataGenerateAI(teksAwal.trim());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal membaca data pemeriksaan : " + e.getMessage());
+            return;
+        }
+        BtnGenerateAI.setEnabled(false);
+        BtnSimpan.setEnabled(false);
+        HasilPeriksa.setEditable(false);
+        HasilPeriksa.setText("");
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        new SwingWorker<AsistenAI.Hasil, String>() {
+            @Override
+            protected AsistenAI.Hasil doInBackground() {
+                return new AsistenAI(PROMPT_HASIL_RADIOLOGI).kirim(pesan, akses.getkode(), potongan -> publish(potongan));
+            }
+
+            @Override
+            protected void process(List<String> potongan) {
+                for (String p : potongan) {
+                    HasilPeriksa.append(p);
+                }
+            }
+
+            @Override
+            protected void done() {
+                AsistenAI.Hasil h;
+                try {
+                    h = get();
+                } catch (Exception e) {
+                    h = new AsistenAI.Hasil();
+                    h.pesanGagal = "Gagal : " + e.getMessage();
+                }
+                if (h.pesanGagal != null) {
+                    HasilPeriksa.setText(teksAwal);
+                } else {
+                    // hasil stream bisa tertinggal di process(), jadi pakai teks lengkap
+                    HasilPeriksa.setText(h.teks.replace("**", "").trim());
+                    HasilPeriksa.setCaretPosition(0);
+                }
+                HasilPeriksa.setEditable(true);
+                BtnGenerateAI.setEnabled(true);
+                BtnSimpan.setEnabled(true);
+                setCursor(Cursor.getDefaultCursor());
+                if (h.pesanGagal != null) {
+                    JOptionPane.showMessageDialog(null, h.pesanGagal);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Draf hasil bacaan dari AI selesai. Periksa dan koreksi sesuai gambar,\n"
+                            + "lalu klik Update untuk menyimpan." + (h.terpotong ? "\n(Jawaban AI terpotong karena terlalu panjang)" : ""));
+                }
+            }
+        }.execute();
+    }// GEN-LAST:event_BtnGenerateAIActionPerformed
+
+    /** Data pemeriksaan untuk AI tanpa identitas pasien (nama, no.RM, no.rawat tidak dikirim). */
+    private String dataGenerateAI(String catatan) throws Exception {
+        StringBuilder data = new StringBuilder();
+        try (PreparedStatement psAI = koneksi.prepareStatement(
+                "select pasien.jk,reg_periksa.umurdaftar,reg_periksa.sttsumur from reg_periksa "
+                + "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where reg_periksa.no_rawat=?")) {
+            psAI.setString(1, NoRawatDicari.getText());
+            try (ResultSet rsAI = psAI.executeQuery()) {
+                if (rsAI.next()) {
+                    data.append("Pasien : ").append(rsAI.getString(1).equals("L") ? "Laki-laki" : "Perempuan")
+                            .append(", umur ").append(rsAI.getString(2)).append(" ").append(rsAI.getString(3)).append("\n");
+                }
+            }
+        }
+        data.append("Jenis pemeriksaan :\n");
+        try (PreparedStatement psAI = koneksi.prepareStatement(
+                "select jns_perawatan_radiologi.nm_perawatan,periksa_radiologi.proyeksi from periksa_radiologi "
+                + "inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
+                + "where periksa_radiologi.no_rawat=? and periksa_radiologi.tgl_periksa=? and periksa_radiologi.jam=?")) {
+            psAI.setString(1, NoRawatDicari.getText());
+            psAI.setString(2, TglDicari.getText());
+            psAI.setString(3, JamDicari.getText());
+            try (ResultSet rsAI = psAI.executeQuery()) {
+                while (rsAI.next()) {
+                    data.append("- ").append(rsAI.getString(1));
+                    if (rsAI.getString(2) != null && !rsAI.getString(2).equals("")) {
+                        data.append(" (proyeksi ").append(rsAI.getString(2)).append(")");
+                    }
+                    data.append("\n");
+                }
+            }
+        }
+        try (PreparedStatement psAI = koneksi.prepareStatement(
+                "select diagnosa_klinis,informasi_tambahan from permintaan_radiologi where no_rawat=? and tgl_hasil=? and jam_hasil=?")) {
+            psAI.setString(1, NoRawatDicari.getText());
+            psAI.setString(2, TglDicari.getText());
+            psAI.setString(3, JamDicari.getText());
+            try (ResultSet rsAI = psAI.executeQuery()) {
+                if (rsAI.next()) {
+                    data.append("Diagnosa klinis : ").append(rsAI.getString(1)).append("\n");
+                    if (rsAI.getString(2) != null && !rsAI.getString(2).equals("")) {
+                        data.append("Informasi tambahan : ").append(rsAI.getString(2)).append("\n");
+                    }
+                }
+            }
+        }
+        data.append("Catatan temuan dokter radiologi :\n").append(catatan.equals("") ? "(tidak ada)" : catatan);
+        return data.toString();
+    }
+
     private void btnDicomActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDicomActionPerformed
         if (tabModeDicom.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
@@ -3338,6 +3476,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnCari;
     private widget.Button BtnCloseIn4;
+    private widget.Button BtnGenerateAI;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirimOrthanc;

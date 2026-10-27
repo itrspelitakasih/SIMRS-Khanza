@@ -45,7 +45,15 @@ public class AsistenAI {
 
     /** Membaca setting saat ini; setting yang diubah sesudahnya berlaku di percakapan berikutnya. */
     public AsistenAI(){
+        this(null);
+    }
+
+    /** Sama seperti AsistenAI(), tetapi system prompt diganti (mis. untuk draf hasil bacaan radiologi). */
+    public AsistenAI(String systemPrompt){
         setting=baca(koneksi);
+        if(systemPrompt!=null){
+            setting.systemPrompt=systemPrompt;
+        }
         chat=siapSetting(setting)?new ChatAI(setting):null;
     }
 
