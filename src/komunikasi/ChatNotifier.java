@@ -307,7 +307,7 @@ public class ChatNotifier {
                 String batas=batasNotif(koneksi,kode);
                 if(dokter){
                     hasilTerakhir=hasilBaru(koneksi,kode,batas);
-                }else if(jmlSumberTugas>0){
+                }else if(!sqlTugas.equals("")){
                     tugasTerakhir=tugasBaru(koneksi,kode,batas);
                 }
             }
@@ -443,8 +443,8 @@ public class ChatNotifier {
         return daftar;
     }
 
-    // Sumber tugas; tiap sumber punya satu parameter batas tanggal. Kolom: jenis,kunci,tgl,jam (penanda dilihat),
-    // waktu (tampil), no_rawat, rawat, nama, keterangan.
+    // Sumber tugas; permintaan & resep punya satu parameter batas tanggal, booking tanpa parameter (hanya tanggal periksa
+    // hari ini). Kolom: jenis,kunci,tgl,jam (penanda dilihat), waktu (tampil), no_rawat, rawat, nama, keterangan.
     private static String sumberPermintaan(String jenis,String tabel){
         return "select '"+jenis+"' jenis,p.noorder kunci,p.tgl_permintaan tgl,p.jam_permintaan jam,"+
             "concat(p.tgl_permintaan,' ',p.jam_permintaan) waktu,p.no_rawat,p.status rawat,ps.nm_pasien nama,"+
@@ -460,15 +460,15 @@ public class ChatNotifier {
         "left join dokter d on d.kd_dokter=o.kd_dokter where o.tgl_perawatan='0000-00-00' and o.tgl_peresepan>=?";
 
     private static final String SUMBER_BOOKING_PERIKSA=
-        "select 'BookPrk',b.no_booking,date(b.tanggal_booking),time(b.tanggal_booking),b.tanggal_booking,'','ralan',b.nama,"+
+        "select 'BookPrk',b.no_booking,b.tanggal,time(b.tanggal_booking),b.tanggal_booking,'','ralan',b.nama,"+
         "concat(ifnull(pl.nm_poli,''),', periksa ',date_format(b.tanggal,'%d-%m-%Y')) from booking_periksa b "+
-        "left join poliklinik pl on pl.kd_poli=b.kd_poli where b.status='Belum Dibalas' and b.tanggal_booking>=?";
+        "left join poliklinik pl on pl.kd_poli=b.kd_poli where b.status='Belum Dibalas' and b.tanggal=curdate()";
 
     private static final String SUMBER_BOOKING_REGISTRASI=
         "select 'BookReg',b.no_rkm_medis,b.tanggal_periksa,'00:00:00',concat(b.tanggal_booking,' ',b.jam_booking),'','ralan',"+
         "ps.nm_pasien,concat(ifnull(pl.nm_poli,''),', periksa ',date_format(b.tanggal_periksa,'%d-%m-%Y')) "+
         "from booking_registrasi b inner join pasien ps on ps.no_rkm_medis=b.no_rkm_medis "+
-        "left join poliklinik pl on pl.kd_poli=b.kd_poli where b.status='Belum' and b.tanggal_booking>=?";
+        "left join poliklinik pl on pl.kd_poli=b.kd_poli where b.status='Belum' and b.tanggal_periksa=curdate()";
 
     /** Susun query tugas dari hak akses menu user yang login (sama dengan syarat tampilnya menu di frmUtama). */
     private static void siapkanSqlTugas(){
@@ -484,13 +484,14 @@ public class ChatNotifier {
         if(akses.getresep_dokter()){
             sumber.add(SUMBER_RESEP);
         }
+        // booking tanpa parameter batas, jadi harus di urutan terakhir
+        jmlSumberTugas=sumber.size();
         if(akses.getbooking_periksa()){
             sumber.add(SUMBER_BOOKING_PERIKSA);
         }
         if(akses.getbooking_registrasi()){
             sumber.add(SUMBER_BOOKING_REGISTRASI);
         }
-        jmlSumberTugas=sumber.size();
         sqlTugas=sumber.isEmpty()?"":
             "select x.jenis,x.kunci,x.tgl,x.jam,x.waktu,x.no_rawat,x.rawat,x.nama,x.keterangan from ("+
             String.join(" union all ",sumber)+") x where not exists(select 1 from notif_dilihat n where n.kode_user=? "+

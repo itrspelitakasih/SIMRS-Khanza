@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
+import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
@@ -56,6 +57,8 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
     private FileReader myObj;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
+    private boolean muatOtomatis=true;
+    private sekuel Sequel=new sekuel();
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
@@ -65,13 +68,13 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(656,250);
         tabMode=new DefaultTableModel(null,new Object[]{
-                "Kode Paket","Nama Operasi","Kategori","Tarif"
+                "Kode Paket","Nama Operasi","Kategori","Kelas","Tarif"
             }){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;
              }
              Class[] types = new Class[] {
-                 java.lang.Object.class,java.lang.Object.class,java.lang.Object.class, java.lang.Double.class
+                 java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Double.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -83,7 +86,7 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         tbKamar.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 5; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(100);
@@ -92,6 +95,8 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
             }else if(i==2){
                 column.setPreferredWidth(100);
             }else if(i==3){
+                column.setPreferredWidth(80);
+            }else if(i==4){
                 column.setPreferredWidth(85);
             }
         }
@@ -114,6 +119,8 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         Scroll = new widget.ScrollPane();
         tbKamar = new widget.Table();
         panelisi3 = new widget.panelisi();
+        label11 = new widget.Label();
+        CmbKelas = new widget.ComboBox();
         label9 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -161,6 +168,21 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         panelisi3.setName("panelisi3"); // NOI18N
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 43));
         panelisi3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
+
+        label11.setText("Kelas :");
+        label11.setName("label11"); // NOI18N
+        label11.setPreferredSize(new java.awt.Dimension(40, 23));
+        panelisi3.add(label11);
+
+        CmbKelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Rawat Jalan", "Kelas 1", "Kelas 2", "Kelas 3", "Kelas Utama", "Kelas VIP", "Kelas VVIP" }));
+        CmbKelas.setName("CmbKelas"); // NOI18N
+        CmbKelas.setPreferredSize(new java.awt.Dimension(100, 23));
+        CmbKelas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CmbKelasItemStateChanged(evt);
+            }
+        });
+        panelisi3.add(CmbKelas);
 
         label9.setText("Key Word :");
         label9.setName("label9"); // NOI18N
@@ -324,6 +346,12 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         
     }//GEN-LAST:event_BtnTambahActionPerformed
 
+    private void CmbKelasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbKelasItemStateChanged
+        if(muatOtomatis&&evt.getStateChange()==java.awt.event.ItemEvent.SELECTED){
+            runBackground(() ->tampil2());
+        }
+    }//GEN-LAST:event_CmbKelasItemStateChanged
+
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         emptTeks();
     }//GEN-LAST:event_formWindowActivated
@@ -399,11 +427,13 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
     private widget.Button BtnTambah;
+    private widget.ComboBox CmbKelas;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.InternalFrame internalFrame1;
     private widget.Label label10;
+    private widget.Label label11;
     private widget.Label label9;
     private widget.panelisi panelisi3;
     private widget.Table tbKamar;
@@ -427,9 +457,6 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
             try {
                 rs=pstindakan.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new Object[]{
-                        rs.getString("kode_paket"),rs.getString("nm_perawatan"),rs.getString("kategori"),rs.getDouble("total")
-                    });
                     iyembuilder.append("{\"KodePaket\":\"").append(rs.getString("kode_paket")).append("\",\"NamaOperasi\":\"").append(rs.getString("nm_perawatan").replaceAll("\"","")).append("\",\"Kategori\":\"").append(rs.getString("kategori")).append("\",\"Total\":\"").append(rs.getDouble("total")).append("\",\"KodePJ\":\"").append(rs.getString("kd_pj")).append("\",\"Kelas\":\"").append(rs.getString("kelas")).append("\"},");
                 }
             } catch (Exception e) {
@@ -455,6 +482,8 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         }finally {
             if (fileWriter != null) try { fileWriter.close(); } catch (Exception e) {}
         }
+        // cache diperbarui, tampilkan sesuai pilihan kelas & kata kunci
+        tampil2();
     }
     
     private void tampil2() {  
@@ -463,85 +492,17 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
             root = mapper.readTree(myObj);
             Valid.tabelKosong(tabMode);
             response = root.path("paketoperasi");
-            if(cara_bayar_operasi.equals("Yes")&&kelas_operasi.equals("No")){
-                if(response.isArray()){
-                    if(TCari.getText().trim().equals("")){
-                        for(JsonNode list:response){
-                            if(list.path("KodePJ").asText().equals(kd_pj.trim())||list.path("KodePJ").asText().equals("-")){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }else{
-                        for(JsonNode list:response){
-                            if((list.path("KodePJ").asText().equals(kd_pj.trim())||list.path("KodePJ").asText().equals("-"))&&(list.path("KodePaket").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaOperasi").asText().toLowerCase().contains(TCari.getText().toLowerCase()))){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
+            String cari=TCari.getText().trim().toLowerCase(),pilihKelas=CmbKelas.getSelectedItem()==null?"Semua":CmbKelas.getSelectedItem().toString();
+            if(response.isArray()){
+                for(JsonNode list:response){
+                    if((pilihKelas.equals("Semua")||list.path("Kelas").asText().equals(pilihKelas))&&(cari.equals("")||
+                            list.path("KodePaket").asText().toLowerCase().contains(cari)||list.path("NamaOperasi").asText().toLowerCase().contains(cari))){
+                        tabMode.addRow(new Object[]{
+                            list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Kelas").asText(),list.path("Total").asDouble()
+                        });
                     }
                 }
-            }else if(cara_bayar_operasi.equals("No")&&kelas_operasi.equals("No")){
-                if(response.isArray()){
-                    if(TCari.getText().trim().equals("")){
-                        for(JsonNode list:response){
-                            tabMode.addRow(new Object[]{
-                                list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                            });
-                        }
-                    }else{
-                        for(JsonNode list:response){
-                            if(list.path("KodePaket").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaOperasi").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }
-                }
-            }else if(cara_bayar_operasi.equals("Yes")&&kelas_operasi.equals("Yes")){
-                if(response.isArray()){
-                    if(TCari.getText().trim().equals("")){
-                        for(JsonNode list:response){
-                            if((list.path("Kelas").asText().equals(kelas.trim())||list.path("Kelas").asText().equals("-"))&&(list.path("KodePJ").asText().equals(kd_pj.trim())||list.path("KodePJ").asText().equals("-"))){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }else{
-                        for(JsonNode list:response){
-                            if((list.path("Kelas").asText().equals(kelas.trim())||list.path("Kelas").asText().equals("-"))&&(list.path("KodePJ").asText().equals(kd_pj.trim())||list.path("KodePJ").asText().equals("-"))&&(list.path("KodePaket").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaOperasi").asText().toLowerCase().contains(TCari.getText().toLowerCase()))){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }
-                }
-            }else if(cara_bayar_operasi.equals("No")&&kelas_operasi.equals("Yes")){
-                if(response.isArray()){
-                    if(TCari.getText().trim().equals("")){
-                        for(JsonNode list:response){
-                            if(list.path("Kelas").asText().equals(kelas.trim())||list.path("Kelas").asText().equals("-")){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }else{
-                        for(JsonNode list:response){
-                            if((list.path("Kelas").asText().equals(kelas.trim())||list.path("Kelas").asText().equals("-"))&&(list.path("KodePaket").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaOperasi").asText().toLowerCase().contains(TCari.getText().toLowerCase()))){
-                                tabMode.addRow(new Object[]{
-                                    list.path("KodePaket").asText(),list.path("NamaOperasi").asText(),list.path("Kategori").asText(),list.path("Total").asDouble()
-                                });
-                            }
-                        }
-                    }
-                }
-            }   
+            }
             myObj.close();   
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);
@@ -564,9 +525,19 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
     public void setBayar(String penjab,String kelasoperasi){
         this.kd_pj=penjab;
         this.kelas=kelasoperasi;
+        // kelas pasien dipilih bila ada tarifnya, selain itu (mis. VVIP / dari UGD tanpa tarif khusus) tampil semua kelas
+        muatOtomatis=false;
+        if(Sequel.cariInteger("select count(*) from paket_operasi where paket_operasi.status='1' and paket_operasi.kelas=?",kelasoperasi.trim())>0){
+            CmbKelas.setSelectedItem(kelasoperasi.trim());
+        }else{
+            CmbKelas.setSelectedItem("Semua");
+        }
+        muatOtomatis=true;
         try {
             if(Valid.daysOld("./cache/paketoperasi.iyem")<8){
                 tampil2();
+            }else{
+                tampil();
             }
         } catch (Exception e) {
         }
