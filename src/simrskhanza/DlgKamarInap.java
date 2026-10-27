@@ -314,6 +314,14 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         }
         tbKamIn.setDefaultRenderer(Object.class, new WarnaTable());
+        // kolom Kamar hanya menampilkan nama bangsal; isi sel tetap "kd_kamar nm_bangsal" karena dipakai form/laporan lain
+        tbKamIn.getColumnModel().getColumn(7).setCellRenderer(new WarnaTable(){
+            @Override
+            protected void setValue(Object value){
+                String kamar=value==null?"":value.toString();
+                super.setValue(kamar.indexOf(' ')>0?kamar.substring(kamar.indexOf(' ')+1):kamar);
+            }
+        });
 
         norawat.setDocument(new batasInput((byte)17).getKata(norawat));
         kdkamar.setDocument(new batasInput((byte)15).getKata(kdkamar));
