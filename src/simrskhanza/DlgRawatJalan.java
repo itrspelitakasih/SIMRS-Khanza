@@ -1007,7 +1007,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TPemeriksaan.setDocument(new batasInput((int)2000).getKata(TPemeriksaan));
         TPenilaian.setDocument(new batasInput((int)2000).getKata(TPenilaian));    
         TInstruksi.setDocument(new batasInput((int)2000).getKata(TInstruksi));     
-        TAlergi.setDocument(new batasInput((int)50).getKata(TAlergi));        
+        TAlergi.setDocument(new batasInput((int)50).getKata(TAlergi));
+        TAlergi.setText("Tidak ada");
         TCari.setDocument(new batasInput((int)100).getKata(TCari));       
         TGCS.setDocument(new batasInput((byte)10).getKata(TGCS));
         TTinggi.setDocument(new batasInput((byte)5).getKata(TTinggi));
@@ -5339,7 +5340,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TInstruksi.setText("");
         TPemeriksaan.setText("");
         TPenilaian.setText("");
-        TAlergi.setText("");
+        TAlergi.setText("Tidak ada");
         TBerat.setText("");
         TTinggi.setText("");
         TNadi.setText("");
@@ -6665,7 +6666,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     if(KdPeg.getText().trim().equals("")||TPegawai.getText().trim().equals("")){
                             Valid.textKosong(KdPeg,"Dokter/Paramedis masih kosong...!!");
                     }else if((!TKeluhan.getText().trim().equals(""))||(!TPemeriksaan.getText().trim().equals(""))||(!TSuhu.getText().trim().equals(""))||
-                            (!TTensi.getText().trim().equals(""))||(!TAlergi.getText().trim().equals(""))||(!TTinggi.getText().trim().equals(""))||
+                            (!TTensi.getText().trim().equals(""))||(!TAlergi.getText().trim().equals("")&&!TAlergi.getText().trim().equalsIgnoreCase("Tidak ada"))||(!TTinggi.getText().trim().equals(""))||
                             (!TBerat.getText().trim().equals(""))||(!TRespirasi.getText().trim().equals(""))||(!TNadi.getText().trim().equals(""))||
                             (!TGCS.getText().trim().equals(""))||(!TindakLanjut.getText().trim().equals(""))||(!TPenilaian.getText().trim().equals(""))||
                             (!KdPeg.getText().trim().equals(""))||(!TPegawai.getText().trim().equals(""))||(!TInstruksi.getText().trim().equals(""))||
@@ -6712,7 +6713,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                         tbPemeriksaan.setValueAt(Jabatan.getText(),tbPemeriksaan.getSelectedRow(), 25);
                                         TSuhu.setText("");TTensi.setText("");TNadi.setText("");TRespirasi.setText("");
                                         TTinggi.setText("");TBerat.setText("");TGCS.setText("");TKeluhan.setText("");
-                                        TPemeriksaan.setText("");TAlergi.setText("");LingkarPerut.setText("");
+                                        TPemeriksaan.setText("");TAlergi.setText("Tidak ada");LingkarPerut.setText("");
                                         TindakLanjut.setText("");TPenilaian.setText("");TInstruksi.setText("");
                                         SpO2.setText("");TEvaluasi.setText("");
                                 }   
@@ -6763,7 +6764,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                                     tbPemeriksaan.setValueAt(Jabatan.getText(),tbPemeriksaan.getSelectedRow(), 25);
                                                     TSuhu.setText("");TTensi.setText("");TNadi.setText("");TRespirasi.setText("");
                                                     TTinggi.setText("");TBerat.setText("");TGCS.setText("");TKeluhan.setText("");
-                                                    TPemeriksaan.setText("");TAlergi.setText("");LingkarPerut.setText("");
+                                                    TPemeriksaan.setText("");TAlergi.setText("Tidak ada");LingkarPerut.setText("");
                                                     TindakLanjut.setText("");TPenilaian.setText("");TInstruksi.setText("");
                                                     SpO2.setText("");TEvaluasi.setText("");
                                             }
@@ -15039,7 +15040,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 break;
             case 3:
                 if((!TKeluhan.getText().trim().equals(""))||(!TPemeriksaan.getText().trim().equals(""))||(!TSuhu.getText().trim().equals(""))||
-                        (!TTensi.getText().trim().equals(""))||(!TAlergi.getText().trim().equals(""))||(!TTinggi.getText().trim().equals(""))||
+                        (!TTensi.getText().trim().equals(""))||(!TAlergi.getText().trim().equals("")&&!TAlergi.getText().trim().equalsIgnoreCase("Tidak ada"))||(!TTinggi.getText().trim().equals(""))||
                         (!TBerat.getText().trim().equals(""))||(!TRespirasi.getText().trim().equals(""))||(!TNadi.getText().trim().equals(""))||
                         (!TGCS.getText().trim().equals(""))||(!TindakLanjut.getText().trim().equals(""))||(!TPenilaian.getText().trim().equals(""))||
                         (!TInstruksi.getText().trim().equals(""))||(!SpO2.getText().trim().equals(""))||(!TEvaluasi.getText().trim().equals(""))){
@@ -15060,7 +15061,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                     });
                                     TSuhu.setText("");TTensi.setText("");TNadi.setText("");TRespirasi.setText("");
                                     TTinggi.setText("");TBerat.setText("");TGCS.setText("");TKeluhan.setText("");
-                                    TPemeriksaan.setText("");TAlergi.setText("");LingkarPerut.setText("");
+                                    TPemeriksaan.setText("");TAlergi.setText("Tidak ada");LingkarPerut.setText("");
                                     TindakLanjut.setText("");TPenilaian.setText("");TInstruksi.setText("");SpO2.setText("");
                                     TEvaluasi.setText("");cmbKesadaran.setSelectedIndex(0);
                                     LCount.setText(""+tabModePemeriksaan.getRowCount());
@@ -15080,7 +15081,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                         });
                                         TSuhu.setText("");TTensi.setText("");TNadi.setText("");TRespirasi.setText("");
                                         TTinggi.setText("");TBerat.setText("");TGCS.setText("");TKeluhan.setText("");
-                                        TPemeriksaan.setText("");TAlergi.setText("");LingkarPerut.setText("");
+                                        TPemeriksaan.setText("");TAlergi.setText("Tidak ada");LingkarPerut.setText("");
                                         TindakLanjut.setText("");TPenilaian.setText("");TInstruksi.setText("");SpO2.setText("");
                                         TEvaluasi.setText("");cmbKesadaran.setSelectedIndex(0);
                                         LCount.setText(""+tabModePemeriksaan.getRowCount());
