@@ -7,6 +7,7 @@
 
 package simrskhanza;
 
+import bridging.SatuSehatCekNIK;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -66,6 +67,8 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         NoHP = new widget.TextBox();
         jLabel6 = new widget.Label();
         NIK = new widget.TextBox();
+        BtnCekNIK = new widget.Button();
+        BtnCekRM = new widget.Button();
         jLabel7 = new widget.Label();
         NRP = new widget.TextBox();
         panelGlass8 = new widget.panelisi();
@@ -158,6 +161,40 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         });
         FormInput.add(NIK);
         NIK.setBounds(99, 102, 200, 23);
+
+        BtnCekNIK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/satusehat-16x16.png"))); // NOI18N
+        BtnCekNIK.setMnemonic('2');
+        BtnCekNIK.setToolTipText("Cek NIK ke SATUSEHAT (Alt+2)");
+        BtnCekNIK.setName("BtnCekNIK"); // NOI18N
+        BtnCekNIK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCekNIKActionPerformed(evt);
+            }
+        });
+        BtnCekNIK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCekNIKKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnCekNIK);
+        BtnCekNIK.setBounds(302, 102, 28, 23);
+
+        BtnCekRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnCekRM.setMnemonic('3');
+        BtnCekRM.setToolTipText("Cek No.RM lain dengan NIK yang sama (Alt+3)");
+        BtnCekRM.setName("BtnCekRM"); // NOI18N
+        BtnCekRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCekRMActionPerformed(evt);
+            }
+        });
+        BtnCekRM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCekRMKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnCekRM);
+        BtnCekRM.setBounds(333, 102, 28, 23);
 
         jLabel7.setText("NRP :");
         jLabel7.setName("jLabel7"); // NOI18N
@@ -282,11 +319,115 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     }//GEN-LAST:event_NoHPKeyPressed
 
     private void NIKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NIKKeyPressed
-        Valid.pindah(evt,NoHP,NRP);
+        Valid.pindah(evt,NoHP,BtnCekNIK);
     }//GEN-LAST:event_NIKKeyPressed
 
+    private boolean nikValid(){
+        String nik=NIK.getText().trim();
+        if(!nik.matches("[0-9]{16}")){
+            JOptionPane.showMessageDialog(this,"NIK tidak valid ("+nik.length()+" karakter"+(nik.matches("[0-9]*")?"":", bukan angka")+"), harus 16 digit angka.");
+            NIK.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private void BtnCekNIKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekNIKActionPerformed
+        if(nikValid()){
+            // cukup cari IHS Number; tampil() tidak dipakai karena data Patient dari SATUSEHAT sering disamarkan
+            // (tanpa nama) sehingga dianggap tidak ada, dan pesannya muncul di belakang dialog ini.
+            // Request dijalankan di background karena ApiSatuSehat tidak memakai timeout, agar dialog tidak membeku.
+            final String nik=NIK.getText().trim();
+            BtnCekNIK.setEnabled(false);
+            BtnCekNIK.setToolTipText("Sedang mengecek NIK ke SATUSEHAT...");
+            this.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+            new javax.swing.SwingWorker<String,Void>() {
+                @Override
+                protected String doInBackground() {
+                    return new SatuSehatCekNIK().tampilIDPasien(nik);
+                }
+                @Override
+                protected void done() {
+                    BtnCekNIK.setEnabled(true);
+                    BtnCekNIK.setToolTipText("Cek NIK ke SATUSEHAT (Alt+2)");
+                    setCursor(java.awt.Cursor.getDefaultCursor());
+                    if(!isDisplayable()){
+                        return; // dialog sudah ditutup
+                    }
+                    String ihs="";
+                    try {
+                        ihs=get();
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : "+e);
+                    }
+                    if(ihs.equals("")){
+                        JOptionPane.showMessageDialog(DlgUpdatePerusahaanPasien.this,
+                            "NIK "+nik+" TIDAK ditemukan di SATUSEHAT\n"+
+                            "(atau koneksi ke SATUSEHAT gagal, lihat log)");
+                    }else{
+                        JOptionPane.showMessageDialog(DlgUpdatePerusahaanPasien.this,
+                            "NIK "+nik+" ditemukan di SATUSEHAT\n"+
+                            "IHS Number : "+ihs+"\n\n"+
+                            "Pasien : "+TPasien.getText()+" ("+TNoRM.getText()+")");
+                    }
+                }
+            }.execute();
+        }
+    }//GEN-LAST:event_BtnCekNIKActionPerformed
+
+    private void BtnCekNIKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCekNIKKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnCekNIKActionPerformed(null);
+        }else{
+            Valid.pindah(evt,NIK,BtnCekRM);
+        }
+    }//GEN-LAST:event_BtnCekNIKKeyPressed
+
+    private void BtnCekRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekRMActionPerformed
+        if(nikValid()){
+            // No.RM lain di SIMRS yang memakai NIK yang sama
+            String nik=NIK.getText().trim(),rmlain="";
+            try {
+                ps=koneksi.prepareStatement(
+                    "select no_rkm_medis,nm_pasien,tgl_lahir from pasien where no_ktp=? and no_rkm_medis<>? order by no_rkm_medis");
+                try {
+                    ps.setString(1,nik);
+                    ps.setString(2,TNoRM.getText());
+                    rs=ps.executeQuery();
+                    while(rs.next()){
+                        rmlain=rmlain+"- "+rs.getString("no_rkm_medis")+" "+rs.getString("nm_pasien")+" ("+rs.getString("tgl_lahir")+")\n";
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : "+e);
+            }
+            JOptionPane.showMessageDialog(this,
+                "Pasien : "+TPasien.getText()+" ("+TNoRM.getText()+")\n\n"+
+                (rmlain.equals("")?
+                    "Tidak ada No.RM lain dengan NIK ini.":
+                    "No.RM lain dengan NIK yang sama :\n"+rmlain));
+        }
+    }//GEN-LAST:event_BtnCekRMActionPerformed
+
+    private void BtnCekRMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCekRMKeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnCekRMActionPerformed(null);
+        }else{
+            Valid.pindah(evt,BtnCekNIK,NRP);
+        }
+    }//GEN-LAST:event_BtnCekRMKeyPressed
+
     private void NRPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NRPKeyPressed
-        Valid.pindah(evt,NIK,BtnSimpan);
+        Valid.pindah(evt,BtnCekRM,BtnSimpan);
     }//GEN-LAST:event_NRPKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
@@ -349,6 +490,8 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.Button BtnCekNIK;
+    private widget.Button BtnCekRM;
     private widget.Button BtnKeluar;
     private widget.Button BtnPerusahaan;
     private widget.Button BtnSimpan;
