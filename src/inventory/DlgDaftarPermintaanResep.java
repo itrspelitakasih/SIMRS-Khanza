@@ -6819,8 +6819,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         TelaahPetugas.setText("");
         TelaahResep1.setSelectedIndex(0);TelaahResep2.setSelectedIndex(0);TelaahResep3.setSelectedIndex(0);TelaahResep4.setSelectedIndex(0);
         TelaahResep5.setSelectedIndex(0);TelaahResep6.setSelectedIndex(1);TelaahResep7.setSelectedIndex(1);TelaahResep8.setSelectedIndex(1);
-        KetTelaahResep1.setText("");KetTelaahResep2.setText("");KetTelaahResep3.setText("");KetTelaahResep4.setText("");
-        KetTelaahResep5.setText("");KetTelaahResep6.setText("");KetTelaahResep7.setText("");KetTelaahResep8.setText("");
+        KetTelaahResep1.setText("Sesuai");KetTelaahResep2.setText("Sesuai");KetTelaahResep3.setText("Sesuai");KetTelaahResep4.setText("Sesuai");
+        KetTelaahResep5.setText("Sesuai");KetTelaahResep6.setText("Tidak ada duplikasi");KetTelaahResep7.setText("Tidak ada interaksi");KetTelaahResep8.setText("Tidak ada kontra indikasi");
         TelaahObat1.setSelectedIndex(0);TelaahObat2.setSelectedIndex(0);TelaahObat3.setSelectedIndex(0);TelaahObat4.setSelectedIndex(0);TelaahObat5.setSelectedIndex(0);
     }
 
