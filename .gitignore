@@ -1,6 +1,6 @@
 build/
 dist/
-setting/
+/setting/
 .vscode/
 src/.vscode/
 reports/
