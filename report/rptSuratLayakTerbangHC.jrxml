@@ -253,7 +253,7 @@
 				<textElement verticalAlignment="Top">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[": "+($F{alamat}==null?"":org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat}).replaceAll("(?i)\\bRt\\b","RT").replaceAll("(?i)\\bRw\\b","RW"))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+($F{alamat}==null?"":fungsi.FormatAlamat.rapikan(org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat})))]]></textFieldExpression>
 			</textField>
 			</frame>
 			<frame>
