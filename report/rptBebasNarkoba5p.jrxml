@@ -427,7 +427,7 @@
 					<font fontName="Cambria" size="11"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[fungsi.FormatAlamat.rapikan(org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat}))]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="186" y="166" width="298" height="14" uuid="8c7a5234-8c78-4f54-ad07-388fc0213c47">
