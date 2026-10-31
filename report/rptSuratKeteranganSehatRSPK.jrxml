@@ -69,7 +69,7 @@
 				</jr:QRCode>
 			</componentElement>
 			<textField>
-				<reportElement x="188" y="169" width="360" height="18" uuid="cebf4b8f-58c6-4731-8241-4ab08df25de1"/>
+				<reportElement x="189" y="170" width="360" height="16" uuid="cebf4b8f-58c6-4731-8241-4ab08df25de1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -85,7 +85,7 @@
 				<textFieldExpression><![CDATA[fungsi.FormatAlamat.rapikan(org.apache.commons.lang3.text.WordUtils.capitalizeFully($F{alamat}))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="188" y="216" width="331" height="15" uuid="7d41c2b6-e4fa-4f90-8625-cc7cf3538148"/>
+				<reportElement x="189" y="215" width="331" height="16" uuid="7d41c2b6-e4fa-4f90-8625-cc7cf3538148"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -93,7 +93,7 @@
 				<textFieldExpression><![CDATA[$F{jk}.equals("L")? "Laki-Laki":"Perempuan"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="189" y="259" width="90" height="18" uuid="78c7a862-c235-40e5-8e4f-32e49bac022c"/>
+				<reportElement positionType="Float" x="189" y="260" width="90" height="16" uuid="78c7a862-c235-40e5-8e4f-32e49bac022c"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -101,7 +101,7 @@
 				<textFieldExpression><![CDATA[$F{berat}+" Kg"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="189" y="300" width="170" height="18" uuid="ff11e028-0cac-4107-8a2a-370b60bfaf42"/>
+				<reportElement x="189" y="303" width="170" height="16" uuid="ff11e028-0cac-4107-8a2a-370b60bfaf42"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -109,12 +109,12 @@
 				<textFieldExpression><![CDATA[$F{tensi}+" mmHg"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="189" y="280" width="90" height="20" uuid="49755088-1fda-4fb1-9a41-2ac3a4f46c33"/>
+				<reportElement x="189" y="282" width="90" height="16" uuid="49755088-1fda-4fb1-9a41-2ac3a4f46c33"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tinggi}+"Cm"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tinggi}+" Cm"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="48" y="170" width="83" height="16" uuid="5e6c3d82-a75c-40b6-b486-6f152c8bce4d"/>
@@ -141,7 +141,7 @@
 				<text><![CDATA[Alamat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="282" width="83" height="16" uuid="4e6762aa-6bf5-4d5d-850c-ef87f8e7ef29"/>
+				<reportElement x="48" y="282" width="83" height="16" uuid="4e6762aa-6bf5-4d5d-850c-ef87f8e7ef29"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -149,7 +149,7 @@
 				<text><![CDATA[Tinggi Badan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="303" width="83" height="16" uuid="fb539b2d-26e4-4cc1-8760-488209c009dc"/>
+				<reportElement x="48" y="303" width="83" height="16" uuid="fb539b2d-26e4-4cc1-8760-488209c009dc"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -157,7 +157,7 @@
 				<text><![CDATA[Tekanan Darah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="47" y="260" width="122" height="16" uuid="cc5fb0dd-0163-4905-a68f-5709608fd667"/>
+				<reportElement positionType="Float" x="48" y="260" width="122" height="16" uuid="cc5fb0dd-0163-4905-a68f-5709608fd667"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -277,7 +277,7 @@
 				<text><![CDATA[SURAT KETERANGAN SEHAT]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="188" y="191" width="360" height="20" uuid="9e58d7af-370d-4cc1-8a76-861bc0db8a71"/>
+				<reportElement x="189" y="193" width="360" height="16" uuid="9e58d7af-370d-4cc1-8a76-861bc0db8a71"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 				</textElement>
@@ -347,7 +347,7 @@
 				<textFieldExpression><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="47" y="346" width="83" height="16" uuid="bd1be2e8-a4c6-48d5-8237-766657f548e2"/>
+				<reportElement x="48" y="346" width="83" height="16" uuid="bd1be2e8-a4c6-48d5-8237-766657f548e2"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -355,7 +355,7 @@
 				<text><![CDATA[SpO2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="324" width="83" height="16" uuid="3e394fe3-f5a2-4e1e-ada0-36551449ab26"/>
+				<reportElement x="48" y="324" width="83" height="16" uuid="3e394fe3-f5a2-4e1e-ada0-36551449ab26"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -363,7 +363,7 @@
 				<text><![CDATA[Suhu]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="368" width="83" height="16" uuid="8d45230b-9ee0-46dd-825f-290f73c81223"/>
+				<reportElement x="48" y="368" width="83" height="16" uuid="8d45230b-9ee0-46dd-825f-290f73c81223"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 					<paragraph lineSpacing="Single"/>
@@ -395,16 +395,16 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="190" y="325" width="100" height="18" uuid="c914618f-7bbe-4b35-93c1-bbdd00f6c3d9">
+				<reportElement x="189" y="324" width="100" height="16" uuid="c914618f-7bbe-4b35-93c1-bbdd00f6c3d9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Cambria" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{suhu}+" ˚C"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{suhu}+" \u00B0C"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="190" y="345" width="100" height="18" uuid="acadd952-de33-43ac-a70f-0fced6ac11ac">
+				<reportElement x="189" y="346" width="100" height="16" uuid="acadd952-de33-43ac-a70f-0fced6ac11ac">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -413,7 +413,7 @@
 				<textFieldExpression><![CDATA[$F{spo2}+" %"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="189" y="366" width="168" height="18" uuid="33ebbeb4-9aac-4577-9363-4da793ba6a63">
+				<reportElement x="189" y="368" width="168" height="16" uuid="33ebbeb4-9aac-4577-9363-4da793ba6a63">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
