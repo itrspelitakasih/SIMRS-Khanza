@@ -10429,6 +10429,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             if(tbPetugas.getSelectedRow()!= -1){
                 if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",TNoRw.getText())>0){
                     JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+                }else if(Sequel.cariRegistrasiParsial(TNoRw.getText())>0){
+                    JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, tidak bisa melakukan permintaan obat.\nSilahkan hubungi bagian kasir/keuangan ..!!");
                 }else {
                     if (resepobat == null || !resepobat.isDisplayable()) {
                         resepobat=new DlgPeresepanDokter(null,false);
@@ -10972,6 +10974,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             if(tbPetugas2.getSelectedRow()!= -1){
                 if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",tbPetugas2.getValueAt(tbPetugas2.getSelectedRow(),1).toString())>0){
                     JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+                }else if(Sequel.cariRegistrasiParsial(tbPetugas2.getValueAt(tbPetugas2.getSelectedRow(),1).toString())>0){
+                    JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, tidak bisa melakukan permintaan obat.\nSilahkan hubungi bagian kasir/keuangan ..!!");
                 }else {
                     if (resepobat == null || !resepobat.isDisplayable()) {
                         resepobat=new DlgPeresepanDokter(null,false);

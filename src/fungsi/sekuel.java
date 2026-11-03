@@ -1505,6 +1505,17 @@ public final class sekuel {
         return angka;
     }
     
+    // Sama dengan cariRegistrasi, tetapi mengikuti aturan billing parsial ralan:
+    // jika AKTIFKANBILLINGPARSIAL=yes dan cara bayar pasien ralan ada di set_input_parsial, input tetap diizinkan (0)
+    public int cariRegistrasiParsial(String norawat){
+        if("yes".equals(koneksiDB.AKTIFKANBILLINGPARSIAL())&&
+                cariInteger("select count(set_input_parsial.kd_pj) from set_input_parsial inner join reg_periksa on reg_periksa.kd_pj=set_input_parsial.kd_pj "+
+                            "where reg_periksa.no_rawat=? and reg_periksa.status_lanjut='Ralan'",norawat)>0){
+            return 0;
+        }
+        return cariRegistrasi(norawat);
+    }
+
     public boolean cekTanggalRegistrasi(String tanggalregistrasi,String tanggalinputdata){
         bool=false;
         try {

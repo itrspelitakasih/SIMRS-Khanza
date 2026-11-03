@@ -10693,7 +10693,10 @@ public class DlgKamarInap extends javax.swing.JDialog {
                     try {
                           psanak.setString(1,tbKamIn.getValueAt(tbKamIn.getSelectedRow()-1,0).toString());
                           rs2=psanak.executeQuery();
-                          if(rs2.next()){
+                          boolean adaanak=rs2.next();
+                          if(adaanak&&(Sequel.cariRegistrasi(rs2.getString("no_rawat2"))>0)){
+                                JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, tidak bisa melakukan permintaan obat.\nSilahkan hubungi bagian kasir/keuangan ..!!");
+                          }else if(adaanak){
                                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                                 bangsal=Sequel.cariIsi("select set_depo_ranap.kd_depo from set_depo_ranap where set_depo_ranap.kd_bangsal=?",Sequel.cariIsi("select kamar.kd_bangsal from kamar where kamar.kd_kamar=?",kdkamar.getText()));
                                 if(bangsal.equals("")){

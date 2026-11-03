@@ -5152,7 +5152,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                 }
                 tabMode.addRow(new Object[] {
                     false,TNoReg.getText(),TNoRw.getText(),Valid.SetTgl(DTPReg.getSelectedItem()+""),CmbJam.getSelectedItem()+":"+CmbMenit.getSelectedItem()+":"+CmbDetik.getSelectedItem(),
-                    KdDokter.getText(),TDokter.getText(),TNoRM.getText(),TPasien.getText(),JK.getText(),umur+" "+sttsumur,"IGD",TPngJwb.getText(),TAlmt.getText(),THbngn.getText(),Valid.SetAngka(biaya),
+                    KdDokter.getText(),TDokter.getText(),TNoRM.getText(),TPasien.getText(),JK.getText(),umur+" "+sttsumur,Sequel.cariIsi("select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli='UGD'"),TPngJwb.getText(),TAlmt.getText(),THbngn.getText(),Valid.SetAngka(biaya),
                     TStatus.getText(),nmpnj.getText(),"Belum",kdpnj.getText(),"Belum Bayar"
                 });
                 LCount.setText(""+tabMode.getRowCount());
@@ -5345,7 +5345,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                             tabMode.setValueAt(TPasien.getText(),tbPetugas.getSelectedRow(),8);
                             tabMode.setValueAt(JK.getText(),tbPetugas.getSelectedRow(),9);
                             tabMode.setValueAt(umur+" "+sttsumur,tbPetugas.getSelectedRow(),10);
-                            tabMode.setValueAt("IGD",tbPetugas.getSelectedRow(),11);
+                            tabMode.setValueAt(Sequel.cariIsi("select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli='UGD'"),tbPetugas.getSelectedRow(),11);
                             tabMode.setValueAt(TPngJwb.getText(),tbPetugas.getSelectedRow(),12);
                             tabMode.setValueAt(TAlmt.getText(),tbPetugas.getSelectedRow(),13);
                             tabMode.setValueAt(THbngn.getText(),tbPetugas.getSelectedRow(),14);
@@ -7783,6 +7783,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }else{
             if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",TNoRw.getText())>0){
                 JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+            }else if(Sequel.cariRegistrasiParsial(TNoRw.getText())>0){
+                JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, tidak bisa melakukan permintaan obat.\nSilahkan hubungi bagian kasir/keuangan ..!!");
             }else {
                 if (resepobat == null || !resepobat.isDisplayable()) {
                     resepobat=new DlgPeresepanDokter(null,false);
@@ -13183,7 +13185,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                     kdpnj.setText(rs.getString("kd_pj"));
                     nmpnj.setText(rs.getString("png_jawab"));
                     TStatus.setText(rs.getString("daftar"));
-                    JK.setText("jk");
+                    JK.setText(rs.getString("jk"));
                     umur="0";
                     sttsumur="Th";
                     if(rs.getInt("tahun")>0){

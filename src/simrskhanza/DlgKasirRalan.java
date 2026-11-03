@@ -9643,6 +9643,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             if(tbKasirRalan2.getSelectedRow()!= -1){
                 if(Sequel.cariInteger("select count(kamar_inap.no_rawat) from kamar_inap where kamar_inap.no_rawat=?",tbKasirRalan2.getValueAt(tbKasirRalan2.getSelectedRow(),10).toString())>0){
                     JOptionPane.showMessageDialog(null,"Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+                }else if(Sequel.cariRegistrasiParsial(tbKasirRalan2.getValueAt(tbKasirRalan2.getSelectedRow(),10).toString())>0){
+                    JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, tidak bisa melakukan permintaan obat.\nSilahkan hubungi bagian kasir/keuangan ..!!");
                 }else{
                     if (resepobat == null || !resepobat.isDisplayable()) {
                         resepobat=new DlgPeresepanDokter(null,false);

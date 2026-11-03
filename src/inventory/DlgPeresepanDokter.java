@@ -1033,6 +1033,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             Valid.textKosong(KdDokter,"Dokter");
         }else if(NoResep.getText().trim().equals("")){
             Valid.textKosong(NoResep,"No.Resep");
+        }else if(Sequel.cariRegistrasiParsial(TNoRw.getText())>0){
+            JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, permintaan obat tidak bisa disimpan.\nSilahkan hubungi bagian kasir/keuangan ..!!");
         }else if(ttl<=0){
             JOptionPane.showMessageDialog(null,"Maaf, silahkan masukkan terlebih dahulu obat yang mau diberikan...!!!");
             TCari.requestFocus();
