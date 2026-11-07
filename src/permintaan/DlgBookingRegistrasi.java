@@ -610,7 +610,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         R2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R2);
-        R2.setSelected(true);
         R2.setText("Tanggal Booking :");
         R2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         R2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -656,6 +655,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         R3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R3);
+        R3.setSelected(true);
         R3.setText("Tanggal Periksa :");
         R3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         R3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
