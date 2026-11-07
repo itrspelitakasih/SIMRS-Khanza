@@ -3900,13 +3900,19 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                 i = 0;
                 try{
-                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota Umum", "Nota PT", "Nota Asuransi", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota Umum");
+                      biaya = (String)JOptionPane.showInputDialog(null,"Silahkan pilih nota yang mau dicetak!","Nota",JOptionPane.QUESTION_MESSAGE,null,new Object[]{"Nota Umum", "Nota PT", "Nota PAMA", "Nota PAMA Setelah Diskon", "Nota Asuransi", "Kwitansi", "Nota & Kwitansi","Kwitansi Piutang"},"Nota Umum");
                       switch (biaya) {
                             case "Nota Umum":
                                   i=1;
                                   break;
                             case "Nota PT":
                                   i=2;
+                                  break;
+                            case "Nota PAMA":
+                                  i=7;
+                                  break;
+                            case "Nota PAMA Setelah Diskon":
+                                  i=8;
                                   break;
                             case "Nota Asuransi":
                                   i=6;
@@ -3949,6 +3955,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         Valid.panggilUrl("billing/LaporanBillingUmum.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&ttl="+ttl+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+nokw+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==2){
                         Valid.panggilUrl("billing/LaporanBillingPT.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+nokw+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                    }else if(i==7){
+                        Valid.panggilUrl("billing/LaporanBillingPAMA.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+nokw+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
+                    }else if(i==8){
+                        // Nota PAMA dengan diskon obat & alkes dibagikan ke harga tiap item (baris diskon tidak dicetak)
+                        Valid.panggilUrl("billing/LaporanBillingPAMAdiskon.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+nokw+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==6){
                         Valid.panggilUrl("billing/LaporanBillingAS.php?petugas="+akses.getkode().replaceAll(" ","_")+"&norawat="+TNoRw.getText()+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&nokw="+nokw+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==3){
