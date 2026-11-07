@@ -7194,7 +7194,7 @@ I am willing that if required, work related medical information may be released 
 				</textElement>
 				<text><![CDATA[ 9. Dental]]></text>
 			</staticText>
-			<staticText>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="469" width="41" height="17" backcolor="#DDDDDD" uuid="0f9ac2fb-9738-4402-8709-744fc6e7ea32"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7206,9 +7206,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_ent_comments}==null || $F{exam_ent_comments}.trim().isEmpty() || $F{exam_ent_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="486" width="41" height="17" backcolor="#DDDDDD" uuid="b7a45d74-4ae1-4ed2-adce-b2bb5e835495"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7220,9 +7220,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_cardio_vascular_system_comments}==null || $F{exam_cardio_vascular_system_comments}.trim().isEmpty() || $F{exam_cardio_vascular_system_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="520" width="41" height="17" backcolor="#DDDDDD" uuid="60e9bd70-7546-4213-a442-74c74b40904d"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7234,9 +7234,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_abdomen_comments}==null || $F{exam_abdomen_comments}.trim().isEmpty() || $F{exam_abdomen_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="503" width="41" height="17" backcolor="#DDDDDD" uuid="853dee65-fd73-4dcc-8aea-c5cacc462fb8"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7248,9 +7248,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_respiratory_system_comments}==null || $F{exam_respiratory_system_comments}.trim().isEmpty() || $F{exam_respiratory_system_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="537" width="41" height="17" backcolor="#DDDDDD" uuid="62d65fe8-cd8e-4219-b2a7-a3c1c847104f"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7262,9 +7262,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_genito_urinary_system_comments}==null || $F{exam_genito_urinary_system_comments}.trim().isEmpty() || $F{exam_genito_urinary_system_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="554" width="41" height="17" backcolor="#DDDDDD" uuid="d83a8c6a-edb3-4c7b-96f2-6636736ef335"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7276,9 +7276,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_central_peripheral_nervous_system_comments}==null || $F{exam_central_peripheral_nervous_system_comments}.trim().isEmpty() || $F{exam_central_peripheral_nervous_system_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="588" width="41" height="17" backcolor="#DDDDDD" uuid="f0938817-026f-4f2e-b95d-eda8ea795fb7"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7290,9 +7290,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_lymph_nodes_comments}==null || $F{exam_lymph_nodes_comments}.trim().isEmpty() || $F{exam_lymph_nodes_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="571" width="41" height="17" backcolor="#DDDDDD" uuid="8a563628-9697-4899-b25f-495c2576c65b"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7304,9 +7304,9 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
-			<staticText>
+				<textFieldExpression><![CDATA[($F{exam_skin_comments}==null || $F{exam_skin_comments}.trim().isEmpty() || $F{exam_skin_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
+			<textField>
 				<reportElement mode="Transparent" x="180" y="605" width="41" height="17" backcolor="#DDDDDD" uuid="580fd21d-85c1-41b9-9192-82c8d36aea0d"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -7318,8 +7318,8 @@ I am willing that if required, work related medical information may be released 
 					<font fontName="Arial" size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[N]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[($F{exam_dental_comments}==null || $F{exam_dental_comments}.trim().isEmpty() || $F{exam_dental_comments}.trim().equals("-")) ? "N" : "A"]]></textFieldExpression>
+			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="221" y="440" width="334" height="29" backcolor="#DDDDDD" uuid="66fdbd5f-4ab2-4e58-a8f4-fbacce043dee"/>
 				<box>
