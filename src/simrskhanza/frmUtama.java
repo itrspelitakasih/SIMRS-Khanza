@@ -1023,6 +1023,7 @@ import rekammedis.RMLaporanTindakan;
 import rekammedis.RMLayananKedokteranFisikRehabilitasi;
 import rekammedis.RMLayananProgramKFR;
 import rekammedis.RMMCU;
+import rekammedis.RMMCURSPK;
 import rekammedis.RMMasterKesimpulanAnjuranMCU;
 import rekammedis.RMMonitoringAldrettePascaAnestesi;
 import rekammedis.RMMonitoringBromagePascaAnestesi;
@@ -19904,6 +19905,20 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnPenilaianMCURSPKActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMMCURSPK aplikasi=new RMMCURSPK(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
     private void btnCaraBayarActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
         DlgHome.dispose();
@@ -26139,7 +26154,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             btnBPJSReferensiDokterHFIS,btnBPJSReferensiJadwalHFIS,btnFisioterapi,btnBPJSProgramPRB,btnBPJSSuplesiJasaRaharja,btnBPJSDataIndukKecelakaan,
             btnBPJSDataSEPInternal,btnBPJSKlaimJasaRaharja,btnBPJSPasienFinger,btnBPJSRujukanKhusus,btnPemeliharaanGedung,btnGrafikPerbaikanInventarisPerTanggal,
             btnGrafikPerbaikanInventarisPerBulan,btnGrafikPerbaikanInventarisPerTahun,btnGrafikPerbaikanInventarisPerPelaksanaStatus,
-            btnPenilaianMCU,btnCaraBayar,btnPeminjamPiutang,btnPiutangLainLain,btnBPJSTaskIDMobileJKN,btnBayarPiutangLainLain,btnPembayaranAkunBayar4,
+            btnPenilaianMCU,btnPenilaianMCURSPK,btnCaraBayar,btnPeminjamPiutang,btnPiutangLainLain,btnBPJSTaskIDMobileJKN,btnBayarPiutangLainLain,btnPembayaranAkunBayar4,
             btnStokAkhirFarmasiPerTanggal,btnRiwayatKamarPasien,btnAuditKepatuhanAPD,btnUjiFungsiKFR,btnKategoriPengeluaranHarian,btnKategoriPemasukanLian,
             btnPembayaranAkunBayar5,btnRuangOperasi,btnJasaTindakanPasien,btnTelaahResep,btnPermintaanResepPulang,btnResumePasienRanap,
             btnRekapJasaDokter,btnStatusDataRM,btnRingkasanBiayaObatPasienPerTanggal,btnMasterMasalahKeperawatanIGD,btnPenilaianAwalKeperawatanIGD,
@@ -30903,6 +30918,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                     
             if(akses.getpenilaian_mcu()==true){
                 Panelmenu.add(btnPenilaianMCU);
+                jmlmenu++;
+            }
+
+            if(akses.getpenilaian_mcu()==true){
+                Panelmenu.add(btnPenilaianMCURSPK);
                 jmlmenu++;
             }
             
@@ -37000,6 +37020,11 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         
         if(akses.getpenilaian_mcu()==true){
             Panelmenu.add(btnPenilaianMCU);
+            jmlmenu++;
+        }
+
+        if(akses.getpenilaian_mcu()==true){
+            Panelmenu.add(btnPenilaianMCURSPK);
             jmlmenu++;
         }
         
@@ -44928,6 +44953,13 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 jmlmenu++;
             }                
         }
+
+        if(akses.getpenilaian_mcu()==true){
+            if(btnPenilaianMCURSPK.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnPenilaianMCURSPK);
+                jmlmenu++;
+            }                
+        }
         
         if(akses.getkonseling_farmasi()==true){
             if(btnKonselingFarmasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
@@ -52676,6 +52708,14 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     }
     
     private void initKhanza2() {
+        btnPenilaianMCURSPK = new widget.ButtonBig();
+        btnPenilaianMCURSPK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/4852556_doctor_files_medical_record_icon.png")));
+        btnPenilaianMCURSPK.setText("Pengkajian MCU RSPK");
+        btnPenilaianMCURSPK.setIconTextGap(0);
+        btnPenilaianMCURSPK.setName("btnPenilaianMCURSPK");
+        btnPenilaianMCURSPK.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPenilaianMCURSPK.addActionListener(this::btnPenilaianMCURSPKActionPerformed);
+
         btnKirimImagingStudySatuSehat = new widget.ButtonBig();
         btnKirimImagingStudySatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
         btnKirimImagingStudySatuSehat.setText("Kirim ImagingStudy Satu Sehat");
