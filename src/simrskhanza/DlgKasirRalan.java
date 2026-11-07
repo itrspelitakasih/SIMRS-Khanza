@@ -348,13 +348,15 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }else if(i==7){
                 column.setPreferredWidth(80);
             }else if(i==8){
-                column.setPreferredWidth(60);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==9){
                 column.setPreferredWidth(100);
             }else if(i==10){
                 column.setPreferredWidth(75);
             }else if(i==11){
-                column.setPreferredWidth(105);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==12){
                 column.setPreferredWidth(65);
             }else if(i==13){
@@ -362,7 +364,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }else if(i==14){
                 column.setPreferredWidth(47);
             }else if(i==15){
-                column.setPreferredWidth(70);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }else if(i==16){
                 column.setPreferredWidth(50);
             }else if(i==17){
