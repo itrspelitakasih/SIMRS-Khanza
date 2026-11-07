@@ -280,6 +280,8 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         MnLaporanResume = new javax.swing.JMenuItem();
         MnLaporanResumeESign = new javax.swing.JMenuItem();
         MnLaporanResumeSertisign = new javax.swing.JMenuItem();
+        MnLaporanResumeMekariSign = new javax.swing.JMenuItem();
+        MnDokumenMekariSign = new javax.swing.JMenuItem();
         MnInputDiagnosa = new javax.swing.JMenuItem();
         ppBerkasDigital = new javax.swing.JMenuItem();
         WindowURLSertisign = new javax.swing.JDialog();
@@ -485,6 +487,34 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnLaporanResumeSertisign);
+
+        MnLaporanResumeMekariSign.setBackground(new java.awt.Color(255, 255, 254));
+        MnLaporanResumeMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnLaporanResumeMekariSign.setForeground(new java.awt.Color(50, 50, 50));
+        MnLaporanResumeMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLaporanResumeMekariSign.setText("Laporan Resume Pasien PDF MekariSign");
+        MnLaporanResumeMekariSign.setName("MnLaporanResumeMekariSign"); // NOI18N
+        MnLaporanResumeMekariSign.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnLaporanResumeMekariSign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLaporanResumeMekariSignActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnLaporanResumeMekariSign);
+
+        MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
+        MnDokumenMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
+        MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenMekariSign.setText("Dokumen TTE MekariSign");
+        MnDokumenMekariSign.setName("MnDokumenMekariSign"); // NOI18N
+        MnDokumenMekariSign.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDokumenMekariSign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenMekariSignActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDokumenMekariSign);
 
         MnInputDiagnosa.setBackground(new java.awt.Color(255, 255, 254));
         MnInputDiagnosa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -2886,6 +2916,69 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnLaporanResumeSertisignActionPerformed
 
+    private void MnLaporanResumeMekariSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLaporanResumeMekariSignActionPerformed
+        if(tbObat.getSelectedRow()>-1){
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("norawat",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+            param.put("finger",bridging.MekariSignApi.KEYWORD);
+            try {
+                ps=koneksi.prepareStatement("select dpjp_ranap.kd_dokter,dokter.nm_dokter from dpjp_ranap inner join dokter on dpjp_ranap.kd_dokter=dokter.kd_dokter where dpjp_ranap.no_rawat=? and dpjp_ranap.kd_dokter<>?");
+                try {
+                    ps.setString(1,tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
+                    ps.setString(2,tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+                    rs=ps.executeQuery();
+                    i=2;
+                    while(rs.next()){
+                       if(i==2){
+                           finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",rs.getString("kd_dokter"));
+                           param.put("finger2","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+rs.getString("nm_dokter")+"\nID "+(finger.equals("")?rs.getString("kd_dokter"):finger)+"\n"+Valid.SetTgl3(Keluar.getText()));
+                           param.put("namadokter2",rs.getString("nm_dokter"));
+                       }
+                       if(i==3){
+                           finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",rs.getString("kd_dokter"));
+                           param.put("finger3","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+rs.getString("nm_dokter")+"\nID "+(finger.equals("")?rs.getString("kd_dokter"):finger)+"\n"+Valid.SetTgl3(Keluar.getText()));
+                           param.put("namadokter3",rs.getString("nm_dokter"));
+                       }
+                       i++;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : "+e);
+                } finally{
+                    if(rs!=null){
+                        rs.close();
+                    }
+                    if(ps!=null){
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            }
+            param.put("ruang",KdRuang.getText()+" "+NmRuang.getText());
+            param.put("tanggalkeluar",Valid.SetTgl3(Keluar.getText()));
+            param.put("jamkeluar",JamKeluar.getText());
+            Valid.MyReportPDF2("rptLaporanResumeRanap2.jasper","report","::[ Laporan Resume Pasien ]::",param);
+            rekammedis.MekariSignDokumen.kirimDanTampilkan(this,new File("./report/rptLaporanResumeRanap2.pdf"),
+                tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),"Resume Pasien Ranap",akses.getkode(),
+                Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?", akses.getkode()),
+                Sequel.cariIsi("select dokter.email from dokter where dokter.kd_dokter=?", akses.getkode()));
+        }
+    }//GEN-LAST:event_MnLaporanResumeMekariSignActionPerformed
+
+    private void MnDokumenMekariSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenMekariSignActionPerformed
+        MekariSignDokumen dlg=new MekariSignDokumen(null,true);
+        dlg.setNoRawat(TNoRw.getText().trim());
+        dlg.setLocationRelativeTo(internalFrame1);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_MnDokumenMekariSignActionPerformed
+
     private void BtnCloseUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseUrlActionPerformed
         URLSertisign.setText("");
         WindowURLSertisign.dispose();
@@ -3176,6 +3269,8 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnLaporanResume;
     private javax.swing.JMenuItem MnLaporanResumeESign;
     private javax.swing.JMenuItem MnLaporanResumeSertisign;
+    private javax.swing.JMenuItem MnLaporanResumeMekariSign;
+    private javax.swing.JMenuItem MnDokumenMekariSign;
     private widget.TextBox NamaDokterPengirim;
     private widget.TextBox NmDokter;
     private widget.TextBox NmRuang;

@@ -17280,6 +17280,30 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
     }
+
+    private void btnDokumenMekariSignActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        rekammedis.MekariSignDokumen form=new rekammedis.MekariSignDokumen(this,false);
+        form.tampil();
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private void btnAutoSignMekariSignActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        rekammedis.MekariSignAutoSign form=new rekammedis.MekariSignAutoSign(this,false);
+        form.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        javax.swing.SwingUtilities.invokeLater(form::tampil);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }
     
     private void btnPerkiraanBiayaRanapActionPerformed(java.awt.event.ActionEvent evt) {
         isTutup();
@@ -26141,7 +26165,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             btnGrafikPerbaikanInventarisPerBulan,btnGrafikPerbaikanInventarisPerTahun,btnGrafikPerbaikanInventarisPerPelaksanaStatus,
             btnPenilaianMCU,btnCaraBayar,btnPeminjamPiutang,btnPiutangLainLain,btnBPJSTaskIDMobileJKN,btnBayarPiutangLainLain,btnPembayaranAkunBayar4,
             btnStokAkhirFarmasiPerTanggal,btnRiwayatKamarPasien,btnAuditKepatuhanAPD,btnUjiFungsiKFR,btnKategoriPengeluaranHarian,btnKategoriPemasukanLian,
-            btnPembayaranAkunBayar5,btnRuangOperasi,btnJasaTindakanPasien,btnTelaahResep,btnPermintaanResepPulang,btnResumePasienRanap,
+            btnPembayaranAkunBayar5,btnRuangOperasi,btnJasaTindakanPasien,btnTelaahResep,btnPermintaanResepPulang,btnResumePasienRanap,btnDokumenMekariSign,btnAutoSignMekariSign,
             btnRekapJasaDokter,btnStatusDataRM,btnRingkasanBiayaObatPasienPerTanggal,btnMasterMasalahKeperawatanIGD,btnPenilaianAwalKeperawatanIGD,
             btnBPJSReferensiDPHOApotek,btnBPJSReferensiPoliApotek,btnBayarJMDokter,btnBPJSReferensiFaskesApotek,btnBPJSReferensiSpesialistikApotek,
             btnPembayaranBRIVA,btnPenilaianAwalKeperawatanRanap,btnAkunBayarHutang,btnNilaiPenerimaanVendorFarmasiPerBulan,btnMasterRencanaKeperawatan,
@@ -30082,6 +30106,15 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 jmlmenu++;
                 Panelmenu.add(btnResumePasienRanap);
                 jmlmenu++;
+            }
+
+            if(akses.getdata_resume_pasien()==true){
+                Panelmenu.add(btnDokumenMekariSign);
+                jmlmenu++;
+                if(akses.getkode().equals("Admin Utama")){
+                    Panelmenu.add(btnAutoSignMekariSign);
+                    jmlmenu++;
+                }
             }
             
             if(akses.getskrining_gizi()==true){
@@ -36179,6 +36212,15 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             jmlmenu++;
             Panelmenu.add(btnResumePasienRanap);
             jmlmenu++;
+        }
+
+        if(akses.getdata_resume_pasien()==true){
+            Panelmenu.add(btnDokumenMekariSign);
+            jmlmenu++;
+            if(akses.getkode().equals("Admin Utama")){
+                Panelmenu.add(btnAutoSignMekariSign);
+                jmlmenu++;
+            }
         }
         
         if(akses.getskrining_gizi()==true){
@@ -43768,6 +43810,14 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 Panelmenu.add(btnResumePasienRanap);
                 jmlmenu++;
             }                
+            if(btnDokumenMekariSign.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnDokumenMekariSign);
+                jmlmenu++;
+            }
+            if(akses.getkode().equals("Admin Utama")&&btnAutoSignMekariSign.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnAutoSignMekariSign);
+                jmlmenu++;
+            }
         }
         
         if(akses.getskrining_gizi()==true){
@@ -47918,6 +47968,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         btnResumePasienRanap.setName("btnResumePasienRanap"); 
         btnResumePasienRanap.setPreferredSize(new java.awt.Dimension(200, 90));
         btnResumePasienRanap.addActionListener(this::btnResumePasienRanapActionPerformed);
+
         
         btnPerkiraanBiayaRanap = new widget.ButtonBig();
         btnPerkiraanBiayaRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_Rank-History_49609.png"))); 
@@ -52676,6 +52727,22 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     }
     
     private void initKhanza2() {
+        btnDokumenMekariSign = new widget.ButtonBig();
+        btnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/3298612_document_paper_sign_signing_icon.png"))); 
+        btnDokumenMekariSign.setText("Dokumen TTE MekariSign");
+        btnDokumenMekariSign.setIconTextGap(0);
+        btnDokumenMekariSign.setName("btnDokumenMekariSign"); 
+        btnDokumenMekariSign.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDokumenMekariSign.addActionListener(this::btnDokumenMekariSignActionPerformed);
+
+        btnAutoSignMekariSign = new widget.ButtonBig();
+        btnAutoSignMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360484978_application-pgp-signature.png"))); 
+        btnAutoSignMekariSign.setText("Auto Sign & eKYC MekariSign");
+        btnAutoSignMekariSign.setIconTextGap(0);
+        btnAutoSignMekariSign.setName("btnAutoSignMekariSign"); 
+        btnAutoSignMekariSign.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAutoSignMekariSign.addActionListener(this::btnAutoSignMekariSignActionPerformed);
+
         btnKirimImagingStudySatuSehat = new widget.ButtonBig();
         btnKirimImagingStudySatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png")));
         btnKirimImagingStudySatuSehat.setText("Kirim ImagingStudy Satu Sehat");
