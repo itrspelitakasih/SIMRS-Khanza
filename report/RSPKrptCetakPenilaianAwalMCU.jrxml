@@ -7345,7 +7345,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_ent_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_ent_comments}==null||$F{exam_ent_comments}.trim().isEmpty()||$F{exam_ent_comments}.trim().equals("-"))?"-":$F{exam_ent_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="486" width="334" height="17" uuid="e7609205-4b69-4a2a-a184-2c1c2ff12ac3"/>
@@ -7358,7 +7358,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_cardio_vascular_system_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_cardio_vascular_system_comments}==null||$F{exam_cardio_vascular_system_comments}.trim().isEmpty()||$F{exam_cardio_vascular_system_comments}.trim().equals("-"))?"-":$F{exam_cardio_vascular_system_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="503" width="334" height="17" uuid="afd4a8bd-a352-430a-b03d-46c1f87341d2"/>
@@ -7371,7 +7371,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_respiratory_system_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_respiratory_system_comments}==null||$F{exam_respiratory_system_comments}.trim().isEmpty()||$F{exam_respiratory_system_comments}.trim().equals("-"))?"-":$F{exam_respiratory_system_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="520" width="334" height="17" uuid="8e66283e-283d-45e3-91e5-3c5e29bbf9d1"/>
@@ -7384,7 +7384,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_abdomen_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_abdomen_comments}==null||$F{exam_abdomen_comments}.trim().isEmpty()||$F{exam_abdomen_comments}.trim().equals("-"))?"-":$F{exam_abdomen_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="537" width="334" height="17" uuid="6ee07b1a-5c9e-4222-af55-d6ad8dacfa4f"/>
@@ -7397,7 +7397,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_genito_urinary_system_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_genito_urinary_system_comments}==null||$F{exam_genito_urinary_system_comments}.trim().isEmpty()||$F{exam_genito_urinary_system_comments}.trim().equals("-"))?"-":$F{exam_genito_urinary_system_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="554" width="334" height="17" uuid="277af765-d2b7-430c-ad52-60e8cf2694a2"/>
@@ -7410,7 +7410,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_central_peripheral_nervous_system_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_central_peripheral_nervous_system_comments}==null||$F{exam_central_peripheral_nervous_system_comments}.trim().isEmpty()||$F{exam_central_peripheral_nervous_system_comments}.trim().equals("-"))?"-":$F{exam_central_peripheral_nervous_system_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="571" width="334" height="17" uuid="3f4c36d0-90fe-4d2c-b8cd-7c25b9827b75"/>
@@ -7423,7 +7423,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_skin_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_skin_comments}==null||$F{exam_skin_comments}.trim().isEmpty()||$F{exam_skin_comments}.trim().equals("-"))?"-":$F{exam_skin_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="588" width="334" height="17" uuid="b533d73f-ad77-4e37-ba84-754664aca54a"/>
@@ -7436,7 +7436,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_lymph_nodes_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_lymph_nodes_comments}==null||$F{exam_lymph_nodes_comments}.trim().isEmpty()||$F{exam_lymph_nodes_comments}.trim().equals("-"))?"-":$F{exam_lymph_nodes_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement mode="Opaque" x="221" y="605" width="334" height="17" uuid="39cf87e1-a113-4800-9d9a-5c09041b0263"/>
@@ -7449,7 +7449,7 @@ I am willing that if required, work related medical information may be released 
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isItalic="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" " + ($F{exam_dental_comments})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" " + (($F{exam_dental_comments}==null||$F{exam_dental_comments}.trim().isEmpty()||$F{exam_dental_comments}.trim().equals("-"))?"-":$F{exam_dental_comments}.trim())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="640" width="555" height="17" backcolor="#DDDDDD" uuid="e7f8af54-1a21-487c-9e28-3847d1563410"/>

@@ -32,6 +32,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private boolean berhasil=false;
+    private String norawat="";
 
     /** Creates new form DlgUpdatePerusahaanPasien
      * @param parent
@@ -39,10 +40,11 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     public DlgUpdatePerusahaanPasien(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setSize(560,235);
+        setSize(560,265);
         NoHP.setDocument(new batasInput((byte)40).getKata(NoHP));
         NIK.setDocument(new batasInput((byte)20).getKata(NIK));
         NRP.setDocument(new batasInput((byte)30).getKata(NRP));
+        PngJawab.setDocument(new batasInput((byte)50).getKata(PngJawab));
     }
 
     /** This method is called from within the constructor to
@@ -71,6 +73,8 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         BtnCekRM = new widget.Button();
         jLabel7 = new widget.Label();
         NRP = new widget.TextBox();
+        jLabel8 = new widget.Label();
+        PngJawab = new widget.TextBox();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -79,7 +83,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Data Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Data Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -210,6 +214,21 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         });
         FormInput.add(NRP);
         NRP.setBounds(99, 132, 200, 23);
+
+        jLabel8.setText("Png.Jawab :");
+        jLabel8.setName("jLabel8"); // NOI18N
+        FormInput.add(jLabel8);
+        jLabel8.setBounds(0, 162, 95, 23);
+
+        PngJawab.setToolTipText("Nama penanggung jawab (reg_periksa.p_jawab dan pasien.namakeluarga)");
+        PngJawab.setName("PngJawab"); // NOI18N
+        PngJawab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PngJawabKeyPressed(evt);
+            }
+        });
+        FormInput.add(PngJawab);
+        PngJawab.setBounds(99, 162, 431, 23);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -427,8 +446,12 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCekRMKeyPressed
 
     private void NRPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NRPKeyPressed
-        Valid.pindah(evt,BtnCekRM,BtnSimpan);
+        Valid.pindah(evt,BtnCekRM,PngJawab);
     }//GEN-LAST:event_NRPKeyPressed
+
+    private void PngJawabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PngJawabKeyPressed
+        Valid.pindah(evt,NRP,BtnSimpan);
+    }//GEN-LAST:event_PngJawabKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(TNoRM.getText().trim().equals("")){
@@ -446,6 +469,15 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
             if(Sequel.mengedittf("pasien","no_rkm_medis=?","perusahaan_pasien=?,no_tlp=?,no_ktp=?,nip=?",5,new String[]{
                     KdPerusahaan.getText(),NoHP.getText().trim(),NIK.getText().trim(),NRP.getText().trim(),TNoRM.getText()
                 })==true){
+                // penanggung jawab: master pasien (dipakai registrasi berikutnya) dan registrasi yang dipilih
+                Sequel.mengedit("pasien","no_rkm_medis=?","namakeluarga=?",2,new String[]{
+                    PngJawab.getText().trim(),TNoRM.getText()
+                });
+                if(!norawat.equals("")){
+                    Sequel.mengedit("reg_periksa","no_rawat=?","p_jawab=?",2,new String[]{
+                        PngJawab.getText().trim(),norawat
+                    });
+                }
                 berhasil=true;
                 JOptionPane.showMessageDialog(this,"Data pasien berhasil diupdate...!!!");
                 dispose();
@@ -457,7 +489,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,NRP,BtnKeluar);
+            Valid.pindah(evt,PngJawab,BtnKeluar);
         }
     }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -502,18 +534,27 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
     private widget.TextBox KdPerusahaan;
     private widget.TextBox NIK;
     private widget.TextBox NRP;
     private widget.TextBox NmPerusahaan;
     private widget.TextBox NoHP;
+    private widget.TextBox PngJawab;
     private widget.TextBox TNoRM;
     private widget.TextBox TPasien;
     private widget.panelisi panelGlass8;
     // End of variables declaration//GEN-END:variables
 
     public void setPasien(String norm){
+        setPasien(norm,"");
+    }
+
+    /** @param norawat registrasi yang dipilih; p_jawab-nya ikut diubah (boleh kosong) */
+    public void setPasien(String norm,String norawat){
         berhasil=false;
+        this.norawat=norawat==null?"":norawat.trim();
+        PngJawab.setText("");
         TNoRM.setText(norm);
         TPasien.setText("");
         KdPerusahaan.setText("");
@@ -524,11 +565,14 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
         try {
             ps=koneksi.prepareStatement(
                 "select pasien.nm_pasien,pasien.perusahaan_pasien,pasien.no_tlp,pasien.no_ktp,pasien.nip,"+
-                "ifnull(perusahaan_pasien.nama_perusahaan,'') as nama_perusahaan "+
+                "ifnull(perusahaan_pasien.nama_perusahaan,'') as nama_perusahaan,"+
+                "ifnull(reg_periksa.p_jawab,pasien.namakeluarga) as p_jawab "+
                 "from pasien left join perusahaan_pasien on perusahaan_pasien.kode_perusahaan=pasien.perusahaan_pasien "+
+                "left join reg_periksa on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=? "+
                 "where pasien.no_rkm_medis=?");
             try {
-                ps.setString(1,norm);
+                ps.setString(1,this.norawat);
+                ps.setString(2,norm);
                 rs=ps.executeQuery();
                 if(rs.next()){
                     TPasien.setText(rs.getString("nm_pasien"));
@@ -537,6 +581,7 @@ public final class DlgUpdatePerusahaanPasien extends javax.swing.JDialog {
                     NoHP.setText(rs.getString("no_tlp"));
                     NIK.setText(rs.getString("no_ktp")==null?"":rs.getString("no_ktp"));
                     NRP.setText(rs.getString("nip")==null?"":rs.getString("nip"));
+                    PngJawab.setText(rs.getString("p_jawab")==null?"":rs.getString("p_jawab"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);

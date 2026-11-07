@@ -165,7 +165,7 @@ public class grafikpiutangterbanyak extends JDialog {
 
              JFreeChart result = new JFreeChart(
                      "",
-                     new Font("SansSerif", Font.PLAIN,6 ), plot, true);
+                     new Font("Tahoma", Font.PLAIN,6 ), plot, true);
              return result;
 
          }

@@ -36,7 +36,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import javax.swing.JDialog;
-import widget.JOptionPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -92,7 +92,7 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
         ChkLangsungRegistrasi.setText("Langsung Registrasi (reg_periksa) & kirim WA ke pasien");
         ChkLangsungRegistrasi.setBorder(null);
         ChkLangsungRegistrasi.setSelected(true);
-        ChkLangsungRegistrasi.setFont(new java.awt.Font("Arial", 1, 11));
+        ChkLangsungRegistrasi.setFont(new java.awt.Font("Tahoma", 1, 11));
         ChkLangsungRegistrasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         FormInput.add(ChkLangsungRegistrasi);
         ChkLangsungRegistrasi.setBounds(120, 380, 400, 23);
@@ -294,7 +294,7 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
         WindowBalas.setUndecorated(true);
         WindowBalas.setResizable(false);
 
-        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengecekan Data Pasien & Ketersediaan Kuota Periksa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengecekan Data Pasien & Ketersediaan Kuota Periksa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass6.setPreferredSize(new java.awt.Dimension(44, 54));
@@ -397,7 +397,7 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
 
         ChkRM.setBorder(null);
         ChkRM.setSelected(true);
-        ChkRM.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        ChkRM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ChkRM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkRM.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ChkRM.addItemListener(new java.awt.event.ItemListener() {
@@ -1120,7 +1120,7 @@ public class DlgBookingPeriksa extends javax.swing.JFrame {
 
         PanelAccor.add(FormMenu, java.awt.BorderLayout.NORTH);
 
-        scrollBalasan.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)), "Balasan Pesan :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        scrollBalasan.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 254)), "Balasan Pesan :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
 
         DataBalasan.setColumns(20);
         DataBalasan.setRows(5);
