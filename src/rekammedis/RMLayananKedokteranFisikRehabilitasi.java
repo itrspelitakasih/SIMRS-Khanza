@@ -273,7 +273,7 @@ public final class RMLayananKedokteranFisikRehabilitasi extends javax.swing.JDia
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnLayananRehab.setBackground(new java.awt.Color(255, 255, 254));
-        MnLayananRehab.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnLayananRehab.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnLayananRehab.setForeground(new java.awt.Color(50, 50, 50));
         MnLayananRehab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLayananRehab.setText("Laporan Formulir Layanan");
@@ -287,7 +287,7 @@ public final class RMLayananKedokteranFisikRehabilitasi extends javax.swing.JDia
         jPopupMenu1.add(MnLayananRehab);
 
         MnLayananProgramKFR.setBackground(new java.awt.Color(255, 255, 254));
-        MnLayananProgramKFR.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnLayananProgramKFR.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnLayananProgramKFR.setForeground(new java.awt.Color(50, 50, 50));
         MnLayananProgramKFR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLayananProgramKFR.setText("Riwayat Program KFR");
@@ -312,8 +312,8 @@ public final class RMLayananKedokteranFisikRehabilitasi extends javax.swing.JDia
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Layanan Rawat Jalan Kedokteran Fisik & Rehabilitasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Layanan Rawat Jalan Kedokteran Fisik & Rehabilitasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -451,7 +451,7 @@ public final class RMLayananKedokteranFisikRehabilitasi extends javax.swing.JDia
 
         TabRawat.setBackground(new java.awt.Color(254, 255, 254));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
 
         internalFrame2.setBorder(null);
@@ -984,7 +984,7 @@ public final class RMLayananKedokteranFisikRehabilitasi extends javax.swing.JDia
         PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
 
         FormPhoto.setBackground(new java.awt.Color(255, 255, 255));
-        FormPhoto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), " Bukti Pelayanan : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        FormPhoto.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1), " Bukti Pelayanan : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         FormPhoto.setName("FormPhoto"); // NOI18N
         FormPhoto.setPreferredSize(new java.awt.Dimension(115, 73));
         FormPhoto.setLayout(new java.awt.BorderLayout());

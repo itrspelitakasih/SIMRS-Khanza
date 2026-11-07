@@ -102,7 +102,7 @@ public class DlgSetPesanWA extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Template Pesan WA ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Template Pesan WA ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(980, 640));
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -126,7 +126,7 @@ public class DlgSetPesanWA extends javax.swing.JDialog {
         panelJudul.setName("panelJudul"); // NOI18N
         panelJudul.setLayout(new java.awt.BorderLayout());
 
-        LJudul.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        LJudul.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         LJudul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LJudul.setText("-");
         LJudul.setName("LJudul"); // NOI18N

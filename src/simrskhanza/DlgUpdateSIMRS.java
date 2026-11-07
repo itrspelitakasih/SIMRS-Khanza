@@ -30,7 +30,7 @@ public final class DlgUpdateSIMRS extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update SIMRS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update SIMRS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(430, 110));
         internalFrame1.setLayout(null);
@@ -41,7 +41,7 @@ public final class DlgUpdateSIMRS extends javax.swing.JDialog {
         internalFrame1.add(LblStatus);
         LblStatus.setBounds(15, 25, 400, 20);
 
-        Progress.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        Progress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Progress.setName("Progress"); // NOI18N
         Progress.setStringPainted(true);
         internalFrame1.add(Progress);
@@ -50,7 +50,7 @@ public final class DlgUpdateSIMRS extends javax.swing.JDialog {
         LblInfo.setForeground(new java.awt.Color(128, 128, 128));
         LblInfo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LblInfo.setText("Jangan tutup aplikasi selama proses update.");
-        LblInfo.setFont(new java.awt.Font("Arial", 2, 11)); // NOI18N
+        LblInfo.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         LblInfo.setName("LblInfo"); // NOI18N
         internalFrame1.add(LblInfo);
         LblInfo.setBounds(15, 77, 400, 20);

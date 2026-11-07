@@ -186,7 +186,7 @@ public class DlgChat extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Chat Antar User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Chat Antar User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setMinimumSize(new java.awt.Dimension(420, 400));
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(500, 620));
@@ -194,7 +194,7 @@ public class DlgChat extends javax.swing.JDialog {
 
         TabChat.setBackground(new java.awt.Color(255, 255, 253));
         TabChat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabChat.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TabChat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabChat.setName("TabChat"); // NOI18N
         TabChat.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -259,7 +259,7 @@ public class DlgChat extends javax.swing.JDialog {
 
         TabDaftar.setBackground(new java.awt.Color(255, 255, 253));
         TabDaftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabDaftar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        TabDaftar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabDaftar.setName("TabDaftar"); // NOI18N
 
         panelInbox.setName("panelInbox"); // NOI18N
