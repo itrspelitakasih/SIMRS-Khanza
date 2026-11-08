@@ -2577,7 +2577,7 @@ public final class RMPenilaianAwalKeperawatanIGD extends javax.swing.JDialog {
             Valid.textKosong(RPO,"Riwayat Penggunaan Obat");
         }else if(NmPetugas.getText().trim().equals("")){
             Valid.textKosong(BtnPetugas,"Petugas");
-        }else{
+        }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(this,TNoRw.getText(),fungsi.UrutanAsesmenIGD.KEPERAWATAN)){
             if(akses.getkode().equals("Admin Utama")){
                 simpan();
             }else{

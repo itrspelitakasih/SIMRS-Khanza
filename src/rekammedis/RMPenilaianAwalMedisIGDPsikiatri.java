@@ -2404,7 +2404,7 @@ public final class RMPenilaianAwalMedisIGDPsikiatri extends javax.swing.JDialog 
             Valid.textKosong(KeluhanUtama,"Keluhan Utama");
         }else if(KeteranganRiwayatPenyakitDahulu.getText().trim().equals("")){
             Valid.textKosong(RiwayatPenyakitDahulu,"Riwayat Penyakit Dahulu");
-        }else{
+        }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(this,TNoRw.getText(),fungsi.UrutanAsesmenIGD.MEDIS)){
             if(akses.getkode().equals("Admin Utama")){
                 simpan();
             }else{

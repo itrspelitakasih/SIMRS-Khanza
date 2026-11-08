@@ -214,6 +214,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         } catch (Exception e) {
             TANGGALMUNDUR="yes";
         }
+        buatTabelLokalis();
     }
 
 
@@ -323,7 +324,10 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         Ekstremitas = new widget.ComboBox();
         jSeparator13 = new javax.swing.JSeparator();
         jLabel99 = new widget.Label();
-        PanelWall = new usu.widget.glass.PanelGlass();
+        GambarLokalis = new widget.PanelLokalis();
+        LabelJenisLokalis = new widget.Label();
+        JenisLokalis = new widget.ComboBox();
+        BtnHapusLokalis = new widget.Button();
         scrollPane8 = new widget.ScrollPane();
         KetLokalis = new widget.TextArea();
         jLabel79 = new widget.Label();
@@ -1138,15 +1142,37 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         FormInput.add(jLabel99);
         jLabel99.setBounds(10, 70, 180, 23);
 
-        PanelWall.setBackground(new java.awt.Color(29, 29, 29));
-        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/semua.png"))); // NOI18N
-        PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
-        PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
-        PanelWall.setRound(false);
-        PanelWall.setWarna(new java.awt.Color(110, 110, 110));
-        PanelWall.setLayout(null);
-        FormInput.add(PanelWall);
-        PanelWall.setBounds(45, 460, 809, 300);
+        GambarLokalis.setName("GambarLokalis"); // NOI18N
+        GambarLokalis.setLayout(null);
+        FormInput.add(GambarLokalis);
+        GambarLokalis.setBounds(45, 470, 809, 290);
+
+        LabelJenisLokalis.setText("Jenis Tanda :");
+        LabelJenisLokalis.setName("LabelJenisLokalis"); // NOI18N
+        FormInput.add(LabelJenisLokalis);
+        LabelJenisLokalis.setBounds(430, 444, 100, 23);
+
+        JenisLokalis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L - Luka", "M - Memar", "F - Fraktur", "B - Bengkak", "N - Nyeri", "LB - Luka Bakar", "X - Lainnya" }));
+        JenisLokalis.setToolTipText("Jenis tanda untuk klik berikutnya pada gambar");
+        JenisLokalis.setName("JenisLokalis"); // NOI18N
+        JenisLokalis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JenisLokalisActionPerformed(evt);
+            }
+        });
+        FormInput.add(JenisLokalis);
+        JenisLokalis.setBounds(534, 444, 170, 23);
+
+        BtnHapusLokalis.setText("Hapus Tanda");
+        BtnHapusLokalis.setToolTipText("Hapus semua tanda pada gambar status lokalis");
+        BtnHapusLokalis.setName("BtnHapusLokalis"); // NOI18N
+        BtnHapusLokalis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusLokalisActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusLokalis);
+        BtnHapusLokalis.setBounds(710, 444, 144, 23);
 
         scrollPane8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane8.setName("scrollPane8"); // NOI18N
@@ -1495,7 +1521,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
             Valid.textKosong(RPD,"Riwayat Penyakit Dahulu");
         }else if(RPO.getText().trim().equals("")){
             Valid.textKosong(RPO,"Riwayat Pengunaan obat");
-        }else{
+        }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(this,TNoRw.getText(),fungsi.UrutanAsesmenIGD.MEDIS)){
             if(akses.getkode().equals("Admin Utama")){
                 simpan();
             }else{
@@ -1970,6 +1996,16 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         Valid.pindah2(evt,KetFisik,EKG);
     }//GEN-LAST:event_KetLokalisKeyPressed
 
+    private void JenisLokalisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JenisLokalisActionPerformed
+        GambarLokalis.setJenisAktif(JenisLokalis.getSelectedIndex());
+    }//GEN-LAST:event_JenisLokalisActionPerformed
+
+    private void BtnHapusLokalisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusLokalisActionPerformed
+        if(GambarLokalis.getJumlahTanda()>0&&JOptionPane.showConfirmDialog(this,"Hapus semua tanda status lokalis?","Konfirmasi",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            GambarLokalis.hapusSemua();
+        }
+    }//GEN-LAST:event_BtnHapusLokalisActionPerformed
+
     private void EKGKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EKGKeyPressed
         Valid.pindah2(evt,KetLokalis,Radiologi);
     }//GEN-LAST:event_EKGKeyPressed
@@ -2000,10 +2036,9 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());          
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
-            try {
-                param.put("lokalis",getClass().getResource("/picture/semua.png").openStream());
-            } catch (Exception e) {
-            } 
+            // ukuran 3x elemen image di rptCetakPenilaianAwalMedisIGD.jrxml (551x123) agar tanda tidak gepeng
+            param.put("lokalis",widget.PanelLokalis.gambarCetak("/picture/semua.png",
+                    Sequel.cariIsi("select penilaian_medis_igd_lokalis.data from penilaian_medis_igd_lokalis where penilaian_medis_igd_lokalis.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()),1653,369));
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),6).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),5).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString())); 
             
@@ -2112,7 +2147,10 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnPenilaianMedis;
     private widget.TextBox Nadi;
     private widget.TextBox NmDokter;
-    private usu.widget.glass.PanelGlass PanelWall;
+    private widget.PanelLokalis GambarLokalis;
+    private widget.ComboBox JenisLokalis;
+    private widget.Button BtnHapusLokalis;
+    private widget.Label jLabel101;
     private widget.TextArea RPD;
     private widget.TextArea RPK;
     private widget.TextArea RPO;
@@ -2139,7 +2177,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame3;
     private widget.Label jLabel10;
     private widget.Label jLabel100;
-    private widget.Label jLabel101;
+    private widget.Label LabelJenisLokalis;
     private widget.Label jLabel102;
     private widget.Label jLabel103;
     private widget.Label jLabel11;
@@ -2309,6 +2347,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
         Ekstremitas.setSelectedIndex(0);
         KetFisik.setText("");
         KetLokalis.setText("");
+        GambarLokalis.hapusSemua();
         EKG.setText("");
         Radiologi.setText("");
         Laborat.setText("");
@@ -2354,6 +2393,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
             Ekstremitas.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),33).toString());
             KetFisik.setText(tbObat.getValueAt(tbObat.getSelectedRow(),34).toString());
             KetLokalis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),35).toString());
+            GambarLokalis.setData(Sequel.cariIsi("select penilaian_medis_igd_lokalis.data from penilaian_medis_igd_lokalis where penilaian_medis_igd_lokalis.no_rawat=?",tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()));
             EKG.setText(tbObat.getValueAt(tbObat.getSelectedRow(),36).toString());
             Radiologi.setText(tbObat.getValueAt(tbObat.getSelectedRow(),37).toString());
             Laborat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),38).toString());
@@ -2491,6 +2531,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
                tbObat.setValueAt(Laborat.getText(),tbObat.getSelectedRow(),38);
                tbObat.setValueAt(Diagnosis.getText(),tbObat.getSelectedRow(),39);
                tbObat.setValueAt(Tatalaksana.getText(),tbObat.getSelectedRow(),40);
+               simpanLokalis();
                emptTeks();
                TabRawat.setSelectedIndex(1);
         }
@@ -2512,7 +2553,32 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
                     Diagnosis.getText(),Tatalaksana.getText()
                 });
                 LCount.setText(""+tabMode.getRowCount());
+                simpanLokalis();
                 emptTeks();
+        }
+    }
+
+    private void simpanLokalis() {
+        if(GambarLokalis.getJumlahTanda()>0){
+            Sequel.queryu2tf("insert into penilaian_medis_igd_lokalis(no_rawat,data) values(?,?) on duplicate key update data=values(data)",2,new String[]{
+                TNoRw.getText(),GambarLokalis.getData()
+            });
+        }else{
+            Sequel.queryu2tf("delete from penilaian_medis_igd_lokalis where no_rawat=?",1,new String[]{TNoRw.getText()});
+        }
+    }
+
+    private void buatTabelLokalis() {
+        // tabel tambahan (lihat update_penilaian_medis_igd_lokalis.sql), dibuat otomatis bila belum ada
+        try (java.sql.Statement st=koneksi.createStatement()){
+            st.executeUpdate("CREATE TABLE IF NOT EXISTS `penilaian_medis_igd_lokalis` ("+
+                    "`no_rawat` varchar(17) NOT NULL,"+
+                    "`data` text NOT NULL,"+
+                    "PRIMARY KEY (`no_rawat`),"+
+                    "CONSTRAINT `penilaian_medis_igd_lokalis_ibfk_1` FOREIGN KEY (`no_rawat`) REFERENCES `penilaian_medis_igd` (`no_rawat`) ON DELETE CASCADE ON UPDATE CASCADE"+
+                    ") ENGINE=InnoDB DEFAULT CHARSET=latin1");
+        } catch (Exception e) {
+            System.out.println("Notifikasi buat tabel penilaian_medis_igd_lokalis : "+e);
         }
     }
     

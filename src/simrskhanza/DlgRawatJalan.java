@@ -15046,7 +15046,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         (!TInstruksi.getText().trim().equals(""))||(!SpO2.getText().trim().equals(""))||(!TEvaluasi.getText().trim().equals(""))){
                     if(KdPeg.getText().trim().equals("")||TPegawai.getText().trim().equals("")){
                         Valid.textKosong(KdPeg,"Dokter/Paramedis masih kosong...!!");
-                    }else{
+                    }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(rootPane,TNoRw.getText(),fungsi.UrutanAsesmenIGD.PEMERIKSAAN)){
                         if(akses.getkode().equals("Admin Utama")){
                             if(Sequel.menyimpantf("pemeriksaan_ralan","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","Data",21,new String[]{
                                 TNoRw.getText(),Valid.SetTgl(DTPTgl.getSelectedItem()+""),cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem(),
