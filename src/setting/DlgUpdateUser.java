@@ -231,7 +231,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             intervensi_nyeri_farmakologi=false,intervensi_nyeri_nonfarmakologi=false,surat_pengajuan_cuti_pasien=false,checklist_kriteria_masuk_isolasi=false,satu_sehat_mapping_kptl_tindakan_ralan=false,
             satu_sehat_mapping_kptl_tindakan_ranap=false,satu_sehat_mapping_kptl_tindakan_radiologi=false,satu_sehat_mapping_kptl_tindakan_laborat=false,satu_sehat_mapping_kptl_tindakan_operasi=false,
             satu_sehat_mapping_kptl_tarif_kamar=false,checklist_kriteria_keluar_isolasi=false,satu_sehat_tanda_tangan_elektronik=false,satu_sehat_kirim_composition=false,ringkasan_hutang_vendor_inventaris=false,
-            ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false;
+            ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false,odontogram=false;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
 
@@ -912,7 +912,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         intervensi_nyeri_farmakologi=false;intervensi_nyeri_nonfarmakologi=false;surat_pengajuan_cuti_pasien=false;checklist_kriteria_masuk_isolasi=false;satu_sehat_mapping_kptl_tindakan_ralan=false;
         satu_sehat_mapping_kptl_tindakan_ranap=false;satu_sehat_mapping_kptl_tindakan_radiologi=false;satu_sehat_mapping_kptl_tindakan_laborat=false;satu_sehat_mapping_kptl_tindakan_operasi=false;
         satu_sehat_mapping_kptl_tarif_kamar=false;checklist_kriteria_keluar_isolasi=false;satu_sehat_tanda_tangan_elektronik=false;satu_sehat_kirim_composition=false;ringkasan_hutang_vendor_inventaris=false;
-        ringkasan_beban_hutang_lain=false;set_resep_per_cara_bayar=false;
+        ringkasan_beban_hutang_lain=false;set_resep_per_cara_bayar=false;odontogram=false;
         try{    
             jml=0;
             for(i=0;i<tbUser.getRowCount();i++){
@@ -1325,6 +1325,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     catatan_observasi_ruang_ok=rs.getBoolean("catatan_observasi_ruang_ok");hasil_pemeriksaan_usg_abdomen=rs.getBoolean("hasil_pemeriksaan_usg_abdomen");intervensi_nyeri_farmakologi=rs.getBoolean("intervensi_nyeri_farmakologi");intervensi_nyeri_nonfarmakologi=rs.getBoolean("intervensi_nyeri_nonfarmakologi");surat_pengajuan_cuti_pasien=rs.getBoolean("surat_pengajuan_cuti_pasien");checklist_kriteria_masuk_isolasi=rs.getBoolean("checklist_kriteria_masuk_isolasi");satu_sehat_mapping_kptl_tindakan_ralan=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_ralan");
                     satu_sehat_mapping_kptl_tindakan_ranap=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_ranap");satu_sehat_mapping_kptl_tindakan_radiologi=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_radiologi");satu_sehat_mapping_kptl_tindakan_laborat=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_laborat");satu_sehat_mapping_kptl_tindakan_operasi=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_operasi");satu_sehat_mapping_kptl_tarif_kamar=rs.getBoolean("satu_sehat_mapping_kptl_tarif_kamar");checklist_kriteria_keluar_isolasi=rs.getBoolean("checklist_kriteria_keluar_isolasi");
                     satu_sehat_tanda_tangan_elektronik=rs.getBoolean("satu_sehat_tanda_tangan_elektronik");satu_sehat_kirim_composition=rs.getBoolean("satu_sehat_kirim_composition");ringkasan_hutang_vendor_inventaris=rs.getBoolean("ringkasan_hutang_vendor_inventaris");ringkasan_beban_hutang_lain=rs.getBoolean("ringkasan_beban_hutang_lain");set_resep_per_cara_bayar=rs.getBoolean("set_resep_per_cara_bayar");
+                    odontogram=bacaHakOdontogram(user);
                     setTampil();setTampil2();
                 }       
                 LCount.setText(""+tabMode.getRowCount());
@@ -5169,6 +5170,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         
         if("[M]Intervensi Nyeri Non Farmakologi".toLowerCase().contains(TCari.getText().toLowerCase())){
             tabMode.addRow(new Object[]{false,"[M]Intervensi Nyeri Non Farmakologi",intervensi_nyeri_nonfarmakologi});
+        }
+
+        if("[M]Odontogram".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Odontogram",odontogram});
         }
         
         if("[M]Check List Kriteria Masuk Isolasi".toLowerCase().contains(TCari.getText().toLowerCase())){
@@ -10049,6 +10054,11 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             if("[M]Intervensi Nyeri Non Farmakologi".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","intervensi_nyeri_nonfarmakologi='"+tbUser.getValueAt(i,2).toString()+"'");
             }
+
+            if("[M]Odontogram".equals(tbUser.getValueAt(i,1).toString())){
+                siapkanKolomOdontogram();
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","odontogram='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
             
             if("[M]Check List Kriteria Masuk Isolasi".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","checklist_kriteria_masuk_isolasi='"+tbUser.getValueAt(i,2).toString()+"'");
@@ -11095,6 +11105,28 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             }
         }
         JOptionPane.showMessageDialog(null,"Proses update hak akses selesai..!!");
+    }
+
+    // Hak akses Odontogram tambahan RS: kolom user.odontogram (lihat update_odontogram.sql), dibuat otomatis bila belum ada
+    private void siapkanKolomOdontogram(){
+        if(Sequel.cariInteger("select count(*) from information_schema.columns where table_schema=database() and table_name='user' and column_name='odontogram'")==0){
+            try (java.sql.Statement st=koneksi.createStatement()){
+                st.executeUpdate("alter table user add column odontogram enum('true','false') default null");
+            } catch (Exception e) {
+                System.out.println("Notifikasi kolom user.odontogram : "+e);
+            }
+        }
+    }
+
+    private boolean bacaHakOdontogram(String user){
+        try (PreparedStatement pso=koneksi.prepareStatement("select user.odontogram from user where user.id_user=AES_ENCRYPT(?,'nur')")){
+            pso.setString(1,user);
+            try (ResultSet rso=pso.executeQuery()){
+                return rso.next()&&rso.getBoolean(1);
+            }
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void runBackground(Runnable task) {

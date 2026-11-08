@@ -211,6 +211,7 @@ import rekammedis.RMSkriningKankerKolorektal;
 import rekammedis.RMSkriningKekerasanPadaPerempuan;
 import rekammedis.RMSkriningKesehatanGigiMulutBalita;
 import rekammedis.RMSkriningKesehatanGigiMulutDewasa;
+import rekammedis.RMOdontogram;
 import rekammedis.RMSkriningKesehatanGigiMulutLansia;
 import rekammedis.RMSkriningKesehatanGigiMulutRemaja;
 import rekammedis.RMSkriningKesehatanPenglihatan;
@@ -10400,7 +10401,23 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getDefaultCursor());
         }
     }
-    
+
+    private void BtnOdontogramActionPerformed(java.awt.event.ActionEvent evt) {
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMOdontogram form=new RMOdontogram(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+
     private void BtnSkriningKesehatanGigiMulutDewasaActionPerformed(java.awt.event.ActionEvent evt) {
         if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
@@ -11363,7 +11380,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnCatatanPengkajianPaskaOperasi,BtnSkriningFrailtySyndrome,BtnCatatanObservasiBayi,BtnChecklistKesiapanAnestesi,BtnHasilPemeriksaanSlitLamp,BtnHasilPemeriksaanOCT,BtnSkriningInstrumenACRS,
                           BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaMasukPICU,BtnSkriningInstrumenMentalEmosional,BtnSkriningInstrumenAMT,BtnSkriningPneumoniaSeverityIndex,BtnAwalMedisJantung,BtnAwalMedisUrologi,
                           BtnHasilPemeriksaanTreadmill,BtnHasilPemeriksaanECHOPediatrik,BtnSkriningCURB65,BtnSkriningGiziKehamilan,BtnResepIterasiBPJS,BtnPermintaanKonsultasiPerawat,BtnCatatanObservasiRuangOperasi,
-                          BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi;
+                          BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi,BtnOdontogram;
     private widget.Button[] shortcutPemeriksaan;
     private widget.TextBox CariMenu;
     private javax.swing.JPanel PanelCariMenu;
@@ -12279,8 +12296,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tinggi=tinggi+24;
         }
         
-        BtnSkriningKesehatanGigiMulutDewasa.setVisible(akses.getskrining_kesehatan_gigi_mulut_dewasa());   
+        BtnSkriningKesehatanGigiMulutDewasa.setVisible(akses.getskrining_kesehatan_gigi_mulut_dewasa());
         if(akses.getskrining_kesehatan_gigi_mulut_dewasa()==true){
+            tinggi=tinggi+24;
+        }
+        BtnOdontogram.setVisible(akses.getodontogram());
+        if(akses.getodontogram()==true){
             tinggi=tinggi+24;
         }
         BtnSkriningRisikoKankerServiks.setVisible(akses.getskrining_risiko_kanker_serviks());   
@@ -13726,7 +13747,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             buatShortcutPemeriksaan("Hasil Pemeriksaan EKG","8960620_cardiogram_tape_cardiology_electrocardiography_electrocardiogram_icon.png",e->BtnHasilPemeriksaanEKGActionPerformed(null)),
             buatShortcutPemeriksaan("Resume Medis","6012901_diagnosis_document_medical_paper_records_icon.png",e->BtnResumeActionPerformed(null)),
             buatShortcutPemeriksaan("Triase IGD","5958979_ambulance_call_emergency_hospital_medical_icon.png",e->BtnTriaseIGDActionPerformed(null)),
-            buatShortcutPemeriksaan("Riwayat Pasien","4852556_doctor_files_medical_record_icon.png",e->BtnRiwayatActionPerformed(null))
+            buatShortcutPemeriksaan("Riwayat Pasien","4852556_doctor_files_medical_record_icon.png",e->BtnRiwayatActionPerformed(null)),
+            buatShortcutPemeriksaan("Odontogram","2185086_bright_clean_dental_dentist_tooth_icon.png",e->BtnOdontogramActionPerformed(null))
         };
         for(widget.Button btn:shortcutPemeriksaan){
             panelGlass12.add(btn);
@@ -13754,13 +13776,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         //1 kolom kecil di kanan kolom Asesmen/Plan/Inst/Evaluasi, hanya yang punya hak akses, urutan sama dengan initShortcutPemeriksaan()
         boolean[] hakakses={
             akses.getpermintaan_lab(),akses.getpermintaan_radiologi(),akses.getresep_dokter(),akses.gethasil_pemeriksaan_ekg(),
-            akses.getdata_resume_pasien(),akses.getdata_triase_igd(),akses.getresume_pasien()
+            akses.getdata_resume_pasien(),akses.getdata_triase_igd(),akses.getresume_pasien(),akses.getodontogram()
         };
+        //maksimal 7 tombol per kolom, tombol berikutnya pindah ke kolom di sampingnya
         int urut=0;
         for(int s=0;s<shortcutPemeriksaan.length;s++){
             shortcutPemeriksaan[s].setVisible(hakakses[s]);
             if(hakakses[s]){
-                shortcutPemeriksaan[s].setBounds(915,40+(urut*29),160,26);
+                shortcutPemeriksaan[s].setBounds(915+((urut/7)*165),40+((urut%7)*29),160,26);
                 urut++;
             }
         }
@@ -14702,6 +14725,19 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnIntervensiNyeriNonFarmakologi.setPreferredSize(new java.awt.Dimension(190, 23));
         BtnIntervensiNyeriNonFarmakologi.setRoundRect(false);
         BtnIntervensiNyeriNonFarmakologi.addActionListener(this::BtnIntervensiNyeriNonFarmakologiActionPerformed);
+
+        BtnOdontogram = new widget.Button();
+        BtnOdontogram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
+        BtnOdontogram.setText("Odontogram");
+        BtnOdontogram.setFocusPainted(false);
+        BtnOdontogram.setFont(new java.awt.Font("Tahoma", 0, 12));
+        BtnOdontogram.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnOdontogram.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnOdontogram.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnOdontogram.setName("BtnOdontogram");
+        BtnOdontogram.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnOdontogram.setRoundRect(false);
+        BtnOdontogram.addActionListener(this::BtnOdontogramActionPerformed);
         
         BtnResepIterasiBPJS = new widget.Button();
         BtnResepIterasiBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
@@ -14918,6 +14954,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnSkriningKesehatanGigiMulutremaja);
         FormMenu.add(BtnSkriningKesehatanGigiMulutBalita);
         FormMenu.add(BtnSkriningKesehatanGigiMulutDewasa);
+        FormMenu.add(BtnOdontogram);
         FormMenu.add(BtnSkriningKesehatanGigiMulutLansia);
         FormMenu.add(BtnSkriningTBC);
         FormMenu.add(BtnSkriningPUMA);

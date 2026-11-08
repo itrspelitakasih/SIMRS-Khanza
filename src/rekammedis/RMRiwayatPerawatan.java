@@ -455,6 +455,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutBalita = new widget.CekBox();
         chkSkriningGigiMulutDewasa = new widget.CekBox();
         chkSkriningGigiMulutLansia = new widget.CekBox();
+        chkOdontogram = new widget.CekBox();
         chkSkriningTBC = new widget.CekBox();
         chkSkriningPSI = new widget.CekBox();
         chkSkriningCRUB65 = new widget.CekBox();
@@ -999,7 +1000,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         FormMenu.setBackground(new java.awt.Color(255, 255, 255));
         FormMenu.setBorder(null);
         FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4725));
+        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4748));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 1, 1));
 
         chkSemua.setSelected(true);
@@ -2287,6 +2288,14 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutLansia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGigiMulutLansia);
 
+        chkOdontogram.setSelected(true);
+        chkOdontogram.setText("Odontogram");
+        chkOdontogram.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkOdontogram.setName("chkOdontogram"); // NOI18N
+        chkOdontogram.setOpaque(false);
+        chkOdontogram.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkOdontogram);
+
         chkSkriningTBC.setSelected(true);
         chkSkriningTBC.setText("Skrining TBC");
         chkSkriningTBC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -3275,6 +3284,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkCatatanCairanHemodialisa.setSelected(true);
             chkSkriningRisikoKankerServiks.setSelected(true);
             chkSkriningGigiMulutLansia.setSelected(true);
+            chkOdontogram.setSelected(true);
             chkSkriningIndraPendengaran.setSelected(true);
             chkCatatanPengkajianPaskaOperasi.setSelected(true);
             chkSkriningFrailtySyndrome.setSelected(true);
@@ -3480,6 +3490,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkCatatanCairanHemodialisa.setSelected(false);
             chkSkriningRisikoKankerServiks.setSelected(false);
             chkSkriningGigiMulutLansia.setSelected(false);
+            chkOdontogram.setSelected(false);
             chkSkriningIndraPendengaran.setSelected(false);
             chkCatatanPengkajianPaskaOperasi.setSelected(false);
             chkSkriningFrailtySyndrome.setSelected(false);
@@ -4415,6 +4426,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkSkriningGigiMulutBalita;
     private widget.CekBox chkSkriningGigiMulutDewasa;
     private widget.CekBox chkSkriningGigiMulutLansia;
+    private widget.CekBox chkOdontogram;
     private widget.CekBox chkSkriningGigiMulutRemaja;
     private widget.CekBox chkSkriningGiziKehamilan;
     private widget.CekBox chkSkriningGiziLanjut;
@@ -5007,6 +5019,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanSkriningKesehatanGigiMulutBalita(rs.getString("no_rawat"));
                     menampilkanSkriningKesehatanGigiMulutDewasa(rs.getString("no_rawat"));
                     menampilkanSkriningKesehatanGigiMulutLansia(rs.getString("no_rawat"));
+                    menampilkanOdontogram(rs.getString("no_rawat"));
                     menampilkanSkriningTBC(rs.getString("no_rawat"));
                     menampilkanSkriningPSI(rs.getString("no_rawat"));
                     menampilkanSkriningCRUB65(rs.getString("no_rawat"));
@@ -34135,7 +34148,82 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             System.out.println("Notif Skrining Kesehatan Gigi & Mulut Usia Lansia : "+e);
         }
     }
-    
+
+    private void menampilkanOdontogram(String norawat) {
+        if(chkOdontogram.isSelected()==false){
+            return;
+        }
+        // tabel odontogram tambahan RS (RMOdontogram), bila belum dibuat query gagal dan bagian ini dilewati
+        try (java.sql.PreparedStatement pso=koneksi.prepareStatement(
+                "select odontogram.*,dokter.nm_dokter from odontogram inner join dokter on odontogram.kd_dokter=dokter.kd_dokter where odontogram.no_rawat=?")){
+            pso.setString(1,norawat);
+            try (ResultSet rso=pso.executeQuery()){
+                if(rso.next()){
+                    String data=RMOdontogram.dataGambar(koneksi,norawat);
+                    long tinggi=Math.round(600.0*widget.PanelOdontogram.TINGGI_DASAR/widget.PanelOdontogram.LEBAR_DASAR);
+                    htmlContent.append(
+                      "<tr class='isi'>").append(
+                        "<td valign='top' width='2%'></td>").append(
+                        "<td valign='top' width='18%'>Odontogram</td>").append(
+                        "<td valign='top' width='1%' align='center'>:</td>").append(
+                        "<td valign='top' width='79%'>").append(
+                          "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
+                             "<tr>").append(
+                                "<td valign='top'>").append(
+                                   "YANG MELAKUKAN PEMERIKSAAN").append(
+                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                      "<tr>").append(
+                                          "<td width='30%' border='0'>Tanggal : ").append(rso.getString("tanggal")).append("</td>").append(
+                                          "<td width='70%' border='0'>Dokter : ").append(rso.getString("kd_dokter")).append(" ").append(rso.getString("nm_dokter")).append("</td>").append(
+                                      "</tr>").append(
+                                   "</table>").append(
+                                "</td>").append(
+                             "</tr>").append(
+                             "<tr>").append(
+                                "<td valign='top'>").append(
+                                   "I. ODONTOGRAM").append(
+                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                      "<tr>").append(
+                                          "<td width='100%' border='0' align='center'><img alt='Odontogram' src='").append(widget.PanelOdontogram.urlGambar(data,1200)).append("' width='600' height='").append(tinggi).append("'/></td>").append(
+                                      "</tr>").append(
+                                   "</table>").append(
+                                   RMOdontogram.htmlKeterangan(data)).append(
+                                "</td>").append(
+                             "</tr>").append(
+                             "<tr>").append(
+                                "<td valign='top'>").append(
+                                   "II. PEMERIKSAAN").append(
+                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                      "<tr>").append(
+                                          "<td width='25%'>Occlusi : ").append(rso.getString("occlusi")).append("</td>").append(
+                                          "<td width='25%'>Torus Palatinus : ").append(rso.getString("torus_palatinus")).append("</td>").append(
+                                          "<td width='25%'>Torus Mandibularis : ").append(rso.getString("torus_mandibularis")).append("</td>").append(
+                                          "<td width='25%'>Palatum : ").append(rso.getString("palatum")).append("</td>").append(
+                                      "</tr>").append(
+                                      "<tr>").append(
+                                          "<td colspan='2'>Diastema : ").append(rso.getString("diastema")).append("</td>").append(
+                                          "<td colspan='2'>Gigi Anomali : ").append(rso.getString("gigi_anomali")).append("</td>").append(
+                                      "</tr>").append(
+                                      "<tr>").append(
+                                          "<td colspan='4'>Lain-lain : ").append(rso.getString("lain_lain")).append("</td>").append(
+                                      "</tr>").append(
+                                      "<tr>").append(
+                                          "<td colspan='2'>D : ").append(rso.getString("d")).append(", M : ").append(rso.getString("m")).append(", F : ").append(rso.getString("f")).append("</td>").append(
+                                          "<td colspan='2'>Jumlah Foto : ").append(rso.getString("foto")).append(", Jumlah Rontgen : ").append(rso.getString("rontgen")).append("</td>").append(
+                                      "</tr>").append(
+                                   "</table>").append(
+                                "</td>").append(
+                             "</tr>").append(
+                          "</table>").append(
+                        "</td>").append(
+                      "</tr>");
+                }
+            }
+        } catch (Exception e) {
+            // tabel odontogram belum ada: lewati
+        }
+    }
+
     private void menampilkanSkriningIndraPendengaran(String norawat) {
         try {
             if(chkSkriningIndraPendengaran.isSelected()==true){
