@@ -88,6 +88,9 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         WindowURLSertisign.setSize(570,100);
+        // TTE memakai MekariSign, menu E-Sign & Sertisign dinonaktifkan
+        MnLaporanResumeESign.setVisible(false);
+        MnLaporanResumeSertisign.setVisible(false);
         WindowPhrase.setSize(320,100);
         
         tabMode=new DefaultTableModel(null,new Object[]{
@@ -489,7 +492,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnLaporanResumeSertisign);
 
         MnLaporanResumeMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnLaporanResumeMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnLaporanResumeMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnLaporanResumeMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnLaporanResumeMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporanResumeMekariSign.setText("Laporan Resume Pasien PDF MekariSign");
@@ -503,7 +506,7 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         jPopupMenu1.add(MnLaporanResumeMekariSign);
 
         MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnDokumenMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDokumenMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokumenMekariSign.setText("Dokumen TTE MekariSign");

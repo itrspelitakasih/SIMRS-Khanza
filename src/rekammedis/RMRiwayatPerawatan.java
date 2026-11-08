@@ -104,7 +104,10 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         setSize(885,674);
         WindowPhrase.setSize(320,100);
         WindowURLSertisign.setSize(570,100);
-        
+        // TTE memakai MekariSign, menu E-Sign & SertiSign dinonaktifkan
+        MnGeneratePDFESign.setVisible(false);
+        MnGeneratePDFSertiSign.setVisible(false);
+
         tabModeRegistrasi=new DefaultTableModel(null,new Object[]{
                 "No.","No.Rawat","Tanggal","Jam","Kd.Dokter","Dokter Dituju/DPJP","Umur","Poliklinik/Kamar","Jenis Bayar"
             }){
@@ -583,7 +586,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         jPopupMenu1.add(MnGeneratePDFSertiSign);
 
         MnGeneratePDFMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnGeneratePDFMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnGeneratePDFMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFMekariSign.setText("Jadikan File PDF MekariSign");
@@ -597,7 +600,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         jPopupMenu1.add(MnGeneratePDFMekariSign);
 
         MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnDokumenMekariSign.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        MnDokumenMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokumenMekariSign.setText("Dokumen TTE MekariSign");
