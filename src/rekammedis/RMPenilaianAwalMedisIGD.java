@@ -1495,7 +1495,7 @@ public final class RMPenilaianAwalMedisIGD extends javax.swing.JDialog {
             Valid.textKosong(RPD,"Riwayat Penyakit Dahulu");
         }else if(RPO.getText().trim().equals("")){
             Valid.textKosong(RPO,"Riwayat Pengunaan obat");
-        }else{
+        }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(this,TNoRw.getText(),fungsi.UrutanAsesmenIGD.MEDIS)){
             if(akses.getkode().equals("Admin Utama")){
                 simpan();
             }else{

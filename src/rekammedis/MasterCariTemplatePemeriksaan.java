@@ -1069,7 +1069,7 @@ public final class MasterCariTemplatePemeriksaan extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if(Asesmen.getText().trim().equals("")){
             Valid.textKosong(Asesmen,"Asesmen");
-        }else{
+        }else if(fungsi.UrutanAsesmenIGD.bolehSimpan(this,noperawatan,fungsi.UrutanAsesmenIGD.PEMERIKSAAN)){
             if(tbDokter.getSelectedRow()>-1){
                 Sequel.AutoComitFalse();
                 sukses=true;
