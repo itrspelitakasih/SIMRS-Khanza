@@ -195,6 +195,8 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnLaporanResume = new javax.swing.JMenuItem();
+        MnLaporanResumeMekariSign = new javax.swing.JMenuItem();
+        MnDokumenMekariSign = new javax.swing.JMenuItem();
         MnInputDiagnosa = new javax.swing.JMenuItem();
         ppBerkasDigital = new javax.swing.JMenuItem();
         MnSPBK = new javax.swing.JMenuItem();
@@ -303,6 +305,34 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnLaporanResume);
+
+        MnLaporanResumeMekariSign.setBackground(new java.awt.Color(255, 255, 254));
+        MnLaporanResumeMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        MnLaporanResumeMekariSign.setForeground(new java.awt.Color(50, 50, 50));
+        MnLaporanResumeMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLaporanResumeMekariSign.setText("Laporan Resume Pasien PDF MekariSign");
+        MnLaporanResumeMekariSign.setName("MnLaporanResumeMekariSign"); // NOI18N
+        MnLaporanResumeMekariSign.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnLaporanResumeMekariSign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLaporanResumeMekariSignActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnLaporanResumeMekariSign);
+
+        MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
+        MnDokumenMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
+        MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenMekariSign.setText("Dokumen TTE MekariSign");
+        MnDokumenMekariSign.setName("MnDokumenMekariSign"); // NOI18N
+        MnDokumenMekariSign.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnDokumenMekariSign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenMekariSignActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDokumenMekariSign);
 
         MnInputDiagnosa.setBackground(new java.awt.Color(255, 255, 254));
         MnInputDiagnosa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -1646,6 +1676,44 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnLaporanResumeActionPerformed
 
+    private void MnLaporanResumeMekariSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLaporanResumeMekariSignActionPerformed
+        if(tbObat.getSelectedRow()>-1){
+            String norawat=tbObat.getValueAt(tbObat.getSelectedRow(),1).toString();
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
+            param.put("norawat",norawat);
+            if(Sequel.cariIsi("select reg_periksa.status_lanjut from reg_periksa where reg_periksa.no_rawat=?",norawat).equals("Ralan")){
+                param.put("ruang",Sequel.cariIsi("select poliklinik.nm_poli from poliklinik inner join reg_periksa on reg_periksa.kd_poli=poliklinik.kd_poli where reg_periksa.no_rawat=?",norawat));
+                param.put("tanggalkeluar",Sequel.cariIsi("select DATE_FORMAT(tgl_registrasi, '%d-%m-%Y') from reg_periksa where no_rawat=?",norawat));
+            }else{
+                param.put("ruang",Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar inner join kamar_inap on bangsal.kd_bangsal=kamar.kd_bangsal and kamar_inap.kd_kamar=kamar.kd_kamar where no_rawat=? order by tgl_masuk desc limit 1 ",norawat));
+                param.put("tanggalkeluar",Sequel.cariIsi("select DATE_FORMAT(tgl_keluar, '%d-%m-%Y') from kamar_inap where no_rawat=? order by tgl_keluar desc limit 1 ",norawat));
+            }
+            // posisi tanda tangan MekariSign ditandai teks #1A di laporan
+            param.put("finger",bridging.MekariSignApi.KEYWORD);
+            Valid.MyReportPDF2("rptLaporanResume.jasper","report","::[ Laporan Resume Pasien ]::",param);
+            rekammedis.MekariSignDokumen.kirimDanTampilkan(this,new java.io.File("./report/rptLaporanResume.pdf"),
+                norawat,"Resume Pasien Ralan",akses.getkode(),
+                Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?", akses.getkode()),
+                Sequel.cariIsi("select dokter.email from dokter where dokter.kd_dokter=?", akses.getkode()));
+        }else{
+            JOptionPane.showMessageDialog(null,"Silahkan pilih data resume terlebih dahulu..!!");
+        }
+    }//GEN-LAST:event_MnLaporanResumeMekariSignActionPerformed
+
+    private void MnDokumenMekariSignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenMekariSignActionPerformed
+        MekariSignDokumen dlg=new MekariSignDokumen(null,true);
+        dlg.setNoRawat(TNoRw.getText().trim());
+        dlg.setLocationRelativeTo(internalFrame1);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_MnDokumenMekariSignActionPerformed
+
     private void BtnDokter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokter1ActionPerformed
         if(TNoRw.getText().equals("")&&TNoRM.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Pasien masih kosong...!!!");
@@ -2121,6 +2189,8 @@ public final class RMDataResumePasien extends javax.swing.JDialog {
     private widget.Label LCount;
     private javax.swing.JMenuItem MnInputDiagnosa;
     private javax.swing.JMenuItem MnLaporanResume;
+    private javax.swing.JMenuItem MnLaporanResumeMekariSign;
+    private javax.swing.JMenuItem MnDokumenMekariSign;
     private javax.swing.JMenuItem MnSPBK;
     private javax.swing.JMenuItem MnSPBK2;
     private widget.TextBox NmDokter;
