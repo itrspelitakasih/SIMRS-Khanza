@@ -58,7 +58,7 @@ public final class DlgRoleUser extends javax.swing.JDialog {
             @Override public boolean isCellEditable(int r,int c){return false;}
         };
         tbRole.setModel(modeRole);
-        aturKolom(tbRole,new int[]{90,140,150,40,40});
+        aturKolom(tbRole,new int[]{95,140,165,35,35});
 
         modeAkses=new DefaultTableModel(null,new Object[]{"P","Hak Akses","Kolom"}){
             @Override public boolean isCellEditable(int r,int c){return c==0;}
@@ -166,6 +166,7 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         tbRole = new widget.Table();
         panelRoleTombol = new widget.panelisi();
         BtnRoleBaru = new widget.Button();
+        BtnRoleGanti = new widget.Button();
         BtnRoleHapus = new widget.Button();
         PanelAkses = new widget.PanelBiasa();
         FormRole = new widget.PanelBiasa();
@@ -277,7 +278,7 @@ public final class DlgRoleUser extends javax.swing.JDialog {
 
         PanelRole.setBorder(null);
         PanelRole.setName("PanelRole"); // NOI18N
-        PanelRole.setPreferredSize(new java.awt.Dimension(330, 100));
+        PanelRole.setPreferredSize(new java.awt.Dimension(480, 100));
         PanelRole.setLayout(new java.awt.BorderLayout(1, 1));
 
         ScrollRole.setName("ScrollRole"); // NOI18N
@@ -314,6 +315,18 @@ public final class DlgRoleUser extends javax.swing.JDialog {
             }
         });
         panelRoleTombol.add(BtnRoleBaru);
+
+        BtnRoleGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnRoleGanti.setText("Ganti");
+        BtnRoleGanti.setToolTipText("Ganti kode, nama dan keterangan role terpilih (hak akses & pemegang ikut kode baru)");
+        BtnRoleGanti.setName("BtnRoleGanti"); // NOI18N
+        BtnRoleGanti.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnRoleGanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRoleGantiActionPerformed(evt);
+            }
+        });
+        panelRoleTombol.add(BtnRoleGanti);
 
         BtnRoleHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnRoleHapus.setText("Hapus");
@@ -744,6 +757,10 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         KdRole.requestFocus();
     }//GEN-LAST:event_BtnRoleBaruActionPerformed
 
+    private void BtnRoleGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRoleGantiActionPerformed
+        gantiRole();
+    }//GEN-LAST:event_BtnRoleGantiActionPerformed
+
     private void BtnRoleHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRoleHapusActionPerformed
         if(kdRoleLama.equals("")){
             JOptionPane.showMessageDialog(null,"Silahkan pilih role yang akan dihapus..!!");
@@ -882,6 +899,7 @@ public final class DlgRoleUser extends javax.swing.JDialog {
     private widget.Button BtnKosongkan;
     private widget.Button BtnPasang;
     private widget.Button BtnRoleBaru;
+    private widget.Button BtnRoleGanti;
     private widget.Button BtnRoleHapus;
     private widget.Button BtnSalinUser;
     private widget.Button BtnSimpanRole;
@@ -1157,6 +1175,53 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         }
     }
 
+    /** Ganti kode / nama / keterangan role terpilih saja (centang hak akses tidak diubah). */
+    private void gantiRole(){
+        if(kdRoleLama.equals("")){
+            JOptionPane.showMessageDialog(null,"Silahkan pilih role yang akan diganti di tabel sebelah kiri..!!");
+            return;
+        }
+        String kd=KdRole.getText().trim().toUpperCase().replace(' ','_');
+        String nm=NmRole.getText().trim();
+        if(kd.equals("")){
+            Valid.textKosong(KdRole,"Kode Role");
+            return;
+        }
+        if(nm.equals("")){
+            Valid.textKosong(NmRole,"Nama Role");
+            return;
+        }
+        if(!kd.equals(kdRoleLama)){
+            for(int i=0;i<modeRole.getRowCount();i++){
+                if(modeRole.getValueAt(i,0).toString().equals(kd)){
+                    JOptionPane.showMessageDialog(null,"Kode role "+kd+" sudah dipakai role lain..!!");
+                    KdRole.requestFocus();
+                    return;
+                }
+            }
+        }
+        if(JOptionPane.showConfirmDialog(this,"Ganti role "+kdRoleLama+" menjadi :\nKode : "+kd+"\nNama : "+nm+"\nKeterangan : "+KetRole.getText().trim()+
+                (kd.equals(kdRoleLama)?"":"\n\nHak akses role dan daftar user pemegangnya ikut pindah ke kode baru."),
+                "Konfirmasi",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+            return;
+        }
+        try (PreparedStatement ps=koneksi.prepareStatement("update role_user set kd_role=?,nm_role=?,keterangan=? where kd_role=?")){
+            ps.setString(1,kd);
+            ps.setString(2,nm);
+            ps.setString(3,KetRole.getText().trim());
+            ps.setString(4,kdRoleLama);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Gagal mengganti role : "+e.getMessage());
+            return;
+        }
+        kdRoleLama=kd;
+        KdRole.setText(kd);
+        tampilRole();
+        tampilUser();
+        JOptionPane.showMessageDialog(null,"Role berhasil diganti.");
+    }
+
     private List<String> roleUser(String idUser){
         List<String> hasil=new ArrayList<>();
         try (PreparedStatement ps=koneksi.prepareStatement("select kd_role from user_role where id_user=? order by kd_role")){
@@ -1418,6 +1483,7 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         boolean admin="Admin Utama".equals(akses.getkode());
         BtnRoleBaru.setEnabled(admin);
         BtnRoleHapus.setEnabled(admin);
+        BtnRoleGanti.setEnabled(admin);
         BtnSimpanRole.setEnabled(admin);
         BtnSalinUser.setEnabled(admin);
         BtnCentang.setEnabled(admin);
