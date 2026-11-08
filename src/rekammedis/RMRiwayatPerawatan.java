@@ -10659,7 +10659,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "III. STATUS LOKALIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td width='100%' border='0' align='center'><img alt='Gambar Lokalis' src='").append((getClass().getResource("/picture/semua.png"))).append("' width='100%' height='400'/></td>").append(
+                                               "<td width='100%' border='0' align='center'><img alt='Gambar Lokalis' src='").append(widget.PanelLokalis.urlGambar("/picture/semua.png",Sequel.cariIsi("select penilaian_medis_igd_lokalis.data from penilaian_medis_igd_lokalis where penilaian_medis_igd_lokalis.no_rawat=?",norawat),1200,400,2f)).append("' width='100%' height='400'/></td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td width='100%' border='0'>Keterangan : ").append(rs2.getString("ket_lokalis").replaceAll("(\r\n|\r|\n|\n\r)","<br>")).append("</td>").append(
