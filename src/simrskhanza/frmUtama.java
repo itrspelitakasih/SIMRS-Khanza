@@ -1311,6 +1311,7 @@ public class frmUtama extends javax.swing.JFrame {
         DlgLogin.setLocationRelativeTo(null);
         jMenu1.setOpaque(false);
         tambahMenuTemplatePesanWA();
+        tambahMenuRoleUser();
         tambahMenuSuratMenemaniBerobat();
         jMenu5.setOpaque(false);
         jMenu6.setOpaque(false);
@@ -16147,6 +16148,46 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         DlgHome.dispose();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         komunikasi.DlgSetPesanWA dlg=new komunikasi.DlgSetPesanWA(this,false);
+        dlg.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        dlg.setLocationRelativeTo(PanelUtama);
+        dlg.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    /** Tombol menu utama Role Hak Akses User (kategori [U] dan pencarian menu), khusus Admin Utama. */
+    private final widget.ButtonBig btnRoleUser=new widget.ButtonBig();
+
+    /** Role Hak Akses User (Admin Utama): tombol di menu utama dan item di menu Program, dibuat di kode seperti Template Pesan WA. */
+    private void tambahMenuRoleUser(){
+        btnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/user-group-new.png")));
+        btnRoleUser.setText("Role Hak Akses User");
+        btnRoleUser.setIconTextGap(0);
+        btnRoleUser.setName("btnRoleUser");
+        btnRoleUser.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnRoleUser.addActionListener(evt -> bukaRoleUser());
+
+        javax.swing.JMenuItem MnRoleUser=new javax.swing.JMenuItem();
+        MnRoleUser.setBackground(new java.awt.Color(255, 255, 254));
+        MnRoleUser.setFont(new java.awt.Font("Tahoma", 0, 11));
+        MnRoleUser.setForeground(new java.awt.Color(50, 90, 40));
+        MnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png")));
+        MnRoleUser.setText("Role Hak Akses User");
+        MnRoleUser.setName("MnRoleUser");
+        MnRoleUser.setPreferredSize(new java.awt.Dimension(170, 30));
+        MnRoleUser.addActionListener(evt -> bukaRoleUser());
+        jMenu1.insert(MnRoleUser,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+    }
+
+    private void bukaRoleUser(){
+        if(!"Admin Utama".equals(akses.getkode())){
+            JOptionPane.showMessageDialog(this,"Role Hak Akses User hanya bisa dibuka oleh Admin Utama.");
+            return;
+        }
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        setting.DlgRoleUser dlg=new setting.DlgRoleUser(this,false);
+        dlg.isCek();
         dlg.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
         dlg.setLocationRelativeTo(PanelUtama);
         dlg.setVisible(true);
@@ -32367,6 +32408,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             if("Admin Utama".equals(akses.getkode())){
                 Panelmenu.add(btnTemplatePesanWA);
                 jmlmenu++;
+                Panelmenu.add(btnRoleUser);
+                jmlmenu++;
             }
 
             if(akses.getadmin()==true){
@@ -38464,6 +38507,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
         if("Admin Utama".equals(akses.getkode())){
             Panelmenu.add(btnTemplatePesanWA);
+            jmlmenu++;
+            Panelmenu.add(btnRoleUser);
             jmlmenu++;
         }
 
@@ -46972,6 +47017,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         if("Admin Utama".equals(akses.getkode())){
             if(btnTemplatePesanWA.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnTemplatePesanWA);
+                jmlmenu++;
+            }
+            if(btnRoleUser.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnRoleUser);
                 jmlmenu++;
             }
         }
