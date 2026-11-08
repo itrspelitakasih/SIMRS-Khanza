@@ -1135,7 +1135,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Perawatan/Tindakan Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Perawatan/Tindakan Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1397,7 +1397,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 253));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabRawat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3021,7 +3021,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         ChkJln.setSelected(true);
         ChkJln.setBorderPainted(true);
         ChkJln.setBorderPaintedFlat(true);
-        ChkJln.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        ChkJln.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ChkJln.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkJln.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ChkJln.setName("ChkJln"); // NOI18N
@@ -3071,7 +3071,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRiwayat.setText("Riwayat Pasien");
         BtnRiwayat.setFocusPainted(false);
-        BtnRiwayat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnRiwayat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnRiwayat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRiwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRiwayat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3087,7 +3087,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnResepObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnResepObat.setText("Input Resep");
         BtnResepObat.setFocusPainted(false);
-        BtnResepObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnResepObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnResepObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnResepObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnResepObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3103,7 +3103,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCopyResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCopyResep.setText("Copy Resep");
         BtnCopyResep.setFocusPainted(false);
-        BtnCopyResep.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCopyResep.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCopyResep.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCopyResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCopyResep.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3119,7 +3119,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPermintaanStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPermintaanStok.setText("Permintaan Stok Pasien");
         BtnPermintaanStok.setFocusPainted(false);
-        BtnPermintaanStok.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPermintaanStok.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPermintaanStok.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanStok.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanStok.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3135,7 +3135,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPermintaanResepPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPermintaanResepPulang.setText("Permintaan Resep Pulang");
         BtnPermintaanResepPulang.setFocusPainted(false);
-        BtnPermintaanResepPulang.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPermintaanResepPulang.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPermintaanResepPulang.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanResepPulang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanResepPulang.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3151,7 +3151,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnInputObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnInputObat.setText("Input Obat & BHP");
         BtnInputObat.setFocusPainted(false);
-        BtnInputObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnInputObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnInputObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnInputObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnInputObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3167,7 +3167,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnObatBhp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnObatBhp.setText("Data Obat & BHP");
         BtnObatBhp.setFocusPainted(false);
-        BtnObatBhp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnObatBhp.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnObatBhp.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnObatBhp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnObatBhp.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3183,7 +3183,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnBerkasDigital.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnBerkasDigital.setText("Berkas Digital");
         BtnBerkasDigital.setFocusPainted(false);
-        BtnBerkasDigital.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnBerkasDigital.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnBerkasDigital.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnBerkasDigital.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnBerkasDigital.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3199,7 +3199,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPermintaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPermintaanLab.setText("Permintaan Lab");
         BtnPermintaanLab.setFocusPainted(false);
-        BtnPermintaanLab.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPermintaanLab.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPermintaanLab.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanLab.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3215,7 +3215,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPermintaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPermintaanRad.setText("Permintaan Rad");
         BtnPermintaanRad.setFocusPainted(false);
-        BtnPermintaanRad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPermintaanRad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPermintaanRad.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanRad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanRad.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3231,7 +3231,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnJadwalOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnJadwalOperasi.setText("Jadwal Operasi");
         BtnJadwalOperasi.setFocusPainted(false);
-        BtnJadwalOperasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnJadwalOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnJadwalOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnJadwalOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnJadwalOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3247,7 +3247,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSKDP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSKDP.setText("Surat Kontrol");
         BtnSKDP.setFocusPainted(false);
-        BtnSKDP.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSKDP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSKDP.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSKDP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSKDP.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3263,7 +3263,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnRujukKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRujukKeluar.setText("Rujuk Keluar");
         BtnRujukKeluar.setFocusPainted(false);
-        BtnRujukKeluar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnRujukKeluar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnRujukKeluar.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRujukKeluar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRujukKeluar.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3279,7 +3279,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnDiagnosa.setText("Diagnosa");
         BtnDiagnosa.setFocusPainted(false);
-        BtnDiagnosa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnDiagnosa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnDiagnosa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnDiagnosa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnDiagnosa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3295,7 +3295,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnResume.setText("Resume Pasien");
         BtnResume.setFocusPainted(false);
-        BtnResume.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnResume.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnResume.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnResume.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnResume.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3311,7 +3311,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalKeperawatanUmum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalKeperawatanUmum.setText("Awal Keperawatan Umum");
         BtnAwalKeperawatanUmum.setFocusPainted(false);
-        BtnAwalKeperawatanUmum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalKeperawatanUmum.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalKeperawatanUmum.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalKeperawatanUmum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalKeperawatanUmum.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3327,7 +3327,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalKeperawatanKandungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalKeperawatanKandungan.setText("Awal Keperawatan Kandungan");
         BtnAwalKeperawatanKandungan.setFocusPainted(false);
-        BtnAwalKeperawatanKandungan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalKeperawatanKandungan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalKeperawatanKandungan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalKeperawatanKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalKeperawatanKandungan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3343,7 +3343,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalFisioterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalFisioterapi.setText("Awal Fisioterapi");
         BtnAwalFisioterapi.setFocusPainted(false);
-        BtnAwalFisioterapi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalFisioterapi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalFisioterapi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalFisioterapi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalFisioterapi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3359,7 +3359,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalMedis.setText("Awal Medis Umum");
         BtnAwalMedis.setFocusPainted(false);
-        BtnAwalMedis.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalMedis.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalMedis.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedis.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3375,7 +3375,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalMedisKandungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalMedisKandungan.setText("Awal Medis Kandungan");
         BtnAwalMedisKandungan.setFocusPainted(false);
-        BtnAwalMedisKandungan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalMedisKandungan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalMedisKandungan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedisKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedisKandungan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3391,7 +3391,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAwalMedisHemodialisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAwalMedisHemodialisa.setText("Awal Medis Hemodialisa");
         BtnAwalMedisHemodialisa.setFocusPainted(false);
-        BtnAwalMedisHemodialisa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAwalMedisHemodialisa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAwalMedisHemodialisa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedisHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedisHemodialisa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3407,7 +3407,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistPreOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistPreOperasi.setText("Check List Pre Operasi");
         BtnChecklistPreOperasi.setFocusPainted(false);
-        BtnChecklistPreOperasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistPreOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistPreOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistPreOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistPreOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3423,7 +3423,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSignInSebelumAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSignInSebelumAnestesi.setText("Sign-In Sebelum Anestesi");
         BtnSignInSebelumAnestesi.setFocusPainted(false);
-        BtnSignInSebelumAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSignInSebelumAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSignInSebelumAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSignInSebelumAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSignInSebelumAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3439,7 +3439,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnTimeOutSebelumInsisi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnTimeOutSebelumInsisi.setText("Time-Out Sebelum Insisi");
         BtnTimeOutSebelumInsisi.setFocusPainted(false);
-        BtnTimeOutSebelumInsisi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnTimeOutSebelumInsisi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnTimeOutSebelumInsisi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnTimeOutSebelumInsisi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnTimeOutSebelumInsisi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3455,7 +3455,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSignOutSebelumMenutupLuka.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSignOutSebelumMenutupLuka.setText("Sign-Out Sebelum Menutup Luka");
         BtnSignOutSebelumMenutupLuka.setFocusPainted(false);
-        BtnSignOutSebelumMenutupLuka.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSignOutSebelumMenutupLuka.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSignOutSebelumMenutupLuka.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSignOutSebelumMenutupLuka.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSignOutSebelumMenutupLuka.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3471,7 +3471,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistPostOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistPostOperasi.setText("Check List Post Operasi");
         BtnChecklistPostOperasi.setFocusPainted(false);
-        BtnChecklistPostOperasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistPostOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistPostOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistPostOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistPostOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3487,7 +3487,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianPreOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianPreOperasi.setText("Pengkajian Pre Operasi");
         BtnPenilaianPreOperasi.setFocusPainted(false);
-        BtnPenilaianPreOperasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianPreOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianPreOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPreOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPreOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3503,7 +3503,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianPreAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianPreAnestesi.setText("Pengkajian Pre Anestesi");
         BtnPenilaianPreAnestesi.setFocusPainted(false);
-        BtnPenilaianPreAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianPreAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianPreAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPreAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPreAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3519,7 +3519,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkorAldrettePascaAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkorAldrettePascaAnestesi.setText("Skor Aldrette Pasca Anestesi");
         BtnSkorAldrettePascaAnestesi.setFocusPainted(false);
-        BtnSkorAldrettePascaAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkorAldrettePascaAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkorAldrettePascaAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkorAldrettePascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkorAldrettePascaAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3535,7 +3535,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkorStewardPascaAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkorStewardPascaAnestesi.setText("Skor Steward Pasca Anestesi");
         BtnSkorStewardPascaAnestesi.setFocusPainted(false);
-        BtnSkorStewardPascaAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkorStewardPascaAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkorStewardPascaAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkorStewardPascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkorStewardPascaAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3551,7 +3551,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianPsikolog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianPsikolog.setText("Pengkajian Psikologi");
         BtnPenilaianPsikolog.setFocusPainted(false);
-        BtnPenilaianPsikolog.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianPsikolog.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianPsikolog.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPsikolog.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPsikolog.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3567,7 +3567,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPerencanaanPemulangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPerencanaanPemulangan.setText("Perencanaan Pemulangan");
         BtnPerencanaanPemulangan.setFocusPainted(false);
-        BtnPerencanaanPemulangan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPerencanaanPemulangan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPerencanaanPemulangan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPerencanaanPemulangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPerencanaanPemulangan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3583,7 +3583,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhDewasa.setText("Lanjutan Risiko Jatuh Dewasa");
         BtnPenilaianLanjutanResikoJatuhDewasa.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhDewasa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhDewasa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhDewasa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhDewasa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3599,7 +3599,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhAnak.setText("Lanjutan Risiko Jatuh Anak");
         BtnPenilaianLanjutanResikoJatuhAnak.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhAnak.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhAnak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhAnak.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhAnak.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3615,7 +3615,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhLansia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhLansia.setText("Lanjutan Risiko Jatuh Lansia");
         BtnPenilaianLanjutanResikoJatuhLansia.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhLansia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhLansia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhLansia.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhLansia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhLansia.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3631,7 +3631,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhNeonatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhNeonatus.setText("Lanjutan Risiko Jatuh Neonatus");
         BtnPenilaianLanjutanResikoJatuhNeonatus.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhNeonatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhNeonatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhNeonatus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhNeonatus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3647,7 +3647,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhGeriatri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhGeriatri.setText("Lanjutan Risiko Jatuh Geriatri");
         BtnPenilaianLanjutanResikoJatuhGeriatri.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhGeriatri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhGeriatri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhGeriatri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhGeriatri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3663,7 +3663,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setText("Lanjutan Risiko Jatuh Psikiatri");
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setFocusPainted(false);
-        BtnPenilaianLanjutanResikoJatuhPsikiatri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanResikoJatuhPsikiatri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanResikoJatuhPsikiatri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3679,7 +3679,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianLanjutanSkriningFungsional.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianLanjutanSkriningFungsional.setText("Lanjutan Skrining Fungsional");
         BtnPenilaianLanjutanSkriningFungsional.setFocusPainted(false);
-        BtnPenilaianLanjutanSkriningFungsional.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianLanjutanSkriningFungsional.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianLanjutanSkriningFungsional.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianLanjutanSkriningFungsional.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianLanjutanSkriningFungsional.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3695,7 +3695,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianResikoDekubitus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianResikoDekubitus.setText("Risiko Dekubitus");
         BtnPenilaianResikoDekubitus.setFocusPainted(false);
-        BtnPenilaianResikoDekubitus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianResikoDekubitus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianResikoDekubitus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianResikoDekubitus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianResikoDekubitus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3711,7 +3711,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilPemeriksaanUSG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilPemeriksaanUSG.setText("Hasil USG Kandungan");
         BtnHasilPemeriksaanUSG.setFocusPainted(false);
-        BtnHasilPemeriksaanUSG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilPemeriksaanUSG.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilPemeriksaanUSG.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanUSG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanUSG.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3727,7 +3727,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGAbdomen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGAbdomen.setText("Hasil USG Abdomen");
         BtnHasilUSGAbdomen.setFocusPainted(false);
-        BtnHasilUSGAbdomen.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGAbdomen.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGAbdomen.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGAbdomen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGAbdomen.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3743,7 +3743,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGAppendix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGAppendix.setText("Hasil USG Appendix");
         BtnHasilUSGAppendix.setFocusPainted(false);
-        BtnHasilUSGAppendix.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGAppendix.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGAppendix.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGAppendix.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGAppendix.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3759,7 +3759,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGHepar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGHepar.setText("Hasil USG Hepar/Lien/Empedu");
         BtnHasilUSGHepar.setFocusPainted(false);
-        BtnHasilUSGHepar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGHepar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGHepar.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGHepar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGHepar.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3775,7 +3775,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGMamma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGMamma.setText("Hasil USG Mammae");
         BtnHasilUSGMamma.setFocusPainted(false);
-        BtnHasilUSGMamma.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGMamma.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGMamma.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGMamma.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGMamma.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3791,7 +3791,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGScrotum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGScrotum.setText("Hasil USG Testis/Scrotum");
         BtnHasilUSGScrotum.setFocusPainted(false);
-        BtnHasilUSGScrotum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGScrotum.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGScrotum.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGScrotum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGScrotum.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3807,7 +3807,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnHasilUSGThyroid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnHasilUSGThyroid.setText("Hasil USG Thyroid");
         BtnHasilUSGThyroid.setFocusPainted(false);
-        BtnHasilUSGThyroid.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilUSGThyroid.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilUSGThyroid.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilUSGThyroid.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilUSGThyroid.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3823,7 +3823,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnDokumentasiESWL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnDokumentasiESWL.setText("Dokumentasi Tindakan ESWL");
         BtnDokumentasiESWL.setFocusPainted(false);
-        BtnDokumentasiESWL.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnDokumentasiESWL.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnDokumentasiESWL.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnDokumentasiESWL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnDokumentasiESWL.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3839,7 +3839,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanPersalinan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanPersalinan.setText("Catatan Persalinan");
         BtnCatatanPersalinan.setFocusPainted(false);
-        BtnCatatanPersalinan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanPersalinan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanPersalinan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanPersalinan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanPersalinan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3855,7 +3855,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatan.setText("Catatan Pasien");
         BtnCatatan.setFocusPainted(false);
-        BtnCatatan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3871,7 +3871,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanObservasiRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanObservasiRanap.setText("Observasi Ranap");
         BtnCatatanObservasiRanap.setFocusPainted(false);
-        BtnCatatanObservasiRanap.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanObservasiRanap.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanObservasiRanap.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiRanap.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3887,7 +3887,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanObservasiRanapKebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanObservasiRanapKebidanan.setText("Observasi Kebidanan");
         BtnCatatanObservasiRanapKebidanan.setFocusPainted(false);
-        BtnCatatanObservasiRanapKebidanan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanObservasiRanapKebidanan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanObservasiRanapKebidanan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiRanapKebidanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiRanapKebidanan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3903,7 +3903,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanObservasiRanapPostPartum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanObservasiRanapPostPartum.setText("Observasi Post Partum");
         BtnCatatanObservasiRanapPostPartum.setFocusPainted(false);
-        BtnCatatanObservasiRanapPostPartum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanObservasiRanapPostPartum.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanObservasiRanapPostPartum.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiRanapPostPartum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiRanapPostPartum.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3919,7 +3919,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnFollowUpDBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnFollowUpDBD.setText("Follow Up DBD");
         BtnFollowUpDBD.setFocusPainted(false);
-        BtnFollowUpDBD.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnFollowUpDBD.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnFollowUpDBD.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnFollowUpDBD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnFollowUpDBD.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3935,7 +3935,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanKeperawatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanKeperawatan.setText("Catatan Keperawatan");
         BtnCatatanKeperawatan.setFocusPainted(false);
-        BtnCatatanKeperawatan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanKeperawatan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanKeperawatan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanKeperawatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanKeperawatan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3951,7 +3951,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanCekGDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanCekGDS.setText("Catatan Cek GDS");
         BtnCatatanCekGDS.setFocusPainted(false);
-        BtnCatatanCekGDS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanCekGDS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanCekGDS.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanCekGDS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanCekGDS.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3967,7 +3967,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianUlangNyeri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianUlangNyeri.setText("Pengkajian Ulang Nyeri");
         BtnPenilaianUlangNyeri.setFocusPainted(false);
-        BtnPenilaianUlangNyeri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianUlangNyeri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianUlangNyeri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianUlangNyeri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianUlangNyeri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3983,7 +3983,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPemantauanPEWSAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPemantauanPEWSAnak.setText("Pemantauan PEWS Anak");
         BtnPemantauanPEWSAnak.setFocusPainted(false);
-        BtnPemantauanPEWSAnak.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPemantauanPEWSAnak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPemantauanPEWSAnak.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPemantauanPEWSAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemantauanPEWSAnak.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -3999,7 +3999,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPemantauanPEWSDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPemantauanPEWSDewasa.setText("Pemantauan EWS Dewasa");
         BtnPemantauanPEWSDewasa.setFocusPainted(false);
-        BtnPemantauanPEWSDewasa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPemantauanPEWSDewasa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPemantauanPEWSDewasa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPemantauanPEWSDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemantauanPEWSDewasa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4015,7 +4015,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPemantauanMEOWS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPemantauanMEOWS.setText("Pemantauan MEOWS Obstetri");
         BtnPemantauanMEOWS.setFocusPainted(false);
-        BtnPemantauanMEOWS.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPemantauanMEOWS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPemantauanMEOWS.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPemantauanMEOWS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemantauanMEOWS.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4031,7 +4031,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPemantauanEWSNeonatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPemantauanEWSNeonatus.setText("Pemantauan EWS Neonatus");
         BtnPemantauanEWSNeonatus.setFocusPainted(false);
-        BtnPemantauanEWSNeonatus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPemantauanEWSNeonatus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPemantauanEWSNeonatus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPemantauanEWSNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemantauanEWSNeonatus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4047,7 +4047,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistKriteriaMasukHCU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistKriteriaMasukHCU.setText("Check List Masuk HCU");
         BtnChecklistKriteriaMasukHCU.setFocusPainted(false);
-        BtnChecklistKriteriaMasukHCU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistKriteriaMasukHCU.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistKriteriaMasukHCU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaMasukHCU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaMasukHCU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4063,7 +4063,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistKriteriaKeluarHCU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistKriteriaKeluarHCU.setText("Check List Keluar HCU");
         BtnChecklistKriteriaKeluarHCU.setFocusPainted(false);
-        BtnChecklistKriteriaKeluarHCU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistKriteriaKeluarHCU.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistKriteriaKeluarHCU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaKeluarHCU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaKeluarHCU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4079,7 +4079,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistKriteriaMasukICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistKriteriaMasukICU.setText("Check List Masuk ICU");
         BtnChecklistKriteriaMasukICU.setFocusPainted(false);
-        BtnChecklistKriteriaMasukICU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistKriteriaMasukICU.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistKriteriaMasukICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaMasukICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaMasukICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4095,7 +4095,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnChecklistKriteriaKeluarICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnChecklistKriteriaKeluarICU.setText("Check List Keluar ICU");
         BtnChecklistKriteriaKeluarICU.setFocusPainted(false);
-        BtnChecklistKriteriaKeluarICU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnChecklistKriteriaKeluarICU.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnChecklistKriteriaKeluarICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaKeluarICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaKeluarICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4111,7 +4111,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnMonitoringReaksiTranfusi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnMonitoringReaksiTranfusi.setText("Monitoring Reaksi Tranfusi");
         BtnMonitoringReaksiTranfusi.setFocusPainted(false);
-        BtnMonitoringReaksiTranfusi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnMonitoringReaksiTranfusi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnMonitoringReaksiTranfusi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnMonitoringReaksiTranfusi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnMonitoringReaksiTranfusi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4127,7 +4127,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkriningNutrisiDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkriningNutrisiDewasa.setText("Skrining Nutrisi Dewasa");
         BtnSkriningNutrisiDewasa.setFocusPainted(false);
-        BtnSkriningNutrisiDewasa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkriningNutrisiDewasa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkriningNutrisiDewasa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkriningNutrisiDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkriningNutrisiDewasa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4143,7 +4143,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkriningNutrisiLansia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkriningNutrisiLansia.setText("Skrining Nutrisi Lansia");
         BtnSkriningNutrisiLansia.setFocusPainted(false);
-        BtnSkriningNutrisiLansia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkriningNutrisiLansia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkriningNutrisiLansia.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkriningNutrisiLansia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkriningNutrisiLansia.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4159,7 +4159,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkriningNutrisiAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkriningNutrisiAnak.setText("Skrining Nutrisi Anak");
         BtnSkriningNutrisiAnak.setFocusPainted(false);
-        BtnSkriningNutrisiAnak.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkriningNutrisiAnak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkriningNutrisiAnak.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkriningNutrisiAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkriningNutrisiAnak.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4175,7 +4175,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnSkriningGiziLanjut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnSkriningGiziLanjut.setText("Skrining Gizi Lanjut");
         BtnSkriningGiziLanjut.setFocusPainted(false);
-        BtnSkriningGiziLanjut.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnSkriningGiziLanjut.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnSkriningGiziLanjut.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkriningGiziLanjut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkriningGiziLanjut.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4191,7 +4191,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnAsuhanGizi.setText("Asuhan Gizi");
         BtnAsuhanGizi.setFocusPainted(false);
-        BtnAsuhanGizi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnAsuhanGizi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnAsuhanGizi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAsuhanGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAsuhanGizi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4207,7 +4207,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnMonitoringAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnMonitoringAsuhanGizi.setText("Monitoring Gizi");
         BtnMonitoringAsuhanGizi.setFocusPainted(false);
-        BtnMonitoringAsuhanGizi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnMonitoringAsuhanGizi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnMonitoringAsuhanGizi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnMonitoringAsuhanGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnMonitoringAsuhanGizi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4223,7 +4223,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnCatatanADIMEGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnCatatanADIMEGizi.setText("Catatan ADIME Gizi");
         BtnCatatanADIMEGizi.setFocusPainted(false);
-        BtnCatatanADIMEGizi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnCatatanADIMEGizi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnCatatanADIMEGizi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanADIMEGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanADIMEGizi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4239,7 +4239,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnKonselingFarmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnKonselingFarmasi.setText("Konseling Farmasi");
         BtnKonselingFarmasi.setFocusPainted(false);
-        BtnKonselingFarmasi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnKonselingFarmasi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnKonselingFarmasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnKonselingFarmasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnKonselingFarmasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4255,7 +4255,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnInformasiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnInformasiObat.setText("Informasi Obat");
         BtnInformasiObat.setFocusPainted(false);
-        BtnInformasiObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnInformasiObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnInformasiObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnInformasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnInformasiObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4271,7 +4271,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnRekonsiliasiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnRekonsiliasiObat.setText("Rekonsiliasi Obat");
         BtnRekonsiliasiObat.setFocusPainted(false);
-        BtnRekonsiliasiObat.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnRekonsiliasiObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnRekonsiliasiObat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnRekonsiliasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRekonsiliasiObat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4287,7 +4287,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnTransferAntarRuang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnTransferAntarRuang.setText("Transfer Antar Ruang");
         BtnTransferAntarRuang.setFocusPainted(false);
-        BtnTransferAntarRuang.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnTransferAntarRuang.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnTransferAntarRuang.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnTransferAntarRuang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnTransferAntarRuang.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4303,7 +4303,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPengkajianRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPengkajianRestrain.setText("Pengkajian Restrain");
         BtnPengkajianRestrain.setFocusPainted(false);
-        BtnPengkajianRestrain.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPengkajianRestrain.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPengkajianRestrain.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPengkajianRestrain.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPengkajianRestrain.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4319,7 +4319,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianPasienTerminal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianPasienTerminal.setText("Pengkajian Pasien Terminal");
         BtnPenilaianPasienTerminal.setFocusPainted(false);
-        BtnPenilaianPasienTerminal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianPasienTerminal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianPasienTerminal.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPasienTerminal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPasienTerminal.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4335,7 +4335,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianKorbanKekerasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianKorbanKekerasan.setText("Pengkajian Korban Kekerasan");
         BtnPenilaianKorbanKekerasan.setFocusPainted(false);
-        BtnPenilaianKorbanKekerasan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianKorbanKekerasan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianKorbanKekerasan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianKorbanKekerasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianKorbanKekerasan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4351,7 +4351,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianKecemasanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianKecemasanAnak.setText("Pengkajian Kecemasan Anak");
         BtnPenilaianKecemasanAnak.setFocusPainted(false);
-        BtnPenilaianKecemasanAnak.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianKecemasanAnak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianKecemasanAnak.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianKecemasanAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianKecemasanAnak.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4367,7 +4367,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianPasienPenyakitMenular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianPasienPenyakitMenular.setText("Pasien Penyakit Menular");
         BtnPenilaianPasienPenyakitMenular.setFocusPainted(false);
-        BtnPenilaianPasienPenyakitMenular.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianPasienPenyakitMenular.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianPasienPenyakitMenular.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPasienPenyakitMenular.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPasienPenyakitMenular.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4383,7 +4383,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianTambahanGeriatri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianTambahanGeriatri.setText("Tambahan Pasien Geriatri");
         BtnPenilaianTambahanGeriatri.setFocusPainted(false);
-        BtnPenilaianTambahanGeriatri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianTambahanGeriatri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianTambahanGeriatri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianTambahanGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianTambahanGeriatri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4399,7 +4399,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianTambahanBunuhDiri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianTambahanBunuhDiri.setText("Tambahan Bunuh Diri");
         BtnPenilaianTambahanBunuhDiri.setFocusPainted(false);
-        BtnPenilaianTambahanBunuhDiri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianTambahanBunuhDiri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianTambahanBunuhDiri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianTambahanBunuhDiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianTambahanBunuhDiri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4415,7 +4415,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianTambahanPerilakuKekerasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianTambahanPerilakuKekerasan.setText("Tambahan Perilaku Kekerasan");
         BtnPenilaianTambahanPerilakuKekerasan.setFocusPainted(false);
-        BtnPenilaianTambahanPerilakuKekerasan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianTambahanPerilakuKekerasan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianTambahanPerilakuKekerasan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianTambahanPerilakuKekerasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianTambahanPerilakuKekerasan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4431,7 +4431,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         BtnPenilaianTambahanMelarikanDiri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); // NOI18N
         BtnPenilaianTambahanMelarikanDiri.setText("Tambahan Melarikan Diri");
         BtnPenilaianTambahanMelarikanDiri.setFocusPainted(false);
-        BtnPenilaianTambahanMelarikanDiri.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnPenilaianTambahanMelarikanDiri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnPenilaianTambahanMelarikanDiri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianTambahanMelarikanDiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianTambahanMelarikanDiri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11030,7 +11030,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         btn.setText(teks);
         btn.setToolTipText(teks);
         btn.setFocusPainted(false);
-        btn.setFont(new java.awt.Font("Arial", 0, 11));
+        btn.setFont(new java.awt.Font("Tahoma", 0, 11));
         btn.setGlassColor(new java.awt.Color(255, 255, 255));
         btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn.setIconTextGap(5);
@@ -11062,7 +11062,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnSkorBromagePascaAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnSkorBromagePascaAnestesi.setText("Skor Bromage Pasca Anestesi");
         BtnSkorBromagePascaAnestesi.setFocusPainted(false);
-        BtnSkorBromagePascaAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnSkorBromagePascaAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnSkorBromagePascaAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkorBromagePascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkorBromagePascaAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11075,7 +11075,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPenilaianPreInduksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPenilaianPreInduksi.setText("Pengkajian Pre Induksi");
         BtnPenilaianPreInduksi.setFocusPainted(false);
-        BtnPenilaianPreInduksi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPenilaianPreInduksi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPenilaianPreInduksi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPreInduksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPreInduksi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11088,7 +11088,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanUSGUrologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanUSGUrologi.setText("Hasil USG Urologi");
         BtnHasilPemeriksaanUSGUrologi.setFocusPainted(false);
-        BtnHasilPemeriksaanUSGUrologi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilPemeriksaanUSGUrologi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilPemeriksaanUSGUrologi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanUSGUrologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanUSGUrologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11101,7 +11101,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanUSGGynecologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanUSGGynecologi.setText("Hasil USG Gynecologi");
         BtnHasilPemeriksaanUSGGynecologi.setFocusPainted(false);
-        BtnHasilPemeriksaanUSGGynecologi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilPemeriksaanUSGGynecologi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilPemeriksaanUSGGynecologi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanUSGGynecologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanUSGGynecologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11114,7 +11114,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanUSGNeonatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanUSGNeonatus.setText("Hasil USG Neonatus");
         BtnHasilPemeriksaanUSGNeonatus.setFocusPainted(false);
-        BtnHasilPemeriksaanUSGNeonatus.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnHasilPemeriksaanUSGNeonatus.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnHasilPemeriksaanUSGNeonatus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanUSGNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanUSGNeonatus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11127,7 +11127,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanUSGAbdomen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanUSGAbdomen.setText("Hasil USG Abdomen");
         BtnHasilPemeriksaanUSGAbdomen.setFocusPainted(false);
-        BtnHasilPemeriksaanUSGAbdomen.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnHasilPemeriksaanUSGAbdomen.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnHasilPemeriksaanUSGAbdomen.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanUSGAbdomen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanUSGAbdomen.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11140,7 +11140,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanEKG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanEKG.setText("Hasil Pemeriksaan EKG");
         BtnHasilPemeriksaanEKG.setFocusPainted(false);
-        BtnHasilPemeriksaanEKG.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilPemeriksaanEKG.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilPemeriksaanEKG.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanEKG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanEKG.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11153,7 +11153,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanTreadmill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanTreadmill.setText("Hasil Pemeriksaan Treadmill");
         BtnHasilPemeriksaanTreadmill.setFocusPainted(false);
-        BtnHasilPemeriksaanTreadmill.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        BtnHasilPemeriksaanTreadmill.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         BtnHasilPemeriksaanTreadmill.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanTreadmill.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanTreadmill.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11166,7 +11166,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanECHO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanECHO.setText("Hasil Pemeriksaan ECHO");
         BtnHasilPemeriksaanECHO.setFocusPainted(false);
-        BtnHasilPemeriksaanECHO.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnHasilPemeriksaanECHO.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnHasilPemeriksaanECHO.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanECHO.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanECHO.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11179,7 +11179,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanECHOPediatrik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanECHOPediatrik.setText("Hasil ECHO Pediatrik");
         BtnHasilPemeriksaanECHOPediatrik.setFocusPainted(false);
-        BtnHasilPemeriksaanECHOPediatrik.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnHasilPemeriksaanECHOPediatrik.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnHasilPemeriksaanECHOPediatrik.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanECHOPediatrik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanECHOPediatrik.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11192,7 +11192,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilEndoskopiFaringLaring.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilEndoskopiFaringLaring.setText("Hasil Endoskopi Faring/Laring");
         BtnHasilEndoskopiFaringLaring.setFocusPainted(false);
-        BtnHasilEndoskopiFaringLaring.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnHasilEndoskopiFaringLaring.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnHasilEndoskopiFaringLaring.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilEndoskopiFaringLaring.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilEndoskopiFaringLaring.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11205,7 +11205,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilEndoskopiHidung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilEndoskopiHidung.setText("Hasil Endoskopi Hidung");
         BtnHasilEndoskopiHidung.setFocusPainted(false);
-        BtnHasilEndoskopiHidung.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnHasilEndoskopiHidung.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnHasilEndoskopiHidung.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilEndoskopiHidung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilEndoskopiHidung.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11218,7 +11218,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilEndoskopiTelinga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilEndoskopiTelinga.setText("Hasil Endoskopi Telinga");
         BtnHasilEndoskopiTelinga.setFocusPainted(false);
-        BtnHasilEndoskopiTelinga.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnHasilEndoskopiTelinga.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnHasilEndoskopiTelinga.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilEndoskopiTelinga.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilEndoskopiTelinga.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11231,7 +11231,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnAwalKeperawatanNeonatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnAwalKeperawatanNeonatus.setText("Awal Keperawatan Neonatus");
         BtnAwalKeperawatanNeonatus.setFocusPainted(false);
-        BtnAwalKeperawatanNeonatus.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnAwalKeperawatanNeonatus.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnAwalKeperawatanNeonatus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalKeperawatanNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalKeperawatanNeonatus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11244,7 +11244,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnAwalKeperawatanBayiAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnAwalKeperawatanBayiAnak.setText("Awal Keperawatan Bayi/Anak");
         BtnAwalKeperawatanBayiAnak.setFocusPainted(false);
-        BtnAwalKeperawatanBayiAnak.setFont(new java.awt.Font("Arial", 0, 12));
+        BtnAwalKeperawatanBayiAnak.setFont(new java.awt.Font("Tahoma", 0, 12));
         BtnAwalKeperawatanBayiAnak.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalKeperawatanBayiAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalKeperawatanBayiAnak.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11257,7 +11257,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPenilaianPasienImunitasRendah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPenilaianPasienImunitasRendah.setText("Pasien Imunitas Rendah");
         BtnPenilaianPasienImunitasRendah.setFocusPainted(false);
-        BtnPenilaianPasienImunitasRendah.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPenilaianPasienImunitasRendah.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPenilaianPasienImunitasRendah.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPasienImunitasRendah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPasienImunitasRendah.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11270,7 +11270,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanKeseimbanganCairan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanKeseimbanganCairan.setText("Keseimbangan Cairan");
         BtnCatatanKeseimbanganCairan.setFocusPainted(false);
-        BtnCatatanKeseimbanganCairan.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanKeseimbanganCairan.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanKeseimbanganCairan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanKeseimbanganCairan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanKeseimbanganCairan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11283,7 +11283,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiCHBP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiCHBP.setText("Observasi CHBP");
         BtnCatatanObservasiCHBP.setFocusPainted(false);
-        BtnCatatanObservasiCHBP.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiCHBP.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiCHBP.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiCHBP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiCHBP.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11296,7 +11296,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanPengkajianPaskaOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanPengkajianPaskaOperasi.setText("Pengkajian Paska Operasi");
         BtnCatatanPengkajianPaskaOperasi.setFocusPainted(false);
-        BtnCatatanPengkajianPaskaOperasi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanPengkajianPaskaOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanPengkajianPaskaOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanPengkajianPaskaOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanPengkajianPaskaOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11309,7 +11309,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiInduksiPersalinan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiInduksiPersalinan.setText("Observasi Induksi Persalinan");
         BtnCatatanObservasiInduksiPersalinan.setFocusPainted(false);
-        BtnCatatanObservasiInduksiPersalinan.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiInduksiPersalinan.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiInduksiPersalinan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiInduksiPersalinan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiInduksiPersalinan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11322,7 +11322,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiHemodialisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiHemodialisa.setText("Observasi Hemodialisa");
         BtnCatatanObservasiHemodialisa.setFocusPainted(false);
-        BtnCatatanObservasiHemodialisa.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiHemodialisa.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiHemodialisa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiHemodialisa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11335,7 +11335,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiRuangOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiRuangOperasi.setText("Observasi Ruang Operasi");
         BtnCatatanObservasiRuangOperasi.setFocusPainted(false);
-        BtnCatatanObservasiRuangOperasi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiRuangOperasi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiRuangOperasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiRuangOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiRuangOperasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11348,7 +11348,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanCairanHemodialisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanCairanHemodialisa.setText("Cairan Hemodialisa");
         BtnCatatanCairanHemodialisa.setFocusPainted(false);
-        BtnCatatanCairanHemodialisa.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanCairanHemodialisa.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanCairanHemodialisa.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanCairanHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanCairanHemodialisa.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11361,7 +11361,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistPemberianFibrinolitik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnChecklistPemberianFibrinolitik.setText("Check List Pemberian Fibrinoli");
         BtnChecklistPemberianFibrinolitik.setFocusPainted(false);
-        BtnChecklistPemberianFibrinolitik.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistPemberianFibrinolitik.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistPemberianFibrinolitik.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistPemberianFibrinolitik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistPemberianFibrinolitik.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11374,7 +11374,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiRestrainNonfarmakologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiRestrainNonfarmakologi.setText("Observasi Restrain Nonfarma");
         BtnCatatanObservasiRestrainNonfarmakologi.setFocusPainted(false);
-        BtnCatatanObservasiRestrainNonfarmakologi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiRestrainNonfarmakologi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiRestrainNonfarmakologi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiRestrainNonfarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiRestrainNonfarmakologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11387,7 +11387,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiVentilator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiVentilator.setText("Observasi Ventilator");
         BtnCatatanObservasiVentilator.setFocusPainted(false);
-        BtnCatatanObservasiVentilator.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiVentilator.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiVentilator.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiVentilator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiVentilator.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11400,7 +11400,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPermintaanKonsultasiMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPermintaanKonsultasiMedik.setText("Konsultasi Medik");
         BtnPermintaanKonsultasiMedik.setFocusPainted(false);
-        BtnPermintaanKonsultasiMedik.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPermintaanKonsultasiMedik.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPermintaanKonsultasiMedik.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanKonsultasiMedik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanKonsultasiMedik.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11413,7 +11413,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPermintaanKonsultasiPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPermintaanKonsultasiPerawat.setText("Konsultasi Perawat");
         BtnPermintaanKonsultasiPerawat.setFocusPainted(false);
-        BtnPermintaanKonsultasiPerawat.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPermintaanKonsultasiPerawat.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPermintaanKonsultasiPerawat.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPermintaanKonsultasiPerawat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPermintaanKonsultasiPerawat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11426,7 +11426,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnAwalMedisNeonatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnAwalMedisNeonatus.setText("Awal Medis Neonatus");
         BtnAwalMedisNeonatus.setFocusPainted(false);
-        BtnAwalMedisNeonatus.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnAwalMedisNeonatus.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnAwalMedisNeonatus.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedisNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedisNeonatus.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11439,7 +11439,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnAwalMedisJantung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnAwalMedisJantung.setText("Awal Medis Jantung");
         BtnAwalMedisJantung.setFocusPainted(false);
-        BtnAwalMedisJantung.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnAwalMedisJantung.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnAwalMedisJantung.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedisJantung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedisJantung.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11452,7 +11452,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnAwalMedisPsikiatri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnAwalMedisPsikiatri.setText("Awal Medis Psikiatri");
         BtnAwalMedisPsikiatri.setFocusPainted(false);
-        BtnAwalMedisPsikiatri.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnAwalMedisPsikiatri.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnAwalMedisPsikiatri.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnAwalMedisPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnAwalMedisPsikiatri.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11465,7 +11465,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPenilaianPsikologKlinis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPenilaianPsikologKlinis.setText("Pengkajian Psikologi Klinis");
         BtnPenilaianPsikologKlinis.setFocusPainted(false);
-        BtnPenilaianPsikologKlinis.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPenilaianPsikologKlinis.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPenilaianPsikologKlinis.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianPsikologKlinis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianPsikologKlinis.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11478,7 +11478,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPenilaianDerajatDehidrasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPenilaianDerajatDehidrasi.setText("Pengkajian Derajat Dehidrasi");
         BtnPenilaianDerajatDehidrasi.setFocusPainted(false);
-        BtnPenilaianDerajatDehidrasi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPenilaianDerajatDehidrasi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPenilaianDerajatDehidrasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianDerajatDehidrasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianDerajatDehidrasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11491,7 +11491,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanAnastesiSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanAnastesiSedasi.setText("Catatan Anestesi-Sedasi");
         BtnCatatanAnastesiSedasi.setFocusPainted(false);
-        BtnCatatanAnastesiSedasi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanAnastesiSedasi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanAnastesiSedasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanAnastesiSedasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanAnastesiSedasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11504,7 +11504,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPenilaianBayiBaruLahir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPenilaianBayiBaruLahir.setText("Pengkajian Bayi Baru Lahir");
         BtnPenilaianBayiBaruLahir.setFocusPainted(false);
-        BtnPenilaianBayiBaruLahir.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPenilaianBayiBaruLahir.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPenilaianBayiBaruLahir.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPenilaianBayiBaruLahir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianBayiBaruLahir.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11517,7 +11517,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnLaporanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnLaporanTindakan.setText("Laporan Tindakan");
         BtnLaporanTindakan.setFocusPainted(false);
-        BtnLaporanTindakan.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnLaporanTindakan.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnLaporanTindakan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnLaporanTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnLaporanTindakan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11530,7 +11530,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnPelaksanaanInformasiEdukasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnPelaksanaanInformasiEdukasi.setText("Pelaksanaan Edukasi");
         BtnPelaksanaanInformasiEdukasi.setFocusPainted(false);
-        BtnPelaksanaanInformasiEdukasi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnPelaksanaanInformasiEdukasi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnPelaksanaanInformasiEdukasi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnPelaksanaanInformasiEdukasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPelaksanaanInformasiEdukasi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11543,7 +11543,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnCatatanObservasiBayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnCatatanObservasiBayi.setText("Observasi Bayi");
         BtnCatatanObservasiBayi.setFocusPainted(false);
-        BtnCatatanObservasiBayi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnCatatanObservasiBayi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnCatatanObservasiBayi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnCatatanObservasiBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanObservasiBayi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11556,7 +11556,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistKesiapanAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnChecklistKesiapanAnestesi.setText("Check List Kesiapan Anestesi");
         BtnChecklistKesiapanAnestesi.setFocusPainted(false);
-        BtnChecklistKesiapanAnestesi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistKesiapanAnestesi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistKesiapanAnestesi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKesiapanAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKesiapanAnestesi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11569,7 +11569,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanSlitLamp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanSlitLamp.setText("Hasil Pemeriksaan Slit Lamp");
         BtnHasilPemeriksaanSlitLamp.setFocusPainted(false);
-        BtnHasilPemeriksaanSlitLamp.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnHasilPemeriksaanSlitLamp.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnHasilPemeriksaanSlitLamp.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanSlitLamp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanSlitLamp.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11582,7 +11582,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanOCT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanOCT.setText("Hasil Pemeriksaan OCT");
         BtnHasilPemeriksaanOCT.setFocusPainted(false);
-        BtnHasilPemeriksaanOCT.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnHasilPemeriksaanOCT.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnHasilPemeriksaanOCT.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnHasilPemeriksaanOCT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanOCT.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11595,7 +11595,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistKriteriaMasukNICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnChecklistKriteriaMasukNICU.setText("Check List Masuk NICU");
         BtnChecklistKriteriaMasukNICU.setFocusPainted(false);
-        BtnChecklistKriteriaMasukNICU.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistKriteriaMasukNICU.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistKriteriaMasukNICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaMasukNICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaMasukNICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11608,7 +11608,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistKriteriaMasukPICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnChecklistKriteriaMasukPICU.setText("Check List Masuk PICU");
         BtnChecklistKriteriaMasukPICU.setFocusPainted(false);
-        BtnChecklistKriteriaMasukPICU.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistKriteriaMasukPICU.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistKriteriaMasukPICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaMasukPICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaMasukPICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11621,7 +11621,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistKriteriaKeluarPICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnChecklistKriteriaKeluarPICU.setText("Check List Keluar PICU");
         BtnChecklistKriteriaKeluarPICU.setFocusPainted(false);
-        BtnChecklistKriteriaKeluarPICU.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistKriteriaKeluarPICU.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistKriteriaKeluarPICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaKeluarPICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaKeluarPICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11634,7 +11634,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnChecklistKriteriaKeluarNICU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnChecklistKriteriaKeluarNICU.setText("Check List Keluar NICU");
         BtnChecklistKriteriaKeluarNICU.setFocusPainted(false);
-        BtnChecklistKriteriaKeluarNICU.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnChecklistKriteriaKeluarNICU.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnChecklistKriteriaKeluarNICU.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnChecklistKriteriaKeluarNICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnChecklistKriteriaKeluarNICU.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11647,7 +11647,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnSkriningGiziKehamilan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnSkriningGiziKehamilan.setText("Skrining Gizi Kehamilan");
         BtnSkriningGiziKehamilan.setFocusPainted(false);
-        BtnSkriningGiziKehamilan.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnSkriningGiziKehamilan.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnSkriningGiziKehamilan.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnSkriningGiziKehamilan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnSkriningGiziKehamilan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11660,7 +11660,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnIntervensiNyeriFarmakologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnIntervensiNyeriFarmakologi.setText("Intervensi Nyeri Farmakologi");
         BtnIntervensiNyeriFarmakologi.setFocusPainted(false);
-        BtnIntervensiNyeriFarmakologi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnIntervensiNyeriFarmakologi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnIntervensiNyeriFarmakologi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnIntervensiNyeriFarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnIntervensiNyeriFarmakologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11673,7 +11673,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnIntervensiNyeriNonFarmakologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnIntervensiNyeriNonFarmakologi.setText("Intervensi Nyeri Non Farma");
         BtnIntervensiNyeriNonFarmakologi.setFocusPainted(false);
-        BtnIntervensiNyeriNonFarmakologi.setFont(new java.awt.Font("Arial", 0, 12)); 
+        BtnIntervensiNyeriNonFarmakologi.setFont(new java.awt.Font("Tahoma", 0, 12)); 
         BtnIntervensiNyeriNonFarmakologi.setGlassColor(new java.awt.Color(255, 255, 255));
         BtnIntervensiNyeriNonFarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnIntervensiNyeriNonFarmakologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -11684,7 +11684,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         MnCopySOAP = new javax.swing.JMenuItem();
         MnCopySOAP.setBackground(new java.awt.Color(255, 255, 254));
-        MnCopySOAP.setFont(new java.awt.Font("Arial", 0, 12));
+        MnCopySOAP.setFont(new java.awt.Font("Tahoma", 0, 12));
         MnCopySOAP.setForeground(new java.awt.Color(50, 50, 50));
         MnCopySOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); 
         MnCopySOAP.setText("Copy SOAPIE");
@@ -11696,7 +11696,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         MnPasteSOAP = new javax.swing.JMenuItem();
         MnPasteSOAP.setBackground(new java.awt.Color(255, 255, 254));
-        MnPasteSOAP.setFont(new java.awt.Font("Arial", 0, 12));
+        MnPasteSOAP.setFont(new java.awt.Font("Tahoma", 0, 12));
         MnPasteSOAP.setForeground(new java.awt.Color(50, 50, 50));
         MnPasteSOAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); 
         MnPasteSOAP.setText("Paste SOAPIE");

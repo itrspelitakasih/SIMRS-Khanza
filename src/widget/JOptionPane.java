@@ -64,9 +64,9 @@ public class JOptionPane extends javax.swing.JOptionPane {
     public static final int SUKSES = 0, INFO = 1, PERINGATAN = 2, GAGAL = 3, TANYA = 4;
 
     private static final int TEKS_MIN = 260, TEKS_MAX = 440, TINGGI_MAX = 320, SUDUT = 16;
-    private static final Font F_JUDUL = new Font("Arial", Font.BOLD, 14);
-    private static final Font F_PESAN = new Font("Arial", Font.PLAIN, 12);
-    private static final Font F_TOMBOL = new Font("Arial", Font.BOLD, 11);
+    private static final Font F_JUDUL = new Font("Tahoma", Font.BOLD, 14);
+    private static final Font F_PESAN = new Font("Tahoma", Font.PLAIN, 12);
+    private static final Font F_TOMBOL = new Font("Tahoma", Font.BOLD, 11);
 
     // ===== pengganti JOptionPane.showMessageDialog =====
 
@@ -620,7 +620,7 @@ public class JOptionPane extends javax.swing.JOptionPane {
                     g.fillOval(x + 18, y + 27, 5, 5);
                     break;
                 case TANYA:
-                    g.setFont(new Font("Arial", Font.BOLD, 24));
+                    g.setFont(new Font("Tahoma", Font.BOLD, 24));
                     FontMetrics fm = g.getFontMetrics();
                     g.drawString("?", x + (D - fm.stringWidth("?")) / 2, y + (D - fm.getHeight()) / 2 + fm.getAscent());
                     break;

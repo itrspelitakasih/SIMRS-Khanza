@@ -73,7 +73,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/folder.png"))); // NOI18N
         jLabel1.setText("Anjungan Registrasi Mandiri, Silahkan Scan Kartu Pasien Anda !!!");
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 28)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel1.setIconTextGap(10);
         jLabel1.setPreferredSize(new java.awt.Dimension(650, 135));
@@ -92,7 +92,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(254, 184, 254));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Dikembangkan Oleh Khanza.Soft Media, Email : khanza_media@yahoo.com, Skype : khanza.media, HP : 08562675039");
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel3.add(jLabel3, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
@@ -111,13 +111,13 @@ public class frmUtama extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(130, 80, 130));
         jLabel6.setText("No.RM/KTP/Asuransi/JKN Pasien :");
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel6.setIconTextGap(10);
         jLabel6.setPreferredSize(new java.awt.Dimension(400, 45));
         panel1.add(jLabel6);
 
-        TCari.setFont(new java.awt.Font("Arial", 0, 25)); // NOI18N
+        TCari.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(350, 45));
         TCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

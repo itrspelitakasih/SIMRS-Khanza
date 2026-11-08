@@ -178,7 +178,7 @@ public final class DlgBulanan extends javax.swing.JDialog {
         DlgInput.setUndecorated(true);
         DlgInput.setResizable(false);
 
-        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 205)), "::[ Input Presensi Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 205)), "::[ Input Presensi Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setWarnaBawah(new java.awt.Color(255, 254, 255));
         internalFrame2.setLayout(null);
@@ -263,7 +263,7 @@ public final class DlgBulanan extends javax.swing.JDialog {
         Cari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         Cari.setMnemonic('C');
         Cari.setToolTipText("Alt+C");
-        Cari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Cari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Cari.setName("Cari"); // NOI18N
         Cari.setPreferredSize(new java.awt.Dimension(100, 30));
         Cari.addActionListener(new java.awt.event.ActionListener() {
@@ -343,7 +343,7 @@ public final class DlgBulanan extends javax.swing.JDialog {
         internalFrame2.add(catatan);
         catatan.setBounds(65, 87, 663, 23);
 
-        jamdatang.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jamdatang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jamdatang.setName("jamdatang"); // NOI18N
         jamdatang.setPreferredSize(new java.awt.Dimension(207, 23));
         jamdatang.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -366,7 +366,7 @@ public final class DlgBulanan extends javax.swing.JDialog {
         internalFrame2.add(Shift);
         Shift.setBounds(606, 27, 122, 23);
 
-        jampulang.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        jampulang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jampulang.setName("jampulang"); // NOI18N
         jampulang.setPreferredSize(new java.awt.Dimension(207, 23));
         internalFrame2.add(jampulang);
@@ -380,7 +380,7 @@ public final class DlgBulanan extends javax.swing.JDialog {
 
         DlgInput.getContentPane().add(internalFrame2, java.awt.BorderLayout.CENTER);
 
-        Idpresensi.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
+        Idpresensi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Idpresensi.setName("Idpresensi"); // NOI18N
         Idpresensi.setPreferredSize(new java.awt.Dimension(207, 23));
         Idpresensi.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -400,8 +400,8 @@ public final class DlgBulanan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Presensi Bulanan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Presensi Bulanan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 

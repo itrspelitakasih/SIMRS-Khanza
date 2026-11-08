@@ -172,7 +172,7 @@ public class AvatarChat {
             g.fill(lingkaran);
             String inisial=inisial(nama);
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Arial",Font.PLAIN,Math.max(8,ukuran*2/5)));
+            g.setFont(new Font("Tahoma",Font.PLAIN,Math.max(8,ukuran*2/5)));
             FontMetrics fm=g.getFontMetrics();
             g.drawString(inisial,(ukuran-fm.stringWidth(inisial))/2,(ukuran-fm.getHeight())/2+fm.getAscent());
         }

@@ -138,13 +138,13 @@ public final class SatuSehatKirimGoal extends javax.swing.JDialog {
         cmbStatus = new widget.ComboBox();
 
         jPopupMenu1.setName("jPopupMenu1");
-        ppPilihSemua.setBackground(new java.awt.Color(255,255,254)); ppPilihSemua.setFont(new java.awt.Font("Arial",0,11)); ppPilihSemua.setForeground(new java.awt.Color(50,50,50));
+        ppPilihSemua.setBackground(new java.awt.Color(255,255,254)); ppPilihSemua.setFont(new java.awt.Font("Tahoma",0,11)); ppPilihSemua.setForeground(new java.awt.Color(50,50,50));
         ppPilihSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); ppPilihSemua.setText("Pilih Semua");
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT); ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); ppPilihSemua.setPreferredSize(new java.awt.Dimension(150,26));
         ppPilihSemua.addActionListener(e -> { for(i=0;i<tbObat.getRowCount();i++) tbObat.setValueAt(true,i,0); });
         jPopupMenu1.add(ppPilihSemua);
-        ppBersihkan.setBackground(new java.awt.Color(255,255,254)); ppBersihkan.setFont(new java.awt.Font("Arial",0,11)); ppBersihkan.setForeground(new java.awt.Color(50,50,50));
+        ppBersihkan.setBackground(new java.awt.Color(255,255,254)); ppBersihkan.setFont(new java.awt.Font("Tahoma",0,11)); ppBersihkan.setForeground(new java.awt.Color(50,50,50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); ppBersihkan.setText("Hilangkan Pilihan");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT); ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); ppBersihkan.setPreferredSize(new java.awt.Dimension(150,26));
@@ -155,8 +155,8 @@ public final class SatuSehatKirimGoal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); setIconImage(null); setIconImages(null); setUndecorated(true); setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() { public void windowOpened(java.awt.event.WindowEvent evt) { formWindowOpened(evt); } });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240,245,235)), "::[ Pengiriman Data Goal Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial",0,11), new java.awt.Color(50,50,50)));
-        internalFrame1.setFont(new java.awt.Font("Arial",0,11)); internalFrame1.setName("internalFrame1"); internalFrame1.setLayout(new java.awt.BorderLayout(1,1));
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240,245,235)), "::[ Pengiriman Data Goal Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma",0,11), new java.awt.Color(50,50,50)));
+        internalFrame1.setFont(new java.awt.Font("Tahoma",0,11)); internalFrame1.setName("internalFrame1"); internalFrame1.setLayout(new java.awt.BorderLayout(1,1));
         Scroll.setComponentPopupMenu(jPopupMenu1); Scroll.setName("Scroll"); Scroll.setOpaque(true);
         tbObat.setComponentPopupMenu(jPopupMenu1); tbObat.setName("tbObat"); Scroll.setViewportView(tbObat);
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);

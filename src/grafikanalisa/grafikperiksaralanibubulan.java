@@ -132,7 +132,7 @@ public class grafikperiksaralanibubulan extends JDialog {
              plot.add(subplot1,2 );
              plot.add(subplot2,1 );
 
-             JFreeChart result = new JFreeChart("",new Font("SansSerif", Font.PLAIN,6 ), plot, true);
+             JFreeChart result = new JFreeChart("",new Font("Tahoma", Font.PLAIN,6 ), plot, true);
              return result;
 
          }
