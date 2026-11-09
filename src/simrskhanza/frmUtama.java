@@ -1312,6 +1312,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu1.setOpaque(false);
         tambahMenuTemplatePesanWA();
         tambahMenuRoleUser();
+        tambahMenuPanduan();
         tambahMenuSuratMenemaniBerobat();
         jMenu5.setOpaque(false);
         jMenu6.setOpaque(false);
@@ -16178,6 +16179,55 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         jMenu1.insert(MnRoleUser,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
     }
 
+    /** Menu bar "Panduan": membuka panduan/index.html (folder panduan ikut hasil build di dist/panduan). */
+    private void tambahMenuPanduan(){
+        javax.swing.JMenu MnPanduan=new javax.swing.JMenu();
+        MnPanduan.setBackground(new java.awt.Color(20, 0, 20));
+        MnPanduan.setBorder(null);
+        MnPanduan.setForeground(new java.awt.Color(255, 255, 255));
+        MnPanduan.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/5859108_book_education_handbook_medical_medicine_icon.png"))
+                .getImage().getScaledInstance(16,16,java.awt.Image.SCALE_SMOOTH)));
+        MnPanduan.setText("Panduan");
+        MnPanduan.setToolTipText("Buka panduan penggunaan SIMRS Khanza");
+        MnPanduan.setFont(new java.awt.Font("Tahoma", 0, 11));
+        MnPanduan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPanduan.setName("MnPanduan");
+        MnPanduan.setPreferredSize(new java.awt.Dimension(86, 26));
+        MnPanduan.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bukaPanduan();
+            }
+        });
+        MenuBar.add(MnPanduan,MenuBar.getComponentIndex(jMenuUpdate));
+    }
+
+    private void bukaPanduan(){
+        java.io.File panduan=new java.io.File(System.getProperty("user.dir"),"panduan"+java.io.File.separator+"index.html");
+        if(!panduan.isFile()){
+            try {
+                java.io.File jar=new java.io.File(frmUtama.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+                java.io.File folder=jar.isFile()?jar.getParentFile():jar;
+                panduan=new java.io.File(folder,"panduan"+java.io.File.separator+"index.html");
+            } catch (Exception e) {
+                System.out.println("Notif Panduan : "+e);
+            }
+        }
+        if(!panduan.isFile()){
+            JOptionPane.showMessageDialog(this,"File panduan tidak ditemukan:\n"+panduan.getAbsolutePath()+"\nSalin folder panduan ke folder aplikasi.");
+            return;
+        }
+        try {
+            if(java.awt.Desktop.isDesktopSupported()&&java.awt.Desktop.getDesktop().isSupported(java.awt.Desktop.Action.BROWSE)){
+                java.awt.Desktop.getDesktop().browse(panduan.toURI());
+            }else{
+                Runtime.getRuntime().exec(new String[]{"rundll32","url.dll,FileProtocolHandler",panduan.getAbsolutePath()});
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Panduan gagal dibuka: "+e.getMessage());
+        }
+    }
+
     private void bukaRoleUser(){
         if(!"Admin Utama".equals(akses.getkode())){
             JOptionPane.showMessageDialog(this,"Role Hak Akses User hanya bisa dibuka oleh Admin Utama.");
@@ -26308,7 +26358,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.06"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.07"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));

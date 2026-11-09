@@ -102,7 +102,11 @@
         </copy> 
         <copy todir="${dist.dir}/suara">
             <fileset dir="suara/" includes="**/*.mp3" />
-        </copy> 
+        </copy>
+        <mkdir dir="${dist.dir}/panduan" />
+        <copy todir="${dist.dir}/panduan">
+            <fileset dir="panduan/" includes="**/*" />
+        </copy>
         <copy todir="${build.dir}/gambar">
             <fileset dir="gambar/" includes="**/*.png, **/*.jpg" />
         </copy>
