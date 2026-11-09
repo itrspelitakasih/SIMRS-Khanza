@@ -4,101 +4,304 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Panduan SIMRS Khanza</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Tata letak: bilah samping daftar tutorial + kolom isi; di ponsel daftar pindah ke atas. Warna diambil dari biru toolbar Khanza + merah penanda langkah. */
+/* Tata letak: bilah samping daftar tutorial + kolom isi; di layar sempit daftar isi jadi panel lipat.
+   Warna: biru toolbar Khanza (brand), merah penanda langkah di gambar (mark), hijau-toska untuk modul. */
 :root{
-  --bg:#f5f7fa; --panel:#ffffff; --ink:#1b2430; --muted:#5b6778; --line:#dde3ea;
-  --brand:#1565c0; --brand-soft:#e3eefb; --mark:#d62828; --ok:#1b7f4b; --ok-soft:#e2f4ea; --soon:#8a6d1a; --soon-soft:#fbf3dc;
-  --font-display:"Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --bg:#f3f6fa; --panel:#ffffff; --panel-2:#f8fafc; --ink:#1b2430; --muted:#5b6778; --line:#dde3ea;
+  --brand:#1565c0; --brand-ink:#0d47a1; --brand-soft:#e3eefb; --mark:#d62828; --mark-soft:#fdeaea;
+  --teal:#0f7f84; --teal-soft:#e0f3f3; --amber:#9a6a00; --amber-soft:#fbf1d8;
+  --ok:#1b7f4b; --ok-soft:#e2f4ea; --soon:#8a6d1a; --soon-soft:#fbf3dc;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  --hero-1:#0b2f5e; --hero-2:#1559a8;
+  --font-display:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#10151c; --panel:#171e27; --ink:#e7ecf2; --muted:#9aa7b7; --line:#2a3440;
-  --brand:#6aa8f0; --brand-soft:#1b2a3d; --mark:#ff6b6b; --ok:#5ccf8f; --ok-soft:#15301f; --soon:#e5c25f; --soon-soft:#2e2814; color-scheme:dark } }
+  --bg:#0f141b; --panel:#161d26; --panel-2:#1b232e; --ink:#e7ecf2; --muted:#9aa7b7; --line:#2a3440;
+  --brand:#6aa8f0; --brand-ink:#9cc6f7; --brand-soft:#1b2a3d; --mark:#ff6b6b; --mark-soft:#3a1c1f;
+  --teal:#4fc4c8; --teal-soft:#14302f; --amber:#e5c25f; --amber-soft:#2e2814;
+  --ok:#5ccf8f; --ok-soft:#15301f; --soon:#e5c25f; --soon-soft:#2e2814;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.25); --hero-1:#0f2747; --hero-2:#173f72; color-scheme:dark } }
 :root[data-theme="dark"]{
-  --bg:#10151c; --panel:#171e27; --ink:#e7ecf2; --muted:#9aa7b7; --line:#2a3440;
-  --brand:#6aa8f0; --brand-soft:#1b2a3d; --mark:#ff6b6b; --ok:#5ccf8f; --ok-soft:#15301f; --soon:#e5c25f; --soon-soft:#2e2814; color-scheme:dark }
+  --bg:#0f141b; --panel:#161d26; --panel-2:#1b232e; --ink:#e7ecf2; --muted:#9aa7b7; --line:#2a3440;
+  --brand:#6aa8f0; --brand-ink:#9cc6f7; --brand-soft:#1b2a3d; --mark:#ff6b6b; --mark-soft:#3a1c1f;
+  --teal:#4fc4c8; --teal-soft:#14302f; --amber:#e5c25f; --amber-soft:#2e2814;
+  --ok:#5ccf8f; --ok-soft:#15301f; --soon:#e5c25f; --soon-soft:#2e2814;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.25); --hero-1:#0f2747; --hero-2:#173f72; color-scheme:dark }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--font-body)}
+html{scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 var(--font-body);-webkit-font-smoothing:antialiased}
 a{color:var(--brand)}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+img{max-width:100%}
+[hidden]{display:none!important}
+kbd{font:500 11px/1 var(--font-mono);padding:3px 6px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;background:var(--panel);color:var(--muted)}
+
+/* ---------- Bilah atas ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
-.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line);
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--panel);background:color-mix(in srgb,var(--panel) 92%,transparent);
+  backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);
   padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.topbar-in{display:flex;gap:16px;align-items:center;flex-wrap:wrap;max-width:1280px;margin:0 auto}
-.brand{display:flex;flex-direction:column;line-height:1.15;text-decoration:none;color:var(--ink)}
-.brand b{font:700 19px/1.1 var(--font-display);letter-spacing:-.01em}
-.brand span{font-size:12px;color:var(--muted)}
-.search{flex:1;min-width:200px;max-width:460px;margin-left:auto}
-.search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
-.wrap{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;max-width:1280px;margin:0 auto;
-  padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 100px);overflow:auto}
-nav.side h3{font:600 11px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
-nav.side a{display:block;padding:6px 10px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px}
+.topbar-in{display:flex;gap:12px;align-items:center;max-width:1320px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);min-width:0}
+.logo{flex:none;width:36px;height:36px;border-radius:9px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--hero-1),var(--hero-2));box-shadow:var(--shadow)}
+.logo svg{width:20px;height:20px}
+.brand-teks{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand b{font:600 17px/1.15 var(--font-display);letter-spacing:-.01em;white-space:nowrap}
+.brand span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search{position:relative;flex:1;min-width:0;max-width:480px;margin-left:auto}
+.search svg{position:absolute;left:11px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.search input{width:100%;padding:9px 44px 9px 34px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+.search input:focus{border-color:var(--brand);background:var(--panel)}
+.search kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%)}
+.ikon-btn{flex:none;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);color:var(--ink);cursor:pointer}
+.ikon-btn:hover{border-color:var(--brand);color:var(--brand)}
+.ikon-btn svg{width:18px;height:18px}
+#tombolMenu{display:none}
+.progres{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--brand),var(--teal))}
+
+/* ---------- Kerangka ---------- */
+.wrap{display:grid;grid-template-columns:272px minmax(0,1fr);gap:32px;max-width:1320px;margin:0 auto;
+  padding-block:24px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;
+  padding:4px 6px 12px 0;scrollbar-width:none;-ms-overflow-style:none}
+/* Scrollbar bilah samping disembunyikan (tetap bisa digulir dengan roda mouse/touchpad) */
+nav.side::-webkit-scrollbar{display:none;width:0;height:0}
+nav.side h3{font:600 11px/1 var(--font-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:20px 10px 8px}
+nav.side h3:first-child{margin-top:4px}
+nav.side a{display:block;padding:6px 10px;border-radius:7px;text-decoration:none;color:var(--ink);font-size:14px;line-height:1.35}
 nav.side a:hover{background:var(--brand-soft)}
-nav.side a.aktif{background:var(--brand-soft);color:var(--brand);font-weight:600}
-nav.side a small{display:block;color:var(--muted);font-size:12px;font-weight:400}
+nav.side a.aktif{background:var(--brand-soft);color:var(--brand-ink);font-weight:600}
+nav.side a small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:1px}
 main{min-width:0}
-.view{max-width:860px}
-.view[hidden]{display:none!important}
-h1{font:700 clamp(26px,3.4vw,36px)/1.15 var(--font-display);letter-spacing:-.015em;margin:4px 0 10px;text-wrap:balance}
-h2{font:700 22px/1.25 var(--font-display);margin:36px 0 10px;text-wrap:balance;padding-top:6px;border-top:1px solid var(--line)}
+.view{max-width:900px}
+
+/* ---------- Tipografi ---------- */
+h1{font:700 clamp(26px,3.2vw,34px)/1.2 var(--font-display);letter-spacing:-.02em;margin:4px 0 12px;text-wrap:balance}
+h2{font:600 21px/1.3 var(--font-display);letter-spacing:-.01em;margin:44px 0 12px;text-wrap:balance;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;align-items:baseline;gap:10px;scroll-margin-top:84px}
+h2 .no{flex:none;font:600 13px/1 var(--font-mono);padding:5px 8px;border-radius:7px;background:var(--brand);color:#fff;transform:translateY(-2px)}
+.modul h2 .no{background:var(--teal)}
 h3{font:600 17px/1.3 var(--font-body);margin:26px 0 8px}
-.lead{font-size:17px;color:var(--muted);max-width:65ch}
-p,li{max-width:70ch}
-ol,ul{padding-left:22px}
+.lead{font-size:17px;color:var(--muted);max-width:68ch}
+p,li{max-width:72ch}
+ul{padding-left:22px}
 li{margin:4px 0}
-li>ol,li>ul{margin:4px 0}
-.ui{font-family:var(--font-mono);font-size:13px;background:var(--brand-soft);color:var(--ink);padding:1px 6px;border-radius:4px;white-space:nowrap}
-.peran{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
-.chip{font-size:12px;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted)}
-.filter .chip{cursor:pointer}
-.filter .chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
-figure{margin:14px 0 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ui{font-family:var(--font-mono);font-size:13px;background:var(--brand-soft);color:var(--brand-ink);padding:1px 7px;border-radius:5px;white-space:nowrap;border:1px solid transparent;border:1px solid color-mix(in srgb,var(--brand) 25%,transparent)}
+.view b{font-weight:600}
+
+/* ---------- Remah roti & daftar isi halaman ---------- */
+.remah{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-bottom:6px}
+.remah a{color:var(--muted);text-decoration:none}
+.remah a:hover{color:var(--brand)}
+.remah span[aria-hidden]{opacity:.6}
+.toc{margin:20px 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.toc-kepala{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.toc-kepala b{font:600 12px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.toc-kepala span{font-size:12px;color:var(--muted)}
+.toc ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2px 14px}
+.toc li{margin:0;max-width:none}
+.toc li::before,.toc li::after{display:none!important}
+.toc a{display:flex;gap:8px;align-items:baseline;padding:5px 6px;border-radius:6px;text-decoration:none;color:var(--ink);font-size:14px;line-height:1.35}
+.toc a:hover{background:var(--brand-soft)}
+.toc a code{flex:none;font:600 11px/1 var(--font-mono);color:var(--brand);min-width:30px}
+.modul .toc a code{color:var(--teal)}
+
+/* ---------- Langkah bernomor (sama dengan nomor merah di gambar) ---------- */
+.view ol{list-style:none;counter-reset:lk;padding-left:0;margin:14px 0}
+.view ol>li{counter-increment:lk;position:relative;padding-left:46px;margin:0;padding-bottom:12px;max-width:76ch}
+.view ol>li::before{content:counters(lk,".");position:absolute;left:0;top:0;width:28px;height:28px;padding:0;
+  border-radius:14px;background:var(--mark);color:#fff;font:600 12px/28px var(--font-mono);text-align:center;box-shadow:0 0 0 3px var(--bg)}
+.view ol>li:not(:last-child)::after{content:"";position:absolute;left:13px;top:30px;bottom:0;width:2px;background:var(--line);border-radius:2px}
+.view li>ol{margin:8px 0 2px}
+.view li>ol>li{padding-left:50px;padding-bottom:6px}
+.view li>ol>li::before{width:auto;min-width:36px;padding:0 6px;background:var(--mark-soft);color:var(--mark);height:24px;line-height:24px;top:1px;font-size:11px;box-shadow:none}
+.view li>ol>li::after{display:none}
+.view ol>li>p:first-child{margin-top:0}
+
+/* ---------- Kotak catatan ---------- */
+.catatan{position:relative;border:1px solid var(--line);border:1px solid color-mix(in srgb,var(--brand) 30%,transparent);background:var(--brand-soft);
+  padding:12px 16px 12px 46px;border-radius:10px;margin:16px 0;max-width:76ch}
+.catatan::before{content:"i";position:absolute;left:14px;top:12px;width:20px;height:20px;border-radius:50%;background:var(--brand);color:#fff;
+  font:700 13px/20px Georgia,serif;text-align:center}
+.catatan ul{margin:0;padding-left:18px}
+.catatan li{margin:2px 0}
+
+/* ---------- Gambar ---------- */
+figure{margin:14px 0 26px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
 figure img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff}
-figcaption{font-size:13px;color:var(--muted);padding:9px 12px;border-top:1px solid var(--line)}
+figcaption{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;font-size:13px;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line);background:var(--panel-2)}
 figcaption b{color:var(--mark);font-weight:600}
-.catatan{border-left:3px solid var(--brand);background:var(--brand-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0}
-.tbl{overflow-x:auto;margin:12px 0}
+figcaption .zoom{flex:none;font-size:12px;color:var(--muted);white-space:nowrap;opacity:.8}
+figure:hover .zoom{color:var(--brand);opacity:1}
+
+/* ---------- Tabel ---------- */
+.tbl{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow)}
 table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:16px 0}
-.card{display:flex;flex-direction:column;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;text-decoration:none;color:var(--ink)}
-.card:hover{border-color:var(--brand)}
-.card .kode{font:500 12px/1 var(--font-mono);color:var(--brand)}
-.card b{font:600 16px/1.3 var(--font-body)}
-.card p{margin:0;color:var(--muted);font-size:14px}
-.card .meta{font-size:12px;color:var(--muted);margin-top:auto}
+th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--panel-2)}
+th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--panel-2)}
+#v-masalah-umum td:first-child{font-weight:600}
+#v-masalah-umum td:last-child{color:var(--ok)}
+
+/* ---------- Chip & status ---------- */
+.peran{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.chip{font:600 12px/1.2 var(--font-body);letter-spacing:.02em;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--muted)}
+.view>.peran .chip{background:var(--brand-soft);border-color:transparent;color:var(--brand-ink)}
+.modul>.peran .chip{background:var(--teal-soft);color:var(--teal)}
+.filter{margin:6px 0 4px}
+.filter .chip{cursor:pointer}
+.filter .chip:hover{border-color:var(--brand);color:var(--brand)}
+.filter .chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .status{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
 .status.ada{background:var(--ok-soft);color:var(--ok)}
 .status.sebagian{background:var(--brand-soft);color:var(--brand)}
 .status.belum{background:var(--soon-soft);color:var(--soon)}
 .kosong{color:var(--muted);font-style:italic}
 .menu-lain{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 20px}
-.menu-lain span{font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
-.lightbox{position:fixed;inset:0;z-index:20;background:rgba(10,14,20,.86);display:flex;align-items:center;justify-content:center;
+.menu-lain span{font-size:13px;padding:4px 11px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+
+/* ---------- Beranda ---------- */
+.hero{position:relative;overflow:hidden;border-radius:16px;padding:28px 28px 24px;color:#fff;margin-bottom:18px;
+  background:linear-gradient(120deg,var(--hero-1),var(--hero-2));border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+.hero .eyebrow{font:600 12px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.hero h1{color:#fff;margin:10px 0 8px}
+.hero .lead{color:rgba(255,255,255,.88);margin:0 0 18px}
+.hero-aksi{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:9px;font-weight:600;font-size:14px;text-decoration:none;
+  border:1px solid rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.08)}
+.btn:hover{background:rgba(255,255,255,.18)}
+.btn.utama{background:#fff;color:#0d47a1;border-color:#fff}
+.btn.utama:hover{background:#eef4fd}
+.stat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 0;padding:0}
+.stat div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 12px}
+.stat dt{font-size:12px;opacity:.85;margin:0}
+.stat dd{margin:2px 0 0;font:600 24px/1.1 var(--font-display);font-variant-numeric:tabular-nums}
+.legenda{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 22px}
+.legenda div{display:flex;gap:10px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--muted)}
+.legenda .contoh-no{flex:none;width:24px;height:24px;border-radius:12px;background:var(--mark);color:#fff;font:600 12px/24px var(--font-mono);text-align:center}
+.legenda .catatan-mini{flex:none;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font:700 13px/22px Georgia,serif;text-align:center}
+.legenda b{display:block;color:var(--ink);font-size:14px}
+.saring-judul{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px}
+.saring-judul b{font:600 12px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.grup-judul{display:flex;align-items:baseline;gap:10px;font:600 18px/1.2 var(--font-display);margin:26px 0 4px;border:0;padding:0}
+.grup-judul span{font:500 12px/1 var(--font-body);color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:14px;margin:12px 0}
+.card{position:relative;display:flex;flex-direction:column;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:16px 16px 14px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow)}
+.card:hover{border-color:var(--aksen,var(--brand));box-shadow:0 2px 4px rgba(16,24,40,.08),0 8px 22px rgba(16,24,40,.08)}
+.card .kepala{display:flex;align-items:center;gap:10px}
+.card .huruf{flex:none;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font:600 15px/1 var(--font-display);
+  color:var(--aksen,var(--brand));background:var(--aksen-soft,var(--brand-soft))}
+.card .kode{font:500 11px/1 var(--font-mono);letter-spacing:.04em;color:var(--aksen,var(--brand))}
+.card b{font:600 16px/1.3 var(--font-body)}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .meta{font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;border-top:1px dashed var(--line)}
+.card.g-modul{--aksen:var(--teal);--aksen-soft:var(--teal-soft)}
+.card.g-dukung{--aksen:var(--amber);--aksen-soft:var(--amber-soft)}
+
+/* ---------- Hasil pencarian ---------- */
+.hasil{margin:8px 0 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.hasil-kepala{padding:10px 14px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--panel-2)}
+.hasil a{display:block;padding:10px 14px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line)}
+.hasil a:last-child{border-bottom:0}
+.hasil a:hover{background:var(--brand-soft)}
+.hasil .h-judul{font-weight:600}
+.hasil .h-asal{font-size:12px;color:var(--brand)}
+.hasil .h-cuplik{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.hasil mark{background:#ffe58a;color:inherit;border-radius:3px;padding:0 1px}
+
+/* ---------- Navigasi bawah, tombol atas, lightbox ---------- */
+.nextprev{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:44px;padding-top:18px;border-top:1px solid var(--line)}
+.nextprev a{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);text-decoration:none;color:var(--ink)}
+.nextprev a:hover{border-color:var(--brand)}
+.nextprev a small{font-size:12px;color:var(--muted)}
+.nextprev a b{font-weight:600;color:var(--brand)}
+.nextprev a.lanjut{text-align:right;grid-column:2}
+.keatas{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:7;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:var(--panel);color:var(--brand);box-shadow:var(--shadow);cursor:pointer;display:grid;place-items:center}
+.keatas svg{width:20px;height:20px}
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(10,14,20,.9);display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;
   padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out}
-.lightbox img{max-width:100%;max-height:100%;border-radius:6px;background:#fff}
-.nextprev{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:16px;border-top:1px solid var(--line)}
-@media (max-width:860px){
-  .wrap{grid-template-columns:minmax(0,1fr)}
-  nav.side{position:static;max-height:none;border:1px solid var(--line);border-radius:10px;padding:4px 10px 10px;background:var(--panel)}
+.lightbox img{max-width:100%;max-height:calc(100% - 50px);border-radius:8px;background:#fff}
+.lightbox p{margin:0;color:#e7ecf2;font-size:14px;text-align:center;max-width:90ch}
+
+@media (prefers-reduced-motion:no-preference){ .card{transition:border-color .15s,box-shadow .15s} html{scroll-behavior:smooth} }
+@media (max-width:980px){ .stat{grid-template-columns:repeat(2,minmax(0,1fr))} .legenda{grid-template-columns:minmax(0,1fr)} }
+/* ---------- Daftar isi melayang (kolom kanan di layar lebar, panel dari tombol di layar kecil) ---------- */
+.rail{display:none}
+.rail-kepala{display:flex;align-items:center;justify-content:space-between;margin:2px 0 10px}
+.rail-kepala b{font:600 11px/1 var(--font-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.rail-kepala button{display:none;border:0;background:none;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;padding:0 4px}
+.rail ul{list-style:none;margin:0;padding:0}
+.rail li{margin:0;max-width:none}
+.rail a{display:flex;gap:8px;align-items:baseline;padding:6px 8px;border-radius:7px;text-decoration:none;color:var(--muted);font-size:13px;line-height:1.35}
+.rail a:hover{color:var(--ink);background:var(--panel-2)}
+.rail a code{flex:none;min-width:30px;font:600 11px/1.35 var(--font-mono);color:var(--brand)}
+.modul-aktif .rail a code{color:var(--teal)}
+.rail a.aktif{color:var(--brand-ink);background:var(--brand-soft);font-weight:600}
+.rail .rail-atas{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);border-radius:0;font-size:12px}
+.tombol-toc{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(72px,calc(env(safe-area-inset-bottom,0px) + 72px));z-index:7;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--brand);background:var(--brand);color:#fff;box-shadow:var(--shadow);cursor:pointer;display:grid;place-items:center}
+.tombol-toc svg{width:20px;height:20px}
+.ada-rail .rail{display:block;position:fixed;z-index:8;right:max(18px,env(safe-area-inset-right,0px));bottom:max(126px,calc(env(safe-area-inset-bottom,0px) + 126px));
+  width:min(340px,calc(100vw - 32px));max-height:min(62vh,560px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:12px 10px 10px;box-shadow:0 8px 30px rgba(16,24,40,.18);visibility:hidden;opacity:0;transform:translateY(8px);transition:opacity .15s,transform .15s,visibility .15s}
+.ada-rail .rail.buka{visibility:visible;opacity:1;transform:none}
+.ada-rail .rail-kepala button{display:block}
+@media (min-width:1400px){
+  .wrap.ada-rail{grid-template-columns:272px minmax(0,1fr) 240px;max-width:1600px}
+  .ada-rail .rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);right:auto;bottom:auto;align-self:start;width:auto;max-height:calc(100vh - 96px);
+    background:none;border:0;border-left:1px solid var(--line);border-radius:0;box-shadow:none;padding:4px 0 12px 12px;
+    visibility:visible;opacity:1;transform:none;scrollbar-width:none}
+  .ada-rail .rail::-webkit-scrollbar{display:none}
+  .ada-rail .rail-kepala button{display:none}
+  .tombol-toc{display:none!important}
 }
-@media (prefers-reduced-motion:no-preference){ .card{transition:border-color .15s} }
-img{max-width:100%}
-[hidden]{display:none!important}
-body{margin:0}
+@media (max-width:860px){
+  .wrap{grid-template-columns:minmax(0,1fr);padding-top:16px}
+  #tombolMenu{display:grid}
+  nav.side{display:none;position:fixed;z-index:8;top:calc(env(safe-area-inset-top,0px) + 62px);left:12px;right:12px;max-height:calc(100vh - 80px);
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 10px 12px;box-shadow:var(--shadow)}
+  nav.side.buka{display:block}
+  .brand span{display:none}
+  .search kbd{display:none}
+  .hero{padding:22px 18px}
+  .nextprev{grid-template-columns:minmax(0,1fr)}
+  .nextprev a.lanjut{grid-column:1}
+}
+@media print{
+  .topbar,nav.side,.nextprev,.keatas,.toc,.rail,.tombol-toc,.hasil,.filter,.saring-judul,.hero-aksi,.zoom{display:none!important}
+  .wrap{display:block;padding:0}
+  body{background:#fff;color:#000}
+  figure,.card,.toc,.tbl{box-shadow:none}
+  figure,tr,.catatan{break-inside:avoid}
+  .hero{background:#fff;color:#000;border:1px solid #ccc}
+  .hero h1,.hero .lead{color:#000}
+}
 </style>
 </head>
 <body>
 <header class="topbar"><div class="topbar-in">
-  <a class="brand" href="#beranda"><b>Panduan SIMRS Khanza</b><span>RS Pelita Kasih · versi aplikasi 202611.07</span></a>
-  <div class="search"><input id="cari" type="search" placeholder="Cari tutorial, menu atau langkah… (misal: resep, billing, triase)" aria-label="Cari tutorial"></div>
-</div></header>
+  <button class="ikon-btn" id="tombolMenu" type="button" aria-label="Daftar isi" title="Daftar isi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <a class="brand" href="#beranda">
+    <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5z"/><path d="M6 19h13v2H6"/><path d="M11.5 7v6M8.5 10h6"/></svg></span>
+    <span class="brand-teks"><b>Panduan SIMRS Khanza</b><span>RS Pelita Kasih · panduan penggunaan per peran</span></span>
+  </a>
+  <div class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="cari" type="search" placeholder="Cari langkah, menu atau form… (misal: resep, billing, triase)" aria-label="Cari di panduan" autocomplete="off">
+    <kbd>/</kbd>
+  </div>
+  <button class="ikon-btn" id="tombolTema" type="button" aria-label="Ganti tema terang/gelap" title="Tema terang/gelap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  <button class="ikon-btn" id="tombolCetak" type="button" aria-label="Cetak halaman ini" title="Cetak halaman ini"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg></button>
+</div><div class="progres" id="progres"></div></header>
 
 <div class="wrap">
 <nav class="side" id="side" aria-label="Daftar tutorial">
@@ -113,6 +316,7 @@ body{margin:0}
   <a href="#rawat-inap">E. Rawat Inap<small>Masuk kamar sampai pulang</small></a>
   <a href="#operasi">F. Operasi<small>Jadwal operasi sampai resep pulang</small></a>
   <h3>Modul lainnya</h3>
+  <a href="#modul-a">[A] Booking, Permintaan &amp; Pemeriksaan Penunjang</a>
   <a href="#modul-b">[B] Tindakan &amp; Obat via Barcode, Lab Kesehatan Lingkungan</a>
   <a href="#modul-c">[C] Presensi, Manajemen &amp; Penggajian Pegawai</a>
   <a href="#modul-d">[D] Inventory Obat, BHP Medis &amp; Alat Kesehatan</a>
@@ -142,8 +346,29 @@ body{margin:0}
 <main>
 <!-- ================= BERANDA ================= -->
 <section class="view" id="v-beranda" data-judul="Daftar tutorial">
-  <h1>Daftar Tutorial</h1>
-  <p class="lead">Panduan langkah demi langkah memakai SIMRS Khanza di RS Pelita Kasih, dari pasien mendaftar sampai pulang. Semua gambar diambil dari aplikasi asli dengan pasien uji (No.RM 999001); nomor merah di gambar sama dengan nomor langkah.</p>
+  <div class="hero">
+    <span class="eyebrow">Panduan penggunaan · RS Pelita Kasih</span>
+    <h1>Daftar Tutorial</h1>
+    <p class="lead">Panduan langkah demi langkah memakai SIMRS Khanza, dari pasien mendaftar sampai pulang. Semua gambar diambil dari aplikasi asli dengan pasien uji (No.RM 999001).</p>
+    <div class="hero-aksi">
+      <a class="btn utama" href="#rawat-jalan">Mulai dari Rawat Jalan →</a>
+      <a class="btn" href="#pengantar">Kenali peran Anda</a>
+      <a class="btn" href="#masalah-umum">Ada masalah?</a>
+    </div>
+    <dl class="stat">
+      <div><dt>Alur pelayanan</dt><dd id="statAlur">6</dd></div>
+      <div><dt>Modul</dt><dd id="statModul">20</dd></div>
+      <div><dt>Gambar layar</dt><dd id="statGambar">183</dd></div>
+      <div><dt>Menu hak akses</dt><dd>1.217</dd></div>
+    </dl>
+  </div>
+  <div class="legenda">
+    <div><span class="contoh-no">3</span><span><b>Nomor langkah</b>Nomor merah di gambar sama dengan nomor langkah di teks.</span></div>
+    <div><span class="ui">Registrasi</span><span><b>Nama menu</b>Tombol atau menu yang diklik di aplikasi.</span></div>
+    <div><span class="catatan-mini">i</span><span><b>Catatan</b>Hal penting, pengecualian, atau cara memperbaiki salah input.</span></div>
+  </div>
+  <div class="hasil" id="hasilCari" hidden></div>
+  <div class="saring-judul"><b>Saring per peran</b><span class="kosong" style="font-size:12px">Tekan <kbd>/</kbd> untuk mencari di seluruh panduan</span></div>
   <div class="filter peran" id="filterPeran" aria-label="Saring per peran">
     <button class="chip" aria-pressed="true" data-peran="">Semua peran</button>
     <button class="chip" aria-pressed="false" data-peran="admisi">Admisi</button>
@@ -165,7 +390,7 @@ body{margin:0}
     <button class="chip" aria-pressed="false" data-peran="umum">Bagian Umum</button>
     <button class="chip" aria-pressed="false" data-peran="admin">Admin</button>
   </div>
-  <div class="cards" id="kartu">
+  <div id="kartu">
     <a class="card" href="#rawat-jalan" data-peran="admisi perawat dokter kasir farmasi" data-cari="rawat jalan poli pasien baru registrasi pemeriksaan soap diagnosa resep odontogram billing kasir">
       <span class="kode">ALUR A</span><b>Rawat Jalan Poli (pasien baru, Umum/cash)</b>
       <p>Daftar pasien baru, registrasi poli, pemeriksaan perawat dan dokter, odontogram poli gigi, sampai bayar di kasir.</p>
@@ -182,10 +407,10 @@ body{margin:0}
       <span class="kode">ALUR D</span><b>Resep, Lab, Radiologi, EKG dan hasilnya</b>
       <p>Contoh kasus UGD: dokter meresepkan dan meminta penunjang; farmasi, lab, radiologi dan perawat mengisi hasil.</p>
       <span class="meta">9 bagian · 23 gambar</span></a>
-    <a class="card" href="#rawat-inap" data-peran="admisi perawat dokter farmasi kasir" data-cari="rawat inap ranap kamar masuk check in cppt visite dpjp resep ranap resep pulang obat pulang pulang check out billing ranap">
+    <a class="card" href="#rawat-inap" data-peran="admisi perawat dokter farmasi kasir gizi" data-cari="rawat inap ranap kamar masuk check in skrining gizi skrining nutrisi asuhan gizi monitoring gizi adime malnutrisi ahli gizi cppt visite dpjp resep ranap resep pulang obat pulang pulang check out billing ranap">
       <span class="kode">ALUR E</span><b>Rawat Inap</b>
-      <p>Masuk kamar, pengkajian keperawatan ranap, CPPT, visite DPJP, resep dan obat ranap, pulang, billing ranap.</p>
-      <span class="meta">9 bagian · 19 gambar</span></a>
+      <p>Masuk kamar, pengkajian keperawatan ranap, skrining dan asuhan gizi, CPPT, visite DPJP, resep dan obat ranap, pulang, billing ranap.</p>
+      <span class="meta">10 bagian · 24 gambar</span></a>
     <a class="card" href="#operasi" data-peran="admisi perawat dokter farmasi kasir" data-cari="operasi bedah jadwal operasi booking ok pre operasi tagihan operasi vk laporan operasi anestesi paket operasi resep pulang obat pulang permintaan resep pulang pulang billing">
       <span class="kode">ALUR F</span><b>Pasien Operasi (Rawat Inap)</b>
       <p>Masuk kamar, jadwal operasi, pengkajian pre operasi, tagihan dan laporan operasi, permintaan resep pulang, validasi farmasi, pulang, billing.</p>
@@ -198,6 +423,10 @@ body{margin:0}
       <span class="kode">PENDUKUNG</span><b>Masalah umum &amp; solusinya</b>
       <p>Menu tidak muncul, salah poli atau cara bayar, peringatan urutan UGD, obat tidak bisa ditambah.</p>
       <span class="meta">9 masalah</span></a>
+    <a class="card" href="#modul-a" data-peran="admisi perawat dokter farmasi lab radiologi kasir" data-cari="informasi kamar booking registrasi booking periksa online permintaan rawat inap perkiraan biaya ranap permintaan lab pk pa mb periksa lab periksa radiologi beri obat bhp no resep dpjp ranap skrining rawat jalan kfr fisioterapi deteksi dini corona">
+      <span class="kode">MODUL A</span><b>Booking, Permintaan &amp; Pemeriksaan Penunjang</b>
+      <p>Menu [A] di luar alur utama: informasi kamar, booking registrasi dan online, permintaan rawat inap, perkiraan biaya, daftar permintaan dan hasil lab/radiologi, beri obat, resep, DPJP, skrining ralan, KFR.</p>
+      <span class="meta">14 form · 14 gambar · 18 menu</span></a>
     <a class="card" href="#modul-b" data-peran="perawat lab" data-cari="tindakan &amp; obat via barcode, lab kesehatan lingkungan tindakan via barcode rawat jalan pelanggan lab kesling permintaan pengujian sampel lab kesling hasil pengujian sampel lab kesling pembayaran pengujian sampel lab kesling">
       <span class="kode">MODUL B</span><b>Tindakan &amp; Obat via Barcode, Lab Kesehatan Lingkungan</b>
       <p>Input tindakan dan obat dengan memindai barcode No.Rawat, serta alur lengkap layanan pengujian sampel Laboratorium Kesehatan Lingkungan (pelanggan, permintaan, penugasan, hasil, verifikasi, validasi, pembayaran).</p>
@@ -242,10 +471,10 @@ body{margin:0}
       <span class="kode">MODUL L</span><b>Bridging BPJS, Aplicare, INACBG &amp; Pihak Ketiga</b>
       <p>Layanan VClaim (cek peserta, rujukan, SEP, rujukan keluar, monitoring klaim), Mobile JKN, Apotek BPJS, Aplicare, INACBG, PCare dan Satu Sehat.</p>
       <span class="meta">8 form · 8 gambar · 192 menu</span></a>
-    <a class="card" href="#modul-m" data-peran="rm" data-cari="olah data rekam medis diagnosa pasien peminjaman berkas rm retensi berkas r.m. insiden keselamatan kelahiran bayi pasien meninggal instansi/perusahaan pasien">
+    <a class="card" href="#modul-m" data-peran="rm perawat dokter farmasi ppi" data-cari="olah data rekam medis resume ranap ews pews risiko jatuh morse nyeri dekubitus norton observasi keseimbangan cairan transfer pasien perencanaan pemulangan rekonsiliasi obat edukasi konsultasi medik sign in time out sign out check list pre operasi berkas digital hais ppi diagnosa pasien peminjaman berkas rm retensi berkas r.m. insiden keselamatan kelahiran bayi pasien meninggal instansi/perusahaan pasien">
       <span class="kode">MODUL M</span><b>Olah Data Rekam Medis</b>
-      <p>Data pendukung rekam medis: diagnosa pasien (koding), peminjaman berkas, retensi, insiden keselamatan, kelahiran bayi, pasien meninggal, dan master instansi pasien. Pengkajian, CPPT, odontogram dan riwayat perawatan dibahas di Alur A–E dan halaman Rekam Medis.</p>
-      <span class="meta">7 form · 6 gambar · 257 menu</span></a>
+      <p>Koding diagnosa, berkas RM, insiden, kelahiran/kematian, serta form klinis per pasien: resume ranap, EWS/PEWS, risiko jatuh, nyeri, dekubitus, observasi, keseimbangan cairan, transfer, perencanaan pulang, rekonsiliasi obat, edukasi, konsultasi, keselamatan operasi, HAIs.</p>
+      <span class="meta">23 form · 24 gambar · 257 menu</span></a>
     <a class="card" href="#modul-n" data-peran="utd" data-cari="unit pelayanan transfusi darah pendonor darah donor darah komponen darah stok darah penyerahan darah">
       <span class="kode">MODUL N</span><b>Unit Pelayanan Transfusi Darah</b>
       <p>Data pendonor, donor darah, komponen dan pemisahan darah, stok darah, pencekalan dan penyerahan darah ke pasien.</p>
@@ -540,7 +769,7 @@ body{margin:0}
 <!-- ================= ALUR E ================= -->
 <section class="view" id="v-rawat-inap" data-judul="Rawat Inap" hidden>
   <h1>E. Rawat Inap</h1>
-  <div class="peran"><span class="chip">Admisi</span><span class="chip">Perawat</span><span class="chip">Dokter</span><span class="chip">Farmasi</span><span class="chip">Kasir</span></div>
+  <div class="peran"><span class="chip">Admisi</span><span class="chip">Perawat</span><span class="chip">Gizi</span><span class="chip">Dokter</span><span class="chip">Farmasi</span><span class="chip">Kasir</span></div>
   <p class="lead">Lanjutan contoh kasus UGD: pasien nyeri dada dirawat di kamar Kelas 1 (K1209, Rp 400.000/hari) dengan DPJP dr. Frederik Wilson, Sp.PD. No.Rawat tetap sama dengan kunjungan UGD, sehingga seluruh biaya UGD ikut ke tagihan rawat inap.</p>
 
   <h2 id="e1">E1. Admisi / perawat: masuk kamar (check in)</h2>
@@ -563,6 +792,64 @@ body{margin:0}
     <li>Isi pengkajian lengkap (riwayat, fisik, nyeri, risiko jatuh, gizi, kebutuhan edukasi, masalah dan rencana keperawatan), lalu <b>Simpan</b>, paling lambat 24 jam sejak masuk.</li>
   </ol>
   <figure><img src="img/r2_kep_ranap.png" alt="Pengkajian awal keperawatan ranap" loading="lazy"><figcaption><b>Gambar E2-1.</b> Form Pengkajian Awal Keperawatan Rawat Inap.</figcaption></figure>
+
+  <h2 id="e2a">E2a. Perawat / ahli gizi: skrining dan asuhan gizi</h2>
+  <p>Selesai bila skrining nutrisi sudah tersimpan dalam 24 jam sejak masuk. Pasien yang berisiko malnutrisi dilanjutkan ke ahli gizi untuk asuhan gizi dan pemantauan sampai pulang.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Tahap</th><th>Siapa</th><th>Form</th><th>Kapan</th></tr></thead>
+    <tbody>
+      <tr><td>1. Skrining awal</td><td>Perawat ruangan</td><td>Skrining Nutrisi Dewasa / Lansia / Anak, atau Skrining Gizi Kehamilan/Obstetri/Nifas</td><td>≤ 24 jam sejak masuk</td></tr>
+      <tr><td>2. Skrining lanjut</td><td>Ahli gizi</td><td>Skrining Gizi Lanjut</td><td>Bila skrining awal berisiko</td></tr>
+      <tr><td>3. Asuhan gizi</td><td>Ahli gizi</td><td>Asuhan Gizi</td><td>Pasien berisiko / malnutrisi</td></tr>
+      <tr><td>4. Pemantauan</td><td>Ahli gizi</td><td>Monitoring Gizi, Catatan ADIME Gizi</td><td>Berkala sampai pulang</td></tr>
+    </tbody></table></div>
+  <p class="catatan">Semua form gizi dibuka dari dua tempat dan isinya sama: <b>form Perawatan Rawat Inap</b> (menu kiri) atau <span class="ui">Kamar Inap</span> → klik kanan pasien → <b>Data Rekam Medis</b> → <b>RM Gizi</b>. No.Rawat, nama pasien dan tanggal lahir terisi otomatis dari pasien yang dipilih.</p>
+
+  <h3>Perawat ruangan: skrining nutrisi awal</h3>
+  <ol>
+    <li>Buka <span class="ui">Rawat Inap</span>, klik pasien, buka form Perawatan Rawat Inap.</li>
+    <li>Dari menu kiri pilih form sesuai pasien:
+      <ol>
+        <li><b>Skrining Nutrisi Dewasa</b>: pasien dewasa.</li>
+        <li><b>Skrining Nutrisi Lansia</b>: pasien lanjut usia.</li>
+        <li><b>Skrining Nutrisi Anak</b>: pasien anak.</li>
+        <li><b>Skrining Gizi Kehamilan</b>: ibu hamil, bersalin atau nifas.</li>
+      </ol>
+    </li>
+    <li>Isi <b>Tanggal</b>, <b>Petugas</b>, <b>Alergi</b>, <b>BB</b>, <b>TB/PB</b> dan tanda vital (TD, HR, RR, Suhu, SpO2).</li>
+    <li>Jawab setiap pertanyaan skrining. Contoh pada pasien dewasa: penurunan berat badan yang tidak diinginkan dalam 6 bulan terakhir, dan nafsu makan berkurang. <b>Nilai</b> tiap jawaban dan <b>Total Skor</b> terhitung otomatis.</li>
+    <li>Klik <b>Simpan</b>. Lihat kesimpulan: pada pasien dewasa, <b>skor ≥ 2 = berisiko malnutrisi, konsul ke ahli gizi</b>.</li>
+    <li>Bila berisiko, beri tahu ahli gizi (tuliskan juga di CPPT).</li>
+  </ol>
+  <figure><img src="img/g1_skrining_nutrisi_dewasa.png" alt="Form Skrining Nutrisi Pasien Dewasa" loading="lazy"><figcaption><b>Gambar E2a-1.</b> Skrining Nutrisi Dewasa: 3 BB, TB/PB, tanda vital dan alergi; 4 pertanyaan MST, nilai dan Total Skor; 5 Simpan.</figcaption></figure>
+
+  <h3>Ahli gizi: skrining lanjut, asuhan dan pemantauan</h3>
+  <ol>
+    <li><b>Skrining Gizi Lanjut</b>: isi BB, TB (IMT terhitung otomatis), skor tiap parameter, dan asupan nutrisi lebih dari 5 hari atau tidak, lalu <b>Simpan</b>. Kesimpulan:
+      <ol>
+        <li><b>Berisiko rendah</b>: ulangi skrining 7 hari lagi.</li>
+        <li><b>Berisiko menengah</b>: monitoring asupan selama 3 hari.</li>
+        <li><b>Berisiko tinggi</b>: bekerja sama dengan tim dukungan gizi, upayakan peningkatan asupan dan berikan makanan sesuai daya terima.</li>
+      </ol>
+    </li>
+  </ol>
+  <figure><img src="img/g2_skrining_gizi_lanjut.png" alt="Form Skrining Gizi Lanjut" loading="lazy"><figcaption><b>Gambar E2a-2.</b> Skrining Gizi Lanjut: BB, TB dan IMT otomatis; skor tiga parameter; Total Skor beserta kesimpulannya; Simpan.</figcaption></figure>
+  <ol start="2">
+    <li><b>Asuhan Gizi</b>: isi antropometri (BB, TB, IMT, LiLA, TL, ULNA, BB ideal, status BB/U, TB/U, BB/TB, LiLA/U), <b>Biokimia</b>, <b>Fisik/Klinis</b>, <b>Riwayat Gizi</b> dan <b>Pola Makan</b>, <b>Alergi Makanan</b> (telur, susu sapi, kacang, gluten, udang, ikan, hazelnut), <b>Riwayat Personal</b>. Lanjutkan dengan <b>Diagnosis Gizi</b>, <b>Intervensi Gizi</b>, dan rencana <b>Monitoring &amp; Evaluasi</b>, lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/g3_asuhan_gizi.png" alt="Form Asuhan Gizi Pasien" loading="lazy"><figcaption><b>Gambar E2a-3.</b> Asuhan Gizi: antropometri (IMT otomatis), biokimia dan fisik/klinis, riwayat gizi dan alergi makanan, lalu diagnosis, intervensi dan monitoring &amp; evaluasi; Simpan.</figcaption></figure>
+  <ol start="3">
+    <li><b>Monitoring Gizi</b>: setiap kunjungan, isi <b>Monitoring</b> (asupan, toleransi diet, perubahan BB) dan <b>Evaluasi</b>, lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/g4_monitoring_gizi.png" alt="Form Monitoring dan Evaluasi Asuhan Gizi" loading="lazy"><figcaption><b>Gambar E2a-4.</b> Monitoring Gizi: 3 isi Monitoring dan Evaluasi, lalu Simpan.</figcaption></figure>
+  <ol start="4">
+    <li><b>Catatan ADIME Gizi</b>: catatan terintegrasi gaya CPPT gizi. Isi <b>Asesmen</b>, <b>Diagnosis</b>, <b>Intervensi</b>, <b>Monitoring</b>, <b>Evaluasi</b> dan <b>Instruksi</b>, lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/g5_catatan_adime.png" alt="Form Catatan ADIME Gizi" loading="lazy"><figcaption><b>Gambar E2a-5.</b> Catatan ADIME Gizi: 4 Asesmen, Diagnosis, Intervensi, Monitoring, Evaluasi, Instruksi, lalu Simpan.</figcaption></figure>
+  <ol start="5">
+    <li>Riwayat isian bisa dilihat di tab data form yang sama (atur periode tanggal, cari dengan <b>Key Word</b>) dan dicetak dengan tombol <b>Cetak</b>. Semua isian juga muncul di <b>Riwayat Perawatan</b> pasien.</li>
+  </ol>
+  <p class="catatan">Tombol gizi tidak muncul di menu kiri, atau menu RM Gizi berwarna abu-abu? User belum punya hak aksesnya. Minta Admin mencentang hak akses yang sesuai di <span class="ui">Set User</span> atau <span class="ui">Role Hak Akses User</span>: <b>Skrining Nutrisi Dewasa/Lansia/Anak</b>, <b>Skrining Gizi Kehamilan</b>, <b>Skrining Gizi Lanjut</b>, <b>Asuhan Gizi</b>, <b>Monitoring Asuhan Gizi</b>, <b>Catatan ADIME Gizi</b>. Setelah itu login ulang.</p>
 
   <h2 id="e3">E3. Perawat / dokter: CPPT rawat inap</h2>
   <ol>
@@ -735,6 +1022,161 @@ body{margin:0}
   </ol>
   <figure><img src="img/o8_billing_2_bayar.png" alt="Pembayaran pasien operasi" loading="lazy"><figcaption><b>Gambar F9-2.</b> 1 Bayar, 2 Simpan, 3 Nota.</figcaption></figure>
   <div class="nextprev"><a href="#rawat-inap">← E. Rawat Inap</a><a href="#rekam-medis">Rekam Medis →</a></div>
+</section>
+
+<!-- ================= MODUL A (menu lain) ================= -->
+<section class="view" id="v-modul-a" data-judul="Modul A" hidden>
+  <h1>[A] Booking, Permintaan &amp; Pemeriksaan Penunjang</h1>
+  <div class="peran"><span class="chip">Admisi</span><span class="chip">Perawat</span><span class="chip">Dokter</span><span class="chip">Farmasi</span><span class="chip">Laboratorium</span><span class="chip">Radiologi</span><span class="chip">Kasir</span></div>
+  <p class="lead">Menu kategori [A] di luar alur utama: informasi kamar, booking, permintaan rawat inap, perkiraan biaya, daftar permintaan dan hasil lab/radiologi, pemberian obat, resep, DPJP, skrining dan permintaan KFR.</p>
+  <div class="catatan"><ul>
+    <li>Semua menu di halaman ini dibuka dari menu utama, kategori <b>[A] Registrasi, Tagihan Ranap &amp; Ralan, Pelayanan &amp; Billing Pasien</b>.</li>
+    <li>Sebagian besar form adalah <b>daftar</b>: atur <b>periode tanggal</b>, ketik di <b>Key Word</b> lalu Enter. Input per pasien biasanya lebih mudah dari form Perawatan pasien (lihat <a href="#order-penunjang">Alur D</a> dan <a href="#rawat-inap">Alur E</a>).</li>
+    <li>Penanda di gambar: <b>Periode</b>, <b>Cari</b> = kotak Key Word, <b>Simpan</b>, <b>Cetak</b>. Tabel dikosongkan untuk panduan.</li>
+  </ul></div>
+
+  <h2 id="modul-a-1">A1. Informasi Kamar</h2>
+  <p>Melihat ketersediaan kamar saat ini tanpa membuka form Kamar Inap, misalnya untuk menjawab keluarga pasien atau sebelum membuat permintaan rawat inap.</p>
+  <ol>
+    <li>Buka menu utama, pilih kategori <b>[A]</b>, lalu klik <b>Informasi Kamar</b>.</li>
+    <li>Baris paling atas menampilkan jumlah kamar <b>Isi</b> dan <b>Kosong</b> seluruh RS.</li>
+    <li>Di bawahnya, per bangsal: jumlah isi/kosong, lalu daftar kode kamar beserta tarifnya.</li>
+    <li>Lihat satu bangsal saja: pilih <b>Kamar</b> lewat tombol cari di bawah. Klik <b>Semua</b> untuk kembali menampilkan semua bangsal.</li>
+  </ol>
+  <figure><img src="img/k_a_01.png" alt="Informasi Kamar" loading="lazy"><figcaption><b>Gambar A1.</b> Penggunaan Kamar Inap: ringkasan isi/kosong lalu rincian per bangsal dan tarif kamar.</figcaption></figure>
+
+  <h2 id="modul-a-2">A2. Booking Registrasi</h2>
+  <p>Mencatat pasien yang mendaftar lebih dulu (lewat telepon atau datang sebelumnya) untuk periksa di tanggal tertentu, lalu meregistrasinya saat pasien datang.</p>
+  <ol>
+    <li>Buka menu utama, pilih kategori <b>[A]</b>, lalu klik <b>Booking Registrasi</b>.</li>
+    <li>Klik <b>Baru</b>, pilih <b>Pasien</b>, isi <b>Tgl.Booking</b>, <b>Tgl.Periksa</b>, <b>Unit/Poli</b>, <b>Dokter</b> dan <b>Cara Bayar</b>. <b>No.Reg</b> dan sisa <b>Kuota</b> dokter tampil otomatis.</li>
+    <li>Klik <b>Simpan</b>.</li>
+    <li>Saat pasien datang: pilih <b>Tanggal Periksa</b> = hari ini, cari pasien, klik barisnya lalu klik <b>Regist</b>. Data terbawa ke Registrasi; lanjutkan seperti <a href="#a1">A1</a>.</li>
+    <li>Status booking (<b>Belum</b> / <b>Terdaftar</b>) terlihat di kolom <b>Status</b>; <b>Cetak</b> untuk daftar booking.</li>
+  </ol>
+  <figure><img src="img/k_a_02.png" alt="Booking Registrasi" loading="lazy"><figcaption><b>Gambar A2.</b> Booking Registrasi: Periode tanggal booking/periksa, Cari, Simpan, Cetak; tombol Regist untuk meregistrasi pasien booking.</figcaption></figure>
+
+  <h2 id="modul-a-3">A3. Booking Periksa (online)</h2>
+  <p>Membalas booking yang masuk dari pasien secara online (web E-Pasien/anjungan): cek data pasien dan kuota, lalu kirim jawaban.</p>
+  <ol>
+    <li>Buka menu utama, pilih kategori <b>[A]</b>, lalu klik <b>Booking Periksa</b>.</li>
+    <li>Pilihan <b>Belum Dibalas</b> menampilkan booking yang perlu ditanggapi. Bisa juga disaring per tanggal <b>Booking</b> atau tanggal <b>Periksa</b>.</li>
+    <li>Klik baris booking lalu <b>Jawab</b>. Form berisi <b>A. Data Pasien</b> (No.RM bila sudah terdaftar, nama, alamat, No.HP, e-mail), <b>B. Data Booking</b> (poli, dokter, tanggal periksa, cara bayar, No.Reg, kuota, pendaftar, sisa kuota) dan pesan pasien.</li>
+    <li>Isi <b>D. Balasan ke Pasien</b>, lalu klik <b>Simpan &amp; Balas</b>.</li>
+  </ol>
+  <figure><img src="img/k_a_03.png" alt="Booking Periksa" loading="lazy"><figcaption><b>Gambar A3.</b> Booking Periksa: pilihan Belum Dibalas / Booking / Periksa, Periode, Cari, tombol Jawab dan Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-4">A4. Permintaan Rawat Inap</h2>
+  <p>Dokter poli/IGD meminta pasien dirawat; admisi melihat daftar permintaan lalu memasukkan pasien ke kamar.</p>
+  <ol>
+    <li>Permintaan biasanya dibuat dari daftar pasien Rawat Jalan/IGD (klik kanan pasien). Dari menu utama: kategori <b>[A]</b> → <b>Permintaan Rawat Inap</b>.</li>
+    <li>Buka panel input (tanda » di kiri), isi <b>No.Rawat</b>, <b>Kamar</b> yang diminta, <b>Diagnosa</b>, <b>Alasan Dirawat</b> dan <b>Catatan</b>, lalu klik <b>Simpan</b>.</li>
+    <li>Admisi: pilih <b>Menunggu Masuk Rawat Inap</b> untuk melihat antrean. Klik pasien lalu klik kanan → <b>Kamar Inap</b> untuk check in (lihat <a href="#e1">E1</a>).</li>
+    <li>Klik kanan juga menyediakan cetak <b>Surat Permintaan Ranap</b>, <b>Perintah Rawat Inap BPJS</b>, <b>Persetujuan Rawat Inap</b> dan <b>Pernyataan Memilih DPJP</b>.</li>
+    <li>Pilihan <b>Sudah Masuk Rawat Inap</b> menampilkan permintaan yang sudah dilayani pada periode tersebut.</li>
+  </ol>
+  <figure><img src="img/k_a_04.png" alt="Permintaan Rawat Inap" loading="lazy"><figcaption><b>Gambar A4.</b> Permintaan Rawat Inap: pilihan Menunggu / Sudah Masuk, Periode, Cari, Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-5">A5. Perkiraan Biaya Ranap</h2>
+  <p>Memantau biaya berjalan pasien yang masih dirawat dan membandingkannya dengan perkiraan tarif/limit (misalnya plafon INACBG atau deposit).</p>
+  <ol>
+    <li>Buka menu utama, pilih kategori <b>[A]</b>, lalu klik <b>Perkiraan Biaya Ranap</b>.</li>
+    <li>Tabel menampilkan per pasien rawat inap: registrasi, tindakan, obat, retur, resep pulang, lab, radiologi, potongan, tambahan, kamar, operasi, harian, <b>Total</b>, <b>Deposit</b> dan <b>Kekurangan</b>, serta diagnosa awal, ICD-10, <b>Perkiraan Tarif</b> dan <b>Limit</b>.</li>
+    <li>Saring per <b>Kamar/Bangsal</b> atau Key Word.</li>
+    <li>Isi perkiraan biaya: klik pasien, klik kanan → <b>Input Manual Perkiraan Biaya</b>, isi <b>Perkiraan Biaya</b>, lalu <b>Simpan</b>.</li>
+    <li>Panel <b>Simulasi Biaya Berdasarkan Diagnosa</b> di bawah membantu memperkirakan biaya dari diagnosa yang dipilih.</li>
+  </ol>
+  <figure><img src="img/k_a_05.png" alt="Perkiraan Biaya Ranap" loading="lazy"><figcaption><b>Gambar A5.</b> Perkiraan Biaya Ranap: Cari dan Cetak; kolom biaya berjalan, deposit, kekurangan, perkiraan tarif dan limit.</figcaption></figure>
+
+  <h2 id="modul-a-6">A6. Permintaan Lab PK / PA / MB</h2>
+  <p>Daftar order laboratorium dari dokter untuk petugas lab: Patologi Klinis (PK), Patologi Anatomi (PA) dan Mikrobiologi (MB). Ketiganya memakai form dengan pola yang sama.</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Permintaan Lab PK</b> (atau <b>PA</b> / <b>MB</b>).</li>
+    <li>Pilih tab <b>Rawat Jalan</b> atau <b>Rawat Inap</b>, atur periode, cari pasien. Tab <b>Data Permintaan</b> berisi daftar order; tab <b>Item Permintaan</b> berisi pemeriksaan yang diminta.</li>
+    <li>Saat sampel diambil: klik permintaan → <b>Sampel</b>, isi tanggal &amp; jam pengambilan, simpan.</li>
+    <li>Isi hasil: klik permintaan → <b>Hasil</b>. Form periksa lab terbuka dengan item order yang sudah terpilih (lihat <a href="#d5">D5</a>).</li>
+    <li>Cetak <b>Permintaan Lab</b> atau <b>Barcode No.Permintaan</b> dari klik kanan. Bila RS memakai LIS (Sysmex, LICA, ELIMS, dll.), menu klik kanan juga untuk kirim permintaan dan ambil hasil.</li>
+  </ol>
+  <figure><img src="img/k_a_06.png" alt="Permintaan Laboratorium" loading="lazy"><figcaption><b>Gambar A6.</b> Data Permintaan Laboratorium PK: tab Rawat Jalan/Rawat Inap, Periode, Cari, tombol Sampel, Hasil dan Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-7">A7. Periksa Lab PK / PA / MB</h2>
+  <p>Melihat dan mencetak hasil laboratorium yang sudah diinput, per pasien atau per periode.</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Periksa Lab PK</b> (atau <b>PA</b> / <b>MB</b>).</li>
+    <li>Atur <b>Tanggal</b>, isi <b>No.Rawat</b>/<b>Pasien</b>/<b>Petugas</b> bila perlu, atau ketik di Key Word.</li>
+    <li>Tab <b>Data Pemeriksaan</b>: daftar pemeriksaan; tab <b>Item Pemeriksaan</b>: hasil per item (hasil, satuan, nilai rujukan, keterangan); tab <b>Detail Kunjungan</b>.</li>
+    <li>Klik baris lalu <b>Cetak</b> untuk lembar hasil. <b>Kirim PDF</b> mengirim hasil ke pasien lewat WA.</li>
+  </ol>
+  <figure><img src="img/k_a_07.png" alt="Pemeriksaan Laboratorium" loading="lazy"><figcaption><b>Gambar A7.</b> Data Pemeriksaan Laboratorium PK: Periode, Cari, Cetak, dan Kirim PDF.</figcaption></figure>
+
+  <h2 id="modul-a-8">A8. Periksa Radiologi</h2>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Periksa Radiologi</b>.</li>
+    <li>Atur periode, cari pasien. Klik baris pemeriksaan.</li>
+    <li>Tab <b>Hasil Bacaan Radiologi</b>: lihat atau ubah expertise (pakai <b>Template</b> bila ada), lalu <b>Simpan</b>. Langkah isi hasil lengkap ada di <a href="#d6">D6</a>.</li>
+    <li>Tab <b>Photo Radiologi</b>/<b>Integrasi Orthanc</b>: lihat gambar, <b>Tampilkan DICOM</b> atau <b>Download JPG</b>.</li>
+    <li><b>Cetak</b> lembar hasil, atau <b>Kirim ke Pasien</b>.</li>
+  </ol>
+  <figure><img src="img/k_a_08.png" alt="Pemeriksaan Radiologi" loading="lazy"><figcaption><b>Gambar A8.</b> Data Pemeriksaan Radiologi: Periode, Cari, Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-9">A9. Beri Obat/BHP</h2>
+  <p>Rekap obat, alkes dan BHP yang sudah diberikan ke pasien (dari resep yang divalidasi atau input langsung).</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Beri Obat/BHP</b>.</li>
+    <li>Atur <b>Tgl.Beri</b>, isi <b>No.RM</b> atau Key Word (nama pasien/obat).</li>
+    <li>Tabel menampilkan tanggal &amp; jam beri, pasien, obat, embalase, tuslah, jumlah, biaya, gudang, No.Batch dan No.Faktur; <b>Jumlah Total</b> di bawah.</li>
+    <li>Hapus pemberian yang salah: klik baris → <b>Hapus</b> (stok kembali). Tidak bisa bila billing sudah disimpan.</li>
+    <li><b>Cetak</b> untuk rekap.</li>
+  </ol>
+  <figure><img src="img/k_a_09.png" alt="Beri Obat/BHP" loading="lazy"><figcaption><b>Gambar A9.</b> Detail Pemberian Obat/Barang/Alkes: Periode, Cari, Cetak dan Jumlah Total.</figcaption></figure>
+
+  <h2 id="modul-a-10">A10. No. Resep</h2>
+  <p>Daftar resep yang sudah diberi nomor (resep yang dilayani farmasi), termasuk telaah resep dan foto penyerahan.</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>No. Resep</b>.</li>
+    <li>Atur periode, cari dengan No.Resep, nama pasien atau dokter.</li>
+    <li>Klik resep untuk melihat obatnya. Tab <b>Pengkajian Resep &amp; Obat</b> (tombol <b>Telaah</b>) dan <b>Photo Penyerahan Resep</b>.</li>
+    <li>Klik kanan untuk cetak <b>Aturan Pakai</b>, <b>Label Daftar Obat</b> atau <b>Lembar Pemberian Obat</b>.</li>
+  </ol>
+  <figure><img src="img/k_a_10.png" alt="Resep Obat" loading="lazy"><figcaption><b>Gambar A10.</b> Resep Obat: Periode (tanggal &amp; jam), Cari, Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-11">A11. DPJP Ranap</h2>
+  <p>Menetapkan Dokter Penanggung Jawab Pelayanan (DPJP) pasien rawat inap; bisa lebih dari satu (DPJP utama dan rawat bersama).</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>DPJP Ranap</b> (atau dari Kamar Inap: klik kanan pasien → DPJP).</li>
+    <li>Klik <b>Baru</b>, pilih pasien (<b>No.Rawat</b>), pilih <b>Dokter</b>, lalu <b>Simpan</b>. Ulangi untuk dokter rawat bersama.</li>
+    <li>Atur <b>Tgl.Rawat</b> dan cari untuk melihat DPJP pasien; <b>Hapus</b> bila salah.</li>
+  </ol>
+  <figure><img src="img/k_a_11.png" alt="DPJP Ranap" loading="lazy"><figcaption><b>Gambar A11.</b> Dokter Penanggung Jawab Pasien Rawat Inap: Periode, Cari, Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-12">A12. Skrining Rawat Jalan</h2>
+  <p>Skrining cepat di pintu masuk/pendaftaran untuk menentukan pasien perlu didahulukan atau diarahkan ke IGD.</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Skrining Rawat Jalan</b>.</li>
+    <li>Klik <b>Baru</b>, pilih <b>Pasien</b>, isi <b>Tanggal</b> dan <b>Jam Skrining</b>, <b>Petugas</b>.</li>
+    <li>Isi: <b>Geriatri</b>, <b>Kesadaran</b>, <b>Pernafasan</b>, <b>Nyeri Dada</b>, <b>Skala Nyeri</b>, <b>Batuk</b>, <b>Risiko Jatuh</b>, lalu tentukan <b>Keputusan</b>: <b>Sesuai antrian</b> atau <b>IGD</b>.</li>
+    <li>Klik <b>Simpan</b>. Tombol <b>Regist</b> langsung membawa pasien ke Registrasi.</li>
+  </ol>
+  <figure><img src="img/k_a_12.png" alt="Skrining Rawat Jalan" loading="lazy"><figcaption><b>Gambar A12.</b> Skrining Rawat Jalan: Periode, Cari, Simpan, Cetak, dan tombol Regist.</figcaption></figure>
+
+  <h2 id="modul-a-13">A13. Permintaan Layanan Program KFR</h2>
+  <p>Daftar permintaan layanan Kedokteran Fisik &amp; Rehabilitasi (fisioterapi) untuk unit KFR.</p>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Permintaan Layanan Program KFR</b>.</li>
+    <li>Pilih <b>Menunggu</b>, <b>Sudah Terlayani</b> atau <b>Tgl.Permintaan</b>, atur periode, cari.</li>
+    <li>Klik permintaan → <b>Layani</b> untuk mulai program. Klik kanan: <b>Pengkajian Awal Fisioterapi</b>, <b>SOAP &amp; Tindakan</b>, <b>Detail Permintaan Layanan</b>, <b>Riwayat Program KFR</b>.</li>
+    <li>Akhiri dengan <b>Selesai Program</b>, atau <b>Perpanjang Program</b> bila perlu sesi tambahan.</li>
+  </ol>
+  <figure><img src="img/k_a_13.png" alt="Permintaan Layanan Program KFR" loading="lazy"><figcaption><b>Gambar A13.</b> Permintaan Layanan Program KFR: Periode, Cari, tombol Layani, Selesai Program, Perpanjang Program, Cetak.</figcaption></figure>
+
+  <h2 id="modul-a-14">A14. Deteksi Dini Corona</h2>
+  <ol>
+    <li>Buka menu utama, kategori <b>[A]</b>, lalu klik <b>Deteksi Dini Corona</b>.</li>
+    <li>Klik <b>Baru</b>, pilih <b>No.Rawat</b>, isi <b>Tgl.Skrining</b> dan <b>Petugas</b>.</li>
+    <li>Isi <b>A. Gejala</b> (demam &gt; 37,5, batuk/pilek/nyeri tenggorokan, sesak napas, tanggal timbul gejala, riwayat sakit dan periksa sebelumnya) dan <b>B. Faktor Risiko</b> (perjalanan, asal daerah terjangkit, kontak).</li>
+    <li>Isi <b>Hasil Lab</b>, <b>Hasil Radiologi</b>, <b>Kesimpulan</b> dan <b>Tindak Lanjut</b>, lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_a_14.png" alt="Deteksi Dini Corona" loading="lazy"><figcaption><b>Gambar A14.</b> Deteksi Dini Pasien Corona: Periode, Cari, Simpan, Cetak.</figcaption></figure>
 </section>
 
 <!-- ================= MODUL B ================= -->
@@ -1653,8 +2095,8 @@ body{margin:0}
 <!-- ================= MODUL M ================= -->
 <section class="view" id="v-modul-m" data-judul="Modul M" hidden>
   <h1>[M] Olah Data Rekam Medis</h1>
-  <div class="peran"><span class="chip">Rekam Medis</span></div>
-  <p class="lead">Data pendukung rekam medis: diagnosa pasien (koding), peminjaman berkas, retensi, insiden keselamatan, kelahiran bayi, pasien meninggal, dan master instansi pasien. Pengkajian, CPPT, odontogram dan riwayat perawatan dibahas di Alur A–E dan halaman Rekam Medis.</p>
+  <div class="peran"><span class="chip">Rekam Medis</span><span class="chip">Perawat</span><span class="chip">Dokter</span><span class="chip">Farmasi</span><span class="chip">PPI</span></div>
+  <p class="lead">Data pendukung rekam medis (M1–M7: koding diagnosa, berkas RM, insiden, kelahiran, kematian, instansi pasien) dan form klinis per pasien (M8–M23: resume ranap, EWS/PEWS, risiko jatuh, nyeri, dekubitus, observasi, keseimbangan cairan, transfer, perencanaan pulang, rekonsiliasi obat, edukasi, konsultasi medik, keselamatan operasi, berkas digital, HAIs). CPPT, odontogram dan riwayat perawatan dibahas di Alur A–E dan halaman Rekam Medis.</p>
   <div class="catatan"><ul><li>Peminjaman berkas dicatat setiap berkas fisik keluar dari ruang RM.</li><li>Insiden keselamatan pasien wajib dilaporkan paling lambat 2x24 jam.</li></ul></div>
   <h2 id="modul-m-1">M1. Diagnosa Pasien</h2>
   <ol>
@@ -1736,9 +2178,177 @@ body{margin:0}
     <li>Klik <b>Keluar</b> untuk menutup form.</li>
   </ol>
   <figure><img src="img/k_m_07.png" alt="Instansi/Perusahaan Pasien" loading="lazy"><figcaption><b>Gambar M7.</b> Form Instansi/Perusahaan Pasien. Penanda: Cari = kotak pencarian, Simpan, Cetak. Tabel dikosongkan untuk panduan.</figcaption></figure>
+
+  <h2 id="modul-m-pola">Pola umum form pengkajian &amp; pemantauan pasien</h2>
+  <p>Bagian M8–M23 adalah form klinis per pasien. Semuanya memakai pola yang sama:</p>
+  <ol>
+    <li><b>Buka dari pasien</b> (disarankan): <span class="ui">Rawat Inap</span>/<span class="ui">Rawat Jalan</span> → klik pasien → form Perawatan → menu kiri, atau <span class="ui">Kamar Inap</span> → klik kanan pasien → <b>Data Rekam Medis</b>. No.Rawat, No.RM, nama dan tanggal lahir terisi otomatis. Bisa juga dari menu utama kategori <b>[M]</b>, lalu pilih pasien dengan tombol cari di samping No.Rawat.</li>
+    <li>Isi <b>Tanggal</b>/jam dan <b>Petugas</b> (terisi otomatis bila user terhubung ke data pegawai), lalu isian form. Skor dan kesimpulan dihitung otomatis.</li>
+    <li>Klik <b>Simpan</b>. Isian tampil di tabel bawah (riwayat, sesuai periode tanggal).</li>
+    <li>Ubah: klik baris di tabel, perbaiki, klik <b>Ganti</b>. Hapus: klik baris, <b>Hapus</b>. <b>Cetak</b> untuk lembar formulir.</li>
+    <li>Semua isian juga muncul di <b>Riwayat Perawatan</b> pasien (lihat <a href="#rekam-medis">Rekam Medis</a>).</li>
+  </ol>
+  <p class="catatan">Gambar M8–M23 diambil dengan pasien uji (No.RM 999001); tabel riwayat dikosongkan. Penanda: <b>Periode</b>, <b>Cari</b>, <b>Simpan</b>, <b>Cetak</b>. Form tidak muncul di menu kiri? Minta Admin memasang hak aksesnya.</p>
+
+  <h2 id="modul-m-8">M8. Resume Pasien Ranap</h2>
+  <p>Ringkasan pulang yang wajib dibuat DPJP sebelum pasien pulang; dipakai juga untuk klaim.</p>
+  <ol>
+    <li>Buka dari pasien rawat inap. Data kamar, tanggal masuk/keluar, cara bayar, dokter pengirim dan diagnosa awal masuk terisi otomatis.</li>
+    <li>Isi <b>Alasan Masuk Dirawat</b>, <b>Keluhan Utama/Riwayat Penyakit</b>, <b>Pemeriksaan Fisik</b>, <b>Jalannya Penyakit Selama Perawatan</b>, <b>Pemeriksaan Penunjang Rad/Lab Terpenting</b>, <b>Tindakan/Operasi</b> dan <b>Obat-obatan Selama Perawatan</b>. Tombol di samping kotak menarik data dari riwayat pasien.</li>
+    <li>Isi <b>Diagnosa Akhir</b> (utama dan sekunder 1–4) dan <b>Prosedur</b> beserta <b>Kode ICD</b>.</li>
+    <li>Isi <b>Alergi Obat</b>, <b>Diet</b>, <b>Hasil Lab yang Belum Selesai</b>, <b>Instruksi/Anjuran dan Edukasi</b>, <b>Cara Keluar</b>, <b>Keadaan Pulang</b>, <b>Dilanjutkan</b> (kontrol ke), <b>Tanggal &amp; Jam Kontrol</b>, <b>Obat Pulang</b>.</li>
+    <li><b>Simpan</b>, lalu <b>Cetak</b>. Resume bisa ditandatangani elektronik (TTE) bila fitur MekariSign aktif.</li>
+  </ol>
+  <figure><img src="img/k_m_08.png" alt="Resume Medis Pasien Rawat Inap" loading="lazy"><figcaption><b>Gambar M8.</b> Resume Medis Pasien Rawat Inap: data kunjungan otomatis, kotak isian ringkasan, diagnosa akhir; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-9">M9. Pemantauan EWS Pasien Dewasa</h2>
+  <ol>
+    <li>Buka dari pasien. Isi tanggal/jam pemantauan dan petugas.</li>
+    <li>Pilih nilai 7 parameter: <b>Laju Respirasi</b>, <b>Saturasi Oksigen</b>, <b>Suplemen Oksigen</b>, <b>Tekanan Darah Sistolik</b>, <b>Laju Jantung</b>, <b>Kesadaran</b>, <b>Temperatur</b>. Skor tiap parameter dan <b>Total Skor</b> terhitung otomatis.</li>
+    <li>Baca tindakan yang muncul di kolom <b>Parameter</b>, dari ringan ke berat:
+      <ol>
+        <li>Berisiko rendah: ulangi pemantauan setiap 7 jam.</li>
+        <li>Asesmen segera oleh perawat senior (maks. 5 menit), monitoring per 4–6 jam.</li>
+        <li>Asesmen segera oleh dokter jaga (maks. 5 menit), konsultasi DPJP, monitoring tiap jam, pertimbangkan HCU.</li>
+        <li>Resusitasi dan monitoring kontinu, aktivasi <i>code blue</i> kegawatan medis, respon TME maks. 10 menit.</li>
+        <li>Henti jantung: RJP, aktivasi <i>code blue</i>, respon TME maks. 5 menit.</li>
+      </ol>
+    </li>
+    <li>Klik <b>Simpan</b> dan lakukan tindakan sesuai hasil.</li>
+  </ol>
+  <figure><img src="img/k_m_09.png" alt="Pemantauan EWS Pasien Dewasa" loading="lazy"><figcaption><b>Gambar M9.</b> Pemantauan EWS Dewasa: 7 parameter dengan skor otomatis, Total Skor dan tindakan; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-10">M10. Pemantauan PEWS Pasien Anak</h2>
+  <ol>
+    <li>Buka dari pasien anak. Pilih <b>Skor Perilaku</b>, <b>Skor CRT/Warna Kulit</b> dan <b>Skor Respirasi</b>; <b>Total Skor</b> dan tindakan terisi otomatis.</li>
+    <li>Tindakan menurut skor: berisiko rendah ulangi 7 jam; monitoring tiap 4 jam oleh perawat pelaksana; monitoring 1–2 jam dan lapor dokter jaga; monitor per jam, lapor dokter jaga dan DPJP; skor tertinggi: laporkan perubahan klinis ke ketua tim, dokter jaga dan DPJP.</li>
+    <li>Klik <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_10.png" alt="Pemantauan PEWS Pasien Anak" loading="lazy"><figcaption><b>Gambar M10.</b> Pemantauan PEWS Anak: 3 parameter, Total Skor dan tindakan; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-11">M11. Pengkajian Lanjutan Risiko Jatuh</h2>
+  <p>Dewasa memakai <b>Skala Morse</b>. Form serupa tersedia untuk Anak, Lansia, Geriatri, Neonatus dan Psikiatri.</p>
+  <ol>
+    <li>Buka dari pasien. Pilih skala untuk 6 butir: <b>Riwayat Jatuh</b>, <b>Diagnosis Sekunder</b>, <b>Alat Bantu</b>, <b>Terpasang Infus</b>, <b>Gaya Berjalan</b>, <b>Status Mental</b>. Nilai dan <b>Total</b> otomatis.</li>
+    <li>Tingkat risiko: <b>Rendah (0–24)</b> dan <b>Sedang (25–44)</b> → intervensi pencegahan jatuh standar; <b>Tinggi (&gt; 45)</b> → intervensi standar ditambah intervensi risiko jatuh tinggi.</li>
+    <li>Isi <b>Hasil Skrining</b> dan <b>Saran</b>, lalu <b>Simpan</b>. Ulangi saat kondisi berubah, pindah ruang, atau setelah jatuh.</li>
+  </ol>
+  <figure><img src="img/k_m_11.png" alt="Pengkajian Lanjutan Risiko Jatuh Dewasa" loading="lazy"><figcaption><b>Gambar M11.</b> Risiko Jatuh Dewasa (Skala Morse): 6 butir, Total, tingkat risiko dan tindakan; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-12">M12. Pengkajian Ulang Nyeri</h2>
+  <ol>
+    <li>Buka dari pasien. Pilih <b>Skala Nyeri</b> (gambar Wong-Baker 0–10) dan <b>Severity</b>.</li>
+    <li>Isi <b>Penyebab</b>, <b>Kualitas</b>, <b>Wilayah/Lokasi</b>, <b>Menyebar</b>, <b>Waktu/Durasi</b> dan <b>Nyeri Hilang Bila</b>.</li>
+    <li>Klik <b>Simpan</b>. Bila perlu, catat tindak lanjut di <b>Intervensi Nyeri Farmakologi</b> atau <b>Non Farmakologi</b> (form [M] dengan pola sama).</li>
+  </ol>
+  <figure><img src="img/k_m_12.png" alt="Pengkajian Ulang Nyeri" loading="lazy"><figcaption><b>Gambar M12.</b> Pengkajian Ulang Nyeri: skala Wong-Baker, karakteristik nyeri; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-13">M13. Pengkajian Risiko Dekubitus</h2>
+  <ol>
+    <li>Buka dari pasien. Pilih 5 butir <b>Skala Norton</b>: <b>Kondisi Fisik</b>, <b>Status Mental</b>, <b>Aktivitas</b>, <b>Mobilitas</b>, <b>Inkontinensia</b>.</li>
+    <li><b>Total</b> dan <b>Status/Kategori</b> (Risiko Rendah / Sedang / Tinggi) terisi otomatis.</li>
+    <li>Klik <b>Simpan</b>; pasien berisiko sedang/tinggi dicatat rencana pencegahannya di CPPT/asuhan keperawatan.</li>
+  </ol>
+  <figure><img src="img/k_m_13.png" alt="Pengkajian Risiko Dekubitus" loading="lazy"><figcaption><b>Gambar M13.</b> Risiko Dekubitus (Skala Norton): 5 butir, Total dan kategori; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-14">M14. Catatan Observasi Rawat Inap</h2>
+  <ol>
+    <li>Buka dari pasien. Isi tanggal/jam observasi.</li>
+    <li>Isi <b>GCS (E,V,M)</b>, <b>TD</b>, <b>HR</b>, <b>RR</b>, <b>Suhu</b>, <b>SpO2</b>, lalu <b>Simpan</b>. Ulangi sesuai jadwal observasi; tabel bawah menjadi lembar observasi.</li>
+    <li>Form observasi lain dengan pola sama: IGD, Kebidanan, Post Partum, Ruang Operasi, Bayi, Ventilator, Hemodialisa, Restrain, dll.</li>
+  </ol>
+  <figure><img src="img/k_m_14.png" alt="Catatan Observasi Rawat Inap" loading="lazy"><figcaption><b>Gambar M14.</b> Catatan Observasi Ranap: GCS dan tanda vital; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-15">M15. Keseimbangan Cairan</h2>
+  <ol>
+    <li>Buka dari pasien. Isi tanggal/jam.</li>
+    <li><b>Input</b> (ml): Infus, Transfusi, Minum, NGT/Oral. <b>Output</b> (ml): Urine/Feses, Drain, NGT/Oral, <b>IWL</b>.</li>
+    <li><b>Keseimbangan Cairan</b> (input dikurangi output) terhitung otomatis. Tambah <b>Keterangan</b> bila perlu, lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_15.png" alt="Keseimbangan Cairan" loading="lazy"><figcaption><b>Gambar M15.</b> Keseimbangan Cairan: input, output, IWL dan hasil keseimbangan; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-16">M16. Transfer Pasien Antar Ruang</h2>
+  <ol>
+    <li>Buka dari pasien yang akan dipindah. Isi tanggal <b>Masuk</b> dan <b>Pindah</b>, <b>Indikasi Pindah</b>, <b>Asal Ruang/Poliklinik</b>, <b>Ruang Rawat Selanjutnya</b>, <b>Metode Pemindahan</b>.</li>
+    <li>Isi <b>Diagnosa Utama/Sekunder</b>, <b>Prosedur yang Sudah Dilakukan</b>, <b>Obat yang Telah Diberikan</b>, <b>Pemeriksaan Penunjang</b>, <b>Peralatan yang Menyertai</b>.</li>
+    <li>Isi persetujuan pasien/keluarga (nama dan hubungan), lalu <b>Keadaan Pasien Sebelum</b> dan <b>Setelah Transfer</b> (keadaan umum, TD, nadi, RR, suhu, keluhan).</li>
+    <li>Isi petugas yang <b>Menyerahkan</b> dan <b>Menerima</b>, lalu <b>Simpan</b> dan <b>Cetak</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_16.png" alt="Transfer Pasien Antar Ruang" loading="lazy"><figcaption><b>Gambar M16.</b> Transfer Pasien Antar Ruang: data pindah, kondisi sebelum/sesudah transfer, serah terima petugas; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-17">M17. Perencanaan Pemulangan</h2>
+  <ol>
+    <li>Buka dari pasien rawat inap (sebaiknya di awal perawatan). Isi <b>Rencana Pemulangan</b> (tanggal), <b>Diagnosa Medis</b> dan <b>Alasan Masuk</b>.</li>
+    <li>Jawab pertanyaan perencanaan: pengaruh rawat inap (pasien/keluarga, pekerjaan/sekolah, keuangan), antisipasi masalah saat pulang, bantuan yang diperlukan, ada yang membantu, tinggal sendiri, alat medis/bantu, perawatan khusus di rumah, dan seterusnya. Tulis keterangan di kotak sebelah jawaban.</li>
+    <li>Isi siapa yang melakukan tanya jawab (perawat dan pasien/keluarga), lalu <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_17.png" alt="Perencanaan Pemulangan" loading="lazy"><figcaption><b>Gambar M17.</b> Perencanaan Pemulangan: tanggal rencana pulang dan daftar pertanyaan kebutuhan pulang; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-18">M18. Rekonsiliasi Obat</h2>
+  <p>Rekonsiliasi obat yang dibawa/dipakai pasien sebelum masuk RS; diisi dari form pasien, dikonfirmasi farmasi dari menu ini.</p>
+  <ol>
+    <li>Input rekonsiliasi: dari form Perawatan pasien → <b>Rekonsiliasi Obat</b> (obat yang dibawa, dosis, alergi, dampak alergi).</li>
+    <li>Farmasi: menu utama kategori <b>[M]</b> → <b>Rekonsiliasi Obat</b>. Atur periode, saring per <b>Pasien</b>/<b>Petugas</b> atau Key Word.</li>
+    <li>Klik rekonsiliasi lalu <b>Konfirmasi</b>: isi waktu <b>Diterima Farmasi</b>, <b>Dikonfirmasi Apoteker</b>, <b>Diserahkan Pasien</b> dan <b>Petugas Farmasi</b>, lalu simpan.</li>
+    <li><b>Cetak</b> lembar rekonsiliasi.</li>
+  </ol>
+  <figure><img src="img/k_m_18.png" alt="Rekonsiliasi Obat" loading="lazy"><figcaption><b>Gambar M18.</b> Data Rekonsiliasi Obat: Periode, Cari, tombol Konfirmasi dan Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-19">M19. Pelaksanaan Informasi &amp; Edukasi</h2>
+  <ol>
+    <li>Buka dari pasien. Isi tanggal/jam dan petugas pemberi edukasi.</li>
+    <li>Isi <b>Materi</b> (bisa dari Master Template Informasi &amp; Edukasi), <b>Kepada</b> (pasien/keluarga dan namanya), <b>Metode</b>, <b>Lama Edukasi</b> (menit), <b>Status</b> (awal/lanjutan), <b>Hasil</b> (misal: sudah mengerti) dan <b>Keterangan</b>.</li>
+    <li>Klik <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_19.png" alt="Pelaksanaan Informasi dan Edukasi" loading="lazy"><figcaption><b>Gambar M19.</b> Pelaksanaan Informasi &amp; Edukasi: materi, sasaran, metode, lama, hasil; Simpan, Cetak.</figcaption></figure>
+
+  <h2 id="modul-m-20">M20. Konsultasi Medik</h2>
+  <ol>
+    <li>Dokter peminta: buka dari pasien. Pilih <b>Permintaan</b> (Konsultasi, Evaluasi, Rawat Bersama, Alih Rawat, atau Pre/Post Operasi), <b>Dokter Yang Konsul</b> dan <b>Dokter Yang Dikonsuli</b>, isi <b>Diagnosa Kerja</b> dan <b>Uraian Konsultasi</b>, lalu <b>Simpan</b>.</li>
+    <li>Dokter yang dikonsuli: buka menu <b>Konsultasi Medik</b>, pilih <b>Menunggu Jawaban Konsultasi</b>, klik permintaan, lalu isi <b>Jawaban</b> (diagnosa kerja dan jawaban konsultasi) dan simpan.</li>
+    <li>Pilihan <b>Konsultasi Sudah Dijawab</b> untuk melihat riwayat; <b>Cetak</b> lembar konsultasi.</li>
+  </ol>
+  <figure><img src="img/k_m_20.png" alt="Permintaan Konsultasi Medik" loading="lazy"><figcaption><b>Gambar M20.</b> Permintaan Konsultasi Medik: jenis permintaan, dokter konsul/dikonsuli, uraian; pilihan Menunggu Jawaban / Sudah Dijawab.</figcaption></figure>
+
+  <h2 id="modul-m-21">M21. Keselamatan Operasi (Check List Pre Op, Sign-In, Time-Out, Sign-Out)</h2>
+  <p>Empat form ini mengikuti urutan <i>surgical safety checklist</i>. Buka dari pasien operasi (atau dari Jadwal/Tagihan Operasi); dokter bedah, dokter anestesi dan tindakan bisa terisi otomatis dari jadwal operasi.</p>
+  <ol>
+    <li><b>Check List Pre Operasi</b> (ruangan → OK): konfirmasi identitas, keadaan umum, penandaan area operasi, surat ijin bedah/anestesi/transfusi, persiapan darah, perlengkapan khusus/implan, hasil penunjang (radiologi, EKG, USG, CT, MRI), lalu petugas ruangan dan petugas OK. <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_24.png" alt="Check List Pre Operasi" loading="lazy"><figcaption><b>Gambar M21-1.</b> Check List Pre Operasi.</figcaption></figure>
+  <ol start="2">
+    <li><b>Sign-In</b> (sebelum induksi anestesi): perawat OK dan tim anestesi mengkonfirmasi identitas, tindakan, penandaan area, alergi, risiko aspirasi/penyulit, risiko kehilangan darah &gt; 500 ml (7 ml/kg BB anak) beserta rencana antisipasinya, kesiapan alat dan obat anestesi. <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_21.png" alt="Sign-In Sebelum Anestesi" loading="lazy"><figcaption><b>Gambar M21-2.</b> Sign-In Sebelum Anestesi.</figcaption></figure>
+  <ol start="3">
+    <li><b>Time-Out</b> (sebelum insisi): verbalisasi tim (identitas, tindakan, area insisi), penayangan hasil penunjang, antibiotik profilaksis dan jamnya, perkiraan lama operasi, antisipasi kehilangan darah, sterilisasi dan tanggal steril, verifikasi pre operatif, hal khusus. <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_22.png" alt="Time-Out Sebelum Insisi" loading="lazy"><figcaption><b>Gambar M21-3.</b> Time-Out Sebelum Insisi.</figcaption></figure>
+  <ol start="4">
+    <li><b>Sign-Out</b> (sebelum menutup luka/meninggalkan OK): konfirmasi tindakan, kelengkapan kasa, instrumen dan alat tajam, label dan formulir spesimen, peninjauan kembali oleh dokter bedah/anestesi/perawat, perhatian utama fase pemulihan. <b>Simpan</b>.</li>
+  </ol>
+  <figure><img src="img/k_m_23.png" alt="Sign-Out Sebelum Menutup Luka" loading="lazy"><figcaption><b>Gambar M21-4.</b> Sign-Out Sebelum Menutup Luka.</figcaption></figure>
+
+  <h2 id="modul-m-22">M22. Berkas Digital Perawatan</h2>
+  <ol>
+    <li>Buka menu utama kategori <b>[M]</b> → <b>Berkas Digital Perawatan</b>, atau dari pasien (klik kanan → Berkas Digital).</li>
+    <li>Form ini membuka halaman web <b>berkasrawat</b> dari server aplikasi (webapps). Pilih pasien/No.Rawat, pilih jenis berkas (hasil pemeriksaan luar, surat rujukan, foto, persetujuan bertanda tangan, dll.), lalu unggah file PDF/gambar.</li>
+    <li>Berkas tersimpan di server dan bisa dibuka kembali dari form ini atau dari Riwayat Perawatan pasien.</li>
+  </ol>
+  <p class="catatan">Berkas Digital tampil lewat komponen browser di aplikasi, sehingga tidak ada gambar layar di panduan ini. Bila halaman kosong, periksa setting server web (webapps) di komputer tersebut.</p>
+
+  <h2 id="modul-m-23">M23. Data HAIs (surveilans infeksi)</h2>
+  <ol>
+    <li>Buka dari pasien rawat inap (atau menu [M] → <b>Data HAIs</b>). Kamar terisi otomatis.</li>
+    <li>Isi <b>Hari Pemasangan Alat</b>: ETT, CVL, IVL, UC (kateter urine).</li>
+    <li>Isi kejadian <b>Infeksi RS</b> bila ada: VAP, IAD, Plebitis, ISK, ILO, HAP, Tinea, Scabies; status <b>Dekubitus</b>; hasil kultur <b>Sputum</b>, <b>Darah</b>, <b>Urine</b>; dan <b>Antibiotik</b> yang dipakai.</li>
+    <li>Klik <b>Simpan</b> setiap hari pemantauan. Rekap untuk tim PPI ada di laporan HAIs.</li>
+  </ol>
+  <figure><img src="img/k_m_26.png" alt="Data HAIs" loading="lazy"><figcaption><b>Gambar M23.</b> Data HAIs: hari pemasangan alat, infeksi RS, kultur dan antibiotik; Simpan, Cetak.</figcaption></figure>
+
   <h2 id="modul-m-lain">Menu lain di kategori [M]</h2>
-  <p>250 menu lain di kategori ini memakai pola yang sama (cari dengan Key Word dan periode, isi lalu Simpan/Ganti/Hapus, Cetak):</p>
-  <div class="menu-lain"><span>Suku/Bangsa Pasien</span><span>Bahasa Pasien</span><span>Golongan TNI</span><span>Satuan TNI</span><span>Jabatan TNI</span><span>Pangkat TNI</span><span>Golongan POLRI</span><span>Satuan POLRI</span><span>Jabatan POLRI</span><span>Pangkat POLRI</span><span>Cacat Fisik</span><span>Pasien</span><span>Catatan Pasien</span><span>Data HAIs</span><span>Klasifikasi Pasien Ranap</span><span>SOAP Perawatan</span><span>SOAP Ralan Anggota POLRI</span><span>SOAP Ranap Anggota POLRI</span><span>SOAP Ralan Anggota TNI</span><span>SOAP Ranap Anggota TNI</span><span>Riwayat Kamar Pasien</span><span>Data Insiden Keselamatan</span><span>Riwayat Perawatan</span><span>Mutasi Berkas RM</span><span>Berkas Digital Perawatan</span><span>Pengaduan/Chat</span><span>Master Triase Pemeriksaan</span><span>Master Triase Macam Kasus</span><span>Master Triase Skala 1</span><span>Master Triase Skala 2</span><span>Master Triase Skala 3</span><span>Master Triase Skala 4</span><span>Master Triase Skala 5</span><span>Data Triase IGD</span><span>Resume Pasien Ralan</span><span>Resume Pasien Ranap</span><span>Dokumen TTE MekariSign</span><span>Auto Sign &amp; eKYC MekariSign</span><span>Skrining Gizi Lanjut</span><span>Asuhan Gizi</span><span>Monitoring Asuhan Gizi</span><span>Catatan ADIME Gizi</span><span>Skrining Nutrisi Pasien Dewasa</span><span>Skrining Nutrisi Pasien Lansia</span><span>Skrining Nutrisi Pasien Anak</span><span>Skrining Gizi Kehamilan</span><span>Master Template Hasil Radiologi</span><span>Master Template Laporan Operasi</span><span>Master Template Pemeriksaan</span><span>Master Template Informasi &amp; Edukasi</span><span>Master Masalah Keperawatan</span><span>Master Rencana Keperawatan</span><span>Master Masalah Keperawatan Gigi</span><span>Master Rencana Keperawatan Gigi</span><span>Master Masalah Keperawatan Bayi/Anak</span><span>Master Rencana Keperawatan Bayi/Anak</span><span>Master Masalah Keperawatan Mata</span><span>Master Rencana Keperawatan Mata</span><span>Master Masalah Keperawatan IGD</span><span>Master Rencana Keperawatan IGD</span><span>Master Masalah Keperawatan Psikiatri</span><span>Master Rencana Keperawatan Psikiatri</span><span>Master Masalah Keperawatan Geriatri</span><span>Master Rencana Keperawatan Geriatri</span><span>Master Masalah Keperawatan Neonatus</span><span>Master Rencana Keperawatan Neonatus</span><span>Master Imunisasi</span><span>Awal Keperawatan Ralan Umum</span><span>Awal Keperawatan Ranap Umum</span><span>Awal Keperawatan IGD</span><span>Awal Keperawatan Gigi</span><span>Awal Keperawatan Ralan Kebidanan</span><span>Awal Keperawatan Ranap Kebidanan</span><span>Awal Keperawatan Ralan Bayi/Anak</span><span>Awal Keperawatan Ranap Bayi/Anak</span><span>Awal Keperawatan Ralan Psikiatri</span><span>Awal Keperawatan Ralan Geriatri</span><span>Awal Keperawatan Ranap Neonatus</span><span>Awal Medis IGD</span><span>Awal Medis IGD Psikiatri</span><span>Awal Medis Ralan Umum</span><span>Awal Medis Ranap Umum</span><span>Awal Medis Ranap Neonatus</span><span>Pengkajian Bayi Baru Lahir</span><span>Awal Medis Ralan Bayi/Anak</span><span>Awal Medis Ralan Kandungan</span><span>Awal Medis Ranap Kandungan</span><span>Awal Medis Ralan Jantung</span><span>Awal Medis Ranap Jantung</span><span>Awal Medis Ralan Urologi</span><span>Hasil USG Kandungan</span><span>Hasil USG Abdomen</span><span>Hasil USG Appendix</span><span>Hasil USG Hepar/Lien/Empedu</span><span>Hasil USG Mammae</span><span>Hasil USG Testis/Scrotum</span><span>Hasil USG Thyroid</span><span>Master Template Hasil USG</span><span>Hasil USG Urologi</span><span>Hasil USG Gynecologi</span><span>Hasil USG Neonatus</span><span>Awal Medis Ralan THT</span><span>Awal Medis Ralan Psikiatri</span><span>Awal Medis Ranap Psikiatri</span><span>Awal Medis Ralan Penyakit Dalam</span><span>Awal Medis Ralan Mata</span><span>Awal Medis Ralan Neurologi</span><span>Awal Medis Ralan Orthopedi</span><span>Awal Medis Ralan Bedah</span><span>Awal Medis Ralan Bedah Mulut</span><span>Awal Medis Ralan Geriatri</span><span>Awal Medis Ralan Kulit &amp; Kelamin</span><span>Awal Medis Ralan Paru</span><span>Awal Medis Ralan Fisik &amp; Rehabilitasi</span><span>Awal Medis Pasien Hemodialisa</span><span>Hasil Pemeriksaan EKG</span><span>Hasil Pemeriksaan Treadmill</span><span>Hasil Pemeriksaan Slit Lamp</span><span>Hasil Pemeriksaan OCT</span><span>Hasil Pemeriksaan ECHO</span><span>Hasil Pemeriksaan ECHO Pediatrik</span><span>Hasil Endoskopi Faring/Laring</span><span>Hasil Endoskopi Hidung</span><span>Hasil Endoskopi Telinga</span><span>Pengkajian Tambahan Pasien Geriatri</span><span>Pengkajian Tambahan Bunuh Diri</span><span>Pengkajian Tambahan Perilaku Kekerasan</span><span>Pengkajian Tambahan Melarikan Diri</span><span>Pengkajian Pasien Terminal</span><span>Pengkajian Korban Kekerasan</span><span>Pengkajian Pasien Penyakit Menular</span><span>Pengkajian Pasien Imunitas Rendah</span><span>Pengkajian Derajat Dehidrasi</span><span>Pengkajian Pasien Keracunan</span><span>Pengkajian Level Kecemasan Ranap Anak</span><span>Catatan Observasi IGD</span><span>Catatan Observasi Ranap</span><span>Catatan Observasi Ranap Kebidanan</span><span>Catatan Observasi Ranap Post Partum</span><span>Catatan Observasi Ruang Operasi</span><span>Catatan Observasi Bayi</span><span>Catatan Observasi CHBP</span><span>Catatan Observasi Induksi Persalinan</span><span>Catatan Observasi Restrain Nonfarmakologi</span><span>Catatan Observasi Ventilator</span><span>Catatan Observasi Hemodialisa</span><span>Keseimbangan Cairan</span><span>Catatan Cairan Hemodialisa</span><span>Follow Up DBD</span><span>Catatan Keperawatan Ralan</span><span>Catatan Keperawatan Ranap</span><span>Catatan Persalinan</span><span>Monitoring Reaksi Tranfusi</span><span>Pemantauan PEWS Pasien Anak</span><span>Pemantauan EWS Pasien Dewasa</span><span>Pemantauan MEOWS Pasien Obstetri</span><span>Pemantauan EWS Pasien Neonatus</span><span>Hemodialisa</span><span>Awal Fisioterapi</span><span>Pengkajian Terapi Wicara</span><span>Penatalaksanaan Terapi Okupasi</span><span>Pengkajian Psikologi</span><span>Pengkajian Psikologi Klinis</span><span>Pengkajian Pre Induksi</span><span>Check List Pre Operasi</span><span>Sign-In Sebelum Anestesi</span><span>Time-Out Sebelum Insisi</span><span>Sign-Out Sebelum Menutup Luka</span><span>Check List Post Operasi</span><span>Pengkajian Pre Operasi</span><span>Pengkajian Pre Anestesi</span><span>Check List Kesiapan Anestesi</span><span>Catatan Anestesi-Sedasi</span><span>Skor Aldrette Pasca Anestesi</span><span>Skor Steward Pasca Anestesi</span><span>Skor Bromage Pasca Anestesi</span><span>Catatan Pengkajian Paska Operasi</span><span>Check List Kriteria Masuk HCU</span><span>Check List Kriteria Keluar HCU</span><span>Check List Kriteria Masuk NICU</span><span>Check List Kriteria Keluar NICU</span><span>Check List Kriteria Masuk PICU</span><span>Check List Kriteria Keluar PICU</span><span>Check List Kriteria Masuk ICU</span><span>Check List Kriteria Keluar ICU</span><span>Check List Kriteria Masuk Isolasi</span><span>Check List Kriteria Keluar Isolasi</span><span>Perencanaan Pemulangan</span><span>Pengkajian Lanjutan Risiko Jatuh Dewasa</span><span>Pengkajian Lanjutan Risiko Jatuh Anak</span><span>Pengkajian Lanjutan Risiko Jatuh Lansia</span><span>Pengkajian Lanjutan Risiko Jatuh Geriatri</span><span>Pengkajian Lanjutan Risiko Jatuh Neonatus</span><span>Pengkajian Lanjutan Risiko Jatuh Psikiatri</span><span>Pengkajian Lanjutan Skrining Fungsional</span><span>Pengkajian Ulang Nyeri</span><span>Intervensi Nyeri Farmakologi</span><span>Intervensi Nyeri Non Farmakologi</span><span>Pengkajian Risiko Dekubitus</span><span>Layanan Kedokteran Fisik &amp; Rehabilitasi</span><span>Layanan Program KFR</span><span>Uji Fungsi/Prosedur KFR</span><span>Dokumentasi Tindakan ESWL</span><span>Master Kesimpulan &amp; Anjuran MCU</span><span>Pengkajian MCU</span><span>Pengkajian MCU RSPK</span><span>Konseling Farmasi</span><span>Pelayanan Informasi Obat</span><span>Konsultasi Medik</span><span>Konsultasi Perawat</span><span>Transfer Pasien Antar Ruang</span><span>Pengkajian Restrain</span><span>Catatan Cek GDS</span><span>Rekonsiliasi Obat</span><span>Check List Pemberian Fibrinolitik</span><span>Skrining Manajer Pelayanan Pasien</span><span>Evaluasi Awal Manajer Pelayanan Pasien</span><span>Catatan Implementasi Manajer Pelayanan Pasien</span><span>Edukasi Pasien &amp; Keluarga Rawat Jalan</span><span>Pelaksanaan Informasi &amp; Edukasi</span><span>Skrining Merokok Usia Sekolah &amp; Remaja</span><span>Skrining Kekerasan Pada Perempuan</span><span>Skrining Obesitas</span><span>Skrining Risiko Kanker Payudara</span><span>Skrining Risiko Kanker Paru</span><span>Skrining Risiko Kanker Serviks</span><span>Skrining Kesehatan Gigi Mulut Remaja</span><span>Skrining Kesehatan Gigi Mulut Balita</span><span>Skrining Kesehatan Gigi Mulut Lansia</span><span>Skrining Kesehatan Gigi Mulut Dewasa</span><span>Skrining Anemia</span><span>Skrining Hipertensi</span><span>Skrining Kesehatan Penglihatan</span><span>Skrining Indra Pendengaran</span><span>Skrining TBC</span><span>Skrining PUMA</span><span>Skrining Adiksi Nikotin</span><span>Skrining Thalassemia</span><span>Skrining Instrumen SDQ</span><span>Skrining Instrumen SRQ</span><span>Skrining Instrumen ACRS</span><span>Skrining Instrumen Mental Emosional Anak</span><span>Skrining Instrumen AMT</span><span>Skrining Instrumen ESAT</span><span>Skrining Pneumonia Severity Index</span><span>Skrining CURB-65</span><span>Skrining Kanker Kolorektal</span><span>Skrining Diabetes Melitus</span><span>Skrining Frailty Syndrome</span><span>Laporan Tindakan Medis</span></div>
+  <p>231 menu lain di kategori ini memakai pola yang sama (cari dengan Key Word dan periode, isi lalu Simpan/Ganti/Hapus, Cetak):</p>
+  <div class="menu-lain"><span>Suku/Bangsa Pasien</span><span>Bahasa Pasien</span><span>Golongan TNI</span><span>Satuan TNI</span><span>Jabatan TNI</span><span>Pangkat TNI</span><span>Golongan POLRI</span><span>Satuan POLRI</span><span>Jabatan POLRI</span><span>Pangkat POLRI</span><span>Cacat Fisik</span><span>Pasien</span><span>Catatan Pasien</span><span>Klasifikasi Pasien Ranap</span><span>SOAP Perawatan</span><span>SOAP Ralan Anggota POLRI</span><span>SOAP Ranap Anggota POLRI</span><span>SOAP Ralan Anggota TNI</span><span>SOAP Ranap Anggota TNI</span><span>Riwayat Kamar Pasien</span><span>Data Insiden Keselamatan</span><span>Riwayat Perawatan</span><span>Mutasi Berkas RM</span><span>Pengaduan/Chat</span><span>Master Triase Pemeriksaan</span><span>Master Triase Macam Kasus</span><span>Master Triase Skala 1</span><span>Master Triase Skala 2</span><span>Master Triase Skala 3</span><span>Master Triase Skala 4</span><span>Master Triase Skala 5</span><span>Data Triase IGD</span><span>Resume Pasien Ralan</span><span>Dokumen TTE MekariSign</span><span>Auto Sign &amp; eKYC MekariSign</span><span>Skrining Gizi Lanjut</span><span>Asuhan Gizi</span><span>Monitoring Asuhan Gizi</span><span>Catatan ADIME Gizi</span><span>Skrining Nutrisi Pasien Dewasa</span><span>Skrining Nutrisi Pasien Lansia</span><span>Skrining Nutrisi Pasien Anak</span><span>Skrining Gizi Kehamilan</span><span>Master Template Hasil Radiologi</span><span>Master Template Laporan Operasi</span><span>Master Template Pemeriksaan</span><span>Master Template Informasi &amp; Edukasi</span><span>Master Masalah Keperawatan</span><span>Master Rencana Keperawatan</span><span>Master Masalah Keperawatan Gigi</span><span>Master Rencana Keperawatan Gigi</span><span>Master Masalah Keperawatan Bayi/Anak</span><span>Master Rencana Keperawatan Bayi/Anak</span><span>Master Masalah Keperawatan Mata</span><span>Master Rencana Keperawatan Mata</span><span>Master Masalah Keperawatan IGD</span><span>Master Rencana Keperawatan IGD</span><span>Master Masalah Keperawatan Psikiatri</span><span>Master Rencana Keperawatan Psikiatri</span><span>Master Masalah Keperawatan Geriatri</span><span>Master Rencana Keperawatan Geriatri</span><span>Master Masalah Keperawatan Neonatus</span><span>Master Rencana Keperawatan Neonatus</span><span>Master Imunisasi</span><span>Awal Keperawatan Ralan Umum</span><span>Awal Keperawatan Ranap Umum</span><span>Awal Keperawatan IGD</span><span>Awal Keperawatan Gigi</span><span>Awal Keperawatan Ralan Kebidanan</span><span>Awal Keperawatan Ranap Kebidanan</span><span>Awal Keperawatan Ralan Bayi/Anak</span><span>Awal Keperawatan Ranap Bayi/Anak</span><span>Awal Keperawatan Ralan Psikiatri</span><span>Awal Keperawatan Ralan Geriatri</span><span>Awal Keperawatan Ranap Neonatus</span><span>Awal Medis IGD</span><span>Awal Medis IGD Psikiatri</span><span>Awal Medis Ralan Umum</span><span>Awal Medis Ranap Umum</span><span>Awal Medis Ranap Neonatus</span><span>Pengkajian Bayi Baru Lahir</span><span>Awal Medis Ralan Bayi/Anak</span><span>Awal Medis Ralan Kandungan</span><span>Awal Medis Ranap Kandungan</span><span>Awal Medis Ralan Jantung</span><span>Awal Medis Ranap Jantung</span><span>Awal Medis Ralan Urologi</span><span>Hasil USG Kandungan</span><span>Hasil USG Abdomen</span><span>Hasil USG Appendix</span><span>Hasil USG Hepar/Lien/Empedu</span><span>Hasil USG Mammae</span><span>Hasil USG Testis/Scrotum</span><span>Hasil USG Thyroid</span><span>Master Template Hasil USG</span><span>Hasil USG Urologi</span><span>Hasil USG Gynecologi</span><span>Hasil USG Neonatus</span><span>Awal Medis Ralan THT</span><span>Awal Medis Ralan Psikiatri</span><span>Awal Medis Ranap Psikiatri</span><span>Awal Medis Ralan Penyakit Dalam</span><span>Awal Medis Ralan Mata</span><span>Awal Medis Ralan Neurologi</span><span>Awal Medis Ralan Orthopedi</span><span>Awal Medis Ralan Bedah</span><span>Awal Medis Ralan Bedah Mulut</span><span>Awal Medis Ralan Geriatri</span><span>Awal Medis Ralan Kulit &amp; Kelamin</span><span>Awal Medis Ralan Paru</span><span>Awal Medis Ralan Fisik &amp; Rehabilitasi</span><span>Awal Medis Pasien Hemodialisa</span><span>Hasil Pemeriksaan EKG</span><span>Hasil Pemeriksaan Treadmill</span><span>Hasil Pemeriksaan Slit Lamp</span><span>Hasil Pemeriksaan OCT</span><span>Hasil Pemeriksaan ECHO</span><span>Hasil Pemeriksaan ECHO Pediatrik</span><span>Hasil Endoskopi Faring/Laring</span><span>Hasil Endoskopi Hidung</span><span>Hasil Endoskopi Telinga</span><span>Pengkajian Tambahan Pasien Geriatri</span><span>Pengkajian Tambahan Bunuh Diri</span><span>Pengkajian Tambahan Perilaku Kekerasan</span><span>Pengkajian Tambahan Melarikan Diri</span><span>Pengkajian Pasien Terminal</span><span>Pengkajian Korban Kekerasan</span><span>Pengkajian Pasien Penyakit Menular</span><span>Pengkajian Pasien Imunitas Rendah</span><span>Pengkajian Derajat Dehidrasi</span><span>Pengkajian Pasien Keracunan</span><span>Pengkajian Level Kecemasan Ranap Anak</span><span>Catatan Observasi IGD</span><span>Catatan Observasi Ranap Kebidanan</span><span>Catatan Observasi Ranap Post Partum</span><span>Catatan Observasi Ruang Operasi</span><span>Catatan Observasi Bayi</span><span>Catatan Observasi CHBP</span><span>Catatan Observasi Induksi Persalinan</span><span>Catatan Observasi Restrain Nonfarmakologi</span><span>Catatan Observasi Ventilator</span><span>Catatan Observasi Hemodialisa</span><span>Catatan Cairan Hemodialisa</span><span>Follow Up DBD</span><span>Catatan Keperawatan Ralan</span><span>Catatan Keperawatan Ranap</span><span>Catatan Persalinan</span><span>Monitoring Reaksi Tranfusi</span><span>Pemantauan MEOWS Pasien Obstetri</span><span>Pemantauan EWS Pasien Neonatus</span><span>Hemodialisa</span><span>Awal Fisioterapi</span><span>Pengkajian Terapi Wicara</span><span>Penatalaksanaan Terapi Okupasi</span><span>Pengkajian Psikologi</span><span>Pengkajian Psikologi Klinis</span><span>Pengkajian Pre Induksi</span><span>Check List Post Operasi</span><span>Pengkajian Pre Operasi</span><span>Pengkajian Pre Anestesi</span><span>Check List Kesiapan Anestesi</span><span>Catatan Anestesi-Sedasi</span><span>Skor Aldrette Pasca Anestesi</span><span>Skor Steward Pasca Anestesi</span><span>Skor Bromage Pasca Anestesi</span><span>Catatan Pengkajian Paska Operasi</span><span>Check List Kriteria Masuk HCU</span><span>Check List Kriteria Keluar HCU</span><span>Check List Kriteria Masuk NICU</span><span>Check List Kriteria Keluar NICU</span><span>Check List Kriteria Masuk PICU</span><span>Check List Kriteria Keluar PICU</span><span>Check List Kriteria Masuk ICU</span><span>Check List Kriteria Keluar ICU</span><span>Check List Kriteria Masuk Isolasi</span><span>Check List Kriteria Keluar Isolasi</span><span>Pengkajian Lanjutan Risiko Jatuh Anak</span><span>Pengkajian Lanjutan Risiko Jatuh Lansia</span><span>Pengkajian Lanjutan Risiko Jatuh Geriatri</span><span>Pengkajian Lanjutan Risiko Jatuh Neonatus</span><span>Pengkajian Lanjutan Risiko Jatuh Psikiatri</span><span>Pengkajian Lanjutan Skrining Fungsional</span><span>Intervensi Nyeri Farmakologi</span><span>Intervensi Nyeri Non Farmakologi</span><span>Layanan Kedokteran Fisik &amp; Rehabilitasi</span><span>Layanan Program KFR</span><span>Uji Fungsi/Prosedur KFR</span><span>Dokumentasi Tindakan ESWL</span><span>Master Kesimpulan &amp; Anjuran MCU</span><span>Pengkajian MCU</span><span>Pengkajian MCU RSPK</span><span>Konseling Farmasi</span><span>Pelayanan Informasi Obat</span><span>Konsultasi Perawat</span><span>Pengkajian Restrain</span><span>Catatan Cek GDS</span><span>Check List Pemberian Fibrinolitik</span><span>Skrining Manajer Pelayanan Pasien</span><span>Evaluasi Awal Manajer Pelayanan Pasien</span><span>Catatan Implementasi Manajer Pelayanan Pasien</span><span>Edukasi Pasien &amp; Keluarga Rawat Jalan</span><span>Skrining Merokok Usia Sekolah &amp; Remaja</span><span>Skrining Kekerasan Pada Perempuan</span><span>Skrining Obesitas</span><span>Skrining Risiko Kanker Payudara</span><span>Skrining Risiko Kanker Paru</span><span>Skrining Risiko Kanker Serviks</span><span>Skrining Kesehatan Gigi Mulut Remaja</span><span>Skrining Kesehatan Gigi Mulut Balita</span><span>Skrining Kesehatan Gigi Mulut Lansia</span><span>Skrining Kesehatan Gigi Mulut Dewasa</span><span>Skrining Anemia</span><span>Skrining Hipertensi</span><span>Skrining Kesehatan Penglihatan</span><span>Skrining Indra Pendengaran</span><span>Skrining TBC</span><span>Skrining PUMA</span><span>Skrining Adiksi Nikotin</span><span>Skrining Thalassemia</span><span>Skrining Instrumen SDQ</span><span>Skrining Instrumen SRQ</span><span>Skrining Instrumen ACRS</span><span>Skrining Instrumen Mental Emosional Anak</span><span>Skrining Instrumen AMT</span><span>Skrining Instrumen ESAT</span><span>Skrining Pneumonia Severity Index</span><span>Skrining CURB-65</span><span>Skrining Kanker Kolorektal</span><span>Skrining Diabetes Melitus</span><span>Skrining Frailty Syndrome</span><span>Laporan Tindakan Medis</span></div>
 </section>
 
 <!-- ================= MODUL N ================= -->
@@ -2247,14 +2857,21 @@ body{margin:0}
     <tbody></tbody></table></div>
 </section>
 </main>
+<aside class="rail" id="rail" aria-label="Di halaman ini">
+  <div class="rail-kepala"><b>Di halaman ini</b><button type="button" id="railTutup" aria-label="Tutup">×</button></div>
+  <ul id="railList"></ul>
+  <a class="rail-atas" href="#" id="railAtas">↑ Kembali ke atas halaman</a>
+</aside>
 </div>
 
-<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt=""></div>
+<div class="lightbox" id="lightbox" hidden><img id="lightboxImg" alt=""><p id="lightboxKet"></p></div>
+<button class="tombol-toc" id="tombolToc" type="button" aria-label="Lompat ke bagian" title="Lompat ke bagian" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></button>
+<button class="keatas" id="keAtas" type="button" aria-label="Kembali ke atas" title="Kembali ke atas" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <script>
 (function(){
   var katalog=[
-    ["A","Registrasi, Tagihan Ranap & Ralan, Pelayanan & Billing Pasien",45,"ada",[["#rawat-jalan","A"],["#ugd","B"],["#mcu","C"],["#order-penunjang","D"],["#rawat-inap","E"],["#operasi","F"]]],
+    ["A","Registrasi, Tagihan Ranap & Ralan, Pelayanan & Billing Pasien",45,"ada",[["#rawat-jalan","A"],["#ugd","B"],["#mcu","C"],["#order-penunjang","D"],["#rawat-inap","E"],["#operasi","F"],["#modul-a","Menu lain [A]"]]],
     ["B","Tindakan & Obat via Barcode, Lab Kesehatan Lingkungan",13,"ada",[["#modul-b","Panduan [B]"]]],
     ["C","Presensi, Manajemen & Penggajian Pegawai",59,"ada",[["#modul-c","Panduan [C]"]]],
     ["D","Inventory Obat, BHP Medis & Alat Kesehatan",74,"ada",[["#modul-d","Panduan [D]"],["#order-penunjang","D4 validasi obat"]]],
@@ -2276,18 +2893,150 @@ body{margin:0}
     ["T","Filantropi, CSR, Zakat, Infaq & Shodaqoh",16,"ada",[["#modul-t","Panduan [T]"]]],
     ["U","Pengaturan Program Aplikasi",26,"ada",[["#modul-u","Panduan [U]"]]]
   ];
+  function $(s,r){ return (r||document).querySelector(s); }
+  function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function angka(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
+  function simpan(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function ambil(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+  // ---------- Tema ----------
+  var temaTersimpan=ambil("panduan-tema");
+  if(temaTersimpan==="dark"||temaTersimpan==="light") document.documentElement.setAttribute("data-theme",temaTersimpan);
+  $("#tombolTema").addEventListener("click",function(){
+    var gelap=document.documentElement.getAttribute("data-theme")==="dark"||
+      (!document.documentElement.getAttribute("data-theme")&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+    var baru=gelap?"light":"dark";
+    document.documentElement.setAttribute("data-theme",baru); simpan("panduan-tema",baru);
+  });
+  $("#tombolCetak").addEventListener("click",function(){ window.print(); });
+
+  // ---------- Katalog ----------
   var label={ada:"Tersedia",sebagian:"Sebagian",belum:"Belum tersedia"};
-  var tb=document.querySelector("#tabelKatalog tbody");
+  var tb=$("#tabelKatalog tbody");
   katalog.forEach(function(k){
     var tr=document.createElement("tr");
-    var link=k[4].length?k[4].map(function(l){return '<a href="'+l[0]+'">'+l[1]+'</a>';}).join(", "):'<span class="kosong">–</span>';
-    tr.innerHTML='<td><b>['+k[0]+']</b> '+k[1]+'</td><td style="font-variant-numeric:tabular-nums">'+k[2]+'</td><td><span class="status '+k[3]+'">'+label[k[3]]+'</span></td><td>'+link+'</td>';
+    var link=k[4].length?k[4].map(function(l){return '<a href="'+l[0]+'">'+esc(l[1])+'</a>';}).join(", "):'<span class="kosong">–</span>';
+    tr.innerHTML='<td><b>['+k[0]+']</b> '+esc(k[1])+'</td><td style="font-variant-numeric:tabular-nums">'+k[2]+'</td><td><span class="status '+k[3]+'">'+label[k[3]]+'</span></td><td>'+link+'</td>';
     tb.appendChild(tr);
   });
 
-  var views=Array.prototype.map.call(document.querySelectorAll(".view"),function(v){return v.id.slice(2);});
+  // ---------- Urutan halaman & grup dari bilah samping ----------
+  var urutan=[], info={};
+  var grupSaatIni="";
+  $$("nav.side > *").forEach(function(el){
+    if(el.tagName==="H3"){ grupSaatIni=el.textContent; return; }
+    if(el.tagName!=="A") return;
+    var id=el.getAttribute("href").slice(1);
+    var judul=(el.childNodes[0]&&el.childNodes[0].nodeType===3)?el.childNodes[0].textContent.trim():el.textContent.trim();
+    urutan.push(id); info[id]={judul:judul,grup:grupSaatIni};
+  });
+
+  // ---------- Perkaya tiap halaman ----------
+  var totalGambar=0, totalBagian=0;
+  $$(".view").forEach(function(v){
+    var id=v.id.slice(2);
+    if(/^modul-/.test(id)) v.classList.add("modul");
+    totalGambar+=$$("figure",v).length;
+
+    // Nomor langkah: <ol start="n"> melanjutkan nomor sebelumnya
+    $$("ol[start]",v).forEach(function(ol){ ol.style.counterReset="lk "+(parseInt(ol.getAttribute("start"),10)-1); });
+
+    // Lencana kode pada judul bagian: "A1. Admisi" -> [A1] Admisi
+    var h2s=$$("h2",v);
+    h2s.forEach(function(h){
+      var t=h.firstChild;
+      if(t&&t.nodeType===3){
+        var m=t.textContent.match(/^\s*([A-Z]{1,2}\d{1,2}[a-z]?)\.\s+/);
+        if(m){
+          var no=document.createElement("span"); no.className="no"; no.textContent=m[1];
+          t.textContent=t.textContent.slice(m[0].length);
+          var isi=document.createElement("span");
+          while(h.firstChild) isi.appendChild(h.firstChild);
+          h.appendChild(no); h.appendChild(isi);
+        }
+      }
+    });
+
+    // Petunjuk perbesar pada keterangan gambar
+    $$("figcaption",v).forEach(function(fc){
+      var z=document.createElement("span"); z.className="zoom"; z.textContent="Klik gambar untuk memperbesar";
+      var teks=document.createElement("span");
+      while(fc.firstChild) teks.appendChild(fc.firstChild);
+      fc.appendChild(teks); fc.appendChild(z);
+    });
+
+    if(id==="beranda") return;
+
+    // Remah roti
+    var h1=$("h1",v);
+    if(h1&&info[id]){
+      var r=document.createElement("div"); r.className="remah";
+      r.innerHTML='<a href="#beranda">Beranda</a><span aria-hidden="true">›</span><span>'+esc(info[id].grup)+'</span>';
+      v.insertBefore(r,h1);
+    }
+
+    // Daftar isi halaman
+    var bagian=h2s.filter(function(h){ return h.id; });
+    totalBagian+=bagian.length;
+    if(bagian.length>=2){
+      var toc=document.createElement("nav"); toc.className="toc"; toc.setAttribute("aria-label","Di halaman ini");
+      var nGambar=$$("figure",v).length;
+      var li=bagian.map(function(h){
+        var no=$(".no",h);
+        var judul=no?no.nextSibling.textContent:h.textContent;
+        return '<li><a href="#'+h.id+'">'+(no?'<code>'+esc(no.textContent)+'</code>':'<code>•</code>')+'<span>'+esc(judul)+'</span></a></li>';
+      }).join("");
+      toc.innerHTML='<div class="toc-kepala"><b>Di halaman ini</b><span>'+bagian.length+' bagian'+(nGambar?' · '+nGambar+' gambar':'')+'</span></div><ul>'+li+'</ul>';
+      v.insertBefore(toc,bagian[0]);
+    }
+
+    // Navigasi sebelumnya / berikutnya (mengikuti urutan bilah samping)
+    $$(".nextprev",v).forEach(function(n){ n.remove(); });
+    var i=urutan.indexOf(id);
+    if(i>=0){
+      var np=document.createElement("div"); np.className="nextprev";
+      var h="";
+      if(i>0){ var a=urutan[i-1]; h+='<a href="#'+a+'"><small>← Sebelumnya</small><b>'+esc(info[a].judul)+'</b></a>'; }
+      if(i<urutan.length-1){ var b=urutan[i+1]; h+='<a class="lanjut" href="#'+b+'"><small>Berikutnya →</small><b>'+esc(info[b].judul)+'</b></a>'; }
+      np.innerHTML=h; v.appendChild(np);
+    }
+  });
+
+  // ---------- Beranda: angka ringkasan & kartu per grup ----------
+  var kartu=$$("#kartu .card");
+  var nAlur=0, nModul=0;
+  kartu.forEach(function(c){
+    var kode=($(".kode",c)||{}).textContent||"";
+    var g="dukung", huruf="?";
+    var m=kode.match(/^(ALUR|MODUL)\s+([A-Z])/);
+    if(m){ g=(m[1]==="ALUR")?"alur":"modul"; huruf=m[2]; if(g==="alur") nAlur++; else nModul++; }
+    else if(/KATALOG/.test(kode)) huruf="≡";
+    else if(/Rekam/i.test(c.textContent)) huruf="RM";
+    else huruf="!";
+    c.classList.add("g-"+g); c.dataset.grup=g;
+    var kp=document.createElement("span"); kp.className="kepala";
+    var hb=document.createElement("span"); hb.className="huruf"; hb.textContent=huruf;
+    var kd=$(".kode",c); kp.appendChild(hb); if(kd) kp.appendChild(kd);
+    c.insertBefore(kp,c.firstChild);
+  });
+  var wadah=$("#kartu");
+  var grup=[["alur","Alur pelayanan pasien","dari daftar sampai pulang"],["modul","Modul lainnya","per kategori menu [B]–[U]"],["dukung","Pendukung","rekam medis, masalah umum, katalog"]];
+  grup.forEach(function(g){
+    var sec=document.createElement("div"); sec.className="grup"; sec.dataset.grup=g[0];
+    sec.innerHTML='<h2 class="grup-judul">'+esc(g[1])+' <span>'+esc(g[2])+'</span></h2>';
+    var grid=document.createElement("div"); grid.className="cards";
+    kartu.filter(function(c){ return c.dataset.grup===g[0]; }).forEach(function(c){ grid.appendChild(c); });
+    sec.appendChild(grid); wadah.appendChild(sec);
+  });
+  function isiStat(id,n){ var el=document.getElementById(id); if(el) el.textContent=angka(n); }
+  isiStat("statAlur",nAlur); isiStat("statModul",nModul); isiStat("statGambar",totalGambar);
+
+  // ---------- Tampilkan halaman sesuai hash ----------
+  var views=$$(".view").map(function(v){ return v.id.slice(2); });
+  var side=$("#side");
   function tampil(){
-    var h=(location.hash||"#beranda").slice(1);
+    var h=decodeURIComponent((location.hash||"#beranda").slice(1));
     var target=h, sub=null;
     if(views.indexOf(h)<0){
       var el=document.getElementById(h);
@@ -2295,37 +3044,179 @@ body{margin:0}
       if(v){ target=v.id.slice(2); sub=el; } else target="beranda";
     }
     views.forEach(function(v){ document.getElementById("v-"+v).hidden=(v!==target); });
-    document.querySelectorAll("nav.side a").forEach(function(a){ a.classList.toggle("aktif",a.getAttribute("href")==="#"+target); });
+    $$("nav.side a").forEach(function(a){
+      var aktif=a.getAttribute("href")==="#"+target;
+      a.classList.toggle("aktif",aktif);
+      if(aktif&&a.scrollIntoView&&window.innerWidth>860){
+        var r=a.getBoundingClientRect(), s=side.getBoundingClientRect();
+        if(r.top<s.top||r.bottom>s.bottom) a.scrollIntoView({block:"nearest"});
+      }
+    });
+    side.classList.remove("buka");
+    var judul=document.getElementById("v-"+target).dataset.judul;
+    document.title=(target==="beranda"?"":judul+" · ")+"Panduan SIMRS Khanza";
     if(sub) sub.scrollIntoView(); else window.scrollTo(0,0);
+    isiRail(target);
+    progres();
   }
-  window.addEventListener("hashchange",tampil); tampil();
+  window.addEventListener("hashchange",tampil);
+
+  // ---------- Pencarian: kartu + isi seluruh panduan ----------
+  var indeks=[];
+  $$(".view").forEach(function(v){
+    var id=v.id.slice(2);
+    if(id==="beranda"||id==="katalog") return;
+    var asal=(info[id]&&info[id].judul)||v.dataset.judul;
+    var h2s=$$("h2[id]",v);
+    var awal=$("h1",v);
+    function kumpul(dari,sampai){
+      var t="", n=dari.nextElementSibling;
+      while(n&&n!==sampai){ if(!n.classList.contains("toc")&&!n.classList.contains("nextprev")) t+=" "+n.textContent; n=n.nextElementSibling; }
+      return t.replace(/\s+/g," ").trim();
+    }
+    if(awal) indeks.push({href:"#"+id,judul:awal.textContent,asal:asal,teks:kumpul(awal,h2s[0]||null)});
+    h2s.forEach(function(h,i){ indeks.push({href:"#"+h.id,judul:h.textContent.replace(/^([A-Z]{1,2}\d{1,2}[a-z]?)/,"$1. "),asal:asal,teks:kumpul(h,h2s[i+1]||null)}); });
+  });
+  function sorot(s,kata){
+    var e=esc(s);
+    kata.forEach(function(k){ if(k) e=e.replace(new RegExp("("+k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"),"<mark>$1</mark>"); });
+    return e;
+  }
+  function cuplik(teks,kata){
+    var low=teks.toLowerCase(), pos=low.indexOf(kata[0]);
+    if(pos<0) return teks.slice(0,140)+(teks.length>140?"…":"");
+    var a=Math.max(0,pos-60), b=Math.min(teks.length,pos+100);
+    return (a>0?"…":"")+teks.slice(a,b)+(b<teks.length?"…":"");
+  }
+  var hasil=$("#hasilCari");
+  function cariIsi(q){
+    var kata=q.toLowerCase().split(/\s+/).filter(Boolean);
+    if(!q||q.length<2){ hasil.hidden=true; hasil.innerHTML=""; return; }
+    var skor=indeks.map(function(d){
+      var j=d.judul.toLowerCase(), t=d.teks.toLowerCase(), s=0;
+      for(var i=0;i<kata.length;i++){
+        var k=kata[i], dj=j.indexOf(k)>=0, dt=t.indexOf(k)>=0;
+        if(!dj&&!dt) return null;
+        s+=(dj?10:0)+(dt?1:0);
+      }
+      return {d:d,s:s};
+    }).filter(Boolean).sort(function(a,b){ return b.s-a.s; });
+    if(!skor.length){ hasil.hidden=true; hasil.innerHTML=""; return; }
+    var max=12;
+    hasil.innerHTML='<div class="hasil-kepala">'+skor.length+' bagian panduan memuat "'+esc(q)+'"'+(skor.length>max?' · menampilkan '+max+' teratas':'')+'</div>'+
+      skor.slice(0,max).map(function(x){
+        return '<a href="'+x.d.href+'"><span class="h-asal">'+esc(x.d.asal)+'</span><br><span class="h-judul">'+sorot(x.d.judul,kata)+'</span><span class="h-cuplik">'+sorot(cuplik(x.d.teks,kata),kata)+'</span></a>';
+      }).join("");
+    hasil.hidden=false;
+  }
 
   var peranAktif="";
   function saring(){
-    var q=document.getElementById("cari").value.trim().toLowerCase(), ada=0;
-    document.querySelectorAll("#kartu .card").forEach(function(c){
+    var q=$("#cari").value.trim().toLowerCase(), ada=0;
+    kartu.forEach(function(c){
       var cocokTeks=!q||(c.dataset.cari+" "+c.textContent).toLowerCase().indexOf(q)>=0;
       var cocokPeran=!peranAktif||c.dataset.peran.split(" ").indexOf(peranAktif)>=0;
       c.hidden=!(cocokTeks&&cocokPeran); if(!c.hidden) ada++;
     });
-    document.getElementById("kosong").hidden=ada>0;
+    $$("#kartu .grup").forEach(function(g){ g.hidden=!$$(".card",g).some(function(c){ return !c.hidden; }); });
+    cariIsi(q);
+    $("#kosong").hidden=ada>0||!hasil.hidden;
   }
-  document.getElementById("cari").addEventListener("input",function(){ if(location.hash&&location.hash!=="#beranda") location.hash="beranda"; saring(); });
-  document.querySelectorAll("#filterPeran .chip").forEach(function(b){
+  $("#cari").addEventListener("input",function(){ if(location.hash&&location.hash!=="#beranda") location.hash="beranda"; saring(); });
+  $("#cari").addEventListener("keydown",function(e){
+    if(e.key==="Enter"){ var a=$("a",hasil); if(!hasil.hidden&&a){ location.hash=a.getAttribute("href"); this.blur(); } }
+    if(e.key==="Escape"){ this.value=""; saring(); this.blur(); }
+  });
+  $$("#filterPeran .chip").forEach(function(b){
     b.addEventListener("click",function(){
       peranAktif=b.dataset.peran;
-      document.querySelectorAll("#filterPeran .chip").forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); });
+      $$("#filterPeran .chip").forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); });
       saring();
     });
   });
 
-  var lb=document.getElementById("lightbox"), lbi=document.getElementById("lightboxImg");
+  // ---------- Daftar isi (layar sempit) ----------
+  $("#tombolMenu").addEventListener("click",function(e){ e.stopPropagation(); side.classList.toggle("buka"); });
+  document.addEventListener("click",function(e){ if(side.classList.contains("buka")&&!e.target.closest("#side")&&!e.target.closest("#tombolMenu")) side.classList.remove("buka"); });
+
+  // ---------- Lightbox ----------
+  var lb=$("#lightbox"), lbi=$("#lightboxImg"), lbk=$("#lightboxKet");
   document.addEventListener("click",function(e){
     var img=e.target.closest("figure img");
-    if(img){ lbi.src=img.src; lbi.alt=img.alt; lb.hidden=false; return; }
+    if(img){
+      lbi.src=img.src; lbi.alt=img.alt;
+      var fc=img.closest("figure").querySelector("figcaption span");
+      lbk.textContent=fc?fc.textContent:img.alt;
+      lb.hidden=false; return;
+    }
     if(e.target.closest("#lightbox")) lb.hidden=true;
   });
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape") lb.hidden=true; });
+
+  // ---------- Pintasan keyboard ----------
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){ lb.hidden=true; side.classList.remove("buka"); }
+    var di=document.activeElement&&/INPUT|TEXTAREA/.test(document.activeElement.tagName);
+    if(!di&&(e.key==="/"||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"))){ e.preventDefault(); $("#cari").focus(); $("#cari").select(); }
+  });
+
+  // ---------- Bilah progres baca & tombol ke atas ----------
+  var bar=$("#progres"), atas=$("#keAtas");
+  function progres(){
+    var tinggi=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(tinggi>0?Math.min(100,window.scrollY/tinggi*100):0)+"%";
+    atas.hidden=window.scrollY<600;
+  }
+  window.addEventListener("scroll",progres,{passive:true});
+  window.addEventListener("resize",progres);
+  atas.addEventListener("click",function(){ window.scrollTo(0,0); });
+
+  // ---------- Daftar isi melayang + penanda bagian yang sedang dibaca ----------
+  var rail=$("#rail"), railList=$("#railList"), tombolToc=$("#tombolToc"), wrap=$(".wrap");
+  var railJudul=[], railLink=[];
+  function isiRail(target){
+    var v=document.getElementById("v-"+target);
+    railJudul=target==="beranda"?[]:$$("h2[id]",v);
+    var ada=railJudul.length>=2;
+    wrap.classList.toggle("ada-rail",ada);
+    wrap.classList.toggle("modul-aktif",/^modul-/.test(target));
+    tombolToc.hidden=!ada;
+    rail.classList.remove("buka");
+    railList.innerHTML=railJudul.map(function(h){
+      var no=$(".no",h);
+      var judul=no?no.nextSibling.textContent:h.textContent;
+      return '<li><a href="#'+h.id+'"><code>'+(no?esc(no.textContent):"•")+'</code><span>'+esc(judul)+'</span></a></li>';
+    }).join("");
+    railLink=$$("a",railList);
+    spy();
+  }
+  function spy(){
+    if(!railJudul.length) return;
+    var aktif=-1;
+    for(var i=0;i<railJudul.length;i++){ if(railJudul[i].getBoundingClientRect().top<=110) aktif=i; else break; }
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4) aktif=railJudul.length-1;
+    railLink.forEach(function(a,i){ a.classList.toggle("aktif",i===aktif); });
+    var a=railLink[aktif];
+    if(a&&window.innerWidth>=1400){
+      var r=a.getBoundingClientRect(), s=rail.getBoundingClientRect();
+      if(r.top<s.top||r.bottom>s.bottom) rail.scrollTop+=r.top-s.top-s.height/2;
+    }
+  }
+  window.addEventListener("scroll",spy,{passive:true});
+  window.addEventListener("resize",spy);
+  tombolToc.addEventListener("click",function(e){ e.stopPropagation(); rail.classList.toggle("buka"); if(rail.classList.contains("buka")) spy(); });
+  $("#railTutup").addEventListener("click",function(){ rail.classList.remove("buka"); });
+  $("#railAtas").addEventListener("click",function(e){ e.preventDefault(); rail.classList.remove("buka"); window.scrollTo(0,0); });
+  railList.addEventListener("click",function(e){
+    var a=e.target.closest("a"); if(!a) return;
+    e.preventDefault();
+    var h=document.getElementById(a.getAttribute("href").slice(1));
+    rail.classList.remove("buka");
+    if(h){ h.scrollIntoView(); history.replaceState(null,"",a.getAttribute("href")); }
+  });
+  document.addEventListener("click",function(e){ if(rail.classList.contains("buka")&&!e.target.closest("#rail")&&!e.target.closest("#tombolToc")) rail.classList.remove("buka"); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") rail.classList.remove("buka"); });
+
+  tampil();
 })();
 </script>
 
