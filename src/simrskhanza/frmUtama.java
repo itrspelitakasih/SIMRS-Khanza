@@ -16193,10 +16193,21 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         MnPanduan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnPanduan.setName("MnPanduan");
         MnPanduan.setPreferredSize(new java.awt.Dimension(86, 26));
+        // mousePressed, bukan mouseClicked: klik pada JMenu sering tidak memicu mouseClicked (mouse bergeser sedikit)
         MnPanduan.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bukaPanduan();
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                if(!javax.swing.SwingUtilities.isLeftMouseButton(evt)){
+                    return;
+                }
+                // menu tanpa isi: lepas sorotan menu lalu buka panduan
+                javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        javax.swing.MenuSelectionManager.defaultManager().clearSelectedPath();
+                        bukaPanduan();
+                    }
+                });
             }
         });
         MenuBar.add(MnPanduan,MenuBar.getComponentIndex(jMenuUpdate));
@@ -16220,9 +16231,14 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         try {
             if(java.awt.Desktop.isDesktopSupported()&&java.awt.Desktop.getDesktop().isSupported(java.awt.Desktop.Action.BROWSE)){
                 java.awt.Desktop.getDesktop().browse(panduan.toURI());
-            }else{
-                Runtime.getRuntime().exec(new String[]{"rundll32","url.dll,FileProtocolHandler",panduan.getAbsolutePath()});
+                return;
             }
+        } catch (Exception e) {
+            System.out.println("Notif Panduan : "+e);
+        }
+        // cadangan bila Desktop.browse tidak didukung/gagal
+        try {
+            Runtime.getRuntime().exec(new String[]{"rundll32","url.dll,FileProtocolHandler",panduan.getAbsolutePath()});
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Panduan gagal dibuka: "+e.getMessage());
         }
@@ -26358,7 +26374,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.07"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.08"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
