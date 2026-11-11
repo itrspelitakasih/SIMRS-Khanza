@@ -103,7 +103,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
     private JFXPanel PanelRMESatuSehat;
     private WebEngine webRMESatuSehat;
     private volatile String NoRMSatuSehat="";
-    private volatile String urlSatuSehat="";   // RSPK: halaman RME Satu Sehat terakhir, untuk tombol Buka di Browser
     private String bodySatuSehat="";
     private final KriptoSatuSehat kriptoSatuSehat=new KriptoSatuSehat();
 
@@ -38895,49 +38894,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         }
     }
 
-    // RSPK: WebView bawaan JDK 15 (WebKit 609) tidak mendukung JavaScript modern yang dipakai halaman
-    // persetujuan / kode akses SATUSEHAT, sehingga bisa berhenti di "Memuat halaman persetujuan".
-    // Bilah ini membuka halaman yang sama di browser default (Chrome/Edge).
-    private javax.swing.JComponent buatBilahBrowserSatuSehat() {
-        widget.panelisi bilah = new widget.panelisi();
-        bilah.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 3));
-        widget.Label ket = new widget.Label();
-        ket.setText("Halaman persetujuan/kode akses tidak muncul? Buka di browser :");
-        bilah.add(ket);
-        widget.Button tombol = new widget.Button();
-        tombol.setText("Buka di Browser");
-        tombol.setToolTipText("Buka halaman RME SATUSEHAT di browser default (Chrome/Edge)");
-        tombol.setPreferredSize(new java.awt.Dimension(140, 26));
-        tombol.addActionListener(e -> bukaBrowserSatuSehat());
-        bilah.add(tombol);
-        return bilah;
-    }
-
-    private void bukaBrowserSatuSehat() {
-        String url = urlSatuSehat;
-        if (url == null || url.trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Belum ada halaman RME SATUSEHAT yang dimuat. Pilih pasien lalu buka tab RME Satu Sehat.");
-            return;
-        }
-        try {
-            if (java.awt.Desktop.isDesktopSupported() && java.awt.Desktop.getDesktop().isSupported(java.awt.Desktop.Action.BROWSE)) {
-                java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
-            } else {
-                Runtime.getRuntime().exec(new String[]{"rundll32", "url.dll,FileProtocolHandler", url});
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi Buka Browser SATUSEHAT : " + e);
-            JOptionPane.showMessageDialog(null, "Gagal membuka browser : " + e.getMessage());
-        }
-    }
-
     private void loadURLSatuSehat(String url) {
-        urlSatuSehat = url;
         SwingUtilities.invokeLater(() -> {
             if (PanelRMESatuSehat == null) {
                 PanelRMESatuSehat = new JFXPanel();
                 PanelWebSatuSehat.add(PanelRMESatuSehat, java.awt.BorderLayout.CENTER);
-                PanelWebSatuSehat.add(buatBilahBrowserSatuSehat(), java.awt.BorderLayout.NORTH);
                 PanelWebSatuSehat.revalidate();
             }
             Platform.setImplicitExit(false);
