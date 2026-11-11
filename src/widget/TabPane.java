@@ -19,7 +19,7 @@ import javax.swing.text.View;
 public class TabPane extends JTabbedPane {
 
     private static final long serialVersionUID = 4L;
-    static final Color AKSEN = new Color(0x16A05D);
+    static final Color AKSEN = new Color(0x1E78D2);
     private Color warnaAksen;
 
     public TabPane() {
@@ -41,7 +41,7 @@ public class TabPane extends JTabbedPane {
     public static class MacTabUI extends BasicTabbedPaneUI {
 
         private static final Color GARIS_DASAR = new Color(255, 255, 255);   
-        private static final Color GARIS_PILIH = new Color(22, 160, 93);     
+        private static final Color GARIS_PILIH = new Color(30, 120, 210);     
         private static final Color TEKS_PILIH  = new Color(50, 50, 50);      
         private static final Color TEKS_HOVER  = new Color(22, 120, 70);     
         private static final Color TEKS        = new Color(112, 128, 118);   

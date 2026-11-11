@@ -24,8 +24,8 @@ public class Menu extends JMenu {
 
     private static final long serialVersionUID = 1L;
 
-    static final Color AKSEN       = new Color(22, 160, 93);     
-    static final Color PILIH_PASIF = new Color(220, 234, 226);
+    static final Color AKSEN       = new Color(30, 120, 210);     
+    static final Color PILIH_PASIF = new Color(214, 229, 246);
     static final Color TEKS        = new Color(50, 50, 50);
     static final Color SHORTCUT    = new Color(120, 120, 120);
     static final Color LATAR       = new Color(255, 255, 254);  

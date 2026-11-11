@@ -33,7 +33,7 @@ public final class Tanggal extends JDateTimePicker {
     private static final Color AKSEN     = new Color(0x1E78D2);
     private static final Color BORDER    = new Color(0x8DB4DB);   
     private static final Color NONAKTIF  = new Color(0xFAFCFB);
-    private static final Color PEMISAH   = new Color(0xD3DDD7);
+    private static final Color PEMISAH   = new Color(0xD3DAE2);
     private static final Color TINT      = new Color(0x1E, 0x78, 0xD2, 30);   
     private static final Color BENING    = new Color(0, 0, 0, 0);            
     private static final Color LATAR_PANAH = Color.WHITE;

@@ -46,7 +46,7 @@ public final class ComboBox extends JComboBox {
     static final Color AKSEN     = new Color(0x1E78D2);
     static final Color BORDER    = new Color(0x8DB4DB);   
     static final Color HOVER     = new Color(0x4A84BF);
-    static final Color PEMISAH   = new Color(0xD3DDD7);
+    static final Color PEMISAH   = new Color(0xD3DAE2);
     static final Color TINT      = new Color(0x1E, 0x78, 0xD2, 30);   
     static final Color TEKS      = new Color(50, 50, 50);
     static final Color TEKS_OFF  = new Color(0x55625B);
@@ -121,7 +121,7 @@ public final class ComboBox extends JComboBox {
                     g2.setStroke(new BasicStroke(2f));
                     g2.draw(new RoundRectangle2D.Float(x + 1, y + 1, w - 2, h - 2, arc + 1, arc + 1));
                 }
-                Color garis = !isEnabled() ? new Color(0xC9D3CD)
+                Color garis = !isEnabled() ? new Color(0xC9D1DA)
                         : f ? AKSEN
                         : hover ? HOVER
                         : BORDER;

@@ -32,7 +32,7 @@ public class PopupMenu extends JPopupMenu {
     static final int   TEMBUS = 228;
     static final Color LATAR  = new Color(255, 255, 254, TEMBUS);
     static final Color LATAR_PEJAL = new Color(255, 255, 254);
-    static final Color GARIS  = new Color(22, 160, 93, 40);
+    static final Color GARIS  = new Color(30, 120, 210, 40);
     static final int   ARC    = 18;
     private static final String KUNCI = "widget.PopupMenu.gaya";
     private static final String KOTAK = "widget.PopupMenu.kotak";

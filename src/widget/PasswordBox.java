@@ -27,21 +27,21 @@ public class PasswordBox extends JPasswordField {
 
     private static final long serialVersionUID = 3L;
 
-    static final Color AKSEN_GELAP  = new Color(0x3DDC84);                  
+    static final Color AKSEN_GELAP  = new Color(0x5AA9F0);                  
     static final Color BORDER_GELAP = new Color(255, 255, 255, 150);
     static final Color HOVER_GELAP  = new Color(255, 255, 255, 200);
     static final Color OFF_GELAP    = new Color(255, 255, 255, 60);
     static final Color TEKS_GELAP   = Color.WHITE;
 
-    static final Color AKSEN        = new Color(22, 160, 93);               
-    static final Color BORDER       = new Color(0x96BEA5);                  
-    static final Color HOVER        = new Color(0x5A9170);
-    static final Color OFF          = new Color(0xC9D3CD);
+    static final Color AKSEN        = new Color(30, 120, 210);               
+    static final Color BORDER       = new Color(0x8DB4DB);                  
+    static final Color HOVER        = new Color(0x4A84BF);
+    static final Color OFF          = new Color(0xC9D1DA);
     static final Color TEKS         = new Color(50, 50, 50);
 
-    static final Color IKON         = new Color(22, 160, 93);               
+    static final Color IKON         = new Color(30, 120, 210);               
     static final Color IKON_AKTIF   = new Color(12, 110, 62);               
-    static final Color TINT_IKON    = new Color(22, 160, 93, 35);
+    static final Color TINT_IKON    = new Color(30, 120, 210, 35);
     static final char  TITIK        = '•';
     static final int   RADIUS       = 6;
     static final int   LEBAR_IKON   = 22;
@@ -163,8 +163,8 @@ public class PasswordBox extends JPasswordField {
                 setForeground(TEKS);
             }
             setCaretColor(AKSEN);
-            setSelectionColor(new Color(0xCDEBDA));
-            setSelectedTextColor(new Color(0x0E3B24));
+            setSelectionColor(new Color(0xCFE3F7));
+            setSelectedTextColor(new Color(0x0B2E55));
             setDisabledTextColor(new Color(0x55625B));
         }
     }
