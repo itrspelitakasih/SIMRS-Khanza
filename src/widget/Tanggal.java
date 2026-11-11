@@ -30,11 +30,11 @@ import uz.ncipro.calendar.JDateTimePicker;
 
 public final class Tanggal extends JDateTimePicker {
     private static final long serialVersionUID = 2L;
-    private static final Color AKSEN     = new Color(0x16A05D);
-    private static final Color BORDER    = new Color(0x96BEA5);   
+    private static final Color AKSEN     = new Color(0x1E78D2);
+    private static final Color BORDER    = new Color(0x8DB4DB);   
     private static final Color NONAKTIF  = new Color(0xFAFCFB);
     private static final Color PEMISAH   = new Color(0xD3DDD7);
-    private static final Color TINT      = new Color(0x16, 0xA0, 0x5D, 30);   
+    private static final Color TINT      = new Color(0x1E, 0x78, 0xD2, 30);   
     private static final Color BENING    = new Color(0, 0, 0, 0);            
     private static final Color LATAR_PANAH = Color.WHITE;
     private static final Color TEKS      = new Color(0x1C2520);
@@ -96,12 +96,12 @@ public final class Tanggal extends JDateTimePicker {
             }
         } else if (c instanceof JTextComponent) {        
             JTextComponent t = (JTextComponent) c;
-            t.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 4));
+            t.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 1));   // RSPK: area teks lebih lebar agar tanggal tidak terpotong
             t.setBackground(BENING);
             t.setOpaque(false);
             t.setForeground(TEKS);
-            t.setSelectionColor(new Color(0xCDEBDA));
-            t.setSelectedTextColor(new Color(0x0E3B24));
+            t.setSelectionColor(new Color(0xCFE3F7));
+            t.setSelectedTextColor(new Color(0x0B2E55));
             t.setCaretColor(AKSEN);
             if (!sudah) {
                 t.addFocusListener(fokusRepaint());
@@ -229,13 +229,13 @@ public final class Tanggal extends JDateTimePicker {
 
     private Rectangle areaPanah() {
         Insets in = getInsets();
-        int lebar = getHeight() - in.top - in.bottom;     
+        int lebar = Math.min(getHeight() - in.top - in.bottom, 16);   // RSPK: sama dengan lebar tombol panah
         if (lebar <= 0) {
             return null;
         }
         AbstractButton b = tombolPanah();
         if (b != null && b.isVisible() && b.getWidth() > 0) {
-            lebar = Math.max(lebar, getWidth() - in.right - b.getX());
+            lebar = getWidth() - in.right - b.getX();
         }
         lebar = Math.min(lebar, getWidth() / 2);
         return new Rectangle(getWidth() - in.right - lebar, in.top, lebar, getHeight() - in.top - in.bottom);
@@ -247,14 +247,30 @@ public final class Tanggal extends JDateTimePicker {
         if (b != null) {
             Insets in = getInsets();
             int s = getHeight() - in.top - in.bottom;
+            int w = Math.min(s, 15);   // RSPK: tombol panah ramping (15px) supaya teks tanggal tidak terpotong
             if (s > 0) {
                 Dimension d = b.isPreferredSizeSet() ? b.getPreferredSize() : null;
-                if (d == null || d.width != s || d.height != s) {
-                    b.setPreferredSize(new Dimension(s, s));
+                if (d == null || d.width != w || d.height != s) {
+                    b.setPreferredSize(new Dimension(w, s));
                 }
             }
         }
         super.doLayout();
+        // RSPK: layout bawaan combobox memaksa tombol panah persegi; ramping-kan lalu lebarkan area teks
+        if (b != null && b.isVisible()) {
+            Insets in = getInsets();
+            int s = getHeight() - in.top - in.bottom;
+            int w = Math.min(s, 15);
+            if (s > 0 && b.getWidth() > w) {
+                int x = getWidth() - in.right - w;
+                b.setBounds(x, in.top, w, s);
+                for (Component c : getComponents()) {
+                    if (c instanceof JTextComponent) {
+                        c.setBounds(in.left, in.top, Math.max(0, x - in.left), s);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -295,7 +311,7 @@ public final class Tanggal extends JDateTimePicker {
                 }
                 Color garis = !isEnabled() ? new Color(BORDER.getRed(), BORDER.getGreen(), BORDER.getBlue(), 130)
                         : f ? AKSEN
-                        : hover ? new Color(0x5A9170)
+                        : hover ? new Color(0x4A84BF)
                         : BORDER;
                 g2.setColor(garis);
                 g2.setStroke(new BasicStroke(1f));
@@ -307,12 +323,12 @@ public final class Tanggal extends JDateTimePicker {
 
         @Override
         public Insets getBorderInsets(Component c) {
-            return new Insets(2, 6, 2, 3);   
+            return new Insets(2, 4, 2, 3);   
         }
 
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
-            insets.set(2, 6, 2, 3);
+            insets.set(2, 4, 2, 3);
             return insets;
         }
     }

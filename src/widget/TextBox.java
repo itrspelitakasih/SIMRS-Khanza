@@ -20,7 +20,7 @@ import javax.swing.plaf.basic.BasicTextFieldUI;
 
 public class TextBox extends JTextField {
     private static final long serialVersionUID = 2L;
-    static final Color AKSEN_DEFAULT = new Color(0x16A05D);
+    static final Color AKSEN_DEFAULT = new Color(0x1E78D2);
     private Color warnaAksen;
     private Color warnaBorder;
     private Color warnaNonAktif;
@@ -31,15 +31,15 @@ public class TextBox extends JTextField {
     public TextBox() {
         super();
         warnaAksen = AKSEN_DEFAULT;
-        warnaBorder = new Color(0x96BEA5);   
+        warnaBorder = new Color(0x8DB4DB);   
         warnaNonAktif = new Color(0xFAFCFB);   
         radius = 6;
 
         setFont(new Font("Tahoma", Font.PLAIN, 12));   // RSPK: font 12
         setForeground(new Color(0x1C2520));
         setBackground(Color.WHITE);
-        setSelectionColor(new Color(0xCDEBDA));
-        setSelectedTextColor(new Color(0x0E3B24));
+        setSelectionColor(new Color(0xCFE3F7));
+        setSelectedTextColor(new Color(0x0B2E55));
         setCaretColor(warnaAksen);
         setDisabledTextColor(new Color(0x55625B));   
         setHorizontalAlignment(LEFT);
@@ -112,7 +112,7 @@ public class TextBox extends JTextField {
                 } else if (fokus) {
                     garis = warnaAksen;
                 } else if (hover && aktif) {
-                    garis = new Color(0x5A9170);
+                    garis = new Color(0x4A84BF);
                 } else {
                     garis = warnaBorder;
                 }

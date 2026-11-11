@@ -25,9 +25,9 @@ public class TextArea extends JTextArea {
 
     private static final long serialVersionUID = 2L;
 
-    static final Color AKSEN    = new Color(0x16A05D);
-    static final Color BORDER   = new Color(0x96BEA5);   
-    static final Color HOVER    = new Color(0x5A9170);
+    static final Color AKSEN    = new Color(0x1E78D2);
+    static final Color BORDER   = new Color(0x8DB4DB);   
+    static final Color HOVER    = new Color(0x4A84BF);
     static final int   RADIUS   = 6;
 
     private String placeholder;
@@ -40,8 +40,8 @@ public class TextArea extends JTextArea {
         setWrapStyleWord(true);
         setBorder(new EmptyBorder(4, 6, 4, 6));
         setFont(new Font("Tahoma", Font.PLAIN, 12));   // RSPK: font 12
-        setSelectionColor(new Color(0xCDEBDA));
-        setSelectedTextColor(new Color(0x0E3B24));
+        setSelectionColor(new Color(0xCFE3F7));
+        setSelectedTextColor(new Color(0x0B2E55));
         setCaretColor(AKSEN);
         setForeground(new Color(0x1C2520));
         setDisabledTextColor(new Color(0x55625B));

@@ -43,15 +43,15 @@ import javax.swing.plaf.basic.ComboPopup;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public final class ComboBox extends JComboBox {
     private static final long serialVersionUID = 2L;
-    static final Color AKSEN     = new Color(0x16A05D);
-    static final Color BORDER    = new Color(0x96BEA5);   
-    static final Color HOVER     = new Color(0x5A9170);
+    static final Color AKSEN     = new Color(0x1E78D2);
+    static final Color BORDER    = new Color(0x8DB4DB);   
+    static final Color HOVER     = new Color(0x4A84BF);
     static final Color PEMISAH   = new Color(0xD3DDD7);
-    static final Color TINT      = new Color(0x16, 0xA0, 0x5D, 30);   
+    static final Color TINT      = new Color(0x1E, 0x78, 0xD2, 30);   
     static final Color TEKS      = new Color(50, 50, 50);
     static final Color TEKS_OFF  = new Color(0x55625B);
-    static final Color PILIH_BG  = new Color(0xD5EFE0);
-    static final Color PILIH_FG  = new Color(0x0E3B24);
+    static final Color PILIH_BG  = new Color(0xD6E8F9);
+    static final Color PILIH_FG  = new Color(0x0B2E55);
     static final int   RADIUS    = 6;
 
     private boolean hover;
