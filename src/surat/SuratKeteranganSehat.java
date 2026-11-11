@@ -159,9 +159,9 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSuratSehat = new javax.swing.JMenuItem();
-        MnCetakSuratSehat1 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        MnCetakSuratSehat = new widget.MenuItem();
+        MnCetakSuratSehat1 = new widget.MenuItem();
         MnCetakSuratLayakTerbang = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -1487,8 +1487,8 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private widget.TextBox Keperluan;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakSuratLayakTerbang;
-    private javax.swing.JMenuItem MnCetakSuratSehat;
-    private javax.swing.JMenuItem MnCetakSuratSehat1;
+    private widget.MenuItem MnCetakSuratSehat;
+    private widget.MenuItem MnCetakSuratSehat1;
     private widget.TextBox Nadi;
     private widget.TextBox NoSurat;
     private javax.swing.JPanel PanelInput;
@@ -1529,7 +1529,7 @@ public final class SuratKeteranganSehat extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbObat;

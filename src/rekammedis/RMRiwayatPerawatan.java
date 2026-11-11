@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * DlgLhtBiaya.java
- *
- * Created on 12 Jul 10, 16:21:34
- */
-
 package rekammedis;
 
+import bridging.ApiSatuSehat;
+import bridging.SatuSehatCekNIK;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
@@ -66,8 +57,23 @@ import java.nio.file.Files;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
+import javafx.embed.swing.JFXPanel;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker.State;
+import static javafx.concurrent.Worker.State.FAILED;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import netscape.javascript.JSObject;
 import javax.swing.SwingUtilities;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 
 
@@ -93,6 +99,12 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
     private JsonNode root;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
+    private ApiSatuSehat api=new ApiSatuSehat();
+    private JFXPanel PanelRMESatuSehat;
+    private WebEngine webRMESatuSehat;
+    private volatile String NoRMSatuSehat="";
+    private String bodySatuSehat="";
+    private final KriptoSatuSehat kriptoSatuSehat=new KriptoSatuSehat();
 
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -243,10 +255,10 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         Pekerjaan = new widget.TextBox();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnGeneratePDF = new javax.swing.JMenuItem();
-        MnGeneratePDFESign = new javax.swing.JMenuItem();
-        MnGeneratePDFSertiSign = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        MnGeneratePDF = new widget.MenuItem();
+        MnGeneratePDFESign = new widget.MenuItem();
+        MnGeneratePDFSertiSign = new widget.MenuItem();
         MnGeneratePDFMekariSign = new javax.swing.JMenuItem();
         MnDokumenMekariSign = new javax.swing.JMenuItem();
         WindowPhrase = new javax.swing.JDialog();
@@ -257,7 +269,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         BtnSimpanTandaTangan = new widget.Button();
         jLabel39 = new widget.Label();
         Phrase = new widget.PasswordBox();
-        ChkTampilPhrase = new widget.CekBox();
         Tanggal = new widget.Tanggal();
         WindowURLSertisign = new javax.swing.JDialog();
         internalFrame9 = new widget.InternalFrame();
@@ -283,7 +294,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         label19 = new widget.Label();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
-        TabRawat = new javax.swing.JTabbedPane();
+        TabRawat = new widget.TabPane();
         Scroll1 = new widget.ScrollPane();
         tbRegistrasi = new widget.Table();
         Scroll2 = new widget.ScrollPane();
@@ -353,8 +364,11 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkKonsultasiMedik = new widget.CekBox();
         chkKonsultasiPerawat = new widget.CekBox();
         chkCatatanDokter = new widget.CekBox();
+        chkAdmisiSkoringTOLAC = new widget.CekBox();
+        chkPenilaianBishop = new widget.CekBox();
         chkCatatanObservasiIGD = new widget.CekBox();
         chkCatatanObservasiCHBP = new widget.CekBox();
+        chkMonitoringSelamaTOLAC = new widget.CekBox();
         chkCatatanObservasiInduksiPersalinan = new widget.CekBox();
         chkCatatanObservasiRanap = new widget.CekBox();
         chkCatatanObservasiRanapKebidanan = new widget.CekBox();
@@ -377,7 +391,9 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemantauanPEWSDewasa = new widget.CekBox();
         chkPemantauanMOEWSObstetri = new widget.CekBox();
         chkPemantauanEWSNeonatus = new widget.CekBox();
+        chkPenilaianGRACEScore = new widget.CekBox();
         chkMonitoringReaksiTranfusi = new widget.CekBox();
+        chkReaksiTranfusi = new widget.CekBox();
         chkAsuhanPreInduksi = new widget.CekBox();
         chkChecklistPreOperasi = new widget.CekBox();
         chkSignInSebelumAnestesi = new widget.CekBox();
@@ -402,6 +418,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukPICU = new widget.CekBox();
         chkChecklistKriteriaKeluarPICU = new widget.CekBox();
         chkChecklistKriteriaMasukIsolasi = new widget.CekBox();
+        chkChecklistKriteriaKeluarIsolasi = new widget.CekBox();
         chkAsuhanLanjutanRisikoJatuhDewasa = new widget.CekBox();
         chkAsuhanLanjutanRisikoJatuhAnak = new widget.CekBox();
         chkAsuhanLanjutanRisikoJatuhLansia = new widget.CekBox();
@@ -426,6 +443,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiHidung = new widget.CekBox();
         chkHasilPemeriksaanEndoskopiTelinga = new widget.CekBox();
         chkCatatanPersalinan = new widget.CekBox();
+        chkHasilPersalinanTOLAC = new widget.CekBox();
         chkLaporanTindakan = new widget.CekBox();
         chkDokumentasiTindakanESWL = new widget.CekBox();
         chkPerencanaanPemulangan = new widget.CekBox();
@@ -469,6 +487,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenESAT = new widget.CekBox();
         chkSkriningKankerKolorektal = new widget.CekBox();
         chkSkriningFrailtySyndrome = new widget.CekBox();
+        chkSkriningTOLAC = new widget.CekBox();
         chkRekonsiliasiObat = new widget.CekBox();
         chkKonselingFarmasi = new widget.CekBox();
         chkPelayananInformasiObat = new widget.CekBox();
@@ -509,6 +528,8 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         LoadHTMLRetensi = new widget.editorpane();
         Scroll6 = new widget.ScrollPane();
         LoadHTMLWearable = new widget.editorpane();
+        PanelSatuSehat = new widget.PanelBiasa();
+        PanelWebSatuSehat = new widget.PanelBiasa();
         PanelInput = new javax.swing.JPanel();
         ChkInput = new widget.CekBox();
         FormInput = new widget.panelisi();
@@ -544,9 +565,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnGeneratePDF.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDF.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnGeneratePDF.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDF.setText("Jadikan File PDF");
         MnGeneratePDF.setName("MnGeneratePDF"); // NOI18N
@@ -558,9 +576,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnGeneratePDF);
 
-        MnGeneratePDFESign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFESign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnGeneratePDFESign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFESign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFESign.setText("Jadikan File PDF E-Sign");
         MnGeneratePDFESign.setName("MnGeneratePDFESign"); // NOI18N
@@ -572,9 +587,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnGeneratePDFESign);
 
-        MnGeneratePDFSertiSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFSertiSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnGeneratePDFSertiSign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFSertiSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFSertiSign.setText("Jadikan File PDF SertiSign");
         MnGeneratePDFSertiSign.setName("MnGeneratePDFSertiSign"); // NOI18N
@@ -668,33 +680,16 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         Phrase.setName("Phrase"); // NOI18N
         Phrase.setOpaque(true);
         panelisi5.add(Phrase);
-        Phrase.setBounds(129, 10, 146, 23);
-
-        ChkTampilPhrase.setBorder(null);
-        ChkTampilPhrase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/matatutup.png"))); // NOI18N
-        ChkTampilPhrase.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkTampilPhrase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkTampilPhrase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkTampilPhrase.setIconTextGap(1);
-        ChkTampilPhrase.setName("ChkTampilPhrase"); // NOI18N
-        ChkTampilPhrase.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/matabuka.png"))); // NOI18N
-        ChkTampilPhrase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkTampilPhraseActionPerformed(evt);
-            }
-        });
-        panelisi5.add(ChkTampilPhrase);
-        ChkTampilPhrase.setBounds(275, 10, 23, 23);
+        Phrase.setBounds(129, 10, 166, 23);
 
         internalFrame8.add(panelisi5, java.awt.BorderLayout.CENTER);
 
         WindowPhrase.getContentPane().add(internalFrame8, java.awt.BorderLayout.CENTER);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-07-2026 10:41:57" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2026 11:22:29" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
-        Tanggal.setOpaque(false);
 
         WindowURLSertisign.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowURLSertisign.setModal(true);
@@ -915,9 +910,8 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         internalFrame1.add(panelGlass5, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
-        TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(241, 246, 236)));
-        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -925,6 +919,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
             }
         });
 
+        Scroll1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
@@ -970,6 +965,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAccor.setBorder(null);
         PanelAccor.setName("PanelAccor"); // NOI18N
         PanelAccor.setPreferredSize(new java.awt.Dimension(275, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
@@ -1000,14 +996,13 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         FormMenu.setBackground(new java.awt.Color(255, 255, 255));
         FormMenu.setBorder(null);
         FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4748));
+        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4923));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 1, 1));
 
         chkSemua.setSelected(true);
         chkSemua.setText("Semua");
         chkSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSemua.setName("chkSemua"); // NOI18N
-        chkSemua.setOpaque(false);
         chkSemua.setPreferredSize(new java.awt.Dimension(245, 22));
         chkSemua.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1020,7 +1015,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkDiagnosaPenyakit.setText("Diagnosa/Penyakit (ICD 10)");
         chkDiagnosaPenyakit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkDiagnosaPenyakit.setName("chkDiagnosaPenyakit"); // NOI18N
-        chkDiagnosaPenyakit.setOpaque(false);
         chkDiagnosaPenyakit.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkDiagnosaPenyakit);
 
@@ -1028,7 +1022,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkProsedurTindakan.setText("Prosedur/Tidakan (ICD 9)");
         chkProsedurTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkProsedurTindakan.setName("chkProsedurTindakan"); // NOI18N
-        chkProsedurTindakan.setOpaque(false);
         chkProsedurTindakan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkProsedurTindakan);
 
@@ -1036,7 +1029,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSEPBPJS.setText("SEP BPJS");
         chkSEPBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSEPBPJS.setName("chkSEPBPJS"); // NOI18N
-        chkSEPBPJS.setOpaque(false);
         chkSEPBPJS.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSEPBPJS);
 
@@ -1044,7 +1036,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTriase.setText("Triase IGD/UGD");
         chkTriase.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTriase.setName("chkTriase"); // NOI18N
-        chkTriase.setOpaque(false);
         chkTriase.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTriase);
 
@@ -1052,7 +1043,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanIGD.setText("Awal Keperawatan IGD");
         chkAsuhanKeperawatanIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanIGD.setName("chkAsuhanKeperawatanIGD"); // NOI18N
-        chkAsuhanKeperawatanIGD.setOpaque(false);
         chkAsuhanKeperawatanIGD.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanIGD);
 
@@ -1060,7 +1050,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalan.setText("Awal Keperawatan Ralan Umum");
         chkAsuhanKeperawatanRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalan.setName("chkAsuhanKeperawatanRalan"); // NOI18N
-        chkAsuhanKeperawatanRalan.setOpaque(false);
         chkAsuhanKeperawatanRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalan);
 
@@ -1068,7 +1057,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalanGigi.setText("Awal Keperawatan Ralan Gigi");
         chkAsuhanKeperawatanRalanGigi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalanGigi.setName("chkAsuhanKeperawatanRalanGigi"); // NOI18N
-        chkAsuhanKeperawatanRalanGigi.setOpaque(false);
         chkAsuhanKeperawatanRalanGigi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalanGigi);
 
@@ -1076,7 +1064,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalanBayi.setText("Awal Keperawatan Ralan Bayi/Anak");
         chkAsuhanKeperawatanRalanBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalanBayi.setName("chkAsuhanKeperawatanRalanBayi"); // NOI18N
-        chkAsuhanKeperawatanRalanBayi.setOpaque(false);
         chkAsuhanKeperawatanRalanBayi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalanBayi);
 
@@ -1084,7 +1071,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalanKandungan.setText("Awal Keperawatan Ralan Kandungan");
         chkAsuhanKeperawatanRalanKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalanKandungan.setName("chkAsuhanKeperawatanRalanKandungan"); // NOI18N
-        chkAsuhanKeperawatanRalanKandungan.setOpaque(false);
         chkAsuhanKeperawatanRalanKandungan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalanKandungan);
 
@@ -1092,7 +1078,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalanPsikiatri.setText("Awal Keperawatan Ralan Psikiatri");
         chkAsuhanKeperawatanRalanPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalanPsikiatri.setName("chkAsuhanKeperawatanRalanPsikiatri"); // NOI18N
-        chkAsuhanKeperawatanRalanPsikiatri.setOpaque(false);
         chkAsuhanKeperawatanRalanPsikiatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalanPsikiatri);
 
@@ -1100,7 +1085,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRalanGeriatri.setText("Awal Keperawatan Ralan Geriatri");
         chkAsuhanKeperawatanRalanGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRalanGeriatri.setName("chkAsuhanKeperawatanRalanGeriatri"); // NOI18N
-        chkAsuhanKeperawatanRalanGeriatri.setOpaque(false);
         chkAsuhanKeperawatanRalanGeriatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRalanGeriatri);
 
@@ -1108,7 +1092,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanFisioterapi.setText("Awal Fisioterapi");
         chkAsuhanFisioterapi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanFisioterapi.setName("chkAsuhanFisioterapi"); // NOI18N
-        chkAsuhanFisioterapi.setOpaque(false);
         chkAsuhanFisioterapi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanFisioterapi);
 
@@ -1116,7 +1099,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanTerapiWicara.setText("Pengkajian Terapi Wicara");
         chkAsuhanTerapiWicara.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanTerapiWicara.setName("chkAsuhanTerapiWicara"); // NOI18N
-        chkAsuhanTerapiWicara.setOpaque(false);
         chkAsuhanTerapiWicara.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanTerapiWicara);
 
@@ -1124,7 +1106,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenatalaksanaanTerapiOkupasi.setText("Tatalaksana Terapi Okupasi");
         chkPenatalaksanaanTerapiOkupasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenatalaksanaanTerapiOkupasi.setName("chkPenatalaksanaanTerapiOkupasi"); // NOI18N
-        chkPenatalaksanaanTerapiOkupasi.setOpaque(false);
         chkPenatalaksanaanTerapiOkupasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenatalaksanaanTerapiOkupasi);
 
@@ -1132,7 +1113,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanPsikolog.setText("Pengkajian Psikologi");
         chkAsuhanPsikolog.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanPsikolog.setName("chkAsuhanPsikolog"); // NOI18N
-        chkAsuhanPsikolog.setOpaque(false);
         chkAsuhanPsikolog.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanPsikolog);
 
@@ -1140,7 +1120,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanPsikologiKlinis.setText("Pengkajian Psikologi Klinis");
         chkAsuhanPsikologiKlinis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanPsikologiKlinis.setName("chkAsuhanPsikologiKlinis"); // NOI18N
-        chkAsuhanPsikologiKlinis.setOpaque(false);
         chkAsuhanPsikologiKlinis.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanPsikologiKlinis);
 
@@ -1148,7 +1127,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRanap.setText("Awal Keperawatan Ranap Umum");
         chkAsuhanKeperawatanRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRanap.setName("chkAsuhanKeperawatanRanap"); // NOI18N
-        chkAsuhanKeperawatanRanap.setOpaque(false);
         chkAsuhanKeperawatanRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRanap);
 
@@ -1156,7 +1134,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRanapKandungan.setText("Awal Keperawatan Ranap Kandungan");
         chkAsuhanKeperawatanRanapKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRanapKandungan.setName("chkAsuhanKeperawatanRanapKandungan"); // NOI18N
-        chkAsuhanKeperawatanRanapKandungan.setOpaque(false);
         chkAsuhanKeperawatanRanapKandungan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRanapKandungan);
 
@@ -1164,7 +1141,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRanapNeonatus.setText("Awal Keperawatan Ranap Neonatus");
         chkAsuhanKeperawatanRanapNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRanapNeonatus.setName("chkAsuhanKeperawatanRanapNeonatus"); // NOI18N
-        chkAsuhanKeperawatanRanapNeonatus.setOpaque(false);
         chkAsuhanKeperawatanRanapNeonatus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRanapNeonatus);
 
@@ -1172,7 +1148,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanKeperawatanRanapBayi.setText("Awal Keperawatan Ranap Bayi");
         chkAsuhanKeperawatanRanapBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanKeperawatanRanapBayi.setName("chkAsuhanKeperawatanRanapBayi"); // NOI18N
-        chkAsuhanKeperawatanRanapBayi.setOpaque(false);
         chkAsuhanKeperawatanRanapBayi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanKeperawatanRanapBayi);
 
@@ -1180,7 +1155,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianBayiBaruLahir.setText("Bayi Baru Lahir");
         chkPenilaianBayiBaruLahir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianBayiBaruLahir.setName("chkPenilaianBayiBaruLahir"); // NOI18N
-        chkPenilaianBayiBaruLahir.setOpaque(false);
         chkPenilaianBayiBaruLahir.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianBayiBaruLahir);
 
@@ -1188,7 +1162,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisIGD.setText("Awal Medis IGD");
         chkAsuhanMedisIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisIGD.setName("chkAsuhanMedisIGD"); // NOI18N
-        chkAsuhanMedisIGD.setOpaque(false);
         chkAsuhanMedisIGD.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisIGD);
 
@@ -1196,7 +1169,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisIGDPsikiatri.setText("Awal Medis IGD Psikiatri");
         chkAsuhanMedisIGDPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisIGDPsikiatri.setName("chkAsuhanMedisIGDPsikiatri"); // NOI18N
-        chkAsuhanMedisIGDPsikiatri.setOpaque(false);
         chkAsuhanMedisIGDPsikiatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisIGDPsikiatri);
 
@@ -1204,7 +1176,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisMCU.setText("Awal Medis MCU");
         chkAsuhanMedisMCU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisMCU.setName("chkAsuhanMedisMCU"); // NOI18N
-        chkAsuhanMedisMCU.setOpaque(false);
         chkAsuhanMedisMCU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisMCU);
 
@@ -1212,7 +1183,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalan.setText("Awal Medis Ralan Umum");
         chkAsuhanMedisRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalan.setName("chkAsuhanMedisRalan"); // NOI18N
-        chkAsuhanMedisRalan.setOpaque(false);
         chkAsuhanMedisRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalan);
 
@@ -1220,7 +1190,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanKandungan.setText("Awal Medis Ralan Kandungan");
         chkAsuhanMedisRalanKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanKandungan.setName("chkAsuhanMedisRalanKandungan"); // NOI18N
-        chkAsuhanMedisRalanKandungan.setOpaque(false);
         chkAsuhanMedisRalanKandungan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanKandungan);
 
@@ -1228,7 +1197,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanBayi.setText("Awal Medis Ralan Bayi/Anak");
         chkAsuhanMedisRalanBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanBayi.setName("chkAsuhanMedisRalanBayi"); // NOI18N
-        chkAsuhanMedisRalanBayi.setOpaque(false);
         chkAsuhanMedisRalanBayi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanBayi);
 
@@ -1236,7 +1204,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanTHT.setText("Awal Medis Ralan THT");
         chkAsuhanMedisRalanTHT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanTHT.setName("chkAsuhanMedisRalanTHT"); // NOI18N
-        chkAsuhanMedisRalanTHT.setOpaque(false);
         chkAsuhanMedisRalanTHT.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanTHT);
 
@@ -1244,7 +1211,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanPsikiatri.setText("Awal Medis Ralan Psikiatri");
         chkAsuhanMedisRalanPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanPsikiatri.setName("chkAsuhanMedisRalanPsikiatri"); // NOI18N
-        chkAsuhanMedisRalanPsikiatri.setOpaque(false);
         chkAsuhanMedisRalanPsikiatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanPsikiatri);
 
@@ -1252,7 +1218,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanPenyakitDalam.setText("Awal Medis Ralan Penyakit Dalam");
         chkAsuhanMedisRalanPenyakitDalam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanPenyakitDalam.setName("chkAsuhanMedisRalanPenyakitDalam"); // NOI18N
-        chkAsuhanMedisRalanPenyakitDalam.setOpaque(false);
         chkAsuhanMedisRalanPenyakitDalam.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanPenyakitDalam);
 
@@ -1260,7 +1225,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanMata.setText("Awal Medis Ralan Mata");
         chkAsuhanMedisRalanMata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanMata.setName("chkAsuhanMedisRalanMata"); // NOI18N
-        chkAsuhanMedisRalanMata.setOpaque(false);
         chkAsuhanMedisRalanMata.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanMata);
 
@@ -1268,7 +1232,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanNeurologi.setText("Awal Medis Ralan Neurologi");
         chkAsuhanMedisRalanNeurologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanNeurologi.setName("chkAsuhanMedisRalanNeurologi"); // NOI18N
-        chkAsuhanMedisRalanNeurologi.setOpaque(false);
         chkAsuhanMedisRalanNeurologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanNeurologi);
 
@@ -1276,7 +1239,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanOrthopedi.setText("Awal Medis Ralan Orthopedi");
         chkAsuhanMedisRalanOrthopedi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanOrthopedi.setName("chkAsuhanMedisRalanOrthopedi"); // NOI18N
-        chkAsuhanMedisRalanOrthopedi.setOpaque(false);
         chkAsuhanMedisRalanOrthopedi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanOrthopedi);
 
@@ -1284,7 +1246,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanBedah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanBedah.setLabel("Awal Medis Ralan Bedah");
         chkAsuhanMedisRalanBedah.setName("chkAsuhanMedisRalanBedah"); // NOI18N
-        chkAsuhanMedisRalanBedah.setOpaque(false);
         chkAsuhanMedisRalanBedah.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanBedah);
 
@@ -1292,7 +1253,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanBedahMulut.setText("Awal Medis Ralan Bedah Mulut");
         chkAsuhanMedisRalanBedahMulut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanBedahMulut.setName("chkAsuhanMedisRalanBedahMulut"); // NOI18N
-        chkAsuhanMedisRalanBedahMulut.setOpaque(false);
         chkAsuhanMedisRalanBedahMulut.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanBedahMulut);
 
@@ -1300,7 +1260,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanGeriatri.setText("Awal Medis Ralan Geriatri");
         chkAsuhanMedisRalanGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanGeriatri.setName("chkAsuhanMedisRalanGeriatri"); // NOI18N
-        chkAsuhanMedisRalanGeriatri.setOpaque(false);
         chkAsuhanMedisRalanGeriatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanGeriatri);
 
@@ -1308,7 +1267,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanKulitKelamin.setText("Awal Medis Ralan Kulit & Kelamin");
         chkAsuhanMedisRalanKulitKelamin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanKulitKelamin.setName("chkAsuhanMedisRalanKulitKelamin"); // NOI18N
-        chkAsuhanMedisRalanKulitKelamin.setOpaque(false);
         chkAsuhanMedisRalanKulitKelamin.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanKulitKelamin);
 
@@ -1316,7 +1274,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanParu.setText("Awal Medis Ralan Paru");
         chkAsuhanMedisRalanParu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanParu.setName("chkAsuhanMedisRalanParu"); // NOI18N
-        chkAsuhanMedisRalanParu.setOpaque(false);
         chkAsuhanMedisRalanParu.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanParu);
 
@@ -1324,7 +1281,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanJantung.setText("Awal Medis Ralan Jantung");
         chkAsuhanMedisRalanJantung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanJantung.setName("chkAsuhanMedisRalanJantung"); // NOI18N
-        chkAsuhanMedisRalanJantung.setOpaque(false);
         chkAsuhanMedisRalanJantung.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanJantung);
 
@@ -1332,7 +1288,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanUrologi.setText("Awal Medis Ralan Urologi");
         chkAsuhanMedisRalanUrologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanUrologi.setName("chkAsuhanMedisRalanUrologi"); // NOI18N
-        chkAsuhanMedisRalanUrologi.setOpaque(false);
         chkAsuhanMedisRalanUrologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanUrologi);
 
@@ -1340,7 +1295,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRalanKedokteranFisik.setText("Awal Medis Ralan Fisik & Rehabilitasi");
         chkAsuhanMedisRalanKedokteranFisik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRalanKedokteranFisik.setName("chkAsuhanMedisRalanKedokteranFisik"); // NOI18N
-        chkAsuhanMedisRalanKedokteranFisik.setOpaque(false);
         chkAsuhanMedisRalanKedokteranFisik.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRalanKedokteranFisik);
 
@@ -1348,7 +1302,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRanap.setText("Awal Medis Ranap Umum");
         chkAsuhanMedisRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRanap.setName("chkAsuhanMedisRanap"); // NOI18N
-        chkAsuhanMedisRanap.setOpaque(false);
         chkAsuhanMedisRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRanap);
 
@@ -1356,7 +1309,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRanapKandungan.setText("Awal Medis Ranap Kandungan");
         chkAsuhanMedisRanapKandungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRanapKandungan.setName("chkAsuhanMedisRanapKandungan"); // NOI18N
-        chkAsuhanMedisRanapKandungan.setOpaque(false);
         chkAsuhanMedisRanapKandungan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRanapKandungan);
 
@@ -1364,7 +1316,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRanapNeonatus.setText("Awal Medis Ranap Neonatus");
         chkAsuhanMedisRanapNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRanapNeonatus.setName("chkAsuhanMedisRanapNeonatus"); // NOI18N
-        chkAsuhanMedisRanapNeonatus.setOpaque(false);
         chkAsuhanMedisRanapNeonatus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRanapNeonatus);
 
@@ -1372,7 +1323,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRanapPsikiatri.setText("Awal Medis Ranap Psikiatri");
         chkAsuhanMedisRanapPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRanapPsikiatri.setName("chkAsuhanMedisRanapPsikiatri"); // NOI18N
-        chkAsuhanMedisRanapPsikiatri.setOpaque(false);
         chkAsuhanMedisRanapPsikiatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRanapPsikiatri);
 
@@ -1380,7 +1330,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisHemodialisa.setText("Awal Medis Hemodialisa");
         chkAsuhanMedisHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisHemodialisa.setName("chkAsuhanMedisHemodialisa"); // NOI18N
-        chkAsuhanMedisHemodialisa.setOpaque(false);
         chkAsuhanMedisHemodialisa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisHemodialisa);
 
@@ -1388,7 +1337,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanMedisRanapJantung.setText("Awal Medis Ranap Jantung");
         chkAsuhanMedisRanapJantung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanMedisRanapJantung.setName("chkAsuhanMedisRanapJantung"); // NOI18N
-        chkAsuhanMedisRanapJantung.setOpaque(false);
         chkAsuhanMedisRanapJantung.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanMedisRanapJantung);
 
@@ -1396,7 +1344,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkEdukasiPasienTerintegrasiRawatJalan.setText("Edukasi Pasien & Keluarga Rawat Jalan");
         chkEdukasiPasienTerintegrasiRawatJalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkEdukasiPasienTerintegrasiRawatJalan.setName("chkEdukasiPasienTerintegrasiRawatJalan"); // NOI18N
-        chkEdukasiPasienTerintegrasiRawatJalan.setOpaque(false);
         chkEdukasiPasienTerintegrasiRawatJalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkEdukasiPasienTerintegrasiRawatJalan);
 
@@ -1404,7 +1351,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanRalan.setText("Pemeriksaan Ralan");
         chkPemeriksaanRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanRalan.setName("chkPemeriksaanRalan"); // NOI18N
-        chkPemeriksaanRalan.setOpaque(false);
         chkPemeriksaanRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanRalan);
 
@@ -1412,7 +1358,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanObstetriRalan.setText("Pemeriksaan Obstetri Ralan");
         chkPemeriksaanObstetriRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanObstetriRalan.setName("chkPemeriksaanObstetriRalan"); // NOI18N
-        chkPemeriksaanObstetriRalan.setOpaque(false);
         chkPemeriksaanObstetriRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanObstetriRalan);
 
@@ -1420,7 +1365,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanGenekologiRalan.setText("Pemeriksaan Genekologi Ralan");
         chkPemeriksaanGenekologiRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanGenekologiRalan.setName("chkPemeriksaanGenekologiRalan"); // NOI18N
-        chkPemeriksaanGenekologiRalan.setOpaque(false);
         chkPemeriksaanGenekologiRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanGenekologiRalan);
 
@@ -1428,7 +1372,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanRanap.setText("Pemeriksaan Ranap");
         chkPemeriksaanRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanRanap.setName("chkPemeriksaanRanap"); // NOI18N
-        chkPemeriksaanRanap.setOpaque(false);
         chkPemeriksaanRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanRanap);
 
@@ -1436,7 +1379,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanObstetriRanap.setText("Pemeriksaan Obstetri Ranap");
         chkPemeriksaanObstetriRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanObstetriRanap.setName("chkPemeriksaanObstetriRanap"); // NOI18N
-        chkPemeriksaanObstetriRanap.setOpaque(false);
         chkPemeriksaanObstetriRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanObstetriRanap);
 
@@ -1444,7 +1386,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanGenekologiRanap.setText("Pemeriksaan Genekologi Ranap");
         chkPemeriksaanGenekologiRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanGenekologiRanap.setName("chkPemeriksaanGenekologiRanap"); // NOI18N
-        chkPemeriksaanGenekologiRanap.setOpaque(false);
         chkPemeriksaanGenekologiRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanGenekologiRanap);
 
@@ -1452,7 +1393,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkKonsultasiMedik.setText("Konsultasi Medik");
         chkKonsultasiMedik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkKonsultasiMedik.setName("chkKonsultasiMedik"); // NOI18N
-        chkKonsultasiMedik.setOpaque(false);
         chkKonsultasiMedik.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkKonsultasiMedik);
 
@@ -1460,7 +1400,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkKonsultasiPerawat.setText("Konsultasi Perawat");
         chkKonsultasiPerawat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkKonsultasiPerawat.setName("chkKonsultasiPerawat"); // NOI18N
-        chkKonsultasiPerawat.setOpaque(false);
         chkKonsultasiPerawat.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkKonsultasiPerawat);
 
@@ -1468,15 +1407,27 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanDokter.setText("Catatan Dokter");
         chkCatatanDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanDokter.setName("chkCatatanDokter"); // NOI18N
-        chkCatatanDokter.setOpaque(false);
         chkCatatanDokter.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanDokter);
+
+        chkAdmisiSkoringTOLAC.setSelected(true);
+        chkAdmisiSkoringTOLAC.setText("Admisi & Skoring TOLAC");
+        chkAdmisiSkoringTOLAC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkAdmisiSkoringTOLAC.setName("chkAdmisiSkoringTOLAC"); // NOI18N
+        chkAdmisiSkoringTOLAC.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkAdmisiSkoringTOLAC);
+
+        chkPenilaianBishop.setSelected(true);
+        chkPenilaianBishop.setText("Penilaian BISHOP Score");
+        chkPenilaianBishop.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkPenilaianBishop.setName("chkPenilaianBishop"); // NOI18N
+        chkPenilaianBishop.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkPenilaianBishop);
 
         chkCatatanObservasiIGD.setSelected(true);
         chkCatatanObservasiIGD.setText("Catatan Observasi IGD");
         chkCatatanObservasiIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiIGD.setName("chkCatatanObservasiIGD"); // NOI18N
-        chkCatatanObservasiIGD.setOpaque(false);
         chkCatatanObservasiIGD.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiIGD);
 
@@ -1484,15 +1435,20 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiCHBP.setText("Catatan Observasi CHBP");
         chkCatatanObservasiCHBP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiCHBP.setName("chkCatatanObservasiCHBP"); // NOI18N
-        chkCatatanObservasiCHBP.setOpaque(false);
         chkCatatanObservasiCHBP.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiCHBP);
+
+        chkMonitoringSelamaTOLAC.setSelected(true);
+        chkMonitoringSelamaTOLAC.setText("Monitoring Selama TOLAC");
+        chkMonitoringSelamaTOLAC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkMonitoringSelamaTOLAC.setName("chkMonitoringSelamaTOLAC"); // NOI18N
+        chkMonitoringSelamaTOLAC.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkMonitoringSelamaTOLAC);
 
         chkCatatanObservasiInduksiPersalinan.setSelected(true);
         chkCatatanObservasiInduksiPersalinan.setText("Catatan Observasi Induksi Persalinan");
         chkCatatanObservasiInduksiPersalinan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiInduksiPersalinan.setName("chkCatatanObservasiInduksiPersalinan"); // NOI18N
-        chkCatatanObservasiInduksiPersalinan.setOpaque(false);
         chkCatatanObservasiInduksiPersalinan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiInduksiPersalinan);
 
@@ -1500,7 +1456,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiRanap.setText("Catatan Observasi Ranap");
         chkCatatanObservasiRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiRanap.setName("chkCatatanObservasiRanap"); // NOI18N
-        chkCatatanObservasiRanap.setOpaque(false);
         chkCatatanObservasiRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiRanap);
 
@@ -1508,7 +1463,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiRanapKebidanan.setText("Catatan Observasi Ranap Kebidanan");
         chkCatatanObservasiRanapKebidanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiRanapKebidanan.setName("chkCatatanObservasiRanapKebidanan"); // NOI18N
-        chkCatatanObservasiRanapKebidanan.setOpaque(false);
         chkCatatanObservasiRanapKebidanan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiRanapKebidanan);
 
@@ -1516,7 +1470,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiRanapPostPartum.setText("Catatan Observasi Ranap Post Partum");
         chkCatatanObservasiRanapPostPartum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiRanapPostPartum.setName("chkCatatanObservasiRanapPostPartum"); // NOI18N
-        chkCatatanObservasiRanapPostPartum.setOpaque(false);
         chkCatatanObservasiRanapPostPartum.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiRanapPostPartum);
 
@@ -1524,7 +1477,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiBayi.setText("Catatan Observasi Bayi");
         chkCatatanObservasiBayi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiBayi.setName("chkCatatanObservasiBayi"); // NOI18N
-        chkCatatanObservasiBayi.setOpaque(false);
         chkCatatanObservasiBayi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiBayi);
 
@@ -1532,7 +1484,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiRestrainNonFarmakologi.setText("Catatan Observasi Restrain Nonfarmakologi");
         chkCatatanObservasiRestrainNonFarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiRestrainNonFarmakologi.setName("chkCatatanObservasiRestrainNonFarmakologi"); // NOI18N
-        chkCatatanObservasiRestrainNonFarmakologi.setOpaque(false);
         chkCatatanObservasiRestrainNonFarmakologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiRestrainNonFarmakologi);
 
@@ -1540,7 +1491,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiVentilator.setText("Catatan Observasi Ventilator");
         chkCatatanObservasiVentilator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiVentilator.setName("chkCatatanObservasiVentilator"); // NOI18N
-        chkCatatanObservasiVentilator.setOpaque(false);
         chkCatatanObservasiVentilator.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiVentilator);
 
@@ -1548,7 +1498,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiHemodialisa.setText("Catatan Observasi Hemodialisa");
         chkCatatanObservasiHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiHemodialisa.setName("chkCatatanObservasiHemodialisa"); // NOI18N
-        chkCatatanObservasiHemodialisa.setOpaque(false);
         chkCatatanObservasiHemodialisa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiHemodialisa);
 
@@ -1556,7 +1505,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkFollowUpDBD.setText("Follow Up DBD");
         chkFollowUpDBD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkFollowUpDBD.setName("chkFollowUpDBD"); // NOI18N
-        chkFollowUpDBD.setOpaque(false);
         chkFollowUpDBD.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkFollowUpDBD);
 
@@ -1564,7 +1512,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanKeseimbanganCairan.setText("Keseimbangan Cairan");
         chkCatatanKeseimbanganCairan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanKeseimbanganCairan.setName("chkCatatanKeseimbanganCairan"); // NOI18N
-        chkCatatanKeseimbanganCairan.setOpaque(false);
         chkCatatanKeseimbanganCairan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanKeseimbanganCairan);
 
@@ -1572,7 +1519,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanCairanHemodialisa.setText("Catatan Cairan Hemodialisa");
         chkCatatanCairanHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanCairanHemodialisa.setName("chkCatatanCairanHemodialisa"); // NOI18N
-        chkCatatanCairanHemodialisa.setOpaque(false);
         chkCatatanCairanHemodialisa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanCairanHemodialisa);
 
@@ -1580,7 +1526,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanCekGDS.setText("Catatan Cek GDS");
         chkCatatanCekGDS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanCekGDS.setName("chkCatatanCekGDS"); // NOI18N
-        chkCatatanCekGDS.setOpaque(false);
         chkCatatanCekGDS.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanCekGDS);
 
@@ -1588,7 +1533,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianUlangNyeri.setText("Pengkajian Ulang Nyeri");
         chkPenilaianUlangNyeri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianUlangNyeri.setName("chkPenilaianUlangNyeri"); // NOI18N
-        chkPenilaianUlangNyeri.setOpaque(false);
         chkPenilaianUlangNyeri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianUlangNyeri);
 
@@ -1596,7 +1540,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkIntervensiNyeriFarmakologi.setText("Intervensi Nyeri Farmakologi");
         chkIntervensiNyeriFarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkIntervensiNyeriFarmakologi.setName("chkIntervensiNyeriFarmakologi"); // NOI18N
-        chkIntervensiNyeriFarmakologi.setOpaque(false);
         chkIntervensiNyeriFarmakologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkIntervensiNyeriFarmakologi);
 
@@ -1604,7 +1547,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkIntervensiNyeriNonFarmakologi.setText("Intervensi Nyeri Non Farmakologi");
         chkIntervensiNyeriNonFarmakologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkIntervensiNyeriNonFarmakologi.setName("chkIntervensiNyeriNonFarmakologi"); // NOI18N
-        chkIntervensiNyeriNonFarmakologi.setOpaque(false);
         chkIntervensiNyeriNonFarmakologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkIntervensiNyeriNonFarmakologi);
 
@@ -1612,7 +1554,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanKeperawatanRalan.setText("Catatan Keperawatan Ralan");
         chkCatatanKeperawatanRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanKeperawatanRalan.setName("chkCatatanKeperawatanRalan"); // NOI18N
-        chkCatatanKeperawatanRalan.setOpaque(false);
         chkCatatanKeperawatanRalan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanKeperawatanRalan);
 
@@ -1620,7 +1561,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanKeperawatanRanap.setText("Catatan Keperawatan Ranap");
         chkCatatanKeperawatanRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanKeperawatanRanap.setName("chkCatatanKeperawatanRanap"); // NOI18N
-        chkCatatanKeperawatanRanap.setOpaque(false);
         chkCatatanKeperawatanRanap.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanKeperawatanRanap);
 
@@ -1628,7 +1568,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistPemberianFibrinolitik.setText("Checklist Pemberian Fibrinolitik");
         chkChecklistPemberianFibrinolitik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistPemberianFibrinolitik.setName("chkChecklistPemberianFibrinolitik"); // NOI18N
-        chkChecklistPemberianFibrinolitik.setOpaque(false);
         chkChecklistPemberianFibrinolitik.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistPemberianFibrinolitik);
 
@@ -1636,7 +1575,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemantauanPEWSAnak.setText("Pemantauan PEWS Anak");
         chkPemantauanPEWSAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemantauanPEWSAnak.setName("chkPemantauanPEWSAnak"); // NOI18N
-        chkPemantauanPEWSAnak.setOpaque(false);
         chkPemantauanPEWSAnak.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemantauanPEWSAnak);
 
@@ -1644,7 +1582,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemantauanPEWSDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemantauanPEWSDewasa.setLabel("Pemantauan EWS Dewasa");
         chkPemantauanPEWSDewasa.setName("chkPemantauanPEWSDewasa"); // NOI18N
-        chkPemantauanPEWSDewasa.setOpaque(false);
         chkPemantauanPEWSDewasa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemantauanPEWSDewasa);
 
@@ -1652,7 +1589,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemantauanMOEWSObstetri.setText("Pemantauan MEOWS Obstetri");
         chkPemantauanMOEWSObstetri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemantauanMOEWSObstetri.setName("chkPemantauanMOEWSObstetri"); // NOI18N
-        chkPemantauanMOEWSObstetri.setOpaque(false);
         chkPemantauanMOEWSObstetri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemantauanMOEWSObstetri);
 
@@ -1660,23 +1596,34 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemantauanEWSNeonatus.setText("Pemantauan EWS Neonatus");
         chkPemantauanEWSNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemantauanEWSNeonatus.setName("chkPemantauanEWSNeonatus"); // NOI18N
-        chkPemantauanEWSNeonatus.setOpaque(false);
         chkPemantauanEWSNeonatus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemantauanEWSNeonatus);
+
+        chkPenilaianGRACEScore.setSelected(true);
+        chkPenilaianGRACEScore.setText("Penilaian GRACE Score");
+        chkPenilaianGRACEScore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkPenilaianGRACEScore.setName("chkPenilaianGRACEScore"); // NOI18N
+        chkPenilaianGRACEScore.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkPenilaianGRACEScore);
 
         chkMonitoringReaksiTranfusi.setSelected(true);
         chkMonitoringReaksiTranfusi.setText("Monitoring Reaksi Tranfusi");
         chkMonitoringReaksiTranfusi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkMonitoringReaksiTranfusi.setName("chkMonitoringReaksiTranfusi"); // NOI18N
-        chkMonitoringReaksiTranfusi.setOpaque(false);
         chkMonitoringReaksiTranfusi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkMonitoringReaksiTranfusi);
+
+        chkReaksiTranfusi.setSelected(true);
+        chkReaksiTranfusi.setText("Laporan Reaksi Tranfusi");
+        chkReaksiTranfusi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkReaksiTranfusi.setName("chkReaksiTranfusi"); // NOI18N
+        chkReaksiTranfusi.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkReaksiTranfusi);
 
         chkAsuhanPreInduksi.setSelected(true);
         chkAsuhanPreInduksi.setText("Pengkajian Pre Induksi");
         chkAsuhanPreInduksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanPreInduksi.setName("chkAsuhanPreInduksi"); // NOI18N
-        chkAsuhanPreInduksi.setOpaque(false);
         chkAsuhanPreInduksi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanPreInduksi);
 
@@ -1684,7 +1631,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistPreOperasi.setText("Check List Pre Operasi");
         chkChecklistPreOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistPreOperasi.setName("chkChecklistPreOperasi"); // NOI18N
-        chkChecklistPreOperasi.setOpaque(false);
         chkChecklistPreOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistPreOperasi);
 
@@ -1692,7 +1638,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSignInSebelumAnestesi.setText("Sign-In Sebelum Anestesi");
         chkSignInSebelumAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSignInSebelumAnestesi.setName("chkSignInSebelumAnestesi"); // NOI18N
-        chkSignInSebelumAnestesi.setOpaque(false);
         chkSignInSebelumAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSignInSebelumAnestesi);
 
@@ -1700,7 +1645,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTimeOutSebelumInsisi.setText("Time-Out Sebelum Insisi");
         chkTimeOutSebelumInsisi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTimeOutSebelumInsisi.setName("chkTimeOutSebelumInsisi"); // NOI18N
-        chkTimeOutSebelumInsisi.setOpaque(false);
         chkTimeOutSebelumInsisi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTimeOutSebelumInsisi);
 
@@ -1708,7 +1652,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSignOutSebelumMenutupLuka.setText("Sign-Out Sebelum Menutup Luka");
         chkSignOutSebelumMenutupLuka.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSignOutSebelumMenutupLuka.setName("chkSignOutSebelumMenutupLuka"); // NOI18N
-        chkSignOutSebelumMenutupLuka.setOpaque(false);
         chkSignOutSebelumMenutupLuka.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSignOutSebelumMenutupLuka);
 
@@ -1716,7 +1659,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistPostOperasi.setText("Check List Post Operasi");
         chkChecklistPostOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistPostOperasi.setName("chkChecklistPostOperasi"); // NOI18N
-        chkChecklistPostOperasi.setOpaque(false);
         chkChecklistPostOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistPostOperasi);
 
@@ -1724,7 +1666,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanPreOperasi.setText("Pengkajian Pre Operasi");
         chkAsuhanPreOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanPreOperasi.setName("chkAsuhanPreOperasi"); // NOI18N
-        chkAsuhanPreOperasi.setOpaque(false);
         chkAsuhanPreOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanPreOperasi);
 
@@ -1732,7 +1673,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanAnastesiSedasi.setText("Catatan Anestesi-Sedasi");
         chkCatatanAnastesiSedasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanAnastesiSedasi.setName("chkCatatanAnastesiSedasi"); // NOI18N
-        chkCatatanAnastesiSedasi.setOpaque(false);
         chkCatatanAnastesiSedasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanAnastesiSedasi);
 
@@ -1740,7 +1680,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanPreAnestesi.setText("Pengkajian Pre Anestesi");
         chkAsuhanPreAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanPreAnestesi.setName("chkAsuhanPreAnestesi"); // NOI18N
-        chkAsuhanPreAnestesi.setOpaque(false);
         chkAsuhanPreAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanPreAnestesi);
 
@@ -1748,7 +1687,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKesiapanAnestesi.setText("Check List Kesiapan Anestesi");
         chkChecklistKesiapanAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKesiapanAnestesi.setName("chkChecklistKesiapanAnestesi"); // NOI18N
-        chkChecklistKesiapanAnestesi.setOpaque(false);
         chkChecklistKesiapanAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKesiapanAnestesi);
 
@@ -1756,7 +1694,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkorAldrettePascaAnestesi.setText("Skor Aldrette Pasca Anestesi");
         chkSkorAldrettePascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkorAldrettePascaAnestesi.setName("chkSkorAldrettePascaAnestesi"); // NOI18N
-        chkSkorAldrettePascaAnestesi.setOpaque(false);
         chkSkorAldrettePascaAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkorAldrettePascaAnestesi);
 
@@ -1764,7 +1701,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkorStewardPascaAnestesi.setText("Skor Steward Pasca Anestesi");
         chkSkorStewardPascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkorStewardPascaAnestesi.setName("chkSkorStewardPascaAnestesi"); // NOI18N
-        chkSkorStewardPascaAnestesi.setOpaque(false);
         chkSkorStewardPascaAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkorStewardPascaAnestesi);
 
@@ -1772,7 +1708,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkorBromagePascaAnestesi.setText("Skor Bromage Pasca Anestesi");
         chkSkorBromagePascaAnestesi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkorBromagePascaAnestesi.setName("chkSkorBromagePascaAnestesi"); // NOI18N
-        chkSkorBromagePascaAnestesi.setOpaque(false);
         chkSkorBromagePascaAnestesi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkorBromagePascaAnestesi);
 
@@ -1780,7 +1715,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanPengkajianPaskaOperasi.setText("Catatan Pengkajian Paska Operasi");
         chkCatatanPengkajianPaskaOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanPengkajianPaskaOperasi.setName("chkCatatanPengkajianPaskaOperasi"); // NOI18N
-        chkCatatanPengkajianPaskaOperasi.setOpaque(false);
         chkCatatanPengkajianPaskaOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanPengkajianPaskaOperasi);
 
@@ -1788,7 +1722,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanObservasiRuangOperasi.setText("Catatan Observasi Ruang Operasi");
         chkCatatanObservasiRuangOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanObservasiRuangOperasi.setName("chkCatatanObservasiRuangOperasi"); // NOI18N
-        chkCatatanObservasiRuangOperasi.setOpaque(false);
         chkCatatanObservasiRuangOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanObservasiRuangOperasi);
 
@@ -1796,7 +1729,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukHCU.setText("Check List Kriteria Masuk HCU");
         chkChecklistKriteriaMasukHCU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaMasukHCU.setName("chkChecklistKriteriaMasukHCU"); // NOI18N
-        chkChecklistKriteriaMasukHCU.setOpaque(false);
         chkChecklistKriteriaMasukHCU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaMasukHCU);
 
@@ -1804,7 +1736,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaKeluarHCU.setText("Check List Kriteria Keluar HCU");
         chkChecklistKriteriaKeluarHCU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaKeluarHCU.setName("chkChecklistKriteriaKeluarHCU"); // NOI18N
-        chkChecklistKriteriaKeluarHCU.setOpaque(false);
         chkChecklistKriteriaKeluarHCU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaKeluarHCU);
 
@@ -1812,7 +1743,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukICU.setText("Check List Kriteria Masuk ICU");
         chkChecklistKriteriaMasukICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaMasukICU.setName("chkChecklistKriteriaMasukICU"); // NOI18N
-        chkChecklistKriteriaMasukICU.setOpaque(false);
         chkChecklistKriteriaMasukICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaMasukICU);
 
@@ -1820,7 +1750,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaKeluarICU.setText("Check List Kriteria Keluar ICU");
         chkChecklistKriteriaKeluarICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaKeluarICU.setName("chkChecklistKriteriaKeluarICU"); // NOI18N
-        chkChecklistKriteriaKeluarICU.setOpaque(false);
         chkChecklistKriteriaKeluarICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaKeluarICU);
 
@@ -1828,7 +1757,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukNICU.setText("Check List Kriteria Masuk NICU");
         chkChecklistKriteriaMasukNICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaMasukNICU.setName("chkChecklistKriteriaMasukNICU"); // NOI18N
-        chkChecklistKriteriaMasukNICU.setOpaque(false);
         chkChecklistKriteriaMasukNICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaMasukNICU);
 
@@ -1836,7 +1764,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaKeluarNICU.setText("Check List Kriteria Keluar NICU");
         chkChecklistKriteriaKeluarNICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaKeluarNICU.setName("chkChecklistKriteriaKeluarNICU"); // NOI18N
-        chkChecklistKriteriaKeluarNICU.setOpaque(false);
         chkChecklistKriteriaKeluarNICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaKeluarNICU);
 
@@ -1844,7 +1771,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukPICU.setText("Check List Kriteria Masuk PICU");
         chkChecklistKriteriaMasukPICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaMasukPICU.setName("chkChecklistKriteriaMasukPICU"); // NOI18N
-        chkChecklistKriteriaMasukPICU.setOpaque(false);
         chkChecklistKriteriaMasukPICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaMasukPICU);
 
@@ -1852,7 +1778,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaKeluarPICU.setText("Check List Kriteria Keluar PICU");
         chkChecklistKriteriaKeluarPICU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaKeluarPICU.setName("chkChecklistKriteriaKeluarPICU"); // NOI18N
-        chkChecklistKriteriaKeluarPICU.setOpaque(false);
         chkChecklistKriteriaKeluarPICU.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaKeluarPICU);
 
@@ -1860,15 +1785,20 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkChecklistKriteriaMasukIsolasi.setText("Check List Kriteria Masuk Isolasi");
         chkChecklistKriteriaMasukIsolasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkChecklistKriteriaMasukIsolasi.setName("chkChecklistKriteriaMasukIsolasi"); // NOI18N
-        chkChecklistKriteriaMasukIsolasi.setOpaque(false);
         chkChecklistKriteriaMasukIsolasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkChecklistKriteriaMasukIsolasi);
+
+        chkChecklistKriteriaKeluarIsolasi.setSelected(true);
+        chkChecklistKriteriaKeluarIsolasi.setText("Check List Kriteria Keluar Isolasi");
+        chkChecklistKriteriaKeluarIsolasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkChecklistKriteriaKeluarIsolasi.setName("chkChecklistKriteriaKeluarIsolasi"); // NOI18N
+        chkChecklistKriteriaKeluarIsolasi.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkChecklistKriteriaKeluarIsolasi);
 
         chkAsuhanLanjutanRisikoJatuhDewasa.setSelected(true);
         chkAsuhanLanjutanRisikoJatuhDewasa.setText("Lanjutan Risiko Jatuh Dewasa");
         chkAsuhanLanjutanRisikoJatuhDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhDewasa.setName("chkAsuhanLanjutanRisikoJatuhDewasa"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhDewasa.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhDewasa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhDewasa);
 
@@ -1876,7 +1806,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanRisikoJatuhAnak.setText("Lanjutan Risiko Jatuh Anak");
         chkAsuhanLanjutanRisikoJatuhAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhAnak.setName("chkAsuhanLanjutanRisikoJatuhAnak"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhAnak.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhAnak.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhAnak);
 
@@ -1884,7 +1813,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanRisikoJatuhLansia.setText("Lanjutan Risiko Jatuh Lansia");
         chkAsuhanLanjutanRisikoJatuhLansia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhLansia.setName("chkAsuhanLanjutanRisikoJatuhLansia"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhLansia.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhLansia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhLansia);
 
@@ -1892,7 +1820,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanRisikoJatuhGeriatri.setText("Lanjutan Risiko Jatuh Geriatri");
         chkAsuhanLanjutanRisikoJatuhGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhGeriatri.setName("chkAsuhanLanjutanRisikoJatuhGeriatri"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhGeriatri.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhGeriatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhGeriatri);
 
@@ -1900,7 +1827,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanRisikoJatuhNeonatus.setText("Lanjutan Risiko Jatuh Neonatus");
         chkAsuhanLanjutanRisikoJatuhNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhNeonatus.setName("chkAsuhanLanjutanRisikoJatuhNeonatus"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhNeonatus.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhNeonatus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhNeonatus);
 
@@ -1908,7 +1834,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanRisikoJatuhPsikiatri.setText("Lanjutan Risiko Jatuh Psikiatri");
         chkAsuhanLanjutanRisikoJatuhPsikiatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanRisikoJatuhPsikiatri.setName("chkAsuhanLanjutanRisikoJatuhPsikiatri"); // NOI18N
-        chkAsuhanLanjutanRisikoJatuhPsikiatri.setOpaque(false);
         chkAsuhanLanjutanRisikoJatuhPsikiatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanRisikoJatuhPsikiatri);
 
@@ -1916,7 +1841,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanLanjutanSkriningFungsional.setText("Lanjutan Skrining Fungsional");
         chkAsuhanLanjutanSkriningFungsional.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanLanjutanSkriningFungsional.setName("chkAsuhanLanjutanSkriningFungsional"); // NOI18N
-        chkAsuhanLanjutanSkriningFungsional.setOpaque(false);
         chkAsuhanLanjutanSkriningFungsional.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanLanjutanSkriningFungsional);
 
@@ -1924,7 +1848,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanRisikoDekubitus.setText("Risiko Dekubitus");
         chkAsuhanRisikoDekubitus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanRisikoDekubitus.setName("chkAsuhanRisikoDekubitus"); // NOI18N
-        chkAsuhanRisikoDekubitus.setOpaque(false);
         chkAsuhanRisikoDekubitus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanRisikoDekubitus);
 
@@ -1932,7 +1855,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanGizi.setText("Asuhan Gizi");
         chkAsuhanGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanGizi.setName("chkAsuhanGizi"); // NOI18N
-        chkAsuhanGizi.setOpaque(false);
         chkAsuhanGizi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanGizi);
 
@@ -1940,7 +1862,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanUSG.setText("Hasil USG Kandungan");
         chkHasilPemeriksaanUSG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanUSG.setName("chkHasilPemeriksaanUSG"); // NOI18N
-        chkHasilPemeriksaanUSG.setOpaque(false);
         chkHasilPemeriksaanUSG.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanUSG);
 
@@ -1948,7 +1869,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanUSGUrologi.setText("Hasil USG Urologi");
         chkHasilPemeriksaanUSGUrologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanUSGUrologi.setName("chkHasilPemeriksaanUSGUrologi"); // NOI18N
-        chkHasilPemeriksaanUSGUrologi.setOpaque(false);
         chkHasilPemeriksaanUSGUrologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanUSGUrologi);
 
@@ -1956,7 +1876,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanUSGNeonatus.setText("Hasil USG Neonatus");
         chkHasilPemeriksaanUSGNeonatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanUSGNeonatus.setName("chkHasilPemeriksaanUSGNeonatus"); // NOI18N
-        chkHasilPemeriksaanUSGNeonatus.setOpaque(false);
         chkHasilPemeriksaanUSGNeonatus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanUSGNeonatus);
 
@@ -1964,7 +1883,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanUSGGynecologi.setText("Hasil USG Gynecologi");
         chkHasilPemeriksaanUSGGynecologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanUSGGynecologi.setName("chkHasilPemeriksaanUSGGynecologi"); // NOI18N
-        chkHasilPemeriksaanUSGGynecologi.setOpaque(false);
         chkHasilPemeriksaanUSGGynecologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanUSGGynecologi);
 
@@ -1972,7 +1890,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanUSGAbdomen.setText("Hasil USG Abdomen");
         chkHasilPemeriksaanUSGAbdomen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanUSGAbdomen.setName("chkHasilPemeriksaanUSGAbdomen"); // NOI18N
-        chkHasilPemeriksaanUSGAbdomen.setOpaque(false);
         chkHasilPemeriksaanUSGAbdomen.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanUSGAbdomen);
 
@@ -1980,7 +1897,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEKG.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEKG.setLabel("Hasil Pemeriksaan EKG");
         chkHasilPemeriksaanEKG.setName("chkHasilPemeriksaanEKG"); // NOI18N
-        chkHasilPemeriksaanEKG.setOpaque(false);
         chkHasilPemeriksaanEKG.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEKG);
 
@@ -1988,7 +1904,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanTreadmill.setText("Hasil Pemeriksaan Treadmill");
         chkHasilPemeriksaanTreadmill.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanTreadmill.setName("chkHasilPemeriksaanTreadmill"); // NOI18N
-        chkHasilPemeriksaanTreadmill.setOpaque(false);
         chkHasilPemeriksaanTreadmill.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanTreadmill);
 
@@ -1996,7 +1911,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanSlitLamp.setText("Hasil Pemeriksaan Slit Lamp");
         chkHasilPemeriksaanSlitLamp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanSlitLamp.setName("chkHasilPemeriksaanSlitLamp"); // NOI18N
-        chkHasilPemeriksaanSlitLamp.setOpaque(false);
         chkHasilPemeriksaanSlitLamp.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanSlitLamp);
 
@@ -2004,7 +1918,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanOCT.setText("Hasil Pemeriksaan OCT");
         chkHasilPemeriksaanOCT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanOCT.setName("chkHasilPemeriksaanOCT"); // NOI18N
-        chkHasilPemeriksaanOCT.setOpaque(false);
         chkHasilPemeriksaanOCT.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanOCT);
 
@@ -2012,7 +1925,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEcho.setText("Hasil Pemeriksaan ECHO");
         chkHasilPemeriksaanEcho.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEcho.setName("chkHasilPemeriksaanEcho"); // NOI18N
-        chkHasilPemeriksaanEcho.setOpaque(false);
         chkHasilPemeriksaanEcho.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEcho);
 
@@ -2020,7 +1932,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEchoPediatrik.setText("Hasil ECHO Pediatrik");
         chkHasilPemeriksaanEchoPediatrik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEchoPediatrik.setName("chkHasilPemeriksaanEchoPediatrik"); // NOI18N
-        chkHasilPemeriksaanEchoPediatrik.setOpaque(false);
         chkHasilPemeriksaanEchoPediatrik.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEchoPediatrik);
 
@@ -2028,7 +1939,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiFaringLaring.setText("Hasil Pemeriksaan Endoskopi Faring/Laring");
         chkHasilPemeriksaanEndoskopiFaringLaring.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEndoskopiFaringLaring.setName("chkHasilPemeriksaanEndoskopiFaringLaring"); // NOI18N
-        chkHasilPemeriksaanEndoskopiFaringLaring.setOpaque(false);
         chkHasilPemeriksaanEndoskopiFaringLaring.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEndoskopiFaringLaring);
 
@@ -2036,7 +1946,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiHidung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEndoskopiHidung.setLabel("Hasil Pemeriksaan Endoskopi Hidung");
         chkHasilPemeriksaanEndoskopiHidung.setName("chkHasilPemeriksaanEndoskopiHidung"); // NOI18N
-        chkHasilPemeriksaanEndoskopiHidung.setOpaque(false);
         chkHasilPemeriksaanEndoskopiHidung.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEndoskopiHidung);
 
@@ -2044,7 +1953,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiTelinga.setText("Hasil Pemeriksaan Endoskopi Telinga");
         chkHasilPemeriksaanEndoskopiTelinga.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHasilPemeriksaanEndoskopiTelinga.setName("chkHasilPemeriksaanEndoskopiTelinga"); // NOI18N
-        chkHasilPemeriksaanEndoskopiTelinga.setOpaque(false);
         chkHasilPemeriksaanEndoskopiTelinga.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEndoskopiTelinga);
 
@@ -2052,15 +1960,20 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanPersalinan.setText("Catatan Persalinan");
         chkCatatanPersalinan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanPersalinan.setName("chkCatatanPersalinan"); // NOI18N
-        chkCatatanPersalinan.setOpaque(false);
         chkCatatanPersalinan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanPersalinan);
+
+        chkHasilPersalinanTOLAC.setSelected(true);
+        chkHasilPersalinanTOLAC.setText("Resume Hasil Persalinan TOLAC");
+        chkHasilPersalinanTOLAC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkHasilPersalinanTOLAC.setName("chkHasilPersalinanTOLAC"); // NOI18N
+        chkHasilPersalinanTOLAC.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkHasilPersalinanTOLAC);
 
         chkLaporanTindakan.setSelected(true);
         chkLaporanTindakan.setText("Laporan Tindakan Medis");
         chkLaporanTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkLaporanTindakan.setName("chkLaporanTindakan"); // NOI18N
-        chkLaporanTindakan.setOpaque(false);
         chkLaporanTindakan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkLaporanTindakan);
 
@@ -2068,7 +1981,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkDokumentasiTindakanESWL.setText("Dokumentasi Tindakan ESWL");
         chkDokumentasiTindakanESWL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkDokumentasiTindakanESWL.setName("chkDokumentasiTindakanESWL"); // NOI18N
-        chkDokumentasiTindakanESWL.setOpaque(false);
         chkDokumentasiTindakanESWL.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkDokumentasiTindakanESWL);
 
@@ -2076,7 +1988,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPerencanaanPemulangan.setText("Perencanaan Pemulangan");
         chkPerencanaanPemulangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPerencanaanPemulangan.setName("chkPerencanaanPemulangan"); // NOI18N
-        chkPerencanaanPemulangan.setOpaque(false);
         chkPerencanaanPemulangan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPerencanaanPemulangan);
 
@@ -2084,7 +1995,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkLayananKedokteranFisikRehabilitasi.setText("Layanan Kedokteran Fisik & Rehabilitasi");
         chkLayananKedokteranFisikRehabilitasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkLayananKedokteranFisikRehabilitasi.setName("chkLayananKedokteranFisikRehabilitasi"); // NOI18N
-        chkLayananKedokteranFisikRehabilitasi.setOpaque(false);
         chkLayananKedokteranFisikRehabilitasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkLayananKedokteranFisikRehabilitasi);
 
@@ -2092,7 +2002,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkLayananProgramKFR.setText("Layanan Program KFR");
         chkLayananProgramKFR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkLayananProgramKFR.setName("chkLayananProgramKFR"); // NOI18N
-        chkLayananProgramKFR.setOpaque(false);
         chkLayananProgramKFR.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkLayananProgramKFR);
 
@@ -2100,7 +2009,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkUjiFungsiKFR.setText("Uji Fungsi/Prosedur KFR");
         chkUjiFungsiKFR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkUjiFungsiKFR.setName("chkUjiFungsiKFR"); // NOI18N
-        chkUjiFungsiKFR.setOpaque(false);
         chkUjiFungsiKFR.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkUjiFungsiKFR);
 
@@ -2108,7 +2016,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHemodialisa.setText("Hemodialisa");
         chkHemodialisa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkHemodialisa.setName("chkHemodialisa"); // NOI18N
-        chkHemodialisa.setOpaque(false);
         chkHemodialisa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHemodialisa);
 
@@ -2116,7 +2023,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningNutrisiDewasa.setText("Skrining Nutrisi Dewasa");
         chkSkriningNutrisiDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningNutrisiDewasa.setName("chkSkriningNutrisiDewasa"); // NOI18N
-        chkSkriningNutrisiDewasa.setOpaque(false);
         chkSkriningNutrisiDewasa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningNutrisiDewasa);
 
@@ -2124,7 +2030,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningNutrisiLansia.setText("Skrining Nutrisi Lansia");
         chkSkriningNutrisiLansia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningNutrisiLansia.setName("chkSkriningNutrisiLansia"); // NOI18N
-        chkSkriningNutrisiLansia.setOpaque(false);
         chkSkriningNutrisiLansia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningNutrisiLansia);
 
@@ -2132,7 +2037,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningNutrisiAnak.setText("Skrining Nutrisi Anak");
         chkSkriningNutrisiAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningNutrisiAnak.setName("chkSkriningNutrisiAnak"); // NOI18N
-        chkSkriningNutrisiAnak.setOpaque(false);
         chkSkriningNutrisiAnak.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningNutrisiAnak);
 
@@ -2140,7 +2044,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGiziKehamilan.setText("Skrining Gizi Kehamilan");
         chkSkriningGiziKehamilan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGiziKehamilan.setName("chkSkriningGiziKehamilan"); // NOI18N
-        chkSkriningGiziKehamilan.setOpaque(false);
         chkSkriningGiziKehamilan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGiziKehamilan);
 
@@ -2148,7 +2051,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGiziLanjut.setText("Skrining Gizi Lanjut");
         chkSkriningGiziLanjut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGiziLanjut.setName("chkSkriningGiziLanjut"); // NOI18N
-        chkSkriningGiziLanjut.setOpaque(false);
         chkSkriningGiziLanjut.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGiziLanjut);
 
@@ -2156,7 +2058,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkMonitoringGizi.setText("Monitoring Gizi");
         chkMonitoringGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkMonitoringGizi.setName("chkMonitoringGizi"); // NOI18N
-        chkMonitoringGizi.setOpaque(false);
         chkMonitoringGizi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkMonitoringGizi);
 
@@ -2164,7 +2065,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkCatatanADIMEGizi.setText("Monitoring Gizi");
         chkCatatanADIMEGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkCatatanADIMEGizi.setName("chkCatatanADIMEGizi"); // NOI18N
-        chkCatatanADIMEGizi.setOpaque(false);
         chkCatatanADIMEGizi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkCatatanADIMEGizi);
 
@@ -2172,7 +2072,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningMerokokUsiaRemaja.setText("Skrining Merokok Usia Sekolah");
         chkSkriningMerokokUsiaRemaja.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningMerokokUsiaRemaja.setName("chkSkriningMerokokUsiaRemaja"); // NOI18N
-        chkSkriningMerokokUsiaRemaja.setOpaque(false);
         chkSkriningMerokokUsiaRemaja.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningMerokokUsiaRemaja);
 
@@ -2180,7 +2079,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningKekerasanPadaPerempuan.setText("Skrining Kekerasan Pada Perempuan");
         chkSkriningKekerasanPadaPerempuan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningKekerasanPadaPerempuan.setName("chkSkriningKekerasanPadaPerempuan"); // NOI18N
-        chkSkriningKekerasanPadaPerempuan.setOpaque(false);
         chkSkriningKekerasanPadaPerempuan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningKekerasanPadaPerempuan);
 
@@ -2188,7 +2086,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningObesitas.setText("Skrining Obesitas");
         chkSkriningObesitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningObesitas.setName("chkSkriningObesitas"); // NOI18N
-        chkSkriningObesitas.setOpaque(false);
         chkSkriningObesitas.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningObesitas);
 
@@ -2196,7 +2093,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningDiabetesMelitus.setText("Skrining Diabetes Melitus");
         chkSkriningDiabetesMelitus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningDiabetesMelitus.setName("chkSkriningDiabetesMelitus"); // NOI18N
-        chkSkriningDiabetesMelitus.setOpaque(false);
         chkSkriningDiabetesMelitus.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningDiabetesMelitus);
 
@@ -2204,7 +2100,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningAnemia.setText("Skrining Anemia");
         chkSkriningAnemia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningAnemia.setName("chkSkriningAnemia"); // NOI18N
-        chkSkriningAnemia.setOpaque(false);
         chkSkriningAnemia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningAnemia);
 
@@ -2212,7 +2107,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningHipertensi.setText("Skrining Hipertensi");
         chkSkriningHipertensi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningHipertensi.setName("chkSkriningHipertensi"); // NOI18N
-        chkSkriningHipertensi.setOpaque(false);
         chkSkriningHipertensi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningHipertensi);
 
@@ -2220,7 +2114,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningKesehatanPenglihatan.setText("Skrining Kesehatan Penglihatan");
         chkSkriningKesehatanPenglihatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningKesehatanPenglihatan.setName("chkSkriningKesehatanPenglihatan"); // NOI18N
-        chkSkriningKesehatanPenglihatan.setOpaque(false);
         chkSkriningKesehatanPenglihatan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningKesehatanPenglihatan);
 
@@ -2228,7 +2121,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningIndraPendengaran.setText("Skrining Indra Pendengaran");
         chkSkriningIndraPendengaran.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningIndraPendengaran.setName("chkSkriningIndraPendengaran"); // NOI18N
-        chkSkriningIndraPendengaran.setOpaque(false);
         chkSkriningIndraPendengaran.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningIndraPendengaran);
 
@@ -2236,7 +2128,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningRisikoKankerPayudara.setText("Skrining Risiko Kanker Payudara");
         chkSkriningRisikoKankerPayudara.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningRisikoKankerPayudara.setName("chkSkriningRisikoKankerPayudara"); // NOI18N
-        chkSkriningRisikoKankerPayudara.setOpaque(false);
         chkSkriningRisikoKankerPayudara.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningRisikoKankerPayudara);
 
@@ -2244,7 +2135,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningRisikoKankerParu.setText("Skrining Risiko Kanker Paru");
         chkSkriningRisikoKankerParu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningRisikoKankerParu.setName("chkSkriningRisikoKankerParu"); // NOI18N
-        chkSkriningRisikoKankerParu.setOpaque(false);
         chkSkriningRisikoKankerParu.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningRisikoKankerParu);
 
@@ -2252,7 +2142,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningRisikoKankerServiks.setText("Skrining Risiko Kanker Serviks");
         chkSkriningRisikoKankerServiks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningRisikoKankerServiks.setName("chkSkriningRisikoKankerServiks"); // NOI18N
-        chkSkriningRisikoKankerServiks.setOpaque(false);
         chkSkriningRisikoKankerServiks.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningRisikoKankerServiks);
 
@@ -2260,7 +2149,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutRemaja.setText("Skrining Kesehatan Gigi & Mulut Usia Remaja");
         chkSkriningGigiMulutRemaja.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGigiMulutRemaja.setName("chkSkriningGigiMulutRemaja"); // NOI18N
-        chkSkriningGigiMulutRemaja.setOpaque(false);
         chkSkriningGigiMulutRemaja.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGigiMulutRemaja);
 
@@ -2268,7 +2156,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutBalita.setText("Skrining Kesehatan Gigi & Mulut Balita");
         chkSkriningGigiMulutBalita.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGigiMulutBalita.setName("chkSkriningGigiMulutBalita"); // NOI18N
-        chkSkriningGigiMulutBalita.setOpaque(false);
         chkSkriningGigiMulutBalita.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGigiMulutBalita);
 
@@ -2276,7 +2163,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutDewasa.setText("Skrining Kesehatan Gigi & Mulut Dewasa");
         chkSkriningGigiMulutDewasa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGigiMulutDewasa.setName("chkSkriningGigiMulutDewasa"); // NOI18N
-        chkSkriningGigiMulutDewasa.setOpaque(false);
         chkSkriningGigiMulutDewasa.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGigiMulutDewasa);
 
@@ -2284,7 +2170,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningGigiMulutLansia.setText("Skrining Kesehatan Gigi & Mulut Lansia");
         chkSkriningGigiMulutLansia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningGigiMulutLansia.setName("chkSkriningGigiMulutLansia"); // NOI18N
-        chkSkriningGigiMulutLansia.setOpaque(false);
         chkSkriningGigiMulutLansia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningGigiMulutLansia);
 
@@ -2300,7 +2185,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningTBC.setText("Skrining TBC");
         chkSkriningTBC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningTBC.setName("chkSkriningTBC"); // NOI18N
-        chkSkriningTBC.setOpaque(false);
         chkSkriningTBC.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningTBC);
 
@@ -2308,7 +2192,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningPSI.setText("Skrining PSI");
         chkSkriningPSI.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningPSI.setName("chkSkriningPSI"); // NOI18N
-        chkSkriningPSI.setOpaque(false);
         chkSkriningPSI.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningPSI);
 
@@ -2316,7 +2199,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningCRUB65.setText("Skrining CRUB-65");
         chkSkriningCRUB65.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningCRUB65.setName("chkSkriningCRUB65"); // NOI18N
-        chkSkriningCRUB65.setOpaque(false);
         chkSkriningCRUB65.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningCRUB65);
 
@@ -2324,7 +2206,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningPUMA.setText("Skrining PUMA");
         chkSkriningPUMA.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningPUMA.setName("chkSkriningPUMA"); // NOI18N
-        chkSkriningPUMA.setOpaque(false);
         chkSkriningPUMA.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningPUMA);
 
@@ -2332,7 +2213,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningAdiksiNikotin.setText("Skrining Adiksi Nikotin");
         chkSkriningAdiksiNikotin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningAdiksiNikotin.setName("chkSkriningAdiksiNikotin"); // NOI18N
-        chkSkriningAdiksiNikotin.setOpaque(false);
         chkSkriningAdiksiNikotin.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningAdiksiNikotin);
 
@@ -2340,7 +2220,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningThalasemia.setText("Skrining Thalassemia");
         chkSkriningThalasemia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningThalasemia.setName("chkSkriningThalasemia"); // NOI18N
-        chkSkriningThalasemia.setOpaque(false);
         chkSkriningThalasemia.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningThalasemia);
 
@@ -2348,7 +2227,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenSDQ.setText("Skrining Instrumen SDQ");
         chkSkriningInstrumenSDQ.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningInstrumenSDQ.setName("chkSkriningInstrumenSDQ"); // NOI18N
-        chkSkriningInstrumenSDQ.setOpaque(false);
         chkSkriningInstrumenSDQ.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningInstrumenSDQ);
 
@@ -2356,7 +2234,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenSRQ.setText("Skrining Instrumen SRQ");
         chkSkriningInstrumenSRQ.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningInstrumenSRQ.setName("chkSkriningInstrumenSRQ"); // NOI18N
-        chkSkriningInstrumenSRQ.setOpaque(false);
         chkSkriningInstrumenSRQ.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningInstrumenSRQ);
 
@@ -2364,7 +2241,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenACRS.setText("Skrining Instrumen ACRS");
         chkSkriningInstrumenACRS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningInstrumenACRS.setName("chkSkriningInstrumenACRS"); // NOI18N
-        chkSkriningInstrumenACRS.setOpaque(false);
         chkSkriningInstrumenACRS.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningInstrumenACRS);
 
@@ -2372,7 +2248,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenAMT.setText("Skrining Instrumen AMT");
         chkSkriningInstrumenAMT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningInstrumenAMT.setName("chkSkriningInstrumenAMT"); // NOI18N
-        chkSkriningInstrumenAMT.setOpaque(false);
         chkSkriningInstrumenAMT.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningInstrumenAMT);
 
@@ -2380,7 +2255,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningInstrumenESAT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningInstrumenESAT.setLabel("Skrining Instrumen ESAT");
         chkSkriningInstrumenESAT.setName("chkSkriningInstrumenESAT"); // NOI18N
-        chkSkriningInstrumenESAT.setOpaque(false);
         chkSkriningInstrumenESAT.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningInstrumenESAT);
 
@@ -2388,7 +2262,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningKankerKolorektal.setText("Skrining Kanker Kolorektal");
         chkSkriningKankerKolorektal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningKankerKolorektal.setName("chkSkriningKankerKolorektal"); // NOI18N
-        chkSkriningKankerKolorektal.setOpaque(false);
         chkSkriningKankerKolorektal.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningKankerKolorektal);
 
@@ -2396,15 +2269,20 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkSkriningFrailtySyndrome.setText("Skrining Frailty Syndrome");
         chkSkriningFrailtySyndrome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSkriningFrailtySyndrome.setName("chkSkriningFrailtySyndrome"); // NOI18N
-        chkSkriningFrailtySyndrome.setOpaque(false);
         chkSkriningFrailtySyndrome.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkSkriningFrailtySyndrome);
+
+        chkSkriningTOLAC.setSelected(true);
+        chkSkriningTOLAC.setText("Skrining TOLAC");
+        chkSkriningTOLAC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSkriningTOLAC.setName("chkSkriningTOLAC"); // NOI18N
+        chkSkriningTOLAC.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkSkriningTOLAC);
 
         chkRekonsiliasiObat.setSelected(true);
         chkRekonsiliasiObat.setText("Rekonsiliasi Obat");
         chkRekonsiliasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkRekonsiliasiObat.setName("chkRekonsiliasiObat"); // NOI18N
-        chkRekonsiliasiObat.setOpaque(false);
         chkRekonsiliasiObat.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkRekonsiliasiObat);
 
@@ -2412,7 +2290,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkKonselingFarmasi.setText("Konseling Farmasi");
         chkKonselingFarmasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkKonselingFarmasi.setName("chkKonselingFarmasi"); // NOI18N
-        chkKonselingFarmasi.setOpaque(false);
         chkKonselingFarmasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkKonselingFarmasi);
 
@@ -2420,7 +2297,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPelayananInformasiObat.setText("Pelayanan Informasi Obat");
         chkPelayananInformasiObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPelayananInformasiObat.setName("chkPelayananInformasiObat"); // NOI18N
-        chkPelayananInformasiObat.setOpaque(false);
         chkPelayananInformasiObat.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPelayananInformasiObat);
 
@@ -2428,7 +2304,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkBerkasDigital.setText("Berkas Digital Perawatan");
         chkBerkasDigital.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkBerkasDigital.setName("chkBerkasDigital"); // NOI18N
-        chkBerkasDigital.setOpaque(false);
         chkBerkasDigital.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkBerkasDigital);
 
@@ -2436,7 +2311,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTransferAntarRuang.setText("Transfer Antar Ruang");
         chkTransferAntarRuang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTransferAntarRuang.setName("chkTransferAntarRuang"); // NOI18N
-        chkTransferAntarRuang.setOpaque(false);
         chkTransferAntarRuang.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTransferAntarRuang);
 
@@ -2444,7 +2318,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPengkajianRestrain.setText("Pengkajian Restrain");
         chkPengkajianRestrain.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPengkajianRestrain.setName("chkPengkajianRestrain"); // NOI18N
-        chkPengkajianRestrain.setOpaque(false);
         chkPengkajianRestrain.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPengkajianRestrain);
 
@@ -2452,7 +2325,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanTambahanGeriatri.setText("Tambahan Pasien Geriatri");
         chkAsuhanTambahanGeriatri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanTambahanGeriatri.setName("chkAsuhanTambahanGeriatri"); // NOI18N
-        chkAsuhanTambahanGeriatri.setOpaque(false);
         chkAsuhanTambahanGeriatri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanTambahanGeriatri);
 
@@ -2460,7 +2332,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanTambahanBunuhDiri.setText("Tambahan Bunuh Diri");
         chkAsuhanTambahanBunuhDiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanTambahanBunuhDiri.setName("chkAsuhanTambahanBunuhDiri"); // NOI18N
-        chkAsuhanTambahanBunuhDiri.setOpaque(false);
         chkAsuhanTambahanBunuhDiri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanTambahanBunuhDiri);
 
@@ -2468,7 +2339,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanTambahanPerilakuKekerasan.setText("Tambahan Perilaku Kekerasan");
         chkAsuhanTambahanPerilakuKekerasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanTambahanPerilakuKekerasan.setName("chkAsuhanTambahanPerilakuKekerasan"); // NOI18N
-        chkAsuhanTambahanPerilakuKekerasan.setOpaque(false);
         chkAsuhanTambahanPerilakuKekerasan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanTambahanPerilakuKekerasan);
 
@@ -2476,7 +2346,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkAsuhanTambahanMelarikanDiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkAsuhanTambahanMelarikanDiri.setLabel("Tambahan Melarikan Diri");
         chkAsuhanTambahanMelarikanDiri.setName("chkAsuhanTambahanMelarikanDiri"); // NOI18N
-        chkAsuhanTambahanMelarikanDiri.setOpaque(false);
         chkAsuhanTambahanMelarikanDiri.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkAsuhanTambahanMelarikanDiri);
 
@@ -2484,7 +2353,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianPasienTerminal.setText("Pengkajian Pasien Terminal");
         chkPenilaianPasienTerminal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianPasienTerminal.setName("chkPenilaianPasienTerminal"); // NOI18N
-        chkPenilaianPasienTerminal.setOpaque(false);
         chkPenilaianPasienTerminal.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianPasienTerminal);
 
@@ -2492,7 +2360,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianKorbanKekerasan.setText("Pengkajian Korban Kekerasan");
         chkPenilaianKorbanKekerasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianKorbanKekerasan.setName("chkPenilaianKorbanKekerasan"); // NOI18N
-        chkPenilaianKorbanKekerasan.setOpaque(false);
         chkPenilaianKorbanKekerasan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianKorbanKekerasan);
 
@@ -2500,7 +2367,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianLevelKecemasanRanapAnak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianLevelKecemasanRanapAnak.setLabel("Pengkajian Kecemasan Ranap Anak");
         chkPenilaianLevelKecemasanRanapAnak.setName("chkPenilaianLevelKecemasanRanapAnak"); // NOI18N
-        chkPenilaianLevelKecemasanRanapAnak.setOpaque(false);
         chkPenilaianLevelKecemasanRanapAnak.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianLevelKecemasanRanapAnak);
 
@@ -2508,7 +2374,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianPasienPenyakitMenular.setText("Pengkajian Pasien Penyakit Menular");
         chkPenilaianPasienPenyakitMenular.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianPasienPenyakitMenular.setName("chkPenilaianPasienPenyakitMenular"); // NOI18N
-        chkPenilaianPasienPenyakitMenular.setOpaque(false);
         chkPenilaianPasienPenyakitMenular.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianPasienPenyakitMenular);
 
@@ -2516,7 +2381,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianPasienImunitasRendah.setText("Pengkajian Pasien Imunitas Rendah");
         chkPenilaianPasienImunitasRendah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianPasienImunitasRendah.setName("chkPenilaianPasienImunitasRendah"); // NOI18N
-        chkPenilaianPasienImunitasRendah.setOpaque(false);
         chkPenilaianPasienImunitasRendah.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianPasienImunitasRendah);
 
@@ -2524,7 +2388,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenilaianPasienKeracunan.setText("Pengkajian Pasien Keracunan");
         chkPenilaianPasienKeracunan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenilaianPasienKeracunan.setName("chkPenilaianPasienKeracunan"); // NOI18N
-        chkPenilaianPasienKeracunan.setOpaque(false);
         chkPenilaianPasienKeracunan.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenilaianPasienKeracunan);
 
@@ -2532,7 +2395,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkResume.setText("Resume");
         chkResume.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkResume.setName("chkResume"); // NOI18N
-        chkResume.setOpaque(false);
         chkResume.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkResume);
 
@@ -2540,7 +2402,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRalanDokter.setText("Tindakan Ralan Dokter");
         chkTindakanRalanDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRalanDokter.setName("chkTindakanRalanDokter"); // NOI18N
-        chkTindakanRalanDokter.setOpaque(false);
         chkTindakanRalanDokter.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRalanDokter);
 
@@ -2548,7 +2409,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRalanParamedis.setText("Tindakan Ralan Paramedis");
         chkTindakanRalanParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRalanParamedis.setName("chkTindakanRalanParamedis"); // NOI18N
-        chkTindakanRalanParamedis.setOpaque(false);
         chkTindakanRalanParamedis.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRalanParamedis);
 
@@ -2556,7 +2416,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRalanDokterParamedis.setText("Tindakan Ralan Dokter & Paramedis");
         chkTindakanRalanDokterParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRalanDokterParamedis.setName("chkTindakanRalanDokterParamedis"); // NOI18N
-        chkTindakanRalanDokterParamedis.setOpaque(false);
         chkTindakanRalanDokterParamedis.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRalanDokterParamedis);
 
@@ -2564,7 +2423,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRanapDokter.setText("Tindakan Ranap Dokter");
         chkTindakanRanapDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRanapDokter.setName("chkTindakanRanapDokter"); // NOI18N
-        chkTindakanRanapDokter.setOpaque(false);
         chkTindakanRanapDokter.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRanapDokter);
 
@@ -2572,7 +2430,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRanapParamedis.setText("Tindakan Ranap Paramedis");
         chkTindakanRanapParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRanapParamedis.setName("chkTindakanRanapParamedis"); // NOI18N
-        chkTindakanRanapParamedis.setOpaque(false);
         chkTindakanRanapParamedis.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRanapParamedis);
 
@@ -2580,7 +2437,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTindakanRanapDokterParamedis.setText("Tindakan Ranap Dokter & Paramedis");
         chkTindakanRanapDokterParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTindakanRanapDokterParamedis.setName("chkTindakanRanapDokterParamedis"); // NOI18N
-        chkTindakanRanapDokterParamedis.setOpaque(false);
         chkTindakanRanapDokterParamedis.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTindakanRanapDokterParamedis);
 
@@ -2588,7 +2444,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenggunaanKamar.setText("Penggunaan Kamar");
         chkPenggunaanKamar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenggunaanKamar.setName("chkPenggunaanKamar"); // NOI18N
-        chkPenggunaanKamar.setOpaque(false);
         chkPenggunaanKamar.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenggunaanKamar);
 
@@ -2596,7 +2451,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkOperasiVK.setText("Operasi/VK");
         chkOperasiVK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkOperasiVK.setName("chkOperasiVK"); // NOI18N
-        chkOperasiVK.setOpaque(false);
         chkOperasiVK.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkOperasiVK);
 
@@ -2604,7 +2458,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanRadiologi.setText("Pemeriksaan Radiologi");
         chkPemeriksaanRadiologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanRadiologi.setName("chkPemeriksaanRadiologi"); // NOI18N
-        chkPemeriksaanRadiologi.setOpaque(false);
         chkPemeriksaanRadiologi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanRadiologi);
 
@@ -2612,7 +2465,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemeriksaanLaborat.setText("Pemeriksaan Laborat");
         chkPemeriksaanLaborat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemeriksaanLaborat.setName("chkPemeriksaanLaborat"); // NOI18N
-        chkPemeriksaanLaborat.setOpaque(false);
         chkPemeriksaanLaborat.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemeriksaanLaborat);
 
@@ -2620,7 +2472,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPemberianObat.setText("Pemberian Obat/BHP/Alkes");
         chkPemberianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPemberianObat.setName("chkPemberianObat"); // NOI18N
-        chkPemberianObat.setOpaque(false);
         chkPemberianObat.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPemberianObat);
 
@@ -2628,7 +2479,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPenggunaanObatOperasi.setText("Penggunaan Obat/BHP Operasi");
         chkPenggunaanObatOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPenggunaanObatOperasi.setName("chkPenggunaanObatOperasi"); // NOI18N
-        chkPenggunaanObatOperasi.setOpaque(false);
         chkPenggunaanObatOperasi.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPenggunaanObatOperasi);
 
@@ -2636,7 +2486,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkResepPulang.setText("Resep Pulang");
         chkResepPulang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkResepPulang.setName("chkResepPulang"); // NOI18N
-        chkResepPulang.setOpaque(false);
         chkResepPulang.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkResepPulang);
 
@@ -2644,7 +2493,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkTambahanBiaya.setText("Tambahan Biaya");
         chkTambahanBiaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkTambahanBiaya.setName("chkTambahanBiaya"); // NOI18N
-        chkTambahanBiaya.setOpaque(false);
         chkTambahanBiaya.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkTambahanBiaya);
 
@@ -2652,7 +2500,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkPotonganBiaya.setText("Potongan Biaya");
         chkPotonganBiaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkPotonganBiaya.setName("chkPotonganBiaya"); // NOI18N
-        chkPotonganBiaya.setOpaque(false);
         chkPotonganBiaya.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkPotonganBiaya);
 
@@ -2703,6 +2550,19 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         Scroll6.setViewportView(LoadHTMLWearable);
 
         TabRawat.addTab("Wearable", Scroll6);
+
+        PanelSatuSehat.setBackground(new java.awt.Color(255, 255, 255));
+        PanelSatuSehat.setBorder(null);
+        PanelSatuSehat.setName("PanelSatuSehat"); // NOI18N
+        PanelSatuSehat.setLayout(new java.awt.BorderLayout(1, 1));
+
+        PanelWebSatuSehat.setBackground(new java.awt.Color(255, 255, 255));
+        PanelWebSatuSehat.setBorder(null);
+        PanelWebSatuSehat.setName("PanelWebSatuSehat"); // NOI18N
+        PanelWebSatuSehat.setLayout(new java.awt.BorderLayout(1, 1));
+        PanelSatuSehat.add(PanelWebSatuSehat, java.awt.BorderLayout.CENTER);
+
+        TabRawat.addTab("RME Satu Sehat", PanelSatuSehat);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -3094,6 +2954,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             case 6:
                 runBackground(() -> tampilWearable());
                 break;
+            case 7:
+                runBackground(() -> tampilSatuSehat());
+                break;
             default:
                 break;
         }
@@ -3314,6 +3177,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkIntervensiNyeriFarmakologi.setSelected(true);
             chkIntervensiNyeriNonFarmakologi.setSelected(true);
             chkChecklistKriteriaMasukIsolasi.setSelected(true);
+            chkChecklistKriteriaKeluarIsolasi.setSelected(true);
+            chkSkriningTOLAC.setSelected(true);
+            chkAdmisiSkoringTOLAC.setSelected(true);
+            chkMonitoringSelamaTOLAC.setSelected(true);
+            chkHasilPersalinanTOLAC.setSelected(true);
+            chkReaksiTranfusi.setSelected(true);
+            chkPenilaianGRACEScore.setSelected(true);
+            chkPenilaianBishop.setSelected(true);
         }else{
             chkTriase.setSelected(false);
             chkAsuhanKeperawatanRalan.setSelected(false);
@@ -3520,6 +3391,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkIntervensiNyeriFarmakologi.setSelected(false);
             chkIntervensiNyeriNonFarmakologi.setSelected(false);
             chkChecklistKriteriaMasukIsolasi.setSelected(false);
+            chkChecklistKriteriaKeluarIsolasi.setSelected(false);
+            chkSkriningTOLAC.setSelected(false);
+            chkAdmisiSkoringTOLAC.setSelected(false);
+            chkMonitoringSelamaTOLAC.setSelected(false);
+            chkHasilPersalinanTOLAC.setSelected(false);
+            chkReaksiTranfusi.setSelected(false);
+            chkPenilaianGRACEScore.setSelected(false);
+            chkPenilaianBishop.setSelected(false);
         }
     }//GEN-LAST:event_chkSemuaItemStateChanged
 
@@ -4168,14 +4047,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         }
     }//GEN-LAST:event_BtnDownloadBukaFileActionPerformed
 
-    private void ChkTampilPhraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkTampilPhraseActionPerformed
-        if(ChkTampilPhrase.isSelected()==true){
-            Phrase.setEchoChar((char) 0);
-        }else{
-            Phrase.setEchoChar('\u2022');
-        }
-    }//GEN-LAST:event_ChkTampilPhraseActionPerformed
-
     /**
     * @param args the command line arguments
     */
@@ -4209,7 +4080,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.TextBox CacatFisik;
     private widget.CekBox ChkAccor;
     private widget.CekBox ChkInput;
-    private widget.CekBox ChkTampilPhrase;
     private widget.panelisi FormInput;
     private widget.PanelBiasa FormMenu;
     private widget.TextBox GD;
@@ -4221,9 +4091,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.editorpane LoadHTMLRiwayatPerawatan;
     private widget.editorpane LoadHTMLSOAPI;
     private widget.editorpane LoadHTMLWearable;
-    private javax.swing.JMenuItem MnGeneratePDF;
-    private javax.swing.JMenuItem MnGeneratePDFESign;
-    private javax.swing.JMenuItem MnGeneratePDFSertiSign;
+    private widget.MenuItem MnGeneratePDF;
+    private widget.MenuItem MnGeneratePDFESign;
+    private widget.MenuItem MnGeneratePDFSertiSign;
     private javax.swing.JMenuItem MnGeneratePDFMekariSign;
     private javax.swing.JMenuItem MnDokumenMekariSign;
     private widget.TextBox NmPasien;
@@ -4231,6 +4101,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.TextBox NoRawat;
     private widget.PanelBiasa PanelAccor;
     private javax.swing.JPanel PanelInput;
+    private widget.PanelBiasa PanelSatuSehat;
+    private widget.PanelBiasa PanelWebSatuSehat;
     private widget.TextBox Pekerjaan;
     private widget.TextBox Pendidikan;
     private widget.PasswordBox Phrase;
@@ -4247,7 +4119,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.ScrollPane Scroll6;
     private widget.ScrollPane ScrollMenu;
     private widget.TextBox StatusNikah;
-    private javax.swing.JTabbedPane TabRawat;
+    private widget.TabPane TabRawat;
     private widget.Tanggal Tanggal;
     private widget.TextBox TanggalLahir;
     private widget.TextBox TempatLahir;
@@ -4257,6 +4129,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private javax.swing.JDialog WindowPhrase;
     private javax.swing.JDialog WindowURLSertisign;
     private javax.swing.ButtonGroup buttonGroup1;
+    private widget.CekBox chkAdmisiSkoringTOLAC;
     private widget.CekBox chkAsuhanFisioterapi;
     private widget.CekBox chkAsuhanGizi;
     private widget.CekBox chkAsuhanKeperawatanIGD;
@@ -4339,6 +4212,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkChecklistKesiapanAnestesi;
     private widget.CekBox chkChecklistKriteriaKeluarHCU;
     private widget.CekBox chkChecklistKriteriaKeluarICU;
+    private widget.CekBox chkChecklistKriteriaKeluarIsolasi;
     private widget.CekBox chkChecklistKriteriaKeluarNICU;
     private widget.CekBox chkChecklistKriteriaKeluarPICU;
     private widget.CekBox chkChecklistKriteriaMasukHCU;
@@ -4367,6 +4241,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkHasilPemeriksaanUSGGynecologi;
     private widget.CekBox chkHasilPemeriksaanUSGNeonatus;
     private widget.CekBox chkHasilPemeriksaanUSGUrologi;
+    private widget.CekBox chkHasilPersalinanTOLAC;
     private widget.CekBox chkHemodialisa;
     private widget.CekBox chkIntervensiNyeriFarmakologi;
     private widget.CekBox chkIntervensiNyeriNonFarmakologi;
@@ -4378,6 +4253,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkLayananProgramKFR;
     private widget.CekBox chkMonitoringGizi;
     private widget.CekBox chkMonitoringReaksiTranfusi;
+    private widget.CekBox chkMonitoringSelamaTOLAC;
     private widget.CekBox chkOperasiVK;
     private widget.CekBox chkPelayananInformasiObat;
     private widget.CekBox chkPemantauanEWSNeonatus;
@@ -4398,6 +4274,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkPenggunaanObatOperasi;
     private widget.CekBox chkPengkajianRestrain;
     private widget.CekBox chkPenilaianBayiBaruLahir;
+    private widget.CekBox chkPenilaianBishop;
+    private widget.CekBox chkPenilaianGRACEScore;
     private widget.CekBox chkPenilaianKorbanKekerasan;
     private widget.CekBox chkPenilaianLevelKecemasanRanapAnak;
     private widget.CekBox chkPenilaianPasienImunitasRendah;
@@ -4408,6 +4286,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkPerencanaanPemulangan;
     private widget.CekBox chkPotonganBiaya;
     private widget.CekBox chkProsedurTindakan;
+    private widget.CekBox chkReaksiTranfusi;
     private widget.CekBox chkRekonsiliasiObat;
     private widget.CekBox chkResepPulang;
     private widget.CekBox chkResume;
@@ -4451,6 +4330,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkSkriningRisikoKankerPayudara;
     private widget.CekBox chkSkriningRisikoKankerServiks;
     private widget.CekBox chkSkriningTBC;
+    private widget.CekBox chkSkriningTOLAC;
     private widget.CekBox chkSkriningThalasemia;
     private widget.CekBox chkTambahanBiaya;
     private widget.CekBox chkTimeOutSebelumInsisi;
@@ -4471,7 +4351,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.Label jLabel40;
     private widget.Label jLabel42;
     private widget.Label jLabel43;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu1;
     private widget.Label label17;
     private widget.Label label18;
     private widget.Label label19;
@@ -4887,7 +4767,6 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanSEPBPJS(rs.getString("no_rawat"));
                     menampilkanTriaseIGD(rs.getString("no_rawat"));
                     menampilkanAsuhanKeperawatanIGD(rs.getString("no_rawat"));
-                    menampilkanAsuhanMedisMCU(rs.getString("no_rawat"));
                     menampilkanAsuhanKeperawatanRalan(rs.getString("no_rawat"));
                     menampilkanAsuhanKeperawatanRalanGigi(rs.getString("no_rawat"));
                     menampilkanAsuhanKeperawatanRalanBayi(rs.getString("no_rawat"));
@@ -4902,6 +4781,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanPenilaianBayiBaruLahir(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisIGD(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisIGDPsikiatri(rs.getString("no_rawat"));
+                    menampilkanAsuhanMedisMCU(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisRawatJalan(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisRawatJalanKandungan(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisRawatJalanBayi(rs.getString("no_rawat"));
@@ -4934,14 +4814,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanAsuhanMedisRawatInapPsikiatrik(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisHemodialisa(rs.getString("no_rawat"));
                     menampilkanAsuhanMedisRawatInapJantung(rs.getString("no_rawat"));
+                    menampilkanAdmisiSkoringTOLAC(rs.getString("no_rawat"));
+                    menampilkanPenilaianBishop(rs.getString("no_rawat"));
                     menampilkanEdukasiPasienTerintegrasiRawatJalan(rs.getString("no_rawat"));
                     menampilkanPerencanaanPemulangan(rs.getString("no_rawat"));
+                    menampilkanMonitoringSelamaTOLAC(rs.getString("no_rawat"));
                     menampilkanCatatanObservasi(rs.getString("no_rawat"));
                     menampilkanPemeriksaanRanap(rs.getString("no_rawat"));
                     menampilkanKonsultasiMedik(rs.getString("no_rawat"));
                     menampilkanKonsultasiPerawat(rs.getString("no_rawat"));
                     menampilkanFollowUpDBD(rs.getString("no_rawat"));
                     menampilkanMonitoringReaksiTranfusi(rs.getString("no_rawat"));
+                    menampilkanReaksiTransfusi(rs.getString("no_rawat"));
                     menampilkanLanjutanResikoJatuhDewasa(rs.getString("no_rawat"));
                     menampilkanLanjutanResikoJatuhAnak(rs.getString("no_rawat"));
                     menampilkanLanjutanResikoJatuhLansia(rs.getString("no_rawat"));
@@ -4955,6 +4839,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanTambahanPerilakuKekerasan(rs.getString("no_rawat"));
                     menampilkanTambahanMelarikanDiri(rs.getString("no_rawat"));
                     menampilkanEWS(rs.getString("no_rawat"));
+                    menampilkanPenilaianGRACE(rs.getString("no_rawat"));
                     menampilkanAsuhanPreInduksi(rs.getString("no_rawat"));
                     menampilkanChecklistPreOperasi(rs.getString("no_rawat"));
                     menampilkanSignInSebelumAnestesi(rs.getString("no_rawat"));
@@ -4979,6 +4864,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanChecklistKriteriaMasukPICU(rs.getString("no_rawat"));
                     menampilkanChecklistKriteriaKeluarPICU(rs.getString("no_rawat"));
                     menampilkanChecklistKriteriaMasukIsolasi(rs.getString("no_rawat"));
+                    menampilkanChecklistKriteriaKeluarIsolasi(rs.getString("no_rawat"));
                     menampilkanHasilPemeriksaanUSG(rs.getString("no_rawat"));
                     menampilkanHasilPemeriksaanUSGUrologi(rs.getString("no_rawat"));
                     menampilkanHasilPemeriksaanUSGNeonatus(rs.getString("no_rawat"));
@@ -4994,6 +4880,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanHasilEndoskopiHidung(rs.getString("no_rawat"));
                     menampilkanHasilEndoskopiTelinga(rs.getString("no_rawat"));
                     menampilkanCatatanPersalinan(rs.getString("no_rawat"));
+                    menampilkanHasilPersalinanTOLAC(rs.getString("no_rawat"));
                     menampilkanLaporanTindakan(rs.getString("no_rawat"));
                     menampilkanDokumentasiTindakanESWL(rs.getString("no_rawat"));
                     menampilkanPenilaianPasienTerminal(rs.getString("no_rawat"));
@@ -5033,6 +4920,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanSkriningInstrumenESAT(rs.getString("no_rawat"));
                     menampilkanSkriningKankerKolorektal(rs.getString("no_rawat"));
                     menampilkanSkriningFrailtySyndrome(rs.getString("no_rawat"));
+                    menampilkanSkriningTOLAC(rs.getString("no_rawat"));
                     menampilkanChecklistPemberianFibrinolitik(rs.getString("no_rawat"));
                     menampilkanRekonsiliasiObat(rs.getString("no_rawat"));
                     menampilkanKonselingFarmasi(rs.getString("no_rawat"));
@@ -8587,11 +8475,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             if(chkAsuhanKeperawatanRalanGeriatri.isSelected()==true){
                 try {
                     rs2=koneksi.prepareStatement(
-                        "select penilaian_awal_keperawatan_ralan_geriatri.tanggal,penilaian_awal_keperawatan_ralan_geriatri.informasi,penilaian_awal_keperawatan_ralan_geriatri.td,penilaian_awal_keperawatan_ralan_geriatri.nadi,penilaian_awal_keperawatan_ralan_geriatri.rr,penilaian_awal_keperawatan_ralan_geriatri.suhu,penilaian_awal_keperawatan_ralan_geriatri.bb,penilaian_awal_keperawatan_ralan_geriatri.tb,"+
-                        "penilaian_awal_keperawatan_ralan_geriatri.nadi,penilaian_awal_keperawatan_ralan_geriatri.rr,penilaian_awal_keperawatan_ralan_geriatri.suhu,penilaian_awal_keperawatan_ralan_geriatri.gcs,penilaian_awal_keperawatan_ralan_geriatri.bb,penilaian_awal_keperawatan_ralan_geriatri.tb,penilaian_awal_keperawatan_ralan_geriatri.bmi,penilaian_awal_keperawatan_ralan_geriatri.keluhan_utama,"+
-                        "penilaian_awal_keperawatan_ralan_geriatri.rpd,penilaian_awal_keperawatan_ralan_geriatri.rpk,penilaian_awal_keperawatan_ralan_geriatri.rpo,penilaian_awal_keperawatan_ralan_geriatri.alergi,penilaian_awal_keperawatan_ralan_geriatri.alat_bantu,penilaian_awal_keperawatan_ralan_geriatri.ket_bantu,penilaian_awal_keperawatan_ralan_geriatri.prothesa,"+
-                        "penilaian_awal_keperawatan_ralan_geriatri.ket_pro,penilaian_awal_keperawatan_ralan_geriatri.adl,penilaian_awal_keperawatan_ralan_geriatri.status_psiko,penilaian_awal_keperawatan_ralan_geriatri.ket_psiko,penilaian_awal_keperawatan_ralan_geriatri.hub_keluarga,penilaian_awal_keperawatan_ralan_geriatri.tinggal_dengan,"+
-                        "penilaian_awal_keperawatan_ralan_geriatri.ket_tinggal,penilaian_awal_keperawatan_ralan_geriatri.ekonomi,penilaian_awal_keperawatan_ralan_geriatri.edukasi,penilaian_awal_keperawatan_ralan_geriatri.ket_edukasi,penilaian_awal_keperawatan_ralan_geriatri.berjalan_a,penilaian_awal_keperawatan_ralan_geriatri.berjalan_b,"+
+                        "select penilaian_awal_keperawatan_ralan_geriatri.tanggal,penilaian_awal_keperawatan_ralan_geriatri.informasi,penilaian_awal_keperawatan_ralan_geriatri.td,penilaian_awal_keperawatan_ralan_geriatri.nadi,penilaian_awal_keperawatan_ralan_geriatri.rr,penilaian_awal_keperawatan_ralan_geriatri.suhu,penilaian_awal_keperawatan_ralan_geriatri.gcs,"+
+                        "penilaian_awal_keperawatan_ralan_geriatri.bb,penilaian_awal_keperawatan_ralan_geriatri.tb,penilaian_awal_keperawatan_ralan_geriatri.bmi,penilaian_awal_keperawatan_ralan_geriatri.keluhan_utama,penilaian_awal_keperawatan_ralan_geriatri.rpd,penilaian_awal_keperawatan_ralan_geriatri.rpk,penilaian_awal_keperawatan_ralan_geriatri.rpo,penilaian_awal_keperawatan_ralan_geriatri.alergi,"+
+                        "penilaian_awal_keperawatan_ralan_geriatri.alat_bantu,penilaian_awal_keperawatan_ralan_geriatri.ket_bantu,penilaian_awal_keperawatan_ralan_geriatri.prothesa,penilaian_awal_keperawatan_ralan_geriatri.ket_pro,penilaian_awal_keperawatan_ralan_geriatri.adl,penilaian_awal_keperawatan_ralan_geriatri.status_psiko,penilaian_awal_keperawatan_ralan_geriatri.ket_psiko,"+
+                        "penilaian_awal_keperawatan_ralan_geriatri.hub_keluarga,penilaian_awal_keperawatan_ralan_geriatri.tinggal_dengan,penilaian_awal_keperawatan_ralan_geriatri.ket_tinggal,penilaian_awal_keperawatan_ralan_geriatri.ekonomi,penilaian_awal_keperawatan_ralan_geriatri.edukasi,penilaian_awal_keperawatan_ralan_geriatri.ket_edukasi,penilaian_awal_keperawatan_ralan_geriatri.berjalan_a,penilaian_awal_keperawatan_ralan_geriatri.berjalan_b,"+
                         "penilaian_awal_keperawatan_ralan_geriatri.berjalan_c,penilaian_awal_keperawatan_ralan_geriatri.hasil,penilaian_awal_keperawatan_ralan_geriatri.lapor,penilaian_awal_keperawatan_ralan_geriatri.ket_lapor,penilaian_awal_keperawatan_ralan_geriatri.sg1,penilaian_awal_keperawatan_ralan_geriatri.nilai1,penilaian_awal_keperawatan_ralan_geriatri.sg2,penilaian_awal_keperawatan_ralan_geriatri.nilai2,"+
                         "penilaian_awal_keperawatan_ralan_geriatri.total_hasil,penilaian_awal_keperawatan_ralan_geriatri.nyeri,penilaian_awal_keperawatan_ralan_geriatri.provokes,penilaian_awal_keperawatan_ralan_geriatri.ket_provokes,penilaian_awal_keperawatan_ralan_geriatri.quality,penilaian_awal_keperawatan_ralan_geriatri.ket_quality,penilaian_awal_keperawatan_ralan_geriatri.lokasi,penilaian_awal_keperawatan_ralan_geriatri.menyebar,"+
                         "penilaian_awal_keperawatan_ralan_geriatri.skala_nyeri,penilaian_awal_keperawatan_ralan_geriatri.durasi,penilaian_awal_keperawatan_ralan_geriatri.nyeri_hilang,penilaian_awal_keperawatan_ralan_geriatri.ket_nyeri,penilaian_awal_keperawatan_ralan_geriatri.pada_dokter,penilaian_awal_keperawatan_ralan_geriatri.ket_dokter,penilaian_awal_keperawatan_ralan_geriatri.rencana,"+
@@ -37660,10 +37547,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         "checklist_kriteria_masuk_isolasi.fasilitas_cuci_tangan,checklist_kriteria_masuk_isolasi.tekanan_negatif_berfungsi,checklist_kriteria_masuk_isolasi.pintu_otomatis_berfungsi,"+
                         "checklist_kriteria_masuk_isolasi.indikasi_isolasi,checklist_kriteria_masuk_isolasi.jenis_isolasi,checklist_kriteria_masuk_isolasi.diagnosa_isolasi,"+
                         "checklist_kriteria_masuk_isolasi.keterangan,checklist_kriteria_masuk_isolasi.nik,pegawai.nama "+
-                        "from checklist_kriteria_masuk_isolasi inner join reg_periksa on checklist_kriteria_masuk_isolasi.no_rawat=reg_periksa.no_rawat "+
-                        "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join pegawai on pegawai.nik=checklist_kriteria_masuk_isolasi.nik  "+
-                        "where checklist_kriteria_masuk_isolasi.no_rawat='"+norawat+"'").executeQuery();
+                        "from checklist_kriteria_masuk_isolasi inner join pegawai on pegawai.nik=checklist_kriteria_masuk_isolasi.nik  "+
+                        "where checklist_kriteria_masuk_isolasi.no_rawat='"+norawat+"' order by checklist_kriteria_masuk_isolasi.tanggal").executeQuery();
                     if(rs2.next()){
                         htmlContent.append("<tr class='isi'>").
                                         append("<td valign='top' width='2%'></td>").
@@ -37688,7 +37573,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA MASUK ISOLASI</td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA</td>").
                                                         append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
@@ -37911,6 +37796,1119 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         } catch (Exception e) {
             System.out.println("Notif Check List Masuk ICU : "+e);
         }
+    }
+    
+    private void menampilkanChecklistKriteriaKeluarIsolasi(String norawat) {
+        try {
+            if(chkChecklistKriteriaKeluarIsolasi.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                        "select checklist_kriteria_keluar_isolasi.tanggal,checklist_kriteria_keluar_isolasi.gejala_membaik,checklist_kriteria_keluar_isolasi.tidak_ada_indikasi_transmisi,checklist_kriteria_keluar_isolasi.hasil_penunjang_memenuhi,"+
+                        "checklist_kriteria_keluar_isolasi.kriteria_pedoman_terpenuhi,checklist_kriteria_keluar_isolasi.persetujuan_dpjp,checklist_kriteria_keluar_isolasi.keputusan,"+
+                        "checklist_kriteria_keluar_isolasi.alasan,checklist_kriteria_keluar_isolasi.nik,pegawai.nama "+
+                        "from checklist_kriteria_keluar_isolasi inner join pegawai on pegawai.nik=checklist_kriteria_keluar_isolasi.nik  "+
+                        "where checklist_kriteria_keluar_isolasi.no_rawat='"+norawat+"' order by checklist_kriteria_keluar_isolasi.tanggal").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append("<tr class='isi'>").
+                                        append("<td valign='top' width='2%'></td>").
+                                        append("<td valign='top' width='18%'>Check List Kriteria Keluar Isolasi</td>").
+                                        append("<td valign='top' width='1%' align='center'>:</td>").
+                                        append("<td valign='top' width='79%'>").
+                                        append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>");
+                        do{
+                            htmlContent.append("<tr>").
+                                            append("<td valign='top'>").
+                                                append("YANG MELAKUKAN PENGKAJIAN").
+                                                append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                    append("<tr>").
+                                                        append("<td width='33%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").
+                                                        append("<td width='66%' border='0'>DPJP / Dokter Jaga / Isolasi : ").append(rs2.getString("nik")).append(" ").append(rs2.getString("nama")).append("</td>").
+                                                    append("</tr>").
+                                                append("</table>").
+                                            append("</td>").
+                                        append("</tr>").
+                                        append("<tr>").
+                                            append("<td valign='top'>").
+                                                append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>I.</td>").
+                                                        append("<td width='76%' valign='top'>CHECK LIST KRITERIA PASIEN KELUAR ISOLASI</td>").
+                                                        append("<td width='20%' valign='top' align='center'></td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>1</td>").
+                                                        append("<td width='76%' valign='top'>Gejala Klinis Infeksi Telah Membaik / Hilang</td>").
+                                                        append("<td width='20%' valign='top' align='center'>").append(rs2.getString("gejala_membaik")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>2</td>").
+                                                        append("<td width='76%' valign='top'>Tidak Ada Lagi Indikasi Kewaspadaan Transmisi</td>").
+                                                        append("<td width='20%' valign='top' align='center'>").append(rs2.getString("tidak_ada_indikasi_transmisi")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>3</td>").
+                                                        append("<td width='76%' valign='top'>Hasil Pemeriksaan Penunjang Memenuhi Kriteria Penghentian Isolasi (Bila Diperlukan)</td>").
+                                                        append("<td width='20%' valign='top' align='center'>").append(rs2.getString("hasil_penunjang_memenuhi")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>4</td>").
+                                                        append("<td width='76%' valign='top'>Kriteria Penghentian Isolasi Sesuai Pedoman Penyakit Telah Terpenuhi</td>").
+                                                        append("<td width='20%' valign='top' align='center'>").append(rs2.getString("kriteria_pedoman_terpenuhi")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>5</td>").
+                                                        append("<td width='76%' valign='top'>DPJP Menyetujui Penghentian Isolasi</td>").
+                                                        append("<td width='20%' valign='top' align='center'>").append(rs2.getString("persetujuan_dpjp")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'>II.</td>").
+                                                        append("<td width='76%' valign='top'>KESIMPULAN/KEPUTUSAN</td>").
+                                                        append("<td width='20%' valign='top' align='center'></td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'></td>").
+                                                        append("<td valign='top' colspan='2'>Keputusan : ").append(rs2.getString("keputusan")).append("</td>").
+                                                    append("</tr>").
+                                                    append("<tr>").
+                                                        append("<td width='4%' valign='top' align='center'></td>").
+                                                        append("<td valign='top' colspan='2'>Alasan : ").append(rs2.getString("alasan")).append("</td>").
+                                                    append("</tr>").
+                                                append("</table>").
+                                            append("</td>").
+                                        append("</tr>");
+                        }while(rs2.next());
+                        htmlContent.append("</table>").
+                                    append("</td>").
+                                append("</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Check List Keluar ICU : "+e);
+        }
+    }
+    
+    private void menampilkanSkriningTOLAC(String norawat) {
+        try {
+            if(chkSkriningTOLAC.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select skrining_tolac.kd_dokter,dokter.nm_dokter,skrining_tolac.tanggal,skrining_tolac.gpa,skrining_tolac.diagnosa,skrining_tolac.jumlah_sc,"+
+                            "skrining_tolac.tahun_sc,skrining_tolac.indikasi_sc,skrining_tolac.jenis_insisi,skrining_tolac.riwayat_pervaginam,skrining_tolac.tbj_gram,"+
+                            "skrining_tolac.presentasi_janin,skrining_tolac.inklusi_riwayat_sc,skrining_tolac.inklusi_panggul_adekuat,skrining_tolac.inklusi_janin_tunggal_kepala,"+
+                            "skrining_tolac.inklusi_tbj_sesuai,skrining_tolac.eksklusi_sc_klasik_ruptur,skrining_tolac.eksklusi_sc_2x,skrining_tolac.eksklusi_plasenta_previa,"+
+                            "skrining_tolac.kesimpulan,skrining_tolac.edukasi_diberikan,skrining_tolac.keterangan from skrining_tolac inner join dokter on skrining_tolac.kd_dokter=dokter.kd_dokter "+
+                            "where skrining_tolac.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append("<tr class='isi'>").
+                                        append("<td valign='top' width='2%'></td>").
+                                        append("<td valign='top' width='18%'>Skrining TOLAC - Poli Kebidanan</td>").
+                                        append("<td valign='top' width='1%' align='center'>:</td>").
+                                        append("<td valign='top' width='79%'>").
+                                        append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("YANG MELAKUKAN PENGKAJIAN").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='30%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").
+                                                            append("<td width='70%' border='0'>Dokter : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='30%' border='0'>G P A : ").append(rs2.getString("gpa")).append("</td>").
+                                                            append("<td width='70%' border='0'>Diagnosa : ").append(rs2.getString("diagnosa")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("RIWAYAT SC SEBELUMNYA").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='50%'>Riwayat Pervaginam : ").append(rs2.getString("riwayat_pervaginam")).append("</td>").
+                                                            append("<td width='25%' align='center'>Jumlah SC : ").append(rs2.getString("jumlah_sc")).append("</td>").
+                                                            append("<td width='25%' align='center'>SC Terakhir : ").append(rs2.getString("tahun_sc")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='50%'>Jenis Insisi : ").append(rs2.getString("jenis_insisi")).append("</td>").
+                                                            append("<td width='50%' colspan='2'>Indikasi SC : ").append(rs2.getString("indikasi_sc")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("DATA KEHAMILAN SEKARANG").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='50%'>TBJ (USG) : ").append(rs2.getString("tbj_gram")).append(" gram</td>").
+                                                            append("<td width='50%'>Presentasi Janin : ").append(rs2.getString("presentasi_janin")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("KRITERIA INKLUSI").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
+                                                            append("<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Ya/Tidak</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>1.</td>").
+                                                            append("<td width='80%'>Riwayat SC ≤1x, Insisi Transversal Rendah</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("inklusi_riwayat_sc")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>2.</td>").
+                                                            append("<td width='80%'>Panggul Klinis Adekuat</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("inklusi_panggul_adekuat")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>3.</td>").
+                                                            append("<td width='80%'>Janin Tunggal, Presentasi Kepala</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("inklusi_janin_tunggal_kepala")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>4.</td>").
+                                                            append("<td width='80%'>TBJ Sesuai (Bukan Makrosomia Berat)</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("inklusi_tbj_sesuai")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("KRITERIA EKSKLUSI ").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
+                                                            append("<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Ya/Tidak</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>1.</td>").
+                                                            append("<td width='80%'>Riwayat SC Klasik / Ruptur Uteri</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("eksklusi_sc_klasik_ruptur")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>2.</td>").
+                                                            append("<td width='80%'>Riwayat SC ≥ 2 Kali</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("eksklusi_sc_2x")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>3.</td>").
+                                                            append("<td width='80%'>Plasenta Previa / Letak Lintang</td>").
+                                                            append("<td width='16%' align='center'>").append(rs2.getString("eksklusi_plasenta_previa")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("HASIL SKRINING").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='50%'>Kesimpulan : ").append(rs2.getString("kesimpulan")).append(" gram</td>").
+                                                            append("<td width='50%'>Edukasi Risiko Diberikan : ").append(rs2.getString("edukasi_diberikan")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='100%' colspan='2'>Keterangan : ").append(rs2.getString("keterangan")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                        append("</table>").
+                                        append("</td>").
+                                    append("</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Skrining TOLAC : "+e);
+        }
+    }
+    
+    private void menampilkanAdmisiSkoringTOLAC(String norawat) {
+        try {
+            if(chkAdmisiSkoringTOLAC.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select admisi_skoring_tolac.kd_dokter,dokter.nm_dokter,admisi_skoring_tolac.tanggal,admisi_skoring_tolac.his_frekuensi,admisi_skoring_tolac.his_durasi_detik,"+
+                            "admisi_skoring_tolac.djj,admisi_skoring_tolac.pembukaan_cm,admisi_skoring_tolac.pendataran_persen,admisi_skoring_tolac.penurunan_kepala,"+
+                            "admisi_skoring_tolac.pilihan_usia,admisi_skoring_tolac.skor_usia,admisi_skoring_tolac.pilihan_riwayat_pervaginam,admisi_skoring_tolac.skor_riwayat_pervaginam,"+
+                            "admisi_skoring_tolac.pilihan_indikasi_sc,admisi_skoring_tolac.skor_indikasi_sc,admisi_skoring_tolac.pilihan_pendataran,admisi_skoring_tolac.skor_pendataran,"+
+                            "admisi_skoring_tolac.pilihan_pembukaan,admisi_skoring_tolac.skor_pembukaan,admisi_skoring_tolac.total_skor,admisi_skoring_tolac.peluang_vbac,"+
+                            "admisi_skoring_tolac.keputusan,admisi_skoring_tolac.keterangan from admisi_skoring_tolac inner join dokter on admisi_skoring_tolac.kd_dokter=dokter.kd_dokter "+
+                            "where admisi_skoring_tolac.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append("<tr class='isi'>").
+                                        append("<td valign='top' width='2%'></td>").
+                                        append("<td valign='top' width='18%'>Admisi & Skoring TOLAC (Kamar Bersalin)</td>").
+                                        append("<td valign='top' width='1%' align='center'>:</td>").
+                                        append("<td valign='top' width='79%'>").
+                                        append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("YANG MELAKUKAN PENGKAJIAN").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='30%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").
+                                                            append("<td width='70%' border='0'>Dokter : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("HASIL PEMERIKSAAN").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='35%' border='0'>His : ").append(rs2.getString("his_frekuensi")).append(" x/10 menit, durasi ").append(rs2.getString("his_durasi_detik")).append(" detik</td>").
+                                                            append("<td width='20%' border='0'>DJJ : ").append(rs2.getString("djj")).append(" x/menit</td>").
+                                                            append("<td width='45%' border='0'>VT : Pembukaan ").append(rs2.getString("pembukaan_cm")).append(" cm, pendataran ").append(rs2.getString("pendataran_persen")).append(" %, kepala ").append(rs2.getString("penurunan_kepala")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("SKOR FLAMM-GEIGER").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
+                                                            append("<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='50%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
+                                                            append("<td valign='top' width='12%' bgcolor='#FFFAF8' align='center'>Nilai</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>1.</td>").
+                                                            append("<td width='34%'>Usia Ibu</td>").
+                                                            append("<td width='50%'>").append(rs2.getString("pilihan_usia")).append("</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("skor_usia")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>2.</td>").
+                                                            append("<td width='34%'>Riwayat Persalinan Pervaginam</td>").
+                                                            append("<td width='50%'>").append(rs2.getString("pilihan_riwayat_pervaginam")).append("</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("skor_riwayat_pervaginam")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>3.</td>").
+                                                            append("<td width='34%'>Indikasi SC Sebelumnya</td>").
+                                                            append("<td width='50%'>").append(rs2.getString("pilihan_indikasi_sc")).append("</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("skor_indikasi_sc")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>4.</td>").
+                                                            append("<td width='34%'>Pendataran Serviks (Saat Masuk)</td>").
+                                                            append("<td width='50%'>").append(rs2.getString("pilihan_pendataran")).append("</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("skor_pendataran")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td width='4%' align='center'>5.</td>").
+                                                            append("<td width='34%'>Pembukaan Serviks (Saat Masuk)</td>").
+                                                            append("<td width='50%'>").append(rs2.getString("pilihan_pembukaan")).append("</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("skor_pembukaan")).append("</td>").
+                                                        append("</tr>").
+                                                        append("<tr>").
+                                                            append("<td colspan='3' align='right'>Total Skor :</td>").
+                                                            append("<td width='12%' align='center'>").append(rs2.getString("total_skor")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                            append("<tr>").
+                                                append("<td valign='top'>").
+                                                    append("KESIMPULAN & KEPUTUSAN").
+                                                    append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
+                                                        append("<tr>").
+                                                            append("<td width='25%' border='0'>Peluang VBAC : ").append(rs2.getString("peluang_vbac")).append(" %</td>").
+                                                            append("<td width='25%' border='0'>Keputusan : ").append(rs2.getString("keputusan")).append("</td>").
+                                                            append("<td width='50%' border='0' colspan='2'>Keterangan : ").append(rs2.getString("keterangan")).append("</td>").
+                                                        append("</tr>").
+                                                    append("</table>").
+                                                append("</td>").
+                                            append("</tr>").
+                                        append("</table>").
+                                        append("</td>").
+                                    append("</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Admisi Skoring TOLAC : "+e);
+        }
+    }
+
+    private void menampilkanMonitoringSelamaTOLAC(String norawat) {
+        try {
+            //menampilkan monitoring selama TOLAC
+            if(chkMonitoringSelamaTOLAC.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select monitoring_tolac.tgl_perawatan,monitoring_tolac.jam_rawat,monitoring_tolac.his_frekuensi,monitoring_tolac.his_durasi_detik,"+
+                            "monitoring_tolac.djj,monitoring_tolac.nadi,monitoring_tolac.td,monitoring_tolac.pembukaan_cm,monitoring_tolac.tanda_bahaya,"+
+                            "monitoring_tolac.keterangan,monitoring_tolac.nip,pegawai.nama from monitoring_tolac inner join pegawai on monitoring_tolac.nip=pegawai.nik "+
+                            "where monitoring_tolac.no_rawat='"+norawat+"' order by monitoring_tolac.tgl_perawatan,monitoring_tolac.jam_rawat").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append(
+                            "<td valign='top' width='2%'></td>").append(
+                            "<td valign='top' width='18%'>Monitoring Selama TOLAC</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
+                                 "<tr align='center'>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='50%' bgcolor='#FFFAF8' colspan='7'>Monitoring</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='18%' bgcolor='#FFFAF8' rowspan='2'>Petugas</td>").append(
+                                 "</tr>").append(
+                                 "<tr align='center'>").append(
+                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>His (x/10 mnt)</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>Durasi His (detik)</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>DJJ (x/mnt)</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Nadi (x/mnt)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>TD (mmHg)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>Pembukaan (cm)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>Tanda Bahaya</td>").append(
+                                 "</tr>"
+                        );
+                        w=1;
+                        do{
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top' align='center'>").append(w).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("tgl_perawatan")).append(" ").append(rs2.getString("jam_rawat")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("his_frekuensi")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("his_durasi_detik")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("djj")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("nadi")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("td")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("pembukaan_cm")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append("Ada".equals(rs2.getString("tanda_bahaya"))?"<font color='#CC0000'><b>Ada</b></font>":rs2.getString("tanda_bahaya")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("keterangan")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("nip")).append(" ").append(rs2.getString("nama")).append("</td>").append(
+                                 "</tr>");
+                            w++;
+                        }while(rs2.next());
+                        htmlContent.append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Monitoring Selama TOLAC : "+e);
+        }
+    }
+    
+    private void menampilkanHasilPersalinanTOLAC(String norawat) {
+        try {
+            //menampilkan hasil persalinan TOLAC
+            if(chkHasilPersalinanTOLAC.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select hasil_persalinan_tolac.kd_dokter,dokter.nm_dokter,hasil_persalinan_tolac.tanggal,hasil_persalinan_tolac.awitan_persalinan,"+
+                            "hasil_persalinan_tolac.augmentasi,hasil_persalinan_tolac.ctg_kontinu,hasil_persalinan_tolac.cara_persalinan,hasil_persalinan_tolac.indikasi_gagal,"+
+                            "hasil_persalinan_tolac.lama_kala2_menit,hasil_persalinan_tolac.ruptur_uteri,hasil_persalinan_tolac.jumlah_perdarahan_ml,hasil_persalinan_tolac.transfusi,"+
+                            "hasil_persalinan_tolac.histerektomi,hasil_persalinan_tolac.komplikasi_lain,hasil_persalinan_tolac.luaran_perinatal,hasil_persalinan_tolac.bb_lahir_gram,"+
+                            "hasil_persalinan_tolac.apgar_1,hasil_persalinan_tolac.apgar_5,hasil_persalinan_tolac.hie,hasil_persalinan_tolac.masuk_nicu,hasil_persalinan_tolac.keterangan "+
+                            "from hasil_persalinan_tolac inner join dokter on hasil_persalinan_tolac.kd_dokter=dokter.kd_dokter "+
+                            "where hasil_persalinan_tolac.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append(
+                            "<td valign='top' width='2%'></td>").append(
+                            "<td valign='top' width='18%'>Resume Hasil Persalinan TOLAC</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                      "YANG MELAKUKAN PENGKAJIAN").append(
+                                      "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                         "<tr>").append(
+                                            "<td width='30%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").append(
+                                            "<td width='70%' border='0'>DPJP : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                         "</tr>").append(
+                                      "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                      "PERSALINAN").append(
+                                      "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                         "<tr>").append(
+                                            "<td width='34%' border='0'>Awitan : ").append(rs2.getString("awitan_persalinan")).append("</td>").append(
+                                            "<td width='33%' border='0'>Augmentasi : ").append(rs2.getString("augmentasi")).append("</td>").append(
+                                            "<td width='33%' border='0'>CTG Kontinu : ").append(rs2.getString("ctg_kontinu")).append("</td>").append(
+                                         "</tr>").append(
+                                         "<tr>").append(
+                                            "<td width='34%' border='0'>Cara Persalinan : ").append(rs2.getString("cara_persalinan")).append("</td>").append(
+                                            "<td width='33%' border='0'>Lama Kala II : ").append(rs2.getString("lama_kala2_menit")).append(" menit</td>").append(
+                                            "<td width='33%' border='0'>Indikasi Gagal : ").append(rs2.getString("indikasi_gagal")).append("</td>").append(
+                                         "</tr>").append(
+                                      "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                      "KOMPLIKASI IBU").append(
+                                      "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                         "<tr>").append(
+                                            "<td width='34%' border='0'>Ruptur Uteri : ").append(rs2.getString("ruptur_uteri")).append("</td>").append(
+                                            "<td width='33%' border='0'>Perdarahan : ").append(rs2.getString("jumlah_perdarahan_ml")).append(" ml</td>").append(
+                                            "<td width='33%' border='0'>Transfusi : ").append(rs2.getString("transfusi")).append("</td>").append(
+                                         "</tr>").append(
+                                         "<tr>").append(
+                                            "<td width='34%' border='0'>Histerektomi : ").append(rs2.getString("histerektomi")).append("</td>").append(
+                                            "<td width='66%' border='0' colspan='2'>Komplikasi Lain : ").append(rs2.getString("komplikasi_lain")).append("</td>").append(
+                                         "</tr>").append(
+                                      "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                      "KONDISI BAYI").append(
+                                      "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                         "<tr>").append(
+                                            "<td width='25%' border='0'>Luaran Perinatal : ").append(rs2.getString("luaran_perinatal")).append("</td>").append(
+                                            "<td width='25%' border='0'>BB Lahir : ").append(rs2.getString("bb_lahir_gram")).append(" gram</td>").append(
+                                            "<td width='25%' border='0'>APGAR : ").append(rs2.getString("apgar_1")).append(" / ").append(rs2.getString("apgar_5")).append("</td>").append(
+                                            "<td width='25%' border='0'>HIE : ").append(rs2.getString("hie")).append("</td>").append(
+                                         "</tr>").append(
+                                         "<tr>").append(
+                                            "<td width='25%' border='0'>Masuk NICU : ").append(rs2.getString("masuk_nicu")).append("</td>").append(
+                                            "<td colspan='3' border='0'>Keterangan : ").append(rs2.getString("keterangan")).append("</td>").append(
+                                         "</tr>").append(
+                                      "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>"
+                        );
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Hasil Persalinan TOLAC : "+e);
+        }
+    }
+    
+    private void menampilkanReaksiTransfusi(String norawat) {
+        try {
+            //menampilkan laporan reaksi transfusi darah
+            if(chkReaksiTranfusi.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select laporan_reaksi_transfusi.tanggal,laporan_reaksi_transfusi.diagnosis_klinis,laporan_reaksi_transfusi.indikasi_transfusi,laporan_reaksi_transfusi.komponen_darah,"+
+                            "laporan_reaksi_transfusi.komponen_lainnya,laporan_reaksi_transfusi.volume_cc,laporan_reaksi_transfusi.nokantong,laporan_reaksi_transfusi.jenis_reaksi,laporan_reaksi_transfusi.penanganan,"+
+                            "laporan_reaksi_transfusi.nip,pegawai.nama,laporan_reaksi_transfusi.kd_dokter,dokter.nm_dokter from laporan_reaksi_transfusi inner join pegawai on laporan_reaksi_transfusi.nip=pegawai.nik "+
+                            "inner join dokter on laporan_reaksi_transfusi.kd_dokter=dokter.kd_dokter where laporan_reaksi_transfusi.no_rawat='"+norawat+"' order by laporan_reaksi_transfusi.tanggal").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append(
+                            "<td valign='top' width='2%'></td>").append(
+                            "<td valign='top' width='18%'>Laporan Reaksi Transfusi</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
+                                 "<tr align='center'>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
+                                    "<td valign='middle' width='9%' bgcolor='#FFFAF8'>Tanggal</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Diagnosis / Keterangan Klinis</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Indikasi Transfusi</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>Komponen Darah</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Volume (cc)</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>No.Kantong</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Jenis Reaksi</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Penanganan</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Pelapor / DPJP</td>").append(
+                                 "</tr>"
+                        );
+                        w=1;
+                        do{
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top' align='center'>").append(w).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("tanggal")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("diagnosis_klinis")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("indikasi_transfusi")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("komponen_darah").equals("Lainnya")?rs2.getString("komponen_lainnya"):rs2.getString("komponen_darah")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("volume_cc")).append("</td>").append(
+                                    "<td valign='top' align='center'>").append(rs2.getString("nokantong")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("jenis_reaksi")).append("</td>").append(
+                                    "<td valign='top'>").append(rs2.getString("penanganan")).append("</td>").append(
+                                    "<td valign='top'>Pelapor : ").append(rs2.getString("nip")).append(" ").append(rs2.getString("nama")).append("<br>DPJP : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                 "</tr>");
+                            w++;
+                        }while(rs2.next());
+                        htmlContent.append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Reaksi Transfusi : "+e);
+        }
+    }
+    
+    private void menampilkanPenilaianGRACE(String norawat) {
+        try {
+            if(chkPenilaianGRACEScore.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select penilaian_grace_scor.kd_dokter,dokter.nm_dokter,penilaian_grace_scor.tanggal,penilaian_grace_scor.usia,penilaian_grace_scor.skor_usia,penilaian_grace_scor.denyut_jantung,"+
+                            "penilaian_grace_scor.skor_denyut_jantung,penilaian_grace_scor.sistolik,penilaian_grace_scor.skor_sistolik,penilaian_grace_scor.kreatinin,penilaian_grace_scor.skor_kreatinin,"+
+                            "penilaian_grace_scor.killip,penilaian_grace_scor.skor_killip,penilaian_grace_scor.deviasi_st,penilaian_grace_scor.skor_deviasi_st,penilaian_grace_scor.troponin,"+
+                            "penilaian_grace_scor.skor_troponin,penilaian_grace_scor.henti_jantung,penilaian_grace_scor.skor_henti_jantung,penilaian_grace_scor.skor,penilaian_grace_scor.kategori,"+
+                            "penilaian_grace_scor.keterangan from penilaian_grace_scor inner join dokter on penilaian_grace_scor.kd_dokter=dokter.kd_dokter "+
+                            "where penilaian_grace_scor.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append( 
+                            "<td valign='top' width='2%'></td>").append(        
+                            "<td valign='top' width='18%'>Penilaian GRACE</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        );
+                        do{
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "YANG MELAKUKAN PENILAIAN").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='30%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").append(
+                                              "<td width='70%' border='0'>Dokter : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "I. PENILAIAN").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
+                                              "<td valign='top' width='46%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Hasil</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>1.</td>").append(
+                                              "<td width='46%'>Umur</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("usia")).append(" tahun").append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_usia")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>2.</td>").append(
+                                              "<td width='46%'>Heart Rate</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("denyut_jantung")).append(" bpm").append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_denyut_jantung")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>3.</td>").append(
+                                              "<td width='46%'>Tekanan Darah Sistolik (SBP)</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("sistolik")).append(" mmHg").append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_sistolik")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>4.</td>").append(
+                                              "<td width='46%'>Creatinine</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("kreatinin")).append(" mg/dl").append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_kreatinin")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>5.</td>").append(
+                                              "<td width='46%'>Killip Class</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("killip")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_killip")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>6.</td>").append(
+                                              "<td width='46%'>ST Deviation</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("deviasi_st")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_deviasi_st")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>7.</td>").append(
+                                              "<td width='46%'>Elevated Troponin</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("troponin")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_troponin")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>8.</td>").append(
+                                              "<td width='46%'>Cardiac Arrest at Admission</td>").append(
+                                              "<td width='34%' align='center'>").append(rs2.getString("henti_jantung")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_henti_jantung")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td align='center' colspan='3'>Total Skor</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "II. INTERPRETASI").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='35%' border='0'>Kategori Risiko : <font color='").append(rs2.getString("kategori").equals("High Risk")?"#CC0000":rs2.getString("kategori").equals("Intermediate Risk")?"#C8A000":"#00AA00").append("'>").append(rs2.getString("kategori")).append("</font></td>").append(
+                                              "<td width='75%' border='0'>Keterangan : ").append(rs2.getString("keterangan")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            ); 
+                        }while(rs2.next());
+                        htmlContent.append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Penilaian GRACE : "+e);
+        }
+    }
+    
+    private void menampilkanPenilaianBishop(String norawat) {
+        try {
+            if(chkPenilaianBishop.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select penilaian_bishop_scor.kd_dokter,dokter.nm_dokter,penilaian_bishop_scor.tanggal,penilaian_bishop_scor.pembukaan,penilaian_bishop_scor.skor_pembukaan,penilaian_bishop_scor.pendataran,penilaian_bishop_scor.skor_pendataran,"+
+                            "penilaian_bishop_scor.station,penilaian_bishop_scor.skor_station,penilaian_bishop_scor.konsistensi,penilaian_bishop_scor.skor_konsistensi,penilaian_bishop_scor.posisi,penilaian_bishop_scor.skor_posisi,penilaian_bishop_scor.skor,"+
+                            "penilaian_bishop_scor.kategori,penilaian_bishop_scor.keterangan from penilaian_bishop_scor inner join dokter on penilaian_bishop_scor.kd_dokter=dokter.kd_dokter where penilaian_bishop_scor.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append( 
+                            "<td valign='top' width='2%'></td>").append(        
+                            "<td valign='top' width='18%'>Penilaian BISHOP</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        );
+                        do{
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "YANG MELAKUKAN PENILAIAN").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='30%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").append(
+                                              "<td width='70%' border='0'>DPJP : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "I. PENILAIAN SERVIKS").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
+                                              "<td valign='top' width='46%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Hasil</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>1.</td>").append(
+                                              "<td width='46%'>Pembukaan (Dilatasi)</td>").append(
+                                              "<td width='34%'>").append(rs2.getString("pembukaan")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_pembukaan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>2.</td>").append(
+                                              "<td width='46%'>Pendataran (Effacement)</td>").append(
+                                              "<td width='34%'>").append(rs2.getString("pendataran")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_pendataran")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>3.</td>").append(
+                                              "<td width='46%'>Station (Penurunan Kepala)</td>").append(
+                                              "<td width='34%'>").append(rs2.getString("station")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_station")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>4.</td>").append(
+                                              "<td width='46%'>Konsistensi Serviks</td>").append(
+                                              "<td width='34%'>").append(rs2.getString("konsistensi")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_konsistensi")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='4%' align='center'>5.</td>").append(
+                                              "<td width='46%'>Posisi Serviks</td>").append(
+                                              "<td width='34%'>").append(rs2.getString("posisi")).append("</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor_posisi")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td align='center' colspan='3'>Total Skor</td>").append(
+                                              "<td width='16%' align='center'>").append(rs2.getString("skor")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>").append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "II. KATEGORI & KETERANGAN").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='35%' border='0'>Kategori Risiko : <font color='").append(rs2.getString("kategori").equals("High Risk")?"#CC0000":rs2.getString("kategori").equals("Intermediate Risk")?"#C8A000":"#00AA00").append("'>").append(rs2.getString("kategori")).append("</font></td>").append(
+                                              "<td width='75%' border='0'>Keterangan : ").append(rs2.getString("keterangan")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            ); 
+                        }while(rs2.next());
+                        htmlContent.append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Penilaian Skor BISHOP : "+e);
+        }
+    }
+    
+    private void tampilSatuSehat() {
+        String norm = NoRM.getText();
+        if (norm.equals(NoRMSatuSehat)) {
+            return;
+        }
+        try {
+            SatuSehatCekNIK cekID = new SatuSehatCekNIK();
+            String idpasien = cekID.tampilIDPasien(Sequel.cariIsi("select pasien.no_ktp from pasien where pasien.no_rkm_medis=?", norm));
+            if (idpasien.equals("")) {
+                JOptionPane.showMessageDialog(null, "Pasien belum terdaftar di SATUSEHAT atau NIK pasien belum diisi");
+                return;
+            }
+            String idpraktisi = cekID.tampilIDParktisi(Sequel.cariIsi("select pegawai.no_ktp from pegawai where pegawai.nik=?", akses.getkode()));
+            if (idpraktisi.equals("")) {
+                JOptionPane.showMessageDialog(null, "Praktisi belum terdaftar di SATUSEHAT atau NIK praktisi belum diisi");
+                return;
+            }
+            bodySatuSehat = "{" +
+                    "\"patient_id\": \"" + idpasien + "\"," +
+                    "\"patient_name\": \"" + NmPasien.getText() + "\"," +
+                    "\"practitioner_id\": \"" + idpraktisi + "\"," +
+                    "\"practitioner_name\": \"" + Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?", akses.getkode()) + "\"," +
+                    "\"organization_id\": \"" + koneksiDB.IDSATUSEHAT() + "\"," +
+                    "\"organization_name\": \"" + akses.getnamars() + "\"" +
+                 "}";
+            System.out.println("Request JSON : " + bodySatuSehat);
+            NoRMSatuSehat = norm;
+            try {
+                loadURLSatuSehat(ambilLinkSatuSehat("shl"));
+            } catch (Exception e) {
+                System.out.println("Notifikasi SHL : " + e.getMessage());
+                loadURLSatuSehat(ambilLinkSatuSehat("chl"));
+                Thread cek = new Thread(() -> {
+                    for (int i = 0; i < 120; i++) {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException ex) {
+                            return;
+                        }
+                        if (!isDisplayable() || !norm.equals(NoRMSatuSehat)) {
+                            return;
+                        }
+                        try {
+                            loadURLSatuSehat(ambilLinkSatuSehat("shl"));
+                            return;
+                        } catch (Exception ex) {
+                            System.out.println("Menunggu persetujuan akses SATUSEHAT : " + ex.getMessage());
+                        }
+                    }
+                    NoRMSatuSehat = "";
+                });
+                cek.setDaemon(true);
+                cek.start();
+                JOptionPane.showMessageDialog(null, "Minta pasien membagikan Kode Akses dari SATUSEHAT Mobile, lalu masukkan di halaman persetujuan.\nRME Nasional akan terbuka otomatis setelah kode diterima");
+            }
+        } catch (Exception e) {
+            NoRMSatuSehat = "";
+            System.out.println("Notifikasi Bridging : " + e);
+            JOptionPane.showMessageDialog(null, "Gagal : " + e.getMessage());
+            if (e.getMessage() != null && e.getMessage().contains("belum dibagikan")) {
+                JOptionPane.showMessageDialog(null, "Pasien belum mengaktifkan berbagi resume medis.\n\nMinta pasien:\n"
+                        + "1. Membuka aplikasi SATUSEHAT Mobile\n2. Melakukan verifikasi identitas (KYC)\n"
+                        + "3. Mengaktifkan 'Bagikan Resume Medis' di pengaturan aplikasi");
+            }
+        }
+    }
+
+    private String ambilLinkSatuSehat(String endpoint) throws Exception {
+        HttpHeaders hdr = new HttpHeaders();
+        hdr.setContentType(MediaType.APPLICATION_JSON);
+        hdr.add("Authorization", "Bearer " + api.TokenSatuSehat());
+        String hasil;
+        try {
+            hasil = api.getRest().exchange(koneksiDB.URLRMESATUSEHAT() + "/" + endpoint, HttpMethod.POST, new org.springframework.http.HttpEntity(bodySatuSehat, hdr), String.class).getBody();
+        } catch (HttpClientErrorException | HttpServerErrorException ex) {
+            hasil = ex.getResponseBodyAsString();
+        }
+        System.out.println("Result JSON " + endpoint + " : " + hasil);
+        JsonNode data = mapper.readTree(hasil);
+        String tautan = data.path("data").path(endpoint.equals("chl") ? "verificationUrl" : "shlinkUrl").asText();
+        if (tautan.equals("")) {
+            throw new Exception(data.path("message").asText());
+        }
+        return tautan;
+    }
+
+    private void createSceneSatuSehat() {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                WebView view = new WebView();
+                
+                webRMESatuSehat = view.getEngine();
+                webRMESatuSehat.setJavaScriptEnabled(true);
+                webRMESatuSehat.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15");
+                
+                webRMESatuSehat.setCreatePopupHandler(p -> webRMESatuSehat);
+                
+                webRMESatuSehat.setOnAlert(e -> System.out.println("Notifikasi WebView : "+e.getData()));
+                
+                webRMESatuSehat.documentProperty().addListener((o, lama, baru) -> {
+                    if (baru != null) {
+                        pasangKriptoSatuSehat();
+                    }
+                });
+                
+                webRMESatuSehat.getLoadWorker().exceptionProperty().addListener((ObservableValue<? extends Throwable> o, Throwable old, final Throwable value) -> {
+                    if (webRMESatuSehat.getLoadWorker().getState() == FAILED) {
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(
+                                    PanelWebSatuSehat,
+                                    (value != null) ?
+                                            webRMESatuSehat.getLocation() + "\n" + value.getMessage() :
+                                            webRMESatuSehat.getLocation() + "\nUnexpected Catatan.",
+                                    "Loading Catatan...",
+                                    JOptionPane.ERROR_MESSAGE);
+                        });
+                    }
+                });
+                
+                PanelRMESatuSehat.setScene(new Scene(view));
+            }
+        });
+    }
+    
+    @SuppressWarnings("removal")
+    private void pasangKriptoSatuSehat() {
+        try {
+            ((JSObject) webRMESatuSehat.executeScript("window")).setMember("kriptoJava", kriptoSatuSehat);
+            webRMESatuSehat.executeScript(JS_KRIPTO_SATUSEHAT);
+        } catch (Exception e) {
+            System.out.println("Notifikasi Kripto WebView : " + e);
+        }
+    }
+
+    private static final String JS_KRIPTO_SATUSEHAT = """
+        (function(){
+        if(!window.crypto||window.crypto.subtle||!window.kriptoJava)return;
+        var J=window.kriptoJava;
+        var HL={'SHA-1':20,'SHA-256':32,'SHA-384':48,'SHA-512':64};
+        function u8(x){return x instanceof ArrayBuffer?new Uint8Array(x):new Uint8Array(x.buffer,x.byteOffset,x.byteLength);}
+        function enc(x){var a=u8(x),s='',i;for(i=0;i<a.length;i+=8192)s+=String.fromCharCode.apply(null,a.subarray(i,i+8192));return btoa(s).split('+').join('-').split('/').join('_').replace(/=+$/,'');}
+        function dec(s){s=s.split('-').join('+').split('_').join('/');while(s.length%4)s+='=';var t=atob(s),a=new Uint8Array(t.length),i;for(i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a;}
+        function buf(a){return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);}
+        function cat(){var n=0,i,o,p=0;for(i=0;i<arguments.length;i++)n+=arguments[i].length;o=new Uint8Array(n);for(i=0;i<arguments.length;i++){o.set(arguments[i],p);p+=arguments[i].length;}return o;}
+        function nm(a){return typeof a==='string'?a:a.name;}
+        function hs(h){return (typeof h==='string'?h:h.name).toUpperCase();}
+        function sz(c){return c==='P-384'?48:32;}
+        function Kunci(t,a,e,u,o){this.type=t;this.algorithm=a;this.extractable=e;this.usages=u;this._=o;}
+        function sec(a,e,u,k){var n=nm(a),al={name:n};if(a.hash)al.hash={name:hs(a.hash)};if(n==='HMAC')al.length=a.length||k.length*8;if(n.indexOf('AES')===0)al.length=k.length*8;return new Kunci('secret',al,e,u,{k:k});}
+        function ec(a,e,u,c,d,x,y){return new Kunci(d?'private':'public',{name:'ECDH',namedCurve:c},e,u,{c:c,d:d,x:x,y:y});}
+        function hmac(h,k,d){return dec(J.hmac(h,enc(k),enc(d)));}
+        function hkdf(h,ikm,salt,info,n){var l=HL[h],prk=hmac(h,salt.length?salt:new Uint8Array(l),ikm),t=new Uint8Array(0),o=new Uint8Array(0),i=1;while(o.length<n){t=hmac(h,prk,cat(t,info,new Uint8Array([i++])));o=cat(o,t);}return o.subarray(0,n);}
+        var S={
+        async digest(a,d){return buf(dec(J.digest(hs(a),enc(d))));},
+        async generateKey(a,e,u){var n=nm(a),p;if(n==='ECDH'){p=J.ecGenerate(a.namedCurve).split('.');return{privateKey:ec(a,e,u,a.namedCurve,p[0],p[1],p[2]),publicKey:ec(a,true,[],a.namedCurve,null,p[1],p[2])};}
+        if(n==='AES-GCM'){p=new Uint8Array(a.length/8);window.crypto.getRandomValues(p);return sec(a,e,u,p);}
+        throw new Error('NotSupportedError: generateKey '+n);},
+        async importKey(f,d,a,e,u){var n=nm(a),r,s=sz(a.namedCurve);
+        if(n==='ECDH'){if(f==='raw'){r=u8(d);if(r.length!==2*s+1||r[0]!==4)throw new Error('DataError: raw EC key');return ec(a,e,u,a.namedCurve,null,enc(r.subarray(1,1+s)),enc(r.subarray(1+s)));}
+        if(f==='jwk'){if(d.kty!=='EC'||d.crv!==a.namedCurve||!d.x||!d.y)throw new Error('DataError: jwk EC key');return ec(a,e,u,a.namedCurve,d.d||null,d.x,d.y);}
+        throw new Error('NotSupportedError: importKey '+f+' '+n);}
+        if(f==='raw')return sec(a,e,u,new Uint8Array(u8(d)));
+        if(f==='jwk'&&d.kty==='oct')return sec(a,e,u,dec(d.k));
+        throw new Error('NotSupportedError: importKey '+f+' '+n);},
+        async exportKey(f,k){var o=k._,r;if(!k.extractable)throw new Error('InvalidAccessError: key not extractable');
+        if(k.algorithm.name==='ECDH'){if(f==='raw'){if(o.d)throw new Error('InvalidAccessError: private key');return buf(cat(new Uint8Array([4]),dec(o.x),dec(o.y)));}
+        if(f==='jwk'){r={kty:'EC',crv:o.c,x:o.x,y:o.y,ext:true,key_ops:k.usages};if(o.d)r.d=o.d;return r;}}
+        else{if(f==='raw')return buf(o.k);if(f==='jwk')return{kty:'oct',k:enc(o.k),ext:true,key_ops:k.usages};}
+        throw new Error('NotSupportedError: exportKey '+f);},
+        async deriveBits(a,k,n){var o=k._,r;
+        if(nm(a)==='ECDH'){r=dec(J.ecdh(o.c,o.d,a.public._.x,a.public._.y));return buf(n?r.subarray(0,n>>3):r);}
+        if(nm(a)==='HKDF')return buf(hkdf(hs(a.hash),o.k,u8(a.salt),u8(a.info),n>>3));
+        throw new Error('NotSupportedError: deriveBits '+nm(a));},
+        async sign(a,k,d){if(nm(a)!=='HMAC')throw new Error('NotSupportedError: sign '+nm(a));return buf(hmac(k.algorithm.hash.name,k._.k,u8(d)));},
+        async encrypt(a,k,d){return buf(dec(J.gcm(true,enc(k._.k),enc(a.iv),enc(a.additionalData||new Uint8Array(0)),enc(d))));},
+        async decrypt(a,k,d){return buf(dec(J.gcm(false,enc(k._.k),enc(a.iv),enc(a.additionalData||new Uint8Array(0)),enc(d))));}
+        };
+        Object.defineProperty(window.crypto,'subtle',{value:S,configurable:true});
+        })();
+        """;
+
+    public static class KriptoSatuSehat {
+        private static java.security.spec.ECParameterSpec kurva(String nama) throws Exception {
+            java.security.AlgorithmParameters ap = java.security.AlgorithmParameters.getInstance("EC");
+            ap.init(new java.security.spec.ECGenParameterSpec(nama.equals("P-384") ? "secp384r1" : "secp256r1"));
+            return ap.getParameterSpec(java.security.spec.ECParameterSpec.class);
+        }
+
+        private static byte[] tetap(java.math.BigInteger v, int n) {
+            byte[] b = v.toByteArray(), h = new byte[n];
+            if (b.length > n) {
+                System.arraycopy(b, b.length - n, h, 0, n);
+            } else {
+                System.arraycopy(b, 0, h, n - b.length, b.length);
+            }
+            return h;
+        }
+
+        private static String enc(byte[] b) {
+            return Base64.getUrlEncoder().withoutPadding().encodeToString(b);
+        }
+
+        private static byte[] dec(String s) {
+            return Base64.getUrlDecoder().decode(s);
+        }
+
+        public String ecGenerate(String crv) throws Exception {
+            java.security.spec.ECParameterSpec sp = kurva(crv);
+            java.security.KeyPairGenerator kpg = java.security.KeyPairGenerator.getInstance("EC");
+            kpg.initialize(sp);
+            java.security.KeyPair kp = kpg.generateKeyPair();
+            int n = (sp.getOrder().bitLength() + 7) / 8;
+            java.security.spec.ECPoint w = ((java.security.interfaces.ECPublicKey) kp.getPublic()).getW();
+            return enc(tetap(((java.security.interfaces.ECPrivateKey) kp.getPrivate()).getS(), n)) + "." + enc(tetap(w.getAffineX(), n)) + "." + enc(tetap(w.getAffineY(), n));
+        }
+
+        public String ecdh(String crv, String d, String x, String y) throws Exception {
+            java.security.spec.ECParameterSpec sp = kurva(crv);
+            java.security.KeyFactory kf = java.security.KeyFactory.getInstance("EC");
+            javax.crypto.KeyAgreement ka = javax.crypto.KeyAgreement.getInstance("ECDH");
+            ka.init(kf.generatePrivate(new java.security.spec.ECPrivateKeySpec(new java.math.BigInteger(1, dec(d)), sp)));
+            ka.doPhase(kf.generatePublic(new java.security.spec.ECPublicKeySpec(new java.security.spec.ECPoint(new java.math.BigInteger(1, dec(x)), new java.math.BigInteger(1, dec(y))), sp)), true);
+            return enc(ka.generateSecret());
+        }
+
+        public String hmac(String hash, String key, String data) throws Exception {
+            javax.crypto.Mac m = javax.crypto.Mac.getInstance("Hmac" + hash.replace("-", ""));
+            byte[] k = dec(key);
+            m.init(new javax.crypto.spec.SecretKeySpec(k.length == 0 ? new byte[1] : k, m.getAlgorithm()));
+            return enc(m.doFinal(dec(data)));
+        }
+
+        public String digest(String hash, String data) throws Exception {
+            return enc(java.security.MessageDigest.getInstance(hash).digest(dec(data)));
+        }
+
+        public String gcm(boolean sandi, String key, String iv, String aad, String data) throws Exception {
+            javax.crypto.Cipher c = javax.crypto.Cipher.getInstance("AES/GCM/NoPadding");
+            c.init(sandi ? javax.crypto.Cipher.ENCRYPT_MODE : javax.crypto.Cipher.DECRYPT_MODE, new javax.crypto.spec.SecretKeySpec(dec(key), "AES"), new javax.crypto.spec.GCMParameterSpec(128, dec(iv)));
+            byte[] a = dec(aad);
+            if (a.length > 0) {
+                c.updateAAD(a);
+            }
+            return enc(c.doFinal(dec(data)));
+        }
+    }
+
+    private void loadURLSatuSehat(String url) {
+        SwingUtilities.invokeLater(() -> {
+            if (PanelRMESatuSehat == null) {
+                PanelRMESatuSehat = new JFXPanel();
+                PanelWebSatuSehat.add(PanelRMESatuSehat, java.awt.BorderLayout.CENTER);
+                PanelWebSatuSehat.revalidate();
+            }
+            Platform.setImplicitExit(false);
+            try {
+                createSceneSatuSehat();
+            } catch (Exception e) {
+            }
+
+            Platform.runLater(() -> {
+                try {
+                    webRMESatuSehat.load(url);
+                } catch (Exception exception) {
+                    webRMESatuSehat.load(url);
+                }
+            });
+        });
     }
 
     private void runBackground(Runnable task) {

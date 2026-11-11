@@ -97,7 +97,12 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
             }else if(i==3){
                 column.setPreferredWidth(80);
             }else if(i==4){
-                column.setPreferredWidth(85);
+                if(koneksiDB.TAMPILTARIFOPERASI().equals("yes")){
+                    column.setPreferredWidth(85);
+                }else{
+                    column.setMinWidth(0);
+                    column.setMaxWidth(0);
+                }
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -149,7 +154,7 @@ public final class DlgCariDaftarOperasi extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
+        tbKamar.setAutoCreateRowSorter(false);
         tbKamar.setName("tbKamar"); // NOI18N
         tbKamar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

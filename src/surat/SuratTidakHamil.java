@@ -129,8 +129,8 @@ public final class SuratTidakHamil extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSuratHamil = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        MnCetakSuratHamil = new widget.MenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -831,7 +831,7 @@ public final class SuratTidakHamil extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.ComboBox HasilPeriksa;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakSuratHamil;
+    private widget.MenuItem MnCetakSuratHamil;
     private widget.TextBox NoSurat;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -849,7 +849,7 @@ public final class SuratTidakHamil extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbObat;

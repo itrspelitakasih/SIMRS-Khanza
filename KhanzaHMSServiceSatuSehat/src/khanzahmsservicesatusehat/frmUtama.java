@@ -252,7 +252,7 @@ public class frmUtama extends javax.swing.JFrame {
     private void encounter() {
         try{
             ps=koneksi.prepareStatement(
-                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pasien.nm_pasien,pasien.no_ktp,"+
+                   "select reg_periksa.tgl_registrasi,reg_periksa.jam_reg,reg_periksa.no_rawat,pasien.nm_pasien,pasien.no_ktp,reg_periksa.kd_poli,"+
                    "pegawai.nama,pegawai.no_ktp as ktpdokter,poliklinik.nm_poli,satu_sehat_mapping_lokasi_ralan.id_lokasi_satusehat,"+
                    "reg_periksa.status_lanjut,concat(reg_periksa.tgl_registrasi,'T',reg_periksa.jam_reg,'+07:00') as pulang,ifnull(satu_sehat_encounter.id_encounter,'') as id_encounter "+
                    "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join pegawai on pegawai.nik=reg_periksa.kd_dokter "+
@@ -272,67 +272,132 @@ public class frmUtama extends javax.swing.JFrame {
                                 headers = new HttpHeaders();
                                 headers.setContentType(MediaType.APPLICATION_JSON);
                                 headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                                json = "{" +
-                                            "\"resourceType\": \"Encounter\"," +
-                                            "\"status\": \"arrived\"," +
-                                            "\"class\": {" +
-                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                                "\"code\": \""+(rs.getString("status_lanjut").equals("Ralan")?"AMB":"IMP")+"\"," +
-                                                "\"display\": \""+(rs.getString("status_lanjut").equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
-                                            "}," +
-                                            "\"subject\": {" +
-                                                "\"reference\": \"Patient/"+idpasien+"\"," +
-                                                "\"display\": \""+rs.getString("nm_pasien")+"\"" +
-                                            "}," +
-                                            "\"participant\": [" +
-                                                "{" +
-                                                    "\"type\": [" +
-                                                        "{" +
-                                                            "\"coding\": [" +
-                                                                "{" +
-                                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                                    "\"code\": \"ATND\"," +
-                                                                    "\"display\": \"attender\"" +
-                                                                "}" +
-                                                            "]" +
+                                if(rs.getString("kd_poli").matches("UGD|UGD-K|IGDK")){
+                                    json = "{" +
+                                                "\"resourceType\": \"Encounter\"," +
+                                                "\"status\": \"arrived\"," +
+                                                "\"class\": {" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                                    "\"code\": \"EMER\"," +
+                                                    "\"display\": \"emergency\"" +
+                                                "}," +
+                                                "\"subject\": {" +
+                                                    "\"reference\": \"Patient/"+idpasien+"\"," +
+                                                    "\"display\": \""+rs.getString("nm_pasien")+"\"" +
+                                                "}," +
+                                                "\"participant\": [" +
+                                                    "{" +
+                                                        "\"type\": [" +
+                                                            "{" +
+                                                                "\"coding\": [" +
+                                                                    "{" +
+                                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                                        "\"code\": \"ATND\"," +
+                                                                        "\"display\": \"attender\"" +
+                                                                    "}" +
+                                                                "]" +
+                                                            "}" +
+                                                        "]," +
+                                                        "\"individual\": {" +
+                                                            "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
+                                                            "\"display\": \""+rs.getString("nama")+"\"" +
                                                         "}" +
-                                                    "]," +
-                                                    "\"individual\": {" +
-                                                        "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
-                                                        "\"display\": \""+rs.getString("nama")+"\"" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
-                                            "}," +
-                                            "\"location\": [" +
-                                                "{" +
-                                                    "\"location\": {" +
-                                                        "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
-                                                        "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                "]," +
+                                                "\"period\": {" +
+                                                    "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
+                                                "}," +
+                                                "\"location\": [" +
+                                                    "{" +
+                                                        "\"location\": {" +
+                                                            "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
+                                                            "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                        "}" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"statusHistory\": [" +
-                                                "{" +
-                                                    "\"status\": \"arrived\"," +
-                                                    "\"period\": {" +
-                                                        "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
-                                                        "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                "]," +
+                                                "\"statusHistory\": [" +
+                                                    "{" +
+                                                        "\"status\": \"arrived\"," +
+                                                        "\"period\": {" +
+                                                            "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
+                                                            "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                        "}" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"serviceProvider\": {" +
-                                                "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
-                                            "}," +
-                                            "\"identifier\": [" +
-                                                "{" +
-                                                    "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                                    "\"value\": \""+rs.getString("no_rawat")+"\"" +
-                                                "}" +
-                                            "]" +
-                                        "}";
+                                                "]," +
+                                                "\"serviceProvider\": {" +
+                                                    "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                                "}," +
+                                                "\"identifier\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                        "\"value\": \""+rs.getString("no_rawat")+"\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}";
+                                }else{
+                                    json = "{" +
+                                                "\"resourceType\": \"Encounter\"," +
+                                                "\"status\": \"arrived\"," +
+                                                "\"class\": {" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                                    "\"code\": \""+(rs.getString("status_lanjut").equals("Ralan")?"AMB":"IMP")+"\"," +
+                                                    "\"display\": \""+(rs.getString("status_lanjut").equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                                "}," +
+                                                "\"subject\": {" +
+                                                    "\"reference\": \"Patient/"+idpasien+"\"," +
+                                                    "\"display\": \""+rs.getString("nm_pasien")+"\"" +
+                                                "}," +
+                                                "\"participant\": [" +
+                                                    "{" +
+                                                        "\"type\": [" +
+                                                            "{" +
+                                                                "\"coding\": [" +
+                                                                    "{" +
+                                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                                        "\"code\": \"ATND\"," +
+                                                                        "\"display\": \"attender\"" +
+                                                                    "}" +
+                                                                "]" +
+                                                            "}" +
+                                                        "]," +
+                                                        "\"individual\": {" +
+                                                            "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
+                                                            "\"display\": \""+rs.getString("nama")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"period\": {" +
+                                                    "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
+                                                "}," +
+                                                "\"location\": [" +
+                                                    "{" +
+                                                        "\"location\": {" +
+                                                            "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
+                                                            "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"statusHistory\": [" +
+                                                    "{" +
+                                                        "\"status\": \"arrived\"," +
+                                                        "\"period\": {" +
+                                                            "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
+                                                            "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"serviceProvider\": {" +
+                                                    "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                                "}," +
+                                                "\"identifier\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                        "\"value\": \""+rs.getString("no_rawat")+"\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}";
+                                }
+                                    
                                 TeksArea.append("URL : "+link+"/Encounter\n");
                                 TeksArea.append("Request JSON : "+json+"\n");
                                 requestEntity = new HttpEntity(json,headers);
@@ -359,68 +424,134 @@ public class frmUtama extends javax.swing.JFrame {
                                 headers = new HttpHeaders();
                                 headers.setContentType(MediaType.APPLICATION_JSON);
                                 headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                                json = "{" +
-                                            "\"resourceType\": \"Encounter\"," +
-                                            "\"id\": \""+rs.getString("id_encounter")+"\"," +
-                                            "\"status\": \"finished\"," +
-                                            "\"class\": {" +
-                                                "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                                "\"code\": \""+(rs.getString("status_lanjut").equals("Ralan")?"AMB":"IMP")+"\"," +
-                                                "\"display\": \""+(rs.getString("status_lanjut").equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
-                                            "}," +
-                                            "\"subject\": {" +
-                                                "\"reference\": \"Patient/"+idpasien+"\"," +
-                                                "\"display\": \""+rs.getString("nm_pasien")+"\"" +
-                                            "}," +
-                                            "\"participant\": [" +
-                                                "{" +
-                                                    "\"type\": [" +
-                                                        "{" +
-                                                            "\"coding\": [" +
-                                                                "{" +
-                                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                                    "\"code\": \"ATND\"," +
-                                                                    "\"display\": \"attender\"" +
-                                                                "}" +
-                                                            "]" +
+                                if(rs.getString("kd_poli").matches("UGD|UGD-K|IGDK")){
+                                    json = "{" +
+                                                "\"resourceType\": \"Encounter\"," +
+                                                "\"id\": \""+rs.getString("id_encounter")+"\"," +
+                                                "\"status\": \"finished\"," +
+                                                "\"class\": {" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                                    "\"code\": \"EMER\"," +
+                                                    "\"display\": \"emergency\"" +
+                                                "}," +
+                                                "\"subject\": {" +
+                                                    "\"reference\": \"Patient/"+idpasien+"\"," +
+                                                    "\"display\": \""+rs.getString("nm_pasien")+"\"" +
+                                                "}," +
+                                                "\"participant\": [" +
+                                                    "{" +
+                                                        "\"type\": [" +
+                                                            "{" +
+                                                                "\"coding\": [" +
+                                                                    "{" +
+                                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                                        "\"code\": \"ATND\"," +
+                                                                        "\"display\": \"attender\"" +
+                                                                    "}" +
+                                                                "]" +
+                                                            "}" +
+                                                        "]," +
+                                                        "\"individual\": {" +
+                                                            "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
+                                                            "\"display\": \""+rs.getString("nama")+"\"" +
                                                         "}" +
-                                                    "]," +
-                                                    "\"individual\": {" +
-                                                        "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
-                                                        "\"display\": \""+rs.getString("nama")+"\"" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
-                                            "}," +
-                                            "\"location\": [" +
-                                                "{" +
-                                                    "\"location\": {" +
-                                                        "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
-                                                        "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                "]," +
+                                                "\"period\": {" +
+                                                    "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
+                                                "}," +
+                                                "\"location\": [" +
+                                                    "{" +
+                                                        "\"location\": {" +
+                                                            "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
+                                                            "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                        "}" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"statusHistory\": [" +
-                                                "{" +
-                                                    "\"status\": \"arrived\"," +
-                                                    "\"period\": {" +
-                                                        "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
-                                                        "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                "]," +
+                                                "\"statusHistory\": [" +
+                                                    "{" +
+                                                        "\"status\": \"arrived\"," +
+                                                        "\"period\": {" +
+                                                            "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
+                                                            "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                        "}" +
                                                     "}" +
-                                                "}" +
-                                            "]," +
-                                            "\"serviceProvider\": {" +
-                                                "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
-                                            "}," +
-                                            "\"identifier\": [" +
-                                                "{" +
-                                                    "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                                    "\"value\": \""+rs.getString("no_rawat")+"\"" +
-                                                "}" +
-                                            "]" +
-                                        "}";
+                                                "]," +
+                                                "\"serviceProvider\": {" +
+                                                    "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                                "}," +
+                                                "\"identifier\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                        "\"value\": \""+rs.getString("no_rawat")+"\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}";
+                                }else{
+                                    json = "{" +
+                                                "\"resourceType\": \"Encounter\"," +
+                                                "\"id\": \""+rs.getString("id_encounter")+"\"," +
+                                                "\"status\": \"finished\"," +
+                                                "\"class\": {" +
+                                                    "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                                    "\"code\": \""+(rs.getString("status_lanjut").equals("Ralan")?"AMB":"IMP")+"\"," +
+                                                    "\"display\": \""+(rs.getString("status_lanjut").equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                                "}," +
+                                                "\"subject\": {" +
+                                                    "\"reference\": \"Patient/"+idpasien+"\"," +
+                                                    "\"display\": \""+rs.getString("nm_pasien")+"\"" +
+                                                "}," +
+                                                "\"participant\": [" +
+                                                    "{" +
+                                                        "\"type\": [" +
+                                                            "{" +
+                                                                "\"coding\": [" +
+                                                                    "{" +
+                                                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                                        "\"code\": \"ATND\"," +
+                                                                        "\"display\": \"attender\"" +
+                                                                    "}" +
+                                                                "]" +
+                                                            "}" +
+                                                        "]," +
+                                                        "\"individual\": {" +
+                                                            "\"reference\": \"Practitioner/"+idpraktisi+"\"," +
+                                                            "\"display\": \""+rs.getString("nama")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"period\": {" +
+                                                    "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"" +
+                                                "}," +
+                                                "\"location\": [" +
+                                                    "{" +
+                                                        "\"location\": {" +
+                                                            "\"reference\": \"Location/"+rs.getString("id_lokasi_satusehat")+"\"," +
+                                                            "\"display\": \""+rs.getString("nm_poli")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"statusHistory\": [" +
+                                                    "{" +
+                                                        "\"status\": \"arrived\"," +
+                                                        "\"period\": {" +
+                                                            "\"start\": \""+rs.getString("tgl_registrasi")+"T"+rs.getString("jam_reg")+"+07:00"+"\"," +
+                                                            "\"end\": \""+rs.getString("pulang")+"\"" +
+                                                        "}" +
+                                                    "}" +
+                                                "]," +
+                                                "\"serviceProvider\": {" +
+                                                    "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                                "}," +
+                                                "\"identifier\": [" +
+                                                    "{" +
+                                                        "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                                        "\"value\": \""+rs.getString("no_rawat")+"\"" +
+                                                    "}" +
+                                                "]" +
+                                            "}";
+                                }
+                                    
                                 TeksArea.append("URL : "+link+"/Encounter/"+rs.getString("id_encounter")+"\n");
                                 TeksArea.append("Request JSON : "+json+"\n");
                                 requestEntity = new HttpEntity(json,headers);
@@ -515,6 +646,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Suhu Badan di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("suhu_tubuh").replaceAll(",",".")+"," +
                                                 "\"unit\": \"degree Celsius\"," +
@@ -610,6 +742,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Suhu Badan di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("suhu_tubuh").replaceAll(",",".")+"," +
                                                 "\"unit\": \"degree Celsius\"," +
@@ -708,7 +841,8 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Encounter/"+rs.getString("id_encounter")+"\"," +
                                                 "\"display\": \"Pemeriksaan Fisik Respirasi di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
-                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("respirasi")+"," +
                                                 "\"unit\": \"breaths/minute\"," +
@@ -803,7 +937,8 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Encounter/"+rs.getString("id_encounter")+"\"," +
                                                 "\"display\": \"Pemeriksaan Fisik Respirasi di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
-                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("respirasi")+"," +
                                                 "\"unit\": \"breaths/minute\"," +
@@ -903,6 +1038,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Nadi di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("nadi")+"," +
                                                 "\"unit\": \"breaths/minute\"," +
@@ -998,6 +1134,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Nadi di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("nadi")+"," +
                                                 "\"unit\": \"breaths/minute\"," +
@@ -1097,6 +1234,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik SpO2  di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("spo2")+"," +
                                                 "\"unit\": \"percent saturation\"," +
@@ -1192,6 +1330,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik SpO2  di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("spo2")+"," +
                                                 "\"unit\": \"percent saturation\"," +
@@ -1291,6 +1430,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik GCS di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("gcs")+"," +
                                                 "\"system\": \"http://unitsofmeasure.org\"," +
@@ -1385,6 +1525,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik GCS di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("gcs")+"," +
                                                 "\"system\": \"http://unitsofmeasure.org\"," +
@@ -1483,6 +1624,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Kesadaran di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueCodeableConcept\": {" +
                                                 "\"text\": \""+rs.getString("kesadaran").replaceAll("Compos Mentis","Alert").replaceAll("Somnolence","Voice").replaceAll("Sopor","Pain").replaceAll("Coma","Unresponsive")+"\"" +
                                             "}" +
@@ -1575,6 +1717,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Kesadaran di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueCodeableConcept\": {" +
                                                 "\"text\": \""+rs.getString("kesadaran").replaceAll("Compos Mentis","Alert").replaceAll("Somnolence","Voice").replaceAll("Sopor","Pain").replaceAll("Coma","Unresponsive")+"\"" +
                                             "}" +
@@ -1689,6 +1832,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Tensi di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"component\" : ["+
                                                 "{" +
                                                     "\"code\" : {" +
@@ -1832,6 +1976,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Tensi di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"component\" : ["+
                                                 "{" +
                                                     "\"code\" : {" +
@@ -1961,6 +2106,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Tinggi Badan di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("tinggi").replaceAll(",",".")+"," +
                                                 "\"unit\": \"centimeter\"," +
@@ -2056,6 +2202,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Tinggi Badan di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("tinggi").replaceAll(",",".")+"," +
                                                 "\"unit\": \"centimeter\"," +
@@ -2155,6 +2302,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Berat Badan di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("berat").replaceAll(",",".")+"," +
                                                 "\"unit\": \"kilogram\"," +
@@ -2250,6 +2398,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Berat Badan di Rawat Inap, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("berat").replaceAll(",",".")+"," +
                                                 "\"unit\": \"kilogram\"," +
@@ -2349,6 +2498,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"display\": \"Pemeriksaan Fisik Lingkar Perut di Rawat Jalan/IGD, Pasien "+rs.getString("nm_pasien")+" Pada Tanggal "+rs.getString("tgl_perawatan")+" Jam "+rs.getString("jam_rawat")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_perawatan")+"T"+rs.getString("jam_rawat")+"+07:00\"," +
                                             "\"valueQuantity\": {" +
                                                 "\"value\": "+rs.getString("lingkar_perut").replaceAll(",",".")+"," +
                                                 "\"unit\": \"centimeter\"," +
@@ -5009,6 +5159,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+rs.getString("hasil").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
@@ -5125,6 +5276,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+rs.getString("hasil").replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
@@ -6346,6 +6498,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+("Hasil Lab : "+rs.getString("nilai")+" "+rs.getString("satuan")+", Nilai Rujukan : "+rs.getString("nilai_rujukan")+(rs.getString("keterangan").equals("")?"":", Keterangan : "+rs.getString("keterangan"))).replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
@@ -6465,6 +6618,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+("Hasil Lab : "+rs.getString("nilai")+" "+rs.getString("satuan")+", Nilai Rujukan : "+rs.getString("nilai_rujukan")+(rs.getString("keterangan").equals("")?"":", Keterangan : "+rs.getString("keterangan"))).replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
@@ -6586,6 +6740,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+("Hasil Lab : "+rs.getString("nilai")+" "+rs.getString("satuan")+", Nilai Rujukan : "+rs.getString("nilai_rujukan")+(rs.getString("keterangan").equals("")?"":", Keterangan : "+rs.getString("keterangan"))).replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
@@ -6705,6 +6860,7 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "\"reference\": \"Specimen/"+rs.getString("id_specimen")+"\"" +
                                             "}," +
                                             "\"effectiveDateTime\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
+                                            "\"issued\": \""+rs.getString("tgl_hasil")+"T"+rs.getString("jam_hasil")+"+07:00\"," +
                                             "\"valueString\": \""+("Hasil Lab : "+rs.getString("nilai")+" "+rs.getString("satuan")+", Nilai Rujukan : "+rs.getString("nilai_rujukan")+(rs.getString("keterangan").equals("")?"":", Keterangan : "+rs.getString("keterangan"))).replaceAll("(\r\n|\r|\n|\n\r)","<br>").replaceAll("\t", " ")+"\"" +
                                        "}";
                                 TeksArea.append("URL : "+link+"/Observation");
