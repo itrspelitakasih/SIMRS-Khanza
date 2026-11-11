@@ -38653,7 +38653,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 JOptionPane.showMessageDialog(null, "Pasien belum terdaftar di SATUSEHAT atau NIK pasien belum diisi");
                 return;
             }
-            String idpraktisi = cekID.tampilIDParktisi(Sequel.cariIsi("select pegawai.no_ktp from pegawai where pegawai.nik=?", akses.getkode()));
+            String nikpraktisi = Sequel.cariIsi("select pegawai.no_ktp from pegawai where pegawai.nik=?", akses.getkode());
+            if (nikpraktisi.trim().equals("")) {
+                // RSPK: RME Satu Sehat dicatat atas nama nakes yang login; Admin Utama / user non-pegawai tidak punya NIK
+                JOptionPane.showMessageDialog(null, "User login ("+akses.getkode()+") bukan pegawai/tenaga kesehatan atau NIK pegawainya belum diisi.\nBuka RME Satu Sehat dengan user dokter/perawat yang NIK-nya terdaftar di SATUSEHAT untuk RS ini.");
+                return;
+            }
+            String idpraktisi = cekID.tampilIDParktisi(nikpraktisi);
             if (idpraktisi.equals("")) {
                 JOptionPane.showMessageDialog(null, "Praktisi belum terdaftar di SATUSEHAT atau NIK praktisi belum diisi");
                 return;

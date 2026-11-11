@@ -247,6 +247,9 @@ public class SatuSehatCekNIK {
     
     public String tampilIDPasien(String cari) {
         idpasien="";
+        if(cari==null||cari.trim().equals("")){
+            return idpasien;   // RSPK: NIK kosong jangan dicari, Satu Sehat bisa mengembalikan data orang lain
+        }
         try{
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -268,6 +271,9 @@ public class SatuSehatCekNIK {
     
     public String tampilIDParktisi(String cari) {
         idpasien="";
+        if(cari==null||cari.trim().equals("")){
+            return idpasien;   // RSPK: NIK kosong jangan dicari, Satu Sehat bisa mengembalikan data orang lain
+        }
         try{
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
