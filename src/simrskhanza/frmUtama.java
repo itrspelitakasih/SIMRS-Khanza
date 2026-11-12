@@ -1987,7 +1987,6 @@ public class frmUtama extends javax.swing.JFrame {
         PenyerahanResep = new javax.swing.JMenuItem();
         LaporIT = new javax.swing.JMenuItem();
         eksekutif = new javax.swing.JMenuItem();
-        MnKYCSatuSehat = new javax.swing.JMenuItem();
 
         DlgLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgLogin.setName("DlgLogin"); // NOI18N
@@ -7702,16 +7701,16 @@ public class frmUtama extends javax.swing.JFrame {
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.PAGE_START);
 
-        internalFrame4.setBackground(new java.awt.Color(235, 215, 195));
+        internalFrame4.setBackground(new java.awt.Color(234, 245, 255));
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setPreferredSize(new java.awt.Dimension(330, 25));
-        internalFrame4.setWarnaAtas(new java.awt.Color(51, 153, 255));
-        internalFrame4.setWarnaBawah(new java.awt.Color(245, 255, 245));
+        internalFrame4.setWarnaAtas(new java.awt.Color(178, 216, 253));
+        internalFrame4.setWarnaBawah(new java.awt.Color(234, 245, 255));
         internalFrame4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 1));
 
         lblStts.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        lblStts.setForeground(new java.awt.Color(50, 50, 50));
+        lblStts.setForeground(new java.awt.Color(2, 25, 92));
         lblStts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStts.setText("Status Admin :");
         lblStts.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -7719,17 +7718,17 @@ public class frmUtama extends javax.swing.JFrame {
         lblStts.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame4.add(lblStts);
 
-        jSeparator1.setBackground(new java.awt.Color(0, 158, 96));
-        jSeparator1.setForeground(new java.awt.Color(0, 158, 96));
+        jSeparator1.setBackground(new java.awt.Color(7, 145, 243));
+        jSeparator1.setForeground(new java.awt.Color(7, 145, 243));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 158, 96)));
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 145, 243)));
         jSeparator1.setName("jSeparator1"); // NOI18N
         jSeparator1.setOpaque(true);
         jSeparator1.setPreferredSize(new java.awt.Dimension(1, 21));
         internalFrame4.add(jSeparator1);
 
         lblUser.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        lblUser.setForeground(new java.awt.Color(50, 50, 50));
+        lblUser.setForeground(new java.awt.Color(2, 25, 92));
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUser.setText("Log Out");
         lblUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -7737,17 +7736,17 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser.setPreferredSize(new java.awt.Dimension(170, 23));
         internalFrame4.add(lblUser);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 158, 96));
-        jSeparator2.setForeground(new java.awt.Color(0, 158, 96));
+        jSeparator2.setBackground(new java.awt.Color(7, 145, 243));
+        jSeparator2.setForeground(new java.awt.Color(7, 145, 243));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 158, 96)));
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 145, 243)));
         jSeparator2.setName("jSeparator2"); // NOI18N
         jSeparator2.setOpaque(true);
         jSeparator2.setPreferredSize(new java.awt.Dimension(1, 21));
         internalFrame4.add(jSeparator2);
 
         lblTgl.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        lblTgl.setForeground(new java.awt.Color(50, 50, 50));
+        lblTgl.setForeground(new java.awt.Color(2, 25, 92));
         lblTgl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTgl.setText("Tanggal");
         lblTgl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -7755,17 +7754,17 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame4.add(lblTgl);
 
-        jSeparator3.setBackground(new java.awt.Color(0, 158, 96));
-        jSeparator3.setForeground(new java.awt.Color(0, 158, 96));
+        jSeparator3.setBackground(new java.awt.Color(7, 145, 243));
+        jSeparator3.setForeground(new java.awt.Color(7, 145, 243));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 158, 96)));
+        jSeparator3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 145, 243)));
         jSeparator3.setName("jSeparator3"); // NOI18N
         jSeparator3.setOpaque(true);
         jSeparator3.setPreferredSize(new java.awt.Dimension(1, 21));
         internalFrame4.add(jSeparator3);
 
         LblIP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        LblIP.setForeground(new java.awt.Color(50, 50, 50));
+        LblIP.setForeground(new java.awt.Color(2, 25, 92));
         LblIP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblIP.setText("Alamat IP");
         LblIP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -7773,17 +7772,17 @@ public class frmUtama extends javax.swing.JFrame {
         LblIP.setPreferredSize(new java.awt.Dimension(120, 23));
         internalFrame4.add(LblIP);
 
-        jSeparator6.setBackground(new java.awt.Color(0, 158, 96));
-        jSeparator6.setForeground(new java.awt.Color(0, 158, 96));
+        jSeparator6.setBackground(new java.awt.Color(7, 145, 243));
+        jSeparator6.setForeground(new java.awt.Color(7, 145, 243));
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 158, 96)));
+        jSeparator6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(7, 145, 243)));
         jSeparator6.setName("jSeparator6"); // NOI18N
         jSeparator6.setOpaque(true);
         jSeparator6.setPreferredSize(new java.awt.Dimension(1, 21));
         internalFrame4.add(jSeparator6);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(50, 50, 50));
+        jLabel7.setForeground(new java.awt.Color(2, 25, 92));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
         jLabel7.setText(" Didesain & dibuat oleh Khanza.Soft Media");
@@ -8686,20 +8685,6 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenuUpdate.add(eksekutif);
-
-        MnKYCSatuSehat.setBackground(new java.awt.Color(255, 255, 254));
-        MnKYCSatuSehat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKYCSatuSehat.setForeground(new java.awt.Color(50, 90, 40));
-        MnKYCSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept-female-user24.png"))); // NOI18N
-        MnKYCSatuSehat.setText("KYC SatuSehat");
-        MnKYCSatuSehat.setName("MnKYCSatuSehat"); // NOI18N
-        MnKYCSatuSehat.setPreferredSize(new java.awt.Dimension(205, 30));
-        MnKYCSatuSehat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnKYCSatuSehatActionPerformed(evt);
-            }
-        });
-        jMenuUpdate.add(MnKYCSatuSehat);
 
         MenuBar.add(jMenuUpdate);
 
@@ -15985,21 +15970,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             JOptionPane.showMessageDialog(this, "Gagal membuka halaman : " + e.getMessage());
         }
     }//GEN-LAST:event_eksekutifActionPerformed
-
-    private void MnKYCSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKYCSatuSehatActionPerformed
-        if(akses.getkode()==null||akses.getkode().equals("")){
-            JOptionPane.showMessageDialog(this,"Silakan Log In terlebih dahulu.");
-            return;
-        }
-        // NIK & nama petugas diambil otomatis dari data pegawai sesuai user login (webapps/kyc/login.php)
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        try {
-            Valid.panggilUrl("kyc/login.php?usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&kode="+java.net.URLEncoder.encode(akses.getkode(),"UTF-8"));
-        } catch (Exception e) {
-            System.out.println("Notif KYC : "+e);
-        }
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnKYCSatuSehatActionPerformed
 
     private void MnAsistenAIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MnAsistenAIMouseClicked
         // menu tanpa isi: lepas sorotan menu setelah diklik
@@ -25690,7 +25660,6 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
     private widget.MenuItem MnInfoLaborat2;
     private widget.MenuItem MnInfoLaborat3;
     private widget.MenuItem MnInfoMobileJKN;
-    private javax.swing.JMenuItem MnKYCSatuSehat;
     private javax.swing.JMenuItem MnKadaluarsa;
     private widget.MenuItem MnKoleksiPenelitian;
     private javax.swing.JMenuItem MnLaporanRL;
@@ -26394,7 +26363,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.10"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.11"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
