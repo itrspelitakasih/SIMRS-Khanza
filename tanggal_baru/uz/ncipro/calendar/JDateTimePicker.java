@@ -42,10 +42,10 @@ import javax.swing.plaf.basic.ComboPopup;
 @SuppressWarnings({"rawtypes", "unchecked", "deprecation"})
 public class JDateTimePicker extends JComboBox {
     private static final long serialVersionUID = 1L;
-    private static final Color AKSEN  = new Color(0x16A05D);
-    private static final Color BORDER = new Color(0x96BEA5);
-    private static final Color TINT   = new Color(0x16, 0xA0, 0x5D, 30);
-    private static final Color TEKS   = new Color(0x1C2520);
+    private static final Color AKSEN  = new Color(0x1E78D2);   // RSPK: biru (sebelumnya hijau 0x16A05D)
+    private static final Color BORDER = new Color(0x8DB4DB);
+    private static final Color TINT   = new Color(0x1E, 0x78, 0xD2, 30);
+    private static final Color TEKS   = new Color(0x1C2533);
 
     private String displayFormat;
     private SimpleDateFormat sdf;
@@ -199,7 +199,7 @@ public class JDateTimePicker extends JComboBox {
             for (int i = 0; i < 7; i++) {
                 kepala[i] = new JLabel("", SwingConstants.CENTER);
                 kepala[i].setFont(new Font("Tahoma", Font.BOLD, 10));
-                kepala[i].setForeground(new Color(0x6B7A71));
+                kepala[i].setForeground(new Color(0x5F6F84));
                 grid.add(kepala[i]);
             }
             for (int i = 0; i < 42; i++) {
@@ -359,7 +359,7 @@ public class JDateTimePicker extends JComboBox {
                     g2.draw(kotak);
                 }
                 g2.setFont(getFont());
-                g2.setColor(terpilih ? Color.WHITE : bulanLain ? new Color(0xA7B0AB) : nav ? getForeground() : TEKS);
+                g2.setColor(terpilih ? Color.WHITE : bulanLain ? new Color(0xA9B3C1) : nav ? getForeground() : TEKS);
                 FontMetrics fm = g2.getFontMetrics();
                 String teks = getText();
                 g2.drawString(teks, (getWidth() - fm.stringWidth(teks)) / 2, (getHeight() - fm.getHeight()) / 2 + fm.getAscent());
