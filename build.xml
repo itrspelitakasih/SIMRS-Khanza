@@ -107,6 +107,10 @@
         <copy todir="${dist.dir}/panduan">
             <fileset dir="panduan/" includes="**/*" />
         </copy>
+        <!-- RSPK: peluncur JDK 15 (client) dan JDK 25, file.encoding=Cp1252 -->
+        <copy todir="${dist.dir}">
+            <fileset dir="peluncur/" includes="*.bat" />
+        </copy>
         <copy todir="${build.dir}/gambar">
             <fileset dir="gambar/" includes="**/*.png, **/*.jpg" />
         </copy>

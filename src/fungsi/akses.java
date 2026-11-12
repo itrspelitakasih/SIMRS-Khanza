@@ -265,7 +265,8 @@ public final class akses {
             intervensi_nyeri_nonfarmakologi=false,surat_pengajuan_cuti_pasien=false,checklist_kriteria_masuk_isolasi=false,satu_sehat_mapping_kptl_tindakan_ralan=false,
             satu_sehat_mapping_kptl_tindakan_ranap=false,satu_sehat_mapping_kptl_tindakan_radiologi=false,satu_sehat_mapping_kptl_tindakan_laborat=false,satu_sehat_mapping_kptl_tindakan_operasi=false,
             satu_sehat_mapping_kptl_tarif_kamar=false,checklist_kriteria_keluar_isolasi=false,satu_sehat_tanda_tangan_elektronik=false,satu_sehat_kirim_composition=false,
-            ringkasan_hutang_vendor_inventaris=false,ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false,odontogram=false;
+            ringkasan_hutang_vendor_inventaris=false,ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false,skrining_tolac=false,admisi_skoring_tolac=false,
+            monitoring_tolac=false,hasil_persalinan_tolac=false,laporan_reaksi_transfusi=false,penilaian_grace_scor=false,penilaian_bishop_scor=false,odontogram=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1506,8 +1507,15 @@ public final class akses {
                         akses.ringkasan_hutang_vendor_inventaris=true;
                         akses.ringkasan_beban_hutang_lain=true;
                         akses.set_resep_per_cara_bayar=true;
+                        akses.skrining_tolac=true;
+                        akses.admisi_skoring_tolac=true;
+                        akses.monitoring_tolac=true;
+                        akses.hasil_persalinan_tolac=true;
+                        akses.laporan_reaksi_transfusi=true;
+                        akses.penilaian_grace_scor=true;
+                        akses.penilaian_bishop_scor=true;
                         akses.odontogram=true;
-                    }else if(rs2.getRow()>=1){
+                    }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
                         akses.kode=user;
@@ -2731,6 +2739,13 @@ public final class akses {
                         akses.ringkasan_hutang_vendor_inventaris=rs2.getBoolean("ringkasan_hutang_vendor_inventaris");
                         akses.ringkasan_beban_hutang_lain=rs2.getBoolean("ringkasan_beban_hutang_lain");
                         akses.set_resep_per_cara_bayar=rs2.getBoolean("set_resep_per_cara_bayar");
+                        akses.skrining_tolac=rs2.getBoolean("skrining_tolac");
+                        akses.admisi_skoring_tolac=rs2.getBoolean("admisi_skoring_tolac");
+                        akses.monitoring_tolac=rs2.getBoolean("monitoring_tolac");
+                        akses.hasil_persalinan_tolac=rs2.getBoolean("hasil_persalinan_tolac");
+                        akses.laporan_reaksi_transfusi=rs2.getBoolean("laporan_reaksi_transfusi");
+                        akses.penilaian_grace_scor=rs2.getBoolean("penilaian_grace_scor");
+                        akses.penilaian_bishop_scor=rs2.getBoolean("penilaian_bishop_scor");
                         try {
                             // kolom user.odontogram tambahan RS (update_odontogram.sql), aman bila belum ada
                             akses.odontogram=rs2.getBoolean("odontogram");
@@ -3983,6 +3998,13 @@ public final class akses {
         akses.ringkasan_hutang_vendor_inventaris=false;
         akses.ringkasan_beban_hutang_lain=false;
         akses.set_resep_per_cara_bayar=false;
+        akses.skrining_tolac=false;
+        akses.admisi_skoring_tolac=false;
+        akses.monitoring_tolac=false;
+        akses.hasil_persalinan_tolac=false;
+        akses.laporan_reaksi_transfusi=false;
+        akses.penilaian_grace_scor=false;
+        akses.penilaian_bishop_scor=false;
         akses.odontogram=false;
     }
     
@@ -5247,5 +5269,12 @@ public final class akses {
     public static boolean getringkasan_hutang_vendor_inventaris(){return akses.ringkasan_hutang_vendor_inventaris;}
     public static boolean getringkasan_beban_hutang_lain(){return akses.ringkasan_beban_hutang_lain;}
     public static boolean getset_resep_per_cara_bayar(){return akses.set_resep_per_cara_bayar;}
+    public static boolean getskrining_tolac(){return akses.skrining_tolac;}
+    public static boolean getadmisi_skoring_tolac(){return akses.admisi_skoring_tolac;}
+    public static boolean getmonitoring_tolac(){return akses.monitoring_tolac;}
+    public static boolean gethasil_persalinan_tolac(){return akses.hasil_persalinan_tolac;}
+    public static boolean getlaporan_reaksi_transfusi(){return akses.laporan_reaksi_transfusi;}
+    public static boolean getpenilaian_grace_scor(){return akses.penilaian_grace_scor;}
+    public static boolean getpenilaian_bishop_scor(){return akses.penilaian_bishop_scor;}
     public static boolean getodontogram(){return akses.odontogram;}
 }   

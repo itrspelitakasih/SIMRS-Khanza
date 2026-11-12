@@ -171,7 +171,7 @@ public class DlgPasien extends javax.swing.JDialog {
             }else if(z==3){
                 column.setPreferredWidth(100);
             }else if(z==4){
-                column.setPreferredWidth(25);
+                column.setPreferredWidth(30);
             }else if(z==5){
                 column.setPreferredWidth(100);
             }else if(z==6){
@@ -602,68 +602,68 @@ public class DlgPasien extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        KartuPasien = new javax.swing.JMenu();
-        MnKartu1 = new javax.swing.JMenuItem();
-        MnKartu2 = new javax.swing.JMenuItem();
-        MnKartu3 = new javax.swing.JMenuItem();
-        MnKartu4 = new javax.swing.JMenuItem();
-        MnKartu5 = new javax.swing.JMenuItem();
-        MnKartu6 = new javax.swing.JMenuItem();
-        Barcode = new javax.swing.JMenu();
-        MnBarcodeRM = new javax.swing.JMenuItem();
-        MnBarcodeRM1 = new javax.swing.JMenuItem();
-        MnBarcodeRM2 = new javax.swing.JMenuItem();
-        MnBarcodeRM3 = new javax.swing.JMenuItem();
-        MnBarcodeRM4 = new javax.swing.JMenuItem();
-        MnBarcodeRM5 = new javax.swing.JMenuItem();
-        MnBarcodeRM6 = new javax.swing.JMenuItem();
-        MnBarcodeRM7 = new javax.swing.JMenuItem();
-        MnBarcodeRM8 = new javax.swing.JMenuItem();
-        MnBarcodeRM9 = new javax.swing.JMenuItem();
-        MenuIdentitas = new javax.swing.JMenu();
-        MnIdentitas = new javax.swing.JMenuItem();
-        MnIdentitas2 = new javax.swing.JMenuItem();
-        MnIdentitas3 = new javax.swing.JMenuItem();
-        MnIdentitas4 = new javax.swing.JMenuItem();
-        MnKartuStatus = new javax.swing.JMenuItem();
-        MenuBPJS = new javax.swing.JMenu();
-        MnCekKepesertaan = new javax.swing.JMenuItem();
-        MnCekNIK = new javax.swing.JMenuItem();
-        MnCekKepesertaan1 = new javax.swing.JMenuItem();
-        MnCekNIK1 = new javax.swing.JMenuItem();
-        ppKelahiranBayi = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        MnLaporanRM = new javax.swing.JMenuItem();
-        MnLaporanRM1 = new javax.swing.JMenuItem();
-        MnLaporanRM2 = new javax.swing.JMenuItem();
-        MnLaporanRM3 = new javax.swing.JMenuItem();
-        MnFormulirPendaftaran = new javax.swing.JMenuItem();
-        MnSCreening = new javax.swing.JMenuItem();
-        MnCopyResep = new javax.swing.JMenuItem();
-        MnLembarKeluarMasuk = new javax.swing.JMenuItem();
-        MnLembarKeluarMasuk2 = new javax.swing.JMenuItem();
-        MnLaporanIGD = new javax.swing.JMenuItem();
-        MnLembarAnamNesa = new javax.swing.JMenuItem();
-        MnLembarGrafik = new javax.swing.JMenuItem();
-        MnLembarCatatanPerkembangan = new javax.swing.JMenuItem();
-        MnLembarCatatanKeperawatan = new javax.swing.JMenuItem();
-        MnLaporanAnestesia = new javax.swing.JMenuItem();
-        MnPengantarHemodalisa = new javax.swing.JMenuItem();
-        MnCover = new javax.swing.JMenuItem();
-        MnCover1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        ppGrafikPerAgama = new javax.swing.JMenuItem();
-        ppGrafikPerPekerjaan = new javax.swing.JMenuItem();
-        ppGrafikjkbayi = new javax.swing.JMenuItem();
-        ppGrafikDemografi = new javax.swing.JMenuItem();
-        ppRegistrasi = new javax.swing.JMenuItem();
-        ppRegistrasi1 = new javax.swing.JMenuItem();
-        ppRegistrasi2 = new javax.swing.JMenuItem();
-        ppRiwayat = new javax.swing.JMenuItem();
-        ppCatatanPasien = new javax.swing.JMenuItem();
-        ppGabungRM = new javax.swing.JMenuItem();
-        ppPasienCorona = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        KartuPasien = new widget.Menu();
+        MnKartu1 = new widget.MenuItem();
+        MnKartu2 = new widget.MenuItem();
+        MnKartu3 = new widget.MenuItem();
+        MnKartu4 = new widget.MenuItem();
+        MnKartu5 = new widget.MenuItem();
+        MnKartu6 = new widget.MenuItem();
+        Barcode = new widget.Menu();
+        MnBarcodeRM = new widget.MenuItem();
+        MnBarcodeRM1 = new widget.MenuItem();
+        MnBarcodeRM2 = new widget.MenuItem();
+        MnBarcodeRM3 = new widget.MenuItem();
+        MnBarcodeRM4 = new widget.MenuItem();
+        MnBarcodeRM5 = new widget.MenuItem();
+        MnBarcodeRM6 = new widget.MenuItem();
+        MnBarcodeRM7 = new widget.MenuItem();
+        MnBarcodeRM8 = new widget.MenuItem();
+        MnBarcodeRM9 = new widget.MenuItem();
+        MenuIdentitas = new widget.Menu();
+        MnIdentitas = new widget.MenuItem();
+        MnIdentitas2 = new widget.MenuItem();
+        MnIdentitas3 = new widget.MenuItem();
+        MnIdentitas4 = new widget.MenuItem();
+        MnKartuStatus = new widget.MenuItem();
+        MenuBPJS = new widget.Menu();
+        MnCekKepesertaan = new widget.MenuItem();
+        MnCekNIK = new widget.MenuItem();
+        MnCekKepesertaan1 = new widget.MenuItem();
+        MnCekNIK1 = new widget.MenuItem();
+        ppKelahiranBayi = new widget.MenuItem();
+        jMenu1 = new widget.Menu();
+        MnLaporanRM = new widget.MenuItem();
+        MnLaporanRM1 = new widget.MenuItem();
+        MnLaporanRM2 = new widget.MenuItem();
+        MnLaporanRM3 = new widget.MenuItem();
+        MnFormulirPendaftaran = new widget.MenuItem();
+        MnSCreening = new widget.MenuItem();
+        MnCopyResep = new widget.MenuItem();
+        MnLembarKeluarMasuk = new widget.MenuItem();
+        MnLembarKeluarMasuk2 = new widget.MenuItem();
+        MnLaporanIGD = new widget.MenuItem();
+        MnLembarAnamNesa = new widget.MenuItem();
+        MnLembarGrafik = new widget.MenuItem();
+        MnLembarCatatanPerkembangan = new widget.MenuItem();
+        MnLembarCatatanKeperawatan = new widget.MenuItem();
+        MnLaporanAnestesia = new widget.MenuItem();
+        MnPengantarHemodalisa = new widget.MenuItem();
+        MnCover = new widget.MenuItem();
+        MnCover1 = new widget.MenuItem();
+        jMenu2 = new widget.Menu();
+        ppGrafikPerAgama = new widget.MenuItem();
+        ppGrafikPerPekerjaan = new widget.MenuItem();
+        ppGrafikjkbayi = new widget.MenuItem();
+        ppGrafikDemografi = new widget.MenuItem();
+        ppRegistrasi = new widget.MenuItem();
+        ppRegistrasi1 = new widget.MenuItem();
+        ppRegistrasi2 = new widget.MenuItem();
+        ppRiwayat = new widget.MenuItem();
+        ppCatatanPasien = new widget.MenuItem();
+        ppGabungRM = new widget.MenuItem();
+        ppPasienCorona = new widget.MenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         Kd2 = new widget.TextBox();
         DlgDemografi = new javax.swing.JDialog();
@@ -685,12 +685,12 @@ public class DlgPasien extends javax.swing.JDialog {
         Propinsi2 = new widget.TextBox();
         jLabel41 = new widget.Label();
         NoRm = new widget.TextBox();
-        jPopupMenu2 = new javax.swing.JPopupMenu();
-        MnViaBPJSNik = new javax.swing.JMenuItem();
-        MnViaBPJSNoKartu = new javax.swing.JMenuItem();
-        MnViaDukcapilNikDKI = new javax.swing.JMenuItem();
-        MnViaDukcapilNikAceh = new javax.swing.JMenuItem();
-        MnViaSatuSehatNik = new javax.swing.JMenuItem();
+        jPopupMenu2 = new widget.PopupMenu();
+        MnViaBPJSNik = new widget.MenuItem();
+        MnViaBPJSNoKartu = new widget.MenuItem();
+        MnViaDukcapilNikDKI = new widget.MenuItem();
+        MnViaDukcapilNikAceh = new widget.MenuItem();
+        MnViaSatuSehatNik = new widget.MenuItem();
         WindowGabungRM = new javax.swing.JDialog();
         internalFrame8 = new widget.InternalFrame();
         BtnCloseIn6 = new widget.Button();
@@ -737,7 +737,7 @@ public class DlgPasien extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         jLabel6 = new widget.Label();
         cmbHlm = new widget.ComboBox();
-        TabRawat = new javax.swing.JTabbedPane();
+        TabRawat = new widget.TabPane();
         internalFrame2 = new widget.InternalFrame();
         Scroll1 = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
@@ -2331,8 +2331,7 @@ public class DlgPasien extends javax.swing.JDialog {
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
-        TabRawat.setForeground(new java.awt.Color(50, 50, 50));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2418,10 +2417,9 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(4, 102, 95, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2026" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
-        DTPLahir.setOpaque(false);
         DTPLahir.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 DTPLahirItemStateChanged(evt);
@@ -2550,10 +2548,9 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(TKtp);
         TKtp.setBounds(743, 132, 130, 23);
 
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2026" }));
+        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2026" }));
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
-        DTPDaftar.setOpaque(false);
         DTPDaftar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 DTPDaftarKeyPressed(evt);
@@ -3061,7 +3058,6 @@ public class DlgPasien extends javax.swing.JDialog {
         chkTNI.setText("Anggota TNI :");
         chkTNI.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         chkTNI.setName("chkTNI"); // NOI18N
-        chkTNI.setOpaque(false);
         chkTNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkTNIActionPerformed(evt);
@@ -3073,12 +3069,12 @@ public class DlgPasien extends javax.swing.JDialog {
         LabelGolonganTNI.setText("Golongan :");
         LabelGolonganTNI.setName("LabelGolonganTNI"); // NOI18N
         FormInput.add(LabelGolonganTNI);
-        LabelGolonganTNI.setBounds(4, 402, 103, 23);
+        LabelGolonganTNI.setBounds(4, 402, 95, 23);
 
         nmgolongantni.setEditable(false);
         nmgolongantni.setName("nmgolongantni"); // NOI18N
         FormInput.add(nmgolongantni);
-        nmgolongantni.setBounds(111, 402, 250, 23);
+        nmgolongantni.setBounds(102, 402, 259, 23);
 
         BtnGolonganTNI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnGolonganTNI.setMnemonic('1');
@@ -3109,22 +3105,22 @@ public class DlgPasien extends javax.swing.JDialog {
         nmsatuantni.setEditable(false);
         nmsatuantni.setName("nmsatuantni"); // NOI18N
         FormInput.add(nmsatuantni);
-        nmsatuantni.setBounds(111, 432, 250, 23);
+        nmsatuantni.setBounds(102, 432, 259, 23);
 
         LabelSatuanTNI.setText("Kesatuan :");
         LabelSatuanTNI.setName("LabelSatuanTNI"); // NOI18N
         FormInput.add(LabelSatuanTNI);
-        LabelSatuanTNI.setBounds(4, 432, 103, 23);
+        LabelSatuanTNI.setBounds(4, 432, 95, 23);
 
         LabelPangkatTNI.setText("Pangkat :");
         LabelPangkatTNI.setName("LabelPangkatTNI"); // NOI18N
         FormInput.add(LabelPangkatTNI);
-        LabelPangkatTNI.setBounds(4, 462, 103, 23);
+        LabelPangkatTNI.setBounds(4, 462, 95, 23);
 
         nmpangkattni.setEditable(false);
         nmpangkattni.setName("nmpangkattni"); // NOI18N
         FormInput.add(nmpangkattni);
-        nmpangkattni.setBounds(111, 462, 250, 23);
+        nmpangkattni.setBounds(102, 462, 259, 23);
 
         BtnPangkatTNI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPangkatTNI.setMnemonic('1');
@@ -3142,12 +3138,12 @@ public class DlgPasien extends javax.swing.JDialog {
         LabelJabatanTNI.setText("Jabatan :");
         LabelJabatanTNI.setName("LabelJabatanTNI"); // NOI18N
         FormInput.add(LabelJabatanTNI);
-        LabelJabatanTNI.setBounds(4, 492, 103, 23);
+        LabelJabatanTNI.setBounds(4, 492, 95, 23);
 
         nmjabatantni.setEditable(false);
         nmjabatantni.setName("nmjabatantni"); // NOI18N
         FormInput.add(nmjabatantni);
-        nmjabatantni.setBounds(111, 492, 250, 23);
+        nmjabatantni.setBounds(102, 492, 259, 23);
 
         BtnJabatanTNI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnJabatanTNI.setMnemonic('1');
@@ -3165,24 +3161,23 @@ public class DlgPasien extends javax.swing.JDialog {
         chkPolri.setText("Anggota POLRI :");
         chkPolri.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         chkPolri.setName("chkPolri"); // NOI18N
-        chkPolri.setOpaque(false);
         chkPolri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkPolriActionPerformed(evt);
             }
         });
         FormInput.add(chkPolri);
-        chkPolri.setBounds(425, 377, 130, 23);
+        chkPolri.setBounds(405, 377, 130, 23);
 
         LabelGolonganPolri.setText("Golongan :");
         LabelGolonganPolri.setName("LabelGolonganPolri"); // NOI18N
         FormInput.add(LabelGolonganPolri);
-        LabelGolonganPolri.setBounds(433, 402, 133, 23);
+        LabelGolonganPolri.setBounds(425, 402, 110, 23);
 
         nmgolonganpolri.setEditable(false);
         nmgolonganpolri.setName("nmgolonganpolri"); // NOI18N
         FormInput.add(nmgolonganpolri);
-        nmgolonganpolri.setBounds(570, 402, 273, 23);
+        nmgolonganpolri.setBounds(539, 402, 303, 23);
 
         BtnGolonganPolri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnGolonganPolri.setMnemonic('1');
@@ -3213,22 +3208,22 @@ public class DlgPasien extends javax.swing.JDialog {
         nmsatuanpolri.setEditable(false);
         nmsatuanpolri.setName("nmsatuanpolri"); // NOI18N
         FormInput.add(nmsatuanpolri);
-        nmsatuanpolri.setBounds(570, 432, 273, 23);
+        nmsatuanpolri.setBounds(539, 432, 303, 23);
 
         LabelSatuanPolri.setText("Kesatuan :");
         LabelSatuanPolri.setName("LabelSatuanPolri"); // NOI18N
         FormInput.add(LabelSatuanPolri);
-        LabelSatuanPolri.setBounds(433, 432, 133, 23);
+        LabelSatuanPolri.setBounds(425, 432, 110, 23);
 
         LabelPangkatPolri.setText("Pangkat :");
         LabelPangkatPolri.setName("LabelPangkatPolri"); // NOI18N
         FormInput.add(LabelPangkatPolri);
-        LabelPangkatPolri.setBounds(433, 462, 133, 23);
+        LabelPangkatPolri.setBounds(425, 462, 110, 23);
 
         nmpangkatpolri.setEditable(false);
         nmpangkatpolri.setName("nmpangkatpolri"); // NOI18N
         FormInput.add(nmpangkatpolri);
-        nmpangkatpolri.setBounds(570, 462, 273, 23);
+        nmpangkatpolri.setBounds(539, 462, 303, 23);
 
         BtnPangkatPolri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPangkatPolri.setMnemonic('1');
@@ -3259,12 +3254,12 @@ public class DlgPasien extends javax.swing.JDialog {
         nmjabatanpolri.setEditable(false);
         nmjabatanpolri.setName("nmjabatanpolri"); // NOI18N
         FormInput.add(nmjabatanpolri);
-        nmjabatanpolri.setBounds(570, 492, 273, 23);
+        nmjabatanpolri.setBounds(539, 492, 303, 23);
 
         LabelJabatanPolri.setText("Jabatan :");
         LabelJabatanPolri.setName("LabelJabatanPolri"); // NOI18N
         FormInput.add(LabelJabatanPolri);
-        LabelJabatanPolri.setBounds(433, 492, 133, 23);
+        LabelJabatanPolri.setBounds(425, 492, 110, 23);
 
         BtnPropinsi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPropinsi.setMnemonic('4');
@@ -8720,7 +8715,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.TextBox Alamat;
     private widget.TextBox AlamatPj;
-    private javax.swing.JMenu Barcode;
+    private widget.Menu Barcode;
     private widget.Button BtnAll;
     private widget.Button BtnBahasa;
     private widget.Button BtnBatal;
@@ -8784,7 +8779,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.TextBox Kabupaten;
     private widget.TextBox Kabupaten2;
     private widget.TextBox KabupatenPj;
-    private javax.swing.JMenu KartuPasien;
+    private widget.Menu KartuPasien;
     private widget.TextBox Kd2;
     private widget.TextBox KdKab;
     private widget.TextBox KdKec;
@@ -8807,56 +8802,56 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.Label LabelSatuanPolri;
     private widget.Label LabelSatuanTNI;
     private widget.editorpane LoadHTML;
-    private javax.swing.JMenu MenuBPJS;
-    private javax.swing.JMenu MenuIdentitas;
-    private javax.swing.JMenuItem MnBarcodeRM;
-    private javax.swing.JMenuItem MnBarcodeRM1;
-    private javax.swing.JMenuItem MnBarcodeRM2;
-    private javax.swing.JMenuItem MnBarcodeRM3;
-    private javax.swing.JMenuItem MnBarcodeRM4;
-    private javax.swing.JMenuItem MnBarcodeRM5;
-    private javax.swing.JMenuItem MnBarcodeRM6;
-    private javax.swing.JMenuItem MnBarcodeRM7;
-    private javax.swing.JMenuItem MnBarcodeRM8;
-    private javax.swing.JMenuItem MnBarcodeRM9;
-    private javax.swing.JMenuItem MnCekKepesertaan;
-    private javax.swing.JMenuItem MnCekKepesertaan1;
-    private javax.swing.JMenuItem MnCekNIK;
-    private javax.swing.JMenuItem MnCekNIK1;
-    private javax.swing.JMenuItem MnCopyResep;
-    private javax.swing.JMenuItem MnCover;
-    private javax.swing.JMenuItem MnCover1;
-    private javax.swing.JMenuItem MnFormulirPendaftaran;
-    private javax.swing.JMenuItem MnIdentitas;
-    private javax.swing.JMenuItem MnIdentitas2;
-    private javax.swing.JMenuItem MnIdentitas3;
-    private javax.swing.JMenuItem MnIdentitas4;
-    private javax.swing.JMenuItem MnKartu1;
-    private javax.swing.JMenuItem MnKartu2;
-    private javax.swing.JMenuItem MnKartu3;
-    private javax.swing.JMenuItem MnKartu4;
-    private javax.swing.JMenuItem MnKartu5;
-    private javax.swing.JMenuItem MnKartu6;
-    private javax.swing.JMenuItem MnKartuStatus;
-    private javax.swing.JMenuItem MnLaporanAnestesia;
-    private javax.swing.JMenuItem MnLaporanIGD;
-    private javax.swing.JMenuItem MnLaporanRM;
-    private javax.swing.JMenuItem MnLaporanRM1;
-    private javax.swing.JMenuItem MnLaporanRM2;
-    private javax.swing.JMenuItem MnLaporanRM3;
-    private javax.swing.JMenuItem MnLembarAnamNesa;
-    private javax.swing.JMenuItem MnLembarCatatanKeperawatan;
-    private javax.swing.JMenuItem MnLembarCatatanPerkembangan;
-    private javax.swing.JMenuItem MnLembarGrafik;
-    private javax.swing.JMenuItem MnLembarKeluarMasuk;
-    private javax.swing.JMenuItem MnLembarKeluarMasuk2;
-    private javax.swing.JMenuItem MnPengantarHemodalisa;
-    private javax.swing.JMenuItem MnSCreening;
-    private javax.swing.JMenuItem MnViaBPJSNik;
-    private javax.swing.JMenuItem MnViaBPJSNoKartu;
-    private javax.swing.JMenuItem MnViaDukcapilNikAceh;
-    private javax.swing.JMenuItem MnViaDukcapilNikDKI;
-    private javax.swing.JMenuItem MnViaSatuSehatNik;
+    private widget.Menu MenuBPJS;
+    private widget.Menu MenuIdentitas;
+    private widget.MenuItem MnBarcodeRM;
+    private widget.MenuItem MnBarcodeRM1;
+    private widget.MenuItem MnBarcodeRM2;
+    private widget.MenuItem MnBarcodeRM3;
+    private widget.MenuItem MnBarcodeRM4;
+    private widget.MenuItem MnBarcodeRM5;
+    private widget.MenuItem MnBarcodeRM6;
+    private widget.MenuItem MnBarcodeRM7;
+    private widget.MenuItem MnBarcodeRM8;
+    private widget.MenuItem MnBarcodeRM9;
+    private widget.MenuItem MnCekKepesertaan;
+    private widget.MenuItem MnCekKepesertaan1;
+    private widget.MenuItem MnCekNIK;
+    private widget.MenuItem MnCekNIK1;
+    private widget.MenuItem MnCopyResep;
+    private widget.MenuItem MnCover;
+    private widget.MenuItem MnCover1;
+    private widget.MenuItem MnFormulirPendaftaran;
+    private widget.MenuItem MnIdentitas;
+    private widget.MenuItem MnIdentitas2;
+    private widget.MenuItem MnIdentitas3;
+    private widget.MenuItem MnIdentitas4;
+    private widget.MenuItem MnKartu1;
+    private widget.MenuItem MnKartu2;
+    private widget.MenuItem MnKartu3;
+    private widget.MenuItem MnKartu4;
+    private widget.MenuItem MnKartu5;
+    private widget.MenuItem MnKartu6;
+    private widget.MenuItem MnKartuStatus;
+    private widget.MenuItem MnLaporanAnestesia;
+    private widget.MenuItem MnLaporanIGD;
+    private widget.MenuItem MnLaporanRM;
+    private widget.MenuItem MnLaporanRM1;
+    private widget.MenuItem MnLaporanRM2;
+    private widget.MenuItem MnLaporanRM3;
+    private widget.MenuItem MnLembarAnamNesa;
+    private widget.MenuItem MnLembarCatatanKeperawatan;
+    private widget.MenuItem MnLembarCatatanPerkembangan;
+    private widget.MenuItem MnLembarGrafik;
+    private widget.MenuItem MnLembarKeluarMasuk;
+    private widget.MenuItem MnLembarKeluarMasuk2;
+    private widget.MenuItem MnPengantarHemodalisa;
+    private widget.MenuItem MnSCreening;
+    private widget.MenuItem MnViaBPJSNik;
+    private widget.MenuItem MnViaBPJSNoKartu;
+    private widget.MenuItem MnViaDukcapilNikAceh;
+    private widget.MenuItem MnViaDukcapilNikDKI;
+    private widget.MenuItem MnViaSatuSehatNik;
     private widget.TextBox NIP;
     private widget.TextBox NamaPasienDipilih;
     private widget.TextBox NmIbu;
@@ -8887,7 +8882,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.TextBox TUmurBl;
     private widget.TextBox TUmurHr;
     private widget.TextBox TUmurTh;
-    private javax.swing.JTabbedPane TabRawat;
+    private widget.TabPane TabRawat;
     private javax.swing.JDialog WindowGabungRM;
     private widget.Button btnAmbilPhoto;
     private widget.Button btnPropinsiPj;
@@ -8943,11 +8938,11 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private widget.Menu jMenu1;
+    private widget.Menu jMenu2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JPopupMenu jPopupMenu2;
+    private widget.PopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu2;
     private javax.swing.JSeparator jSeparator5;
     private widget.TextBox kdbahasa;
     private widget.TextBox kdcacat;
@@ -8979,18 +8974,18 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
     private widget.PanelBiasa panelBiasa2;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
-    private javax.swing.JMenuItem ppCatatanPasien;
-    private javax.swing.JMenuItem ppGabungRM;
-    private javax.swing.JMenuItem ppGrafikDemografi;
-    private javax.swing.JMenuItem ppGrafikPerAgama;
-    private javax.swing.JMenuItem ppGrafikPerPekerjaan;
-    private javax.swing.JMenuItem ppGrafikjkbayi;
-    private javax.swing.JMenuItem ppKelahiranBayi;
-    private javax.swing.JMenuItem ppPasienCorona;
-    private javax.swing.JMenuItem ppRegistrasi;
-    private javax.swing.JMenuItem ppRegistrasi1;
-    private javax.swing.JMenuItem ppRegistrasi2;
-    private javax.swing.JMenuItem ppRiwayat;
+    private widget.MenuItem ppCatatanPasien;
+    private widget.MenuItem ppGabungRM;
+    private widget.MenuItem ppGrafikDemografi;
+    private widget.MenuItem ppGrafikPerAgama;
+    private widget.MenuItem ppGrafikPerPekerjaan;
+    private widget.MenuItem ppGrafikjkbayi;
+    private widget.MenuItem ppKelahiranBayi;
+    private widget.MenuItem ppPasienCorona;
+    private widget.MenuItem ppRegistrasi;
+    private widget.MenuItem ppRegistrasi1;
+    private widget.MenuItem ppRegistrasi2;
+    private widget.MenuItem ppRiwayat;
     private widget.Table tbPasien;
     private widget.Table tbPasien2;
     private widget.Table tbPasien3;

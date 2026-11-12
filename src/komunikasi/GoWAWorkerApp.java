@@ -56,7 +56,7 @@ public class GoWAWorkerApp extends JFrame {
         logArea.setEditable(false);
         logArea.setLineWrap(true);
         logArea.setWrapStyleWord(true);
-        logArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+        logArea.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
         JScrollPane scrollPane = new JScrollPane(logArea);
         getContentPane().add(scrollPane, BorderLayout.CENTER);

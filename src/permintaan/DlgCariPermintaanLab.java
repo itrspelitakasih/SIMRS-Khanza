@@ -149,7 +149,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         
         tabMode2=new DefaultTableModel(null,new Object[]{
                 "No.Permintaan","No.Rawat","Pasien","Pemeriksaan","Detail Pemeriksaan","Satuan","Nilai Rujukan","Permintaan","Jam","Sampel","Jam","Hasil",
-                "Jam","Kode Dokter","Dokter Perujuk","Poli Registrasi","Informasi Tambahan","Diagnosis Klinis","Kode Bayar","Jenis Bayar"
+                "Jam","Kode Dokter","Dokter Perujuk","Poli Registrasi","Informasi Tambahan","Diagnosis Klinis","Kode Bayar","Jenis Bayar","Metode"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -158,7 +158,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbLabRalan2.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbLabRalan2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbLabRalan2.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(90);
@@ -202,6 +202,8 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }else if(i==19){
                 column.setPreferredWidth(110);
+            }else if(i==20){
+                column.setPreferredWidth(100);
             }
         }
         tbLabRalan2.setDefaultRenderer(Object.class, new WarnaTable());
@@ -260,7 +262,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tabMode4=new DefaultTableModel(null,new Object[]{
                 "No.Permintaan","No.Rawat","Pasien","Pemeriksaan","Detail Pemeriksaan","Satuan","Nilai Rujukan","Permintaan","Jam",
                 "Sampel","Jam","Hasil","Jam","Kode Dokter","Dokter Perujuk","Kamar Terakhir","Informasi Tambahan","Diagnosis Klinis",
-                "Kode Bayar","Jenis Bayar"
+                "Kode Bayar","Jenis Bayar","Metode"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -269,7 +271,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbLabRanap2.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbLabRanap2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 18; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbLabRanap2.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(90);
@@ -313,6 +315,8 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }else if(i==19){
                 column.setPreferredWidth(110);
+            }else if(i==20){
+                column.setPreferredWidth(100);
             }
         }
         tbLabRanap2.setDefaultRenderer(Object.class, new WarnaTable());
@@ -373,7 +377,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         LCount = new widget.Label();
         BtnKeluar = new widget.Button();
         BtnAmbilLIS = new widget.Button();
-        TabPilihRawat = new javax.swing.JTabbedPane();
+        TabPilihRawat = new widget.TabPane();
         internalFrame2 = new widget.InternalFrame();
         panelGlass9 = new widget.panelisi();
         jLabel14 = new widget.Label();
@@ -382,7 +386,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         CrPoli = new widget.TextBox();
         BtnSeek4 = new widget.Button();
-        TabRawatJalan = new javax.swing.JTabbedPane();
+        TabRawatJalan = new widget.TabPane();
         scrollPane1 = new widget.ScrollPane();
         tbLabRalan = new widget.Table();
         scrollPane2 = new widget.ScrollPane();
@@ -397,7 +401,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         BtnSeek6 = new widget.Button();
         jLabel18 = new widget.Label();
         cmbStatus = new widget.ComboBox();
-        TabRawatInap = new javax.swing.JTabbedPane();
+        TabRawatInap = new widget.TabPane();
         scrollPane3 = new widget.ScrollPane();
         tbLabRanap = new widget.Table();
         scrollPane4 = new widget.ScrollPane();
@@ -1783,7 +1787,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                     "0",rs2.getString("nm_perawatan"),"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
                                 });
                                 ps3=koneksi.prepareStatement(
-                                        "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,"+
+                                        "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                                         "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,template_laboratorium.nilai_rujukan_la,"+
                                         "template_laboratorium.nilai_rujukan_pd,template_laboratorium.nilai_rujukan_pa from permintaan_detail_permintaan_lab "+
                                         "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template "+
@@ -1807,7 +1811,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                             pa=" PA : "+rs3.getString("nilai_rujukan_pa");
                                         }
                                         Sequel.menyimpan("temporary_permintaan_lab","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",38,new String[]{
-                                            "0","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),ld+la+pd+pa,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+                                            "0","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),ld+la+pd+pa,rs3.getString("method"),"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
                                         });
                                     }
                                 } catch (Exception e) {
@@ -1896,7 +1900,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                     "0",rs2.getString("nm_perawatan"),"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
                                 });
                                 ps3=koneksi.prepareStatement(
-                                        "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,"+
+                                        "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                                         "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,template_laboratorium.nilai_rujukan_la,"+
                                         "template_laboratorium.nilai_rujukan_pd,template_laboratorium.nilai_rujukan_pa from permintaan_detail_permintaan_lab "+
                                         "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template "+
@@ -1920,7 +1924,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                             pa=" PA : "+rs3.getString("nilai_rujukan_pa");
                                         }
                                         Sequel.menyimpan("temporary_permintaan_lab","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",38,new String[]{
-                                            "0","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),ld+la+pd+pa,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
+                                            "0","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),ld+la+pd+pa,rs3.getString("method"),"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""
                                         });
                                     }
                                 } catch (Exception e) {
@@ -3985,7 +3989,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                             tabMode2.getValueAt(i,16).toString()+"','"+
                             tabMode2.getValueAt(i,17).toString()+"','"+
                             tabMode2.getValueAt(i,18).toString()+"','"+
-                            tabMode2.getValueAt(i,19).toString()+"','','','','','','','','','','','','','','','','',''","Periksa Lab");
+                            tabMode2.getValueAt(i,19).toString()+"','"+tabMode2.getValueAt(i,20).toString()+"','','','','','','','','','','','','','','','',''","Periksa Lab");
                     }
 
                     Map<String, Object> param = new HashMap<>();
@@ -4091,7 +4095,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                             tabMode4.getValueAt(i,16).toString()+"','"+
                             tabMode4.getValueAt(i,17).toString()+"','"+
                             tabMode4.getValueAt(i,18).toString()+"','"+
-                            tabMode4.getValueAt(i,19).toString()+"','','','','','','','','','','','','','','','','',''","Periksa Lab");
+                            tabMode4.getValueAt(i,19).toString()+"','"+tabMode4.getValueAt(i,20).toString()+"','','','','','','','','','','','','','','','',''","Periksa Lab");
                     }
 
                     Map<String, Object> param = new HashMap<>();
@@ -4258,9 +4262,9 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane ScrollMenu;
     private widget.TextBox TCari;
-    private javax.swing.JTabbedPane TabPilihRawat;
-    private javax.swing.JTabbedPane TabRawatInap;
-    private javax.swing.JTabbedPane TabRawatJalan;
+    private widget.TabPane TabPilihRawat;
+    private widget.TabPane TabRawatInap;
+    private widget.TabPane TabRawatJalan;
     private widget.Tanggal TanggalPulang;
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
@@ -4357,7 +4361,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                 "","",rs2.getString("nm_perawatan"),"","","","","","","","Nilai Rujukan L.D.","Nilai Rujukan L.A.","Nilai Rujukan P.D.","Nilai Rujukan P.A.","",""
                             });
                             ps3=koneksi.prepareStatement(
-                                    "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,"+
+                                    "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                                     "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,template_laboratorium.nilai_rujukan_la,"+
                                     "template_laboratorium.nilai_rujukan_pd,template_laboratorium.nilai_rujukan_pa from permintaan_detail_permintaan_lab "+
                                     "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template "+
@@ -4368,7 +4372,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                 rs3=ps3.executeQuery();
                                 while(rs3.next()){
                                     tabMode.addRow(new Object[]{
-                                        "","","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),"","","","","","",rs3.getString("nilai_rujukan_ld"),rs3.getString("nilai_rujukan_la"),rs3.getString("nilai_rujukan_pd"),rs3.getString("nilai_rujukan_pa"),"",""
+                                        "","","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),"",rs3.getString("method"),"","","","",rs3.getString("nilai_rujukan_ld"),rs3.getString("nilai_rujukan_la"),rs3.getString("nilai_rujukan_pd"),rs3.getString("nilai_rujukan_pa"),"",""
                                     });
                                 }
                             } catch (Exception e) {
@@ -4415,7 +4419,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             semua=CrDokter.getText().trim().equals("")&&CrPoli.getText().trim().equals("")&&TCari.getText().trim().equals("");
             ps=koneksi.prepareStatement(
                 "select permintaan_lab.noorder,permintaan_lab.no_rawat,reg_periksa.no_rkm_medis,"+
-                "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,"+
+                "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                 "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,reg_periksa.kd_pj,"+
                 "template_laboratorium.nilai_rujukan_la,template_laboratorium.nilai_rujukan_pd,"+
                 "template_laboratorium.nilai_rujukan_pa,permintaan_lab.tgl_permintaan,penjab.png_jawab,"+
@@ -4475,7 +4479,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         rs.getString("tgl_permintaan"),rs.getString("jam_permintaan"),rs.getString("tgl_sampel"),
                         rs.getString("jam_sampel"),rs.getString("tgl_hasil"),rs.getString("jam_hasil"),rs.getString("dokter_perujuk"),
                         rs.getString("nm_dokter"),rs.getString("nm_poli"),rs.getString("informasi_tambahan"),
-                        rs.getString("diagnosa_klinis"),rs.getString("kd_pj"),rs.getString("png_jawab")
+                        rs.getString("diagnosa_klinis"),rs.getString("kd_pj"),rs.getString("png_jawab"),rs.getString("method")
                     });
                 }
             } catch (Exception e) {
@@ -4693,7 +4697,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                 "","",rs2.getString("nm_perawatan"),"","","","","","","","Nilai Rujukan L.D.","Nilai Rujukan L.A.","Nilai Rujukan P.D.","Nilai Rujukan P.A.","",""
                             });
                             ps3=koneksi.prepareStatement(
-                                    "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,"+
+                                    "select permintaan_detail_permintaan_lab.id_template,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                                     "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,template_laboratorium.nilai_rujukan_la,"+
                                     "template_laboratorium.nilai_rujukan_pd,template_laboratorium.nilai_rujukan_pa from permintaan_detail_permintaan_lab "+
                                     "inner join template_laboratorium on permintaan_detail_permintaan_lab.id_template=template_laboratorium.id_template "+
@@ -4704,7 +4708,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                 rs3=ps3.executeQuery();
                                 while(rs3.next()){
                                     tabMode3.addRow(new Object[]{
-                                        "","","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),"","","","","","",rs3.getString("nilai_rujukan_ld"),rs3.getString("nilai_rujukan_la"),rs3.getString("nilai_rujukan_pd"),rs3.getString("nilai_rujukan_pa"),"",""
+                                        "","","  "+rs3.getString("Pemeriksaan"),rs3.getString("satuan"),"",rs3.getString("method"),"","","","",rs3.getString("nilai_rujukan_ld"),rs3.getString("nilai_rujukan_la"),rs3.getString("nilai_rujukan_pd"),rs3.getString("nilai_rujukan_pa"),"",""
                                     });
                                 }
                             } catch (Exception e) {
@@ -4752,7 +4756,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             if(cmbStatus.getSelectedIndex()==0){
                 ps=koneksi.prepareStatement(
                         "select distinct permintaan_lab.noorder,permintaan_lab.no_rawat,reg_periksa.no_rkm_medis,"+
-                        "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,"+
+                        "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                         "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,reg_periksa.kd_pj,"+
                         "template_laboratorium.nilai_rujukan_la,template_laboratorium.nilai_rujukan_pd,"+
                         "template_laboratorium.nilai_rujukan_pa,permintaan_lab.tgl_permintaan,penjab.png_jawab,"+
@@ -4785,7 +4789,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             }else{
                 ps=koneksi.prepareStatement(
                         "select distinct permintaan_lab.noorder,permintaan_lab.no_rawat,reg_periksa.no_rkm_medis,"+
-                        "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,"+
+                        "pasien.nm_pasien,jns_perawatan_lab.nm_perawatan,template_laboratorium.Pemeriksaan,template_laboratorium.method,"+
                         "template_laboratorium.satuan,template_laboratorium.nilai_rujukan_ld,reg_periksa.kd_pj,"+
                         "template_laboratorium.nilai_rujukan_la,template_laboratorium.nilai_rujukan_pd,"+
                         "template_laboratorium.nilai_rujukan_pa,permintaan_lab.tgl_permintaan,penjab.png_jawab,"+
@@ -4855,7 +4859,7 @@ private void tbLabRalanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         rs.getString("tgl_permintaan"),rs.getString("jam_permintaan"),rs.getString("tgl_sampel"),rs.getString("jam_sampel"),
                         rs.getString("tgl_hasil"),rs.getString("jam_hasil"),rs.getString("dokter_perujuk"),rs.getString("nm_dokter"),
                         rs.getString("nm_bangsal"),rs.getString("informasi_tambahan"),rs.getString("diagnosa_klinis"),
-                        rs.getString("kd_pj"),rs.getString("png_jawab")
+                        rs.getString("kd_pj"),rs.getString("png_jawab"),rs.getString("method")
                     });
                 }
             } catch (Exception e) {

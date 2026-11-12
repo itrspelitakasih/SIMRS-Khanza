@@ -528,8 +528,8 @@ public final class RMMCU extends javax.swing.JDialog {
     private void initComponents() {
 
         LoadHTML = new widget.editorpane();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnPenilaianMCU = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        MnPenilaianMCU = new widget.MenuItem();
         MnCopyPengkajian = new javax.swing.JMenuItem();
         TanggalRegistrasi = new widget.TextBox();
         WindowGabungMCU = new javax.swing.JDialog();
@@ -551,7 +551,7 @@ public final class RMMCU extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         BtnRiwayatMCU = new widget.Button();
-        TabRawat = new javax.swing.JTabbedPane();
+        TabRawat = new widget.TabPane();
         internalFrame2 = new widget.InternalFrame();
         scrollInput = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
@@ -4520,7 +4520,7 @@ public final class RMMCU extends javax.swing.JDialog {
         Scroll.setOpaque(true);
         Scroll.setPreferredSize(new java.awt.Dimension(452, 200));
 
-        tbObat.setAutoCreateRowSorter(true);
+        tbObat.setAutoCreateRowSorter(false);
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObat.setComponentPopupMenu(jPopupMenu1);
         tbObat.setName("tbObat"); // NOI18N
@@ -6725,7 +6725,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.editorpane LoadHTML;
     private widget.ComboBox McuGroup;
     private javax.swing.JMenuItem MnCopyPengkajian;
-    private javax.swing.JMenuItem MnPenilaianMCU;
+    private widget.MenuItem MnPenilaianMCU;
     private widget.TextBox NIP;
     private widget.TextBox Nadi;
     private widget.TextBox NmDokter;
@@ -6782,7 +6782,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
-    private javax.swing.JTabbedPane TabRawat;
+    private widget.TabPane TabRawat;
     private widget.TextBox TanggalRegistrasi;
     private widget.Tanggal TglAsuhan;
     private widget.Tanggal TglLahir;
@@ -7121,7 +7121,7 @@ public final class RMMCU extends javax.swing.JDialog {
     private widget.Label jLabel97;
     private widget.Label jLabel98;
     private widget.Label jLabel99;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator19;

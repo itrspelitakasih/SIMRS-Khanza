@@ -1882,4 +1882,14 @@ public class koneksiDB {
         }
         return var;
     }
+
+    public static String URLRMESATUSEHAT() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("URLRMESATUSEHAT");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

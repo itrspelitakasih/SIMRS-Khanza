@@ -231,7 +231,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             intervensi_nyeri_farmakologi=false,intervensi_nyeri_nonfarmakologi=false,surat_pengajuan_cuti_pasien=false,checklist_kriteria_masuk_isolasi=false,satu_sehat_mapping_kptl_tindakan_ralan=false,
             satu_sehat_mapping_kptl_tindakan_ranap=false,satu_sehat_mapping_kptl_tindakan_radiologi=false,satu_sehat_mapping_kptl_tindakan_laborat=false,satu_sehat_mapping_kptl_tindakan_operasi=false,
             satu_sehat_mapping_kptl_tarif_kamar=false,checklist_kriteria_keluar_isolasi=false,satu_sehat_tanda_tangan_elektronik=false,satu_sehat_kirim_composition=false,ringkasan_hutang_vendor_inventaris=false,
-            ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false,odontogram=false;
+            ringkasan_beban_hutang_lain=false,set_resep_per_cara_bayar=false,skrining_tolac=false,admisi_skoring_tolac=false,monitoring_tolac=false,hasil_persalinan_tolac=false,laporan_reaksi_transfusi=false,
+            penilaian_grace_scor=false,penilaian_bishop_scor=false,odontogram=false;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
 
@@ -290,11 +291,11 @@ public class DlgUpdateUser extends javax.swing.JDialog {
     private void initComponents() {
 
         TKd = new widget.TextBox();
-        Popup = new javax.swing.JPopupMenu();
-        ppBersihkan = new javax.swing.JMenuItem();
-        ppSemua = new javax.swing.JMenuItem();
-        ppBersihkan1 = new javax.swing.JMenuItem();
-        ppSemua1 = new javax.swing.JMenuItem();
+        Popup = new widget.PopupMenu();
+        ppBersihkan = new widget.MenuItem();
+        ppSemua = new widget.MenuItem();
+        ppBersihkan1 = new widget.MenuItem();
+        ppSemua1 = new widget.MenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbUser = new widget.Table();
@@ -324,9 +325,6 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ppBersihkan.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Pilihan");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -341,9 +339,6 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppSemua.setBackground(new java.awt.Color(255, 255, 254));
-        ppSemua.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ppSemua.setForeground(new java.awt.Color(50, 50, 50));
         ppSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua.setText("Pilih Semua");
         ppSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -358,9 +353,6 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         });
         Popup.add(ppSemua);
 
-        ppBersihkan1.setBackground(new java.awt.Color(255, 255, 254));
-        ppBersihkan1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ppBersihkan1.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan1.setText("Bersihkan Semua Hak Akses");
         ppBersihkan1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -375,9 +367,6 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan1);
 
-        ppSemua1.setBackground(new java.awt.Color(255, 255, 254));
-        ppSemua1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ppSemua1.setForeground(new java.awt.Color(50, 50, 50));
         ppSemua1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua1.setText("Pilih Semua Hak Akses");
         ppSemua1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -401,7 +390,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Hak Akses User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setBackground(new java.awt.Color(255, 255, 255));
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Update Hak Akses User ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -416,6 +406,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
+        panelGlass5.setBackground(new java.awt.Color(255, 255, 255));
         panelGlass5.setName("panelGlass5"); // NOI18N
         panelGlass5.setPreferredSize(new java.awt.Dimension(55, 44));
         panelGlass5.setLayout(null);
@@ -708,7 +699,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
-    private javax.swing.JPopupMenu Popup;
+    private widget.PopupMenu Popup;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.TextBox TKd;
@@ -721,10 +712,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelGlass8;
-    private javax.swing.JMenuItem ppBersihkan;
-    private javax.swing.JMenuItem ppBersihkan1;
-    private javax.swing.JMenuItem ppSemua;
-    private javax.swing.JMenuItem ppSemua1;
+    private widget.MenuItem ppBersihkan;
+    private widget.MenuItem ppBersihkan1;
+    private widget.MenuItem ppSemua;
+    private widget.MenuItem ppSemua1;
     private widget.Table tbUser;
     // End of variables declaration//GEN-END:variables
 
@@ -912,7 +903,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         intervensi_nyeri_farmakologi=false;intervensi_nyeri_nonfarmakologi=false;surat_pengajuan_cuti_pasien=false;checklist_kriteria_masuk_isolasi=false;satu_sehat_mapping_kptl_tindakan_ralan=false;
         satu_sehat_mapping_kptl_tindakan_ranap=false;satu_sehat_mapping_kptl_tindakan_radiologi=false;satu_sehat_mapping_kptl_tindakan_laborat=false;satu_sehat_mapping_kptl_tindakan_operasi=false;
         satu_sehat_mapping_kptl_tarif_kamar=false;checklist_kriteria_keluar_isolasi=false;satu_sehat_tanda_tangan_elektronik=false;satu_sehat_kirim_composition=false;ringkasan_hutang_vendor_inventaris=false;
-        ringkasan_beban_hutang_lain=false;set_resep_per_cara_bayar=false;odontogram=false;
+        ringkasan_beban_hutang_lain=false;set_resep_per_cara_bayar=false;skrining_tolac=false;admisi_skoring_tolac=false;monitoring_tolac=false;hasil_persalinan_tolac=false;laporan_reaksi_transfusi=false;
+        penilaian_grace_scor=false;penilaian_bishop_scor=false;odontogram=false;
         try{    
             jml=0;
             for(i=0;i<tbUser.getRowCount();i++){
@@ -1183,7 +1175,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                 "user.intervensi_nyeri_farmakologi,user.intervensi_nyeri_nonfarmakologi,user.surat_pengajuan_cuti_pasien,user.checklist_kriteria_masuk_isolasi,user.satu_sehat_mapping_kptl_tindakan_ralan,"+
                 "user.satu_sehat_mapping_kptl_tindakan_ranap,user.satu_sehat_mapping_kptl_tindakan_radiologi,user.satu_sehat_mapping_kptl_tindakan_laborat,user.satu_sehat_mapping_kptl_tindakan_operasi,"+
                 "user.satu_sehat_mapping_kptl_tarif_kamar,user.checklist_kriteria_keluar_isolasi,user.satu_sehat_tanda_tangan_elektronik,user.satu_sehat_kirim_composition,"+
-                "user.ringkasan_hutang_vendor_inventaris,user.ringkasan_beban_hutang_lain,user.set_resep_per_cara_bayar from user where user.id_user=AES_ENCRYPT(?,'nur')");
+                "user.ringkasan_hutang_vendor_inventaris,user.ringkasan_beban_hutang_lain,user.set_resep_per_cara_bayar,user.skrining_tolac,user.admisi_skoring_tolac,user.monitoring_tolac,"+
+                "user.hasil_persalinan_tolac,user.laporan_reaksi_transfusi,user.penilaian_grace_scor,user.penilaian_bishop_scor from user where user.id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1,user);
                 rs=ps.executeQuery();
@@ -1324,7 +1317,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     mapping_prosedur_smart_klaim_bpjs=rs.getBoolean("mapping_prosedur_smart_klaim_bpjs");mapping_penyakit_smart_klaim_bpjs=rs.getBoolean("mapping_penyakit_smart_klaim_bpjs");permintaan_binrohtal=rs.getBoolean("permintaan_binrohtal");surat_permintaan_perlindungan_dari_kekerasan=rs.getBoolean("surat_permintaan_perlindungan_dari_kekerasan");surat_permohonan_privasi=rs.getBoolean("surat_permohonan_privasi");surat_permintaan_second_opinion=rs.getBoolean("surat_permintaan_second_opinion");surat_keterangan_berobat=rs.getBoolean("surat_keterangan_berobat");surat_penolakan_resusitasi=rs.getBoolean("surat_penolakan_resusitasi");
                     catatan_observasi_ruang_ok=rs.getBoolean("catatan_observasi_ruang_ok");hasil_pemeriksaan_usg_abdomen=rs.getBoolean("hasil_pemeriksaan_usg_abdomen");intervensi_nyeri_farmakologi=rs.getBoolean("intervensi_nyeri_farmakologi");intervensi_nyeri_nonfarmakologi=rs.getBoolean("intervensi_nyeri_nonfarmakologi");surat_pengajuan_cuti_pasien=rs.getBoolean("surat_pengajuan_cuti_pasien");checklist_kriteria_masuk_isolasi=rs.getBoolean("checklist_kriteria_masuk_isolasi");satu_sehat_mapping_kptl_tindakan_ralan=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_ralan");
                     satu_sehat_mapping_kptl_tindakan_ranap=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_ranap");satu_sehat_mapping_kptl_tindakan_radiologi=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_radiologi");satu_sehat_mapping_kptl_tindakan_laborat=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_laborat");satu_sehat_mapping_kptl_tindakan_operasi=rs.getBoolean("satu_sehat_mapping_kptl_tindakan_operasi");satu_sehat_mapping_kptl_tarif_kamar=rs.getBoolean("satu_sehat_mapping_kptl_tarif_kamar");checklist_kriteria_keluar_isolasi=rs.getBoolean("checklist_kriteria_keluar_isolasi");
-                    satu_sehat_tanda_tangan_elektronik=rs.getBoolean("satu_sehat_tanda_tangan_elektronik");satu_sehat_kirim_composition=rs.getBoolean("satu_sehat_kirim_composition");ringkasan_hutang_vendor_inventaris=rs.getBoolean("ringkasan_hutang_vendor_inventaris");ringkasan_beban_hutang_lain=rs.getBoolean("ringkasan_beban_hutang_lain");set_resep_per_cara_bayar=rs.getBoolean("set_resep_per_cara_bayar");
+                    satu_sehat_tanda_tangan_elektronik=rs.getBoolean("satu_sehat_tanda_tangan_elektronik");satu_sehat_kirim_composition=rs.getBoolean("satu_sehat_kirim_composition");ringkasan_hutang_vendor_inventaris=rs.getBoolean("ringkasan_hutang_vendor_inventaris");ringkasan_beban_hutang_lain=rs.getBoolean("ringkasan_beban_hutang_lain");set_resep_per_cara_bayar=rs.getBoolean("set_resep_per_cara_bayar");skrining_tolac=rs.getBoolean("skrining_tolac");admisi_skoring_tolac=rs.getBoolean("admisi_skoring_tolac");monitoring_tolac=rs.getBoolean("monitoring_tolac");hasil_persalinan_tolac=rs.getBoolean("hasil_persalinan_tolac");
+                    laporan_reaksi_transfusi=rs.getBoolean("laporan_reaksi_transfusi");penilaian_grace_scor=rs.getBoolean("penilaian_grace_scor");penilaian_bishop_scor=rs.getBoolean("penilaian_bishop_scor");
                     odontogram=bacaHakOdontogram(user);
                     setTampil();setTampil2();
                 }       
@@ -4159,6 +4153,18 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         if("[L]Mapping Tindakan Operasi KPTL Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())){
             tabMode.addRow(new Object[]{false,"[L]Mapping Tindakan Operasi KPTL Satu Sehat",satu_sehat_mapping_kptl_tindakan_operasi});
         }
+        
+        if("[L]Mapping Tarif Kamar KPTL Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[L]Mapping Tarif Kamar KPTL Satu Sehat",satu_sehat_mapping_kptl_tarif_kamar});
+        }
+        
+        if("[L]Bridging TTE Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[L]Bridging TTE Satu Sehat",satu_sehat_tanda_tangan_elektronik});
+        }
+        
+        if("[L]Kirim Composition Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[L]Kirim Composition Satu Sehat",satu_sehat_kirim_composition});
+        }
 
         if("[L]Mapping Tarif Kamar KPTL Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())){
             tabMode.addRow(new Object[]{false,"[L]Mapping Tarif Kamar KPTL Satu Sehat",satu_sehat_mapping_kptl_tarif_kamar});
@@ -5179,9 +5185,37 @@ public class DlgUpdateUser extends javax.swing.JDialog {
         if("[M]Check List Kriteria Masuk Isolasi".toLowerCase().contains(TCari.getText().toLowerCase())){
             tabMode.addRow(new Object[]{false,"[M]Check List Kriteria Masuk Isolasi",checklist_kriteria_masuk_isolasi});
         }
-
+        
         if("[M]Check List Kriteria Keluar Isolasi".toLowerCase().contains(TCari.getText().toLowerCase())){
             tabMode.addRow(new Object[]{false,"[M]Check List Kriteria Keluar Isolasi",checklist_kriteria_keluar_isolasi});
+        }
+        
+        if("[M]Skrining TOLAC".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Skrining TOLAC",skrining_tolac});
+        }
+        
+        if("[M]Admisi & Skoring TOLAC".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Admisi & Skoring TOLAC",admisi_skoring_tolac});
+        }
+        
+        if("[M]Monitoring Selama TOLAC".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Monitoring Selama TOLAC",monitoring_tolac});
+        }
+        
+        if("[M]Resume Hasil Persalinan TOLAC".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Resume Hasil Persalinan TOLAC",hasil_persalinan_tolac});
+        }
+        
+        if("[M]Laporan Reaksi Tranfusi".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Laporan Reaksi Tranfusi",laporan_reaksi_transfusi});
+        }
+        
+        if("[M]Penilaian GRACE Score".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Penilaian GRACE Score",penilaian_grace_scor});
+        }
+        
+        if("[M]Penilaian BISHOP Score".toLowerCase().contains(TCari.getText().toLowerCase())){
+            tabMode.addRow(new Object[]{false,"[M]Penilaian BISHOP Score",penilaian_bishop_scor});
         }
                 
         if("[N]Pengambilan BHP Medis".toLowerCase().contains(TCari.getText().toLowerCase())){
@@ -10066,6 +10100,38 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[M]Check List Kriteria Keluar Isolasi".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","checklist_kriteria_keluar_isolasi='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Check List Kriteria Keluar Isolasi".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","checklist_kriteria_keluar_isolasi='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Skrining TOLAC".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","skrining_tolac='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Admisi & Skoring TOLAC".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","admisi_skoring_tolac='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Monitoring Selama TOLAC".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","monitoring_tolac='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Resume Hasil Persalinan TOLAC".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","hasil_persalinan_tolac='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Laporan Reaksi Tranfusi".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","laporan_reaksi_transfusi='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Penilaian GRACE Score".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","penilaian_grace_scor='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[M]Penilaian BISHOP Score".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","penilaian_bishop_scor='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[N]Pengambilan BHP Medis".equals(tbUser.getValueAt(i,1).toString())){

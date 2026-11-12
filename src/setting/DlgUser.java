@@ -290,7 +290,9 @@ public class DlgUser extends javax.swing.JDialog {
                 "[M]Catatan Observasi Ruang Operasi","[M]Hasil USG Abdomen","[M]Intervensi Nyeri Farmakologi","[M]Intervensi Nyeri Non Farmakologi","[P]Surat Pengajuan Cuti Perawatan",
                 "[M]Check List Kriteria Masuk Isolasi","[L]Mapping Tindakan Ralan KPTL Satu Sehat","[L]Mapping Tindakan Ranap KPTL Satu Sehat","[L]Mapping Tindakan Radiologi KPTL Satu Sehat",
                 "[L]Mapping Tindakan Laborat KPTL Satu Sehat","[L]Mapping Tindakan Operasi KPTL Satu Sehat","[L]Mapping Tarif Kamar KPTL Satu Sehat","[M]Check List Kriteria Keluar Isolasi",
-                "[L]Bridging TTE Satu Sehat","[L]Kirim Composition Satu Sehat","[K]Ringkasan Hutang Vendor Aset/Inventaris","[K]Ringkasan Beban Hutang Lain","[U]Set Resep Per Cara Bayar"
+                "[L]Bridging TTE Satu Sehat","[L]Kirim Composition Satu Sehat","[K]Ringkasan Hutang Vendor Aset/Inventaris","[K]Ringkasan Beban Hutang Lain","[U]Set Resep Per Cara Bayar",
+                "[M]Skrining TOLAC","[M]Admisi & Skoring TOLAC","[M]Monitoring Selama TOLAC","[M]Resume Hasil Persalinan TOLAC","[M]Laporan Reaksi Tranfusi","[M]Penilaian GRACE Score",
+                "[M]Penilaian BISHOP Score"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -613,6 +615,10 @@ public class DlgUser extends javax.swing.JDialog {
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, 
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
              };
              @Override
@@ -626,7 +632,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 1220;i++) {
+        for (i = 0; i < 1227;i++) {
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             switch (i) {
                 case 0:
@@ -3740,6 +3746,27 @@ public class DlgUser extends javax.swing.JDialog {
                 case 1219:
                     column.setPreferredWidth(147);
                     break;
+                case 1220:
+                    column.setPreferredWidth(98);
+                    break;
+                case 1221:
+                    column.setPreferredWidth(141);
+                    break;
+                case 1222:
+                    column.setPreferredWidth(150);
+                    break;
+                case 1223:
+                    column.setPreferredWidth(179);
+                    break;
+                case 1224:
+                    column.setPreferredWidth(139);
+                    break;
+                case 1225:
+                    column.setPreferredWidth(135);
+                    break;
+                case 1226:
+                    column.setPreferredWidth(137);
+                    break;
                 default:
                     column.setPreferredWidth(133);
                     break;
@@ -3849,9 +3876,9 @@ public class DlgUser extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCopyHakAkses = new javax.swing.JMenuItem();
-        MnSetUser = new javax.swing.JMenuItem();
+        jPopupMenu1 = new widget.PopupMenu();
+        MnCopyHakAkses = new widget.MenuItem();
+        MnSetUser = new widget.MenuItem();
         Jabatan = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -4259,7 +4286,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
-                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){
+                    "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'","User")==true){
                 simpanAkun(TKd.getText().trim(),TNmUser.getText().trim(),TPass.getText(),true);
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -4291,7 +4318,7 @@ public class DlgUser extends javax.swing.JDialog {
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-                    false,false,false,false,false,false,false,false,false,false
+                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());
@@ -5559,7 +5586,14 @@ public class DlgUser extends javax.swing.JDialog {
                     "satu_sehat_kirim_composition='"+tbUser.getValueAt(i,1216).toString()+"',"+
                     "ringkasan_hutang_vendor_inventaris='"+tbUser.getValueAt(i,1217).toString()+"',"+
                     "ringkasan_beban_hutang_lain='"+tbUser.getValueAt(i,1218).toString()+"',"+
-                    "set_resep_per_cara_bayar='"+tbUser.getValueAt(i,1219).toString()+"'")==true){
+                    "set_resep_per_cara_bayar='"+tbUser.getValueAt(i,1219).toString()+"',"+
+                    "skrining_tolac='"+tbUser.getValueAt(i,1220).toString()+"',"+
+                    "admisi_skoring_tolac='"+tbUser.getValueAt(i,1221).toString()+"',"+
+                    "monitoring_tolac='"+tbUser.getValueAt(i,1222).toString()+"',"+
+                    "hasil_persalinan_tolac='"+tbUser.getValueAt(i,1223).toString()+"',"+
+                    "laporan_reaksi_transfusi='"+tbUser.getValueAt(i,1224).toString()+"',"+
+                    "penilaian_grace_scor='"+tbUser.getValueAt(i,1225).toString()+"',"+
+                    "penilaian_bishop_scor='"+tbUser.getValueAt(i,1226).toString()+"'")==true){
                     if(!tbUser.getValueAt(i,0).toString().equals(TKd.getText())){
                         UserAkun.gantiId(tbUser.getValueAt(i,0).toString(),TKd.getText());
                     }
@@ -7074,7 +7108,14 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                         "satu_sehat_kirim_composition='"+tbUser.getValueAt(barisdicopy,1216).toString()+"',"+
                                         "ringkasan_hutang_vendor_inventaris='"+tbUser.getValueAt(barisdicopy,1217).toString()+"',"+
                                         "ringkasan_beban_hutang_lain='"+tbUser.getValueAt(barisdicopy,1218).toString()+"',"+
-                                        "set_resep_per_cara_bayar='"+tbUser.getValueAt(barisdicopy,1219).toString()+"'");
+                                        "set_resep_per_cara_bayar='"+tbUser.getValueAt(barisdicopy,1219).toString()+"',"+
+                                        "skrining_tolac='"+tbUser.getValueAt(barisdicopy,1220).toString()+"',"+
+                                        "admisi_skoring_tolac='"+tbUser.getValueAt(barisdicopy,1221).toString()+"',"+
+                                        "monitoring_tolac='"+tbUser.getValueAt(barisdicopy,1222).toString()+"',"+
+                                        "hasil_persalinan_tolac='"+tbUser.getValueAt(barisdicopy,1223).toString()+"',"+
+                                        "laporan_reaksi_transfusi='"+tbUser.getValueAt(barisdicopy,1224).toString()+"',"+
+                                        "penilaian_grace_scor='"+tbUser.getValueAt(barisdicopy,1225).toString()+"',"+
+                                        "penilaian_bishop_scor='"+tbUser.getValueAt(barisdicopy,1226).toString()+"'");
                                 }
                                 userdicopy="";
                                 copyhakakses="";
@@ -7150,8 +7191,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnSimpan;
     private widget.TextBox Jabatan;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCopyHakAkses;
-    private javax.swing.JMenuItem MnSetUser;
+    private widget.MenuItem MnCopyHakAkses;
+    private widget.MenuItem MnSetUser;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
     private widget.TextBox TKd;
@@ -7163,7 +7204,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.PopupMenu jPopupMenu1;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelGlass6;
     private widget.panelisi panelGlass7;
@@ -7415,7 +7456,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             "user.intervensi_nyeri_farmakologi,user.intervensi_nyeri_nonfarmakologi,user.surat_pengajuan_cuti_pasien,user.checklist_kriteria_masuk_isolasi,user.satu_sehat_mapping_kptl_tindakan_ralan,"+
                             "user.satu_sehat_mapping_kptl_tindakan_ranap,user.satu_sehat_mapping_kptl_tindakan_radiologi,user.satu_sehat_mapping_kptl_tindakan_laborat,user.satu_sehat_mapping_kptl_tindakan_operasi,"+
                             "user.satu_sehat_mapping_kptl_tarif_kamar,user.checklist_kriteria_keluar_isolasi,user.satu_sehat_tanda_tangan_elektronik,user.satu_sehat_kirim_composition,"+
-                            "user.ringkasan_hutang_vendor_inventaris,user.ringkasan_beban_hutang_lain,user.set_resep_per_cara_bayar from user order by AES_DECRYPT(user.id_user,'nur')");
+                            "user.ringkasan_hutang_vendor_inventaris,user.ringkasan_beban_hutang_lain,user.set_resep_per_cara_bayar,user.skrining_tolac,user.admisi_skoring_tolac,user.monitoring_tolac,"+
+                            "user.hasil_persalinan_tolac,user.laporan_reaksi_transfusi,user.penilaian_grace_scor,user.penilaian_bishop_scor from user order by AES_DECRYPT(user.id_user,'nur')");
                         try {
                             rs=ps.executeQuery();
                             i=0;
@@ -8653,7 +8695,14 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                            rs.getBoolean("satu_sehat_kirim_composition"),
                                            rs.getBoolean("ringkasan_hutang_vendor_inventaris"),
                                            rs.getBoolean("ringkasan_beban_hutang_lain"),
-                                           rs.getBoolean("set_resep_per_cara_bayar")
+                                           rs.getBoolean("set_resep_per_cara_bayar"),
+                                           rs.getBoolean("skrining_tolac"),
+                                           rs.getBoolean("admisi_skoring_tolac"),
+                                           rs.getBoolean("monitoring_tolac"),
+                                           rs.getBoolean("hasil_persalinan_tolac"),
+                                           rs.getBoolean("laporan_reaksi_transfusi"),
+                                           rs.getBoolean("penilaian_grace_scor"),
+                                           rs.getBoolean("penilaian_bishop_scor")
                                         });
                                     }   
                                 } catch (Exception e) {
@@ -9875,7 +9924,14 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                        rs.getBoolean("satu_sehat_kirim_composition"),
                                        rs.getBoolean("ringkasan_hutang_vendor_inventaris"),
                                        rs.getBoolean("ringkasan_beban_hutang_lain"),
-                                       rs.getBoolean("set_resep_per_cara_bayar")
+                                       rs.getBoolean("set_resep_per_cara_bayar"),
+                                       rs.getBoolean("skrining_tolac"),
+                                       rs.getBoolean("admisi_skoring_tolac"),
+                                       rs.getBoolean("monitoring_tolac"),
+                                       rs.getBoolean("hasil_persalinan_tolac"),
+                                       rs.getBoolean("laporan_reaksi_transfusi"),
+                                       rs.getBoolean("penilaian_grace_scor"),
+                                       rs.getBoolean("penilaian_bishop_scor")
                                     });
                                 }                                             
                              }
