@@ -1090,6 +1090,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
         BtnPerusahaanPasien = new widget.Button();
+        BtnKYCSatuSehat = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass7 = new widget.panelisi();
         jLabel15 = new widget.Label();
@@ -6247,6 +6248,22 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         panelGlass6.add(BtnPerusahaanPasien);
 
+        BtnKYCSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/satusehat-16x16.png"))); // NOI18N
+        BtnKYCSatuSehat.setText("KYC SatuSehat");
+        BtnKYCSatuSehat.setToolTipText("Verifikasi KYC pasien SatuSehat (NIK & nama petugas sesuai user login)");
+        BtnKYCSatuSehat.setName("BtnKYCSatuSehat"); // NOI18N
+        BtnKYCSatuSehat.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnKYCSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKYCSatuSehatActionPerformed(evt);
+            }
+        });
+        BtnKYCSatuSehat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKYCSatuSehatKeyPressed(evt);
+            }
+        });
+        panelGlass6.add(BtnKYCSatuSehat);
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -7112,6 +7129,28 @@ public final class DlgReg extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPerusahaanPasienKeyPressed
 
+    // RSPK: KYC SatuSehat (dipindah dari menu bar frmUtama). NIK & nama petugas diambil dari data pegawai user login (webapps/kyc/login.php)
+    private void BtnKYCSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {
+        if(akses.getkode()==null||akses.getkode().equals("")){
+            JOptionPane.showMessageDialog(null,"Silakan Log In terlebih dahulu.");
+            return;
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            Valid.panggilUrl("kyc/login.php?usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB()+"&kode="+java.net.URLEncoder.encode(akses.getkode(),"UTF-8"));
+        } catch (Exception e) {
+            System.out.println("Notif KYC : "+e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private void BtnKYCSatuSehatKeyPressed(java.awt.event.KeyEvent evt) {
+        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            BtnKYCSatuSehatActionPerformed(null);
+        }else{
+            Valid.pindah(evt,BtnPerusahaanPasien,BtnKeluar);
+        }
+    }
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         pasien.dispose();
         DlgSakit2.dispose();
@@ -17186,6 +17225,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPerusahaanPasien;
+    private widget.Button BtnKYCSatuSehat;
     private widget.Button BtnKeluar3;
     private widget.Button BtnKeluar4;
     private widget.Button BtnPasien;
