@@ -31,8 +31,8 @@ public class Table extends JTable {
     static final Color PILIH_PASIF  = new Color(214, 229, 246);   
     static final Color LAPIS_CUSTOM = new Color(30, 120, 210, 28); 
     static final Color TEKS         = new Color(50, 50, 50);
-    static final Color GARIS_BARIS  = new Color(228, 235, 230);   
-    static final Color GARIS_KOLOM  = new Color(238, 242, 239);   
+    static final Color GARIS_BARIS  = new Color(222, 230, 240);   // RSPK: biru keabu-abuan (sebelumnya hijau)   
+    static final Color GARIS_KOLOM  = new Color(232, 238, 246);   
     static final Color TEKS_PILIH   = new Color(11, 46, 85);      
     static final int   TINGGI_HEADER = 35;   // RSPK: judul kolom bisa 2 baris (MultiLineHeader)
     static final int   ARC_PILIH     = 8;
@@ -56,7 +56,7 @@ public class Table extends JTable {
         // RSPK: judul kolom hitam, tulisan putih tebal, panjang dipecah 2 baris
         getTableHeader().setForeground(Color.WHITE);
         getTableHeader().setBackground(Color.BLACK);
-        getTableHeader().setBorder(BorderFactory.createLineBorder(new Color(0, 80, 40)));
+        getTableHeader().setBorder(BorderFactory.createLineBorder(new Color(0x1E78D2)));
         getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 11));
         getTableHeader().setDefaultRenderer(new MultiLineHeader());
 

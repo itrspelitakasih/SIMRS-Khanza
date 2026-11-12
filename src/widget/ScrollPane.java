@@ -31,7 +31,7 @@ public class ScrollPane extends JScrollPane {
 
         setOpaque(false);
         setBackground(Color.WHITE);
-        setBorder(new LineBorder(new Color(239, 244, 234)));  
+        setBorder(new LineBorder(new Color(0xC9D7E8)));  
 
         getVerticalScrollBar().setUI(new ModernScrollBarUI());
         getHorizontalScrollBar().setUI(new ModernScrollBarUI());
