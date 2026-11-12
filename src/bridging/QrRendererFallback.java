@@ -30,7 +30,7 @@ public class QrRendererFallback implements QrRenderer {
         g.setColor(new Color(180, 180, 180));
         g.drawRect(4, 4, ukuran - 9, ukuran - 9);
         g.setColor(new Color(120, 120, 120));
-        g.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        g.setFont(new Font("Tahoma", Font.PLAIN, 12));
         g.drawString("QR belum aktif", 16, ukuran / 2 - 8);
         g.drawString("pasang ZXing", 16, ukuran / 2 + 10);
         g.dispose();

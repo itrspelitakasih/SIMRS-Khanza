@@ -323,8 +323,8 @@ public class SatuSehatBridgingTTE extends JDialog {
         });
         getContentPane().setLayout(new java.awt.BorderLayout(1, 1));
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tanda Tangan Elektronik (TTE) SATUSEHAT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
-        internalFrame1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Tanda Tangan Elektronik (TTE) SATUSEHAT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -434,7 +434,7 @@ public class SatuSehatBridgingTTE extends JDialog {
 
         taLog.setColumns(20);
         taLog.setEditable(false);
-        taLog.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+        taLog.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         taLog.setRows(5);
         taLog.setName("taLog"); // NOI18N
         spLog.setViewportView(taLog);
@@ -694,7 +694,7 @@ public class SatuSehatBridgingTTE extends JDialog {
      */
     private void bangunUi() {
         // Font Arial 11 plain: seragam dengan seluruh form Khanza (SatuSehatBundle dkk).
-        Font plain = new Font("Arial", Font.PLAIN, 11);
+        Font plain = new Font("Tahoma", Font.PLAIN, 11);
 
         LocalDate now = LocalDate.now();
         // Rentang tanggal awal (30 hari terakhir) dihitung saat dialog dibuka, jadi tak bisa
@@ -1588,7 +1588,7 @@ public class SatuSehatBridgingTTE extends JDialog {
 
         // --- Judul + garis pemisah ---
         JLabel judulQr = new JLabel("Scan QR TTE", SwingConstants.CENTER);
-        judulQr.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        judulQr.setFont(new Font("Tahoma", Font.PLAIN, 20));
         judulQr.setForeground(new Color(45, 55, 62));
         judulQr.setAlignmentX(Component.CENTER_ALIGNMENT);
         isi.add(judulQr);
@@ -1600,7 +1600,7 @@ public class SatuSehatBridgingTTE extends JDialog {
         JLabel instruksi = new JLabel("<html><div style='text-align:center;width:340px;'>"
                 + "Buka <b>TTE Mobile</b> di ponsel Anda, lalu pindai kode QR "
                 + "berikut untuk menandatangani dokumen</div></html>", SwingConstants.CENTER);
-        instruksi.setFont(new Font("SansSerif", Font.PLAIN, 15));
+        instruksi.setFont(new Font("Tahoma", Font.PLAIN, 15));
         instruksi.setForeground(new Color(55, 65, 72));
         instruksi.setAlignmentX(Component.CENTER_ALIGNMENT);
         isi.add(instruksi);
@@ -1608,7 +1608,7 @@ public class SatuSehatBridgingTTE extends JDialog {
 
         JLabel catatanTtl = new JLabel("Data QR diperbarui otomatis setiap "
                 + SatuSehatSignatureState.TTL_QR_DETIK + " detik.", SwingConstants.CENTER);
-        catatanTtl.setFont(new Font("SansSerif", Font.PLAIN, 13));
+        catatanTtl.setFont(new Font("Tahoma", Font.PLAIN, 13));
         catatanTtl.setForeground(new Color(120, 135, 150));
         catatanTtl.setAlignmentX(Component.CENTER_ALIGNMENT);
         isi.add(catatanTtl);
@@ -1631,14 +1631,14 @@ public class SatuSehatBridgingTTE extends JDialog {
 
         // --- Hitung mundur + status tunggu ---
         popupInfo = new JLabel("", SwingConstants.CENTER);
-        popupInfo.setFont(new Font("SansSerif", Font.PLAIN, 17));
+        popupInfo.setFont(new Font("Tahoma", Font.PLAIN, 17));
         popupInfo.setForeground(new Color(45, 55, 62));
         popupInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
         isi.add(popupInfo);
         isi.add(javax.swing.Box.createVerticalStrut(4));
 
         popupTunggu = new JLabel("Menunggu tanda tangan...", SwingConstants.CENTER);
-        popupTunggu.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        popupTunggu.setFont(new Font("Tahoma", Font.PLAIN, 12));
         popupTunggu.setForeground(new Color(150, 160, 170));
         popupTunggu.setAlignmentX(Component.CENTER_ALIGNMENT);
         isi.add(popupTunggu);
@@ -1701,7 +1701,7 @@ public class SatuSehatBridgingTTE extends JDialog {
     /** Tombol blok berwarna penuh (teks putih) untuk bar aksi popup QR. */
     private JButton tombolWarna(String teks, Color warna) {
         JButton b = new JButton(teks);
-        b.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        b.setFont(new Font("Tahoma", Font.PLAIN, 14));
         b.setForeground(Color.WHITE);
         b.setBackground(warna);
         b.setOpaque(true);
@@ -2253,7 +2253,7 @@ public class SatuSehatBridgingTTE extends JDialog {
                 && !nz(versiSekarang).equals("")
                 && !nz(versiSekarang).equals(nz(h.versiDitandatangani));
         Font plain = plainFont();
-        Font tebalKecil = new Font("SansSerif", Font.BOLD, 12);
+        Font tebalKecil = new Font("Tahoma", Font.BOLD, 12);
         JDialog dlg = new JDialog(this, "Verifikasi Tanda Tangan — " + d.jenis, true);
         dlg.setLayout(new BorderLayout(10, 10));
 
@@ -2262,7 +2262,7 @@ public class SatuSehatBridgingTTE extends JDialog {
         JLabel status = new JLabel(h.ditandatangani
                 ? "✔  Tanda tangan elektronik ditemukan (" + h.jumlahSignature + " signature)"
                 : "⚠  Belum ada tanda tangan pada Provenance ini");
-        status.setFont(new Font("SansSerif", Font.BOLD, 14));
+        status.setFont(new Font("Tahoma", Font.BOLD, 14));
         status.setForeground(h.ditandatangani ? HIJAU : ORANYE);
         header.add(status);
         JPanel utara = new JPanel(new BorderLayout());
@@ -2316,7 +2316,7 @@ public class SatuSehatBridgingTTE extends JDialog {
         gj.insets = new Insets(8, 0, 2, 0);
         kiri.add(lJwt, gj);
         JTextArea taJwt = new JTextArea(teksJose(h), 7, 34);
-        taJwt.setFont(new Font("Monospaced", Font.PLAIN, 11));
+        taJwt.setFont(new Font("Tahoma", Font.PLAIN, 11));
         taJwt.setEditable(false);
         taJwt.setLineWrap(true);
         taJwt.setWrapStyleWord(false);
@@ -2368,7 +2368,7 @@ public class SatuSehatBridgingTTE extends JDialog {
         tutup.addActionListener(e -> dlg.dispose());
         JLabel catatan = new JLabel(
                 "Validitas kriptografis dijamin BSrE saat penandatanganan; panel ini menampilkan isinya.");
-        catatan.setFont(new Font("SansSerif", Font.ITALIC, 11));
+        catatan.setFont(new Font("Tahoma", Font.ITALIC, 11));
         catatan.setForeground(new Color(120, 120, 120));
         bawah.add(catatan);
         bawah.add(lihatJson);
@@ -2423,7 +2423,7 @@ public class SatuSehatBridgingTTE extends JDialog {
             teks = String.valueOf(prov);
         }
         JTextArea ta = new JTextArea(teks, 26, 70);
-        ta.setFont(new Font("Monospaced", Font.PLAIN, 11));
+        ta.setFont(new Font("Tahoma", Font.PLAIN, 11));
         ta.setEditable(false);
         ta.setCaretPosition(0);
         JDialog dlg = new JDialog(induk, "Provenance JSON", true);
@@ -2471,7 +2471,7 @@ public class SatuSehatBridgingTTE extends JDialog {
     }
 
     private Font plainFont() {
-        return new Font("SansSerif", Font.PLAIN, 12);
+        return new Font("Tahoma", Font.PLAIN, 12);
     }
 
     private String teksAtau(String s, String bila) {
@@ -2934,7 +2934,7 @@ public class SatuSehatBridgingTTE extends JDialog {
                 }
                 JTextArea area = new JTextArea(teks, 18, 58);
                 area.setEditable(false);
-                area.setFont(new Font("Monospaced", Font.PLAIN, 12));
+                area.setFont(new Font("Tahoma", Font.PLAIN, 12));
                 area.setCaretPosition(0);
                 JOptionPane.showMessageDialog(pemilik, new JScrollPane(area),
                         "Preview TTE - " + jenis, JOptionPane.PLAIN_MESSAGE);
@@ -3055,7 +3055,7 @@ public class SatuSehatBridgingTTE extends JDialog {
             this.taskUuid = nzt(taskUuid);
             this.basisApplink = nzt(koneksiDB.URLAPPLINKSATUSEHAT());
 
-            Font plain = new Font("Arial", Font.PLAIN, 11);
+            Font plain = new Font("Tahoma", Font.PLAIN, 11);
             JPanel isi = new JPanel(new BorderLayout(6, 6));
             isi.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
             isi.setBackground(Color.WHITE);
