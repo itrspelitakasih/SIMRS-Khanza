@@ -2003,7 +2003,7 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame3.setName("internalFrame3"); // NOI18N
         internalFrame3.setRequestFocusEnabled(false);
         internalFrame3.setWarnaAtas(new java.awt.Color(102, 204, 255));
-        internalFrame3.setWarnaBawah(new java.awt.Color(245, 255, 245));
+        internalFrame3.setWarnaBawah(new java.awt.Color(235, 248, 235));
         internalFrame3.setLayout(null);
 
         panelGlass1.setBackground(java.awt.Color.red);
@@ -2233,7 +2233,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/10/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/11/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
 
@@ -7394,7 +7394,7 @@ public class frmUtama extends javax.swing.JFrame {
         PopupNotif.add(internalFrameNotif);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("::[ Khanza SIMKES 2026 ]::");
+        setTitle("::[ Khanza SIMKES 2022 ]::");
         setBackground(new java.awt.Color(255, 254, 254));
         setIconImages(null);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -7420,8 +7420,8 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(40, 42));
         internalFrame1.setVerifyInputWhenFocusTarget(false);
-        internalFrame1.setWarnaAtas(new java.awt.Color(245, 255, 245));
-        internalFrame1.setWarnaBawah(new java.awt.Color(51, 153, 255));
+        internalFrame1.setWarnaAtas(new java.awt.Color(234, 245, 255));
+        internalFrame1.setWarnaBawah(new java.awt.Color(0, 153, 255));
         internalFrame1.setLayout(new java.awt.BorderLayout());
 
         panelToolKiri.setName("panelToolKiri"); // NOI18N
@@ -7705,7 +7705,7 @@ public class frmUtama extends javax.swing.JFrame {
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setPreferredSize(new java.awt.Dimension(330, 25));
-        internalFrame4.setWarnaAtas(new java.awt.Color(178, 216, 253));
+        internalFrame4.setWarnaAtas(new java.awt.Color(0, 153, 255));
         internalFrame4.setWarnaBawah(new java.awt.Color(234, 245, 255));
         internalFrame4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 1));
 
@@ -7862,6 +7862,9 @@ public class frmUtama extends javax.swing.JFrame {
         MenuBar.setToolTipText("");
         MenuBar.setName("MenuBar"); // NOI18N
         MenuBar.setPreferredSize(new java.awt.Dimension(227, 25));
+        MenuBar.setWarnaAtas(new java.awt.Color(0, 153, 255));
+        MenuBar.setWarnaBawah(new java.awt.Color(0, 153, 255));
+        MenuBar.setWarnaGaris(new java.awt.Color(0, 153, 255));
 
         jMenu1.setBackground(new java.awt.Color(204, 0, 51));
         jMenu1.setBorder(null);
@@ -8317,7 +8320,6 @@ public class frmUtama extends javax.swing.JFrame {
         MnAnjungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/family24.png"))); // NOI18N
         MnAnjungan.setText("Anjungan Registrasi Mandiri");
         MnAnjungan.setName("MnAnjungan"); // NOI18N
-        MnAnjungan.setPreferredSize(new java.awt.Dimension(205, 30));
         MnAnjungan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnAnjunganActionPerformed(evt);
@@ -8570,7 +8572,6 @@ public class frmUtama extends javax.swing.JFrame {
 
         jMenuUpdate.setBackground(new java.awt.Color(204, 0, 51));
         jMenuUpdate.setBorder(null);
-        jMenuUpdate.setForeground(new java.awt.Color(255, 255, 253));
         jMenuUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
         jMenuUpdate.setMnemonic('A');
         jMenuUpdate.setText("Ekstra");
@@ -26363,7 +26364,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.11"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.12"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));

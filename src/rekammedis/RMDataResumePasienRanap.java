@@ -283,8 +283,8 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         MnLaporanResume = new widget.MenuItem();
         MnLaporanResumeESign = new widget.MenuItem();
         MnLaporanResumeSertisign = new widget.MenuItem();
-        MnLaporanResumeMekariSign = new javax.swing.JMenuItem();
-        MnDokumenMekariSign = new javax.swing.JMenuItem();
+        MnLaporanResumeMekariSign = new widget.MenuItem();
+        MnDokumenMekariSign = new widget.MenuItem();
         MnInputDiagnosa = new widget.MenuItem();
         ppBerkasDigital = new widget.MenuItem();
         WindowURLSertisign = new javax.swing.JDialog();
@@ -491,9 +491,6 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnLaporanResumeSertisign);
 
-        MnLaporanResumeMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnLaporanResumeMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnLaporanResumeMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnLaporanResumeMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporanResumeMekariSign.setText("Laporan Resume Pasien PDF MekariSign");
         MnLaporanResumeMekariSign.setName("MnLaporanResumeMekariSign"); // NOI18N
@@ -505,9 +502,6 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnLaporanResumeMekariSign);
 
-        MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnDokumenMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokumenMekariSign.setText("Dokumen TTE MekariSign");
         MnDokumenMekariSign.setName("MnDokumenMekariSign"); // NOI18N
@@ -3269,8 +3263,8 @@ public final class RMDataResumePasienRanap extends javax.swing.JDialog {
     private widget.MenuItem MnLaporanResume;
     private widget.MenuItem MnLaporanResumeESign;
     private widget.MenuItem MnLaporanResumeSertisign;
-    private javax.swing.JMenuItem MnLaporanResumeMekariSign;
-    private javax.swing.JMenuItem MnDokumenMekariSign;
+    private widget.MenuItem MnLaporanResumeMekariSign;
+    private widget.MenuItem MnDokumenMekariSign;
     private widget.TextBox NamaDokterPengirim;
     private widget.TextBox NmDokter;
     private widget.TextBox NmRuang;

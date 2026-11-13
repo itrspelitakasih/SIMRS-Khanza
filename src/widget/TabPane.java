@@ -43,7 +43,7 @@ public class TabPane extends JTabbedPane {
         private static final Color GARIS_DASAR = new Color(255, 255, 255);   
         private static final Color GARIS_PILIH = new Color(30, 120, 210);     
         private static final Color TEKS_PILIH  = new Color(50, 50, 50);      
-        private static final Color TEKS_HOVER  = new Color(22, 120, 70);     
+        private static final Color TEKS_HOVER  = new Color(30, 120, 210);
         private static final Color TEKS        = new Color(112, 128, 118);   
         private static final Color TEKS_OFF    = new Color(190, 196, 192);   
         private static final int   TEBAL_PILIH = 1;                          
