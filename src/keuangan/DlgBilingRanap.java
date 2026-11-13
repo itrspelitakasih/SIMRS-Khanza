@@ -5366,10 +5366,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             pscariobat=koneksi.prepareStatement(
                     "select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
                     "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
-                    "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total "+
+                    "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total,"+
+                    "if(detail_pemberian_obat.kd_bangsal='OK01',1,0) as depook "+
                     "from detail_pemberian_obat inner join databarang on detail_pemberian_obat.kode_brng=databarang.kode_brng "+
                     "inner join jenis on databarang.kdjns=jenis.kdjns where detail_pemberian_obat.no_rawat=? and detail_pemberian_obat.status like ? "+
-                    "group by databarang.kode_brng,detail_pemberian_obat.biaya_obat order by jenis.nama");
+                    "group by depook,databarang.kode_brng,detail_pemberian_obat.biaya_obat order by depook,jenis.nama");
             try {
                 pscariobat.setString(1,norawat);
                 if((chkRalan.isSelected()==true)&&(chkRanap.isSelected()==true)){
@@ -5382,20 +5383,18 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     pscariobat.setString(2,"%Kosong%");
                 }
                 rscariobat=pscariobat.executeQuery();
-                if(pengaturanbillingranap.getCentangObatRanap().equals("Yes")){
-                    while(rscariobat.next()){
-                        tabModeRwJlDr.addRow(new Object[]{true,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                        subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                // Obat/alkes/BHP yang diinput dari depo OK01 (Operasi) dikelompokkan tersendiri
+                boolean centangobat=pengaturanbillingranap.getCentangObatRanap().equals("Yes"),grupok=false;
+                while(rscariobat.next()){
+                    if((rscariobat.getInt("depook")==1)&&(grupok==false)){
+                        grupok=true;
+                        x++;
+                        tabModeRwJlDr.addRow(new Object[]{true,x+". Obat, Alkes & BHP Operasi",":","",null,null,null,null,"Obat"});
                     }
-                }else{
-                    while(rscariobat.next()){
-                        tabModeRwJlDr.addRow(new Object[]{false,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
-                                       rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                       (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                        subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
-                    }
+                    tabModeRwJlDr.addRow(new Object[]{centangobat,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                                   rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
+                                   (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
+                    subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
                 }
                     
             } catch (Exception e) {

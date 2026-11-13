@@ -260,8 +260,8 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         MnGeneratePDF = new widget.MenuItem();
         MnGeneratePDFESign = new widget.MenuItem();
         MnGeneratePDFSertiSign = new widget.MenuItem();
-        MnGeneratePDFMekariSign = new javax.swing.JMenuItem();
-        MnDokumenMekariSign = new javax.swing.JMenuItem();
+        MnGeneratePDFMekariSign = new widget.MenuItem();
+        MnDokumenMekariSign = new widget.MenuItem();
         WindowPhrase = new javax.swing.JDialog();
         internalFrame8 = new widget.InternalFrame();
         jLabel42 = new widget.Label();
@@ -599,9 +599,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnGeneratePDFSertiSign);
 
-        MnGeneratePDFMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnGeneratePDFMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnGeneratePDFMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnGeneratePDFMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnGeneratePDFMekariSign.setText("Jadikan File PDF MekariSign");
         MnGeneratePDFMekariSign.setName("MnGeneratePDFMekariSign"); // NOI18N
@@ -613,9 +610,6 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnGeneratePDFMekariSign);
 
-        MnDokumenMekariSign.setBackground(new java.awt.Color(255, 255, 254));
-        MnDokumenMekariSign.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        MnDokumenMekariSign.setForeground(new java.awt.Color(50, 50, 50));
         MnDokumenMekariSign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokumenMekariSign.setText("Dokumen TTE MekariSign");
         MnDokumenMekariSign.setName("MnDokumenMekariSign"); // NOI18N
@@ -4095,8 +4089,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.MenuItem MnGeneratePDF;
     private widget.MenuItem MnGeneratePDFESign;
     private widget.MenuItem MnGeneratePDFSertiSign;
-    private javax.swing.JMenuItem MnGeneratePDFMekariSign;
-    private javax.swing.JMenuItem MnDokumenMekariSign;
+    private widget.MenuItem MnGeneratePDFMekariSign;
+    private widget.MenuItem MnDokumenMekariSign;
     private widget.TextBox NmPasien;
     private widget.TextBox NoRM;
     private widget.TextBox NoRawat;
@@ -4945,11 +4939,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' width='79%'>").append(
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                          "<tr align='center'>").append(
-                                            "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                            "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                            "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode Dokter</td>").append(
-                                            "<td valign='top' width='20%' bgcolor='#FFFAF8'>Nama Dokter</td>").append(
-                                            "<td valign='top' width='51%' bgcolor='#FFFAF8'>Catatan</td>").append(
+                                            "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                            "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                            "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode Dokter</td>").append(
+                                            "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Dokter</td>").append(
+                                            "<td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Catatan</td>").append(
                                          "</tr>"
                                 );
                                 w=1;
@@ -5007,12 +5001,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Tindakan Rawat Jalan Dokter</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='41%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='20%' bgcolor='#FFFAF8'>Dokter</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='41%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5052,12 +5046,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(                                        
                                     "<tr><td valign='top' colspan='4'>Tindakan Rawat Jalan Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(      
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='41%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='20%' bgcolor='#FFFAF8'>Paramedis</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='41%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Paramedis</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5098,13 +5092,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Tindakan Rawat Jalan Dokter & Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='27%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Dokter</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Paramedis</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='27%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Paramedis</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5147,12 +5141,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Tindakan Rawat Inap Dokter</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='41%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='20%' bgcolor='#FFFAF8'>Dokter</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='41%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5194,12 +5188,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Tindakan Rawat Inap Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='41%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='20%' bgcolor='#FFFAF8'>Paramedis</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='41%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Paramedis</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5241,13 +5235,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Tindakan Rawat Inap Dokter & Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='27%' bgcolor='#FFFAF8'>Nama Tindakan/Perawatan</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Dokter</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Paramedis</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='27%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan/Perawatan</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Paramedis</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5290,13 +5284,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Penggunaan Kamar</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal Masuk</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal Keluar</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Lama Inap</td>").append(
-                                      "<td valign='top' width='36%' bgcolor='#FFFAF8'>Kamar</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Status</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal Masuk</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal Keluar</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Lama Inap</td>").append(
+                                      "<td valign='top' width='36%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kamar</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5352,12 +5346,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Operasi/VK</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='51%' bgcolor='#FFFAF8'>Nama Tindakan</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Anastesi</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tindakan</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Anastesi</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5544,13 +5538,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Pemeriksaan Radiologi</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='26%' bgcolor='#FFFAF8'>Nama Pemeriksaan</td>").append(
-                                      "<td valign='top' width='18%' bgcolor='#FFFAF8'>Dokter PJ</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Petugas</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Pemeriksaan</td>").append(
+                                      "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter PJ</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5587,9 +5581,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='3'>Bacaan/Hasil Radiologi</td></tr>").append(  
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='81%' bgcolor='#FFFAF8'>Hasil Pemeriksaan</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='81%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pemeriksaan</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5621,9 +5615,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='3'>Gambar Radiologi</td></tr>").append(  
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='81%' bgcolor='#FFFAF8'>Gambar Radiologi</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='81%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Gambar Radiologi</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5658,13 +5652,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Pemeriksaan Laboratorium PK & MB</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='26%' bgcolor='#FFFAF8'>Nama Pemeriksaan</td>").append(
-                                      "<td valign='top' width='18%' bgcolor='#FFFAF8'>Dokter PJ</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Petugas</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Pemeriksaan</td>").append(
+                                      "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter PJ</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 rs4.beforeFirst();
                                 w=1;
@@ -5723,9 +5717,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                            "<td valign='top' align='center'></td>").append(
                                                            "<td valign='top'></td>").append(
                                                            "<td valign='top'></td>").append(
-                                                           "<td valign='top' align='center' bgcolor='#FFFAF8'>Detail Pemeriksaan</td>").append(
-                                                           "<td valign='top' align='center' bgcolor='#FFFAF8'>Hasil</td>").append(
-                                                           "<td valign='top' align='center' bgcolor='#FFFAF8'>Nilai Rujukan</td>").append(
+                                                           "<td valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Detail Pemeriksaan</td>").append(
+                                                           "<td valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil</td>").append(
+                                                           "<td valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nilai Rujukan</td>").append(
                                                            "<td valign='top' align='right'></td>").append(
                                                         "</tr>");
                                                     do{
@@ -5846,13 +5840,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Pemeriksaan Laboratorium PA</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='26%' bgcolor='#FFFAF8'>Nama Pemeriksaan</td>").append(
-                                      "<td valign='top' width='18%' bgcolor='#FFFAF8'>Dokter PJ</td>").append(
-                                      "<td valign='top' width='17%' bgcolor='#FFFAF8'>Petugas</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Pemeriksaan</td>").append(
+                                      "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dokter PJ</td>").append(
+                                      "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5953,13 +5947,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='5'>Pemberian Obat/BHP/Alkes</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='35%' bgcolor='#FFFAF8'>Nama Obat/BHP/Alkes</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Jumlah</td>").append(
-                                      "<td valign='top' width='16%' bgcolor='#FFFAF8'>Aturan Pakai</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Obat/BHP/Alkes</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Jumlah</td>").append(
+                                      "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Aturan Pakai</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -5998,11 +5992,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='3'>Retur Obat</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='66%' bgcolor='#FFFAF8'>Nama Obat/BHP/Alkes</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Jumlah</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='66%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Obat/BHP/Alkes</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Jumlah</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -6042,12 +6036,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Penggunaan Obat/BHP Operasi</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='51%' bgcolor='#FFFAF8'>Nama Obat/BHP</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Jumlah</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Obat/BHP</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Jumlah</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -6088,12 +6082,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='4'>Resep Pulang</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode</td>").append(
-                                      "<td valign='top' width='50%' bgcolor='#FFFAF8'>Nama Obat/BHP/Alkes</td>").append(
-                                      "<td valign='top' width='16%' bgcolor='#FFFAF8'>Dosis</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Jumlah</td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td>").append(
+                                      "<td valign='top' width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Obat/BHP/Alkes</td>").append(
+                                      "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dosis</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Jumlah</td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -6145,10 +6139,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='2'>Tambahan Biaya</td><td valign='top' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='85%' bgcolor='#FFFAF8'>Nama Tambahan</td>").append(
-                                      "<td valign='top' width='1%' bgcolor='#FFFAF8'></td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='85%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Tambahan</td>").append(
+                                      "<td valign='top' width='1%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -6184,10 +6178,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                   "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr><td valign='top' colspan='2'>Potongan Biaya</td><td valign='top' align='right'>:</td><td></td></tr>").append(            
                                     "<tr align='center'>").append(
-                                      "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                      "<td valign='top' width='85%' bgcolor='#FFFAF8'>Nama Potongan</td>").append(
-                                      "<td valign='top' width='1%' bgcolor='#FFFAF8'></td>").append(
-                                      "<td valign='top' width='10%' bgcolor='#FFFAF8'>Biaya</td>").append(
+                                      "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                      "<td valign='top' width='85%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Potongan</td>").append(
+                                      "<td valign='top' width='1%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                      "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Biaya</td>").append(
                                     "</tr>");
                                 w=1;
                                 do{
@@ -6241,10 +6235,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' width='79%'>").append(
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                          "<tr align='center'>").append(
-                                            "<td valign='top' width='20%' bgcolor='#FFFAF8'>Status</td>").append(
-                                            "<td valign='top' width='20%' bgcolor='#FFFAF8'>Kode Dokter</td>").append(
-                                            "<td valign='top' width='40%' bgcolor='#FFFAF8'>Nama Dokter</td>").append(
-                                            "<td valign='top' width='20%' bgcolor='#FFFAF8'>Kondisi Pulang</td>").append(
+                                            "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td>").append(
+                                            "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode Dokter</td>").append(
+                                            "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Dokter</td>").append(
+                                            "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kondisi Pulang</td>").append(
                                          "</tr>"
                                 );
                                 do{
@@ -6337,13 +6331,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' width='79%'>").append(
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                          "<tr align='center'>").append(
-                                            "<td valign='top' width='6%' bgcolor='#FFFAF8'>Status</td>").append(
-                                            "<td valign='top' width='15%' bgcolor='#FFFAF8'>Kode Dokter</td>").append(
-                                            "<td valign='top' width='27%' bgcolor='#FFFAF8'>Nama Dokter</td>").append(
-                                            "<td valign='top' width='13%' bgcolor='#FFFAF8'>Keadaan Pulang</td>").append(
-                                            "<td valign='top' width='13%' bgcolor='#FFFAF8'>Cara Keluar</td>").append(
-                                            "<td valign='top' width='13%' bgcolor='#FFFAF8'>Dilanjutkan</td>").append(
-                                            "<td valign='top' width='13%' bgcolor='#FFFAF8'>Tgl.Kontrol</td>").append(
+                                            "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td>").append(
+                                            "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode Dokter</td>").append(
+                                            "<td valign='top' width='27%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Dokter</td>").append(
+                                            "<td valign='top' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keadaan Pulang</td>").append(
+                                            "<td valign='top' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Cara Keluar</td>").append(
+                                            "<td valign='top' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dilanjutkan</td>").append(
+                                            "<td valign='top' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tgl.Kontrol</td>").append(
                                          "</tr>"
                                 );
                                 do{
@@ -6694,10 +6688,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         try {
             htmlContent = new StringBuilder();
             htmlContent.append("<tr class='isi'>").
-                            append("<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>Tgl.Reg</td>").
-                            append("<td valign='middle' bgcolor='#FFFAF8' align='center' width='8%'>No.Rawat</td>").
-                            append("<td valign='middle' bgcolor='#FFFAF8' align='center' width='3%'>Status</td>").
-                            append("<td valign='middle' bgcolor='#FFFAF8' align='center' width='84%'>S.O.A.P.I.E</td>").
+                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Tgl.Reg</td>").
+                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='8%'>No.Rawat</td>").
+                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='3%'>Status</td>").
+                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='84%'>S.O.A.P.I.E</td>").
                         append("</tr>");     
             if(R1.isSelected()==true){
                 ps=koneksi.prepareStatement(
@@ -6750,14 +6744,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         rs2=ps2.executeQuery();
                         if(rs2.next()){
                             htmlContent.append("<tr class='isi'>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='7%'>Tanggal</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Dokter/Paramedis</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Subjek</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Objek</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Asesmen</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Plan</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Inst/Impl</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Evaluasi</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Tanggal</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Dokter/Paramedis</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Subjek</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Objek</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Asesmen</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Plan</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Inst/Impl</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Evaluasi</td>").
                                         append("</tr>");
                             do{
                                 htmlContent.append("<tr class='isi'>").
@@ -6799,14 +6793,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         rs2=ps2.executeQuery();
                         if(rs2.next()){
                             htmlContent.append("<tr class='isi'>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='7%'>Tanggal</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Dokter/Paramedis</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Subjek</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Objek</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='13%'>Asesmen</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Plan</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Inst/Impl</td>").
-                                            append("<td valign='middle' bgcolor='#FFFFF8' align='center' width='14%'>Evaluasi</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Tanggal</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Dokter/Paramedis</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Subjek</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Objek</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='13%'>Asesmen</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Plan</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Inst/Impl</td>").
+                                            append("<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='14%'>Evaluasi</td>").
                                         append("</tr>");
                             do{
                                 htmlContent.append("<tr class='isi'>").
@@ -6863,14 +6857,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             htmlContent = new StringBuilder();
             htmlContent.append(
                 "<tr class='isi'>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='7%'>No.Nota</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='6%'>Tanggal</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='20%'>Petugas</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='7%'>Jenis Jual</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='15%'>Keterangan</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='19%'>Asal Barang</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='16%'>Cara Bayar</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='8%'>PPN</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>No.Nota</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='6%'>Tanggal</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='20%'>Petugas</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Jenis Jual</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='15%'>Keterangan</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='19%'>Asal Barang</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='16%'>Cara Bayar</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='8%'>PPN</td>").append(
                 "</tr>"); 
             if(R1.isSelected()==true){
                 ps=koneksi.prepareStatement("select penjualan.nota_jual, penjualan.tgl_jual, "+
@@ -6938,21 +6932,21 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td colspan='7'>").append(
                                 "<table width='100%' border='0' align='center' cellpadding='2px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr class='isi'>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='1%'>No.</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='7%'>Kode Barang</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='17%'>Nama Barang</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='4%'>Jml</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Satuan</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='8%'>Harga(Rp)</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='9%'>Subtotal(Rp)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='3%'>Ptg(%)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Potongan(Rp)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Tambahan(Rp)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Embalase(Rp)</td>").append(          
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Tuslah(Rp)</td>").append(          
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='10%'>Total(Rp)</td>").append(          
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='11%'>Aturan Pakai</td>").append(       
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>No.Batch</td>").append(                                        
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='1%'>No.</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Kode Barang</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='17%'>Nama Barang</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='4%'>Jml</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Satuan</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='8%'>Harga(Rp)</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='9%'>Subtotal(Rp)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='3%'>Ptg(%)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Potongan(Rp)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Tambahan(Rp)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Embalase(Rp)</td>").append(          
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Tuslah(Rp)</td>").append(          
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='10%'>Total(Rp)</td>").append(          
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='11%'>Aturan Pakai</td>").append(       
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No.Batch</td>").append(                                        
                                     "</tr>");
                     ps2=koneksi.prepareStatement(
                             "select detailjual.kode_brng,databarang.nama_brng, detailjual.kode_sat,"+
@@ -7099,12 +7093,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             htmlContent = new StringBuilder();
             htmlContent.append(
                 "<tr class='isi'>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='11%'>No.Nota</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='10%'>Tanggal</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='24%'>Petugas</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='11%'>Jenis</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='19%'>Catatan</td>").append(
-                    "<td valign='top' bgcolor='#FFFAF8' align='center' width='23%'>Asal Barang</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='11%'>No.Nota</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='10%'>Tanggal</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='24%'>Petugas</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='11%'>Jenis</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='19%'>Catatan</td>").append(
+                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='23%'>Asal Barang</td>").append(
                 "</tr>"); 
             if(R1.isSelected()==true){
                 ps=koneksi.prepareStatement(
@@ -7165,17 +7159,17 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td colspan='5'>").append(
                                 "<table width='100%' border='0' align='center' cellpadding='2px' cellspacing='0' class='tbl_form'>").append(
                                     "<tr class='isi'>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='1%'>No.</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='7%'>Kode Barang</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='31%'>Nama Barang</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='4%'>Jml</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='5%'>Satuan</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='10%'>Harga(Rp)</td>").append(
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='11%'>Subtotal(Rp)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='4%'>Ptg(%)</td>").append(    
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='7%'>Potongan(Rp)</td>").append(        
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='12%'>Total(Rp)</td>").append(          
-                                        "<td valign='top' bgcolor='#fdfff9' align='center' width='8%'>No.Batch</td>").append(                                        
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='1%'>No.</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Kode Barang</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='31%'>Nama Barang</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='4%'>Jml</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>Satuan</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='10%'>Harga(Rp)</td>").append(
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='11%'>Subtotal(Rp)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='4%'>Ptg(%)</td>").append(    
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='7%'>Potongan(Rp)</td>").append(        
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='12%'>Total(Rp)</td>").append(          
+                                        "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='8%'>No.Batch</td>").append(                                        
                                     "</tr>");
                     ps2=koneksi.prepareStatement("select detailpiutang.kode_brng,databarang.nama_brng, detailpiutang.kode_sat,"+
                             " kodesatuan.satuan,detailpiutang.h_jual, detailpiutang.jumlah, "+
@@ -7251,9 +7245,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 if(rs3.next()){                                    
                     htmlContent.append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                     append("<tr class='isi'>").
-                                        append("<td valign='top' width='2%' align='center' bgcolor='#FFFAF8'>No.</td>").
-                                        append("<td valign='top' width='8%' align='center' bgcolor='#FFFAF8'>Tgl.Retensi</td>").
-                                        append("<td valign='top' width='90%' align='center' bgcolor='#FFFAF8'>File Retensi</td>").
+                                        append("<td valign='top' width='2%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").
+                                        append("<td valign='top' width='8%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tgl.Retensi</td>").
+                                        append("<td valign='top' width='90%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>File Retensi</td>").
                                     append("</tr>");
                     w=1;
                     do{
@@ -7268,9 +7262,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 } else{
                     htmlContent.append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                     append("<tr class='isi'>").
-                                        append("<td valign='top' width='2%' align='center' bgcolor='#FFFAF8'>No.</td>").
-                                        append("<td valign='top' width='8%' align='center' bgcolor='#FFFAF8'>Tgl.Retensi</td>").
-                                        append("<td valign='top' width='90%' align='center' bgcolor='#FFFAF8'>File Retensi</td>").
+                                        append("<td valign='top' width='2%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").
+                                        append("<td valign='top' width='8%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tgl.Retensi</td>").
+                                        append("<td valign='top' width='90%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>File Retensi</td>").
                                     append("</tr>").
                                 append("</table>");
                 }                              
@@ -7297,12 +7291,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 if(rs3.next()){
                     htmlContent.append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                     append("<tr class='isi'>").
-                                        append("<td valign='top' width='2%' align='center' bgcolor='#FFFAF8'>No.</td>").
-                                        append("<td valign='top' width='15%' align='center' bgcolor='#FFFAF8'>Tanggal</td>").
-                                        append("<td valign='top' width='28%' align='center' bgcolor='#FFFAF8'>Variabel</td>").
-                                        append("<td valign='top' width='10%' align='center' bgcolor='#FFFAF8'>Nilai</td>").
-                                        append("<td valign='top' width='10%' align='center' bgcolor='#FFFAF8'>Satuan</td>").
-                                        append("<td valign='top' width='35%' align='center' bgcolor='#FFFAF8'>Keterangan</td>").
+                                        append("<td valign='top' width='2%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").
+                                        append("<td valign='top' width='15%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").
+                                        append("<td valign='top' width='28%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Variabel</td>").
+                                        append("<td valign='top' width='10%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nilai</td>").
+                                        append("<td valign='top' width='10%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Satuan</td>").
+                                        append("<td valign='top' width='35%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keterangan</td>").
                                     append("</tr>");
                     w=1;
                     do{
@@ -7332,12 +7326,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 } else{
                     htmlContent.append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                     append("<tr class='isi'>").
-                                        append("<td valign='top' width='2%' align='center' bgcolor='#FFFAF8'>No.</td>").
-                                        append("<td valign='top' width='15%' align='center' bgcolor='#FFFAF8'>Tanggal</td>").
-                                        append("<td valign='top' width='28%' align='center' bgcolor='#FFFAF8'>Variabel</td>").
-                                        append("<td valign='top' width='10%' align='center' bgcolor='#FFFAF8'>Nilai</td>").
-                                        append("<td valign='top' width='10%' align='center' bgcolor='#FFFAF8'>Satuan</td>").
-                                        append("<td valign='top' width='35%' align='center' bgcolor='#FFFAF8'>Keterangan</td>").
+                                        append("<td valign='top' width='2%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").
+                                        append("<td valign='top' width='15%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").
+                                        append("<td valign='top' width='28%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Variabel</td>").
+                                        append("<td valign='top' width='10%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nilai</td>").
+                                        append("<td valign='top' width='10%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Satuan</td>").
+                                        append("<td valign='top' width='35%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keterangan</td>").
                                     append("</tr>").
                                 append("</table>");
                 }
@@ -7514,8 +7508,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                       "<td valign='top'>Macam Kasus</td><td valign='top'>: ").append(rs2.getString("macam_kasus")).append("</td>").append(
                                   "</tr>").append(
                                   "<tr class='isi'>").append(
-                                      "<td valign='middle' bgcolor='#FFFAF8' align='center' width='35%'>Keterangan</td>").append(
-                                      "<td valign='middle' bgcolor='#FFFAF8' align='center' width='65%'>Triase Primer</td>").append(
+                                      "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='35%'>Keterangan</td>").append(
+                                      "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='65%'>Triase Primer</td>").append(
                                   "</tr>").append(
                                   "<tr class='isi'>").append(
                                       "<td valign='middle'>Keluhan Utama</td>").append(
@@ -7541,7 +7535,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs3.next()){
                                 htmlContent.append(                             
                                     "<tr class='isi'>").append(
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center'>Pemeriksaan</td>").append(
+                                        "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemeriksaan</td>").append(
                                         "<td valign='middle' bgcolor='#AA0000' color='ffffff' align='center'>Immediate/Segera</td>").append(
                                     "</tr>"
                                 );
@@ -7597,7 +7591,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs3.next()){
                                 htmlContent.append(                             
                                     "<tr class='isi'>").append(
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center'>Pemeriksaan</td>").append(
+                                        "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemeriksaan</td>").append(
                                         "<td valign='middle' bgcolor='#FF0000' color='ffffff' align='center'>Emergensi</td>").append(
                                     "</tr>"
                                 );
@@ -7651,7 +7645,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                 "</tr>").append(                       
                                 "<tr class='isi'>").append(
                                     "<td valign='middle'>&nbsp;</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8' align='center'>Petugas Triase Primer</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Petugas Triase Primer</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
                                     "<td valign='middle'>Tanggal & Jam</td>").append(
@@ -7712,8 +7706,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>Macam Kasus</td><td valign='top'>: ").append(rs2.getString("macam_kasus")).append("</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='35%'>Keterangan</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8' align='center' width='65%'>Triase Sekunder</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='35%'>Keterangan</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='65%'>Triase Sekunder</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
                                     "<td valign='middle'>Anamnesa Singkat</td>").append(
@@ -7734,7 +7728,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs3.next()){
                                 htmlContent.append(                             
                                     "<tr class='isi'>").append(
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center'>Pemeriksaan</td>").append(
+                                        "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemeriksaan</td>").append(
                                         "<td valign='middle' bgcolor='#C8C800' color='ffffff' align='center'>Urgensi</td>").append(
                                     "</tr>"
                                 );
@@ -7790,7 +7784,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs3.next()){
                                 htmlContent.append(                             
                                     "<tr class='isi'>").append(
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center'>Pemeriksaan</td>").append(
+                                        "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemeriksaan</td>").append(
                                         "<td valign='middle' bgcolor='#00AA00' color='ffffff' align='center'>Semi Urgensi/Urgensi Rendah</td>").append(
                                     "</tr>"
                                 );
@@ -7846,7 +7840,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             if(rs3.next()){
                                 htmlContent.append(                             
                                     "<tr class='isi'>").append(
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center'>Pemeriksaan</td>").append(
+                                        "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemeriksaan</td>").append(
                                         "<td valign='middle' bgcolor='#969696' color='ffffff' align='center'>Non Urgensi</td>").append(
                                     "</tr>"
                                 );
@@ -7900,7 +7894,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                 "</tr>").append(                       
                                 "<tr class='isi'>").append(
                                     "<td valign='middle'>&nbsp;</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8' align='center'>Petugas Triase Sekunder</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Petugas Triase Sekunder</td>").append(
                                 "</tr>").append(
                                 "<tr class='isi'>").append(
                                     "<td valign='middle'>Tanggal & Jam</td>").append(
@@ -8133,8 +8127,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -8355,9 +8349,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='70%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='25%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='70%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='25%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -8408,8 +8402,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -8633,9 +8627,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='70%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='25%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='70%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='25%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -8712,9 +8706,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "X. FRAILTY PHENOTYPE").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='45%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='45%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top'>1</td>").append(
@@ -8758,8 +8752,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -9024,8 +9018,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -9192,13 +9186,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "IV. RIWAYAT IMUNISASI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='70%' bgcolor='#FFFAF8' align='center' valign='middle'>Imunisasi</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>1</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>2</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>3</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>4</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>5</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>6</td>").append(
+                                              "<td width='70%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Imunisasi</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>1</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>2</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>3</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>4</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>5</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>6</td>").append(
                                           "</tr>");
                             try {
                                 rs3=koneksi.prepareStatement(
@@ -9355,9 +9349,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "IX. SKRINING GIZI (STRONG KID)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>No.</td>").append(
-                                              "<td width='75%' bgcolor='#FFFAF8' align='center' valign='middle'>Parameter</td>").append(
-                                              "<td width='20%' bgcolor='#FFFAF8' colspan='2' align='center' valign='middle'>Nilai</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>No.</td>").append(
+                                              "<td width='75%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Parameter</td>").append(
+                                              "<td width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='2' align='center' valign='middle'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1</td>").append(
@@ -9395,9 +9389,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "X. PENGKAJIAN TINGKAT NYERI (Skala FLACCS)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='30%' bgcolor='#FFFAF8' align='center' valign='middle'>Pengkajian</td>").append(
-                                              "<td width='60%' bgcolor='#FFFAF8' align='center' valign='middle'>Parameter</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center' valign='middle'>Nilai</td>").append(
+                                              "<td width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Pengkajian</td>").append(
+                                              "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Parameter</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>Wajah</td>").append(
@@ -9449,8 +9443,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -9656,19 +9650,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "</table>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr class='isi'>").append(
-                                              "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>No</td>").append(
-                                              "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
-                                              "<td width='23%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
-                                              "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
-                                              "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
-                                              "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
-                                              "<td bgcolor='#FFFAF8' align='center' valign='middle' colspan='3'>Anak</td>").append(
+                                              "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>No</td>").append(
+                                              "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
+                                              "<td width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
+                                              "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
+                                              "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
+                                              "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
+                                              "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' colspan='3'>Anak</td>").append(
                                           "</tr>").append(
                                           "<tr class='isi'>").append(
-                                              "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle'>JK</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>BB/PB</td>").append(
-                                              "<td width='13%' bgcolor='#FFFAF8' align='center' valign='middle'>Keadaan</td>").append(
+                                              "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>JK</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>BB/PB</td>").append(
+                                              "<td width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Keadaan</td>").append(
                                           "</tr>");
                             try {
                                 w=1;
@@ -9791,9 +9785,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='70%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='25%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='70%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='25%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -9844,8 +9838,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEBIDANAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>TINDAKAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEBIDANAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>TINDAKAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>").append(rs2.getString("masalah")).append("</td>").append(
@@ -10079,9 +10073,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VIII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='55%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='40%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='55%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='40%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -10190,8 +10184,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -11392,7 +11386,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='1%' align='center'>:</td>").append(
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
-                                 "<tr align='center'><td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td><td valign='top' width='24%' bgcolor='#FFFAF8'>Kode</td><td valign='top' width='51%' bgcolor='#FFFAF8'>Nama Penyakit</td><td valign='top' width='23%' bgcolor='#FFFAF8'>Status</td></tr>"
+                                 "<tr align='center'><td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td><td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td><td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Penyakit</td><td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td></tr>"
                         );
                         w=1;
                         do{
@@ -11428,7 +11422,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='1%' align='center'>:</td>").append(
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
-                                 "<tr align='center'><td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td><td valign='top' width='24%' bgcolor='#FFFAF8'>Kode</td><td valign='top' width='51%' bgcolor='#FFFAF8'>Nama Prosedur</td><td valign='top' width='23%' bgcolor='#FFFAF8'>Status</td></tr>"
+                                 "<tr align='center'><td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td><td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode</td><td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Prosedur</td><td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td></tr>"
                         );
                         w=1;
                         do{
@@ -11471,12 +11465,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kode Dokter P.J.</td>").append(
-                                    "<td valign='top' width='20%' bgcolor='#FFFAF8'>Nama Dokter P.J.</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>ICD 10</td>").append(
-                                    "<td valign='top' width='41%' bgcolor='#FFFAF8'>Nama Penyakit</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kode Dokter P.J.</td>").append(
+                                    "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Dokter P.J.</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>ICD 10</td>").append(
+                                    "<td valign='top' width='41%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nama Penyakit</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -11550,10 +11544,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='54%' bgcolor='#FFFAF8' colspan='7'>Dokter/Paramedis</td>").append(
-                                    "<td valign='top' width='27%' bgcolor='#FFFAF8' colspan='3'>Profesi/Jabatan/Departemen</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='54%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='7'>Dokter/Paramedis</td>").append(
+                                    "<td valign='top' width='27%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Profesi/Jabatan/Departemen</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -11589,16 +11583,16 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<tr>").append(
                                         "<td valign='top' align='center'></td>").append(
                                         "<td valign='top' align='center'></td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Suhu(C)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Tensi</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Nadi(/menit)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Respirasi(/menit)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Tinggi(Cm)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Berat(Kg)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>SpO2(%)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>GCS(E,V,M)</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Kesadaran</td>").append(
-                                        "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>L.P.(Cm)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Suhu(C)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Tensi</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Nadi(/menit)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Respirasi(/menit)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Tinggi(Cm)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Berat(Kg)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>SpO2(%)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>GCS(E,V,M)</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Kesadaran</td>").append(
+                                        "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>L.P.(Cm)</td>").append(
                                     "</tr>").append(
                                     "<tr>").append(
                                         "<td valign='top' align='center'></td>").append(
@@ -11699,23 +11693,23 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Tinggi Fundus</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Janin</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Letak</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Panggul</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Denyut</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kontraksi</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kualitas Mnt</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kualitas Detik</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Fluksus</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Albus</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Dalam</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Tebal</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Arah</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Ketuban</td>").append(
-                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>Feto</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tinggi Fundus</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Janin</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Letak</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Panggul</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Denyut</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kontraksi</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kualitas Mnt</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kualitas Detik</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Fluksus</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Albus</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dalam</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tebal</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Arah</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Ketuban</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Feto</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -11831,9 +11825,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='81%' bgcolor='#FFFAF8'>Pemeriksaan</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='81%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemeriksaan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -11931,10 +11925,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8'>Uraian</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8'>Petugas</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Uraian</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -11986,18 +11980,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='11%' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>HR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>RR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
+                                    "<td valign='top' width='11%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12047,19 +12041,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='63%' bgcolor='#FFFAF8' colspan='7'>Monitoring</td>").append(
-                                    "<td valign='middle' width='18%' bgcolor='#FFFAF8' rowspan='2'>Petugas</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='63%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='7'>Monitoring</td>").append(
+                                    "<td valign='middle' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Petugas</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='7%' bgcolor='#FFFAF8'>TD<br>(mmHg)</td>").append(
-                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>Nadi<br>(x/menit)</td>").append(
-                                    "<td valign='middle' width='7%' bgcolor='#FFFAF8'>Suhu<br>Rectal(°C)</td>").append(
-                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>DJJ</td>").append(
-                                    "<td valign='middle' width='13%' bgcolor='#FFFAF8'>HIS</td>").append(
-                                    "<td valign='middle' width='8%' bgcolor='#FFFAF8'>PPV</td>").append(
-                                    "<td valign='middle' width='16%' bgcolor='#FFFAF8'>Keterangan</td>").append(
+                                    "<td valign='middle' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD<br>(mmHg)</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nadi<br>(x/menit)</td>").append(
+                                    "<td valign='middle' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu<br>Rectal(°C)</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>DJJ</td>").append(
+                                    "<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HIS</td>").append(
+                                    "<td valign='middle' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>PPV</td>").append(
+                                    "<td valign='middle' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keterangan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12110,18 +12104,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                         append("<td valign='top' width='79%'>").
                                         append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                             append("<tr align='center'>").
-                                                append("<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").
-                                                append("<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").
-                                                append("<td valign='top' width='63%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").
-                                                append("<td valign='middle' width='18%' bgcolor='#FFFAF8' rowspan='2'>Petugas</td>").
+                                                append("<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").
+                                                append("<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").
+                                                append("<td valign='top' width='63%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").
+                                                append("<td valign='middle' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Petugas</td>").
                                             append("</tr>").
                                             append("<tr align='center'>").
-                                                append("<td valign='middle' width='14%' bgcolor='#FFFAF8'>Obat</td>").
-                                                append("<td valign='middle' width='13%' bgcolor='#FFFAF8'>Cairan</td>").
-                                                append("<td valign='middle' width='5%' bgcolor='#FFFAF8'>Dosis</td>").
-                                                append("<td valign='middle' width='12%' bgcolor='#FFFAF8'>HIS</td>").
-                                                append("<td valign='middle' width='5%' bgcolor='#FFFAF8'>DJJ</td>").
-                                                append("<td valign='middle' width='14%' bgcolor='#FFFAF8'>Keterangan</td>").
+                                                append("<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Obat</td>").
+                                                append("<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Cairan</td>").
+                                                append("<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dosis</td>").
+                                                append("<td valign='middle' width='12%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HIS</td>").
+                                                append("<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>DJJ</td>").
+                                                append("<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keterangan</td>").
                                             append("</tr>");
                         w=1;
                         do{
@@ -12168,15 +12162,15 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='3'>Catatan</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Catatan</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>GDS</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Insulin</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Obat Gula</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GDS</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Insulin</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Obat Gula</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12225,22 +12219,22 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8' colspan='3'>Input</td>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8' colspan='4'>Output</td>").append(
-                                    "<td valign='middle' width='10%' bgcolor='#FFFAF8' rowspan='2'>Keseimbangan Cairan</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
-                                    "<td valign='middle' width='16%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Input</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='4'>Output</td>").append(
+                                    "<td valign='middle' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keseimbangan Cairan</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Infus</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Tranfusi</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Minum</td>").append(
-                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>Urine/Feses</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Drain</td>").append(
-                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>NGT/Oral</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>IWL</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Infus</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tranfusi</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Minum</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Urine/Feses</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Drain</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>NGT/Oral</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>IWL</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12294,21 +12288,21 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='9'>Catatan</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='9'>Catatan</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Minum</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Infus</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Transfusi</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Sisa Priming</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Wash Out</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Urine</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Pendarahan</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Muntah</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Keterangan</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Minum</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Infus</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Transfusi</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Sisa Priming</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Wash Out</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Urine</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pendarahan</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Muntah</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keterangan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12363,10 +12357,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td width='60%' bgcolor='#FFFAF8'>Hasil Pengkajian</td>").append(
-                                    "<td width='21%' bgcolor='#FFFAF8'>Perawat/Paramedis</td>").append(
+                                    "<td width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pengkajian</td>").append(
+                                    "<td width='21%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Perawat/Paramedis</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12420,15 +12414,15 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='60%' bgcolor='#FFFAF8' colspan='3'>Intervensi</td>").append(
-                                    "<td valign='middle' width='21%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Intervensi</td>").append(
+                                    "<td valign='middle' width='21%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8'>Obat</td>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8'>Dosis & Efek</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>Rute</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Obat</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dosis & Efek</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Rute</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12474,10 +12468,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td width='60%' bgcolor='#FFFAF8'>Intervensi</td>").append(
-                                    "<td width='21%' bgcolor='#FFFAF8'>Perawat/Paramedis</td>").append(
+                                    "<td width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Intervensi</td>").append(
+                                    "<td width='21%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Perawat/Paramedis</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12529,21 +12523,21 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='8%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='middle' width='13%' bgcolor='#FFFAF8' rowspan='2'>Jenis/Produk Darah</td>").append(
-                                    "<td valign='middle' width='8%' bgcolor='#FFFAF8' rowspan='2'>No.Kantong</td>").append(
-                                    "<td valign='middle' width='13%' bgcolor='#FFFAF8' rowspan='2'>Lokasi Insersi</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8' colspan='4'>TTV</td>").append(
-                                    "<td valign='middle' width='13%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
-                                    "<td valign='middle' width='13%' bgcolor='#FFFAF8' rowspan='2'>Alergi/Reaksi Tranfusi</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Jenis/Produk Darah</td>").append(
+                                    "<td valign='middle' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.Kantong</td>").append(
+                                    "<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Lokasi Insersi</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='4'>TTV</td>").append(
+                                    "<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Alergi/Reaksi Tranfusi</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keterangan</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' width='3%' bgcolor='#FFFAF8'>HR</td>").append(
-                                    "<td valign='top' width='3%' bgcolor='#FFFAF8'>RR</td>").append(
-                                    "<td valign='top' width='3%' bgcolor='#FFFAF8'>Suhu</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR</td>").append(
+                                    "<td valign='top' width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR</td>").append(
+                                    "<td valign='top' width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -12750,19 +12744,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                             "<td width='100%' colspan='10' border='0'>G : ").append(rs2.getString("riwayat_persalinan_g")).append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P : ").append(rs2.getString("riwayat_persalinan_p")).append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A : ").append(rs2.getString("riwayat_persalinan_a")).append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anak Yang Hidup : ").append(rs2.getString("riwayat_persalinan_hidup")).append("</td>").append(
                                                         "</tr>").append(
                                                         "<tr class='isi'>").append(
-                                                            "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>No</td>").append(
-                                                            "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
-                                                            "<td width='23%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
-                                                            "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
-                                                            "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
-                                                            "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
-                                                            "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
-                                                            "<td bgcolor='#FFFAF8' align='center' valign='middle' colspan='3'>Anak</td>").append(
+                                                            "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>No</td>").append(
+                                                            "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
+                                                            "<td width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
+                                                            "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
+                                                            "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
+                                                            "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
+                                                            "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
+                                                            "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' colspan='3'>Anak</td>").append(
                                                         "</tr>").append(
                                                         "<tr class='isi'>").append(
-                                                            "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle'>JK</td>").append(
-                                                            "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>BB/PB</td>").append(
-                                                            "<td width='13%' bgcolor='#FFFAF8' align='center' valign='middle'>Keadaan</td>").append(
+                                                            "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>JK</td>").append(
+                                                            "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>BB/PB</td>").append(
+                                                            "<td width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Keadaan</td>").append(
                                                         "</tr>");
                                         try {
                                             w=1;
@@ -13099,9 +13093,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VII. PENGKAJIAN RESIKO JATUH").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                          "<tr class='isi'>").append(
-                                              "<td width='50%' bgcolor='#FFFAF8' align='center'>Faktor Resiko</td>").append(
-                                              "<td width='40%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Poin</td>").append(
+                                              "<td width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Resiko</td>").append(
+                                              "<td width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Poin</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>1. Riwayat Jatuh</td>").append(
@@ -13159,9 +13153,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VIII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='55%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='40%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='55%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='40%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -13192,8 +13186,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>ASESMEN/PENGKAJIAN KEBIDANAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEBIDANAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>ASESMEN/PENGKAJIAN KEBIDANAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEBIDANAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>").append(rs2.getString("masalah")).append("</td>").append(
@@ -14727,14 +14721,14 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "DAFTAR OBAT REKONSILIASI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr align='center'>").append(
-                                            "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                            "<td valign='top' width='22%' bgcolor='#FFFAF8' align='center'>Nama Obat</td>").append(
-                                            "<td valign='top' width='9%' bgcolor='#FFFAF8' align='center'>Dosis Obat</td>").append(
-                                            "<td valign='top' width='9%' bgcolor='#FFFAF8' align='center'>Frekuensi</td>").append(
-                                            "<td valign='top' width='19%' bgcolor='#FFFAF8' align='center'>Cara Pemberian/Aturan Pakai</td>").append(
-                                            "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Pemberian Terakhir</td>").append(
-                                            "<td valign='top' width='8%' bgcolor='#FFFAF8' align='center'>Tindak Lanjut</td>").append(
-                                            "<td valign='top' width='19%' bgcolor='#FFFAF8' align='center'>Perubahan Aturan Pakai</td>").append(
+                                            "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                            "<td valign='top' width='22%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Nama Obat</td>").append(
+                                            "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Dosis Obat</td>").append(
+                                            "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Frekuensi</td>").append(
+                                            "<td valign='top' width='19%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Cara Pemberian/Aturan Pakai</td>").append(
+                                            "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pemberian Terakhir</td>").append(
+                                            "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Tindak Lanjut</td>").append(
+                                            "<td valign='top' width='19%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Perubahan Aturan Pakai</td>").append(
                                           "</tr>"
                             );
                             
@@ -15501,10 +15495,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='51%' bgcolor='#FFFAF8' colspan='6'>Dokter/Paramedis</td>").append(
-                                    "<td valign='top' width='30%' bgcolor='#FFFAF8' colspan='3'>Profesi/Jabatan/Departemen</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='51%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Dokter/Paramedis</td>").append(
+                                    "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Profesi/Jabatan/Departemen</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -15541,15 +15535,15 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                      "<tr>").append(
                                         "<td valign='top' align='center'></td>").append(
                                         "<td valign='top' align='center'></td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Tensi</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Nadi(/menit)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Respirasi(/menit)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Tinggi(Cm)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Berat(Kg)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                        "<td valign='top' width='9%' align='center' bgcolor='#FFFAF8'>Kesadaran</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tensi</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nadi(/menit)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Respirasi(/menit)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tinggi(Cm)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Berat(Kg)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                        "<td valign='top' width='9%' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kesadaran</td>").append(
                                      "</tr>").append(
                                      "<tr>").append(
                                         "<td valign='top' align='center'></td>").append(
@@ -15650,23 +15644,23 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Tinggi Fundus</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Janin</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Letak</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Panggul</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Denyut</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kontraksi</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kualitas Mnt</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Kualitas Detik</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Fluksus</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Albus</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Dalam</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Tebal</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Arah</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Ketuban</td>").append(
-                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>Feto</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tinggi Fundus</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Janin</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Letak</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Panggul</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Denyut</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kontraksi</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kualitas Mnt</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kualitas Detik</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Fluksus</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Albus</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Dalam</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tebal</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Arah</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Ketuban</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Feto</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -15776,9 +15770,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='81%' bgcolor='#FFFAF8'>Pemeriksaan</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='81%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemeriksaan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -15878,18 +15872,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='11%' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>HR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>RR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
+                                    "<td valign='top' width='11%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -15941,18 +15935,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Bidan</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Bidan</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='11%' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>HR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>RR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
+                                    "<td valign='top' width='11%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -15970,10 +15964,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' rowspan='3'>").append(rs2.getString("nip")).append(" ").append(rs2.getString("nama")).append("</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Kotraksi/HIS</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>BJJ</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>PPV</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8' colspan='3'>VT</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kotraksi/HIS</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>BJJ</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>PPV</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>VT</td>").append(
                                  "</tr>").append(
                                  "<tr>").append(
                                     "<td valign='top'>").append(rs2.getString("kontraksi")).append("</td>").append(
@@ -16017,18 +16011,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Bidan</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Bidan</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='11%' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>HR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>RR (/menit)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
+                                    "<td valign='top' width='11%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16046,10 +16040,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top' rowspan='3'>").append(rs2.getString("nip")).append(" ").append(rs2.getString("nama")).append("</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>TFU</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Kontraksi</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8' colspan='2'>Perdarahan</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8' colspan='2'>Keterangan</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TFU</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kontraksi</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='2'>Perdarahan</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='2'>Keterangan</td>").append(
                                  "</tr>").append(
                                  "<tr>").append(
                                     "<td valign='top'>").append(rs2.getString("tfu")).append("</td>").append(
@@ -16091,18 +16085,18 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                         append("<td valign='top' width='79%'>").
                                             append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").
                                                 append("<tr align='center'>").
-                                                    append("<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").
-                                                    append("<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").
-                                                    append("<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").
-                                                    append("<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").
+                                                    append("<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").
+                                                    append("<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").
+                                                    append("<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").
+                                                    append("<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").
                                                 append("</tr>").
                                                 append("<tr align='center'>").
-                                                    append("<td valign='top' width='11%' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").
-                                                    append("<td valign='top' width='10%' bgcolor='#FFFAF8'>TD</td>").
-                                                    append("<td valign='top' width='9%' bgcolor='#FFFAF8'>HR (/menit)</td>").
-                                                    append("<td valign='top' width='9%' bgcolor='#FFFAF8'>RR (/menit)</td>").
-                                                    append("<td valign='top' width='9%' bgcolor='#FFFAF8'>Suhu(C)</td>").
-                                                    append("<td valign='top' width='9%' bgcolor='#FFFAF8'>SpO2(%)</td>").
+                                                    append("<td valign='top' width='11%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").
+                                                    append("<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").
+                                                    append("<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").
+                                                    append("<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").
+                                                    append("<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").
+                                                    append("<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").
                                                 append("</tr>");
                         w=1;
                         do{
@@ -16174,24 +16168,24 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='35%' bgcolor='#FFFAF8' colspan='10'>Monitoring</td>").append(
-                                    "<td valign='middle' width='20%' bgcolor='#FFFAF8' rowspan='2'>Tindakan</td>").append(
-                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8' rowspan='2'>Barcode HF</td>").append(
-                                    "<td valign='middle' width='20%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='10'>Monitoring</td>").append(
+                                    "<td valign='middle' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tindakan</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Barcode HF</td>").append(
+                                    "<td valign='middle' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>QB</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>QD</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Arteri</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Vena</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>TMP</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>UFR</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Tensi</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Nadi</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Suhu</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>SpO2</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>QB</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>QD</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Arteri</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Vena</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TMP</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>UFR</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tensi</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nadi</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16253,22 +16247,22 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' colspan='5'>Lokasi Pemasangan Restarin</td>").append(
-                                    "<td valign='middle' width='17%' bgcolor='#FFFAF8' colspan='3'>Observasi Lokasi Pemasangan</td>").append(
-                                    "<td valign='middle' width='20%' bgcolor='#FFFAF8' rowspan='2'>Kondisi</td>").append(
-                                    "<td valign='middle' width='21%' bgcolor='#FFFAF8' rowspan='2'>Petugas</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='5'>Lokasi Pemasangan Restarin</td>").append(
+                                    "<td valign='middle' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='3'>Observasi Lokasi Pemasangan</td>").append(
+                                    "<td valign='middle' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Kondisi</td>").append(
+                                    "<td valign='middle' width='21%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Petugas</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Tangan Kiri</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Tangan Kanan</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Badan</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Kaki Kiri</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Kaki Kanan</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Edema</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Iritasi</td>").append(
-                                    "<td valign='middle' bgcolor='#FFFAF8'>Sirkulasi</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tangan Kiri</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tangan Kanan</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Badan</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kaki Kiri</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kaki Kanan</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Edema</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Iritasi</td>").append(
+                                    "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Sirkulasi</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16322,19 +16316,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='50%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
-                                    "<td valign='middle' width='16%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Mode</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>VT</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Pakar</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>RR</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>REF/PS</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>EE</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Mode</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>VT</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pakar</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>REF/PS</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>EE</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16383,10 +16377,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8'>Uraian</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8'>Petugas</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Uraian</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16470,9 +16464,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "SKRINING GIZI AWAL DENGAN MST(MALNUTRITION SCREENING TOOL) BAGI PERAWAT").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='65%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='25%' bgcolor='#FFFAF8' align='center'>Pilihan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='65%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pilihan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top'>1. Apakah Ada Penurunan Berat Badan Yang Tidak Diinginkan Selama 6 Bulan Terakhir ?</td>").append(
@@ -16562,9 +16556,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "SKRINING GIZI AWAL DENGAN MNA (MINI NUTRITIONAL ASSESMENT)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='65%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='25%' bgcolor='#FFFAF8' align='center'>Pilihan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='65%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pilihan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top'>A. Apakah Asupan Makan Berkurang Selama 3 Bulan Terakhir ?</td>").append(
@@ -16673,9 +16667,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "SKRINING GIZI AWAL DENGAN STRONG-KIDS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='75%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='15%' bgcolor='#FFFAF8' align='center'>Pilihan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='75%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pilihan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top'>1. Apakah pasien tampak kurus?</td>").append(
@@ -16758,9 +16752,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("SKRINING GIZI AWAL KEHAMILAN").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='75%' bgcolor='#FFFAF8' align='center'>Parameter</td>").
-                                                        append("<td valign='top' width='15%' bgcolor='#FFFAF8' align='center'>Pilihan</td>").
-                                                        append("<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='75%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").
+                                                        append("<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pilihan</td>").
+                                                        append("<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td valign='top'>1. Apakah asupan makan berkurang karena tidak nafsu makan ?</td>").
@@ -16832,11 +16826,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8'>Pemeriksaan</td>").append(
-                                    "<td valign='top' width='40%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Ahli Gizi</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemeriksaan</td>").append(
+                                    "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Ahli Gizi</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -16903,8 +16897,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='96%' bgcolor='#FFFAF8'>Pengkajian Gizi</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='96%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pengkajian Gizi</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -17006,11 +17000,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='31%' bgcolor='#FFFAF8'>Monitoring</td>").append(
-                                    "<td valign='top' width='30%' bgcolor='#FFFAF8'>Evaluasi</td>").append(
-                                    "<td valign='top' width='20%' bgcolor='#FFFAF8'>Petugas</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='31%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Monitoring</td>").append(
+                                    "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Evaluasi</td>").append(
+                                    "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -17056,10 +17050,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='top' width='61%' bgcolor='#FFFAF8'>Catatan</td>").append(
-                                    "<td valign='top' width='20%' bgcolor='#FFFAF8'>Petugas</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='top' width='61%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Catatan</td>").append(
+                                    "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Petugas</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -17800,9 +17794,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td width='100%' border='0'>Skala Morse :").append(
                                                     "<table width='99%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                       "<tr class='isi'>").append(
-                                                           "<td width='50%' bgcolor='#FFFAF8' align='center'>Faktor Resiko</td>").append(
-                                                           "<td width='40%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                                           "<td width='10%' bgcolor='#FFFAF8' align='center'>Poin</td>").append(
+                                                           "<td width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Resiko</td>").append(
+                                                           "<td width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                                           "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Poin</td>").append(
                                                        "</tr>").append(
                                                        "<tr>").append(
                                                            "<td>1. Riwayat Jatuh</td>").append(
@@ -17860,9 +17854,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td width='100%' border='0'>Skala Sydney :").append(
                                                     "<table width='99%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                       "<tr class='isi'>").append(
-                                                           "<td width='60%' bgcolor='#FFFAF8' align='center'>Faktor Resiko</td>").append(
-                                                           "<td width='30%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                                           "<td width='10%' bgcolor='#FFFAF8' align='center'>Poin</td>").append(
+                                                           "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Resiko</td>").append(
+                                                           "<td width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                                           "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Poin</td>").append(
                                                        "</tr>").append(
                                                        "<tr>").append(
                                                            "<td>1. Gangguan Gaya Berjalan (Diseret, Menghentak, Diayun)</td>").append(
@@ -17947,9 +17941,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VIII. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='55%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='40%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='55%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='40%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -17980,8 +17974,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -18061,8 +18055,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='96%' bgcolor='#FFFAF8'>Berkas Digital</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='96%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Berkas Digital</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -18726,9 +18720,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "III. STATUS OFTAMOLOGIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr align='center'>").append(
-                                            "<td valign='top' width='40%' bgcolor='#FFFAF8'>OD : Mata Kanan</td>").append(
-                                            "<td valign='top' width='20%' bgcolor='#FFFAF8'>Status</td>").append(
-                                            "<td valign='top' width='40%' bgcolor='#FFFAF8'>OS : Mata Kiri</td>").append(
+                                            "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>OD : Mata Kanan</td>").append(
+                                            "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Status</td>").append(
+                                            "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>OS : Mata Kiri</td>").append(
                                           "</tr>").append(
                                           "<tr align='center'>").append(
                                                "<td><img alt='Gambar Lokalis' src='").append((getClass().getResource("/picture/mata.png"))).append("' width='170' height='70'/></td>").append(
@@ -19437,11 +19431,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='25%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Pemantauan</td>").append(
-                                    "<td valign='top' width='43%' bgcolor='#FFFAF8'>Hasil Pemantauan</td>").append(
-                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemantauan</td>").append(
+                                    "<td valign='top' width='43%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pemantauan</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -19503,11 +19497,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='25%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Pemantauan</td>").append(
-                                    "<td valign='top' width='43%' bgcolor='#FFFAF8'>Hasil Pemantauan</td>").append(
-                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemantauan</td>").append(
+                                    "<td valign='top' width='43%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pemantauan</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -19632,11 +19626,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='25%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Pemantauan</td>").append(
-                                    "<td valign='top' width='43%' bgcolor='#FFFAF8'>Hasil Pemantauan</td>").append(
-                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemantauan</td>").append(
+                                    "<td valign='top' width='43%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pemantauan</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -19769,11 +19763,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='25%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='23%' bgcolor='#FFFAF8'>Pemantauan</td>").append(
-                                    "<td valign='top' width='43%' bgcolor='#FFFAF8'>Hasil Pemantauan</td>").append(
-                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pemantauan</td>").append(
+                                    "<td valign='top' width='43%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pemantauan</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -19913,13 +19907,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='22%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Hasil Skrining</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Saran</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='22%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Skrining</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Saran</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -20013,13 +20007,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='22%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Hasil Skrining</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Saran</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='22%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Skrining</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Saran</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -20118,13 +20112,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='18%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='30%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Hasil Skrining</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Saran</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Skrining</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Saran</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -20223,13 +20217,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='18%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='30%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Hasil Skrining</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Saran</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Skrining</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Saran</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -20320,11 +20314,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='36%' bgcolor='#FFFAF8'>Parameter Norton</td>").append(
-                                    "<td valign='top' width='40%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='36%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter Norton</td>").append(
+                                    "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -21063,12 +21057,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "FAKTOR-FAKTOR BUNUH DIRI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Statik</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Dinamis</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Statik</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Dinamis</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='35%'>Tinggal Hidup Sendiri</td>").append(
@@ -21228,12 +21222,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "FAKTOR-FAKTOR PERILAKU KEKERASAN").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Statik</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Dinamis</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Statik</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Dinamis</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='35%'>Insiden Kekerasan Baru-baru Ini</td>").append(
@@ -21411,12 +21405,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "FAKTOR-FAKTOR MELARIKAN DIRI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Statik</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Dinamis</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Statik</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Dinamis</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='35%'>Riwayat Melarikan Diri</td>").append(
@@ -21925,9 +21919,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA FISIOLOGI PASIEN MASUK HCU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA FISIOLOGI PASIEN MASUK HCU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -22132,9 +22126,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").append(
-                                              "<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA FISIOLOGI PASIEN KELUAR HCU</td>").append(
-                                              "<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").append(
+                                              "<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                              "<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA FISIOLOGI PASIEN KELUAR HCU</td>").append(
+                                              "<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' valign='top' align='center'>1</td>").append(
@@ -22369,9 +22363,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA MASUK ICU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA MASUK ICU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -22661,9 +22655,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").append(
-                                              "<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA KELUAR HCU</td>").append(
-                                              "<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").append(
+                                              "<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                              "<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA KELUAR HCU</td>").append(
+                                              "<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' valign='top' align='center'>1</td>").append(
@@ -22766,17 +22760,17 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='58%' bgcolor='#FFFAF8' colspan='5'>Follow Up</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='58%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='5'>Follow Up</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Hemoglobin</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Hematokrit</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Leokosit</td>").append(
-                                    "<td valign='top' width='9%' bgcolor='#FFFAF8'>Trombosit</td>").append(
-                                    "<td valign='top' width='22%' bgcolor='#FFFAF8'>Terapi Cairan</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hemoglobin</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hematokrit</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Leokosit</td>").append(
+                                    "<td valign='top' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Trombosit</td>").append(
+                                    "<td valign='top' width='22%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Terapi Cairan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -22853,9 +22847,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").append(
-                                              "<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>PENGKAJIAN</td>").append(
-                                              "<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").append(
+                                              "<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                              "<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>PENGKAJIAN</td>").append(
+                                              "<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' valign='top' align='center'>I.</td>").append(
@@ -23030,13 +23024,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='38%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='10%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Hasil Skrining</td>").append(
-                                    "<td valign='top' width='14%' bgcolor='#FFFAF8'>Saran</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='38%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Skrining</td>").append(
+                                    "<td valign='top' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Saran</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -23161,11 +23155,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='34%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='42%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='34%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='42%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -23471,9 +23465,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").append(
-                                              "<td width='86%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA PENGKAJIAN</td>").append(
-                                              "<td width='10%' valign='top' align='center' bgcolor='#FFFAF8'>SKOR</td>").append(
+                                              "<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").append(
+                                              "<td width='86%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA PENGKAJIAN</td>").append(
+                                              "<td width='10%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SKOR</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' valign='top' align='center'>I.</td>").append(
@@ -25391,13 +25385,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='16%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='17%' bgcolor='#FFFAF8'>Keluar</td>").append(
-                                    "<td valign='top' width='17%' bgcolor='#FFFAF8'>Instruksi/Tindakan</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keluar</td>").append(
+                                    "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Instruksi/Tindakan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -25482,13 +25476,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='16%' bgcolor='#FFFAF8'>Parameter</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='17%' bgcolor='#FFFAF8'>Keluar</td>").append(
-                                    "<td valign='top' width='17%' bgcolor='#FFFAF8'>Instruksi/Tindakan</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Parameter</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keluar</td>").append(
+                                    "<td valign='top' width='17%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Instruksi/Tindakan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -25561,12 +25555,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Petugas</td>").append(
-                                    "<td valign='top' width='26%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8'>Keluar</td>").append(
-                                    "<td valign='top' width='25%' bgcolor='#FFFAF8'>Instruksi/Tindakan</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Petugas</td>").append(
+                                    "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Keluar</td>").append(
+                                    "<td valign='top' width='25%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Instruksi/Tindakan</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -27258,9 +27252,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "V. SKRINING GIZI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='70%'>Parameter</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='25%' colspan='2'>Nilai</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='5%'>No</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='70%'>Parameter</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='25%' colspan='2'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' align='center'>1</td>").append(
@@ -27292,9 +27286,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VI. PENGKAJIAN RISIKO JATUH (SKALA HUMPTY DUMPTY)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                          "<tr class='isi'>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Resiko</td>").append(
-                                              "<td width='55%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Poin</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Resiko</td>").append(
+                                              "<td width='55%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Poin</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>1. Umur</td>").append(
@@ -27343,9 +27337,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VII. PENGKAJIAN TINGKAT NYERI (SKALA NIPS)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                          "<tr class='isi'>").append(
-                                              "<td width='30%' bgcolor='#FFFAF8' align='center'>Pengkajian</td>").append(
-                                              "<td width='60%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Nilai</td>").append(
+                                              "<td width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pengkajian</td>").append(
+                                              "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>1. Ekspresi Wajah</td>").append(
@@ -27405,8 +27399,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -27789,10 +27783,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. PERTANYAAN AWAL").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='30%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -27814,10 +27808,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "II. PERTANYAAN LANJUTAN").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='30%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -28087,13 +28081,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. SKOR ANANTO SIDOHUTOMO").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' bgcolor='#FFFAF8' colspan='4'>A. Faktor Awal (Ya=1, Tidak=0)</td>").append(
+                                              "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='4'>A. Faktor Awal (Ya=1, Tidak=0)</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='82%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='82%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -28180,13 +28174,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_risiko_awal14")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td valign='top' bgcolor='#FFFAF8' colspan='4'>B. Faktor Risiko Tinggi (Ya=5, Tidak=0)</td>").append(
+                                              "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='4'>B. Faktor Risiko Tinggi (Ya=5, Tidak=0)</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='82%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='82%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -28267,13 +28261,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_risiko_tinggi13")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td valign='top' bgcolor='#FFFAF8' colspan='4'>C. Kecurigaan Keganasan (Ya=10,Tidak=0)</td>").append(
+                                              "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='4'>C. Kecurigaan Keganasan (Ya=10,Tidak=0)</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='82%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='82%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -28324,8 +28318,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_kecurigaan_ganas8")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td colspan='3' bgcolor='#FFFAF8'>Total Skor</td>").append(
-                                              "<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("total_skor")).append("</td>").append(
+                                              "<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Skor</td>").append(
+                                              "<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("total_skor")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td colspan='4'>").append(
@@ -28415,10 +28409,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. ANAMNESIS").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -28475,8 +28469,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                         append("<td align='center'>").append(rs2.getString("nilai_pernah_paru_kronik")).append("</td>").
                                                     append("</tr>").
                                                     append("<tr>").
-                                                        append("<td colspan='3' bgcolor='#FFFAF8'>Total Skor</td>").
-                                                        append("<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("total_skor")).append("</td>").
+                                                        append("<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Skor</td>").
+                                                        append("<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("total_skor")).append("</td>").
                                                     append("</tr>").
                                                 append("</table>").
                                             append("</td>").
@@ -28897,10 +28891,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -28957,8 +28951,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_spirometri")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td colspan='3' bgcolor='#FFFAF8'>Total Skor</td>").append(
-                                              "<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total")).append("</td>").append(
+                                              "<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Skor</td>").append(
+                                              "<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total")).append("</td>").append(
                                           "</tr>").append(
                                        "</table>").append(
                                     "</td>").append(
@@ -29550,13 +29544,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "II. RIWAYAT IMUNISASI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='70%' bgcolor='#FFFAF8' align='center' valign='middle'>Imunisasi</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>1</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>2</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>3</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>4</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>5</td>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>6</td>").append(
+                                              "<td width='70%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Imunisasi</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>1</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>2</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>3</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>4</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>5</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>6</td>").append(
                                           "</tr>");
                             try {
                                 rs3=koneksi.prepareStatement(
@@ -29871,9 +29865,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VIII. SKRINING GIZI (STRONG KID)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>No.</td>").append(
-                                              "<td width='75%' bgcolor='#FFFAF8' align='center' valign='middle'>Parameter</td>").append(
-                                              "<td width='20%' bgcolor='#FFFAF8' colspan='2' align='center' valign='middle'>Nilai</td>").append(
+                                              "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>No.</td>").append(
+                                              "<td width='75%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Parameter</td>").append(
+                                              "<td width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='2' align='center' valign='middle'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1</td>").append(
@@ -29912,9 +29906,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "IX. PENGKAJIAN RISIKO JATUH (SKALA HUMPTY DUMPTY)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                          "<tr class='isi'>").append(
-                                              "<td width='35%' bgcolor='#FFFAF8' align='center'>Faktor Resiko</td>").append(
-                                              "<td width='55%' bgcolor='#FFFAF8' align='center'>Skala</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center'>Poin</td>").append(
+                                              "<td width='35%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Faktor Resiko</td>").append(
+                                              "<td width='55%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skala</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Poin</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>1. Umur</td>").append(
@@ -29967,9 +29961,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td colspan='3'>Skala FLACCS :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td width='30%' bgcolor='#FFFAF8' align='center' valign='middle'>Pengkajian</td>").append(
-                                              "<td width='60%' bgcolor='#FFFAF8' align='center' valign='middle'>Parameter</td>").append(
-                                              "<td width='10%' bgcolor='#FFFAF8' align='center' valign='middle'>Nilai</td>").append(
+                                              "<td width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Pengkajian</td>").append(
+                                              "<td width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Parameter</td>").append(
+                                              "<td width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>Wajah</td>").append(
@@ -30043,8 +30037,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                     "<td valign='top'>").append(
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
-                                               "<td valign='middle' bgcolor='#FFFAF8' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>MASALAH KEPERAWATAN :</td>").append(
+                                               "<td valign='middle' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' width='50%'>RENCANA KEPERAWATAN :</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                                "<td valign='top'>");
@@ -30143,10 +30137,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -30185,8 +30179,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_sakit_berat")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td colspan='3' bgcolor='#FFFAF8'>Total Skor</td>").append(
-                                              "<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total")).append("</td>").append(
+                                              "<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Skor</td>").append(
+                                              "<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total")).append("</td>").append(
                                           "</tr>").append(
                                        "</table>").append(
                                     "</td>").append(
@@ -30260,9 +30254,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS (Bila Ada Jawaban YA, Lakukan Pemeriksaan Laboratorium)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='24%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -30397,10 +30391,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. DETEKSI DINI MASALAH EMOSI DAN PERILAKU MENGGUNAKAN KUISIONER KEKUATAN DAN KELEMAHAN (SDQ)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pernyataan</td>").append(
-                                              "<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pernyataan</td>").append(
+                                              "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -30553,8 +30547,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_sdq25")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td colspan='3' bgcolor='#FFFAF8'>Total Nilai :</td>").append(
-                                              "<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total_sdq")).append("</td>").append(
+                                              "<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Nilai :</td>").append(
+                                              "<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total_sdq")).append("</td>").append(
                                           "</tr>").append(
                                        "</table>").append(
                                     "</td>").append(
@@ -30564,9 +30558,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "II. INTEPRETASI DAN KESIMPULAN HASIL PEMERIKSAAN (SDQ)").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Hasil Pengamatan</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Nilai</td>").append(
+                                              "<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='34%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Hasil Pengamatan</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Nilai</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td>A. Pengkajian Gejala Emosional (E)</td>").append(
@@ -30667,10 +30661,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. DETEKSI DINI MASALAH EMOSI DAN PERILAKU MENGGUNAKAN SELF REPORTING QUISIONERE").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -30793,8 +30787,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                               "<td align='center'>").append(rs2.getString("nilai_srq20")).append("</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
-                                              "<td colspan='3' bgcolor='#FFFAF8'>Total Nilai :</td>").append(
-                                              "<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total_srq")).append("</td>").append(
+                                              "<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Nilai :</td>").append(
+                                              "<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total_srq")).append("</td>").append(
                                           "</tr>").append(
                                        "</table>").append(
                                     "</td>").append(
@@ -30871,10 +30865,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. PASIEN KONTRA INDIKASI UNTUK PEMBERIAN FIBRINOLISTIK").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='24%' bgcolor='#FFFAF8' align='center'>Keterangan</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Keterangan</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -30944,10 +30938,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "II. PASIEN RISIKO TINGGI UNTUK PEMBERIAN FIBRINOLITIK").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='10%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
-                                              "<td valign='top' width='24%' bgcolor='#FFFAF8' align='center'>Keterangan</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='10%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Keterangan</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -31314,9 +31308,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "VI. PELAKSANAAN INTERVENSI").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='6%' bgcolor='#FFFAF8' align='center'>Sesi</td>").append(
-                                              "<td valign='top' width='47%' bgcolor='#FFFAF8' align='center'>Tahapan Intervensi</td>").append(
-                                              "<td valign='top' width='47%' bgcolor='#FFFAF8' align='center'>Target Terapi</td>").append(
+                                              "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Sesi</td>").append(
+                                              "<td valign='top' width='47%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Tahapan Intervensi</td>").append(
+                                              "<td valign='top' width='47%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Target Terapi</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td valign='top' width='6%' align='center'>1.</td>").append(
@@ -31461,19 +31455,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                   "</table>").append(
                                                   "<table width='99%' border='0' align='right' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                        "<tr class='isi'>").append(
-                                                           "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>No</td>").append(
-                                                           "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
-                                                           "<td width='23%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
-                                                           "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
-                                                           "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
-                                                           "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
-                                                           "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
-                                                           "<td bgcolor='#FFFAF8' align='center' valign='middle' colspan='3'>Anak</td>").append(
+                                                           "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>No</td>").append(
+                                                           "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
+                                                           "<td width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
+                                                           "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
+                                                           "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
+                                                           "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
+                                                           "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
+                                                           "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' colspan='3'>Anak</td>").append(
                                                        "</tr>").append(
                                                        "<tr class='isi'>").append(
-                                                           "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle'>JK</td>").append(
-                                                           "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>BB/PB</td>").append(
-                                                           "<td width='13%' bgcolor='#FFFAF8' align='center' valign='middle'>Keadaan</td>").append(
+                                                           "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>JK</td>").append(
+                                                           "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>BB/PB</td>").append(
+                                                           "<td width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Keadaan</td>").append(
                                                        "</tr>");
                                         try {
                                             w=1;
@@ -31562,13 +31556,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     "APGAR Score :").append(
                                                     "<table width='100%' border='0' align='right' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                         "<tr>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>Tanda</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>0</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>1</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>2</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 1'</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 5'</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 10'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Tanda</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>0</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>1</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>2</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 1'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 5'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 10'</td>").append(
                                                         "</tr>").append(
                                                         "<tr>").append(
                                                              "<td valign='middle'>Frekuensi Jantung</td>").append(
@@ -31629,11 +31623,11 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     "Down Score :").append(
                                                     "<table width='100%' border='0' align='right' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                         "<tr>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>Tanda</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>0</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>1</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>2</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>Nilai</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Tanda</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>0</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>1</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>2</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Nilai</td>").append(
                                                         "</tr>").append(
                                                         "<tr>").append(
                                                              "<td valign='middle'>Frekuensi napas</td>").append(
@@ -31851,12 +31845,12 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='top' width='15%' bgcolor='#FFFAF8'>Tanggal & Dokter</td>").append(
-                                    "<td valign='top' width='18%' bgcolor='#FFFAF8'>Item Pengkajian</td>").append(
-                                    "<td valign='top' width='30%' bgcolor='#FFFAF8'>Kriteria</td>").append(
-                                    "<td valign='top' width='5%' bgcolor='#FFFAF8'>Skor</td>").append(
-                                    "<td valign='top' width='28%' bgcolor='#FFFAF8'>Hasil Pengkajian</td>").append(
+                                    "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal & Dokter</td>").append(
+                                    "<td valign='top' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Item Pengkajian</td>").append(
+                                    "<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Kriteria</td>").append(
+                                    "<td valign='top' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Skor</td>").append(
+                                    "<td valign='top' width='28%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Hasil Pengkajian</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -32505,19 +32499,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                   "Riwayat Kehamilan Terdahulu :").append(
                                                   "<table width='100%' border='0' align='right' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                        "<tr class='isi'>").append(
-                                                           "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>No</td>").append(
-                                                           "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
-                                                           "<td width='23%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
-                                                           "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
-                                                           "<td width='8%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
-                                                           "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
-                                                           "<td width='16%' bgcolor='#FFFAF8' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
-                                                           "<td bgcolor='#FFFAF8' align='center' valign='middle' colspan='3'>Anak</td>").append(
+                                                           "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>No</td>").append(
+                                                           "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tgl/Thn Persalinan</td>").append(
+                                                           "<td width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Tempat Persalinan</td>").append(
+                                                           "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Usia Hamil</td>").append(
+                                                           "<td width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Jenis persalinan</td>").append(
+                                                           "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penolong</td>").append(
+                                                           "<td width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' rowspan='2'>Penyulit</td>").append(
+                                                           "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle' colspan='3'>Anak</td>").append(
                                                        "</tr>").append(
                                                        "<tr class='isi'>").append(
-                                                           "<td width='3%' bgcolor='#FFFAF8' align='center' valign='middle'>JK</td>").append(
-                                                           "<td width='5%' bgcolor='#FFFAF8' align='center' valign='middle'>BB/PB</td>").append(
-                                                           "<td width='13%' bgcolor='#FFFAF8' align='center' valign='middle'>Keadaan</td>").append(
+                                                           "<td width='3%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>JK</td>").append(
+                                                           "<td width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>BB/PB</td>").append(
+                                                           "<td width='13%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Keadaan</td>").append(
                                                        "</tr>");
                                         try {
                                             w=1;
@@ -32644,13 +32638,13 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     "APGAR Score :").append(
                                                     "<table width='100%' border='0' align='right' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                                         "<tr>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>Tanda</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>0</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>1</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>2</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 1'</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 5'</td>").append(
-                                                             "<td bgcolor='#FFFAF8' align='center' valign='middle'>N 10'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>Tanda</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>0</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>1</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>2</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 1'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 5'</td>").append(
+                                                             "<td bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center' valign='middle'>N 10'</td>").append(
                                                         "</tr>").append(
                                                         "<tr>").append(
                                                              "<td valign='middle'>Frekuensi Jantung</td>").append(
@@ -33055,9 +33049,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='70%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='26%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='70%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -33181,9 +33175,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='80%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -33450,9 +33444,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='80%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -33586,9 +33580,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "II. PEMERIKSAAN PENUNJANG").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='60%' bgcolor='#FFFAF8' align='center'>Item Pemeriksaan</td>").append(
-                                              "<td valign='top' width='36%' bgcolor='#FFFAF8' align='center'>Hasil Pemeriksaan</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Item Pemeriksaan</td>").append(
+                                              "<td valign='top' width='36%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Hasil Pemeriksaan</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -33750,9 +33744,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='70%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='26%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='70%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -33856,9 +33850,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='24%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='24%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td align='center'>1.</td>").append(
@@ -33967,9 +33961,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. ANAMNESIS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='70%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").append(
-                                              "<td valign='top' width='26%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='70%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").append(
+                                              "<td valign='top' width='26%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -34144,9 +34138,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. PEMERIKSAAN/ANAMNESA").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='60%' bgcolor='#FFFAF8' align='center'>Item Pemeriksaan</td>").
-                                                        append("<td valign='top' width='36%' bgcolor='#FFFAF8' align='center'>Hasil Pemeriksaan</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='60%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Item Pemeriksaan</td>").
+                                                        append("<td valign='top' width='36%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Hasil Pemeriksaan</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' align='center'>1.</td>").
@@ -34423,19 +34417,19 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='15%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='40%' bgcolor='#FFFAF8' colspan='6'>Monitoring</td>").append(
-                                    "<td valign='middle' width='18%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
-                                    "<td valign='middle' width='23%' bgcolor='#FFFAF8' rowspan='2'>Perawat/Paramedis</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='40%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='6'>Monitoring</td>").append(
+                                    "<td valign='middle' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='23%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Perawat/Paramedis</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>GCS(E,V,M)</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>TD</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>HR (/menit)</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>RR (/menit)</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>Suhu(C)</td>").append(
-                                    "<td valign='top' bgcolor='#FFFAF8'>SpO2(%)</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>GCS(E,V,M)</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>HR (/menit)</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>RR (/menit)</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Suhu(C)</td>").append(
+                                    "<td valign='top' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>SpO2(%)</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -34508,10 +34502,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. ANAMNESIS").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='62%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='30%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='62%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='30%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -34557,8 +34551,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                         append("<td align='center'>").append(rs2.getString("nilai_berat_badan")).append("</td>").
                                                     append("</tr>").
                                                     append("<tr>").
-                                                        append("<td colspan='3' bgcolor='#FFFAF8'>Total Skor</td>").
-                                                        append("<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total")).append("</td>").
+                                                        append("<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Skor</td>").
+                                                        append("<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total")).append("</td>").
                                                     append("</tr>").
                                                 append("</table>").
                                             append("</td>").
@@ -34783,9 +34777,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>ITEM PENGECEKAN</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>ITEM PENGECEKAN</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -35071,10 +35065,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. DETEKSI DINI ANAK GANGGUAN PEMUSATAN DAN HIPERAKTIVITAS DENGAN ACRS UNTUK ANAK USIA > 3 TAHUN").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -35137,8 +35131,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                         append("<td align='center'>").append(rs2.getString("nilai_acrs10")).append("</td>").
                                                     append("</tr>").
                                                     append("<tr>").
-                                                        append("<td colspan='3' bgcolor='#FFFAF8'>Total Nilai :</td>").
-                                                        append("<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total_acrs")).append("</td>").
+                                                        append("<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Nilai :</td>").
+                                                        append("<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total_acrs")).append("</td>").
                                                     append("</tr>").
                                                 append("</table>").
                                             append("</td>").
@@ -35208,9 +35202,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA PASIEN MASUK NICU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA PASIEN MASUK NICU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -35410,9 +35404,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA PASIEN KELUAR NICU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA PASIEN KELUAR NICU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -35756,9 +35750,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA PASIEN MASUK PICU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA PASIEN MASUK PICU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -35968,9 +35962,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA PASIEN KELUAR PICU</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA PASIEN KELUAR PICU</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -36126,10 +36120,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. DETEKSI DINI FUNGSI KOGNITIF DENGAN MENGGUNAKAN ABBREVIATED MENTAL TEST").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -36192,8 +36186,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                         append("<td align='center'>").append(rs2.getString("nilai_amt10")).append("</td>").
                                                     append("</tr>").
                                                     append("<tr>").
-                                                        append("<td colspan='3' bgcolor='#FFFAF8'>Total Nilai :</td>").
-                                                        append("<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total_amt")).append("</td>").
+                                                        append("<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Nilai :</td>").
+                                                        append("<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total_amt")).append("</td>").
                                                     append("</tr>").
                                                 append("</table>").
                                             append("</td>").
@@ -37107,9 +37101,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. DETEKSI DINI AUTIS DENGAN MENGGUNAKAN EARLY SCREENING FOR AUSTISTIC TRAITS").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='81%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='15%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='81%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='15%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -37383,10 +37377,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                 append("I. TINGKAT KEPARAHAN PNEUMONIA DENGAN CURB-65").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                        append("<td valign='top' width='72%' bgcolor='#FFFAF8' align='center'>Pertanyaan</td>").
-                                                        append("<td valign='top' width='20%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                        append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>Skor</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                        append("<td valign='top' width='72%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Pertanyaan</td>").
+                                                        append("<td valign='top' width='20%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                        append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td align='center'>1.</td>").
@@ -37419,8 +37413,8 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                         append("<td align='center'>").append(rs2.getString("nilai_curb655")).append("</td>").
                                                     append("</tr>").
                                                     append("<tr>").
-                                                        append("<td colspan='3' bgcolor='#FFFAF8'>Total Nilai :</td>").
-                                                        append("<td align='center' bgcolor='#FFFAF8'>").append(rs2.getString("nilai_total_curb65")).append("</td>").
+                                                        append("<td colspan='3' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Total Nilai :</td>").
+                                                        append("<td align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>").append(rs2.getString("nilai_total_curb65")).append("</td>").
                                                     append("</tr>").
                                                 append("</table>").
                                             append("</td>").
@@ -37573,9 +37567,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -37832,9 +37826,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                             append("<td valign='top'>").
                                                 append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                     append("<tr>").
-                                                        append("<td width='4%' valign='top' align='center' bgcolor='#FFFAF8'></td>").
-                                                        append("<td width='76%' valign='top' align='center' bgcolor='#FFFAF8'>KRITERIA</td>").
-                                                        append("<td width='20%' valign='top' align='center' bgcolor='#FFFAF8'>YA/TIDAK</td>").
+                                                        append("<td width='4%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'></td>").
+                                                        append("<td width='76%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>KRITERIA</td>").
+                                                        append("<td width='20%' valign='top' align='center' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>YA/TIDAK</td>").
                                                     append("</tr>").
                                                     append("<tr>").
                                                         append("<td width='4%' valign='top' align='center'>I.</td>").
@@ -37965,9 +37959,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     append("KRITERIA INKLUSI").
                                                     append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                         append("<tr>").
-                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                            append("<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
-                                                            append("<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Ya/Tidak</td>").
+                                                            append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                            append("<td valign='top' width='80%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Ya/Tidak</td>").
                                                         append("</tr>").
                                                         append("<tr>").
                                                             append("<td width='4%' align='center'>1.</td>").
@@ -37997,9 +37991,9 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     append("KRITERIA EKSKLUSI ").
                                                     append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                         append("<tr>").
-                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                            append("<td valign='top' width='80%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
-                                                            append("<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Ya/Tidak</td>").
+                                                            append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                            append("<td valign='top' width='80%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Ya/Tidak</td>").
                                                         append("</tr>").
                                                         append("<tr>").
                                                             append("<td width='4%' align='center'>1.</td>").
@@ -38097,10 +38091,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                                     append("SKOR FLAMM-GEIGER").
                                                     append("<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").
                                                         append("<tr>").
-                                                            append("<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").
-                                                            append("<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Kriteria</td>").
-                                                            append("<td valign='top' width='50%' bgcolor='#FFFAF8' align='center'>Jawaban</td>").
-                                                            append("<td valign='top' width='12%' bgcolor='#FFFAF8' align='center'>Nilai</td>").
+                                                            append("<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").
+                                                            append("<td valign='top' width='34%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Kriteria</td>").
+                                                            append("<td valign='top' width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Jawaban</td>").
+                                                            append("<td valign='top' width='12%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Nilai</td>").
                                                         append("</tr>").
                                                         append("<tr>").
                                                             append("<td width='4%' align='center'>1.</td>").
@@ -38187,20 +38181,20 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8' rowspan='2'>No.</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8' rowspan='2'>Tanggal</td>").append(
-                                    "<td valign='top' width='50%' bgcolor='#FFFAF8' colspan='7'>Monitoring</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8' rowspan='2'>Keterangan</td>").append(
-                                    "<td valign='middle' width='18%' bgcolor='#FFFAF8' rowspan='2'>Petugas</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>No.</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Tanggal</td>").append(
+                                    "<td valign='top' width='50%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' colspan='7'>Monitoring</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Keterangan</td>").append(
+                                    "<td valign='middle' width='18%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' rowspan='2'>Petugas</td>").append(
                                  "</tr>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>His (x/10 mnt)</td>").append(
-                                    "<td valign='top' width='7%' bgcolor='#FFFAF8'>Durasi His (detik)</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>DJJ (x/mnt)</td>").append(
-                                    "<td valign='top' width='6%' bgcolor='#FFFAF8'>Nadi (x/mnt)</td>").append(
-                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>TD (mmHg)</td>").append(
-                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>Pembukaan (cm)</td>").append(
-                                    "<td valign='top' width='8%' bgcolor='#FFFAF8'>Tanda Bahaya</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>His (x/10 mnt)</td>").append(
+                                    "<td valign='top' width='7%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Durasi His (detik)</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>DJJ (x/mnt)</td>").append(
+                                    "<td valign='top' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Nadi (x/mnt)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>TD (mmHg)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pembukaan (cm)</td>").append(
+                                    "<td valign='top' width='8%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanda Bahaya</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -38358,16 +38352,16 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                             "<td valign='top' width='79%'>").append(
                               "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>").append(
                                  "<tr align='center'>").append(
-                                    "<td valign='middle' width='4%' bgcolor='#FFFAF8'>No.</td>").append(
-                                    "<td valign='middle' width='9%' bgcolor='#FFFAF8'>Tanggal</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Diagnosis / Keterangan Klinis</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Indikasi Transfusi</td>").append(
-                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>Komponen Darah</td>").append(
-                                    "<td valign='middle' width='5%' bgcolor='#FFFAF8'>Volume (cc)</td>").append(
-                                    "<td valign='middle' width='6%' bgcolor='#FFFAF8'>No.Kantong</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Jenis Reaksi</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Penanganan</td>").append(
-                                    "<td valign='middle' width='14%' bgcolor='#FFFAF8'>Pelapor / DPJP</td>").append(
+                                    "<td valign='middle' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.</td>").append(
+                                    "<td valign='middle' width='9%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Tanggal</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Diagnosis / Keterangan Klinis</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Indikasi Transfusi</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Komponen Darah</td>").append(
+                                    "<td valign='middle' width='5%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Volume (cc)</td>").append(
+                                    "<td valign='middle' width='6%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>No.Kantong</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Jenis Reaksi</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Penanganan</td>").append(
+                                    "<td valign='middle' width='14%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold'>Pelapor / DPJP</td>").append(
                                  "</tr>"
                         );
                         w=1;
@@ -38443,10 +38437,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. PENILAIAN").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='46%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Hasil</td>").append(
-                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='46%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='34%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Hasil</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
@@ -38569,10 +38563,10 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                                        "I. PENILAIAN SERVIKS").append(  
                                        "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
                                           "<tr>").append(
-                                              "<td valign='top' width='4%' bgcolor='#FFFAF8' align='center'>No.</td>").append(
-                                              "<td valign='top' width='46%' bgcolor='#FFFAF8' align='center'>Parameter</td>").append(
-                                              "<td valign='top' width='34%' bgcolor='#FFFAF8' align='center'>Hasil</td>").append(
-                                              "<td valign='top' width='16%' bgcolor='#FFFAF8' align='center'>Skor</td>").append(
+                                              "<td valign='top' width='4%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>No.</td>").append(
+                                              "<td valign='top' width='46%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Parameter</td>").append(
+                                              "<td valign='top' width='34%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Hasil</td>").append(
+                                              "<td valign='top' width='16%' bgcolor='#000000' style='color:#FFFFFF;font-weight:bold' align='center'>Skor</td>").append(
                                           "</tr>").append(
                                           "<tr>").append(
                                               "<td width='4%' align='center'>1.</td>").append(
