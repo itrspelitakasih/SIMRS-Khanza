@@ -6560,8 +6560,11 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-        if(namadokter.equals("")){
-            CrPtg.setText("");               
+        // Dokter yang login: "Semua" kembali ke filter dokter itu sendiri, tidak dikosongkan
+        if(akses.getkode().equals("Admin Utama")){
+            CrPtg.setText("");
+        }else{
+            CrPtg.setText(namadokter);
         }
         
         if(namapoli.equals("")){
@@ -17205,7 +17208,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             }                
         }else{
             if(akses.getakses_dokter_lain_rawat_jalan()==true){
-                CrPtg.setText("");
+                // Dokter yang login tetap otomatis terfilter ke dirinya sendiri; karena punya akses
+                // dokter lain, filter masih bisa diganti/dikosongkan. User non-dokter: kosong.
+                if(akses.getkode().equals("Admin Utama")){
+                    namadokter="";
+                }else{
+                    namadokter=Sequel.CariDokter(akses.getkode());
+                }
+                CrPtg.setText(namadokter);
                 BtnSeek3.setEnabled(true);
                 CrPtg.setEditable(true);
             }else{
