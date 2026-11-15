@@ -3333,10 +3333,11 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             
             for(i2=0;i2<tbTarif.getRowCount();i2++){ 
                 if(tbTarif.getValueAt(i2,0).toString().equals("true")){
-                    tabMode.addRow(new Object[]{true,tbTarif.getValueAt(i2,2).toString(),"","","","","",0,0,0,0,0,0,0,0,""});
+                    // 17 kolom (termasuk Metode di posisi 5), sama dengan baris judul di tampil()
+                    tabMode.addRow(new Object[]{true,tbTarif.getValueAt(i2,2).toString(),"","","","","","",0,0,0,0,0,0,0,0,""});
                     pstampil=koneksi.prepareStatement(
                             "select template_laboratorium.id_template, template_laboratorium.Pemeriksaan, "+
-                            "template_laboratorium.satuan, template_laboratorium.nilai_rujukan_ld,"+
+                            "template_laboratorium.satuan, template_laboratorium.nilai_rujukan_ld,template_laboratorium.method,"+
                             "template_laboratorium.biaya_item,template_laboratorium.bagian_rs,"+
                             "template_laboratorium.bhp,template_laboratorium.bagian_perujuk,"+
                             "template_laboratorium.bagian_dokter,template_laboratorium.bagian_laborat,"+
@@ -3359,7 +3360,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                 if(rstindakan.next()){
                                     tabMode.addRow(new Object[]{
                                         true,"   "+rstampil.getString("Pemeriksaan"),rstindakan.getString("nilai"),rstampil.getString("satuan"),
-                                        rstindakan.getString("nilai_rujukan"),rstindakan.getString("keterangan"),rstampil.getString("id_template"),
+                                        rstindakan.getString("nilai_rujukan"),rstampil.getString("method"),rstindakan.getString("keterangan"),rstampil.getString("id_template"),
                                         rstampil.getDouble("biaya_item"),rstampil.getDouble("bagian_rs"),rstampil.getDouble("bhp"),rstampil.getDouble("bagian_perujuk"),
                                         rstampil.getDouble("bagian_dokter"),rstampil.getDouble("bagian_laborat"),rstampil.getDouble("kso"),
                                         rstampil.getDouble("menejemen"),tbTarif.getValueAt(i2,1).toString()
