@@ -41,6 +41,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import javax.swing.SwingUtilities;
+import bridging.MekariSignApi;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -56,6 +66,15 @@ public class DlgDokter extends javax.swing.JDialog {
     private ResultSet rs;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private volatile boolean ceksukses = false;
+    /** Pemuat foto & status eKYC, terpisah dari executor tampil() supaya tidak saling menunggu. */
+    private final ExecutorService pemuat = Executors.newSingleThreadExecutor();
+    private volatile Map<String,MekariSignApi.Ekyc> ekyc = null;
+    private volatile String pesanEkyc = "";
+    private volatile boolean memuatEkyc = false;
+    private volatile String kodeTerpilih = "";
+    private final Map<String,ImageIcon> cacheFoto = new HashMap<>();
+    private static final ImageIcon TANPA_FOTO = new ImageIcon();
+    private static final int LEBAR_FOTO = 118, TINGGI_FOTO = 148;
 
     /** Creates new form DlgDokter
      * @param parent
@@ -83,7 +102,10 @@ public class DlgDokter extends javax.swing.JDialog {
         for (int i = 0; i < 14; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(100);
+                // kode dokter disembunyikan, tetap dipakai getData()
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+                column.setPreferredWidth(0);
             }else if(i==1){
                 column.setPreferredWidth(200);
             }else if(i==2){
@@ -144,6 +166,13 @@ public class DlgDokter extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbDokter = new widget.Table();
+        LFoto = new widget.Label();
+        LNamaDokter = new widget.Label();
+        jLabel24 = new widget.Label();
+        LStatusEkyc = new widget.Label();
+        LTglEkyc = new widget.Label();
+        BtnCekEkyc = new widget.Button();
+        BtnUndangEkyc = new widget.Button();
         jPanel2 = new javax.swing.JPanel();
         panelGlass6 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -760,6 +789,67 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(612, 72, 55, 23);
 
+        LFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 210, 200)));
+        LFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LFoto.setText("Foto");
+        LFoto.setName("LFoto"); // NOI18N
+        FormInput.add(LFoto);
+        LFoto.setBounds(885, 8, 120, 150);
+
+        LNamaDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LNamaDokter.setText("-");
+        LNamaDokter.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        LNamaDokter.setName("LNamaDokter"); // NOI18N
+        FormInput.add(LNamaDokter);
+        LNamaDokter.setBounds(1015, 10, 230, 36);
+
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel24.setText("Status eKYC MekariSign :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        FormInput.add(jLabel24);
+        jLabel24.setBounds(1015, 50, 230, 20);
+
+        LStatusEkyc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(200, 210, 200)));
+        LStatusEkyc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LStatusEkyc.setText("-");
+        LStatusEkyc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LStatusEkyc.setName("LStatusEkyc"); // NOI18N
+        LStatusEkyc.setOpaque(true);
+        FormInput.add(LStatusEkyc);
+        LStatusEkyc.setBounds(1015, 72, 230, 26);
+
+        LTglEkyc.setForeground(new java.awt.Color(120, 120, 120));
+        LTglEkyc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LTglEkyc.setText(" ");
+        LTglEkyc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        LTglEkyc.setName("LTglEkyc"); // NOI18N
+        FormInput.add(LTglEkyc);
+        LTglEkyc.setBounds(1015, 100, 230, 18);
+
+        BtnCekEkyc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCekEkyc.setText("Cek eKYC");
+        BtnCekEkyc.setToolTipText("Ambil ulang status eKYC semua dokter dari MekariSign");
+        BtnCekEkyc.setName("BtnCekEkyc"); // NOI18N
+        BtnCekEkyc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCekEkycActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnCekEkyc);
+        BtnCekEkyc.setBounds(1015, 128, 105, 30);
+
+        BtnUndangEkyc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnUndangEkyc.setText("Undang eKYC");
+        BtnUndangEkyc.setToolTipText("Kirim undangan verifikasi identitas (eKYC) MekariSign untuk sertifikat PSrE ke email dokter terpilih");
+        BtnUndangEkyc.setName("BtnUndangEkyc"); // NOI18N
+        BtnUndangEkyc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUndangEkycActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnUndangEkyc);
+        BtnUndangEkyc.setBounds(1123, 128, 122, 30);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -1217,6 +1307,58 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailKeyPressed
 
+    private void BtnCekEkycActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekEkycActionPerformed
+        muatEkyc(true);
+    }//GEN-LAST:event_BtnCekEkycActionPerformed
+
+    private void BtnUndangEkycActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUndangEkycActionPerformed
+        int row=tbDokter.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(this,"Silahkan pilih dokter di tabel terlebih dahulu..!!");
+            return;
+        }
+        String nama=tbDokter.getValueAt(row,1).toString();
+        Object o=tbDokter.getValueAt(row,9);
+        String email=o==null?"":o.toString().trim();
+        if(email.equals("")||email.equals("-")){
+            JOptionPane.showMessageDialog(this,"Email "+nama+" belum diisi.\nEmail harus sama dengan akun MekariSign dokter.");
+            return;
+        }
+        if(!emailValid(email)){
+            JOptionPane.showMessageDialog(this,"Email "+nama+" tidak valid : "+email+"\nPerbaiki dulu di data dokter.");
+            return;
+        }
+        MekariSignApi.Ekyc lama=ekyc==null?null:ekyc.get(email.toLowerCase());
+        String status=lama==null?"":lama.status;
+        if(status.equals("success")){
+            JOptionPane.showMessageDialog(this,nama+" sudah terverifikasi eKYC dan memiliki sertifikat PSrE aktif.");
+            return;
+        }
+        if(status.equals("not_started")||status.equals("verifying")){
+            JOptionPane.showMessageDialog(this,nama+" sudah diundang eKYC (status : "+MekariSignApi.keteranganEkyc(status)+").\n"+
+                "Minta dokter membuka email undangan dari Mekari di "+email+" dan menyelesaikan verifikasinya.");
+            return;
+        }
+        if(JOptionPane.showConfirmDialog(this,
+                "Kirim undangan eKYC ke "+nama+" ("+email+") ?\n\n"+
+                "Mekari akan mengirim email berisi link verifikasi identitas (KTP & swafoto)\n"+
+                "untuk penerbitan sertifikat tanda tangan PSrE atas nama dokter.\n"+
+                "Undangan ini memakai 1 kuota eKYC.",
+                "Konfirmasi eKYC",JOptionPane.YES_NO_OPTION)!=JOptionPane.YES_OPTION){
+            return;
+        }
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            MekariSignApi.undangEkyc(email);
+            setCursor(Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(this,"Undangan eKYC terkirim ke "+email+".\nStatus akan berubah menjadi Terverifikasi setelah dokter menyelesaikan verifikasi.");
+            muatEkyc(true);
+        } catch (Exception e) {
+            setCursor(Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(this,e instanceof MekariSignApi.MekariSignException?e.getMessage():"Gagal mengirim undangan eKYC : "+e);
+        }
+    }//GEN-LAST:event_BtnUndangEkycActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1238,11 +1380,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCariPegawai;
+    private widget.Button BtnCekEkyc;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button BtnUndangEkyc;
     private widget.ComboBox CMbGd;
     private widget.CekBox ChkInput;
     private widget.ComboBox CmbCrGd;
@@ -1254,6 +1398,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdSps;
     private widget.Label LCount;
+    private widget.Label LFoto;
+    private widget.Label LNamaDokter;
+    private widget.Label LStatusEkyc;
+    private widget.Label LTglEkyc;
     private widget.MenuItem MnRestore;
     private javax.swing.JPanel PanelInput;
     private widget.PopupMenu Popup;
@@ -1284,6 +1432,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
+    private widget.Label jLabel24;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
@@ -1366,6 +1515,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         KdSps.setText("");
         TSpesialis.setText("");
         DTPLahir.setDate(new Date());
+        kosongkanPanelEkyc();
         TKd.requestFocus();
         Valid.autoNomer(" dokter ","D",7,TKd);
     }
@@ -1397,6 +1547,236 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
             
             Valid.SetTgl(DTPLahir,tbDokter.getValueAt(row,4).toString());
+            tampilPanelEkyc();
+        }
+    }
+
+    // ------------------------------------------------------------------ foto & eKYC
+
+    /** Isi panel kanan (foto, nama, status eKYC) untuk dokter terpilih di tabel. */
+    private void tampilPanelEkyc(){
+        int row=tbDokter.getSelectedRow();
+        if(row<0){
+            kosongkanPanelEkyc();
+            return;
+        }
+        String kode=tbDokter.getValueAt(row,0).toString();
+        String nama=tbDokter.getValueAt(row,1).toString();
+        Object sps=tbDokter.getValueAt(row,11);
+        kodeTerpilih=kode;
+        LNamaDokter.setText("<html><b>"+html(nama)+"</b><br>"+
+                "<font color='#787878'>"+html(sps==null?"":sps.toString())+"</font></html>");
+        LNamaDokter.setToolTipText(nama);
+        tampilFoto(kode);
+        if(ekyc==null){
+            muatEkyc(false);
+        }
+        tampilStatusEkyc();
+    }
+
+    private void kosongkanPanelEkyc(){
+        kodeTerpilih="";
+        LFoto.setIcon(null);
+        LFoto.setText("Foto Dokter");
+        LNamaDokter.setText("-");
+        LNamaDokter.setToolTipText(null);
+        LStatusEkyc.setText("-");
+        badge(WARNA_ABU);
+        LStatusEkyc.setToolTipText(null);
+        LTglEkyc.setText(" ");
+    }
+
+    private static final Color WARNA_HIJAU=new Color(46,125,50), WARNA_ORANYE=new Color(230,126,0),
+            WARNA_MERAH=new Color(198,40,40), WARNA_ABU=new Color(120,120,120);
+
+    /** Status eKYC sebagai badge: teks berwarna di atas latar warna yang sama versi pucat. */
+    private void badge(Color c){
+        LStatusEkyc.setForeground(c);
+        LStatusEkyc.setBackground(new Color(255-(255-c.getRed())/8,255-(255-c.getGreen())/8,255-(255-c.getBlue())/8));
+        LStatusEkyc.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(255-(255-c.getRed())/2,255-(255-c.getGreen())/2,255-(255-c.getBlue())/2)));
+    }
+
+    private static boolean emailValid(String email){
+        return email.matches("[^\\s@]+@[^\\s@]+\\.[^\\s@]+");
+    }
+
+    private static String html(String s){
+        return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;");
+    }
+
+    private void tampilStatusEkyc(){
+        int row=tbDokter.getSelectedRow();
+        if(row<0||kodeTerpilih.equals("")){
+            return;
+        }
+        Object o=tbDokter.getValueAt(row,9);
+        String email=o==null?"":o.toString().trim();
+        LStatusEkyc.setToolTipText(null);
+        LTglEkyc.setText(" ");
+        if(email.equals("")||email.equals("-")){
+            LStatusEkyc.setText("Email kosong");
+            badge(WARNA_ORANYE);
+            LStatusEkyc.setToolTipText("Isi email dokter sesuai akun MekariSign");
+        }else if(!emailValid(email)){
+            LStatusEkyc.setText("Email tidak valid");
+            badge(WARNA_ORANYE);
+            LStatusEkyc.setToolTipText("Perbaiki email dokter : "+email);
+        }else if(ekyc==null){
+            LStatusEkyc.setText("Memuat...");
+            badge(WARNA_ABU);
+        }else if(!pesanEkyc.equals("")){
+            LStatusEkyc.setText("Gagal cek eKYC");
+            badge(WARNA_MERAH);
+            LStatusEkyc.setToolTipText("<html>"+html(pesanEkyc).replace("\n","<br>")+"</html>");
+        }else{
+            MekariSignApi.Ekyc k=ekyc.get(email.toLowerCase());
+            String status=k==null?"":k.status;
+            LStatusEkyc.setText(MekariSignApi.keteranganEkyc(status));
+            switch(status){
+                case "success":
+                    badge(WARNA_HIJAU);
+                    break;
+                case "not_started":
+                case "verifying":
+                    badge(WARNA_ORANYE);
+                    break;
+                case "":
+                    badge(WARNA_ABU);
+                    break;
+                default:
+                    badge(WARNA_MERAH);
+            }
+            if(k!=null){
+                LTglEkyc.setText("Update : "+waktu(k.diupdate));
+            }
+        }
+    }
+
+    /** Ambil daftar eKYC semua dokter dari MekariSign di background, lalu perbarui panel. */
+    private void muatEkyc(boolean paksa){
+        if(memuatEkyc||(!paksa&&ekyc!=null)||pemuat.isShutdown()){
+            return;
+        }
+        memuatEkyc=true;
+        ekyc=null;
+        tampilStatusEkyc();
+        BtnCekEkyc.setEnabled(false);
+        pemuat.submit(() -> {
+            Map<String,MekariSignApi.Ekyc> hasil;
+            String pesan="";
+            try {
+                hasil=MekariSignApi.daftarEkyc();
+            } catch (Exception e) {
+                System.out.println("Notifikasi MekariSign : daftar eKYC "+e);
+                hasil=new HashMap<>();
+                pesan=e instanceof MekariSignApi.MekariSignException?e.getMessage():"Gagal menghubungi MekariSign : "+e.getMessage();
+            }
+            final Map<String,MekariSignApi.Ekyc> akhir=hasil;
+            final String akhirPesan=pesan;
+            SwingUtilities.invokeLater(() -> {
+                pesanEkyc=akhirPesan;
+                ekyc=akhir;
+                memuatEkyc=false;
+                if(isDisplayable()){
+                    BtnCekEkyc.setEnabled(true);
+                    tampilStatusEkyc();
+                }
+            });
+        });
+    }
+
+    /** Foto dari pegawai.photo (web server Khanza, folder penggajian), dimuat di background dan disimpan di memori. */
+    private void tampilFoto(String kode){
+        ImageIcon ada;
+        synchronized(cacheFoto){
+            ada=cacheFoto.get(kode);
+        }
+        if(ada!=null){
+            pasangFoto(ada);
+            return;
+        }
+        LFoto.setIcon(null);
+        LFoto.setText("Memuat foto...");
+        if(pemuat.isShutdown()){
+            return;
+        }
+        pemuat.submit(() -> {
+            ImageIcon ikon=unduhFoto(kode);
+            synchronized(cacheFoto){
+                cacheFoto.put(kode,ikon);
+            }
+            SwingUtilities.invokeLater(() -> {
+                if(isDisplayable()&&kode.equals(kodeTerpilih)){
+                    pasangFoto(ikon);
+                }
+            });
+        });
+    }
+
+    private void pasangFoto(ImageIcon ikon){
+        if(ikon==TANPA_FOTO){
+            LFoto.setIcon(null);
+            LFoto.setText("Foto belum ada");
+        }else{
+            LFoto.setText("");
+            LFoto.setIcon(ikon);
+        }
+    }
+
+    private ImageIcon unduhFoto(String kode){
+        try {
+            String path="";
+            try (PreparedStatement ps=koneksi.prepareStatement("select photo from pegawai where nik=?")){
+                ps.setString(1,kode);
+                try (ResultSet r=ps.executeQuery()){
+                    if(r.next()&&r.getString(1)!=null){
+                        path=r.getString(1).trim();
+                    }
+                }
+            }
+            // pegawai tanpa foto hanya berisi folder "pages/pegawai/photo/"
+            if(path.equals("")||path.endsWith("/")){
+                return TANPA_FOTO;
+            }
+            URLConnection con=new URL("http://"+koneksiDB.HOSTHYBRIDWEB()+":"+koneksiDB.PORTWEB()+"/"+
+                    koneksiDB.HYBRIDWEB()+"/penggajian/"+path.replace(" ","%20")).openConnection();
+            con.setConnectTimeout(3000);
+            con.setReadTimeout(5000);
+            BufferedImage asli;
+            try (InputStream in=con.getInputStream()){
+                asli=ImageIO.read(in);
+            }
+            if(asli==null){
+                return TANPA_FOTO;
+            }
+            // isi penuh bingkai (rasio dijaga): kelebihan lebar dipotong kiri-kanan sama rata,
+            // kelebihan tinggi dipotong dari bawah supaya wajah di bagian atas tetap terlihat
+            double skala=Math.max((double)LEBAR_FOTO/asli.getWidth(),(double)TINGGI_FOTO/asli.getHeight());
+            int sw=Math.min(asli.getWidth(),(int)Math.round(LEBAR_FOTO/skala));
+            int sh=Math.min(asli.getHeight(),(int)Math.round(TINGGI_FOTO/skala));
+            int sx=(asli.getWidth()-sw)/2, sy=(asli.getHeight()-sh)/5;
+            BufferedImage kecil=new BufferedImage(LEBAR_FOTO,TINGGI_FOTO,BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g=kecil.createGraphics();
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+            g.drawImage(asli,0,0,LEBAR_FOTO,TINGGI_FOTO,sx,sy,sx+sw,sy+sh,null);
+            g.dispose();
+            return new ImageIcon(kecil);
+        } catch (Exception e) {
+            System.out.println("Notifikasi Foto Dokter ("+kode+") : "+e);
+            return TANPA_FOTO;
+        }
+    }
+
+    private static String waktu(String iso){
+        if(iso==null||iso.isEmpty()){
+            return "";
+        }
+        try {
+            return java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                    .format(java.time.Instant.parse(iso).atZone(java.time.ZoneId.systemDefault()));
+        } catch (Exception e) {
+            return iso.replace("T"," ").replaceAll("\\..*$","");
         }
     }
 
@@ -1428,6 +1808,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnHapus.setEnabled(akses.getdokter());
         BtnEdit.setEnabled(akses.getdokter());
         BtnPrint.setEnabled(akses.getdokter());
+        BtnUndangEkyc.setEnabled(akses.getdokter());
         if(akses.getkode().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
@@ -1464,6 +1845,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     @Override
     public void dispose() {
         executor.shutdownNow();
+        pemuat.shutdownNow();
         super.dispose();
     }
 }
