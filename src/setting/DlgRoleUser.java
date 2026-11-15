@@ -954,7 +954,15 @@ public final class DlgRoleUser extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     // ======================= Tabel & data =======================
+    /** Tabel & role bawaan cukup disiapkan sekali per sesi aplikasi (tiap query ke server DB ±200 ms). */
+    private static boolean tabelSiap=false;
+    /** Kolom hak akses tabel user, hanya berubah setelah ALTER database (aplikasi dibuka ulang). */
+    private static final List<String> CACHE_KOLOM=new ArrayList<>();
+
     private void buatTabel(){
+        if(tabelSiap){
+            return;
+        }
         // tabel tambahan RS (lihat update_role_user.sql), dibuat otomatis bila belum ada
         try (Statement st=koneksi.createStatement()){
             st.executeUpdate("CREATE TABLE IF NOT EXISTS `role_user` ("+
@@ -979,12 +987,18 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi buat tabel role user : "+e);
         }
-        try (PreparedStatement ps=koneksi.prepareStatement("insert ignore into role_user(kd_role,nm_role,keterangan) values(?,?,'')")){
-            for(String[] r:ROLE_BAWAAN){
-                ps.setString(1,r[0]);
-                ps.setString(2,r[1]);
-                ps.executeUpdate();
+        // semua role bawaan dalam satu query
+        StringBuilder sql=new StringBuilder("insert ignore into role_user(kd_role,nm_role,keterangan) values");
+        for(int i=0;i<ROLE_BAWAAN.length;i++){
+            sql.append(i==0?"":",").append("(?,?,'')");
+        }
+        try (PreparedStatement ps=koneksi.prepareStatement(sql.toString())){
+            for(int i=0;i<ROLE_BAWAAN.length;i++){
+                ps.setString(i*2+1,ROLE_BAWAAN[i][0]);
+                ps.setString(i*2+2,ROLE_BAWAAN[i][1]);
             }
+            ps.executeUpdate();
+            tabelSiap=true;
         } catch (Exception e) {
             System.out.println("Notifikasi role bawaan : "+e);
         }
@@ -992,6 +1006,12 @@ public final class DlgRoleUser extends javax.swing.JDialog {
 
     private void muatKolomAkses(){
         kolomAkses.clear();
+        synchronized(CACHE_KOLOM){
+            if(!CACHE_KOLOM.isEmpty()){
+                kolomAkses.addAll(CACHE_KOLOM);
+                return;
+            }
+        }
         try (Statement st=koneksi.createStatement();
              ResultSet rs=st.executeQuery("select column_name from information_schema.columns where table_schema=database() and table_name='user' "+
                      "and column_type='enum(''true'',''false'')' order by ordinal_position")){
@@ -1003,6 +1023,10 @@ public final class DlgRoleUser extends javax.swing.JDialog {
         }
         // urut per kategori lalu nama hak akses (urutan kolom di database bercampur antar kategori)
         kolomAkses.sort((x,y)->DaftarHakAkses.label(x).compareToIgnoreCase(DaftarHakAkses.label(y)));
+        synchronized(CACHE_KOLOM){
+            CACHE_KOLOM.clear();
+            CACHE_KOLOM.addAll(kolomAkses);
+        }
     }
 
     private void tampilRole(){
