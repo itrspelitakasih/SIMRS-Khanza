@@ -931,6 +931,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         }else if(jml==0){
             Valid.textKosong(Pemeriksaan,"Data Pemeriksaan");
         }else{
+            bersihkanNullPemeriksaan();
             Sequel.queryu("delete from temporary_lab");
             for(i=0;i<tbPemeriksaan.getRowCount();i++){ 
                 if(tbPemeriksaan.getValueAt(i,0).toString().equals("true")){
@@ -1206,6 +1207,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis...!!!!");
             Pemeriksaan.requestFocus();
         }else {
+            bersihkanNullPemeriksaan();
             Sequel.queryu("delete from temporary_lab");
             ttl=0;
             i2=0;
@@ -1515,7 +1517,8 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Table tbTarif;
     // End of variables declaration//GEN-END:variables
 
-    private void tampil() { 
+    private void tampil() {
+        bersihkanNullPemeriksaan();
         try {
             jml2=0;
             for(i2=0;i2<tbPemeriksaan.getRowCount();i2++){
@@ -2996,9 +2999,22 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }     
     }
 
+    // Sel bernilai null (mis. kolom Metode dari template yang kosong, atau nilai rujukan/keterangan
+    // dari LIS yang NULL) diganti "" agar .toString() saat simpan/cetak/susun ulang tidak NullPointerException.
+    private void bersihkanNullPemeriksaan() {
+        for(int r=0;r<tabMode.getRowCount();r++){
+            for(int c=0;c<tabMode.getColumnCount();c++){
+                if(tabMode.getValueAt(r,c)==null){
+                    tabMode.setValueAt((c>=8&&c<=15)?(Object)0d:"",r,c);
+                }
+            }
+        }
+    }
+
     private void simpanlab() {
         ChkJln.setSelected(false);
-        try {                    
+        bersihkanNullPemeriksaan();
+        try {
             ttljmdokter=0;ttljmpetugas=0;ttlkso=0;ttlpendapatan=0;ttlbhp=0;ttljasasarana=0;ttljmperujuk=0;ttlmenejemen=0;
             Sequel.AutoComitFalse();
             sukses=true;
