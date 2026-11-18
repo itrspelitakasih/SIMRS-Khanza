@@ -96,7 +96,8 @@ public final class NotifRegistrasiPasien {
         data.put("portal", portal);
         String pesan = pesanWA.isi(pesanWA.REGISTRASI_PASIEN, data);
 
-        GoWAService.kirimText(noTlp, pesan);
+        // dicatat di wa_outbox (source REGISTRASI) agar tampil di Monitoring Pesan WA
+        GoWAService.kirimTextDicatat(noTlp, pesan, "REGISTRASI");
     }
 
     private static String nz(String nilai) {

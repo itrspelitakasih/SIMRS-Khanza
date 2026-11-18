@@ -25,6 +25,7 @@ public class SIMRSKhanza {
      */
     public static void main(String[] args) {
         GoWAService.startQueueWorker();
+        fungsi.PemantauFreeze.mulai();
         WidgetUtilities.invokeLater(() -> {
            frmUtama utama=frmUtama.getInstance();
            utama.isWall();

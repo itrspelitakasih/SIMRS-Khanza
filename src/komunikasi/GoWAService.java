@@ -127,6 +127,36 @@ public class GoWAService {
         }
     }
 
+    /**
+     * Kirim langsung (tanpa menunggu worker) lalu catat hasilnya di wa_outbox supaya tampil di
+     * Monitoring Pesan WA. Gagal sementara masuk ANTRIAN (diulang worker), nomor tak terdaftar jadi GAGAL.
+     * Jangan dipakai untuk pesan rahasia (mis. password), karena isinya tersimpan di wa_outbox.
+     */
+    public static boolean kirimTextDicatat(String nomor, String pesan, String source) {
+        boolean sukses = kirimText(nomor, pesan);
+        String respon = RESPON_TERAKHIR.get();
+        String status = sukses ? "TERKIRIM" : (gagalPermanen(respon) ? "GAGAL" : "ANTRIAN");
+        String sql = "INSERT INTO wa_outbox "
+                + "(NOWA,PESAN,TANGGAL_JAM,STATUS,SOURCE,SENDER,SUCCESS,RESPONSE,TYPE,DEVICE_ID,SENT_DATETIME) "
+                + "VALUES (?,?,"+(sukses ? "NOW()" : "DATE_ADD(NOW(),INTERVAL 5 MINUTE)")+",?,?,'GOWA',?,?,'TEXT',?,"+(sukses ? "NOW()" : "NULL")+")";
+        try (Connection connection = koneksiDBWa.newConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, normalizePhone(nomor) + "@c.us");
+            ps.setString(2, pesan);
+            ps.setString(3, status);
+            ps.setString(4, source);
+            ps.setString(5, sukses ? "1" : "0");
+            ps.setString(6, sukses ? "Berhasil dikirim langsung melalui GoWA"
+                    : (status.equals("GAGAL") ? "Nomor tidak terdaftar di WhatsApp; tidak dikirim ulang. GoWA: "
+                    : "Gagal dikirim langsung; dijadwalkan ulang. GoWA: ") + respon);
+            ps.setString(7, deviceId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("GoWA : gagal mencatat pesan " + source + " ke wa_outbox : " + e.getMessage());
+        }
+        return sukses;
+    }
+
     public static void kirimTextNow(String nomor, String pesan, String source) throws Exception {
         String sekarang = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -204,7 +234,7 @@ public class GoWAService {
     private static void processDueMessages(Connection connection) throws Exception {
         List<QueueMessage> messages = new ArrayList<>();
         String sql = "SELECT NOMOR,NOWA,PESAN FROM wa_outbox "
-                + "WHERE STATUS='ANTRIAN' AND TYPE='TEXT' AND SOURCE IN ('KONTROL','" + SOURCE_PERAWATAN_INVENTARIS + "') "
+                + "WHERE STATUS='ANTRIAN' AND TYPE='TEXT' AND SOURCE IN ('KONTROL','REGISTRASI','" + SOURCE_PERAWATAN_INVENTARIS + "') "
                 + "AND TANGGAL_JAM<=NOW() ORDER BY TANGGAL_JAM LIMIT 20";
 
         try (PreparedStatement ps = connection.prepareStatement(sql);
@@ -224,7 +254,36 @@ public class GoWAService {
             }
 
             boolean sukses = kirimText(message.nomor, message.pesan);
-            finishQueueMessage(connection, message.nomorAntrian, sukses);
+            String respon = RESPON_TERAKHIR.get();
+            if (!sukses && gagalPermanen(respon)) {
+                // Nomor tidak terdaftar di WhatsApp: percuma diulang tiap 5 menit, tandai GAGAL
+                tandaiGagalPermanen(connection, message.nomorAntrian, respon);
+                System.out.println("GoWA : pesan " + message.nomorAntrian + " ke " + message.nomor
+                        + " ditandai GAGAL (nomor tidak terdaftar di WhatsApp), tidak diulang.");
+            } else {
+                finishQueueMessage(connection, message.nomorAntrian, sukses);
+            }
+        }
+    }
+
+    /** Isi respon GoWA terakhir di thread ini (dipakai worker untuk membedakan gagal sementara/permanen). */
+    private static final ThreadLocal<String> RESPON_TERAKHIR = ThreadLocal.withInitial(() -> "");
+
+    /** Gagal yang tidak akan berhasil walau diulang: nomor tidak punya akun WhatsApp / tidak valid. */
+    private static boolean gagalPermanen(String respon) {
+        String r = respon == null ? "" : respon.toLowerCase();
+        return r.contains("no lid found") || r.contains("not registered") || r.contains("not on whatsapp")
+                || r.contains("not a whatsapp") || r.contains("invalid phone") || r.contains("invalid jid");
+    }
+
+    private static void tandaiGagalPermanen(Connection connection, long nomorAntrian, String respon)
+            throws Exception {
+        String sql = "UPDATE wa_outbox SET STATUS='GAGAL',SUCCESS='0',RESPONSE=? "
+                + "WHERE NOMOR=? AND STATUS='PROSES' AND TYPE='TEXT'";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "Nomor tidak terdaftar di WhatsApp; tidak dikirim ulang. GoWA: " + respon);
+            ps.setLong(2, nomorAntrian);
+            ps.executeUpdate();
         }
     }
 
@@ -636,6 +695,7 @@ public class GoWAService {
     // =====================================================
     public static boolean kirimText(String noHP, String pesan) {
         HttpURLConnection conn = null;
+        RESPON_TERAKHIR.set("");
 
         try {
             if (!isConfigReady() || noHP == null || noHP.trim().isEmpty()) {
@@ -671,6 +731,7 @@ public class GoWAService {
 
             System.out.println("GOWA TEXT RESPONSE CODE : " + code);
             System.out.println("GOWA TEXT RESPONSE BODY : " + response);
+            RESPON_TERAKHIR.set(response == null ? "" : response);
 
             return code >= 200 && code < 300;
         } catch (Exception e) {

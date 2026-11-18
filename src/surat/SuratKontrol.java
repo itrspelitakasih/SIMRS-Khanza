@@ -2597,7 +2597,7 @@ public class SuratKontrol extends javax.swing.JDialog {
             dataPesan.put("namars", akses.getnamars());
             String pesan = pesanWA.isi(pesanWA.PENGINGAT_KONTROL, dataPesan);
 
-            boolean sukses = GoWAService.kirimText(nohp, pesan);
+            boolean sukses = GoWAService.kirimTextDicatat(nohp, pesan, "KONTROL");
 
             if (sukses) {
                 System.out.println("Reminder WA berhasil dikirim langsung melalui GoWA");
