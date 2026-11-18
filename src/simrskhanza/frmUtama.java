@@ -16019,6 +16019,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
     /** Tombol menu utama Template Pesan WA (kategori [U] dan pencarian menu), khusus Admin Utama. */
     private final widget.ButtonBig btnTemplatePesanWA=new widget.ButtonBig();
+    /** Tombol menu utama Monitoring Pesan WA (cek pesan WA terkirim/antri/gagal), khusus Admin Utama. */
+    private final widget.ButtonBig btnMonitoringWA=new widget.ButtonBig();
 
     /**
      * Template Pesan WA (Admin Utama): tombol di menu utama dan item di menu Program.
@@ -16042,6 +16044,39 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         MnTemplatePesanWA.setPreferredSize(new java.awt.Dimension(170, 30));
         MnTemplatePesanWA.addActionListener(evt -> bukaTemplatePesanWA());
         jMenu1.insert(MnTemplatePesanWA,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+
+        btnMonitoringWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486151_sms.png")));
+        btnMonitoringWA.setText("Monitoring Pesan WA");
+        btnMonitoringWA.setIconTextGap(0);
+        btnMonitoringWA.setName("btnMonitoringWA");
+        btnMonitoringWA.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMonitoringWA.addActionListener(evt -> bukaMonitoringWA());
+
+        javax.swing.JMenuItem MnMonitoringWA=new javax.swing.JMenuItem();
+        MnMonitoringWA.setBackground(new java.awt.Color(255, 255, 254));
+        MnMonitoringWA.setFont(new java.awt.Font("Tahoma", 0, 11));
+        MnMonitoringWA.setForeground(new java.awt.Color(50, 90, 40));
+        MnMonitoringWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png")));
+        MnMonitoringWA.setText("Monitoring Pesan WA");
+        MnMonitoringWA.setName("MnMonitoringWA");
+        MnMonitoringWA.setPreferredSize(new java.awt.Dimension(170, 30));
+        MnMonitoringWA.addActionListener(evt -> bukaMonitoringWA());
+        jMenu1.insert(MnMonitoringWA,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+    }
+
+    private void bukaMonitoringWA(){
+        if(!"Admin Utama".equals(akses.getkode())){
+            JOptionPane.showMessageDialog(this,"Monitoring Pesan WA hanya bisa dibuka oleh Admin Utama.");
+            return;
+        }
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        komunikasi.DlgMonitoringWA dlg=new komunikasi.DlgMonitoringWA(this,false);
+        dlg.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        dlg.setLocationRelativeTo(PanelUtama);
+        dlg.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
     }
 
     private void bukaTemplatePesanWA(){
@@ -26364,7 +26399,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.18"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.19"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
@@ -32498,6 +32533,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
             if("Admin Utama".equals(akses.getkode())){
                 Panelmenu.add(btnTemplatePesanWA);
+                jmlmenu++;
+                Panelmenu.add(btnMonitoringWA);
                 jmlmenu++;
                 Panelmenu.add(btnRoleUser);
                 jmlmenu++;
@@ -38633,6 +38670,8 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
 
         if("Admin Utama".equals(akses.getkode())){
             Panelmenu.add(btnTemplatePesanWA);
+            jmlmenu++;
+            Panelmenu.add(btnMonitoringWA);
             jmlmenu++;
             Panelmenu.add(btnRoleUser);
             jmlmenu++;
@@ -47192,6 +47231,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         if("Admin Utama".equals(akses.getkode())){
             if(btnTemplatePesanWA.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnTemplatePesanWA);
+                jmlmenu++;
+            }
+            if(btnMonitoringWA.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnMonitoringWA);
                 jmlmenu++;
             }
             if(btnRoleUser.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
