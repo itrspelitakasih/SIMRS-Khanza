@@ -1210,7 +1210,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
     private void tampil() {
         try{     
-            Valid.tabelKosong(TabModeTindakan);
+            barisTampil.clear();
             file=new File("./cache/tarifralan.iyem");
             file.createNewFile();
             fileWriter = new FileWriter(file);
@@ -1254,7 +1254,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     case "rawat_jl_dr":
                         while(rstindakan.next()){
                             if(rstindakan.getDouble("total_byrdr")>0){
-                                TabModeTindakan.addRow(new Object[] {
+                                barisTampil.add(new Object[] {
                                     false,rstindakan.getString(1),rstindakan.getString(2),rstindakan.getString(3),
                                     rstindakan.getDouble("total_byrdr"),rstindakan.getDouble("material"),
                                     rstindakan.getDouble("bhp"),rstindakan.getDouble("tarif_tindakandr"),
@@ -1268,7 +1268,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     case "rawat_jl_pr":
                         while(rstindakan.next()){
                             if(rstindakan.getDouble("total_byrpr")>0){
-                                TabModeTindakan.addRow(new Object[] {
+                                barisTampil.add(new Object[] {
                                     false,rstindakan.getString(1),rstindakan.getString(2),rstindakan.getString(3),
                                     rstindakan.getDouble("total_byrpr"),rstindakan.getDouble("material"),
                                     rstindakan.getDouble("bhp"),rstindakan.getDouble("tarif_tindakandr"),
@@ -1282,7 +1282,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     case "rawat_jl_drpr":
                         while(rstindakan.next()){
                             if(rstindakan.getDouble("total_byrdrpr")>0){
-                                TabModeTindakan.addRow(new Object[] {
+                                barisTampil.add(new Object[] {
                                     false,rstindakan.getString(1),rstindakan.getString(2),rstindakan.getString(3),
                                     rstindakan.getDouble("total_byrdrpr"),rstindakan.getDouble("material"),
                                     rstindakan.getDouble("bhp"),rstindakan.getDouble("tarif_tindakandr"),
@@ -1327,9 +1327,37 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         }finally {
             if (fileWriter != null) try { fileWriter.close(); } catch (Exception e) {}
         }
-        LCount.setText(""+tbTindakan.getRowCount());
+        terapkanBaris();
     }
     
+    /** Baris hasil tampil()/tampil2() yang dikumpulkan di thread background. */
+    private final java.util.List<Object[]> barisTampil=new java.util.ArrayList<>();
+
+    /**
+     * Isi tabel tindakan dari barisTampil di thread tampilan (EDT). Mengubah tabel Swing dari thread
+     * background bisa membuat aplikasi freeze/deadlock, terutama di Linux (Ubuntu).
+     */
+    private void terapkanBaris(){
+        final java.util.List<Object[]> salinan=new java.util.ArrayList<>(barisTampil);
+        barisTampil.clear();
+        Runnable isi=() -> {
+            TabModeTindakan.setRowCount(0);
+            for(Object[] b:salinan){
+                TabModeTindakan.addRow(b);
+            }
+            LCount.setText(""+tbTindakan.getRowCount());
+        };
+        if(SwingUtilities.isEventDispatchThread()){
+            isi.run();
+        }else{
+            try {
+                SwingUtilities.invokeAndWait(isi);
+            } catch (Exception e) {
+                System.out.println("Notifikasi : "+e);
+            }
+        }
+    }
+
     private void tampil2() {
         try{     
             jml=0;
@@ -1369,10 +1397,10 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 }
             }       
 
-            Valid.tabelKosong(TabModeTindakan);
+            barisTampil.clear();
 
             for(i=0;i<jml;i++){
-                TabModeTindakan.addRow(new Object[] {
+                barisTampil.add(new Object[] {
                     pilih[i],kode[i],nama[i],kategori[i],totaltnd[i],bagianrs[i],bhp[i],jmdokter[i],jmperawat[i],kso[i],menejemen[i]
                 });
             }
@@ -1395,7 +1423,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             if(response.isArray()){
                 if(TCariTindakan.getText().trim().equals("")){
                     for(JsonNode list:response){
-                        TabModeTindakan.addRow(new Object[]{
+                        barisTampil.add(new Object[]{
                             false,list.path("Kode").asText(),list.path("NamaPerawatan").asText(),list.path("KategoriPerawatan").asText(),list.path("Tarif").asDouble(),list.path("BagianRS").asDouble(),list.path("BHP").asDouble(),list.path("JMDokter").asDouble(),list.path("JMPerawat").asDouble(),list.path("KSO").asDouble(),list.path("Menejemen").asDouble()
                         });
                     }
@@ -1403,7 +1431,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     String cari=TCariTindakan.getText().toLowerCase();
                     for(JsonNode list:response){
                         if(list.path("Kode").asText().toLowerCase().contains(cari)||list.path("NamaPerawatan").asText().toLowerCase().contains(cari)||list.path("KategoriPerawatan").asText().toLowerCase().contains(cari)){
-                            TabModeTindakan.addRow(new Object[]{
+                            barisTampil.add(new Object[]{
                                 false,list.path("Kode").asText(),list.path("NamaPerawatan").asText(),list.path("KategoriPerawatan").asText(),list.path("Tarif").asDouble(),list.path("BagianRS").asDouble(),list.path("BHP").asDouble(),list.path("JMDokter").asDouble(),list.path("JMPerawat").asDouble(),list.path("KSO").asDouble(),list.path("Menejemen").asDouble()
                             });
                         }
@@ -1418,7 +1446,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             response = null;
             root = null;
         }
-        LCount.setText(""+tbTindakan.getRowCount());
+        terapkanBaris();
     }
 
     private void emptTeks() {
