@@ -2485,35 +2485,45 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                         try {
                             akses.setform("DlgBilingRalan");
                             switch (tbBilling.getValueAt(tbBilling.getSelectedRow(),i).toString()) {
+                                case "Registrasi":
+                                    if(akses.gettindakan_ralan()==true){
+                                        inputTindakanPetugas();
+                                    }
+                                    break;
                                 case "Tindakan":
                                     if(akses.gettindakan_ralan()==true){
                                         MnInputTindakanActionPerformed(null);
-                                    }                            
+                                    }
                                     break;
                                 case "Obat & BHP":
                                     if(akses.getberi_obat()==true){
                                         MnInputObatActionPerformed(null);
-                                    }                            
+                                    }
                                     //dispose();
                                     break;
                                 case "Tambahan Biaya":
                                     if(akses.gettambahan_biaya()==true){
                                         MnTambahanActionPerformed(null);
-                                    }                            
+                                    }
                                     break;
                                 case "Potongan Biaya":
                                     if(akses.getpotongan_biaya()==true){
                                         MnPotonganActionPerformed(null);
                                     }
                                     break;
-                            }                     
+                            }
                         } catch (Exception e) {
                             akses.setform("DlgBilingRalan");
                             switch (tbBilling.getValueAt(tbBilling.getSelectedRow(),i).toString()) {
+                                case "Registrasi":
+                                    if(akses.gettindakan_ralan()==true){
+                                        inputTindakanPetugas();
+                                    }
+                                    break;
                                 case "Tindakan":
                                     if(akses.gettindakan_ralan()==true){
                                         MnInputTindakanActionPerformed(null);
-                                    }                            
+                                    }
                                     break;
                                 case "Obat & BHP":
                                     if(akses.getberi_obat()==true){
@@ -3345,6 +3355,32 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }            
         }                            
     }//GEN-LAST:event_MnInputTindakanActionPerformed
+
+    /** Klik baris "Registrasi" di tabel billing: input tindakan petugas/perawat (rawat_jl_pr).
+     *  Petugas diisi user login bila terdaftar sebagai petugas, selain itu dipilih lewat tombol cari. */
+    private void inputTindakanPetugas(){
+        if(TPasien.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Pasien belum dipilih...!!!");
+            TNoRw.requestFocus();
+        }else{
+            if(Sequel.cariRegistrasi(TNoRw.getText())>0){
+                JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi ..!!");
+            }else{
+                kdptg="";
+                nmptg=Sequel.cariIsi("select petugas.nama from petugas where petugas.status='1' and petugas.nip=?",akses.getkode());
+                if(!nmptg.equals("")){
+                    kdptg=akses.getkode();
+                }
+                DlgCariPerawatanRalan dlgrwjl=new DlgCariPerawatanRalan(null,false);
+                dlgrwjl.setNoRm(TNoRw.getText(),kdptg,nmptg,"rawat_jl_pr","-","-");
+                dlgrwjl.isCek();
+                dlgrwjl.setSize(internalFrame1.getWidth(),internalFrame1.getHeight());
+                dlgrwjl.setLocationRelativeTo(internalFrame1);
+                dlgrwjl.setAlwaysOnTop(false);
+                dlgrwjl.setVisible(true);
+            }
+        }
+    }
 
     private void MnCariPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCariPeriksaLabActionPerformed
         if(TPasien.getText().trim().equals("")){
