@@ -16034,11 +16034,18 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         btnTemplatePesanWA.setPreferredSize(new java.awt.Dimension(200, 90));
         btnTemplatePesanWA.addActionListener(evt -> bukaTemplatePesanWA());
 
-        javax.swing.JMenuItem MnTemplatePesanWA=new javax.swing.JMenuItem();
-        MnTemplatePesanWA.setBackground(new java.awt.Color(255, 255, 254));
-        MnTemplatePesanWA.setFont(new java.awt.Font("Tahoma", 0, 11));
+        // Menu Program: Log In, Ubah Password | Template Pesan WA, Monitoring Pesan WA, Role Hak Akses User | Keluar
+        widget.PopupMenu.Separator SepMenuAdmin=new widget.PopupMenu.Separator();
+        SepMenuAdmin.setBackground(new java.awt.Color(190, 220, 180));
+        SepMenuAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(190, 220, 180)));
+        SepMenuAdmin.setForeground(new java.awt.Color(190, 220, 180));
+        SepMenuAdmin.setName("SepMenuAdmin");
+        SepMenuAdmin.setPreferredSize(new java.awt.Dimension(0, 1));
+        jMenu1.getPopupMenu().insert(SepMenuAdmin,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+
+        widget.MenuItem MnTemplatePesanWA=new widget.MenuItem();
         MnTemplatePesanWA.setForeground(new java.awt.Color(50, 90, 40));
-        MnTemplatePesanWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png")));
+        MnTemplatePesanWA.setIcon(ikonMenu24("/48x48/1360485642_edit-notes.png"));
         MnTemplatePesanWA.setText("Template Pesan WA");
         MnTemplatePesanWA.setName("MnTemplatePesanWA");
         MnTemplatePesanWA.setPreferredSize(new java.awt.Dimension(170, 30));
@@ -16052,16 +16059,20 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         btnMonitoringWA.setPreferredSize(new java.awt.Dimension(200, 90));
         btnMonitoringWA.addActionListener(evt -> bukaMonitoringWA());
 
-        javax.swing.JMenuItem MnMonitoringWA=new javax.swing.JMenuItem();
-        MnMonitoringWA.setBackground(new java.awt.Color(255, 255, 254));
-        MnMonitoringWA.setFont(new java.awt.Font("Tahoma", 0, 11));
+        widget.MenuItem MnMonitoringWA=new widget.MenuItem();
         MnMonitoringWA.setForeground(new java.awt.Color(50, 90, 40));
-        MnMonitoringWA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png")));
+        MnMonitoringWA.setIcon(ikonMenu24("/48x48/1360486151_sms.png"));
         MnMonitoringWA.setText("Monitoring Pesan WA");
         MnMonitoringWA.setName("MnMonitoringWA");
         MnMonitoringWA.setPreferredSize(new java.awt.Dimension(170, 30));
         MnMonitoringWA.addActionListener(evt -> bukaMonitoringWA());
         jMenu1.insert(MnMonitoringWA,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+    }
+
+    /** Ikon 48x48 diperkecil jadi 24x24 agar sama besar dengan ikon menu Program lain (Log In, Keluar). */
+    private javax.swing.ImageIcon ikonMenu24(String path){
+        java.awt.Image img=new javax.swing.ImageIcon(getClass().getResource(path)).getImage();
+        return new javax.swing.ImageIcon(img.getScaledInstance(24,24,java.awt.Image.SCALE_SMOOTH));
     }
 
     private void bukaMonitoringWA(){
@@ -16106,9 +16117,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         btnRoleUser.setPreferredSize(new java.awt.Dimension(200, 90));
         btnRoleUser.addActionListener(evt -> bukaRoleUser());
 
-        javax.swing.JMenuItem MnRoleUser=new javax.swing.JMenuItem();
-        MnRoleUser.setBackground(new java.awt.Color(255, 255, 254));
-        MnRoleUser.setFont(new java.awt.Font("Tahoma", 0, 11));
+        widget.MenuItem MnRoleUser=new widget.MenuItem();
         MnRoleUser.setForeground(new java.awt.Color(50, 90, 40));
         MnRoleUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png")));
         MnRoleUser.setText("Role Hak Akses User");
@@ -26399,7 +26408,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.20"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.21"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
