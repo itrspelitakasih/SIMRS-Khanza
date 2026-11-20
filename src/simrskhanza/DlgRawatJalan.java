@@ -280,6 +280,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     public DlgRawatJalan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // RSPK: Daftar Tindakan & Tindakan Dilakukan tampil berdampingan (bukan tab)
+        jadikanDuaSisi(TabRawatTindakanDokter, Scroll6, Scroll);
+        jadikanDuaSisi(TabRawatTindakanPetugas, Scroll7, Scroll8);
+        jadikanDuaSisi(TabRawatTindakanDokterPetugas, Scroll9, Scroll10);
         initRawatJalan();
         initShortcutPemeriksaan();
         initCariMenu();
@@ -333,7 +337,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }else if(i==8){
                 column.setPreferredWidth(75);
             }else if(i==9){
-                column.setPreferredWidth(90);
+                column.setMinWidth(0); // RSPK: kolom Biaya disembunyikan
+                column.setMaxWidth(0);
             }else if(i==10){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -402,7 +407,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }else if(i==8){
                 column.setPreferredWidth(75);
             }else if(i==9){
-                column.setPreferredWidth(90);
+                column.setMinWidth(0); // RSPK: kolom Biaya disembunyikan
+                column.setMaxWidth(0);
             }else if(i==10){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -476,7 +482,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }else if(i==10){
                 column.setPreferredWidth(75);
             }else if(i==11){
-                column.setPreferredWidth(90);
+                column.setMinWidth(0); // RSPK: kolom Biaya disembunyikan
+                column.setMaxWidth(0);
             }else if(i==12){
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -6427,21 +6434,21 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         }else if(evt.getKeyCode()==KeyEvent.VK_UP){
             switch (TabRawat.getSelectedIndex()) {
                 case 0:
-                    if(TabRawatTindakanDokter.getSelectedIndex()==0){
+                    if(TabRawatTindakanDokter.getSelectedIndex()<=0){
                         tbTindakan.requestFocus();
                     }else if(TabRawatTindakanDokter.getSelectedIndex()==1){
                         tbRawatDr.requestFocus();
                     }
                     break;
                 case 1:
-                    if(TabRawatTindakanPetugas.getSelectedIndex()==0){
+                    if(TabRawatTindakanPetugas.getSelectedIndex()<=0){
                         tbTindakan2.requestFocus();
                     }else if(TabRawatTindakanPetugas.getSelectedIndex()==1){
                         tbRawatPr.requestFocus();
                     }
                     break;
                 case 2:
-                    if(TabRawatTindakanDokterPetugas.getSelectedIndex()==0){
+                    if(TabRawatTindakanDokterPetugas.getSelectedIndex()<=0){
                         tbTindakan3.requestFocus();
                     }else if(TabRawatTindakanDokterPetugas.getSelectedIndex()==1){
                         tbRawatDrPr.requestFocus();
@@ -7499,7 +7506,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_tbPemeriksaanGinekologiKeyReleased
 
     private void TabRawatTindakanDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatTindakanDokterMouseClicked
-        if(TabRawatTindakanDokter.getSelectedIndex()==0){
+        if(TabRawatTindakanDokter.getSelectedIndex()<=0){
             TCari.setText("");
         }else if(TabRawatTindakanDokter.getSelectedIndex()==1){
             TCari.setText("");
@@ -7552,7 +7559,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_tbTindakan2KeyPressed
 
     private void TabRawatTindakanPetugasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatTindakanPetugasMouseClicked
-        if(TabRawatTindakanPetugas.getSelectedIndex()==0){
+        if(TabRawatTindakanPetugas.getSelectedIndex()<=0){
             TCari.setText("");
         }else if(TabRawatTindakanPetugas.getSelectedIndex()==1){
             TCari.setText("");
@@ -7584,7 +7591,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_tbTindakan3KeyPressed
 
     private void TabRawatTindakanDokterPetugasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatTindakanDokterPetugasMouseClicked
-        if(TabRawatTindakanDokterPetugas.getSelectedIndex()==0){
+        if(TabRawatTindakanDokterPetugas.getSelectedIndex()<=0){
             TCari.setText("");
         }else if(TabRawatTindakanDokterPetugas.getSelectedIndex()==1){
             TCari.setText("");
@@ -13482,12 +13489,36 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
 
+    // RSPK: tab tindakan dibuat dua sisi; TabPane asli dikosongkan dan diganti panel kiri-kanan
+    private void jadikanDuaSisi(widget.TabPane tab, javax.swing.JComponent daftar, javax.swing.JComponent dilakukan) {
+        java.awt.Container induk = tab.getParent();
+        tab.removeAll();
+        induk.remove(tab);
+        javax.swing.JPanel kiri = new javax.swing.JPanel(new java.awt.BorderLayout());
+        kiri.setBackground(new java.awt.Color(255, 255, 253));
+        kiri.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)),
+                "Daftar Tindakan/Tagihan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50)));
+        kiri.add(daftar, java.awt.BorderLayout.CENTER);
+        javax.swing.JPanel kanan = new javax.swing.JPanel(new java.awt.BorderLayout());
+        kanan.setBackground(new java.awt.Color(255, 255, 253));
+        kanan.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)),
+                "Tindakan Dilakukan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(50, 50, 50)));
+        kanan.add(dilakukan, java.awt.BorderLayout.CENTER);
+        javax.swing.JSplitPane split = new javax.swing.JSplitPane(javax.swing.JSplitPane.HORIZONTAL_SPLIT, kiri, kanan);
+        split.setResizeWeight(0.5);
+        split.setDividerSize(6);
+        split.setBorder(null);
+        split.setContinuousLayout(true);
+        induk.add(split, java.awt.BorderLayout.CENTER);
+    }
+
     private void tampilkanPenangananDokter() {
-        if(TabRawatTindakanDokter.getSelectedIndex()==0){
-            runBackground(() ->tampilTindakanDr());
-        }else if(TabRawatTindakanDokter.getSelectedIndex()==1){
-            runBackground(() ->tampilDr());
-        }
+        runBackground(() -> {
+            tampilTindakanDr();
+            tampilDr();
+        });
     }
     
     private boolean cekKonsulSpesialis(widget.Table tabel,String kodedokter,String namadokter){
@@ -13609,6 +13640,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
             Sequel.AutoComitTrue();
             ChkJln.setSelected(true);
+            if(sukses==true){
+                // RSPK: tabel Tindakan Dilakukan langsung diperbarui setelah simpan
+                TCariPasien.setText(TNoRM.getText());
+                tampilkanPenangananDokter();
+            }
         } catch (Exception e) {
             System.out.println("Notif : "+e);
         }
@@ -13707,6 +13743,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
             Sequel.AutoComitTrue();
             ChkJln.setSelected(true);
+            if(sukses==true){
+                // RSPK: tabel Tindakan Dilakukan langsung diperbarui setelah simpan
+                TCariPasien.setText(TNoRM.getText());
+                tampilkanPenangananPetugas();
+            }
         } catch (Exception e) {
             System.out.println("Notif : "+e);
         }
@@ -13818,25 +13859,28 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
             Sequel.AutoComitTrue();
             ChkJln.setSelected(true);
+            if(sukses==true){
+                // RSPK: tabel Tindakan Dilakukan langsung diperbarui setelah simpan
+                TCariPasien.setText(TNoRM.getText());
+                tampilkanPenangananDokterPetugas();
+            }
         } catch (Exception e) {
             System.out.println("Notif : "+e);
         }
     }
 
     private void tampilkanPenangananPetugas() {
-        if(TabRawatTindakanPetugas.getSelectedIndex()==0){
-            runBackground(() ->tampilTindakanPr());
-        }else if(TabRawatTindakanPetugas.getSelectedIndex()==1){
-            runBackground(() ->tampilPr());
-        }
+        runBackground(() -> {
+            tampilTindakanPr();
+            tampilPr();
+        });
     }
 
     private void tampilkanPenangananDokterPetugas() {
-        if(TabRawatTindakanDokterPetugas.getSelectedIndex()==0){
-            runBackground(() ->tampilTindakanDrPr());
-        }else if(TabRawatTindakanDokterPetugas.getSelectedIndex()==1){
-            runBackground(() ->tampilDrPr());
-        }
+        runBackground(() -> {
+            tampilTindakanDrPr();
+            tampilDrPr();
+        });
     }
 
     private void inputObat() {

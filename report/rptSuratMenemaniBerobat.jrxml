@@ -24,6 +24,7 @@
 	<field name="no_rkm_medis" class="java.lang.String"/>
 	<field name="nm_pasien" class="java.lang.String"/>
 	<field name="tgl_registrasi" class="java.lang.String"/>
+	<field name="jam_reg" class="java.sql.Time"/>
 	<field name="p_jawab" class="java.lang.String"/>
 	<field name="almt_pj" class="java.lang.String"/>
 	<field name="hubunganpj" class="java.lang.String"/>
@@ -174,7 +175,7 @@
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Menemani pasien a.n. "+$F{nm_pasien}+" (No.RM "+$F{no_rkm_medis}+") berobat di "+$F{nm_poli}+" pada tanggal "+($F{tgl_registrasi}==null?"":new java.text.SimpleDateFormat("d MMMM yyyy",new java.util.Locale("id","ID")).format(new java.text.SimpleDateFormat("dd-MM-yyyy").parse($F{tgl_registrasi})))]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Menemani pasien a.n. "+$F{nm_pasien}+" (No.RM "+$F{no_rkm_medis}+") berobat di "+$F{nm_poli}+" pada tanggal "+($F{tgl_registrasi}==null?"":new java.text.SimpleDateFormat("d MMMM yyyy",new java.util.Locale("id","ID")).format(new java.text.SimpleDateFormat("dd-MM-yyyy").parse($F{tgl_registrasi})))+($F{jam_reg}==null?"":" pukul "+new java.text.SimpleDateFormat("HH.mm").format($F{jam_reg})+" WITA")]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="264" width="381" height="14" uuid="5e2c7a10-3b6f-4d8e-9a21-7c4f0b8e1d22"/>
