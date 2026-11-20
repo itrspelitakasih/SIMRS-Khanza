@@ -554,8 +554,18 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
 
-        ChkAccor.setSelected(false);
+        // RSPK: daftar & panel foto langsung tampil berdampingan (tidak perlu klik tombol tampil/sembunyi)
+        ChkAccor.setSelected(true);
         isPhoto();
+        internalFrame1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                if (ChkAccor.isSelected()) {
+                    isPhoto();
+                    internalFrame1.revalidate();
+                }
+            }
+        });
     }
 
     /**
@@ -2896,19 +2906,111 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     }// GEN-LAST:event_UploadPDFActionPerformed
 
     private void btnDicomRouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDicomRouterActionPerformed
-        if (tabModeDicom.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-            TCari.requestFocus();
-        } else {
-            if (tbListDicom.getSelectedRow() != -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                ApiOrthanc orthanc = new ApiOrthanc();
-                orthanc.kirimKeModality(tbListDicom.getValueAt(tbListDicom.getSelectedRow(), 1).toString());
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
+        // RSPK: kirim massal ke DICOM Router untuk semua pemeriksaan di daftar (sesuai filter tanggal), seperti Kirim ORTHANC
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tidak ada data pemeriksaan di daftar.");
+            return;
+        }
+        final List<String[]> daftarPemeriksaan = new ArrayList<>();
+        for (int r = 0; r < tabMode.getRowCount(); r++) {
+            Object col0 = tabMode.getValueAt(r, 0), col3 = tabMode.getValueAt(r, 3), col4 = tabMode.getValueAt(r, 4);
+            if (col0 != null && !col0.toString().trim().isEmpty() && !col0.toString().equals(">>")
+                    && col3 != null && col4 != null && !col3.toString().trim().isEmpty() && !col4.toString().trim().isEmpty()) {
+                daftarPemeriksaan.add(new String[]{col0.toString(), col3.toString(), col4.toString()});
             }
         }
+        if (daftarPemeriksaan.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tidak ada data pemeriksaan yang bisa dikirim.");
+            return;
+        }
+        if (JOptionPane.showConfirmDialog(null,
+                "Ditemukan " + daftarPemeriksaan.size() + " pemeriksaan di daftar.\n"
+                + "Lanjut kirim semua study di Orthanc ke DICOM Router (SatuSehat)?",
+                "Konfirmasi Kirim Semua ke DICOMROUTER", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
+            return;
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        btnDicomRouter.setEnabled(false);
+        new javax.swing.SwingWorker<String, Void>() {
+            @Override
+            protected String doInBackground() {
+                int tanpaOrder = 0, belumDiOrthanc = 0, berhasil = 0, gagal = 0;
+                String errorPertama = "";
+                java.util.Set<String> sudahDikirim = new java.util.HashSet<>();
+                ApiOrthanc api = new ApiOrthanc();
+                for (String[] periksa : daftarPemeriksaan) {
+                    try {
+                        String norm = Sequel.cariIsi("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?", periksa[0]);
+                        String accession = "";
+                        try (PreparedStatement psOrder = koneksi.prepareStatement("select permintaan_radiologi.noorder from permintaan_radiologi "
+                                + "where permintaan_radiologi.no_rawat=? and permintaan_radiologi.tgl_hasil=? and permintaan_radiologi.jam_hasil=?")) {
+                            psOrder.setString(1, periksa[0]);
+                            psOrder.setString(2, periksa[1]);
+                            psOrder.setString(3, periksa[2]);
+                            try (ResultSet rsOrder = psOrder.executeQuery()) {
+                                if (rsOrder.next()) {
+                                    accession = rsOrder.getString(1);
+                                }
+                            }
+                        }
+                        if (norm.equals("") || accession.equals("")) {
+                            tanpaOrder++;
+                            continue;
+                        }
+                        List<String> daftarStudy = api.cariStudyId(norm, periksa[1].replaceAll("-", ""), accession);
+                        if (daftarStudy.isEmpty()) {
+                            belumDiOrthanc++;
+                            continue;
+                        }
+                        for (String studyId : daftarStudy) {
+                            if (!sudahDikirim.add(studyId)) {
+                                continue;
+                            }
+                            try {
+                                api.kirimKeModalityTanpaPesan(studyId);
+                                berhasil++;
+                            } catch (Exception e) {
+                                gagal++;
+                                System.out.println("Notifikasi Kirim DICOMROUTER [" + periksa[0] + "] : " + e.getMessage());
+                                if (errorPertama.equals("")) {
+                                    errorPertama = periksa[0] + " : " + e.getMessage();
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        gagal++;
+                        System.out.println("Notifikasi Kirim DICOMROUTER [" + periksa[0] + "] : " + e);
+                        if (errorPertama.equals("")) {
+                            errorPertama = periksa[0] + " : " + e.getMessage();
+                        }
+                    }
+                }
+                String pesan = "Selesai mengirim ke DICOMROUTER.\n"
+                        + "Pemeriksaan di daftar          : " + daftarPemeriksaan.size() + "\n"
+                        + "Dilewati (tanpa no. order)     : " + tanpaOrder + "\n"
+                        + "Belum ada di Orthanc           : " + belumDiOrthanc + "\n"
+                        + "Study berhasil dikirim         : " + berhasil + "\n"
+                        + "Study gagal                    : " + gagal;
+                if (!errorPertama.equals("")) {
+                    pesan += "\n\nError pertama:\n" + (errorPertama.length() > 300 ? errorPertama.substring(0, 300) + "..." : errorPertama);
+                }
+                if (belumDiOrthanc > 0) {
+                    pesan += "\n\nPemeriksaan yang belum ada di Orthanc: klik Kirim ORTHANC terlebih dahulu.";
+                }
+                return pesan;
+            }
+
+            @Override
+            protected void done() {
+                setCursor(Cursor.getDefaultCursor());
+                btnDicomRouter.setEnabled(true);
+                try {
+                    JOptionPane.showMessageDialog(null, get());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Gagal kirim ke DICOMROUTER : " + e.getMessage());
+                }
+            }
+        }.execute();
     }//GEN-LAST:event_btnDicomRouterActionPerformed
 
     private void BtnWAPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnWAPasienActionPerformed

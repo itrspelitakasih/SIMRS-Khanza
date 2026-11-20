@@ -598,6 +598,44 @@ public class ApiOrthanc {
         }
     }
 
+    // RSPK: cari ID study di Orthanc (tanpa pesan dialog), untuk kirim massal ke DICOM Router.
+    // accession boleh kosong; bila diisi, hanya study dengan AccessionNumber tersebut yang diambil.
+    public java.util.List<String> cariStudyId(String norm, String tanggal, String accession) throws Exception {
+        HttpHeaders h = new HttpHeaders();
+        h.add("Authorization", "Basic " + authEncrypt);
+        h.setContentType(MediaType.APPLICATION_JSON);
+        Map<String, Object> query = new HashMap<>();
+        query.put("PatientID", norm);
+        query.put("StudyDate", tanggal + "-" + tanggal);
+        if (accession != null && !accession.equals("")) {
+            query.put("AccessionNumber", accession);
+        }
+        Map<String, Object> body = new HashMap<>();
+        body.put("Level", "Study");
+        body.put("Query", query);
+        String hasil = getRest().exchange(koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC() + "/tools/find",
+                HttpMethod.POST, new HttpEntity(mapper.writeValueAsString(body), h), String.class).getBody();
+        java.util.List<String> daftar = new java.util.ArrayList<>();
+        for (JsonNode n : mapper.readTree(hasil)) {
+            daftar.add(n.asText());
+        }
+        return daftar;
+    }
+
+    // RSPK: kirim study ke modality DCMROUTER tanpa pesan dialog; melempar exception bila gagal.
+    public void kirimKeModalityTanpaPesan(String studyId) throws Exception {
+        HttpHeaders h = new HttpHeaders();
+        h.add("Authorization", "Basic " + authEncrypt);
+        h.setContentType(MediaType.APPLICATION_JSON);
+        System.out.println("Kirim Study ke DICOMROUTER : " + studyId);
+        try {
+            getRest().exchange(koneksiDB.URLORTHANC() + ":" + koneksiDB.PORTORTHANC() + "/modalities/DCMROUTER/store",
+                    HttpMethod.POST, new HttpEntity("[\"" + studyId + "\"]", h), String.class);
+        } catch (org.springframework.web.client.HttpStatusCodeException e) {
+            throw new Exception(e.getStatusCode() + " " + e.getResponseBodyAsString());
+        }
+    }
+
     public String getModality(String nmPemeriksaan) {
         String modality = "OT"; // Default Other
         String name = nmPemeriksaan.toUpperCase();
@@ -606,7 +644,7 @@ public class ApiOrthanc {
         } else if (name.contains("CR") || name.contains("DX") || name.contains("RONTGEN") || name.contains("ROENTGEN")
                 || name.contains("THORAX") || name.contains("TORAKS") || name.contains("FOTO") || name.contains("PHOTO")
                 || name.contains("PANORAMIC") || name.contains("RADIOGRAFI") || name.contains("RADIOGRAPHY")) {
-            modality = "XR";
+            modality = "DX"; // RSPK: "XR" bukan kode modality DICOM yang sah
         } else if (name.contains("CT") || name.contains("MSCT") || name.contains("SCAN")) {
             modality = "CT";
         } else if (name.contains("MRI") || name.contains("MRA") || name.contains("MRCP")) {
@@ -653,6 +691,9 @@ public class ApiOrthanc {
 
             Map<String, Object> dicomData = new HashMap<>();
             Map<String, Object> tags = new HashMap<>(); // Gunakan Object agar bisa kirim Integer
+            // RSPK: SOP Class wajib ada agar Orthanc bisa C-STORE ke DICOM Router (Secondary Capture untuk gambar hasil konversi JPG)
+            tags.put("SOPClassUID", "1.2.840.10008.5.1.4.1.1.7");
+            tags.put("ConversionType", "WSD");
             tags.put("PatientID", noRm);
             tags.put("PatientName", nmPasien);
             tags.put("PatientBirthDate", tglLahir.replaceAll("-", ""));

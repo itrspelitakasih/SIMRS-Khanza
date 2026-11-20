@@ -416,7 +416,7 @@
 					<font fontName="Tahoma" size="10" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tgl_registrasi}==null?"":new java.text.SimpleDateFormat("d MMMM yyyy",new java.util.Locale("id","ID")).format(new java.text.SimpleDateFormat("dd-MM-yyyy").parse($F{tgl_registrasi}))]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tgl_registrasi}==null?"":new java.text.SimpleDateFormat("d MMMM yyyy",new java.util.Locale("id","ID")).format(new java.text.SimpleDateFormat("dd-MM-yyyy").parse($F{tgl_registrasi}))+($F{jam_reg}==null?"":" pukul "+new java.text.SimpleDateFormat("HH.mm").format($F{jam_reg})+" WITA")]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="16" y="252" width="70" height="14" uuid="6344496b-1c92-4da2-a05d-0d1e5c2b555f">
