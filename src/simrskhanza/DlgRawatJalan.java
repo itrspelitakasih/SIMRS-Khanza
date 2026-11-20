@@ -13514,8 +13514,21 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         induk.add(split, java.awt.BorderLayout.CENTER);
     }
 
+    // RSPK: tabel tindakan diisi di thread tampilan (EDT), bukan background; mengubah tabel Swing
+    // dari thread lain membuat klien Ubuntu tersendat/freeze. Query-nya ringan (1 query per tabel).
+    private void muatDiEDT(Runnable tugas) {
+        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SwingUtilities.invokeLater(() -> {
+            try {
+                tugas.run();
+            } finally {
+                setCursor(Cursor.getDefaultCursor());
+            }
+        });
+    }
+
     private void tampilkanPenangananDokter() {
-        runBackground(() -> {
+        muatDiEDT(() -> {
             tampilTindakanDr();
             tampilDr();
         });
@@ -13870,14 +13883,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
 
     private void tampilkanPenangananPetugas() {
-        runBackground(() -> {
+        muatDiEDT(() -> {
             tampilTindakanPr();
             tampilPr();
         });
     }
 
     private void tampilkanPenangananDokterPetugas() {
-        runBackground(() -> {
+        muatDiEDT(() -> {
             tampilTindakanDrPr();
             tampilDrPr();
         });
