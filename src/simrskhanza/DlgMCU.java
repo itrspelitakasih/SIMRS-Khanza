@@ -407,6 +407,16 @@ public final class DlgMCU extends javax.swing.JDialog {
     public DlgMCU(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // RSPK: klik kanan > Input Paket Tindakan (tindakan + permintaan lab/radiologi + harga paket tetap)
+        javax.swing.JMenuItem MnInputPaketTindakan=new javax.swing.JMenuItem("Input Paket Tindakan");
+        MnInputPaketTindakan.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputPaketTindakan.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputPaketTindakan.setFont(new java.awt.Font("Tahoma", 0, 12));
+        MnInputPaketTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
+        MnInputPaketTindakan.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnInputPaketTindakan.setName("MnInputPaketTindakan");
+        MnInputPaketTindakan.addActionListener(e -> inputPaketTindakan());
+        jPopupMenu1.insert(MnInputPaketTindakan, jPopupMenu1.getComponentIndex(MnTindakan)+1);
         initRegistrasi();
 
         this.setLocation(8,1);
@@ -16808,6 +16818,53 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }
     
+    /** RSPK: pilih Paket Tindakan lalu input otomatis ke pasien terpilih (lihat fungsi.PaketTindakan). */
+    private void inputPaketTindakan(){
+        if(!akses.gettindakan_ralan()){
+            JOptionPane.showMessageDialog(null,"Maaf, Anda tidak punya hak akses input tindakan rawat jalan.");
+            return;
+        }
+        if(tbPetugas.getSelectedRow()==-1||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih data pasien pada tabel terlebih dahulu...!!!");
+            return;
+        }
+        String norawat=TNoRw.getText().trim();
+        String kodePaket=DlgPilihPaketTindakan.pilih(this,norawat);
+        if(kodePaket==null){
+            return;
+        }
+        String namaPaket=Sequel.cariIsi("select nama_paket from paket_tindakan where kode_paket=?",kodePaket);
+        // peringatan bila ada item paket yang tidak punya tarif di jenis bayar pasien
+        String peringatan="";
+        try {
+            java.util.List<String> kosong=fungsi.PaketTindakan.tanpaTarif(norawat,kodePaket);
+            if(!kosong.isEmpty()){
+                String nmPj=Sequel.cariIsi("select penjab.png_jawab from reg_periksa inner join penjab on penjab.kd_pj=reg_periksa.kd_pj where reg_periksa.no_rawat=?",norawat);
+                peringatan="\n\nPERINGATAN: data tarif jenis bayar "+nmPj+" belum lengkap untuk:\n- "+String.join("\n- ",kosong)+
+                        "\nItem tanpa tarif tetap diinput memakai tarif dari paket (biasanya UMUM)."+
+                        "\nPemeriksaan lab tanpa template hasil tidak bisa diisi hasilnya oleh petugas lab."+
+                        "\nPilih No untuk melengkapi master tarif/template dulu.";
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Paket Tindakan : "+e.getMessage());
+        }
+        if(JOptionPane.showConfirmDialog(null,"Input paket \""+namaPaket+"\" ke pasien "+TPasien.getText()+" ("+norawat+")?\n"+
+                "Tindakan langsung tercatat, lab & radiologi dibuat sebagai permintaan."+peringatan,"Konfirmasi",JOptionPane.YES_NO_OPTION,
+                peringatan.isEmpty()?JOptionPane.QUESTION_MESSAGE:JOptionPane.WARNING_MESSAGE)!=JOptionPane.YES_OPTION){
+            return;
+        }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            String hasil=fungsi.PaketTindakan.terapkan(norawat,kodePaket,
+                    Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",norawat));
+            this.setCursor(Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(null,hasil);
+        } catch (Exception e) {
+            this.setCursor(Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(null,"Paket gagal diinput, tidak ada data yang disimpan.\n"+e.getMessage());
+        }
+    }
+
     private void isNumber(){
         String tgl = Valid.SetTgl(DTPReg.getSelectedItem()+"");
         if(BASENOREG.equals("booking")){
