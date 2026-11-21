@@ -152,7 +152,7 @@ public final class KalkulatorOksigen {
 
         d.getContentPane().add(f);
         d.pack();
-        d.setLocationRelativeTo(induk);
+        d.setLocationRelativeTo(w); // di tengah jendela induk (tengah layar bila tidak ada)
         d.setVisible(true);
     }
 }

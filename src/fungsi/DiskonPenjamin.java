@@ -66,6 +66,26 @@ public final class DiskonPenjamin {
         return aktif;
     }
 
+    /** Ringkasan setting diskon jenis bayar pasien, mis. "Obat 5%, Alkes 3%". Kosong bila tidak ada. */
+    public static String ringkasan(String noRawat) {
+        if (noRawat == null || noRawat.trim().equals("") || !aktif()) return "";
+        StringBuilder sb = new StringBuilder();
+        try (PreparedStatement ps = koneksiDB.condb().prepareStatement(
+                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj where r.no_rawat=? and d.persen>0 "
+                + "order by field(d.kategori,'Obat','Alkes','Tindakan','Operasi','Laboratorium','Radiologi','Kamar')")) {
+            ps.setString(1, noRawat);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    if (sb.length() > 0) sb.append(", ");
+                    sb.append(rs.getString(1)).append(" ").append(teksPersen(rs.getDouble(2))).append("%");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Diskon Jenis Bayar : " + e.getMessage());
+        }
+        return sb.toString();
+    }
+
     /** Teks persen gaya Indonesia: 5 -> "5", 2.5 -> "2,5". */
     public static String teksPersen(double p) {
         if (p == Math.rint(p)) return String.valueOf((long) p);

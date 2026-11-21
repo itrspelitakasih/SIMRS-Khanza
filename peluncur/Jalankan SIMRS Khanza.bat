@@ -14,9 +14,21 @@ set "JAVA=java"
 if defined JAVA_HOME if exist "%JAVA_HOME%\bin\java.exe" set "JAVA=%JAVA_HOME%\bin\java.exe"
 if exist "%ProgramFiles%\BellSoft\LibericaJDK-15-Full\bin\java.exe" set "JAVA=%ProgramFiles%\BellSoft\LibericaJDK-15-Full\bin\java.exe"
 
+rem  Cache kelas (Class Data Sharing) disimpan di cache\simrskhanza-jdk15.jsa: dibuat saat aplikasi
+rem  ditutup pertama kali, dipakai saat dibuka berikutnya (muat kode jauh lebih cepat).
+rem  Dibuat ulang otomatis bila SIMRSKhanza.jar lebih baru. Hapus file .jsa untuk reset.
+if not exist cache mkdir cache
+set "JSA=cache\simrskhanza-jdk15.jsa"
+set "CDS=-XX:ArchiveClassesAtExit=%JSA%"
+if exist "%JSA%" (
+    powershell -NoProfile -Command "exit [int]((Get-Item '%JSA%').LastWriteTime -lt (Get-Item 'SIMRSKhanza.jar').LastWriteTime)"
+    if errorlevel 1 (del "%JSA%") else (set "CDS=-XX:SharedArchiveFile=%JSA%")
+)
+
 title SIMRS Khanza - log
 echo Menjalankan: "%JAVA%"
-"%JAVA%" -Xss2m -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=Cp1252 -Dsun.java2d.opengl=true -jar SIMRSKhanza.jar
+echo Cache kelas: %CDS%
+"%JAVA%" %CDS% -Xss2m -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=Cp1252 -Dsun.java2d.opengl=true -jar SIMRSKhanza.jar
 echo.
 echo Aplikasi berhenti (kode keluar %ERRORLEVEL%). Log di atas bisa dicek.
 pause

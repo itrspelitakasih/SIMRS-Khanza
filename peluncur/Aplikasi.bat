@@ -16,9 +16,12 @@ set "JAVA=java"
 if defined JAVA_HOME if exist "%JAVA_HOME%\bin\java.exe" set "JAVA=%JAVA_HOME%\bin\java.exe"
 if exist "%ProgramFiles%\BellSoft\LibericaJDK-25-Full\bin\java.exe" set "JAVA=%ProgramFiles%\BellSoft\LibericaJDK-25-Full\bin\java.exe"
 
+rem  Cache kelas (CDS) otomatis di cache\simrskhanza-jdk25.jsa; dibuat ulang sendiri bila jar berubah.
+if not exist cache mkdir cache
+
 title SIMRS Khanza - log
 echo Menjalankan: "%JAVA%"
-"%JAVA%" -Xss2m -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=Cp1252 --enable-native-access=ALL-UNNAMED,javafx.graphics,javafx.web -XX:+UseG1GC -XX:+UseStringDeduplication -Dsun.java2d.opengl=true -jar SIMRSKhanza.jar
+"%JAVA%" -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=cache\simrskhanza-jdk25.jsa -Xss2m -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=1024m -Dfile.encoding=Cp1252 --enable-native-access=ALL-UNNAMED,javafx.graphics,javafx.web -XX:+UseG1GC -XX:+UseStringDeduplication -Dsun.java2d.opengl=true -jar SIMRSKhanza.jar
 echo.
 echo Aplikasi berhenti (kode keluar %ERRORLEVEL%). Log di atas bisa dicek.
 pause
