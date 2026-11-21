@@ -27,9 +27,10 @@ public final class DiskonPenjamin {
     public static final String DDL =
         "CREATE TABLE IF NOT EXISTS set_diskon_penjab ("+
         "kd_pj char(3) NOT NULL,"+
+        "jenis_rawat enum('Ralan','Ranap') NOT NULL DEFAULT 'Ranap',"+
         "kategori enum('Obat','Alkes','Tindakan','Operasi','Laboratorium','Radiologi','Kamar') NOT NULL,"+
         "persen double NOT NULL DEFAULT 0,"+
-        "PRIMARY KEY (kd_pj,kategori),"+
+        "PRIMARY KEY (kd_pj,jenis_rawat,kategori),"+
         "CONSTRAINT set_diskon_penjab_ibfk_1 FOREIGN KEY (kd_pj) REFERENCES penjab (kd_pj) ON DELETE CASCADE ON UPDATE CASCADE"+
         ") ENGINE=InnoDB";
 
@@ -52,6 +53,15 @@ public final class DiskonPenjamin {
                         st.execute(DDL);
                         ok = true;
                         try { st.execute(DDL_LOG); } catch (Exception e3) { System.out.println("Notif Diskon Jenis Bayar : log - " + e3.getMessage()); }
+                        // Migrasi tabel versi 202611.24 (tanpa jenis_rawat): setting lama dianggap untuk Ranap
+                        try (ResultSet rk = st.executeQuery("show columns from set_diskon_penjab like 'jenis_rawat'")) {
+                            if (!rk.next()) {
+                                try (Statement st2 = c.createStatement()) {
+                                    st2.execute("alter table set_diskon_penjab add column jenis_rawat enum('Ralan','Ranap') NOT NULL DEFAULT 'Ranap' after kd_pj, "
+                                            + "drop primary key, add primary key (kd_pj,jenis_rawat,kategori)");
+                                }
+                            }
+                        } catch (Exception e4) { System.out.println("Notif Diskon Jenis Bayar : migrasi - " + e4.getMessage()); }
                     } catch (Exception e) {
                         try (Statement st = c.createStatement(); ResultSet rs = st.executeQuery("select kd_pj from set_diskon_penjab limit 1")) {
                             ok = true;
@@ -67,13 +77,14 @@ public final class DiskonPenjamin {
     }
 
     /** Ringkasan setting diskon jenis bayar pasien, mis. "Obat 5%, Alkes 3%". Kosong bila tidak ada. */
-    public static String ringkasan(String noRawat) {
+    public static String ringkasan(String noRawat, String jenisRawat) {
         if (noRawat == null || noRawat.trim().equals("") || !aktif()) return "";
         StringBuilder sb = new StringBuilder();
         try (PreparedStatement ps = koneksiDB.condb().prepareStatement(
-                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj where r.no_rawat=? and d.persen>0 "
+                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj where r.no_rawat=? and d.jenis_rawat=? and d.persen>0 "
                 + "order by field(d.kategori,'Obat','Alkes','Tindakan','Operasi','Laboratorium','Radiologi','Kamar')")) {
             ps.setString(1, noRawat);
+            ps.setString(2, jenisRawat);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     if (sb.length() > 0) sb.append(", ");
@@ -184,7 +195,7 @@ public final class DiskonPenjamin {
     }
 
     /** Hapus diskon otomatis lama lalu tulis ulang sesuai setting penjamin pasien. Kembalikan jumlah baris diskon. */
-    public static int terapkan(String noRawat) {
+    public static int terapkan(String noRawat, String jenisRawat) {
         if (noRawat == null || noRawat.trim().equals("") || !aktif()) return 0;
         Connection c = koneksiDB.condb();
         // Kategori yang barisnya masih ada sekarang, dan kategori yang pernah diterapkan (log).
@@ -219,8 +230,9 @@ public final class DiskonPenjamin {
         }
         Map<String, Double> persen = new LinkedHashMap<>();
         try (PreparedStatement ps = c.prepareStatement(
-                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj where r.no_rawat=? and d.persen>0")) {
+                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj where r.no_rawat=? and d.jenis_rawat=? and d.persen>0")) {
             ps.setString(1, noRawat);
+            ps.setString(2, jenisRawat);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) persen.put(rs.getString(1), rs.getDouble(2));
             }

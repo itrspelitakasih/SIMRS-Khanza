@@ -4980,8 +4980,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             
             // RSPK: diskon jenis bayar otomatis (Obat/Alkes/Tindakan/Operasi/Lab/Radiologi/Kamar) sebagai Potongan, hanya bila billing belum disimpan
             
-            if(i==0){ fungsi.DiskonPenjamin.terapkan(TNoRw.getText()); }
-            String infoDiskon=fungsi.DiskonPenjamin.ringkasan(TNoRw.getText());
+            if(i==0){ fungsi.DiskonPenjamin.terapkan(TNoRw.getText(),"Ranap"); }
+            String infoDiskon=fungsi.DiskonPenjamin.ringkasan(TNoRw.getText(),"Ranap");
             LblDiskonJenisBayar.setText(infoDiskon.equals("")?"Diskon Jenis Bayar : tidak ada":"Diskon Jenis Bayar : "+infoDiskon);
             LblDiskonJenisBayar.setPreferredSize(null); panelGlass1.revalidate(); panelGlass1.repaint();
             
