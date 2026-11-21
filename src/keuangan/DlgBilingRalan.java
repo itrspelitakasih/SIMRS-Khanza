@@ -4128,6 +4128,10 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 }
             }
                             
+            // RSPK: diskon jenis bayar otomatis (Obat/Alkes/Tindakan/Operasi/Lab/Radiologi/Kamar) sebagai Potongan, hanya bila billing belum disimpan
+                            
+            if(i==0){ fungsi.DiskonPenjamin.terapkan(TNoRw.getText()); }
+                            
             pscarirm=koneksi.prepareStatement("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?");
             try{
                 pscarirm.setString(1,TNoRw.getText());

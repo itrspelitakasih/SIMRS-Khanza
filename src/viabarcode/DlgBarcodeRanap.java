@@ -64,6 +64,7 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
     private String[] kodebarang,namabarang,kodesatuan,letakbarang,namajenis,nobatch,nofaktur;
     private String kelas="";
     private double kenaikan=0,j=0,stokbarang=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private WarnaTable2 warna=new WarnaTable2();
     private riwayatobat Trackobat=new riwayatobat();
     private String aktifkanbatch="no",norm="";
@@ -1217,6 +1218,7 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
             
         TCariTindakan.requestFocus();
         kenaikan=Sequel.cariIsiAngka("select (hargajual/100) from set_harga_obat_ranap where kd_pj='"+this.kd_pj+"' and kelas='"+this.kelas+"'");
+        kolomHargaTetap=fungsi.HargaBarangTetap.kolomKelas(this.kelas);
         if(tarifranap.getCaraBayarRanap().equals("")){
            tarifranap.SetTarifRanap();
         }
@@ -1304,7 +1306,7 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
             if(aktifkanbatch.equals("yes")){
                 if(kenaikan>0){
                     psobat=koneksi.prepareStatement(
-                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(data_batch.h_beli+(data_batch.h_beli*?)) as harga,gudangbarang.stok,"+
+                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("data_batch",kolomHargaTetap)+" as harga,gudangbarang.stok,"+
                             " databarang.letak_barang,databarang."+hppfarmasi+" as dasar,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng inner join jenis on databarang.kdjns=jenis.kdjns "+
                             " inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
                             " where gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1339,8 +1341,8 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
                     }   
                 }else{
                     psobat=koneksi.prepareStatement(
-                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,gudangbarang.stok,data_batch.kelas1,"+
-                            " data_batch.kelas2,data_batch.kelas3,data_batch.utama,data_batch.vip,data_batch.vvip,"+
+                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,gudangbarang.stok,"+fungsi.HargaBarangTetap.kolom("data_batch","kelas1")+","+
+                            " "+fungsi.HargaBarangTetap.kolom("data_batch","kelas2")+","+fungsi.HargaBarangTetap.kolom("data_batch","kelas3")+","+fungsi.HargaBarangTetap.kolom("data_batch","utama")+","+fungsi.HargaBarangTetap.kolom("data_batch","vip")+","+fungsi.HargaBarangTetap.kolom("data_batch","vvip")+","+
                             " databarang.letak_barang,data_batch."+hppfarmasi+" as dasar,data_batch.no_batch,data_batch.no_faktur from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng inner join jenis on databarang.kdjns=jenis.kdjns "+
                             " inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
                             " where gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1423,7 +1425,7 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
             }else{
                 if(kenaikan>0){
                     psobat=koneksi.prepareStatement(
-                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,gudangbarang.stok,"+
+                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,gudangbarang.stok,"+
                             " databarang.letak_barang,databarang."+hppfarmasi+" as dasar from databarang inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
                             " where gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.kode_brng like ? or "+
                             " gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.nama_brng like ? or "+
@@ -1456,8 +1458,8 @@ public final class DlgBarcodeRanap extends javax.swing.JDialog {
                     }   
                 }else{
                     psobat=koneksi.prepareStatement(
-                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,gudangbarang.stok,databarang.kelas1,"+
-                            " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,"+
+                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,gudangbarang.stok,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+","+
+                            " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","utama")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
                             " databarang.letak_barang,databarang."+hppfarmasi+" as dasar from databarang inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
                             " where gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.kode_brng like ? or "+
                             " gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.nama_brng like ? or "+

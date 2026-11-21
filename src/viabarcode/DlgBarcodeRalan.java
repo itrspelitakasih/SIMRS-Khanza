@@ -65,6 +65,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
     private String[] kodebarang,namabarang,kodesatuan,letakbarang,namajenis,nobatch,nofaktur;
     private String bangsal="",hppfarmasi="";
     private double kenaikan=0,stokbarang=0,j=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private WarnaTable2 warna=new WarnaTable2();
     private riwayatobat Trackobat=new riwayatobat();
     private String aktifkanbatch="no";
@@ -1220,6 +1221,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
         this.kd_dokter=Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",norwt);
         this.norm=Sequel.cariIsi("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?",norwt);
         kenaikan=Sequel.cariIsiAngka("select (hargajual/100) from set_harga_obat_ralan where kd_pj=?",this.kd_pj);
+        kolomHargaTetap="ralan";
         TCariTindakan.requestFocus();
         
         bangsal=Sequel.cariIsi("select kd_bangsal from set_depo_ralan where kd_poli=?",Sequel.cariIsi("select reg_periksa.kd_poli from reg_periksa where reg_periksa.no_rawat=?",norwt));
@@ -1313,7 +1315,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
             if(aktifkanbatch.equals("yes")){
                 if(kenaikan>0){
                     psobat=koneksi.prepareStatement(
-                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(data_batch.h_beli+(data_batch.h_beli*?)) as ralan,gudangbarang.stok,"+
+                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("data_batch",kolomHargaTetap)+" as ralan,gudangbarang.stok,"+
                             " databarang.letak_barang,data_batch.no_batch,data_batch.no_faktur,data_batch."+hppfarmasi+" as dasar from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng inner join jenis on databarang.kdjns=jenis.kdjns "+
                             " inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
                             " where gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1349,7 +1351,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
 
                 }else{
                     psobat=koneksi.prepareStatement(
-                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,data_batch.ralan,data_batch."+hppfarmasi+" as dasar,databarang.letak_barang,gudangbarang.stok,data_batch.no_batch,data_batch.no_faktur "+
+                            " select data_batch.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.kolom("data_batch","ralan")+",data_batch."+hppfarmasi+" as dasar,databarang.letak_barang,gudangbarang.stok,data_batch.no_batch,data_batch.no_faktur "+
                             " from data_batch inner join databarang on data_batch.kode_brng=databarang.kode_brng inner join jenis on databarang.kdjns=jenis.kdjns "+
                             " inner join gudangbarang on gudangbarang.kode_brng=data_batch.kode_brng and gudangbarang.no_batch=data_batch.no_batch and gudangbarang.no_faktur=data_batch.no_faktur "+
                             " where gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1385,7 +1387,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
             }else{
                 if(kenaikan>0){
                     psobat=koneksi.prepareStatement(
-                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as ralan,gudangbarang.stok,"+
+                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as ralan,gudangbarang.stok,"+
                             " databarang.letak_barang,databarang."+hppfarmasi+" as dasar from databarang inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
                             " where gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.kode_brng like ? or "+
                             " gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.nama_brng like ? or "+
@@ -1418,7 +1420,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
                     }
                 }else{
                     psobat=koneksi.prepareStatement(
-                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.ralan,databarang."+hppfarmasi+" as dasar,databarang.letak_barang,gudangbarang.stok "+
+                            " select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang."+hppfarmasi+" as dasar,databarang.letak_barang,gudangbarang.stok "+
                             " from databarang inner join jenis on databarang.kdjns=jenis.kdjns inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
                             " where gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.kode_brng like ? or "+
                             " gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.stok>0 and gudangbarang.kd_bangsal=? and databarang.status='1' and databarang.nama_brng like ? or "+

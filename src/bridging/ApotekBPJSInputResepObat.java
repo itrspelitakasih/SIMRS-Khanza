@@ -63,6 +63,7 @@ public final class ApotekBPJSInputResepObat extends javax.swing.JDialog {
     private PreparedStatement psobat,psstok,ps2;
     private ResultSet rsobat,rsstok,rs2;
     private double sisacari=0,y=0,kenaikan=0,ttl=0,ppnobat=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private int i=0,row2,r;
     private Jurnal jur=new Jurnal();
     private String JADIKANPIUTANGAPOTEKBPJS,signa1="1",utc="",link=koneksiDB.URLAPIAPOTEKBPJS(),signa2="1",requestJson="",URL="",bangsal="",
@@ -1705,6 +1706,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         NmPoli.setText(nmpolitujuan);
         KdPj.setText(Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",norwt));
         kenaikan=Sequel.cariIsiAngka("select (set_harga_obat_ralan.hargajual/100) from set_harga_obat_ralan where set_harga_obat_ralan.kd_pj=?",KdPj.getText());
+        kolomHargaTetap="ralan";
         
         if(JADIKANPIUTANGAPOTEKBPJS.equals("yes")){
             if(!DEPOAKTIFOBAT.equals("")){
@@ -1754,7 +1756,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             if(kenaikan>0){
                 psobat=koneksi.prepareStatement(
                     "select maping_obat_apotek_bpjs.kode_brng_apotek_bpjs,maping_obat_apotek_bpjs.nama_brng_apotek_bpjs,databarang.kode_brng,databarang.kode_sat,databarang.expire,"+
-                    "(databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,resep_dokter.jml,resep_dokter.aturan_pakai from databarang "+
+                    ""+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,resep_dokter.jml,resep_dokter.aturan_pakai from databarang "+
                     "inner join resep_dokter on resep_dokter.kode_brng=databarang.kode_brng "+
                     "inner join maping_obat_apotek_bpjs on databarang.kode_brng=maping_obat_apotek_bpjs.kode_brng "+
                     "where resep_dokter.no_resep=? and databarang.status='1'"
@@ -1831,7 +1833,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             }else{   
                 psobat=koneksi.prepareStatement(
                     "select maping_obat_apotek_bpjs.kode_brng_apotek_bpjs,maping_obat_apotek_bpjs.nama_brng_apotek_bpjs,databarang.kode_brng,databarang.kode_sat,databarang.expire,"+
-                    "databarang.ralan as harga,databarang."+hppfarmasi+" as dasar,resep_dokter.jml,resep_dokter.aturan_pakai from databarang "+
+                    ""+fungsi.HargaBarangTetap.nilai("databarang","ralan")+" as harga,databarang."+hppfarmasi+" as dasar,resep_dokter.jml,resep_dokter.aturan_pakai from databarang "+
                     "inner join resep_dokter on resep_dokter.kode_brng=databarang.kode_brng "+
                     "inner join maping_obat_apotek_bpjs on databarang.kode_brng=maping_obat_apotek_bpjs.kode_brng "+
                     "where resep_dokter.no_resep=? and databarang.status='1'"
@@ -1947,7 +1949,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(kenaikan>0){
                             ps2=koneksi.prepareStatement(
                                 "select maping_obat_apotek_bpjs.kode_brng_apotek_bpjs,maping_obat_apotek_bpjs.nama_brng_apotek_bpjs,resep_dokter_racikan_detail.jml,"+
-                                "databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,databarang.kode_brng,databarang.expire "+
+                                "databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,databarang.kode_brng,databarang.expire "+
                                 "from resep_dokter_racikan_detail inner join databarang on resep_dokter_racikan_detail.kode_brng=databarang.kode_brng "+
                                 "inner join maping_obat_apotek_bpjs on databarang.kode_brng=maping_obat_apotek_bpjs.kode_brng "+
                                 "where resep_dokter_racikan_detail.no_resep=? and resep_dokter_racikan_detail.no_racik=?"
@@ -2005,7 +2007,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         }else{
                             ps2=koneksi.prepareStatement(
                                 "select maping_obat_apotek_bpjs.kode_brng_apotek_bpjs,maping_obat_apotek_bpjs.nama_brng_apotek_bpjs,resep_dokter_racikan_detail.jml,"+
-                                "databarang.kode_sat,databarang.ralan as harga,databarang."+hppfarmasi+" as dasar,databarang.kode_brng,databarang.expire "+
+                                "databarang.kode_sat,"+fungsi.HargaBarangTetap.nilai("databarang","ralan")+" as harga,databarang."+hppfarmasi+" as dasar,databarang.kode_brng,databarang.expire "+
                                 "from resep_dokter_racikan_detail inner join databarang on resep_dokter_racikan_detail.kode_brng=databarang.kode_brng "+
                                 "inner join maping_obat_apotek_bpjs on databarang.kode_brng=maping_obat_apotek_bpjs.kode_brng "+
                                 "where resep_dokter_racikan_detail.no_resep=? and resep_dokter_racikan_detail.no_racik=?"
