@@ -27,7 +27,7 @@ public final class HargaBarangTetap {
         "vvip double NOT NULL DEFAULT 0, ikut_diskon enum('Ya','Tidak') NOT NULL DEFAULT 'Tidak',"+
         "PRIMARY KEY (kode_brng),"+
         "CONSTRAINT set_harga_barang_tetap_ibfk_1 FOREIGN KEY (kode_brng) REFERENCES databarang (kode_brng) ON DELETE CASCADE ON UPDATE CASCADE"+
-        ") ENGINE=InnoDB";
+        ") ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci";
 
     /** true bila tabel set_harga_barang_tetap tersedia (dibuat otomatis sekali per sesi). */
     public static boolean aktif() {
@@ -41,6 +41,7 @@ public final class HargaBarangTetap {
                             st.execute(DDL);
                             ok = true;
                         } catch (Exception e) {
+                            System.out.println("Notif Harga Barang Tetap : gagal membuat tabel - " + e.getMessage());
                             try (Statement st = c.createStatement(); ResultSet rs = st.executeQuery("select kode_brng from set_harga_barang_tetap limit 1")) {
                                 ok = true;
                             } catch (Exception e2) {
