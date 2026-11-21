@@ -29,6 +29,7 @@ public class PanelHargaBarangTetap extends widget.InternalFrame {
     private final widget.ComboBox ikutDiskon = new widget.ComboBox();
     private final widget.Table tabel = new widget.Table();
     private final widget.Label lcount = new widget.Label();
+    private final widget.TextBox cari = new widget.TextBox(); // Key Word
 
     public PanelHargaBarangTetap() {
         setBorder(null);
@@ -67,16 +68,16 @@ public class PanelHargaBarangTetap extends widget.InternalFrame {
         samakan.setToolTipText("Isi semua kelas sama dengan harga Ralan");
         samakan.setName("btnSamakanTetap");
         samakan.addActionListener(e -> { String v = ralan.getText().trim(); for (widget.TextBox t : new widget.TextBox[]{kelas1, kelas2, kelas3, utama, vip, vvip}) t.setText(v); });
-        isi.add(samakan); samakan.setBounds(x2 - 106, 100, 186, 23);
-        tambahLabel(isi, "Ikut Diskon Jenis Bayar :", 300, 100, 192);
+        isi.add(samakan); samakan.setBounds(194, 100, 160, 23);
+        tambahLabel(isi, "Ikut Diskon Jenis Bayar :", 356, 100, 136);
         ikutDiskon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Tidak", "Ya"}));
         ikutDiskon.setName("ikutdiskontetap");
         isi.add(ikutDiskon); ikutDiskon.setBounds(x3, 100, w, 23);
 
         widget.Label ket = new widget.Label();
-        ket.setText("Barang di daftar ini memakai harga tetap per kelas, tidak ikut persen kenaikan per jenis bayar. Contoh: Oksigen per liter.");
+        ket.setText("Harga tetap per kelas, tidak ikut persen kenaikan jenis bayar (contoh: Oksigen per liter).");
         ket.setName("kettetap");
-        isi.add(ket); ket.setBounds(10, 132, 980, 23);
+        isi.add(ket); ket.setHorizontalAlignment(javax.swing.SwingConstants.LEFT); ket.setBounds(10, 132, 700, 23);
 
         add(isi, BorderLayout.PAGE_START);
 
@@ -102,6 +103,23 @@ public class PanelHargaBarangTetap extends widget.InternalFrame {
         widget.panelisi bawah = new widget.panelisi();
         bawah.setName("panelHargaBarangTetapBawah");
         bawah.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+        widget.Label lk = new widget.Label(); lk.setText("Key Word :"); bawah.add(lk);
+        cari.setName("TCari"); cari.setPreferredSize(new Dimension(320, 23));
+        cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override public void keyPressed(java.awt.event.KeyEvent e) { if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) tampil(); }
+        });
+        bawah.add(cari);
+        widget.Button btnCari = new widget.Button();
+        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png")));
+        btnCari.setToolTipText("Cari sesuai Key Word"); btnCari.setName("BtnCari"); btnCari.setPreferredSize(new Dimension(28, 23));
+        btnCari.addActionListener(e -> tampil());
+        bawah.add(btnCari);
+        widget.Button btnSemua = new widget.Button();
+        btnSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png")));
+        btnSemua.setToolTipText("Tampilkan semua / refresh data"); btnSemua.setName("BtnAll"); btnSemua.setPreferredSize(new Dimension(28, 23));
+        btnSemua.addActionListener(e -> { cari.setText(""); tampil(); });
+        bawah.add(btnSemua);
+        widget.Label jarak = new widget.Label(); jarak.setPreferredSize(new Dimension(30, 23)); bawah.add(jarak);
         widget.Label lr = new widget.Label(); lr.setText("Record :"); bawah.add(lr); bawah.add(lcount);
         add(bawah, BorderLayout.PAGE_END);
 
@@ -213,10 +231,13 @@ public class PanelHargaBarangTetap extends widget.InternalFrame {
 
     public final void tampil() {
         Valid.tabelKosong(tabMode);
+        String kunci = cari.getText().trim();
         try (PreparedStatement ps = koneksi.prepareStatement(
                 "select t.kode_brng,d.nama_brng,d.kode_sat,t.ralan,t.kelas1,t.kelas2,t.kelas3,t.utama,t.vip,t.vvip,t.ikut_diskon "
-                + "from set_harga_barang_tetap t inner join databarang d on d.kode_brng=t.kode_brng order by d.nama_brng");
-             ResultSet rs = ps.executeQuery()) {
+                + "from set_harga_barang_tetap t inner join databarang d on d.kode_brng=t.kode_brng "
+                + (kunci.equals("") ? "" : "where (t.kode_brng like ? or d.nama_brng like ?) ") + "order by d.nama_brng")) {
+            if (!kunci.equals("")) { ps.setString(1, "%" + kunci + "%"); ps.setString(2, "%" + kunci + "%"); }
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 tabMode.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6),
                     rs.getDouble(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getString(11)});
