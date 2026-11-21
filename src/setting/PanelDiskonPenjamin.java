@@ -26,6 +26,7 @@ public class PanelDiskonPenjamin extends widget.InternalFrame {
     private final widget.TextBox[] persen = new widget.TextBox[DiskonPenjamin.KATEGORI.length];
     private final widget.Table tabel = new widget.Table();
     private final widget.Label lcount = new widget.Label();
+    private final widget.TextBox cari = new widget.TextBox(); // Key Word
     private final widget.ComboBox rawat = new widget.ComboBox();
     private static final int K = 3; // kolom pertama persen di tabel (setelah Kd PJ, Jenis Bayar, Rawat)
 
@@ -103,6 +104,23 @@ public class PanelDiskonPenjamin extends widget.InternalFrame {
         widget.panelisi bawah = new widget.panelisi();
         bawah.setName("panelDiskonPenjaminBawah");
         bawah.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+        widget.Label lk = new widget.Label(); lk.setText("Key Word :"); bawah.add(lk);
+        cari.setName("TCari"); cari.setPreferredSize(new Dimension(320, 23));
+        cari.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override public void keyPressed(java.awt.event.KeyEvent e) { if (e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) tampil(); }
+        });
+        bawah.add(cari);
+        widget.Button btnCari = new widget.Button();
+        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png")));
+        btnCari.setToolTipText("Cari sesuai Key Word"); btnCari.setName("BtnCari"); btnCari.setPreferredSize(new Dimension(28, 23));
+        btnCari.addActionListener(e -> tampil());
+        bawah.add(btnCari);
+        widget.Button btnSemua = new widget.Button();
+        btnSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png")));
+        btnSemua.setToolTipText("Tampilkan semua / refresh data"); btnSemua.setName("BtnAll"); btnSemua.setPreferredSize(new Dimension(28, 23));
+        btnSemua.addActionListener(e -> { cari.setText(""); tampil(); });
+        bawah.add(btnSemua);
+        widget.Label jarak = new widget.Label(); jarak.setPreferredSize(new Dimension(30, 23)); bawah.add(jarak);
         widget.Label lr = new widget.Label(); lr.setText("Record :"); bawah.add(lr);
         lcount.setText("0"); bawah.add(lcount);
         add(bawah, BorderLayout.PAGE_END);
@@ -254,8 +272,13 @@ public class PanelDiskonPenjamin extends widget.InternalFrame {
         Valid.tabelKosong(tabMode);
         StringBuilder sql = new StringBuilder("select p.kd_pj,p.png_jawab,d.jenis_rawat");
         for (String k : DiskonPenjamin.KATEGORI) sql.append(",max(if(d.kategori='").append(k).append("',d.persen,0))");
-        sql.append(" from set_diskon_penjab d inner join penjab p on p.kd_pj=d.kd_pj group by p.kd_pj,p.png_jawab,d.jenis_rawat order by p.png_jawab,d.jenis_rawat desc");
-        try (PreparedStatement ps = koneksi.prepareStatement(sql.toString()); ResultSet rs = ps.executeQuery()) {
+        String kunci = cari.getText().trim();
+        sql.append(" from set_diskon_penjab d inner join penjab p on p.kd_pj=d.kd_pj ");
+        if (!kunci.equals("")) sql.append("where (p.kd_pj like ? or p.png_jawab like ? or d.jenis_rawat like ?) ");
+        sql.append("group by p.kd_pj,p.png_jawab,d.jenis_rawat order by p.png_jawab,d.jenis_rawat desc");
+        try (PreparedStatement ps = koneksi.prepareStatement(sql.toString())) {
+            if (!kunci.equals("")) for (int i = 1; i <= 3; i++) ps.setString(i, "%" + kunci + "%");
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Object[] baris = new Object[K + DiskonPenjamin.KATEGORI.length];
                 baris[0] = rs.getString(1); baris[1] = rs.getString(2); baris[2] = rs.getString(3);
