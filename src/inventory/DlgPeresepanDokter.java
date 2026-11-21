@@ -70,6 +70,7 @@ public final class DlgPeresepanDokter extends javax.swing.JDialog {
     private PreparedStatement psresep,pscarikapasitas,ps2;
     private ResultSet rsobat,carikapasitas,rs2;
     private double y=0,kenaikan=0,ttl=0,ppnobat=0,jumlahracik=0,persenracik=0,kapasitasracik=0,MAKSIMALNOMINALRESEPRAJAL=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private int i=0,z=0,row2=0,r=0;
     private boolean ubah=false,copy=false,sukses=true,pesanaktif=true;
     private WarnaTable2 warna=new WarnaTable2();
@@ -1701,7 +1702,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             StringBuilder iyembuilder = new StringBuilder();
             if(kenaikan>0){
                 if(aktifkanbatch.equals("yes")){
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -1709,7 +1710,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                         " where databarang.status='1' "+qrystokkosong+" and gudangbarang.no_batch<>'' and gudangbarang.no_faktur<>'' and gudangbarang.kd_bangsal=? "+carabayarpasien+
                         " group by gudangbarang.kode_brng order by databarang.nama_brng");
                 }else{
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -1743,9 +1744,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+joinresepdokter+
@@ -1754,9 +1755,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+joinresepdokter+
@@ -2625,7 +2626,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     if(STOKKOSONGRESEP.equals("no")){
                         qrystokkosong=" and gudangbarang.stok>0 ";
                     }
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -2638,7 +2639,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     if(STOKKOSONGRESEP.equals("no")){
                         qrystokkosong=" and gudangbarang.stok>0 ";
                     }
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -2697,9 +2698,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     }
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
@@ -2713,9 +2714,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     }
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
@@ -2993,7 +2994,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                 qrystokkosong=" and gudangbarang.stok>0 ";
                             }
                             ps2=koneksi.prepareStatement(
-                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                                 "databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
@@ -3008,7 +3009,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                 qrystokkosong=" and gudangbarang.stok>0 ";
                             }
                             ps2=koneksi.prepareStatement(
-                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                                 "databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
@@ -3075,9 +3076,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                             }
                             ps2=koneksi.prepareStatement(
                                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                                "databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                                "databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                                "databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
+                                "databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                                ""+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                                "databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                                 "inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -3092,9 +3093,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                             }
                             ps2=koneksi.prepareStatement(
                                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                                "databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                                "databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                                "databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
+                                "databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                                ""+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                                "databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                                 "inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -3432,7 +3433,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             copy=true;
             if(kenaikan>0){
                 if(aktifkanbatch.equals("yes")){
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -3441,7 +3442,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                         " where databarang.status='1' and gudangbarang.no_batch<>'' and gudangbarang.no_faktur<>'' and gudangbarang.kd_bangsal=? and "+
                         " resep_dokter.no_resep=? group by gudangbarang.kode_brng order by databarang.nama_brng");
                 }else{
-                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                    psresep=koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                         " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -3497,9 +3498,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
@@ -3509,9 +3510,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     psresep=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                        " databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
+                        " databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,resep_dokter.jml, resep_dokter.aturan_pakai "+
                         " from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                         " inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
                         " inner join gudangbarang on databarang.kode_brng=gudangbarang.kode_brng "+
@@ -3731,7 +3732,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     if(kenaikan>0){
                         if(aktifkanbatch.equals("yes")){
                             ps2=koneksi.prepareStatement(
-                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                                 "databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
@@ -3742,7 +3743,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                 "resep_dokter_racikan_detail.no_resep=? and resep_dokter_racikan_detail.no_racik=? group by gudangbarang.kode_brng order by databarang.nama_brng");
                         }else{
                             ps2=koneksi.prepareStatement(
-                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"+
+                                "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,"+
                                 "databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
@@ -3805,9 +3806,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                         if(aktifkanbatch.equals("yes")){
                             ps2=koneksi.prepareStatement(
                                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                                "databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                                "databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                                "databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
+                                "databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                                ""+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                                "databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,sum(gudangbarang.stok) as stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                                 "inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -3818,9 +3819,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                         }else{
                             ps2=koneksi.prepareStatement(
                                 "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                                "databarang.karyawan,databarang.ralan,databarang.beliluar,databarang.kelas1," +
-                                "databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,"+
-                                "databarang.letak_barang,databarang.utama,industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
+                                "databarang.karyawan,"+fungsi.HargaBarangTetap.kolom("databarang","ralan")+",databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                                ""+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+","+
+                                "databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",industrifarmasi.nama_industri,databarang.h_beli,gudangbarang.stok,databarang.kapasitas,resep_dokter_racikan_detail.p1,"+
                                 "resep_dokter_racikan_detail.p2,resep_dokter_racikan_detail.kandungan,resep_dokter_racikan_detail.jml "+
                                 "from databarang inner join jenis on databarang.kdjns=jenis.kdjns "+
                                 "inner join industrifarmasi on industrifarmasi.kode_industri=databarang.kode_industri "+
@@ -4206,9 +4207,11 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 Jeniskelas.setSelectedItem("VVIP");
             } 
             kenaikan=Sequel.cariIsiAngka2("select (set_harga_obat_ranap.hargajual/100) from set_harga_obat_ranap where set_harga_obat_ranap.kd_pj=? and set_harga_obat_ranap.kelas=?",KdPj.getText(),kelas);
+            kolomHargaTetap=fungsi.HargaBarangTetap.kolomKelas(kelas);
         }else if(status.equals("ralan")){
             Jeniskelas.setSelectedItem("Rawat Jalan");
             kenaikan=Sequel.cariIsiAngka("select (set_harga_obat_ralan.hargajual/100) from set_harga_obat_ralan where set_harga_obat_ralan.kd_pj=?",KdPj.getText());
+            kolomHargaTetap="ralan";
         }
     }
     

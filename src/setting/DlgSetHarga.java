@@ -54,9 +54,15 @@ public class DlgSetHarga extends javax.swing.JDialog {
     /** Creates new form DlgAdmin 
      *@param parent
      *@param modal*/
+    private final PanelHargaBarangTetap panelHargaTetap=new PanelHargaBarangTetap(); // RSPK
+    private final PanelDiskonPenjamin panelDiskonPenjamin=new PanelDiskonPenjamin(); // RSPK
+
     public DlgSetHarga(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // RSPK: tab Harga Barang Tetap (barang dengan harga tetap per kelas, tidak ikut persen per jenis bayar)
+        TabSetting.addTab("Harga Barang Tetap", panelHargaTetap);
+        TabSetting.addTab("Diskon Jenis Bayar", panelDiskonPenjamin);
         tabMode=new DefaultTableModel(null,new Object[]{
               "Ralan(%)","Ranap K1(%)","Ranap K2(%)","Ranap K3(%)","Kelas Utama(%)",
               "Ranap VIP(%)","Ranap VVIP(%)","Beli Luar(%)","Jual Bebas(%)","Karyawan(%)",
@@ -1674,6 +1680,8 @@ public class DlgSetHarga extends javax.swing.JDialog {
 }//GEN-LAST:event_ranapvvipKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
+        if(TabSetting.getComponentAt(TabSetting.getSelectedIndex())==panelHargaTetap){ panelHargaTetap.simpan(); return; } // RSPK
+        if(TabSetting.getComponentAt(TabSetting.getSelectedIndex())==panelDiskonPenjamin){ panelDiskonPenjamin.simpan(); return; } // RSPK
         if(TabSetting.getSelectedIndex()==0){
             if(tabModePengaturanUmum.getRowCount()>0){
                 JOptionPane.showMessageDialog(null,"Maaf, Hanya diijinkan satu pengaturan ...!!!!");
@@ -1803,6 +1811,8 @@ public class DlgSetHarga extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
+        panelHargaTetap.kosongkan(); // RSPK
+        panelDiskonPenjamin.kosongkan(); // RSPK
         emptTeks();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
@@ -1813,6 +1823,8 @@ public class DlgSetHarga extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        if(TabSetting.getComponentAt(TabSetting.getSelectedIndex())==panelHargaTetap){ panelHargaTetap.hapus(); return; } // RSPK
+        if(TabSetting.getComponentAt(TabSetting.getSelectedIndex())==panelDiskonPenjamin){ panelDiskonPenjamin.hapus(); return; } // RSPK
         if(TabSetting.getSelectedIndex()==0){
             Sequel.queryu("delete from set_harga_obat");
             runBackground(() ->tampilpengaturanumum());

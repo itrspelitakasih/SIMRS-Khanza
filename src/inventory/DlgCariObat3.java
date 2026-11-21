@@ -59,6 +59,7 @@ public final class DlgCariObat3 extends javax.swing.JDialog {
                               pshapusobat,pshapusretur,psobatsimpan,psupdategudang,psupdategudang2,pspasien;
     private double stokmasuk=0,pagi=0,siang=0,sore=0,malam=0,keluar=0,retur=0,harga=0,kapasitas=0,
                     kenaikan=0,returshs=0,hilang=0,beli=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private String aktifkanbatch="no",hppfarmasi="";
     private DlgCariBangsal lokasidepo;
     /** Creates new form DlgPenyakit
@@ -460,9 +461,9 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         harga=0;
                         kapasitas=1;
                         beli=0;
-                        pscariharga=koneksi.prepareStatement("select databarang.kelas1,databarang.kelas2,databarang.kelas3,"+
-                            "databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,databarang.h_beli,"+
-                            "IFNULL(kapasitas,0) as kapasitas,databarang."+hppfarmasi+" as dasar from databarang "+
+                        pscariharga=koneksi.prepareStatement("select "+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+
+                            ""+fungsi.HargaBarangTetap.kolom("databarang","utama")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.beliluar,databarang.karyawan,databarang.h_beli,"+
+                            "IFNULL(kapasitas,0) as kapasitas,databarang."+hppfarmasi+" as dasar,"+fungsi.HargaBarangTetap.tetap("databarang",kolomHargaTetap)+" as hargatetap from databarang "+
                             "where databarang.kode_brng=?");
                         try {
                             pscariharga.setString(1,tbObat.getValueAt(i,1).toString());
@@ -470,7 +471,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             while(rscariharga.next()){
                                 beli=rscariharga.getDouble("dasar");
                                 if(kenaikan>0){
-                                    harga=Valid.roundUp(rscariharga.getDouble("h_beli")+(rscariharga.getDouble("h_beli")*kenaikan),100);
+                                    harga=rscariharga.getObject("hargatetap")!=null?rscariharga.getDouble("hargatetap"):Valid.roundUp(rscariharga.getDouble("h_beli")+(rscariharga.getDouble("h_beli")*kenaikan),100); // RSPK: harga barang tetap
                                 }else{
                                     if(Jeniskelas.getSelectedItem().equals("Kelas 1")){
                                         harga=Valid.roundUp(rscariharga.getDouble("kelas1"),100);
@@ -1238,6 +1239,7 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
             Jeniskelas.setSelectedItem("VVIP");
         } 
         kenaikan=Sequel.cariIsiAngka("select (set_harga_obat_ranap.hargajual/100) from set_harga_obat_ranap where set_harga_obat_ranap.kd_pj='"+KdPj.getText()+"' and set_harga_obat_ranap.kelas='"+kelas.getText()+"'");
+        kolomHargaTetap=fungsi.HargaBarangTetap.kolomKelas(kelas.getText());
         
         BtnGudang.setEnabled(akses.getakses_depo_obat());
     }  
@@ -1293,8 +1295,8 @@ private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                 }else{
                     try {
                         kapasitas=1;
-                        pscariharga=koneksi.prepareStatement("select databarang.kelas1,databarang.kelas2,databarang.kelas3,"+
-                            "databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,databarang.h_beli,"+
+                        pscariharga=koneksi.prepareStatement("select "+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+
+                            ""+fungsi.HargaBarangTetap.kolom("databarang","utama")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.beliluar,databarang.karyawan,databarang.h_beli,"+
                             "IFNULL(kapasitas,0) as kapasitas from databarang "+
                             "where databarang.kode_brng=?");
                         try {

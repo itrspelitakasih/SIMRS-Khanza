@@ -51,6 +51,7 @@ public class DlgPermintaanStokPasien extends javax.swing.JDialog {
     private ResultSet rstampil;
     private WarnaTable2 warna=new WarnaTable2();
     private double ttl=0,y=0,ppnobat=0,kenaikan=0;
+    private String kolomHargaTetap="ralan"; // RSPK: kolom harga barang tetap sesuai kelas
     private int jml=0,i=0,index=0;
     private String norawatibu,tampilkan_ppnobat_ranap=Sequel.cariIsi("select set_nota.tampilkan_ppnobat_ranap from set_nota"),aktifkanbatch="no",kelas="",bangsal="",kamar="",hppfarmasi="";
     private String[] keranap,kodebarang,namabarang,kategori,satuan,aturanpakai;
@@ -1232,7 +1233,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " (databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,sum(gudangbarang.stok) as stok, "+
+                        " "+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,sum(gudangbarang.stok) as stok, "+
                         " databarang.kapasitas from databarang inner join jenis inner join gudangbarang "+
                         " on databarang.kdjns=jenis.kdjns and databarang.kode_brng=gudangbarang.kode_brng "+
                         " where  databarang.status='1' and gudangbarang.no_batch<>'' and gudangbarang.no_faktur<>'' and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1241,7 +1242,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " (databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,gudangbarang.stok, "+
+                        " "+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,gudangbarang.stok, "+
                         " databarang.kapasitas from databarang inner join jenis inner join gudangbarang "+
                         " on databarang.kdjns=jenis.kdjns and databarang.kode_brng=gudangbarang.kode_brng "+
                         " where  databarang.status='1' and gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1284,9 +1285,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,databarang.kapasitas,"+
-                        " databarang.letak_barang,databarang.utama,databarang.h_beli,sum(gudangbarang.stok) as stok "+
+                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.kapasitas,"+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",databarang.h_beli,sum(gudangbarang.stok) as stok "+
                         " from databarang inner join jenis inner join gudangbarang "+
                         " on databarang.kdjns=jenis.kdjns and databarang.kode_brng=gudangbarang.kode_brng "+
                         " where  databarang.status='1' and gudangbarang.no_batch<>'' and gudangbarang.no_faktur<>'' and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1295,9 +1296,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,databarang.kapasitas,"+
-                        " databarang.letak_barang,databarang.utama,databarang.h_beli,gudangbarang.stok "+
+                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.kapasitas,"+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",databarang.h_beli,gudangbarang.stok "+
                         " from databarang inner join jenis inner join gudangbarang "+
                         " on databarang.kdjns=jenis.kdjns and databarang.kode_brng=gudangbarang.kode_brng "+
                         " where  databarang.status='1' and gudangbarang.no_batch='' and gudangbarang.no_faktur='' and gudangbarang.kd_bangsal=? and databarang.kode_brng like ? or "+
@@ -1473,6 +1474,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             Jeniskelas.setSelectedItem("VVIP");
         } 
         kenaikan=Sequel.cariIsiAngka2("select (hargajual/100) from  set_harga_obat_ranap where kd_pj=? and kelas=?",KdPj.getText(),kelas);
+        kolomHargaTetap=fungsi.HargaBarangTetap.kolomKelas(kelas);
         TCari.requestFocus();
         bangsal=akses.getkdbangsal();
         ubah=false;
@@ -1532,7 +1534,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " (databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,sum(gudangbarang.stok) as stok, "+
+                        " "+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,sum(gudangbarang.stok) as stok, "+
                         " databarang.kapasitas,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
                         " detail_permintaan_stok_obat_pasien.jam00,detail_permintaan_stok_obat_pasien.jam01,detail_permintaan_stok_obat_pasien.jam02,"+
                         " detail_permintaan_stok_obat_pasien.jam03,detail_permintaan_stok_obat_pasien.jam04,detail_permintaan_stok_obat_pasien.jam05,"+
@@ -1550,7 +1552,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " (databarang.h_beli+(databarang.h_beli*?)) as harga,databarang."+hppfarmasi+" as dasar,gudangbarang.stok, "+
+                        " "+fungsi.HargaBarangTetap.markup("databarang",kolomHargaTetap)+" as harga,databarang."+hppfarmasi+" as dasar,gudangbarang.stok, "+
                         " databarang.kapasitas,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
                         " detail_permintaan_stok_obat_pasien.jam00,detail_permintaan_stok_obat_pasien.jam01,detail_permintaan_stok_obat_pasien.jam02,"+
                         " detail_permintaan_stok_obat_pasien.jam03,detail_permintaan_stok_obat_pasien.jam04,detail_permintaan_stok_obat_pasien.jam05,"+
@@ -1628,9 +1630,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if(aktifkanbatch.equals("yes")){
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,databarang.kapasitas,"+
-                        " databarang.letak_barang,databarang.utama,databarang.h_beli,sum(gudangbarang.stok) as stok,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
+                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.kapasitas,"+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",databarang.h_beli,sum(gudangbarang.stok) as stok,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
                         " detail_permintaan_stok_obat_pasien.jam00,detail_permintaan_stok_obat_pasien.jam01,detail_permintaan_stok_obat_pasien.jam02,"+
                         " detail_permintaan_stok_obat_pasien.jam03,detail_permintaan_stok_obat_pasien.jam04,detail_permintaan_stok_obat_pasien.jam05,"+
                         " detail_permintaan_stok_obat_pasien.jam06,detail_permintaan_stok_obat_pasien.jam07,detail_permintaan_stok_obat_pasien.jam08,"+
@@ -1647,9 +1649,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 }else{
                     pstampil=koneksi.prepareStatement(
                         "select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,"+
-                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,databarang.kelas1," +
-                        " databarang.kelas2,databarang.kelas3,databarang.vip,databarang.vvip,databarang.kapasitas,"+
-                        " databarang.letak_barang,databarang.utama,databarang.h_beli,gudangbarang.stok,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
+                        " databarang.karyawan,databarang."+hppfarmasi+" as dasar,databarang.beliluar,"+fungsi.HargaBarangTetap.kolom("databarang","kelas1")+"," +
+                        " "+fungsi.HargaBarangTetap.kolom("databarang","kelas2")+","+fungsi.HargaBarangTetap.kolom("databarang","kelas3")+","+fungsi.HargaBarangTetap.kolom("databarang","vip")+","+fungsi.HargaBarangTetap.kolom("databarang","vvip")+",databarang.kapasitas,"+
+                        " databarang.letak_barang,"+fungsi.HargaBarangTetap.kolom("databarang","utama")+",databarang.h_beli,gudangbarang.stok,detail_permintaan_stok_obat_pasien.jml,detail_permintaan_stok_obat_pasien.aturan_pakai,"+
                         " detail_permintaan_stok_obat_pasien.jam00,detail_permintaan_stok_obat_pasien.jam01,detail_permintaan_stok_obat_pasien.jam02,"+
                         " detail_permintaan_stok_obat_pasien.jam03,detail_permintaan_stok_obat_pasien.jam04,detail_permintaan_stok_obat_pasien.jam05,"+
                         " detail_permintaan_stok_obat_pasien.jam06,detail_permintaan_stok_obat_pasien.jam07,detail_permintaan_stok_obat_pasien.jam08,"+
