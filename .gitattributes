@@ -1,0 +1,2 @@
+# Skrip shell untuk klien Ubuntu harus selalu LF
+*.sh text eol=lf
