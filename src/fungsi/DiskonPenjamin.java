@@ -32,7 +32,7 @@ public final class DiskonPenjamin {
         "persen double NOT NULL DEFAULT 0,"+
         "PRIMARY KEY (kd_pj,jenis_rawat,kategori),"+
         "CONSTRAINT set_diskon_penjab_ibfk_1 FOREIGN KEY (kd_pj) REFERENCES penjab (kd_pj) ON DELETE CASCADE ON UPDATE CASCADE"+
-        ") ENGINE=InnoDB";
+        ") ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci";
 
     /** Catatan diskon otomatis yang pernah diterapkan per no_rawat & kategori. Bila barisnya lalu dihapus kasir, tidak dibuat ulang. */
     public static final String DDL_LOG =
@@ -41,7 +41,7 @@ public final class DiskonPenjamin {
         "kategori varchar(20) NOT NULL,"+
         "waktu datetime DEFAULT NULL,"+
         "PRIMARY KEY (no_rawat,kategori)"+
-        ") ENGINE=InnoDB";
+        ") ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci";
 
     public static boolean aktif() {
         if (aktif == null) {
@@ -63,6 +63,7 @@ public final class DiskonPenjamin {
                             }
                         } catch (Exception e4) { System.out.println("Notif Diskon Jenis Bayar : migrasi - " + e4.getMessage()); }
                     } catch (Exception e) {
+                        System.out.println("Notif Diskon Jenis Bayar : gagal membuat tabel - " + e.getMessage());
                         try (Statement st = c.createStatement(); ResultSet rs = st.executeQuery("select kd_pj from set_diskon_penjab limit 1")) {
                             ok = true;
                         } catch (Exception e2) {
