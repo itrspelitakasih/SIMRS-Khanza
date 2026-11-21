@@ -237,9 +237,17 @@ public class DlgBilingRanap extends javax.swing.JDialog {
     /** Creates new form DlgBiling
      * @param parent
      * @param modal */
+    private final javax.swing.JLabel LblDiskonJenisBayar=new javax.swing.JLabel(); // RSPK
+
     public DlgBilingRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        // RSPK: info setting Diskon Jenis Bayar pasien di bagian atas billing
+        LblDiskonJenisBayar.setForeground(new java.awt.Color(0,100,160));
+        LblDiskonJenisBayar.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 12));
+        LblDiskonJenisBayar.setName("LblDiskonJenisBayar");
+        LblDiskonJenisBayar.setBorder(javax.swing.BorderFactory.createEmptyBorder(0,4,0,16));
+        panelGlass1.add(LblDiskonJenisBayar);
         //this.setLocation(8,1);
         //setSize(891,640);
 
@@ -4973,6 +4981,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             // RSPK: diskon jenis bayar otomatis (Obat/Alkes/Tindakan/Operasi/Lab/Radiologi/Kamar) sebagai Potongan, hanya bila billing belum disimpan
             
             if(i==0){ fungsi.DiskonPenjamin.terapkan(TNoRw.getText()); }
+            String infoDiskon=fungsi.DiskonPenjamin.ringkasan(TNoRw.getText());
+            LblDiskonJenisBayar.setText(infoDiskon.equals("")?"Diskon Jenis Bayar : tidak ada":"Diskon Jenis Bayar : "+infoDiskon);
+            LblDiskonJenisBayar.setPreferredSize(null); panelGlass1.revalidate(); panelGlass1.repaint();
             
             pscarirm=koneksi.prepareStatement("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?");
             try {

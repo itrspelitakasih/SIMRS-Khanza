@@ -116,7 +116,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         btnKalkulatorOksigen.setName("btnKalkulatorOksigen");
         btnKalkulatorOksigen.setPreferredSize(new java.awt.Dimension(28, 23));
         btnKalkulatorOksigen.addActionListener(e -> fungsi.KalkulatorOksigen.tampil(btnKalkulatorOksigen, tbObat));
-        panelisi3.add(btnKalkulatorOksigen);
+        panelisi3.add(btnKalkulatorOksigen,panelisi3.getComponentZOrder(BtnTambah)+1); // tepat setelah tombol tambah agar selalu terlihat
         this.setLocation(10,2);
         setSize(656,250);
 
