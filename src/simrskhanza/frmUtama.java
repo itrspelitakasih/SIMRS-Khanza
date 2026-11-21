@@ -16067,6 +16067,45 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
         MnMonitoringWA.setPreferredSize(new java.awt.Dimension(170, 30));
         MnMonitoringWA.addActionListener(evt -> bukaMonitoringWA());
         jMenu1.insert(MnMonitoringWA,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+
+        // RSPK: master Paket Tindakan (tindakan + lab + radiologi dengan harga paket tetap)
+        widget.MenuItem MnPaketTindakan=new widget.MenuItem();
+        MnPaketTindakan.setForeground(new java.awt.Color(50, 90, 40));
+        MnPaketTindakan.setIcon(ikonMenu24("/48x48/118888_generic_package_icon.png"));
+        MnPaketTindakan.setText("Paket Tindakan");
+        MnPaketTindakan.setName("MnPaketTindakan");
+        MnPaketTindakan.setPreferredSize(new java.awt.Dimension(170, 30));
+        MnPaketTindakan.addActionListener(evt -> bukaPaketTindakan());
+        jMenu1.insert(MnPaketTindakan,jMenu1.getPopupMenu().getComponentIndex(jSeparator14));
+
+        btnPaketTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/118888_generic_package_icon.png")));
+        btnPaketTindakan.setText("Paket Tindakan");
+        btnPaketTindakan.setIconTextGap(0);
+        btnPaketTindakan.setName("btnPaketTindakan");
+        btnPaketTindakan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPaketTindakan.addActionListener(evt -> bukaPaketTindakan());
+    }
+
+    /** Tombol menu utama Paket Tindakan (kategori Tarif, sesudah Paket Operasi). */
+    private final widget.ButtonBig btnPaketTindakan=new widget.ButtonBig();
+
+    private boolean bolehPaketTindakan(){
+        return "Admin Utama".equals(akses.getkode())||akses.gettarif_ralan();
+    }
+
+    private void bukaPaketTindakan(){
+        if(!"Admin Utama".equals(akses.getkode())&&!akses.gettarif_ralan()){
+            JOptionPane.showMessageDialog(this,"Master Paket Tindakan hanya untuk Admin Utama atau user dengan hak akses Tarif Ralan.");
+            return;
+        }
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgPaketTindakan dlg=new DlgPaketTindakan(this,false);
+        dlg.setSize(PanelUtama.getWidth(),PanelUtama.getHeight());
+        dlg.setLocationRelativeTo(PanelUtama);
+        dlg.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
     }
 
     /** Ikon 48x48 diperkecil jadi 24x24 agar sama besar dengan ikon menu Program lain (Log In, Keluar). */
@@ -26408,7 +26447,7 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 rs=ps.executeQuery();
                 while(rs.next()){
                     jLabel8.setText(rs.getString(1));
-                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.28"));
+                    this.setTitle("SIMRS "+rs.getString("nama_instansi")+(" | 202611.29"));
                     jLabel11.setText(rs.getString(2) +", "+rs.getString(3) +", "+rs.getString(4) +" ");
                     akses.setnamars(rs.getString("nama_instansi"));
                     akses.setalamatrs(rs.getString("alamat_instansi"));
@@ -28706,6 +28745,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
                 jmlmenu++;
             }
 
+            if(bolehPaketTindakan()){
+                Panelmenu.add(btnPaketTindakan);
+                jmlmenu++;
+            }
             if(akses.gettarif_utd()==true){
                 Panelmenu.add(btnTarifUtd);
                 jmlmenu++;
@@ -34869,6 +34912,10 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             jmlmenu++;
         }
 
+        if(bolehPaketTindakan()){
+            Panelmenu.add(btnPaketTindakan);
+            jmlmenu++;
+        }
         if(akses.gettarif_utd()==true){
             Panelmenu.add(btnTarifUtd);
             jmlmenu++;
@@ -41904,9 +41951,15 @@ private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST
             if(btnPaketOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnPaketOperasi);
                 jmlmenu++;
-            }                
+            }
         }
 
+        if(bolehPaketTindakan()){
+            if(btnPaketTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnPaketTindakan);
+                jmlmenu++;
+            }
+        }
         if(akses.gettarif_utd()==true){
             if(btnTarifUtd.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnTarifUtd);
