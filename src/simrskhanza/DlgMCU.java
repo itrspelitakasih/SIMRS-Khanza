@@ -16829,10 +16829,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             return;
         }
         String norawat=TNoRw.getText().trim();
-        String kodePaket=DlgPilihPaketTindakan.pilih(this,norawat);
-        if(kodePaket==null){
+        String[] pilihan=DlgPilihPaketTindakan.pilih(this,norawat);
+        if(pilihan==null){
             return;
         }
+        String kodePaket=pilihan[0], nipPetugas=pilihan[1], nmPetugas=pilihan[2];
         String namaPaket=Sequel.cariIsi("select nama_paket from paket_tindakan where kode_paket=?",kodePaket);
         // peringatan bila ada item paket yang tidak punya tarif di jenis bayar pasien
         String peringatan="";
@@ -16849,6 +16850,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             System.out.println("Notif Paket Tindakan : "+e.getMessage());
         }
         if(JOptionPane.showConfirmDialog(null,"Input paket \""+namaPaket+"\" ke pasien "+TPasien.getText()+" ("+norawat+")?\n"+
+                (nipPetugas.equals("")?"":"Petugas paramedis: "+nmPetugas+" ("+nipPetugas+")\n")+
                 "Tindakan langsung tercatat, lab & radiologi dibuat sebagai permintaan."+peringatan,"Konfirmasi",JOptionPane.YES_NO_OPTION,
                 peringatan.isEmpty()?JOptionPane.QUESTION_MESSAGE:JOptionPane.WARNING_MESSAGE)!=JOptionPane.YES_OPTION){
             return;
@@ -16856,7 +16858,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
             String hasil=fungsi.PaketTindakan.terapkan(norawat,kodePaket,
-                    Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",norawat));
+                    Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",norawat),nipPetugas);
             this.setCursor(Cursor.getDefaultCursor());
             JOptionPane.showMessageDialog(null,hasil);
         } catch (Exception e) {

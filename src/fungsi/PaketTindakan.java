@@ -15,7 +15,9 @@ import java.util.Map;
  * RSPK: Paket Tindakan.
  * Master paket (harga tetap) berisi tindakan, pemeriksaan lab (dengan item detail) dan radiologi.
  * terapkan() pada pasien (MCU/ralan):
- *  - tindakan  -> langsung dicatat sebagai tindakan dokter ralan (rawat_jl_dr) + jurnal, sama dengan input manual;
+ *  - tindakan  -> langsung dicatat + jurnal, sama dengan input manual. Tabelnya mengikuti tarif yang terisi:
+ *                 dokter (rawat_jl_dr), hanya paramedis (rawat_jl_pr), hanya dokter+paramedis (rawat_jl_drpr);
+ *                 paramedisnya petugas yang dipilih saat input paket;
  *  - lab       -> satu permintaan lab (permintaan_lab + pemeriksaan + detail item), diproses petugas lab seperti biasa;
  *  - radiologi -> satu permintaan radiologi;
  *  - selisih jumlah tarif item dengan harga paket -> Potongan (lebih murah) atau Tambahan Biaya (lebih mahal),
@@ -50,6 +52,11 @@ public final class PaketTindakan {
             + "CONSTRAINT paket_tindakan_pasien_ibfk_2 FOREIGN KEY (kode_paket) REFERENCES paket_tindakan (kode_paket) ON UPDATE CASCADE)" + CS
     };
 
+    /** Tarif tindakan yang dipakai paket (alias j = jns_perawatan): dokter, kalau 0 paramedis, kalau 0 dokter+paramedis. */
+    public static final String TARIF_TINDAKAN = "if(j.total_byrdr>0,j.total_byrdr,if(j.total_byrpr>0,j.total_byrpr,j.total_byrdrpr))";
+    // urutan sama dengan TARIF_TINDAKAN
+    private static final String TABEL_TINDAKAN = "if(j.total_byrdr>0,'rawat_jl_dr',if(j.total_byrpr>0,'rawat_jl_pr',if(j.total_byrdrpr>0,'rawat_jl_drpr','rawat_jl_dr')))";
+
     private PaketTindakan() {}
 
     private static String rp(double v) {
@@ -82,12 +89,12 @@ public final class PaketTindakan {
         return aktif;
     }
 
-    /** Jumlah tarif semua item paket (tindakan dokter + lab termasuk item detail + radiologi). */
+    /** Jumlah tarif semua item paket (tindakan + lab termasuk item detail + radiologi). */
     public static double jumlahTarif(String kodePaket) {
         double t = 0;
         Connection c = koneksiDB.condb();
         String[] sql = {
-            "select ifnull(sum(j.total_byrdr),0) from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?",
+            "select ifnull(sum(" + TARIF_TINDAKAN + "),0) from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?",
             "select ifnull(sum(j.total_byr),0) from (select distinct kd_jenis_prw from paket_tindakan_lab where kode_paket=?) p inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw",
             "select ifnull(sum(t.biaya_item),0) from paket_tindakan_lab p inner join template_laboratorium t on t.kd_jenis_prw=p.kd_jenis_prw and t.id_template=p.id_template where p.kode_paket=?",
             "select ifnull(sum(j.total_byr),0) from paket_tindakan_radiologi p inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?"
@@ -129,6 +136,37 @@ public final class PaketTindakan {
         return h;
     }
 
+    /**
+     * Tindakan paket sesudah dicocokkan ke jenis bayar pasien, tanpa kode dobel:
+     * {kd_jenis_prw, nama, tabel tujuan, material, bhp, jm dokter, jm paramedis, kso, menejemen, biaya}.
+     * tidakCocok diisi nama yang memakai tarif paket. Hasil int = banyak yang disesuaikan.
+     */
+    private static int siapkanTindakan(Connection c, String kodePaket, String kdPj, String kdPoli, List<String[]> hasil, List<String> tidakCocok) throws Exception {
+        int sesuai = 0;
+        java.util.Set<String> sudah = new java.util.HashSet<>();
+        for (String[] p : baris(c, "select p.kd_jenis_prw,j.nm_perawatan,j.kd_poli from paket_tindakan_tindakan p "
+                + "inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", kodePaket)) {
+            String kd = cocokTindakan(c, p, kdPj, kdPoli);
+            if (kd == null) { kd = p[0]; tidakCocok.add(p[1]); } else if (!kd.equals(p[0])) sesuai++;
+            if (!sudah.add(kd)) continue;
+            hasil.addAll(baris(c, "select j.kd_jenis_prw,j.nm_perawatan," + TABEL_TINDAKAN + ",ifnull(j.material,0),ifnull(j.bhp,0),ifnull(j.tarif_tindakandr,0),"
+                    + "ifnull(j.tarif_tindakanpr,0),ifnull(j.kso,0),ifnull(j.menejemen,0),ifnull(" + TARIF_TINDAKAN + ",0) from jns_perawatan j where j.kd_jenis_prw=?", kd));
+        }
+        return sesuai;
+    }
+
+    /** Nama tindakan paket yang butuh petugas paramedis untuk pasien ini (kosong = tidak perlu memilih petugas). */
+    public static List<String> butuhParamedis(String noRawat, String kodePaket) throws Exception {
+        Connection c = koneksiDB.condb();
+        List<String[]> reg = baris(c, "select kd_pj,kd_poli from reg_periksa where no_rawat=?", noRawat);
+        if (reg.isEmpty()) throw new Exception("Registrasi " + noRawat + " tidak ditemukan.");
+        List<String[]> tindakan = new ArrayList<>();
+        siapkanTindakan(c, kodePaket, reg.get(0)[0], reg.get(0)[1], tindakan, new ArrayList<>());
+        List<String> h = new ArrayList<>();
+        for (String[] t : tindakan) if (!t[2].equals("rawat_jl_dr")) h.add(t[1]);
+        return h;
+    }
+
     /** Nilai kolom pertama baris pertama, atau null bila tidak ada. */
     private static String satu(Connection c, String sql, Object... param) throws Exception {
         List<String[]> h = baris(c, sql, param);
@@ -153,7 +191,7 @@ public final class PaketTindakan {
         v[0] += debet; v[1] += kredit;
     }
 
-    /** Jurnal tindakan paket: t = {pendapatan, JM dokter, KSO, sarana, BHP, menejemen}; batal = jurnal balik. */
+    /** Jurnal tindakan paket: t = {pendapatan, JM dokter, KSO, sarana, BHP, menejemen, JM paramedis}; batal = jurnal balik. */
     private static void jurnalTindakan(Connection c, sekuel Sequel, String noRawat, String kodePaket, boolean batal, double[] t) throws Exception {
         if (akuntindakanralan.getSuspen_Piutang_Tindakan_Ralan().equals("")) akuntindakanralan.SetAkunTindakanRalan();
         String[][] akun = { // {debet saat input, kredit saat input}
@@ -162,7 +200,8 @@ public final class PaketTindakan {
             {akuntindakanralan.getBeban_KSO_Tindakan_Ralan(), akuntindakanralan.getUtang_KSO_Tindakan_Ralan()},
             {akuntindakanralan.getBeban_Jasa_Sarana_Tindakan_Ralan(), akuntindakanralan.getUtang_Jasa_Sarana_Tindakan_Ralan()},
             {akuntindakanralan.getHPP_BHP_Tindakan_Ralan(), akuntindakanralan.getPersediaan_BHP_Tindakan_Ralan()},
-            {akuntindakanralan.getBeban_Jasa_Menejemen_Tindakan_Ralan(), akuntindakanralan.getUtang_Jasa_Menejemen_Tindakan_Ralan()}
+            {akuntindakanralan.getBeban_Jasa_Menejemen_Tindakan_Ralan(), akuntindakanralan.getUtang_Jasa_Menejemen_Tindakan_Ralan()},
+            {akuntindakanralan.getBeban_Jasa_Medik_Paramedis_Tindakan_Ralan(), akuntindakanralan.getUtang_Jasa_Medik_Paramedis_Tindakan_Ralan()}
         };
         Map<String, double[]> j = new LinkedHashMap<>();
         for (int i = 0; i < akun.length; i++) {
@@ -337,7 +376,7 @@ public final class PaketTindakan {
      * Terapkan paket ke pasien. Mengembalikan ringkasan bila berhasil; melempar Exception berisi pesan bila gagal
      * (seluruh perubahan dibatalkan).
      */
-    public static String terapkan(String noRawat, String kodePaket, String kdDokter) throws Exception {
+    public static String terapkan(String noRawat, String kodePaket, String kdDokter, String nip) throws Exception {
         if (!aktif()) throw new Exception("Tabel Paket Tindakan belum tersedia di database.");
         Connection c = koneksiDB.condb();
         sekuel Sequel = new sekuel();
@@ -365,7 +404,7 @@ public final class PaketTindakan {
         if (akuntindakanralan.getSuspen_Piutang_Tindakan_Ralan().equals("")) akuntindakanralan.SetAkunTindakanRalan();
         boolean autoAwal = c.getAutoCommit();
         c.setAutoCommit(false);
-        int nTindakan = 0, nLab = 0, nItemLab = 0, nRad = 0, nSesuai = 0;
+        int nTindakan = 0, nParamedis = 0, nLab = 0, nItemLab = 0, nRad = 0, nSesuai = 0;
         String orderLab = null, orderRad = null;
         double ttlTindakan = 0, jumlah = 0;
         // Jenis bayar pasien: setiap item paket dicocokkan (berdasarkan nama) ke tarif jenis bayar pasien,
@@ -375,26 +414,41 @@ public final class PaketTindakan {
         String nmPj = Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", kdPj);
         List<String> tidakCocok = new ArrayList<>();
         try {
-            // ---- Tindakan dokter ralan + jurnal (sama dengan input Penanganan Dokter di rawat jalan)
+            // ---- Tindakan ralan (dokter / paramedis / dokter+paramedis) + jurnal, sama dengan input di Tindakan Rawat Jalan
             List<String[]> tindakan = new ArrayList<>();
-            java.util.Set<String> sudah = new java.util.HashSet<>();
-            for (String[] p : baris(c, "select p.kd_jenis_prw,j.nm_perawatan,j.kd_poli from paket_tindakan_tindakan p "
-                    + "inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", kodePaket)) {
-                String kd = cocokTindakan(c, p, kdPj, kdPoli);
-                if (kd == null) { kd = p[0]; tidakCocok.add(p[1]); } else if (!kd.equals(p[0])) nSesuai++;
-                if (!sudah.add(kd)) continue;
-                tindakan.addAll(baris(c, "select kd_jenis_prw,material,bhp,tarif_tindakandr,kso,menejemen,total_byrdr from jns_perawatan where kd_jenis_prw=?", kd));
-            }
-            double ttlJm = 0, ttlKso = 0, ttlSarana = 0, ttlBhp = 0, ttlMen = 0;
+            nSesuai += siapkanTindakan(c, kodePaket, kdPj, kdPoli, tindakan, tidakCocok);
             for (String[] t : tindakan) {
-                ins(c, "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?,'Belum')", noRawat, t[0], kdDokter, tgl, jam,
-                        Double.valueOf(t[1]), Double.valueOf(t[2]), Double.valueOf(t[3]), Double.valueOf(t[4]), Double.valueOf(t[5]), Double.valueOf(t[6]));
-                ttlSarana += Double.parseDouble(t[1]); ttlBhp += Double.parseDouble(t[2]); ttlJm += Double.parseDouble(t[3]);
-                ttlKso += Double.parseDouble(t[4]); ttlMen += Double.parseDouble(t[5]); ttlTindakan += Double.parseDouble(t[6]);
+                if (t[2].equals("rawat_jl_dr")) continue;
+                if (nip == null || nip.trim().equals("") || nip.trim().equals("-"))
+                    throw new Exception("Petugas paramedis belum dipilih, dibutuhkan untuk " + t[1] + ".");
+                if (satu(c, "select nip from petugas where nip=? and status='1'", nip) == null)
+                    throw new Exception("Petugas paramedis " + nip + " tidak ditemukan atau tidak aktif.");
+                break;
+            }
+            double ttlJm = 0, ttlJmPr = 0, ttlKso = 0, ttlSarana = 0, ttlBhp = 0, ttlMen = 0;
+            for (String[] t : tindakan) {
+                double sarana = Double.parseDouble(t[3]), bhp = Double.parseDouble(t[4]), jmDr = Double.parseDouble(t[5]), jmPr = Double.parseDouble(t[6]),
+                        kso = Double.parseDouble(t[7]), men = Double.parseDouble(t[8]), biaya = Double.parseDouble(t[9]);
+                switch (t[2]) {
+                    case "rawat_jl_pr":
+                        ins(c, "insert into rawat_jl_pr values (?,?,?,?,?,?,?,?,?,?,?,'Belum')", noRawat, t[0], nip, tgl, jam, sarana, bhp, jmPr, kso, men, biaya);
+                        jmDr = 0;
+                        nParamedis++;
+                        break;
+                    case "rawat_jl_drpr":
+                        ins(c, "insert into rawat_jl_drpr values (?,?,?,?,?,?,?,?,?,?,?,?,?,'Belum')", noRawat, t[0], kdDokter, nip, tgl, jam, sarana, bhp, jmDr, jmPr, kso, men, biaya);
+                        nParamedis++;
+                        break;
+                    default:
+                        ins(c, "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?,'Belum')", noRawat, t[0], kdDokter, tgl, jam, sarana, bhp, jmDr, kso, men, biaya);
+                        jmPr = 0;
+                }
+                ttlSarana += sarana; ttlBhp += bhp; ttlJm += jmDr; ttlJmPr += jmPr;
+                ttlKso += kso; ttlMen += men; ttlTindakan += biaya;
                 nTindakan++;
             }
             if (ttlTindakan > 0)
-                jurnalTindakan(c, Sequel, noRawat, kodePaket, false, new double[]{ttlTindakan, ttlJm, ttlKso, ttlSarana, ttlBhp, ttlMen});
+                jurnalTindakan(c, Sequel, noRawat, kodePaket, false, new double[]{ttlTindakan, ttlJm, ttlKso, ttlSarana, ttlBhp, ttlMen, ttlJmPr});
 
             jumlah += ttlTindakan;
 
@@ -458,7 +512,7 @@ public final class PaketTindakan {
             c.commit();
 
             StringBuilder sb = new StringBuilder("Paket " + namaPaket + " berhasil diinput.\n");
-            sb.append("- Tindakan: ").append(nTindakan).append(" item\n");
+            sb.append("- Tindakan: ").append(nTindakan).append(" item").append(nParamedis > 0 ? " (" + nParamedis + " memakai petugas paramedis)" : "").append("\n");
             if (orderLab != null) sb.append("- Permintaan Lab ").append(orderLab).append(": ").append(nLab).append(" pemeriksaan, ").append(nItemLab).append(" item\n");
             if (orderRad != null) sb.append("- Permintaan Radiologi ").append(orderRad).append(": ").append(nRad).append(" pemeriksaan\n");
             sb.append("- Tarif jenis bayar ").append(nmPj).append(": ").append(nSesuai).append(" item disesuaikan\n");
@@ -525,7 +579,7 @@ public final class PaketTindakan {
             String orderLab = pk.orderLab, orderRad = pk.orderRad;
             // tindakan: jam sama persis dengan permintaan paket (sama dengan yang dihapus bila paket dihapus)
             for (String[] t : tindakanPaket(c, pk))
-                barisRiwayat(td, lengkap, "Tindakan", t[4], "Tercatat", "", "", "", "Dokter: " + t[5], t[2] + " " + t[3], null);
+                barisRiwayat(td, lengkap, "Tindakan", t[4], "Tercatat", "", "", "", t[5], t[2] + " " + t[3], null);
             // laboratorium: per pemeriksaan lalu item; nilai dari hasil lab terbaru sesudah permintaan
             if (orderLab != null && !orderLab.equals("")) {
                 try (PreparedStatement ps = c.prepareStatement(
@@ -622,12 +676,25 @@ public final class PaketTindakan {
         return p;
     }
 
-    /** {kd_jenis_prw, kd_dokter, tgl, jam, nama, dokter, material, bhp, jm dokter, kso, menejemen, biaya, stts_bayar} */
+    /**
+     * Tindakan paket di ketiga tabel ralan:
+     * {kd_jenis_prw, kd_dokter, tgl, jam, nama, pelaksana, material, bhp, jm dokter, kso, menejemen, biaya, stts_bayar, jm paramedis, nip, tabel}
+     */
     private static List<String[]> tindakanPaket(Connection c, PaketPasien p) throws Exception {
-        return baris(c, "select t.kd_jenis_prw,t.kd_dokter,date_format(t.tgl_perawatan,'%Y-%m-%d'),time_format(t.jam_rawat,'%H:%i:%s'),j.nm_perawatan,ifnull(d.nm_dokter,t.kd_dokter),"
-                + "t.material,t.bhp,t.tarif_tindakandr,t.kso,t.menejemen,t.biaya_rawat,t.stts_bayar from rawat_jl_dr t "
-                + "inner join jns_perawatan j on j.kd_jenis_prw=t.kd_jenis_prw left join dokter d on d.kd_dokter=t.kd_dokter "
-                + "where t.no_rawat=? and t.tgl_perawatan=? and t.jam_rawat=? order by j.nm_perawatan", p.noRawat, p.tgl, p.jam);
+        List<String[]> h = new ArrayList<>();
+        for (String tabel : new String[]{"rawat_jl_dr", "rawat_jl_pr", "rawat_jl_drpr"}) {
+            boolean dr = !tabel.equals("rawat_jl_pr"), pr = !tabel.equals("rawat_jl_dr");
+            String oleh = dr && pr ? "concat('Dokter: ',ifnull(d.nm_dokter,t.kd_dokter),', Paramedis: ',ifnull(g.nama,t.nip))"
+                    : dr ? "concat('Dokter: ',ifnull(d.nm_dokter,t.kd_dokter))" : "concat('Paramedis: ',ifnull(g.nama,t.nip))";
+            h.addAll(baris(c, "select t.kd_jenis_prw," + (dr ? "t.kd_dokter" : "''") + ",date_format(t.tgl_perawatan,'%Y-%m-%d'),time_format(t.jam_rawat,'%H:%i:%s'),"
+                    + "j.nm_perawatan," + oleh + ",t.material,t.bhp," + (dr ? "t.tarif_tindakandr" : "0") + ",t.kso,t.menejemen,t.biaya_rawat,t.stts_bayar,"
+                    + (pr ? "t.tarif_tindakanpr,t.nip" : "0,''") + ",'" + tabel + "' from " + tabel + " t "
+                    + "inner join jns_perawatan j on j.kd_jenis_prw=t.kd_jenis_prw "
+                    + (dr ? "left join dokter d on d.kd_dokter=t.kd_dokter " : "") + (pr ? "left join petugas g on g.nip=t.nip " : "")
+                    + "where t.no_rawat=? and t.tgl_perawatan=? and t.jam_rawat=?", p.noRawat, p.tgl, p.jam));
+        }
+        h.sort((a, b) -> a[4].compareToIgnoreCase(b[4]));
+        return h;
     }
 
     // ---------------- hapus paket yang sudah diberikan ----------------
@@ -685,9 +752,12 @@ public final class PaketTindakan {
             nama.append(i == 0 ? "" : (i % 4 == 0 ? ",\n     " : ", ")).append(t[4]);
         }
         int diPaket = (int) angka(c, "select count(*) from paket_tindakan_tindakan where kode_paket=?", kodePaket);
-        if (r.tindakan.isEmpty() && diPaket > 0 && angka(c, "select count(*) from rawat_jl_dr t inner join jns_perawatan j on j.kd_jenis_prw=t.kd_jenis_prw "
-                + "where t.no_rawat=? and j.nm_perawatan in (select k.nm_perawatan from paket_tindakan_tindakan i inner join jns_perawatan k on k.kd_jenis_prw=i.kd_jenis_prw where i.kode_paket=?)", noRawat, kodePaket) > 0)
-            throw new Exception("Tindakan paket tidak bisa dikenali (jamnya sudah diubah).\nHapus dulu tindakannya di Tindakan Rawat Jalan, lalu ulangi hapus paket.");
+        if (r.tindakan.isEmpty() && diPaket > 0) {
+            for (String tabel : new String[]{"rawat_jl_dr", "rawat_jl_pr", "rawat_jl_drpr"})
+                if (angka(c, "select count(*) from " + tabel + " t inner join jns_perawatan j on j.kd_jenis_prw=t.kd_jenis_prw "
+                        + "where t.no_rawat=? and j.nm_perawatan in (select k.nm_perawatan from paket_tindakan_tindakan i inner join jns_perawatan k on k.kd_jenis_prw=i.kd_jenis_prw where i.kode_paket=?)", noRawat, kodePaket) > 0)
+                    throw new Exception("Tindakan paket tidak bisa dikenali (jamnya sudah diubah).\nHapus dulu tindakannya di Tindakan Rawat Jalan, lalu ulangi hapus paket.");
+        }
         if (!r.tindakan.isEmpty()) r.isi.add(r.tindakan.size() + " tindakan (jurnal dibalik): " + nama);
         if (r.tindakan.size() < diPaket)
             r.catatan.add("Hanya " + r.tindakan.size() + " dari " + diPaket + " tindakan paket ditemukan, cek sisanya di Tindakan Rawat Jalan.");
@@ -756,12 +826,17 @@ public final class PaketTindakan {
         try {
             baris(c, "select kode_paket from paket_tindakan_pasien where no_rawat=? and kode_paket=? for update", noRawat, kodePaket);
             RencanaHapus r = rencanaHapus(c, Sequel, noRawat, kodePaket, admin);
-            double[] ttl = new double[6];
+            double[] ttl = new double[7];
             for (String[] t : r.tindakan) {
-                if (hapusBaris(c, Sequel, "delete from rawat_jl_dr where no_rawat=? and kd_jenis_prw=? and kd_dokter=? and tgl_perawatan=? and jam_rawat=?",
-                        noRawat, t[0], t[1], t[2], t[3]) != 1)
+                boolean dr = !t[15].equals("rawat_jl_pr"), pr = !t[15].equals("rawat_jl_dr");
+                List<Object> kunci = new ArrayList<>(java.util.Arrays.asList(noRawat, t[0]));
+                if (dr) kunci.add(t[1]);
+                if (pr) kunci.add(t[14]);
+                kunci.add(t[2]); kunci.add(t[3]);
+                if (hapusBaris(c, Sequel, "delete from " + t[15] + " where no_rawat=? and kd_jenis_prw=?" + (dr ? " and kd_dokter=?" : "") + (pr ? " and nip=?" : "")
+                        + " and tgl_perawatan=? and jam_rawat=?", kunci.toArray()) != 1)
                     throw new Exception("Tindakan " + t[4] + " berubah saat proses hapus, silakan ulangi.");
-                int[] kolom = {11, 8, 9, 6, 7, 10}; // pendapatan, JM dokter, KSO, sarana, BHP, menejemen
+                int[] kolom = {11, 8, 9, 6, 7, 10, 13}; // pendapatan, JM dokter, KSO, sarana, BHP, menejemen, JM paramedis
                 for (int i = 0; i < kolom.length; i++) if (t[kolom[i]] != null) ttl[i] += Double.parseDouble(t[kolom[i]]);
             }
             if (!r.tindakan.isEmpty() && (ttl[0] > 0 || angka(c, "select count(*) from jurnal where no_bukti=? and keterangan like ?",

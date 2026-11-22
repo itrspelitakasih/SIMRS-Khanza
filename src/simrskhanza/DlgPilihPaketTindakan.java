@@ -13,6 +13,7 @@ import javax.swing.table.TableRowSorter;
 /**
  * RSPK: pilih Paket Tindakan untuk diinput ke pasien (dari form MCU).
  * Tab "Pilih Paket": Spasi/Enter/klik dua kali = pilih, tombol Detail menampilkan isi paket.
+ * Petugas paramedis dipilih di sini, wajib bila paket berisi tindakan bertarif paramedis.
  * Tab "Paket Diberikan": paket yang sudah diberikan ke pasien ini beserta riwayat & hasil pemeriksaannya, bisa dihapus.
  */
 public class DlgPilihPaketTindakan extends javax.swing.JDialog {
@@ -20,7 +21,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabDetail, tabDiberikan, tabRiwayat;
     private final TableRowSorter<DefaultTableModel> sorter;
     private final java.util.List<String> hasilLengkap = new java.util.ArrayList<>();
-    private String dipilih = null, noRawatPasien = "";
+    private String dipilih = null, nipDipilih = "", namaDipilih = "", noRawatPasien = "";
 
     /** Creates new form DlgPilihPaketTindakan
      * @param parent
@@ -45,7 +46,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         };
         tbDetail.setModel(tabDetail);
         tbDetail.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        lebar(tbDetail, 100, 100, 450, 110);
+        lebar(tbDetail, 140, 100, 420, 110);
         javax.swing.table.DefaultTableCellRenderer kanan = new javax.swing.table.DefaultTableCellRenderer();
         kanan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         tbDetail.getColumnModel().getColumn(3).setCellRenderer(kanan);
@@ -94,6 +95,10 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         panelGlass1 = new widget.panelisi();
         jLabel1 = new widget.Label();
         TCari = new widget.TextBox();
+        LPetugas = new widget.Label();
+        KdPetugas = new widget.TextBox();
+        NmPetugas = new widget.TextBox();
+        BtnPetugas = new widget.Button();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPaket = new widget.Table();
@@ -149,13 +154,40 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
 
         TCari.setToolTipText("Ketik kode/nama paket, panah bawah untuk pindah ke tabel, Enter untuk memilih");
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(350, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(230, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
             }
         });
         panelGlass1.add(TCari);
+
+        LPetugas.setText("Petugas Paramedis :");
+        LPetugas.setName("LPetugas"); // NOI18N
+        LPetugas.setPreferredSize(new java.awt.Dimension(150, 23));
+        panelGlass1.add(LPetugas);
+
+        KdPetugas.setEditable(false);
+        KdPetugas.setName("KdPetugas"); // NOI18N
+        KdPetugas.setPreferredSize(new java.awt.Dimension(130, 23));
+        panelGlass1.add(KdPetugas);
+
+        NmPetugas.setEditable(false);
+        NmPetugas.setName("NmPetugas"); // NOI18N
+        NmPetugas.setPreferredSize(new java.awt.Dimension(260, 23));
+        panelGlass1.add(NmPetugas);
+
+        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPetugas.setMnemonic(84);
+        BtnPetugas.setToolTipText("Alt+T, pilih petugas paramedis");
+        BtnPetugas.setName("BtnPetugas"); // NOI18N
+        BtnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasActionPerformed(evt);
+            }
+        });
+        panelGlass1.add(BtnPetugas);
 
         internalFrame3.add(panelGlass1, java.awt.BorderLayout.PAGE_START);
 
@@ -378,11 +410,19 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         hapusDiberikan();
     }//GEN-LAST:event_BtnHapusActionPerformed
 
+    private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugasActionPerformed
+        cariPetugas();
+    }//GEN-LAST:event_BtnPetugasActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnDetail;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPilih;
+    private widget.Button BtnPetugas;
+    private widget.TextBox KdPetugas;
+    private widget.TextBox NmPetugas;
+    private widget.Label LPetugas;
     private widget.Label LCount;
     private widget.Label LDetail;
     private widget.Label LRiwayat;
@@ -511,6 +551,24 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         if (TabPaket.getSelectedIndex() != 0) return;
         String k = kodeTerpilih();
         if (k == null) { JOptionPane.showMessageDialog(this, "Silahkan pilih paket terlebih dahulu..!!"); return; }
+        if (!noRawatPasien.equals("")) {
+            java.util.List<String> perlu;
+            setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+            try {
+                perlu = PaketTindakan.butuhParamedis(noRawatPasien, k);
+            } catch (Exception e) {
+                setCursor(java.awt.Cursor.getDefaultCursor());
+                JOptionPane.showMessageDialog(this, "Gagal memeriksa isi paket: " + e.getMessage());
+                return;
+            }
+            setCursor(java.awt.Cursor.getDefaultCursor());
+            if (!perlu.isEmpty() && KdPetugas.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Pilih petugas paramedis untuk tindakan:\n- " + String.join("\n- ", perlu));
+                cariPetugas();
+                if (KdPetugas.getText().trim().equals("")) return;
+            }
+            if (!perlu.isEmpty()) { nipDipilih = KdPetugas.getText().trim(); namaDipilih = NmPetugas.getText(); }
+        }
         dipilih = k;
         dispose();
     }
@@ -521,7 +579,8 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         String k = kodeTerpilih();
         if (k == null) { LDetail.setText(" Detail paket"); return; }
         try {
-            isiDetail("Tindakan", "select j.kd_jenis_prw,j.nm_perawatan,j.total_byrdr from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=? order by j.nm_perawatan", k);
+            isiDetail("Tindakan", "select j.kd_jenis_prw,j.nm_perawatan," + PaketTindakan.TARIF_TINDAKAN + ",if(j.total_byrdr>0,'',if(j.total_byrpr>0,' Paramedis',if(j.total_byrdrpr>0,' Dr+Pr',''))) "
+                    + "from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=? order by j.nm_perawatan", k);
             // lab: baris pemeriksaan lalu itemnya (id_template 0 = semua item)
             try (PreparedStatement ps = koneksi.prepareStatement(
                     "select p.kd_jenis_prw,j.nm_perawatan,j.total_byr,p.id_template,t.Pemeriksaan,t.biaya_item,"
@@ -556,18 +615,50 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         try (PreparedStatement ps = koneksi.prepareStatement(sql)) {
             ps.setString(1, k);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) tabDetail.addRow(new Object[]{jenis, rs.getString(1), rs.getString(2), rp(rs.getDouble(3))});
+                boolean adaPelaksana = rs.getMetaData().getColumnCount() > 3;
+                while (rs.next()) tabDetail.addRow(new Object[]{adaPelaksana ? jenis + rs.getString(4) : jenis, rs.getString(1), rs.getString(2), rp(rs.getDouble(3))});
             }
         }
     }
 
-    /** Tampilkan dialog pilih paket. Mengembalikan kode paket atau null bila batal. */
-    public static String pilih(java.awt.Component induk) {
-        return pilih(induk, null);
+    private void cariPetugas() {
+        // modal, karena dialog ini modal: jendela biasa akan terkunci di belakangnya
+        kepegawaian.DlgCariPetugas petugas = new kepegawaian.DlgCariPetugas(null, true);
+        petugas.isCek();
+        matikanTambah(petugas.getContentPane());
+        petugas.setSize(getWidth() - 20, getHeight() - 20);
+        petugas.setLocationRelativeTo(this);
+        petugas.setVisible(true);
+        int r = petugas.getTable().getSelectedRow();
+        if (r < 0) return;
+        KdPetugas.setText(petugas.getTable().getValueAt(r, 0).toString());
+        NmPetugas.setText(petugas.getTable().getValueAt(r, 1).toString());
     }
 
-    /** Sama dengan pilih(induk), plus tab "Paket Diberikan" untuk pasien dari no.rawat ini. */
-    public static String pilih(java.awt.Component induk, String noRawat) {
+    /** Tombol Tambah di pencarian petugas membuka jendela biasa yang akan terkunci oleh dialog modal. */
+    private static void matikanTambah(java.awt.Container induk) {
+        for (java.awt.Component x : induk.getComponents()) {
+            if ("BtnTambah".equals(x.getName())) x.setEnabled(false);
+            else if (x instanceof java.awt.Container) matikanTambah((java.awt.Container) x);
+        }
+    }
+
+    /** Tampilkan dialog pilih paket (tanpa pasien). Mengembalikan kode paket atau null bila batal. */
+    public static String pilih(java.awt.Component induk) {
+        DlgPilihPaketTindakan d = tampilkan(induk, "");
+        return d == null ? null : d.dipilih;
+    }
+
+    /**
+     * Pilih paket untuk pasien no.rawat ini, plus tab "Paket Diberikan".
+     * Mengembalikan {kode paket, nip petugas paramedis, nama petugas} (nip "" bila tidak diperlukan) atau null bila batal.
+     */
+    public static String[] pilih(java.awt.Component induk, String noRawat) {
+        DlgPilihPaketTindakan d = tampilkan(induk, noRawat);
+        return d == null || d.dipilih == null ? null : new String[]{d.dipilih, d.nipDipilih, d.namaDipilih};
+    }
+
+    private static DlgPilihPaketTindakan tampilkan(java.awt.Component induk, String noRawat) {
         if (!PaketTindakan.aktif()) { JOptionPane.showMessageDialog(induk, "Tabel Paket Tindakan belum tersedia di database."); return null; }
         java.awt.Window w = induk == null ? null : javax.swing.SwingUtilities.getWindowAncestor(induk);
         if (induk instanceof java.awt.Window) w = (java.awt.Window) induk;
@@ -576,9 +667,12 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         DlgPilihPaketTindakan d = new DlgPilihPaketTindakan(f, true);
         if (d.tabMode.getRowCount() == 0) { JOptionPane.showMessageDialog(induk, "Belum ada Paket Tindakan. Buat dulu lewat menu Master Paket Tindakan."); d.dispose(); return null; }
         if (noRawat != null && !noRawat.equals("")) d.setPasien(noRawat);
-        else d.TabPaket.setEnabledAt(1, false);
+        else {
+            d.TabPaket.setEnabledAt(1, false);
+            d.LPetugas.setVisible(false); d.KdPetugas.setVisible(false); d.NmPetugas.setVisible(false); d.BtnPetugas.setVisible(false);
+        }
         d.setLocationRelativeTo(induk);
         d.setVisible(true);
-        return d.dipilih;
+        return d;
     }
 }

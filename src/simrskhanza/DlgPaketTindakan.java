@@ -48,7 +48,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         tbPaket.setModel(tmPaket);
         lebar(tbPaket, 70, 200, 90, 100);
 
-        tmTindakan = model(new Object[]{"P", "Kode", "Nama Tindakan", "Poli", "Cara Bayar", "Tarif Dokter"}, 0);
+        tmTindakan = model(new Object[]{"P", "Kode", "Nama Tindakan", "Poli", "Cara Bayar", "Tarif"}, 0);
         tbTindakan.setModel(tmTindakan);
         lebar(tbTindakan, 25, 90, 260, 110, 130, 90);
         tmTindakan.addTableModelListener(e -> centang(tmTindakan, e, "T"));
@@ -871,7 +871,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     // Isi paket selalu tampil (walau tidak cocok Key Word) dan diletakkan paling atas dalam keadaan tercentang.
     private void tampilTindakan() {
         String k = "%" + CariTindakan.getText().trim() + "%", in = tanya(selTindakan);
-        isi(tmTindakan, "select j.kd_jenis_prw,j.nm_perawatan,ifnull(p.nm_poli,j.kd_poli),ifnull(b.png_jawab,j.kd_pj),j.total_byrdr from jns_perawatan j "
+        isi(tmTindakan, "select j.kd_jenis_prw,j.nm_perawatan,ifnull(p.nm_poli,j.kd_poli),ifnull(b.png_jawab,j.kd_pj)," + PaketTindakan.TARIF_TINDAKAN + " from jns_perawatan j "
                 + "left join poliklinik p on p.kd_poli=j.kd_poli left join penjab b on b.kd_pj=j.kd_pj "
                 + "where (j.status='1'" + saringPj() + " and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or p.nm_poli like ? or b.png_jawab like ?)) "
                 + "or j.kd_jenis_prw in (" + in + ") order by (j.kd_jenis_prw in (" + in + ")) desc,j.nm_perawatan limit 1000",
@@ -1087,7 +1087,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
                     if (rs.next()) { Kode.setText(rs.getString(1)); Nama.setText(rs.getString(2)); double h = rs.getDouble(3); Harga.setText(h == Math.rint(h) ? String.valueOf((long) h) : String.valueOf(h)); }
                 }
             }
-            muatPilihan("select p.kd_jenis_prw,j.total_byrdr from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", k, "T");
+            muatPilihan("select p.kd_jenis_prw," + PaketTindakan.TARIF_TINDAKAN + " from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", k, "T");
             muatPilihan("select distinct p.kd_jenis_prw,j.total_byr from paket_tindakan_lab p inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", k, "L");
             muatPilihan("select concat(p.kd_jenis_prw,'#',p.id_template),t.biaya_item from paket_tindakan_lab p inner join template_laboratorium t on t.kd_jenis_prw=p.kd_jenis_prw and t.id_template=p.id_template where p.kode_paket=? and p.id_template>0", k, "I");
             muatPilihan("select p.kd_jenis_prw,j.total_byr from paket_tindakan_radiologi p inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?", k, "R");
@@ -1263,7 +1263,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
 
     private void muatTarif(String jenis, String tabel, String kolom, Set<String> kode) throws Exception {
         if (kode.isEmpty()) return;
-        try (PreparedStatement ps = koneksi.prepareStatement("select kd_jenis_prw," + kolom + " from " + tabel + " where kd_jenis_prw in (" + tanya(kode) + ")")) {
+        try (PreparedStatement ps = koneksi.prepareStatement("select kd_jenis_prw," + kolom + " from " + tabel + " j where j.kd_jenis_prw in (" + tanya(kode) + ")")) {
             int i = 1;
             for (String k : kode) ps.setString(i++, k);
             try (ResultSet rs = ps.executeQuery()) {
@@ -1323,7 +1323,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
                     lBaru.add(tujuan);
                 }
                 berubah = !tBaru.equals(selTindakan) || !lBaru.equals(selLab) || !rBaru.equals(selRad);
-                muatTarif("T", "jns_perawatan", "total_byrdr", tBaru);
+                muatTarif("T", "jns_perawatan", PaketTindakan.TARIF_TINDAKAN, tBaru);
                 muatTarif("L", "jns_perawatan_lab", "total_byr", lBaru);
                 muatTarif("R", "jns_perawatan_radiologi", "total_byr", rBaru);
                 selTindakan.clear(); selTindakan.addAll(tBaru);
