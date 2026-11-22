@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * RSPK: Master Paket Tindakan (harga tetap) berisi tindakan, pemeriksaan lab (dengan item) dan radiologi.
- * Dipakai dari form MCU lewat menu "Input Paket Tindakan". Lihat fungsi.PaketTindakan.
+ * Dipakai dari form MCU lewat menu "Tindakan & Pemeriksaan > Paket Tindakan". Lihat fungsi.PaketTindakan.
  */
 public class DlgPaketTindakan extends javax.swing.JDialog {
     private final Connection koneksi = koneksiDB.condb();
@@ -26,7 +26,14 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     // pilihan paket yang sedang diedit
     private final Set<String> selTindakan = new LinkedHashSet<>(), selLab = new LinkedHashSet<>(), selItem = new LinkedHashSet<>(), selRad = new LinkedHashSet<>();
     private final Map<String, Double> tarif = new HashMap<>(); // kunci: "T:kode", "L:kode", "I:kode#id", "R:kode"
-    private String labAktif = "";
+    private String labAktif = "", pjAktif = "";
+    // jenis bayar: isi CmbJenisBayar (indeks 0 = semua) & CmbSumberTemplate
+    private final java.util.List<String> daftarPj = new java.util.ArrayList<>(), daftarSumber = new java.util.ArrayList<>();
+    private boolean memuatPj = false;
+    // pemeriksaan di paket yang kode tarifnya belum punya template (dari tampilItem)
+    private final Set<String> belumTemplate = new LinkedHashSet<>();
+    // pilihan item (berdasarkan nama) yang menunggu template disalin ke kode jenis bayar baru
+    private final Map<String, Set<String>> itemTunggu = new HashMap<>();
     private boolean memuat = false;
 
     /** Creates new form DlgPaketTindakan
@@ -74,6 +81,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
 
         setSize(1300, 680);
         if (PaketTindakan.aktif()) {
+            muatJenisBayar();
             tampilPaket(); tampilTindakan(); tampilLab(); tampilRad();
         }
         hitung();
@@ -96,6 +104,9 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         Nama = new widget.TextBox();
         jLabel3 = new widget.Label();
         Harga = new widget.TextBox();
+        jLabel9 = new widget.Label();
+        CmbJenisBayar = new widget.ComboBox();
+        LJenisBayar = new widget.Label();
         LInfo = new widget.Label();
         panelGlass2 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -127,7 +138,11 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         ScrollLab = new widget.ScrollPane();
         tbLab = new widget.Table();
         internalFrame7 = new widget.InternalFrame();
+        panelGlass7 = new widget.panelisi();
         ChkSemuaItem = new widget.CekBox();
+        jLabel10 = new widget.Label();
+        CmbSumberTemplate = new widget.ComboBox();
+        BtnSalinTemplate = new widget.Button();
         ScrollItem = new widget.ScrollPane();
         tbItem = new widget.Table();
         panelGlass5 = new widget.panelisi();
@@ -154,7 +169,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass1.setName("panelGlass1"); // NOI18N
-        panelGlass1.setPreferredSize(new java.awt.Dimension(44, 74));
+        panelGlass1.setPreferredSize(new java.awt.Dimension(44, 104));
         panelGlass1.setLayout(null);
 
         jLabel1.setText("Kode Paket :");
@@ -188,12 +203,33 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         panelGlass1.add(Harga);
         Harga.setBounds(744, 10, 140, 23);
 
+        jLabel9.setText("Jenis Bayar :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        panelGlass1.add(jLabel9);
+        jLabel9.setBounds(0, 40, 90, 23);
+
+        CmbJenisBayar.setToolTipText("Jenis bayar paket: tindakan, lab dan radiologi memakai tarif jenis bayar ini");
+        CmbJenisBayar.setName("CmbJenisBayar"); // NOI18N
+        CmbJenisBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmbJenisBayarActionPerformed(evt);
+            }
+        });
+        panelGlass1.add(CmbJenisBayar);
+        CmbJenisBayar.setBounds(94, 40, 360, 23);
+
+        LJenisBayar.setForeground(new java.awt.Color(180, 60, 0));
+        LJenisBayar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LJenisBayar.setName("LJenisBayar"); // NOI18N
+        panelGlass1.add(LJenisBayar);
+        LJenisBayar.setBounds(460, 40, 850, 23);
+
         LInfo.setForeground(new java.awt.Color(0, 100, 160));
         LInfo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LInfo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         LInfo.setName("LInfo"); // NOI18N
         panelGlass1.add(LInfo);
-        LInfo.setBounds(10, 42, 1300, 23);
+        LInfo.setBounds(10, 72, 1300, 23);
 
         internalFrame1.add(panelGlass1, java.awt.BorderLayout.PAGE_START);
 
@@ -417,19 +453,48 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
 
         internalFrame7.setBorder(null);
         internalFrame7.setName("internalFrame7"); // NOI18N
-        internalFrame7.setPreferredSize(new java.awt.Dimension(452, 250));
+        internalFrame7.setPreferredSize(new java.awt.Dimension(452, 270));
         internalFrame7.setLayout(new java.awt.BorderLayout(1, 1));
+
+        panelGlass7.setName("panelGlass7"); // NOI18N
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 40));
+        panelGlass7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 7));
 
         ChkSemuaItem.setText("Pilih semua item yang tampil");
         ChkSemuaItem.setToolTipText("Centang/hapus centang semua item pemeriksaan yang tampil di bawah");
         ChkSemuaItem.setName("ChkSemuaItem"); // NOI18N
-        ChkSemuaItem.setPreferredSize(new java.awt.Dimension(300, 23));
+        ChkSemuaItem.setPreferredSize(new java.awt.Dimension(190, 23));
         ChkSemuaItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChkSemuaItemActionPerformed(evt);
             }
         });
-        internalFrame7.add(ChkSemuaItem, java.awt.BorderLayout.PAGE_START);
+        panelGlass7.add(ChkSemuaItem);
+
+        jLabel10.setText("Salin Template Dari :");
+        jLabel10.setName("jLabel10"); // NOI18N
+        jLabel10.setPreferredSize(new java.awt.Dimension(125, 23));
+        panelGlass7.add(jLabel10);
+
+        CmbSumberTemplate.setToolTipText("Jenis bayar sumber template");
+        CmbSumberTemplate.setName("CmbSumberTemplate"); // NOI18N
+        CmbSumberTemplate.setPreferredSize(new java.awt.Dimension(240, 23));
+        panelGlass7.add(CmbSumberTemplate);
+
+        BtnSalinTemplate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/editcopy.png"))); // NOI18N
+        BtnSalinTemplate.setMnemonic(84);
+        BtnSalinTemplate.setText("Salin Template");
+        BtnSalinTemplate.setToolTipText("Alt+T, isi template pemeriksaan paket yang belum punya template");
+        BtnSalinTemplate.setName("BtnSalinTemplate"); // NOI18N
+        BtnSalinTemplate.setPreferredSize(new java.awt.Dimension(140, 25));
+        BtnSalinTemplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalinTemplateActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(BtnSalinTemplate);
+
+        internalFrame7.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         ScrollItem.setName("ScrollItem"); // NOI18N
 
@@ -633,11 +698,34 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
             return;
         }
         Boolean pilih = Boolean.valueOf(ChkSemuaItem.isSelected());
+        if (!pilih) {
+            Set<String> keluar = new LinkedHashSet<>();
+            for (int i = 0; i < tmItem.getRowCount(); i++) {
+                String kd = tmItem.getValueAt(i, 1).toString();
+                if (!tmItem.getValueAt(i, 2).toString().equals("") && selLab.contains(kd)) keluar.add(kd);
+            }
+            if (!keluar.isEmpty()) {
+                Object[] tombol = {"Keluarkan", "Batal"};
+                if (JOptionPane.showOptionDialog(this, "Melepas semua item akan mengeluarkan " + keluar.size() + " pemeriksaan lab dari paket ini.\nLanjutkan?",
+                        "Pilih semua item", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, tombol, tombol[1]) != 0) {
+                    sinkronSemuaItem();
+                    return;
+                }
+            }
+        }
         for (int i = 0; i < tmItem.getRowCount(); i++) {
             if (tmItem.getValueAt(i, 2).toString().equals("")) continue; // baris judul pemeriksaan
             if (!pilih.equals(tmItem.getValueAt(i, 0))) tmItem.setValueAt(pilih, i, 0);
         }
     }//GEN-LAST:event_ChkSemuaItemActionPerformed
+
+    private void CmbJenisBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbJenisBayarActionPerformed
+        gantiJenisBayar();
+    }//GEN-LAST:event_CmbJenisBayarActionPerformed
+
+    private void BtnSalinTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalinTemplateActionPerformed
+        salinTemplate();
+    }//GEN-LAST:event_BtnSalinTemplateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAllLab;
@@ -651,9 +739,12 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     private widget.Button BtnCariTindakan;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnSalinTemplate;
     private widget.Button BtnSimpan;
     private widget.TextBox CariLab;
     private widget.CekBox ChkSemuaItem;
+    private widget.ComboBox CmbJenisBayar;
+    private widget.ComboBox CmbSumberTemplate;
     private widget.TextBox CariPaket;
     private widget.TextBox CariRad;
     private widget.TextBox CariTindakan;
@@ -661,6 +752,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     private widget.TextBox Kode;
     private widget.Label LCount;
     private widget.Label LInfo;
+    private widget.Label LJenisBayar;
     private widget.Label LPetunjuk;
     private widget.TextBox Nama;
     private widget.ScrollPane ScrollItem;
@@ -677,6 +769,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame6;
     private widget.InternalFrame internalFrame7;
     private widget.Label jLabel1;
+    private widget.Label jLabel10;
     private widget.Label jLabel2;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
@@ -684,12 +777,14 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private widget.panelisi panelGlass1;
     private widget.panelisi panelGlass2;
     private widget.panelisi panelGlass3;
     private widget.panelisi panelGlass4;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelGlass6;
+    private widget.panelisi panelGlass7;
     private widget.Table tbItem;
     private widget.Table tbLab;
     private widget.Table tbPaket;
@@ -778,17 +873,17 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         String k = "%" + CariTindakan.getText().trim() + "%", in = tanya(selTindakan);
         isi(tmTindakan, "select j.kd_jenis_prw,j.nm_perawatan,ifnull(p.nm_poli,j.kd_poli),ifnull(b.png_jawab,j.kd_pj),j.total_byrdr from jns_perawatan j "
                 + "left join poliklinik p on p.kd_poli=j.kd_poli left join penjab b on b.kd_pj=j.kd_pj "
-                + "where (j.status='1' and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or p.nm_poli like ? or b.png_jawab like ?)) "
+                + "where (j.status='1'" + saringPj() + " and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or p.nm_poli like ? or b.png_jawab like ?)) "
                 + "or j.kd_jenis_prw in (" + in + ") order by (j.kd_jenis_prw in (" + in + ")) desc,j.nm_perawatan limit 1000",
-                5, "T", param(selTindakan, k, k, k, k));
+                5, "T", param(selTindakan, denganPj(k, k, k, k)));
     }
 
     private void tampilLab() {
         String k = "%" + CariLab.getText().trim() + "%", in = tanya(selLab);
         isi(tmLab, "select j.kd_jenis_prw,j.nm_perawatan,ifnull(b.png_jawab,j.kd_pj),j.kelas,j.total_byr from jns_perawatan_lab j left join penjab b on b.kd_pj=j.kd_pj "
-                + "where (j.status='1' and j.kategori='PK' and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or b.png_jawab like ?)) "
+                + "where (j.status='1' and j.kategori='PK'" + saringPj() + " and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or b.png_jawab like ?)) "
                 + "or j.kd_jenis_prw in (" + in + ") order by (j.kd_jenis_prw in (" + in + ")) desc,j.nm_perawatan limit 1000",
-                5, "L", param(selLab, k, k, k));
+                5, "L", param(selLab, denganPj(k, k, k)));
         labAktif = "";
         tampilItem();
     }
@@ -799,6 +894,8 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
      * Satu query untuk semua grup (latensi server).
      */
     private void tampilItem() {
+        pulihkanItemTunggu();
+        belumTemplate.clear();
         java.util.List<String> kd = new java.util.ArrayList<>();
         if (!labAktif.equals("")) kd.add(labAktif);
         for (int i = 0; i < tmLab.getRowCount(); i++) {
@@ -831,7 +928,9 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
                 System.out.println("Notif Paket Tindakan : " + e.getMessage());
             }
             for (Map.Entry<String, java.util.List<Object[]>> g : grup.entrySet()) {
-                tmItem.addRow(new Object[]{selLab.contains(g.getKey()), g.getKey(), "", nama.getOrDefault(g.getKey(), g.getKey()).toUpperCase(), "", ""});
+                boolean kosong = g.getValue().isEmpty() && nama.containsKey(g.getKey());
+                if (kosong) belumTemplate.add(g.getKey());
+                tmItem.addRow(new Object[]{selLab.contains(g.getKey()), g.getKey(), "", nama.getOrDefault(g.getKey(), g.getKey()).toUpperCase() + (kosong ? "  -  BELUM ADA TEMPLATE" : ""), "", ""});
                 for (Object[] o : g.getValue()) tmItem.addRow(o);
             }
         }
@@ -842,6 +941,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     /** Baris judul pemeriksaan (Id kosong) dibedakan dari baris sub item: tebal + latar biru muda; sub item tanpa kode lab. */
     private void pasangWarnaItem() {
         final java.awt.Color latarJudul = new java.awt.Color(222, 235, 250), teksJudul = new java.awt.Color(0, 70, 140), teks = new java.awt.Color(50, 50, 50);
+        final java.awt.Color teksKosong = new java.awt.Color(200, 30, 30);
         final javax.swing.table.TableCellRenderer cek = tbItem.getDefaultRenderer(Boolean.class);
         tbItem.setDefaultRenderer(Boolean.class, (t, v, sel, fokus, r, c) -> {
             java.awt.Component k = cek.getTableCellRendererComponent(t, v, sel, fokus, r, c);
@@ -858,7 +958,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
                 setHorizontalAlignment(m == 5 ? javax.swing.SwingConstants.RIGHT : (m == 2 ? javax.swing.SwingConstants.CENTER : javax.swing.SwingConstants.LEFT));
                 if (!sel) {
                     setBackground(judul ? latarJudul : java.awt.Color.WHITE);
-                    setForeground(judul ? teksJudul : teks);
+                    setForeground(!judul ? teks : (belumTemplate.contains(String.valueOf(tmItem.getValueAt(r, 1))) ? teksKosong : teksJudul));
                 }
                 return this;
             }
@@ -899,9 +999,9 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
     private void tampilRad() {
         String k = "%" + CariRad.getText().trim() + "%", in = tanya(selRad);
         isi(tmRad, "select j.kd_jenis_prw,j.nm_perawatan,ifnull(b.png_jawab,j.kd_pj),j.kelas,j.total_byr from jns_perawatan_radiologi j left join penjab b on b.kd_pj=j.kd_pj "
-                + "where (j.status='1' and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or b.png_jawab like ?)) "
+                + "where (j.status='1'" + saringPj() + " and (j.kd_jenis_prw like ? or j.nm_perawatan like ? or b.png_jawab like ?)) "
                 + "or j.kd_jenis_prw in (" + in + ") order by (j.kd_jenis_prw in (" + in + ")) desc,j.nm_perawatan limit 1000",
-                5, "R", param(selRad, k, k, k));
+                5, "R", param(selRad, denganPj(k, k, k)));
     }
 
     private double angka(Object v) {
@@ -957,7 +1057,7 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         for (String k : selItem) jml += tarif.getOrDefault("I:" + k, 0d);
         for (String k : selRad) jml += tarif.getOrDefault("R:" + k, 0d);
         double h = angka(Harga.getText());
-        String s = "Isi paket: " + selTindakan.size() + " tindakan, " + selLab.size() + " pemeriksaan lab (" + selItem.size() + " item), " + selRad.size() + " radiologi"
+        String s = "Isi paket: " + selTindakan.size() + " tindakan, " + selLab.size() + " pemeriksaan lab" + (selLab.isEmpty() ? "" : " (" + (selItem.isEmpty() ? "semua item" : selItem.size() + " item dipilih") + ")") + ", " + selRad.size() + " radiologi"
                 + "   |   Jumlah tarif item: Rp " + rp(jml);
         if (h > 0) s += "   |   Harga paket: Rp " + rp(h) + "   |   " + (h < jml ? "Potongan Rp " + rp(jml - h) : (h > jml ? "Tambahan Rp " + rp(h - jml) : "pas"));
         LInfo.setText(s);
@@ -968,6 +1068,9 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         Kode.setText(""); Nama.setText(""); Harga.setText(""); Kode.setEditable(true);
         selTindakan.clear(); selLab.clear(); selItem.clear(); selRad.clear(); tarif.clear();
         tbPaket.clearSelection();
+        itemTunggu.clear();
+        setPilihanPj("");
+        LJenisBayar.setText("");
         tampilTindakan(); tampilLab(); tampilRad(); hitung();
         Kode.requestFocus();
     }
@@ -992,6 +1095,8 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
             System.out.println("Notif Paket Tindakan : " + e.getMessage());
         }
         Kode.setEditable(false);
+        itemTunggu.clear();
+        pjDariPaket(k);
         tampilTindakan(); tampilLab(); tampilRad(); hitung();
         tbTindakan.scrollRectToVisible(tbTindakan.getCellRect(0, 0, true));
         tbLab.scrollRectToVisible(tbLab.getCellRect(0, 0, true));
@@ -1019,6 +1124,12 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
         if (k.length() > 10) { JOptionPane.showMessageDialog(this, "Kode paket maksimal 10 karakter."); return; }
         if (h <= 0) { JOptionPane.showMessageDialog(this, "Harga paket wajib diisi."); return; }
         if (selTindakan.isEmpty() && selLab.isEmpty() && selRad.isEmpty()) { JOptionPane.showMessageDialog(this, "Pilih minimal satu tindakan, pemeriksaan lab, atau radiologi."); return; }
+        pulihkanItemTunggu();
+        if (!itemTunggu.isEmpty()) {
+            JOptionPane.showMessageDialog(this, itemTunggu.size() + " pemeriksaan lab hanya memakai sebagian item, tetapi templatenya belum ada di jenis bayar ini.\n"
+                    + "Klik Salin Template dulu supaya pilihan itemnya tidak hilang, lalu Simpan.");
+            return;
+        }
         try {
             koneksi.setAutoCommit(false);
             exec("insert into paket_tindakan values (?,?,?) on duplicate key update nama_paket=values(nama_paket),harga=values(harga)", k, n, h);
@@ -1033,7 +1144,9 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
             }
             for (String r : selRad) exec("insert into paket_tindakan_radiologi values (?,?)", k, r);
             koneksi.commit();
-            JOptionPane.showMessageDialog(this, "Paket " + n + " tersimpan.");
+            LJenisBayar.setText("");
+            JOptionPane.showMessageDialog(this, "Paket " + n + " tersimpan." + (belumTemplate.isEmpty() ? "" : "\n\nPerhatian: " + belumTemplate.size()
+                    + " pemeriksaan lab belum punya template, hasilnya belum bisa diisi petugas lab.\nGunakan Salin Template Dari di tab Laboratorium."));
             tampilPaket();
             Kode.setEditable(false);
         } catch (Exception e) {
@@ -1060,6 +1173,242 @@ public class DlgPaketTindakan extends javax.swing.JDialog {
             baru(); tampilPaket();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Paket tidak bisa dihapus karena sudah dipakai pasien.\n" + e.getMessage());
+        }
+    }
+
+    // ---------------- jenis bayar paket ----------------
+    // Jenis bayar paket = jenis bayar kode tarif yang tersimpan di paket (tidak ada kolom tersendiri).
+    private String saringPj() {
+        return pjAktif.equals("") ? "" : " and (j.kd_pj=? or j.kd_pj='-')";
+    }
+
+    private String[] denganPj(String... cari) {
+        if (pjAktif.equals("")) return cari;
+        java.util.List<String> p = new java.util.ArrayList<>();
+        p.add(pjAktif);
+        p.addAll(java.util.Arrays.asList(cari));
+        return p.toArray(new String[0]);
+    }
+
+    private void muatJenisBayar() {
+        memuatPj = true;
+        daftarPj.clear(); daftarSumber.clear();
+        CmbJenisBayar.removeAllItems(); CmbSumberTemplate.removeAllItems();
+        daftarPj.add("");
+        CmbJenisBayar.addItem("- Semua Jenis Bayar -");
+        try {
+            try (PreparedStatement ps = koneksi.prepareStatement("select kd_pj,png_jawab from penjab where status='1' and kd_pj<>'-' order by png_jawab");
+                 ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) { daftarPj.add(rs.getString(1)); CmbJenisBayar.addItem(rs.getString(2) + " [" + rs.getString(1) + "]"); }
+            }
+            try (PreparedStatement ps = koneksi.prepareStatement("select distinct p.kd_pj,p.png_jawab from template_laboratorium t "
+                    + "inner join jns_perawatan_lab j on j.kd_jenis_prw=t.kd_jenis_prw inner join penjab p on p.kd_pj=j.kd_pj "
+                    + "where j.status='1' order by (p.png_jawab='Cash') desc,p.png_jawab");
+                 ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) { daftarSumber.add(rs.getString(1)); CmbSumberTemplate.addItem(rs.getString(2) + " [" + rs.getString(1) + "]"); }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Paket Tindakan : " + e.getMessage());
+        }
+        memuatPj = false;
+    }
+
+    private void setPilihanPj(String pj) {
+        int i = daftarPj.indexOf(pj);
+        pjAktif = i < 0 ? "" : pj;
+        memuatPj = true;
+        if (CmbJenisBayar.getItemCount() > 0) CmbJenisBayar.setSelectedIndex(Math.max(i, 0));
+        memuatPj = false;
+    }
+
+    /** Jenis bayar paket yang dibuka: terbanyak di lab, lalu di seluruh isi paket. */
+    private void pjDariPaket(String kodePaket) {
+        String pj = "";
+        int lain = 0;
+        try (PreparedStatement ps = koneksi.prepareStatement("select z.kd_pj,sum(z.lab),count(*) from ("
+                + "select distinct p.kd_jenis_prw,j.kd_pj,1 as lab from paket_tindakan_lab p inner join jns_perawatan_lab j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=? "
+                + "union all select p.kd_jenis_prw,j.kd_pj,0 from paket_tindakan_radiologi p inner join jns_perawatan_radiologi j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=? "
+                + "union all select p.kd_jenis_prw,j.kd_pj,0 from paket_tindakan_tindakan p inner join jns_perawatan j on j.kd_jenis_prw=p.kd_jenis_prw where p.kode_paket=?"
+                + ") z where z.kd_pj<>'-' group by z.kd_pj order by sum(z.lab) desc,count(*) desc,z.kd_pj")) {
+            for (int i = 1; i <= 3; i++) ps.setString(i, kodePaket);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) { if (pj.equals("")) pj = rs.getString(1); else lain += rs.getInt(3); }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Paket Tindakan : " + e.getMessage());
+        }
+        setPilihanPj(pj);
+        LJenisBayar.setText(lain > 0 ? lain + " item memakai tarif jenis bayar lain, lihat kolom Cara Bayar." : "");
+        LJenisBayar.setToolTipText(null);
+    }
+
+    private static String kunciNama(String s) {
+        return s.trim().replaceAll("\\s+", " ").toLowerCase();
+    }
+
+    /** kode lab -> (nama item -> id_template), satu query. */
+    private Map<String, Map<String, String>> templateKode(java.util.Collection<String> kode) throws Exception {
+        Map<String, Map<String, String>> h = new HashMap<>();
+        if (kode.isEmpty()) return h;
+        try (PreparedStatement ps = koneksi.prepareStatement("select kd_jenis_prw,Pemeriksaan,id_template from template_laboratorium where kd_jenis_prw in ("
+                + String.join(",", java.util.Collections.nCopies(kode.size(), "?")) + ") order by urut,id_template")) {
+            int i = 1;
+            for (String k : kode) ps.setString(i++, k);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) h.computeIfAbsent(rs.getString(1), x -> new java.util.LinkedHashMap<>()).putIfAbsent(kunciNama(rs.getString(2)), rs.getString(3));
+            }
+        }
+        return h;
+    }
+
+    private void muatTarif(String jenis, String tabel, String kolom, Set<String> kode) throws Exception {
+        if (kode.isEmpty()) return;
+        try (PreparedStatement ps = koneksi.prepareStatement("select kd_jenis_prw," + kolom + " from " + tabel + " where kd_jenis_prw in (" + tanya(kode) + ")")) {
+            int i = 1;
+            for (String k : kode) ps.setString(i++, k);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) tarif.put(jenis + ":" + rs.getString(1), rs.getDouble(2));
+            }
+        }
+    }
+
+    /**
+     * Ganti jenis bayar paket: semua isi dipindah ke kode tarif jenis bayar itu (aturan sama dengan input ke pasien).
+     * Yang tidak punya tarif tetap memakai kode lama dan disebutkan. Baru tersimpan setelah klik Simpan.
+     */
+    private void gantiJenisBayar() {
+        int i = CmbJenisBayar.getSelectedIndex();
+        if (memuatPj || i < 0 || i >= daftarPj.size()) return;
+        String pj = daftarPj.get(i);
+        if (pj.equals(pjAktif)) return;
+        setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+        try {
+            java.util.List<String> tetap = new java.util.ArrayList<>();
+            boolean berubah = false;
+            if (!pj.equals("")) {
+                Set<String> tBaru = new LinkedHashSet<>(), lBaru = new LinkedHashSet<>(), iBaru = new LinkedHashSet<>(), rBaru = new LinkedHashSet<>();
+                Map<String, Set<String>> tungguBaru = new HashMap<>();
+                Map<String, String[]> t = PaketTindakan.sesuaikan("T", selTindakan, pj), l = PaketTindakan.sesuaikan("L", selLab, pj), r = PaketTindakan.sesuaikan("R", selRad, pj);
+                for (String k : selTindakan) {
+                    String[] p = t.get(k);
+                    if (p != null && p[0] != null) tBaru.add(p[0]); else { tBaru.add(k); tetap.add(p == null ? k : p[1]); }
+                }
+                for (String k : selRad) {
+                    String[] p = r.get(k);
+                    if (p != null && p[0] != null) rBaru.add(p[0]); else { rBaru.add(k); tetap.add(p == null ? k : p[1]); }
+                }
+                Set<String> semuaLab = new LinkedHashSet<>(selLab);
+                for (String[] p : l.values()) if (p[0] != null) semuaLab.add(p[0]);
+                Map<String, Map<String, String>> template = templateKode(semuaLab);
+                for (String k : selLab) {
+                    String[] p = l.get(k);
+                    String tujuan = p == null ? null : p[0];
+                    // pilihan item lama, berdasarkan nama
+                    Set<String> nama = new LinkedHashSet<>();
+                    if (itemTunggu.containsKey(k)) nama.addAll(itemTunggu.get(k));
+                    for (Map.Entry<String, String> e : template.getOrDefault(k, java.util.Collections.emptyMap()).entrySet())
+                        if (selItem.contains(k + "#" + e.getValue())) nama.add(e.getKey());
+                    if (tujuan != null && !nama.isEmpty()) {
+                        Map<String, String> isiTujuan = template.get(tujuan);
+                        if (isiTujuan == null) tungguBaru.put(tujuan, nama);
+                        else if (isiTujuan.keySet().containsAll(nama)) for (String n : nama) iBaru.add(tujuan + "#" + isiTujuan.get(n));
+                        else tujuan = null; // itemnya beda: sama dengan saat input, tetap kode lama
+                    }
+                    if (tujuan == null) {
+                        tujuan = k;
+                        tetap.add(p == null ? k : p[1]);
+                        for (String s : selItem) if (s.startsWith(k + "#")) iBaru.add(s);
+                        if (itemTunggu.containsKey(k)) tungguBaru.put(k, itemTunggu.get(k));
+                    }
+                    lBaru.add(tujuan);
+                }
+                berubah = !tBaru.equals(selTindakan) || !lBaru.equals(selLab) || !rBaru.equals(selRad);
+                muatTarif("T", "jns_perawatan", "total_byrdr", tBaru);
+                muatTarif("L", "jns_perawatan_lab", "total_byr", lBaru);
+                muatTarif("R", "jns_perawatan_radiologi", "total_byr", rBaru);
+                selTindakan.clear(); selTindakan.addAll(tBaru);
+                selLab.clear(); selLab.addAll(lBaru);
+                selItem.clear(); selItem.addAll(iBaru);
+                selRad.clear(); selRad.addAll(rBaru);
+                itemTunggu.clear(); itemTunggu.putAll(tungguBaru);
+            }
+            pjAktif = pj;
+            String s = berubah ? "Klik Simpan untuk menyimpan perubahan jenis bayar." : "";
+            if (!tetap.isEmpty()) s += (berubah ? "  " : "") + tetap.size() + " tanpa tarif di jenis bayar ini (tetap tarif lama): " + String.join(", ", tetap);
+            LJenisBayar.setText(s);
+            LJenisBayar.setToolTipText(s.equals("") ? null : s);
+            tampilTindakan(); tampilLab(); tampilRad(); hitung();
+        } catch (Exception e) {
+            setPilihanPj(pjAktif);
+            JOptionPane.showMessageDialog(this, "Gagal mengganti jenis bayar paket: " + e.getMessage());
+        }
+        setCursor(java.awt.Cursor.getDefaultCursor());
+    }
+
+    /** Setelah template tersedia, pilihan item berdasarkan nama dikembalikan menjadi id_template kode baru. */
+    private void pulihkanItemTunggu() {
+        itemTunggu.keySet().retainAll(selLab);
+        if (itemTunggu.isEmpty()) return;
+        try {
+            Map<String, Map<String, String>> template = templateKode(itemTunggu.keySet());
+            for (java.util.Iterator<Map.Entry<String, Set<String>>> it = itemTunggu.entrySet().iterator(); it.hasNext();) {
+                Map.Entry<String, Set<String>> e = it.next();
+                Map<String, String> ada = template.get(e.getKey());
+                if (ada == null || !ada.keySet().containsAll(e.getValue())) continue;
+                for (String n : e.getValue()) selItem.add(e.getKey() + "#" + ada.get(n));
+                it.remove();
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Paket Tindakan : " + e.getMessage());
+        }
+    }
+
+    private String alasanTidakAdaYangDisalin() {
+        if (selLab.isEmpty())
+            return "Belum ada pemeriksaan lab yang dicentang di paket ini, jadi belum ada yang bisa disalin.\n\n"
+                    + "- Centang dulu pemeriksaan labnya, atau\n"
+                    + "- klik lagi nama paket di daftar kiri untuk mengembalikan isi yang tersimpan.";
+        return "Semua pemeriksaan lab paket ini sudah punya template di jenis bayar " + CmbJenisBayar.getSelectedItem() + ".\n\n"
+                + "\"Jenis Bayar\" (atas) = jenis bayar paket, tempat template akan masuk.\n"
+                + "\"Salin Template Dari\" = jenis bayar sumber templatenya.\n\n"
+                + "Bila paket ini untuk jenis bayar lain (mis. PT. Sucofindo/GAM), ganti dulu Jenis Bayar di atas.";
+    }
+
+    private void salinTemplate() {
+        if (!"Admin Utama".equals(fungsi.akses.getkode()) && !fungsi.akses.gettarif_lab()) {
+            JOptionPane.showMessageDialog(this, "Maaf, salin template butuh hak akses Tarif Laboratorium.");
+            return;
+        }
+        if (belumTemplate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, alasanTidakAdaYangDisalin(), "Salin Template", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int i = CmbSumberTemplate.getSelectedIndex();
+        if (i < 0 || i >= daftarSumber.size()) {
+            JOptionPane.showMessageDialog(this, "Pilih jenis bayar sumber di \"Salin Template Dari\" terlebih dahulu.");
+            return;
+        }
+        java.util.List<String> tujuan = new java.util.ArrayList<>(belumTemplate);
+        Object dari = CmbSumberTemplate.getSelectedItem();
+        if (JOptionPane.showConfirmDialog(this, "Salin template hasil lab dari " + dari + "\nke " + tujuan.size() + " pemeriksaan yang belum punya template?\n\n"
+                + "- Template masuk ke kode tarif masing-masing (sesuai jenis bayar di judulnya), berlaku di luar paket juga.\n"
+                + "- Langsung tersimpan di master Template Laboratorium.", "Salin Template Dari", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) return;
+        setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+        try {
+            java.util.List<String> gagal = PaketTindakan.salinTemplate(tujuan, daftarSumber.get(i));
+            tampilItem();
+            hitung();
+            setCursor(java.awt.Cursor.getDefaultCursor());
+            StringBuilder s = new StringBuilder((tujuan.size() - gagal.size()) + " pemeriksaan berhasil diisi template.");
+            if (!gagal.isEmpty()) {
+                s.append("\n\nTidak ada template di ").append(dari).append(" untuk:");
+                for (String n : gagal) s.append("\n- ").append(n);
+                s.append("\nPilih jenis bayar sumber lain lalu klik Salin Template lagi.");
+            }
+            JOptionPane.showMessageDialog(this, s.toString());
+        } catch (Exception e) {
+            setCursor(java.awt.Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(this, "Gagal menyalin template, tidak ada yang diubah.\n" + e.getMessage());
         }
     }
 

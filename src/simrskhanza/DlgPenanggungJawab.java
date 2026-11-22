@@ -168,6 +168,7 @@ public final class DlgPenanggungJawab extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
+        BtnKodefikasi = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput = new javax.swing.JPanel();
         ChkInput = new widget.CekBox();
@@ -416,6 +417,19 @@ public final class DlgPenanggungJawab extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnPrint);
+
+        BtnKodefikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/editcopy.png"))); // NOI18N
+        BtnKodefikasi.setMnemonic(68);
+        BtnKodefikasi.setText("Kodefikasi Tarif");
+        BtnKodefikasi.setToolTipText("Alt+D, buat kodefikasi dan salin tarif tindakan ranap, lab, radiologi untuk jenis bayar ini");
+        BtnKodefikasi.setName("BtnKodefikasi"); // NOI18N
+        BtnKodefikasi.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnKodefikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKodefikasiActionPerformed(evt);
+            }
+        });
+        panelisi1.add(BtnKodefikasi);
 
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -673,9 +687,17 @@ public final class DlgPenanggungJawab extends javax.swing.JDialog {
         }else if(Attn.getText().trim().equals("")){
             Valid.textKosong(Attn,"Attn");
         }else{
+            String kodeBaru=KdAsuransi.getText().trim();
+            boolean belumAda=Sequel.cariInteger("select count(*) from penjab where kd_pj=?",kodeBaru)==0;
             Sequel.menyimpan("penjab","'"+KdAsuransi.getText()+"','"+NmAsuransi.getText()+"','"+Perusahaan.getText()+"','"+AlamatAsuransi.getText()+"','"+NoTelp.getText()+"','"+Attn.getText()+"','1'","Kode Penanggung/Askes/Asuransi");
             BtnCariActionPerformed(evt);
             emptTeks();
+            // RSPK: jenis bayar baru langsung ditawari kodefikasi & salin tarif
+            if(belumAda&&Sequel.cariInteger("select count(*) from penjab where kd_pj=?",kodeBaru)>0
+                    &&JOptionPane.showConfirmDialog(this,"Jenis bayar "+kodeBaru+" tersimpan.\nBuat kodefikasi dan salin tarif tindakan ranap, lab & radiologi sekarang?",
+                            "Jenis Bayar Baru",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                bukaKodefikasi(kodeBaru);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -947,6 +969,11 @@ private void NmAsuransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         });
     }
 
+    private void BtnKodefikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKodefikasiActionPerformed
+        int baris=tbKamar.getSelectedRow();
+        bukaKodefikasi(baris<0?"":tbKamar.getValueAt(baris,1).toString());
+    }//GEN-LAST:event_BtnKodefikasiActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.TextBox AlamatAsuransi;
     private widget.TextBox Attn;
@@ -957,6 +984,7 @@ private void NmAsuransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKodefikasi;
     private widget.Button BtnPrint;
     private widget.Button BtnRefreshPhoto;
     private widget.Button BtnSimpan;
@@ -1056,12 +1084,22 @@ private void NmAsuransiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         TCari.requestFocus();
     }
     
+    private void bukaKodefikasi(String kdPj){
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        keuangan.DlgKodefikasiTarif dlg=new keuangan.DlgKodefikasiTarif(null,true);
+        dlg.setJenisBayar(kdPj);
+        dlg.setLocationRelativeTo(internalFrame1);
+        this.setCursor(Cursor.getDefaultCursor());
+        dlg.setVisible(true);
+    }
+
     public void isCek(){
         BtnSimpan.setEnabled(akses.getcara_bayar());
         BtnHapus.setEnabled(akses.getcara_bayar());
         BtnEdit.setEnabled(akses.getcara_bayar());
         BtnPrint.setEnabled(akses.getcara_bayar());
         btnAmbilPhoto.setEnabled(akses.getcara_bayar());
+        BtnKodefikasi.setEnabled(akses.getcara_bayar());
         if(akses.getkode().equals("Admin Utama")){
             MnRestore.setEnabled(true);
         }else{
