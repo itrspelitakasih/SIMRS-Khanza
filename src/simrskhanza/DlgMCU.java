@@ -407,16 +407,16 @@ public final class DlgMCU extends javax.swing.JDialog {
     public DlgMCU(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        // RSPK: klik kanan > Input Paket Tindakan (tindakan + permintaan lab/radiologi + harga paket tetap)
-        javax.swing.JMenuItem MnInputPaketTindakan=new javax.swing.JMenuItem("Input Paket Tindakan");
+        // RSPK: klik kanan > Tindakan & Pemeriksaan > Paket Tindakan (tindakan + permintaan lab/radiologi + harga paket tetap)
+        javax.swing.JMenuItem MnInputPaketTindakan=new javax.swing.JMenuItem("Paket Tindakan");
         MnInputPaketTindakan.setBackground(new java.awt.Color(255, 255, 254));
         MnInputPaketTindakan.setForeground(new java.awt.Color(50, 50, 50));
         MnInputPaketTindakan.setFont(new java.awt.Font("Tahoma", 0, 12));
         MnInputPaketTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png")));
-        MnInputPaketTindakan.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnInputPaketTindakan.setPreferredSize(new java.awt.Dimension(240, 26));
         MnInputPaketTindakan.setName("MnInputPaketTindakan");
         MnInputPaketTindakan.addActionListener(e -> inputPaketTindakan());
-        jPopupMenu1.insert(MnInputPaketTindakan, jPopupMenu1.getComponentIndex(MnTindakan)+1);
+        MnTindakan.insert(MnInputPaketTindakan, 1); // sesudah Tagihan/Tindakan Rawat Jalan
         initRegistrasi();
 
         this.setLocation(8,1);

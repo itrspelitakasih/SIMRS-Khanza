@@ -13,14 +13,14 @@ import javax.swing.table.TableRowSorter;
 /**
  * RSPK: pilih Paket Tindakan untuk diinput ke pasien (dari form MCU).
  * Tab "Pilih Paket": Spasi/Enter/klik dua kali = pilih, tombol Detail menampilkan isi paket.
- * Tab "Paket Diberikan": paket yang sudah diberikan ke pasien ini beserta riwayat & hasil pemeriksaannya.
+ * Tab "Paket Diberikan": paket yang sudah diberikan ke pasien ini beserta riwayat & hasil pemeriksaannya, bisa dihapus.
  */
 public class DlgPilihPaketTindakan extends javax.swing.JDialog {
     private final Connection koneksi = koneksiDB.condb();
     private final DefaultTableModel tabMode, tabDetail, tabDiberikan, tabRiwayat;
     private final TableRowSorter<DefaultTableModel> sorter;
     private final java.util.List<String> hasilLengkap = new java.util.ArrayList<>();
-    private String dipilih = null;
+    private String dipilih = null, noRawatPasien = "";
 
     /** Creates new form DlgPilihPaketTindakan
      * @param parent
@@ -58,7 +58,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         tbDiberikan.setModel(tabDiberikan);
         tbDiberikan.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         lebar(tbDiberikan, 130, 125, 80, 300, 115, 110, 125, 110);
-        tbDiberikan.getSelectionModel().addListSelectionListener(e -> { if (!e.getValueIsAdjusting()) tampilRiwayat(); });
+        tbDiberikan.getSelectionModel().addListSelectionListener(e -> { if (!e.getValueIsAdjusting()) { tampilRiwayat(); aturTombol(); } });
 
         tabRiwayat = new DefaultTableModel(null, new Object[]{"Jenis", "Pemeriksaan / Item", "Status", "Hasil", "Satuan", "Nilai Rujukan", "Keterangan", "Waktu"}) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -111,6 +111,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         panelGlass2 = new widget.panelisi();
         BtnPilih = new widget.Button();
         BtnDetail = new widget.Button();
+        BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
         jLabel2 = new widget.Label();
         LCount = new widget.Label();
@@ -280,6 +281,20 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         });
         panelGlass2.add(BtnDetail);
 
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic(72);
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H, hapus paket yang sudah diberikan");
+        BtnHapus.setEnabled(false);
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        panelGlass2.add(BtnHapus);
+
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic(66);
         BtnKeluar.setText("Batal");
@@ -347,10 +362,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void TabPaketStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TabPaketStateChanged
-        boolean pilihan = TabPaket.getSelectedIndex() == 0;
-        BtnPilih.setEnabled(pilihan);
-        BtnDetail.setEnabled(pilihan);
-        LCount.setText("" + (pilihan ? tbPaket.getRowCount() : tabDiberikan.getRowCount()));
+        aturTombol();
     }//GEN-LAST:event_TabPaketStateChanged
 
     private void tbRiwayatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRiwayatMouseClicked
@@ -362,8 +374,13 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbRiwayatMouseClicked
 
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        hapusDiberikan();
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnDetail;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPilih;
     private widget.Label LCount;
@@ -417,6 +434,7 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
 
     /** Tab "Paket Diberikan": paket yang sudah pernah diberikan ke pasien dari no.rawat ini (semua kunjungan). */
     public void setPasien(String noRawat) {
+        noRawatPasien = noRawat;
         String rm = "", nama = "";
         try (PreparedStatement ps = koneksi.prepareStatement("select r.no_rkm_medis,p.nm_pasien from reg_periksa r inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat=?")) {
             ps.setString(1, noRawat);
@@ -428,13 +446,47 @@ public class DlgPilihPaketTindakan extends javax.swing.JDialog {
         TabPaket.setTitleAt(1, "Paket Diberikan (" + tabDiberikan.getRowCount() + ")");
         LRiwayat.setText(" Riwayat pemeriksaan " + nama + " (" + rm + "): klik paket di atas");
         if (tabDiberikan.getRowCount() > 0) tbDiberikan.setRowSelectionInterval(0, 0);
+        aturTombol();
+    }
+
+    private void aturTombol() {
+        boolean pilihan = TabPaket.getSelectedIndex() == 0;
+        BtnPilih.setEnabled(pilihan);
+        BtnDetail.setEnabled(pilihan);
+        BtnHapus.setEnabled(!pilihan && tbDiberikan.getSelectedRow() >= 0);
+        BtnKeluar.setText(pilihan ? "Batal" : "Keluar");
+        LCount.setText("" + (pilihan ? tbPaket.getRowCount() : tbDiberikan.getRowCount()));
+    }
+
+    /** Hapus paket terpilih di tab Paket Diberikan. Tombol bawaan konfirmasi = Batal, supaya Enter tidak menghapus. */
+    private void hapusDiberikan() {
+        int r = tbDiberikan.getSelectedRow();
+        if (r < 0) { JOptionPane.showMessageDialog(this, "Silahkan pilih paket yang diberikan terlebih dahulu..!!"); return; }
+        boolean admin = "Admin Utama".equals(fungsi.akses.getkode());
+        if (!admin && !fungsi.akses.gettindakan_ralan()) {
+            JOptionPane.showMessageDialog(this, "Maaf, Anda tidak punya hak akses hapus tindakan rawat jalan.");
+            return;
+        }
+        String noRawat = tabDiberikan.getValueAt(r, 1).toString(), kode = tabDiberikan.getValueAt(r, 2).toString();
+        try {
+            Object[] tombol = {"Hapus", "Batal"};
+            if (JOptionPane.showOptionDialog(this, PaketTindakan.ringkasanHapus(noRawat, kode, admin), "Hapus Paket Diberikan", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE, null, tombol, tombol[1]) != 0) return;
+            setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+            PaketTindakan.hapus(noRawat, kode, admin);
+            setPasien(noRawatPasien);
+            setCursor(java.awt.Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(this, "Paket berhasil dihapus dari pasien.");
+        } catch (Exception e) {
+            setCursor(java.awt.Cursor.getDefaultCursor());
+            JOptionPane.showMessageDialog(this, "Paket tidak dihapus, tidak ada data yang diubah.\n\n" + e.getMessage());
+        }
     }
 
     private void tampilRiwayat() {
         int r = tbDiberikan.getSelectedRow();
         if (r < 0) { tabRiwayat.setRowCount(0); hasilLengkap.clear(); return; }
-        PaketTindakan.isiRiwayat(tabRiwayat, hasilLengkap, tabDiberikan.getValueAt(r, 0).toString(), tabDiberikan.getValueAt(r, 1).toString(),
-                tabDiberikan.getValueAt(r, 4).toString(), tabDiberikan.getValueAt(r, 6).toString());
+        PaketTindakan.isiRiwayat(tabRiwayat, hasilLengkap, tabDiberikan.getValueAt(r, 1).toString(), tabDiberikan.getValueAt(r, 2).toString());
         LRiwayat.setText(" Riwayat pemeriksaan " + tabDiberikan.getValueAt(r, 3) + "  -  " + tabDiberikan.getValueAt(r, 1));
     }
 

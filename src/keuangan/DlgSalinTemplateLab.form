@@ -56,7 +56,7 @@
           <Properties>
             <Property name="name" type="java.lang.String" value="panelInfo" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[100, 66]"/>
+              <Dimension value="[100, 94]"/>
             </Property>
           </Properties>
           <Constraints>
@@ -65,70 +65,175 @@
             </Constraint>
           </Constraints>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
-            <Property name="alignment" type="int" value="0"/>
-            <Property name="verticalGap" type="int" value="5"/>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
           <SubComponents>
+            <Component class="widget.Label" name="label3">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Jenis Bayar :"/>
+                <Property name="name" type="java.lang.String" value="label3" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="8" width="90" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.ComboBox" name="CmbJenisBayar">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Jenis bayar yang sudah punya template untuk pemeriksaan ini"/>
+                <Property name="name" type="java.lang.String" value="CmbJenisBayar" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CmbJenisBayarActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="94" y="8" width="420" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.Button" name="BtnCariTemplate">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/Search-16x16.png"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="67"/>
+                <Property name="text" type="java.lang.String" value="Cari Template"/>
+                <Property name="toolTipText" type="java.lang.String" value="Alt+C, pakai template dari jenis bayar yang dipilih"/>
+                <Property name="name" type="java.lang.String" value="BtnCariTemplate" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCariTemplateActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="520" y="6" width="140" height="27"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Component class="widget.Label" name="label1">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Sumber :"/>
                 <Property name="name" type="java.lang.String" value="label1" noResource="true"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[70, 23]"/>
-                </Property>
               </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="36" width="90" height="23"/>
+                </Constraint>
+              </Constraints>
             </Component>
             <Component class="widget.Label" name="LblSumber">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="-"/>
                 <Property name="name" type="java.lang.String" value="LblSumber" noResource="true"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[700, 23]"/>
-                </Property>
               </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="94" y="36" width="740" height="23"/>
+                </Constraint>
+              </Constraints>
             </Component>
             <Component class="widget.Label" name="label2">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Tujuan :"/>
                 <Property name="name" type="java.lang.String" value="label2" noResource="true"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[70, 23]"/>
-                </Property>
               </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="64" width="90" height="23"/>
+                </Constraint>
+              </Constraints>
             </Component>
             <Component class="widget.Label" name="LblTujuan">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="2"/>
                 <Property name="text" type="java.lang.String" value="-"/>
                 <Property name="name" type="java.lang.String" value="LblTujuan" noResource="true"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[700, 23]"/>
-                </Property>
               </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="94" y="64" width="740" height="23"/>
+                </Constraint>
+              </Constraints>
             </Component>
           </SubComponents>
         </Container>
-        <Container class="widget.ScrollPane" name="scrollPane1">
+        <Container class="widget.TabPane" name="TabTemplate">
           <Properties>
-            <Property name="name" type="java.lang.String" value="scrollPane1" noResource="true"/>
-            <Property name="opaque" type="boolean" value="true"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fe" green="ff" red="fe" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="32" green="32" red="32" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="TabTemplate" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="TabTemplateStateChanged"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
             </Constraint>
           </Constraints>
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Component class="widget.Table" name="tbTujuan">
+            <Container class="widget.ScrollPane" name="scrollPane1">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="Centang kode yang akan diisi template"/>
-                <Property name="name" type="java.lang.String" value="tbTujuan" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="scrollPane1" noResource="true"/>
+                <Property name="opaque" type="boolean" value="true"/>
               </Properties>
-            </Component>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Belum Ada Template">
+                    <Property name="tabTitle" type="java.lang.String" value="Belum Ada Template"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="widget.Table" name="tbTujuan">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Centang kode yang akan diisi template"/>
+                    <Property name="name" type="java.lang.String" value="tbTujuan" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="widget.ScrollPane" name="scrollPane2">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="scrollPane2" noResource="true"/>
+                <Property name="opaque" type="boolean" value="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Update Template">
+                    <Property name="tabTitle" type="java.lang.String" value="Update Template"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="widget.Table" name="tbUpdate">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Centang kode yang templatenya akan disamakan dengan sumber"/>
+                    <Property name="name" type="java.lang.String" value="tbUpdate" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="widget.panelisi" name="panelBawah">
@@ -206,6 +311,25 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSalinActionPerformed"/>
               </Events>
             </Component>
+            <Component class="widget.Button" name="BtnUpdate">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/picture/inventaris.png"/>
+                </Property>
+                <Property name="mnemonic" type="int" value="85"/>
+                <Property name="text" type="java.lang.String" value="Update"/>
+                <Property name="toolTipText" type="java.lang.String" value="Alt+U, samakan kode yang sudah punya template dengan sumber"/>
+                <Property name="horizontalAlignment" type="int" value="2"/>
+                <Property name="horizontalTextPosition" type="int" value="4"/>
+                <Property name="name" type="java.lang.String" value="BtnUpdate" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[100, 30]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUpdateActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="widget.Button" name="BtnKeluar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -230,7 +354,7 @@
                 <Property name="text" type="java.lang.String" value="-"/>
                 <Property name="name" type="java.lang.String" value="LblStatus" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[300, 23]"/>
+                  <Dimension value="[260, 23]"/>
                 </Property>
               </Properties>
             </Component>
