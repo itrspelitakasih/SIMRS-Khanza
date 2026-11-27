@@ -16,7 +16,8 @@ import java.util.Map;
  * Baris diskon otomatis lama selalu dihapus dulu sehingga ikut berubah bila tagihan berubah.
  * Alkes = barang berkategori "Alkes &amp; BHP" (KATEGORI_ALKES). Barang di Harga Barang Tetap dengan ikut_diskon='Tidak'
  * tidak dihitung dalam diskon Obat/Alkes. Diskon Obat/Alkes dihitung per obat per tanggal (seperti nota PAMA),
- * 2 desimal, lalu dibulatkan per obat (0,5 dianggap 1) dan dijumlah.
+ * 2 desimal, lalu dijumlah TANPA dibulatkan ke rupiah (potongan billing bisa berdesimal).
+ * Nota PAMA setelah diskon yang membulatkan per obat (0,5 dianggap 1, lihat diskonBaris()).
  */
 public final class DiskonPenjamin {
     private static volatile Boolean aktif = null;
@@ -220,13 +221,14 @@ public final class DiskonPenjamin {
         return h;
     }
 
-    /** Teks diskon dari nilai yang sudah dihitung, mis. " [Diskon 5% : 4.387,40 -> 4.387]". */
+    /**
+     * Teks diskon untuk billing, 2 desimal tanpa pembulatan ke rupiah, mis. " [Diskon 5% : 4,387.40]"
+     * (pemisah sesuai locale komputer). diskonBulat tidak dicetak: pembulatan hanya di nota PAMA.
+     */
     public static String teksDiskon(double persen, double diskon2, double diskonBulat) {
         if (persen <= 0 || (diskon2 == 0 && diskonBulat == 0)) return "";
-        java.text.DecimalFormatSymbols id = new java.text.DecimalFormatSymbols(new java.util.Locale("id", "ID"));
-        java.text.DecimalFormat d2 = new java.text.DecimalFormat("#,##0.00", id), d0 = new java.text.DecimalFormat("#,##0", id);
-        return " [Diskon " + teksPersen(persen) + "% : " + d2.format(java.math.BigDecimal.valueOf(diskon2).setScale(2, java.math.RoundingMode.HALF_UP))
-                + " -> " + d0.format(diskonBulat) + "]";
+        java.text.DecimalFormat d2 = new java.text.DecimalFormat("#,##0.00");
+        return " [Diskon " + teksPersen(persen) + "% : " + d2.format(java.math.BigDecimal.valueOf(diskon2).setScale(2, java.math.RoundingMode.HALF_UP)) + "]";
     }
 
     /**
@@ -352,10 +354,11 @@ public final class DiskonPenjamin {
                 if (pernah.contains(k) && !ada.contains(k)) continue;
                 double nilai;
                 if (k.equals("Obat") || k.equals("Alkes")) {
-                    // Per baris, dibulatkan per baris (sama dengan nota PAMA setelah diskon)
-                    nilai = 0;
+                    // Per obat per tanggal, 2 desimal TANPA dibulatkan ke rupiah (billing); pembulatan hanya di nota PAMA
+                    java.math.BigDecimal jml = java.math.BigDecimal.ZERO;
                     double jenis = k.equals("Alkes") ? 1 : 0;
-                    for (double[] b : baris) if (b[0] == jenis) nilai += diskonBaris(b[1], p);
+                    for (double[] b : baris) if (b[0] == jenis) jml = jml.add(diskon2(b[1], p));
+                    nilai = jml.doubleValue();
                 } else {
                     nilai = Math.round(s * p / 100d);
                 }
