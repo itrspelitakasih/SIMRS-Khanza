@@ -304,11 +304,12 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         }
 
         tbBilling.setDefaultRenderer(Object.class, new WarnaTable());
-        // RSPK: Harga, Tambahan & Total baris obat, alkes & BHP (termasuk retur & resep pulang) dan Potongan tampil 2 digit desimal;
-        // kolom angka lain tetap seperti renderer bawaan (NumberFormat locale). Hanya tampilan, nilai yang disimpan tidak berubah.
+        // RSPK: Harga, Tambahan & Total baris obat, alkes & BHP (termasuk retur & resep pulang) dan Potongan tampil TANPA desimal
+        // (potongan diskon jenis bayar tersimpan berdesimal, hanya tampilannya dibulatkan); kolom angka lain tetap seperti
+        // renderer bawaan (NumberFormat locale). Hanya tampilan, nilai yang disimpan tidak berubah. 2 desimal hanya di nota PAMA.
         tbBilling.setDefaultRenderer(Double.class, new javax.swing.table.DefaultTableCellRenderer(){
             private final java.text.NumberFormat biasa=java.text.NumberFormat.getInstance();
-            private final java.text.DecimalFormat dua=new java.text.DecimalFormat("#,##0.00");
+            private final java.text.DecimalFormat dua=angkaFormat();
             @Override
             public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table,Object value,boolean isSelected,boolean hasFocus,int row,int column){
                 super.getTableCellRendererComponent(table,value,isSelected,hasFocus,row,column);
@@ -5346,9 +5347,16 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         return hasil.length()>200?nama:hasil;
     }
 
-    /** RSPK: angka 2 digit desimal (locale komputer, sama dengan angka lain di billing) untuk obat, alkes & BHP. */
-    private static String angka2(double nilai){
-        return new java.text.DecimalFormat("#,##0.00").format(nilai);
+    /** RSPK: format angka tanpa desimal (locale komputer), 0,5 dibulatkan ke atas; hanya untuk tampilan. */
+    private static java.text.DecimalFormat angkaFormat(){
+        java.text.DecimalFormat f=new java.text.DecimalFormat("#,##0");
+        f.setRoundingMode(java.math.RoundingMode.HALF_UP);
+        return f;
+    }
+
+    /** RSPK: angka total obat, alkes & BHP tanpa desimal. */
+    private static String angka0(double nilai){
+        return angkaFormat().format(nilai);
     }
 
     private void prosesCariObat(String norawat) {
@@ -5472,7 +5480,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         // RSPK: subtotal kelompok Obat & BHP (non operasi) sebelum kelompok operasi
                         if(subttl>0){
                             obatnonok=true;
-                            tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat & BHP : "+angka2(subttl),"",null,null,null,null,"TtlObat"});
+                            tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat & BHP : "+angka0(subttl),"",null,null,null,null,"TtlObat"});
                         }
                         x++;
                         tabModeRwJlDr.addRow(new Object[]{true,x+". Obat, Alkes & BHP Operasi",":","",null,null,null,null,"Obat"});
@@ -5490,7 +5498,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 // RSPK: subtotal kelompok Obat, Alkes & BHP Operasi (depo OK01)
                 if(grupok){
                     obatok=true;
-                    tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat, Alkes & BHP Operasi : "+angka2(subttlok),"",null,null,null,null,"TtlObat"});
+                    tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat, Alkes & BHP Operasi : "+angka0(subttlok),"",null,null,null,null,"TtlObat"});
                 }
                     
             } catch (Exception e) {
@@ -5511,9 +5519,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             ttlobat=subttl;
             if(obatnonok&&obatok){
                 // RSPK: dua kelompok sudah punya subtotal masing-masing; ini total keduanya
-                tabModeRwJlDr.addRow(new Object[]{true,"","Total Semua Obat, Alkes & BHP : "+angka2(subttl),"",null,null,null,null,"TtlObat"});
+                tabModeRwJlDr.addRow(new Object[]{true,"","Total Semua Obat, Alkes & BHP : "+angka0(subttl),"",null,null,null,null,"TtlObat"});
             }else if(!obatok){
-                tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat & BHP : "+angka2(subttl),"",null,null,null,null,"TtlObat"});
+                tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat & BHP : "+angka0(subttl),"",null,null,null,null,"TtlObat"});
             }
         }
                 

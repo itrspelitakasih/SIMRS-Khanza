@@ -222,13 +222,14 @@ public final class DiskonPenjamin {
     }
 
     /**
-     * Teks diskon untuk billing, 2 desimal tanpa pembulatan ke rupiah, mis. " [Diskon 5% : 4,387.40]"
-     * (pemisah sesuai locale komputer). diskonBulat tidak dicetak: pembulatan hanya di nota PAMA.
+     * Teks diskon untuk billing, tampil tanpa desimal, mis. " [Diskon 5% : 4,387]" (pemisah sesuai locale komputer).
+     * Nilai potongan yang tersimpan tetap 2 desimal (tanpa dibulatkan); diskonBulat tidak dipakai.
      */
     public static String teksDiskon(double persen, double diskon2, double diskonBulat) {
         if (persen <= 0 || (diskon2 == 0 && diskonBulat == 0)) return "";
-        java.text.DecimalFormat d2 = new java.text.DecimalFormat("#,##0.00");
-        return " [Diskon " + teksPersen(persen) + "% : " + d2.format(java.math.BigDecimal.valueOf(diskon2).setScale(2, java.math.RoundingMode.HALF_UP)) + "]";
+        java.text.DecimalFormat d0 = new java.text.DecimalFormat("#,##0");
+        d0.setRoundingMode(java.math.RoundingMode.HALF_UP);
+        return " [Diskon " + teksPersen(persen) + "% : " + d0.format(java.math.BigDecimal.valueOf(diskon2).setScale(2, java.math.RoundingMode.HALF_UP)) + "]";
     }
 
     /**
