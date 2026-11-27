@@ -14,8 +14,9 @@ import java.util.Map;
  * Saat billing ralan/ranap dibuka dan belum disimpan, terapkan() menghitung subtotal tiap kategori
  * untuk no_rawat dan menulis baris Potongan di pengurangan_biaya, mis. "Diskon Obat 5% (Jenis Bayar)".
  * Baris diskon otomatis lama selalu dihapus dulu sehingga ikut berubah bila tagihan berubah.
- * Alkes = barang berjenis "Alat Kesehatan". Barang di Harga Barang Tetap dengan ikut_diskon='Tidak'
- * tidak dihitung dalam diskon Obat/Alkes.
+ * Alkes = barang berkategori "Alkes &amp; BHP" (KATEGORI_ALKES). Barang di Harga Barang Tetap dengan ikut_diskon='Tidak'
+ * tidak dihitung dalam diskon Obat/Alkes. Diskon Obat/Alkes dihitung per obat per tanggal (seperti nota PAMA),
+ * 2 desimal, lalu dibulatkan per obat (0,5 dianggap 1) dan dijumlah.
  */
 public final class DiskonPenjamin {
     private static volatile Boolean aktif = null;
@@ -122,18 +123,114 @@ public final class DiskonPenjamin {
      */
     public static final String KATEGORI_ALKES = "Alkes & BHP";
 
-    /** Pembulatan rupiah gaya PHP round(): setengah menjauhi nol (juga untuk baris retur bernilai negatif). */
-    private static double bulat(double v) {
-        return Math.signum(v) * Math.round(Math.abs(v));
+    /** Diskon satu baris dengan 2 digit desimal: total x p%, setengah menjauhi nol (retur bernilai negatif). */
+    public static java.math.BigDecimal diskon2(double total, double persen) {
+        return java.math.BigDecimal.valueOf(total).multiply(java.math.BigDecimal.valueOf(persen))
+                .divide(java.math.BigDecimal.valueOf(100)).setScale(2, java.math.RoundingMode.HALF_UP);
     }
 
-    /** Diskon satu baris: total - round(total x (100-p)%), sama persis dengan nota PAMA setelah diskon. */
+    /** Diskon satu baris (per obat) dalam rupiah: diskon 2 desimal dibulatkan, 0,5 dianggap 1. */
     public static double diskonBaris(double total, double persen) {
-        return total - bulat(total * (100d - persen) / 100d);
+        return diskon2(total, persen).setScale(0, java.math.RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /** Teks diskon untuk satu baris obat, mis. " [Diskon 5% : 4.387,40 -> 4.387]". Kosong bila persen 0. */
+    public static String teksDiskonBaris(double total, double persen) {
+        if (persen <= 0 || total == 0) return "";
+        return teksDiskon(persen, diskon2(total, persen).doubleValue(), diskonBaris(total, persen));
     }
 
     /**
-     * Baris Obat/Alkes untuk no_rawat dengan pengelompokan yang sama seperti nota PAMA:
+     * Persen diskon Obat/Alkes yang sedang dipakai billing: hanya kategori yang baris potongannya
+     * "Diskon Obat/Alkes ... (Jenis Bayar)" ada di pengurangan_biaya (bila dihapus kasir, tidak ditampilkan per obat).
+     * Elemen: {persen obat, persen alkes}.
+     */
+    public static double[] persenTerpasang(String noRawat, String jenisRawat) {
+        double[] h = {0, 0};
+        if (noRawat == null || noRawat.trim().equals("") || !aktif()) return h;
+        try (PreparedStatement ps = koneksiDB.condb().prepareStatement(
+                "select d.kategori,d.persen from set_diskon_penjab d inner join reg_periksa r on r.kd_pj=d.kd_pj "
+                + "where r.no_rawat=? and d.jenis_rawat=? and d.persen>0 and d.kategori in ('Obat','Alkes') "
+                + "and exists(select 1 from pengurangan_biaya p where p.no_rawat=r.no_rawat and p.nama_pengurangan like concat('Diskon ',d.kategori,' %',?))")) {
+            ps.setString(1, noRawat);
+            ps.setString(2, jenisRawat);
+            ps.setString(3, PENANDA);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) h[rs.getString(1).equals("Alkes") ? 1 : 0] = rs.getDouble(2);
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Diskon Jenis Bayar : " + e.getMessage());
+        }
+        return h;
+    }
+
+    /** Kode barang Harga Barang Tetap yang tidak ikut diskon (ikut_diskon='Tidak'). */
+    public static java.util.Set<String> barangTanpaDiskon() {
+        java.util.Set<String> h = new java.util.HashSet<>();
+        if (!HargaBarangTetap.aktif()) return h;
+        try (Statement st = koneksiDB.condb().createStatement();
+             ResultSet rs = st.executeQuery("select kode_brng from set_harga_barang_tetap where ikut_diskon='Tidak'")) {
+            while (rs.next()) h.add(rs.getString(1));
+        } catch (Exception e) {
+            System.out.println("Notif Diskon Jenis Bayar : " + e.getMessage());
+        }
+        return h;
+    }
+
+    /**
+     * Diskon per baris Billing Ranap = jumlah diskon per obat per tanggal (sama dengan barisObatAlkes dan nota PAMA),
+     * sehingga jumlah diskon yang tampil di billing sama dengan baris Potongan. Kunci:
+     * "O|depook|kode_brng|biaya_obat" (pemberian obat), "OP|kd_obat" (obat operasi), "RT|kode_brng" (retur, negatif).
+     * Resep pulang dihitung per baris dengan teksDiskonBaris(). Nilai: {diskon 2 desimal, diskon dibulatkan per obat per tanggal}.
+     */
+    public static Map<String, double[]> diskonBarisBilling(String noRawat, double persenObat, double persenAlkes) {
+        Map<String, double[]> h = new java.util.HashMap<>();
+        if (persenObat <= 0 && persenAlkes <= 0) return h;
+        Connection c = koneksiDB.condb();
+        String kecuali = HargaBarangTetap.aktif()
+                ? " and not exists(select 1 from set_harga_barang_tetap hbt where hbt.kode_brng=databarang.kode_brng and hbt.ikut_diskon='Tidak')" : "";
+        String isAlkes = "if(ifnull((select nama from kategori_barang where kode=databarang.kode_kategori),'')=?,1,0)";
+        String[] sql = {
+            "select " + isAlkes + ",sum(detail_pemberian_obat.total),concat('O|',if(detail_pemberian_obat.kd_bangsal='OK01',1,0),'|',detail_pemberian_obat.kode_brng,'|',detail_pemberian_obat.biaya_obat) "
+                + "from detail_pemberian_obat inner join databarang on databarang.kode_brng=detail_pemberian_obat.kode_brng where detail_pemberian_obat.no_rawat=?" + kecuali
+                + " group by detail_pemberian_obat.tgl_perawatan,if(detail_pemberian_obat.kd_bangsal='OK01',1,0),detail_pemberian_obat.kode_brng,detail_pemberian_obat.biaya_obat",
+            "select 0,sum(hargasatuan*jumlah),concat('OP|',kd_obat) from beri_obat_operasi where no_rawat=? group by date(tanggal),kd_obat",
+            "select " + isAlkes + ",-1*sum(detreturjual.subtotal),concat('RT|',databarang.kode_brng) from detreturjual inner join returjual on returjual.no_retur_jual=detreturjual.no_retur_jual "
+                + "inner join databarang on databarang.kode_brng=detreturjual.kode_brng where returjual.no_retur_jual like concat('%',?,'%')" + kecuali
+                + " group by returjual.tgl_retur,if(returjual.kd_bangsal='OK01',1,0),databarang.kode_brng"
+        };
+        for (String s : sql) {
+            try (PreparedStatement ps = c.prepareStatement(s)) {
+                int i = 1;
+                if (s.contains("kategori_barang")) ps.setString(i++, KATEGORI_ALKES);
+                ps.setString(i, noRawat);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        double p = rs.getInt(1) == 1 ? persenAlkes : persenObat;
+                        if (p <= 0) continue;
+                        double[] v = h.computeIfAbsent(rs.getString(3), k -> new double[2]);
+                        v[0] += diskon2(rs.getDouble(2), p).doubleValue();
+                        v[1] += diskonBaris(rs.getDouble(2), p);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif Diskon Jenis Bayar : " + e.getMessage());
+            }
+        }
+        return h;
+    }
+
+    /** Teks diskon dari nilai yang sudah dihitung, mis. " [Diskon 5% : 4.387,40 -> 4.387]". */
+    public static String teksDiskon(double persen, double diskon2, double diskonBulat) {
+        if (persen <= 0 || (diskon2 == 0 && diskonBulat == 0)) return "";
+        java.text.DecimalFormatSymbols id = new java.text.DecimalFormatSymbols(new java.util.Locale("id", "ID"));
+        java.text.DecimalFormat d2 = new java.text.DecimalFormat("#,##0.00", id), d0 = new java.text.DecimalFormat("#,##0", id);
+        return " [Diskon " + teksPersen(persen) + "% : " + d2.format(java.math.BigDecimal.valueOf(diskon2).setScale(2, java.math.RoundingMode.HALF_UP))
+                + " -> " + d0.format(diskonBulat) + "]";
+    }
+
+    /**
+     * Baris Obat/Alkes untuk no_rawat dengan pengelompokan yang sama seperti nota PAMA (diskon per obat per tanggal):
      * pemberian obat per tanggal+depo+barang, obat operasi per tanggal+obat, resep pulang per tanggal+barang,
      * retur per tanggal+depo+barang (negatif), dan tagihan obat langsung. Elemen: {1=alkes/0=obat, total}.
      */

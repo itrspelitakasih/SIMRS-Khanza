@@ -95,12 +95,13 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             sqlpsdokterralan="select dokter.nm_dokter from rawat_jl_dr "+
                     "inner join dokter on rawat_jl_dr.kd_dokter=dokter.kd_dokter "+
                     "where rawat_jl_dr.no_rawat=? group by rawat_jl_dr.kd_dokter",
-            sqlpsobatoperasi="select obatbhp_ok.nm_obat,beri_obat_operasi.hargasatuan,sum(beri_obat_operasi.jumlah) as jumlah, "+
+            sqlpsobatoperasi="select obatbhp_ok.nm_obat,beri_obat_operasi.kd_obat,beri_obat_operasi.hargasatuan,sum(beri_obat_operasi.jumlah) as jumlah, "+
                     "sum(beri_obat_operasi.hargasatuan*beri_obat_operasi.jumlah) as total "+
                     "from obatbhp_ok inner join beri_obat_operasi "+
                     "on beri_obat_operasi.kd_obat=obatbhp_ok.kd_obat where "+
                     "beri_obat_operasi.no_rawat=? group by beri_obat_operasi.kd_obat",
-            sqlpsreturobat="select databarang.nama_brng,detreturjual.h_retur, "+
+            sqlpsreturobat="select databarang.nama_brng,detreturjual.h_retur,databarang.kode_brng, "+
+                    "if(ifnull((select kategori_barang.nama from kategori_barang where kategori_barang.kode=databarang.kode_kategori),'')='"+fungsi.DiskonPenjamin.KATEGORI_ALKES+"',1,0) as alkes, "+
                     "sum(detreturjual.jml_retur * -1) as jml, "+
                     "sum(detreturjual.subtotal * -1) as ttl from detreturjual inner join databarang inner join returjual "+
                     "on detreturjual.kode_brng=databarang.kode_brng "+
@@ -118,7 +119,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
                     " where biaya_sekali.kd_kamar=? order by biaya_sekali.nama_biaya",
             sqlpsbiayaharian="select biaya_harian.nama_biaya,biaya_harian.besar_biaya,biaya_harian.jml,(biaya_harian.jml*biaya_harian.besar_biaya*?) as total from biaya_harian "+
                     " where biaya_harian.kd_kamar=? order by biaya_harian.nama_biaya",
-            sqlpsreseppulang="select databarang.nama_brng,resep_pulang.harga,"+
+            sqlpsreseppulang="select databarang.nama_brng,resep_pulang.harga,databarang.kode_brng,"+
+                    "if(ifnull((select kategori_barang.nama from kategori_barang where kategori_barang.kode=databarang.kode_kategori),'')='"+fungsi.DiskonPenjamin.KATEGORI_ALKES+"',1,0) as alkes,"+
                     "resep_pulang.jml_barang,resep_pulang.dosis,"+
                     "(resep_pulang.total-(ifnull(resep_pulang.embalase,0)+ifnull(resep_pulang.tuslah,0))) as total,"+
                     "(ifnull(resep_pulang.embalase,0)+ifnull(resep_pulang.tuslah,0)) as tambahan_ob "+
@@ -5291,7 +5293,33 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
     }
 
-    private void prosesCariObat(String norawat) {    
+    /** RSPK: nama baris Resep Pulang + diskon jenis bayar per baris (2 desimal & dibulatkan) bila diskon Obat/Alkes terpasang. */
+    private String namaDiskonBaris(String nama,double total,boolean alkes,String kodeBrng,double[] persen,java.util.Set<String> tanpaDiskon){
+        double p=alkes?persen[1]:persen[0];
+        if((p<=0)||((kodeBrng!=null)&&tanpaDiskon.contains(kodeBrng))){
+            return nama;
+        }
+        String hasil=nama+fungsi.DiskonPenjamin.teksDiskonBaris(total,p);
+        return hasil.length()>200?nama:hasil;
+    }
+
+    /**
+     * RSPK: nama baris obat + diskon jenis bayar per obat (2 desimal & dibulatkan per obat per tanggal, sama dengan Potongan
+     * dan nota PAMA) bila diskon Obat/Alkes terpasang. kunci = kunci DiskonPenjamin.diskonBarisBilling().
+     */
+    private String namaDiskon(String nama,String kunci,boolean alkes,double[] persen,java.util.Map<String,double[]> diskon){
+        double p=alkes?persen[1]:persen[0];
+        double[] v=diskon.get(kunci);
+        if((p<=0)||(v==null)){
+            return nama;
+        }
+        String hasil=nama+fungsi.DiskonPenjamin.teksDiskon(p,v[0],v[1]);
+        return hasil.length()>200?nama:hasil;
+    }
+
+    private void prosesCariObat(String norawat) {
+        double[] persenDiskon=fungsi.DiskonPenjamin.persenTerpasang(norawat,"Ranap");
+        java.util.Map<String,double[]> diskonObat=fungsi.DiskonPenjamin.diskonBarisBilling(norawat,persenDiskon[0],persenDiskon[1]);
         subttl=0;
         ttlobat=0;
         ttlretur=0;
@@ -5343,7 +5371,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         x++;
                         rsobatoperasi.beforeFirst();
                         while(rsobatoperasi.next()){
-                             tabModeRwJlDr.addRow(new Object[]{true,"                           ",rsobatoperasi.getString("nm_obat"),":",
+                             tabModeRwJlDr.addRow(new Object[]{true,"                           ",namaDiskon(rsobatoperasi.getString("nm_obat"),"OP|"+rsobatoperasi.getString("kd_obat"),false,persenDiskon,diskonObat),":",
                                            rsobatoperasi.getDouble("hargasatuan"),rsobatoperasi.getDouble("jumlah"),0,
                                            rsobatoperasi.getDouble("total"),"Obat"});
                         }
@@ -5354,7 +5382,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         x++;
                         rsobatoperasi.beforeFirst();
                         while(rsobatoperasi.next()){
-                             tabModeRwJlDr.addRow(new Object[]{false,"                           ",rsobatoperasi.getString("nm_obat"),":",
+                             tabModeRwJlDr.addRow(new Object[]{false,"                           ",namaDiskon(rsobatoperasi.getString("nm_obat"),"OP|"+rsobatoperasi.getString("kd_obat"),false,persenDiskon,diskonObat),":",
                                            rsobatoperasi.getDouble("hargasatuan"),rsobatoperasi.getDouble("jumlah"),0,
                                            rsobatoperasi.getDouble("total"),"Obat"});
                         }
@@ -5379,7 +5407,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         try{
             pscariobat=koneksi.prepareStatement(
-                    "select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,"+
+                    "select databarang.nama_brng,jenis.nama,detail_pemberian_obat.biaya_obat,databarang.kode_brng,"+
+                    "concat('O|',if(detail_pemberian_obat.kd_bangsal='OK01',1,0),'|',databarang.kode_brng,'|',detail_pemberian_obat.biaya_obat) as kunci,"+
+                    "if(ifnull((select kategori_barang.nama from kategori_barang where kategori_barang.kode=databarang.kode_kategori),'')='"+fungsi.DiskonPenjamin.KATEGORI_ALKES+"',1,0) as alkes,"+
                     "sum(detail_pemberian_obat.jml) as jml,sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah) as tambahan,"+
                     "(sum(detail_pemberian_obat.total)-sum(detail_pemberian_obat.embalase+detail_pemberian_obat.tuslah)) as total,"+
                     "if(detail_pemberian_obat.kd_bangsal='OK01',1,0) as depook "+
@@ -5400,16 +5430,26 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 rscariobat=pscariobat.executeQuery();
                 // Obat/alkes/BHP yang diinput dari depo OK01 (Operasi) dikelompokkan tersendiri
                 boolean centangobat=pengaturanbillingranap.getCentangObatRanap().equals("Yes"),grupok=false;
+                double subttlok=0;
                 while(rscariobat.next()){
                     if((rscariobat.getInt("depook")==1)&&(grupok==false)){
                         grupok=true;
                         x++;
                         tabModeRwJlDr.addRow(new Object[]{true,x+". Obat, Alkes & BHP Operasi",":","",null,null,null,null,"Obat"});
                     }
-                    tabModeRwJlDr.addRow(new Object[]{centangobat,"                           ",rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",":",
+                    double totalbaris=rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                    tabModeRwJlDr.addRow(new Object[]{centangobat,"                           ",
+                                   namaDiskon(rscariobat.getString("nama_brng")+" ("+rscariobat.getString("nama")+")",rscariobat.getString("kunci"),rscariobat.getInt("alkes")==1,persenDiskon,diskonObat),":",
                                    rscariobat.getDouble("biaya_obat"),rscariobat.getDouble("jml"),rscariobat.getDouble("tambahan"),
-                                   (rscariobat.getDouble("total")+rscariobat.getDouble("tambahan")),"Obat"});
-                    subttl=subttl+rscariobat.getDouble("total")+rscariobat.getDouble("tambahan");
+                                   totalbaris,"Obat"});
+                    subttl=subttl+totalbaris;
+                    if(rscariobat.getInt("depook")==1){
+                        subttlok=subttlok+totalbaris;
+                    }
+                }
+                // RSPK: subtotal kelompok Obat, Alkes & BHP Operasi (depo OK01); Total Obat & BHP di bawahnya tetap total semua
+                if(grupok){
+                    tabModeRwJlDr.addRow(new Object[]{true,"","Total Obat, Alkes & BHP Operasi : "+Valid.SetAngka(subttlok),"",null,null,null,null,"TtlObat"});
                 }
                     
             } catch (Exception e) {
@@ -5444,7 +5484,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 if(pengaturanbillingranap.getCentangObatRanap().equals("Yes")){
                     while(rsreturobat.next()){
                         tabModeRwJlDr.addRow(new Object[]{
-                            true,"                           ",rsreturobat.getString("nama_brng"),":",
+                            true,"                           ",namaDiskon(rsreturobat.getString("nama_brng"),"RT|"+rsreturobat.getString("kode_brng"),rsreturobat.getInt("alkes")==1,persenDiskon,diskonObat),":",
                             rsreturobat.getDouble("h_retur"),rsreturobat.getDouble("jml"),0,
                             rsreturobat.getDouble("ttl"),"Retur Obat"
                         });
@@ -5453,7 +5493,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 }else{
                     while(rsreturobat.next()){
                         tabModeRwJlDr.addRow(new Object[]{
-                            false,"                           ",rsreturobat.getString("nama_brng"),":",
+                            false,"                           ",namaDiskon(rsreturobat.getString("nama_brng"),"RT|"+rsreturobat.getString("kode_brng"),rsreturobat.getInt("alkes")==1,persenDiskon,diskonObat),":",
                             rsreturobat.getDouble("h_retur"),rsreturobat.getDouble("jml"),0,
                             rsreturobat.getDouble("ttl"),"Retur Obat"
                         });
@@ -5662,7 +5702,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         x++;
         subttl=0;
-        try{     
+        double[] persenDiskon=fungsi.DiskonPenjamin.persenTerpasang(norawat,"Ranap");
+        java.util.Set<String> tanpaDiskon=((persenDiskon[0]>0)||(persenDiskon[1]>0))?fungsi.DiskonPenjamin.barangTanpaDiskon():new java.util.HashSet<String>();
+        try{
             psreseppulang=koneksi.prepareStatement(sqlpsreseppulang);
             try {
                 psreseppulang.setString(1,norawat);
@@ -5689,7 +5731,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         }
                     }
                     tamkur=tamkur+rsreseppulang.getDouble("tambahan_ob");
-                    tabModeRwJlDr.addRow(new Object[]{true,"                           ",rsreseppulang.getString("nama_brng")+" "+rsreseppulang.getString("dosis"),":",
+                    tabModeRwJlDr.addRow(new Object[]{true,"                           ",
+                                   namaDiskonBaris(rsreseppulang.getString("nama_brng")+" "+rsreseppulang.getString("dosis"),rsreseppulang.getDouble("total")+rsreseppulang.getDouble("tambahan_ob"),rsreseppulang.getInt("alkes")==1,rsreseppulang.getString("kode_brng"),persenDiskon,tanpaDiskon),":",
                                    rsreseppulang.getDouble("harga"),rsreseppulang.getDouble("jml_barang"),tamkur,(tamkur+rsreseppulang.getDouble("total")),"Resep Pulang"});
                     subttl=subttl+rsreseppulang.getDouble("total")+tamkur;
                 }
